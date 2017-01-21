@@ -8,7 +8,7 @@ let authController = {
     passport.authenticate('local', {
       successRedirect: '/user/profile',
       failureRedirect: '/auth/login',
-      successFlash: `Welcome Back ${req.user.name}!`,
+      successFlash: `Welcome Back ${req.user}!`,
       failureFlash: 'Invalid email/password.'
     })(req, res)
   },
