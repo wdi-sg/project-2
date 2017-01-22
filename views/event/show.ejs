@@ -2,19 +2,20 @@
   <% include ../partials/alerts %>
   <div class='row'>
 
-    <div class='col-md-12 panel panel-default'>
+    <div class='col-md-9 panel panel-default'>
       <h2><%= results.event.name%></h2>
+      <span class="pull-right"><p>Organised by: <%= results.event.creator.name%></p></span>
+
+
+      <hr>
       <ul>
         <li>Date: <%= results.event.startDate%> - <%= results.event.endDate%></li>
         <li>Venue: <%= results.event.location%></li>
-        <li>Organiser: <%= results.event.creator.name%></li>
       </ul>
-
-
-
-
-
-
+      <div class='col-md-12'>
+        Details:
+        <%- simpleFormat(results.event.description) %>
+      </div>
 
       <% if (user) {%>
         <% if (results.event.creator.equals(user.id)) {%>
@@ -27,6 +28,14 @@
               <a href='/event/<%= results.event._id%>/join'><button class='btn btn-danger'>RSVP</button></a>
        <%}%>
       <%}%>
+    </div>
+    <div class='col-md-3 panel panel-default'>
+      <h2>Participants</h2>
+      <% results.participants.forEach( (participant)=> { %>
+        <div class='panel panel-default'>
+          <%= participant.user.name%>
+        </div>
+      <%})%>
     </div>
  </div>
 </div>

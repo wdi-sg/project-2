@@ -20,6 +20,9 @@ let eventSchema = new mongoose.Schema({
     type: String,
     require: true
   },
+  description: {
+    type: String
+  },
   creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   created_at: {type: Date, default: Date.now()}
 })

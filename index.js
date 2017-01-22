@@ -11,6 +11,8 @@ const authRoutes = require('./routes/auth_router')
 const userRoutes = require('./routes/user_router')
 const eventRoutes = require('./routes/event_router')
 const isLoggedIn = require('./middleware/isLoggedIn')
+const moment = require('moment')
+const tools = require('./lib/tools')
 const app = express()
 
 require('dotenv').config({silent: true})
@@ -37,6 +39,10 @@ app.use(function (req, res, next) {
   res.locals.currentUser = req.user
   next()
 })
+
+app.locals.simpleFormat = tools.simpleFormat
+app.locals.dateFormat = tools.dateFormat
+
 
 app.set('view engine', 'ejs')
 

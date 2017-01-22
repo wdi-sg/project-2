@@ -1,20 +1,21 @@
 
+<div class="container">
 <% include ../partials/alerts %>
-<div class='col-md-2 col-md-offset-5 panel panel-default align-middle'>
-  <form action=<%= "/event/" + event._id + "?_method=PUT" %> method="POST">
+<div class='col-md-12 align-middle'>
+  <form action=<%= "/event/" + event._id + "/edit?_method=PUT" %> method="POST">
     <div class="form-group">
       <label for="eventName">Name</label>
       <input id="eventName" class="form-control" type="string" name="name" value = "<%= event.name%>">
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-md-6">
       <label for="eventStartDate">Start Date</label>
-      <input id="eventStartDate" class="form-control" type="datetime-local" name="startDate" value= "<%= event.startDate%>">
+      <input id="eventStartDate" class="form-control" type="datetime-local" name="startDate" value="<%= dateFormat(event.startDate)%>">
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-md-6">
       <label for="eventEndDate">End Date</label>
-      <input id="eventEndDate" class="form-control" type="datetime-local" name="endDate" value="<%= event.endDate%>">
+      <input id="eventEndDate" class="form-control" type="datetime-local" name="endDate" value="<%= dateFormat(event.endDate)%>">
     </div>
 
     <div class="form-group">
@@ -22,9 +23,15 @@
       <input id="eventLocation" class="form-control" type="string" name="location" value="<%= event.location%>">
     </div>
 
+    <div class="form-group">
+      <!-- <label for="eventLocation">Location</label> -->
+      <textarea id="descriptionInput" class="form-control" type="string" rows="10"  name="description"><%= event.description %></textarea>
+    </div>
+
     <div class="form-group pull-left">
       <input class="btn btn-primary" type="submit">
     </div>
   </form>
-  <a class="pull-right" href=`/event/<%= event._id%>`><button class="btn btn-danger">Cancel</button></a>
+  <a class="pull-right" href='/event/<%= event._id%>'><button class="btn btn-danger">Cancel</button></a>
+</div>
 </div>

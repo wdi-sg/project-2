@@ -20,7 +20,7 @@ let userController = {
         res.redirect('/user/signup')
       } else {
         passport.authenticate('local', {
-          successRedirect: '/event/myindex',
+          successRedirect: '/user/profile',
           successFlash: `Welcome to Bfit ${user.name}!`
         })(req, res)
       }
