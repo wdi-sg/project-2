@@ -71,8 +71,14 @@ describe('USER LOGOUT'.underline, () => {
 })
 
 describe('USER LOGIN'.underline, () => {
-  it('should redirect to /profile on successful login'.bold, (done) => {
-    server.get('/profile')
-      .expect(200, done)
+  it('should redirect to / on successful login'.bold, (done) => {
+    server.post('/users/login')
+      .send({email: 'a@b.com', password: 'tomato'})
+      .expect('Location','/', done)
+  })
+  it('should redirect to /user/login on unsuccessful login'.bold, (done) => {
+    server.post('/users/login')
+      .send({email: 'a@b.com', password: 'potato'})
+      .expect('Location','/users/login', done)
   })
 })
