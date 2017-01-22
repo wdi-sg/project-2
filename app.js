@@ -1,3 +1,4 @@
+require('colors')
 const express = require('express')
 const path = require('path')
 const favicon = require('serve-favicon')
@@ -5,11 +6,21 @@ const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const ejsLayouts = require('express-ejs-layouts')
+const mongoose = require('mongoose')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
 
 const app = express()
+
+// connect to MongoDB based on environment (test or dev).
+if (process.env.NODE_ENV === 'test') {
+  mongoose.connect('mongodb://localhost/proj2-test')
+  console.log('CONNECTING TO TEST SERVER...'.blue)
+} else if (process.env.NODE_ENV === 'dev') {
+  mongoose.connect('mongodb://localhost/proj2-dev')
+  console.log('CONNECTING TO DEV SERVER...'.blue)
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -45,4 +56,8 @@ app.use(function(err, req, res) {
   res.render('error')
 })
 
+const port = process.env.PORT || 3000
+app.listen(port)
+
+console.log('SERVER UP ON PORT '.blue + port)
 module.exports = app
