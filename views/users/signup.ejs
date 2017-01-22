@@ -1,1 +1,30 @@
-<h1>SIGN UP</h1>
+<h1>Hello! Sign up here.</h1>
+<hr>
+
+<% if (msg.length > 0) { %>
+  <div class="alert alert-danger"><%= msg.toString() %></div>
+<% } %>
+
+<div class="well">
+  <form action="/users/signup" method="post" accept-charset="utf-8">
+    <label for="email">Email</label>
+    <div class="form-group">
+      <input type="text" class="form-control" name="email" id="email">
+    </div>
+    <label for="name">Name</label>
+    <div class="form-group">
+      <input type="text" class="form-control" name="name" id="name">
+    </div>
+    <label for="password">Password</label>
+    <div class="form-group">
+      <input type="password" class="form-control" name="password" id="password">
+    </div>
+    <label for="passwordusers">Verify password</label>
+    <div class="form-group">
+      <input type="password" class="form-control" name="passwordusers" id="passwordusers">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <hr>
+  <p>Already have an account? <a href="/users/login">Log in here.</a></p>
+</div>
