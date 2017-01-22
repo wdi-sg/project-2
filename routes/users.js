@@ -1,4 +1,6 @@
 require('colors')
+require('dotenv').config({silent: true})
+let logging = process.env.LOGGING
 const express = require('express')
 const User = require('../models/user')
 const router = express.Router()
@@ -17,7 +19,7 @@ router.get('/login', (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-  console.log('USER HAS LOGGED OUT: '.blue + req.user.name)
+  if (logging === 'true') console.log('USER HAS LOGGED OUT: '.blue + req.user.name)
   req.logout()
   res.redirect('/')
 })
@@ -27,7 +29,7 @@ router.get('/destroyall', (req, res) => {
     User.remove({}, (err) => {
       if (err) console.log(err)
       else {
-        console.log('ALL USERS HAVE BEEN REMOVED FROM THE DATABASE'.underline.bold.red)
+        if (logging === 'true') console.log('ALL USERS HAVE BEEN REMOVED FROM THE DATABASE'.underline.bold.red)
         res.redirect('/')
       }
     })
@@ -38,18 +40,18 @@ router.post('/signup', (req, res) => {
   User.create(req.body, (err) => {
     if (err) {
       // console.log(err)
-      console.log('SIGNUP ERROR'.red)
+      if (logging === 'true') console.log('SIGNUP ERROR'.red)
       res.redirect('/users/signup')
     }
     else {
-      console.log('USER SIGNUP SUCCESSFUL: '.blue + req.body.name)
+      if (logging === 'true') console.log('USER SIGNUP SUCCESSFUL: '.blue + req.body.name)
       res.redirect('/users/login')
     }
   })
 })
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
+  successRedirect: '/profile',
   failureRedirect: '/users/login',
   failureMessage: true
 }))

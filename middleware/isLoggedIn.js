@@ -1,11 +1,13 @@
 require('colors')
+require('dotenv').config({silent: true})
+let logging = process.env.LOGGING
 
 module.exports = (req, res, next) => {
   if (!req.user) {
-    console.log('ATTEMPTED TO ACCESS WITHOUT LOGIN'.red)
+    if (logging === 'true') console.log('ATTEMPTED TO ACCESS WITHOUT LOGIN'.red)
     res.redirect('/users/login')
   } else {
-    console.log('USER ACCESS GRANTED FOR USER: '.blue + req.user.name)
+    if (logging === 'true') console.log('USER ACCESS GRANTED FOR USER: '.blue + req.user.name)
     next()
   }
 }
