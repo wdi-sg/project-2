@@ -6,7 +6,7 @@ let authController = {
   },
   loggedIn: function (req, res) {
     passport.authenticate('local', {
-      successRedirect: '/user/profile',
+      successRedirect: `/user/profile`,
       failureRedirect: '/auth/login',
       successFlash: `Welcome Back ${req.user}!`,
       failureFlash: 'Invalid email/password.'

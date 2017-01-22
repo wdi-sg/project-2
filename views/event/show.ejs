@@ -1,1 +1,32 @@
-<%= event%>
+<div class='container'>
+  <% include ../partials/alerts %>
+  <div class='row'>
+
+    <div class='col-md-12 panel panel-default'>
+      <h2><%= results.event.name%></h2>
+      <ul>
+        <li>Date: <%= results.event.startDate%> - <%= results.event.endDate%></li>
+        <li>Venue: <%= results.event.location%></li>
+        <li>Organiser: <%= results.event.creator.name%></li>
+      </ul>
+
+
+
+
+
+
+
+      <% if (user) {%>
+        <% if (results.event.creator.equals(user.id)) {%>
+          <a href='/event/<%=results.event._id%>/edit'><button class='btn btn-primary'>Edit</button></a>
+          <a href='/event/<%=results.event._id%>/delete'><button class='btn btn-danger'>Delete</button></a>
+        <%} else if (results.joined !== null){%>
+            <button class='btn btn-danger' disabled>Joined</button>
+            <a href='/event/<%=results.event._id%>/cancel'><button class='btn btn-primary'>Cancel</button></a>
+        <%} else {%>
+              <a href='/event/<%= results.event._id%>/join'><button class='btn btn-danger'>RSVP</button></a>
+       <%}%>
+      <%}%>
+    </div>
+ </div>
+</div>

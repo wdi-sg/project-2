@@ -1,12 +1,15 @@
 const passport = require('../config/ppConfig')
 const User = require('../models/user')
+const Event = require('../models/event')
+const Participant = require('../models/participant')
+const async = require('async')
 
 let userController = {
   signup: (req, res) => {
     res.render('user/signup', {user: req.user})
   },
   create: function (req, res) {
-    console.log(req);
+    console.log(req)
     User.create({
       name: req.body.name,
       email: req.body.email,
@@ -17,22 +20,53 @@ let userController = {
         res.redirect('/user/signup')
       } else {
         passport.authenticate('local', {
-          successRedirect: '/user/profile',
+          successRedirect: '/event/myindex',
           successFlash: `Welcome to Bfit ${user.name}!`
         })(req, res)
       }
     })
   },
-  index: (req, res) => {
-    User.findById(req.user.id, (err, user) => {
+  show: (req, res) => {
+    async.parallel([
+      (cb) => {
+        User.findById(req.user.id, cb)
+      },
+      (cb) => {
+        Event.find({creator: req.user.id}, cb)
+      },
+      (cb) => {
+        Participant.find({user: req.user.id}).populate('event').exec(cb)
+      },
+      (cb) => {
+        Event.find({}).sort({'created_at': -1}).limit(5).exec(cb)
+      }
+
+    ]
+
+    , (err, result) => {
+      console.log(result)
+      console.log('result 2',result[2])
       if (err) {
         req.flash('error', 'Please login to proceed.')
         res.redirect('/auth/login')
       } else {
-        res.render('user/index', {user: req.user})
+        res.render(`user/index`, {user: req.user, events: result})
       }
     })
   },
+    // User.findById(req.user.id)
+    // .populate('joined_events')
+    // .populate('my_events')
+    // .populate('past_events')
+    // .exec((err, user) => {
+    //   if (err) {
+    //     req.flash('error', 'Please login to proceed.')
+    //     res.redirect('/auth/login')
+    //   } else {
+    //     res.render(`user/index`, {user: user})
+    //   }
+    // })
+
   delete: (req, res) => {
     User.findByIdAndRemove(req.user.id, (err) => {
       if (err) {

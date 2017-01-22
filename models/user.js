@@ -23,7 +23,7 @@ let userSchema = new mongoose.Schema({
   },
   memberSince: {
     type: Date,
-   default: Date.now()
+    default: Date.now()
   }
 })
 

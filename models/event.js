@@ -27,7 +27,7 @@ let eventSchema = new mongoose.Schema({
 eventSchema.pre('save', function (next) {
   let event = this
 
-  if (event.endDate > event.startDate) {
+  if (event.endDate < event.startDate) {
     let err = new Error('Could not end an event before it started')
     return next(err)
   }

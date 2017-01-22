@@ -1,1 +1,68 @@
-<h1>Welcome <%= user.name%></h1>
+
+<div class='container'>
+  <% include ../partials/alerts %>
+  <div class='row'>
+    <div class='col-md-2 panel panel-default'>
+      <h2><%= user.name%></h2>
+    </div>
+
+    <div class='col-md-6 panel panel-default'>
+      <h1> My Events </h1>
+      <% if (events[2].length <= 0) {%>
+        <div class='panel panel-default'>
+          <p> You have not start any event yet. </p><br>
+          <a href='/event/new'> Start Your own event now<a>
+        </div>
+      <%} else {%>
+        <%events[2].forEach( (event)=> {%>
+        <a href='/event/<%= event.event._id%>'>
+          <div class='panel panel-default'>
+                <p class='h3'><%= event.event.name %></p>
+                <p class='h4'><%= event.event.startDate %></p>
+          </div>
+        </a>
+        <% })}%>
+     </div>
+
+
+
+     <div class='col-md-4 panel panel-default'>
+       <h1> Recommended </h1>
+       <% if (events[3].length <= 0) {%>
+         <div class='panel panel-default'>
+           <p> You have not start any event yet. </p><br>
+           <a href='/event/new'> Start Your own event now<a>
+         </div>
+       <%} else {%>
+         <%events[3].forEach( (event)=> {%>
+         <a href='/event/<%= event._id%>'>
+           <div class='panel panel-default'>
+                 <p class='h3'><%= event.name %></p><br>
+                 <p class='h4'><%= event.startDate %></p>
+           </div>
+         </a>
+         <% })}%>
+      </div>
+
+      <div class='col-md-6 col-md-offset-2 panel panel-default'>
+        <h1> My Events </h1>
+        <% if (events[1].length <= 0) {%>
+          <div class='panel panel-default'>
+            <p> You have not start any event yet. </p><br>
+            <a href='/event/new'> Start Your own event now<a>
+          </div>
+        <%} else {%>
+          <%events[1].forEach( (event)=> {%>
+          <a href='/event/<%= event._id%>'>
+            <div class='panel panel-default'>
+                  <p class='h3'><%= event.name %></p>
+                  <p class='h4'><%= event.startDate %></p>
+            </div>
+          </a>
+          <% })}%>
+       </div>
+
+
+
+    </div>
+</div>

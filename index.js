@@ -10,6 +10,7 @@ const session = require('express-session')
 const authRoutes = require('./routes/auth_router')
 const userRoutes = require('./routes/user_router')
 const eventRoutes = require('./routes/event_router')
+const isLoggedIn = require('./middleware/isLoggedIn')
 const app = express()
 
 require('dotenv').config({silent: true})
@@ -24,7 +25,7 @@ app.use(methodOverride('_method'))
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
-  resave: false,
+  resave: true,
   saveUninitialize: true
 }))
 
@@ -39,8 +40,10 @@ app.use(function (req, res, next) {
 
 app.set('view engine', 'ejs')
 
+app.get('/', (req, res) => {
+  res.redirect('/event')
+})
 app.use('/auth', authRoutes)
-// isloggedin
 app.use('/user', userRoutes)
 app.use('/event', eventRoutes)
 

@@ -1,21 +1,23 @@
-<div class='login'>
-<div class='col-md-2 col-md-offset-5'>
+<div class='login container'>
 
-  <form action="/auth/login" method="POST">
-    <div class="form-group">
-      <label for="authEmail">Email</label>
-      <input id="authEmail" class="form-control" type="email" name="email">
+    <div class='col-md-2 panel panel-default'>
+      <% include ../partials/alerts %>
+      <form action="/auth/login" method="POST">
+        <div class="form-group">
+          <label for="authEmail">Email</label>
+          <input id="authEmail" class="form-control" type="email" name="email">
+        </div>
+
+        <div class="form-group">
+          <label for="authPassword">Password</label>
+          <input id="authPassword" class="form-control" type="password" name="password">
+        </div>
+
+        <div class="form-group pull-left">
+          <input class="btn btn-primary" type="submit">
+        </div>
+      </form>
+      <a class="pull-right" href="/user/signup"><button class="btn btn-danger">Sign Up</button></a>
     </div>
 
-    <div class="form-group">
-      <label for="authPassword">Password</label>
-      <input id="authPassword" class="form-control" type="password" name="password">
-    </div>
-
-    <div class="form-group pull-left">
-      <input class="btn btn-primary" type="submit">
-    </div>
-  </form>
-  <a class="pull-right" href="/user/signup"><button class="btn btn-danger">Sign Up</button></a>
-</div>
 </div>
