@@ -24,7 +24,7 @@ router.get('/destroyall', (req, res) => {
         res.redirect('/')
       }
     })
-  }
+  } else res.redirect('/')
 })
 
 router.post('/signup', (req, res) => {
