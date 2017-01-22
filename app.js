@@ -9,7 +9,8 @@ const ejsLayouts = require('express-ejs-layouts')
 const mongoose = require('mongoose')
 const session = require('express-session')
 const passport = require('./config/passport')
-const flash = require('connect-flash')
+// const flash = require('connect-flash')
+const isLoggedIn = require('./middleware/isLoggedIn')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
@@ -56,8 +57,14 @@ app.use(ejsLayouts)
 //   next()
 // })
 
-app.use('/', index)
 app.use('/users', users)
+app.use('/', index)
+
+app.use(isLoggedIn)
+
+app.get('/profile', (req, res) => {
+  res.render('profile', {title: 'Profile'})
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
