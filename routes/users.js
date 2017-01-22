@@ -16,13 +16,15 @@ router.get('/login', (req, res) => {
 })
 
 router.get('/destroyall', (req, res) => {
-  User.remove({}, (err) => {
-    if (err) console.log(err)
-    else {
-      console.log('ALL USERS HAVE BEEN REMOVED FROM THE DATABASE'.underline.bold.red)
-      res.redirect('/')
-    }
-  })
+  if (process.env.NODE_ENV === 'test') {
+    User.remove({}, (err) => {
+      if (err) console.log(err)
+      else {
+        console.log('ALL USERS HAVE BEEN REMOVED FROM THE DATABASE'.underline.bold.red)
+        res.redirect('/')
+      }
+    })
+  }
 })
 
 router.post('/signup', (req, res) => {
