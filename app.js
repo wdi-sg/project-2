@@ -10,7 +10,7 @@ const ejsLayouts = require('express-ejs-layouts')
 const mongoose = require('mongoose')
 const session = require('express-session')
 const passport = require('./config/passport')
-// const flash = require('connect-flash')
+const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
 const logging = process.env.LOGGING
 
@@ -33,7 +33,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 // login, sessions, flash
-// app.use(flash())
+app.use(flash())
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -52,11 +52,11 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(ejsLayouts)
 
 // local variables
-// app.use((res, req, next) => {
-//   // res.locals.flash = req.flash()
-//   res.locals.user = req.user
-//   next()
-// })
+app.use((req, res, next) => {
+  res.locals.flash = req.flash()
+  res.locals.user = req.user || {name: 'stranger'}
+  next()
+})
 
 app.use('/users', users)
 app.use('/', index)
