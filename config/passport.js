@@ -27,7 +27,7 @@ passport.use(new LocalStrategy({
       console.log('TRIED TO LOG IN WITH AN INVALID PASSWORD'.red)
       return done(err, false, {message:'Tried to log in with an invalid password!'})
     } else {
-      console.log('User login successful!'.blue)
+      console.log('USER LOGIN SUCCESSFUL'.blue)
       return done(err, user)
     }
   })
