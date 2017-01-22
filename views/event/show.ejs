@@ -9,7 +9,8 @@
 
       <hr>
       <ul>
-        <li>Date: <%= results.event.startDate%> - <%= results.event.endDate%></li>
+        <li>Date: <%= results.event.startDate.toDateString()%> <%= results.event.startDate.toLocaleTimeString()%>   - <%= results.event.endDate.toDateString()%> <%= results.event.endDate.toLocaleTimeString()%> </li>
+
         <li>Venue: <%= results.event.location%></li>
       </ul>
       <div class='col-md-12'>

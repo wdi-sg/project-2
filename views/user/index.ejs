@@ -18,7 +18,7 @@
         <a href='/event/<%= event.event._id%>'>
           <div class='panel panel-default'>
                 <p class='h3'><%= event.event.name %></p>
-                <p class='h4'><%= event.event.startDate %></p>
+                <p class='h4'><%= event.startDate.toDateString()%> <%= event.startDate.toLocaleTimeString()%></p>
           </div>
         </a>
         <% })}%>
@@ -38,7 +38,7 @@
          <a href='/event/<%= event._id%>'>
            <div class='panel panel-default'>
                  <p class='h3'><%= event.name %></p><br>
-                 <p class='h4'><%= event.startDate %></p>
+                 <p class='h4'><%= event.startDate.toDateString()%> <%= event.startDate.toLocaleTimeString()%></p>
            </div>
          </a>
          <% })}%>
@@ -56,7 +56,7 @@
           <a href='/event/<%= event._id%>'>
             <div class='panel panel-default'>
                   <p class='h3'><%= event.name %></p>
-                  <p class='h4'><%= event.startDate %></p>
+                  <p class='h4'><%= event.startDate.toDateString()%> <%= event.startDate.toLocaleTimeString()%></p>
             </div>
           </a>
           <% })}%>
