@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
   }
 })
 
-UserSchema.methods.checkPassword = function(password) {
+UserSchema.methods.validatePassword = function(password) {
   return bcrypt.compareSync(this.password, password)
 }
 
