@@ -2,6 +2,7 @@ require('colors')
 const express = require('express')
 const User = require('../models/user')
 const router = express.Router()
+const passport = require('../config/passport')
 
 router.get('/', (req, res) => {
   res.redirect('/')
@@ -13,6 +14,12 @@ router.get('/signup', (req, res) => {
 
 router.get('/login', (req, res) => {
   res.render('users/login', {title: 'Log in'})
+})
+
+router.get('/logout', (req, res) => {
+  req.logout()
+  console.log('USER HAS LOGGED OUT'.blue)
+  res.redirect('/')
 })
 
 router.get('/destroyall', (req, res) => {
@@ -40,5 +47,11 @@ router.post('/signup', (req, res) => {
     }
   })
 })
+
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/users/login',
+  failureMessage: true
+}))
 
 module.exports = router
