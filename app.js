@@ -1,4 +1,5 @@
 require('colors')
+require('dotenv').config({silent: true})
 const express = require('express')
 const path = require('path')
 const favicon = require('serve-favicon')
@@ -33,8 +34,7 @@ app.set('view engine', 'ejs')
 // login, sessions, flash
 // app.use(flash())
 app.use(session({
-  secret: 'marmalade',
-  // secret: process.env.SESSION_SECRET,
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
