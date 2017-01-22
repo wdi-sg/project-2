@@ -20,14 +20,14 @@ passport.use(new LocalStrategy({
 }, (email, password, done) => {
   User.findOne({email:email}, (err, user) => {
     if (err) return done(err)
-    if (user === undefined) {
+    if (user === null) {
       console.log('TRIED TO LOG IN WITH AN EMAIL THAT DOES NOT EXIST'.red)
       return done(err, false, {message:'Tried to log in with an email that does not exist!'})
     } else if (user.validatePassword(password) === false ) {
       console.log('TRIED TO LOG IN WITH AN INVALID PASSWORD'.red)
       return done(err, false, {message:'Tried to log in with an invalid password!'})
     } else {
-      console.log('USER LOGIN SUCCESSFUL'.blue)
+      console.log('USER LOGIN SUCCESSFUL: '.blue + user.name)
       return done(err, user)
     }
   })
