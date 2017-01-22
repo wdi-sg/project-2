@@ -1,11 +1,12 @@
 /*global describe, it*/
-// const expect = require('chai').expect()
+const expect = require('chai').expect
 const app = require('../app')
 const request = require('supertest')
 const server = request.agent(app)
+const User = require('../models/user')
 require('colors')
 
-// DEFINE TEST USERS
+// DEFINE DUMMY USERS
 const testUser1 = {
   email: 'a@b.com',
   name: 'Boy',
@@ -32,6 +33,13 @@ describe('USER SIGNUP'.underline, () => {
     server.post('/users/signup')
       .send(testUser1)
       .expect('Location', '/users/login', done)
+  })
+  it('should only store the hashed password in the database'.bold, (done) => {
+    User.findOne({email:'a@b.com'}, (err, user) => {
+      if (err) return console.log(err)
+      expect(user.password).to.not.equal('tomato')
+      done()
+    })
   })
   it('should redirect to /users/signup on unsuccessful signup (email already taken)'.bold, (done) => {
     server.post('/users/signup')
