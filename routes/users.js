@@ -19,7 +19,7 @@ router.get('/login', (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-  if (logging === 'true') console.log('USER HAS LOGGED OUT: '.blue + req.user.name)
+  if (logging) console.log('USER HAS LOGGED OUT: '.blue + req.user.name)
   req.logout()
   res.redirect('/')
 })
@@ -29,7 +29,7 @@ router.get('/destroyall', (req, res) => {
     User.remove({}, (err) => {
       if (err) console.log(err)
       else {
-        if (logging === 'true') console.log('ALL USERS HAVE BEEN REMOVED FROM THE DATABASE'.underline.bold.red)
+        if (logging) console.log('ALL USERS HAVE BEEN REMOVED FROM THE DATABASE'.underline.bold.red)
         res.redirect('/')
       }
     })
@@ -40,11 +40,11 @@ router.post('/signup', (req, res) => {
   User.create(req.body, (err) => {
     if (err) {
       // console.log(err)
-      if (logging === 'true') console.log('SIGNUP ERROR'.red)
+      if (logging) console.log('SIGNUP ERROR'.red)
       res.redirect('/users/signup')
     }
     else {
-      if (logging === 'true') console.log('USER SIGNUP SUCCESSFUL: '.blue + req.body.name)
+      if (logging) console.log('USER SIGNUP SUCCESSFUL: '.blue + req.body.name)
       res.redirect('/users/login')
     }
   })

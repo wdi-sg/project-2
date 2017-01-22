@@ -12,6 +12,7 @@ const session = require('express-session')
 const passport = require('./config/passport')
 // const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
+const logging = process.env.LOGGING
 
 const index = require('./routes/index')
 const users = require('./routes/users')
@@ -43,7 +44,7 @@ app.use(passport.session())
 
 // parsing, pathing
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
-app.use(logger('dev'))
+if (logging) app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
