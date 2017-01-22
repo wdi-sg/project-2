@@ -27,40 +27,29 @@ const testUser4 = {
 }
 
 // TESTS
-describe('USER LOGIN/SIGNUP AUTH', () => {
-  it('should get a 200 from /users/signup'.bold, (done) => {
-    server.get('/users/signup')
-      .expect(200, done)
-  })
-  it('should get a 200 from /users/login'.bold, (done) => {
-    server.get('/users/login')
-      .expect(200, done)
-  })
-})
-
 describe('USER SIGNUP'.underline, () => {
   it('should redirect to /users/login on post to /users/signup'.bold, (done) => {
-    server.post('/user/signup')
+    server.post('/users/signup')
       .send(testUser1)
       .expect('Location', '/users/login', done)
   })
   it('should redirect to /users/signup on unsuccessful signup (email already taken)'.bold, (done) => {
-    server.post('/user.signup')
+    server.post('/users/signup')
       .send(testUser1)
       .expect('Location', '/users/signup', done)
   })
   it('should redirect to /users/signup on unsuccessful signup (email format invalid)'.bold, (done) => {
-    server.post('/user.signup')
+    server.post('/users/signup')
       .send(testUser2)
       .expect('Location', '/users/signup', done)
   })
   it('should redirect to /users/signup on unsuccessful signup (password below 5 chars)'.bold, (done) => {
-    server.post('/user.signup')
+    server.post('/users/signup')
       .send(testUser3)
       .expect('Location', '/users/signup', done)
   })
   it('should redirect to /users/signup on unsuccessful signup (no name provided)'.bold, (done) => {
-    server.post('/user.signup')
+    server.post('/users/signup')
       .send(testUser4)
       .expect('Location', '/users/signup', done)
   })
@@ -68,7 +57,7 @@ describe('USER SIGNUP'.underline, () => {
 
 describe('USER LOGOUT'.underline, () => {
   it('should log the user out and redirect to / on get to /users/logout'.bold, (done) => {
-    server.get('/users.logout')
+    server.get('/users/logout')
       .expect('Location', '/', done)
   })
 })
