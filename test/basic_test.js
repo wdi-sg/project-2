@@ -23,9 +23,9 @@ describe('BASIC GET TESTS'.underline, () => {
     server.get('/users/login')
       .expect(200, done)
   })
-  it('should redirect /profile to / on attempt to access without login'.bold, (done) => {
+  it('should redirect /profile to /users/login on attempt to access without login'.bold, (done) => {
     server.get('/profile')
-      .expect('Location','/', done)
+      .expect('Location','/users/login', done)
   })
   it('should destroy everything and redirect to / on get to /users/destroyall'.bold, (done) => {
     request(app).get('/users/destroyall')

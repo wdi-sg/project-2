@@ -63,22 +63,31 @@ describe('USER SIGNUP'.underline, () => {
   })
 })
 
-describe('USER LOGOUT'.underline, () => {
-  it('should log the user out and redirect to / on get to /users/logout'.bold, (done) => {
-    server.get('/users/logout')
-      .expect('Location', '/', done)
-  })
-})
-
 describe('USER LOGIN'.underline, () => {
+  it('should redirect to /user/login on unsuccessful login (unregistered email)'.bold, (done) => {
+    server.post('/users/login')
+      .send({email: 'a@f.com', password: 'potato'})
+      .expect('Location','/users/login', done)
+  })
+  it('should redirect to /user/login on unsuccessful login (invalid password)'.bold, (done) => {
+    server.post('/users/login')
+      .send({email: 'a@b.com', password: 'potato'})
+      .expect('Location','/users/login', done)
+  })
   it('should redirect to / on successful login'.bold, (done) => {
     server.post('/users/login')
       .send({email: 'a@b.com', password: 'tomato'})
       .expect('Location','/', done)
   })
-  it('should redirect to /user/login on unsuccessful login'.bold, (done) => {
-    server.post('/users/login')
-      .send({email: 'a@b.com', password: 'potato'})
-      .expect('Location','/users/login', done)
+  it('should be able to access /profile after logging in'.bold, (done) => {
+    server.get('/profile')
+      .expect(200, done)
+  })
+})
+
+describe('USER LOGOUT'.underline, () => {
+  it('should log the user out and redirect to / on get to /users/logout'.bold, (done) => {
+    server.get('/users/logout')
+      .expect('Location', '/', done)
   })
 })
