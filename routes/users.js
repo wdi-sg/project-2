@@ -17,8 +17,8 @@ router.get('/login', (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
+  console.log('USER HAS LOGGED OUT: '.blue + req.user.name)
   req.logout()
-  console.log('USER HAS LOGGED OUT'.blue)
   res.redirect('/')
 })
 
@@ -42,7 +42,7 @@ router.post('/signup', (req, res) => {
       res.redirect('/users/signup')
     }
     else {
-      console.log('USER SIGNUP SUCCESSFUL'.blue)
+      console.log('USER SIGNUP SUCCESSFUL: '.blue + req.body.name)
       res.redirect('/users/login')
     }
   })
