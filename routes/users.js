@@ -11,11 +11,11 @@ router.get('/', (req, res) => {
 })
 
 router.get('/signup', (req, res) => {
-  res.render('users/signup', {title: 'Sign up'})
+  res.render('users/signup', {title: 'Sign up', msg: req.flash('error')})
 })
 
 router.get('/login', (req, res) => {
-  res.render('users/login', {title: 'Log in'})
+  res.render('users/login', {title: 'Log in', msg: req.flash('error')})
 })
 
 router.get('/logout', (req, res) => {
