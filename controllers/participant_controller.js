@@ -1,18 +1,32 @@
 const Participant = require('../models/participant')
+const Event = require('../models/event')
+const async = require('async')
 
 let participantController = {
   join: (req, res) => {
-    console.log('req.params', req.params.id)
-    Participant.create({
-      event: req.params.id,
-      user: req.user.id
-    }, (err, joinedEvent) => {
-      if (err) {
-        req.flash('error', 'Some errors occured. Please try again.')
-        res.redirect(`/event/${req.params.id}`)
+    Event.findById(req.params.id, (err, event) => {
+      if (event.vacancy > 0) {
+        async.parallel([
+          (cb) => {
+            Participant.create({
+              event: req.params.id,
+              user: req.user.id
+            }, cb)
+          },
+          (cb) => {
+            event.update({$inc: {vacancy: -1}}, cb)
+          }], (err, results) => {
+          if (err) {
+            req.flash('error', 'Some errors occured. Please try again.')
+            res.redirect(`/event/${req.params.id}`)
+          } else {
+            req.flash('success', 'You have joined this event.')
+            res.redirect(`/user/${req.user.name}`)
+          }
+        })
       } else {
-        req.flash('success', 'You have joined this event.')
-        res.redirect(`/user/${req.user.name}`)
+        req.flash('error', 'Sorry. The event is full.')
+        res.redirect(`/event/${req.params.id}`)
       }
     })
   },
@@ -24,9 +38,10 @@ let participantController = {
         res.redirect(`/event/${participation.event._id}`)
         return
       }
-
-      participation.remove({}, (err) => {
-        res.redirect(`/event/${participation.event._id}`)
+      Event.findOneAndUpdate({_id: req.params.id}, {$inc: {vacancy: 1}}, (err, x) => {
+        participation.remove({}, (err) => {
+          res.redirect(`/event/${participation.event._id}`)
+        })
       })
     })
   }

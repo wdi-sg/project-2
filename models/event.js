@@ -24,6 +24,9 @@ let eventSchema = new mongoose.Schema({
   description: {
     type: String
   },
+  vacancy:{
+    type: Number
+  },
   category: {type: String},
   creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   created_at: {type: Date, default: Date.now()}

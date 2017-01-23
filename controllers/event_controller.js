@@ -42,6 +42,7 @@ let eventController = {
       location: req.body.location,
       description: req.body.description,
       category: req.body.category,
+      vacancy: req.body.vacancy,
       creator: req.user.id
     }, (err, event) => {
       if (err) {

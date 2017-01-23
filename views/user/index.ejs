@@ -25,7 +25,7 @@
                     <strong><%= event.event.name %></strong>
                   <% if (event.event.category !== null) {%>
                     <span class='label label-success'><%= event.event.category%></span>
-                      <%}%>
+                  <%}%>
                   <% if (event.event.startDate.toLocaleDateString() === new Date().toLocaleDateString()) {%>
 
                 <span class='label label-danger'>Today</span>
@@ -84,6 +84,9 @@
                  <% if (event.category !== null) {%>
                    <span class='label label-success'><%= event.category%></span>
                 <%}%>
+                <% if (event.vacancy > 0) {%>
+                 <span class='label label-warning'><%= event.vacancy%> slots left</span>
+                 <%}%>
            </div>
          </a>
          <% })}%>

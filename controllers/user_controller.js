@@ -41,12 +41,10 @@ let userController = {
         }).exec(cb)
       },
       (cb) => {
-        Event.find({startDate: {$gte: Date.now()}}).sort({'created_at': -1}).limit(5).exec(cb)
+        Event.find({startDate: {$gte: Date.now()}, creator: {$ne: req.user.id}, vacancy: {$ne: 0}}).sort({'created_at': -1}).limit(5).exec(cb)
       }
 
-    ]
-
-    , (err, result) => {
+    ], (err, result) => {
       console.log(result)
       console.log('result 2', result[2])
       if (err) {
