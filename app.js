@@ -1,5 +1,6 @@
 require('colors')
 require('dotenv').config({silent: true})
+const logging = process.env.LOGGING
 const express = require('express')
 const path = require('path')
 const favicon = require('serve-favicon')
@@ -12,10 +13,10 @@ const session = require('express-session')
 const passport = require('./config/passport')
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
-const logging = process.env.LOGGING
 
 const index = require('./routes/index')
 const users = require('./routes/users')
+const playlists = require('./routes/playlists')
 
 const app = express()
 
@@ -27,6 +28,8 @@ if (process.env.NODE_ENV === 'test') {
   mongoose.connect('mongodb://localhost/proj2-dev')
   console.log('CONNECTING TO DEV SERVER...'.blue)
 }
+mongoose.Promise = global.Promise
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -54,7 +57,12 @@ app.use(ejsLayouts)
 // local variables
 app.use((req, res, next) => {
   res.locals.flash = req.flash()
-  res.locals.user = req.user || {name: 'stranger'}
+  if (req.user) {
+    res.locals.user = req.user
+    res.locals.user.firstName = req.user.name.split(' ')[0]
+  } else {
+    res.locals.user = {firstName: 'stranger'}
+  }
   next()
 })
 
@@ -66,6 +74,8 @@ app.use(isLoggedIn)
 app.get('/profile', (req, res) => {
   res.render('profile', {title: 'Profile'})
 })
+
+app.use('/playlists', playlists)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
