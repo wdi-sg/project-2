@@ -5811,6 +5811,20 @@ body {
   padding-top: 60px;
   color: white; }
 
+.navbar {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none; }
+
+.navbar-default .navbar-nav > li > a {
+  color: #333;
+  transition: all 0.5s ease; }
+  .navbar-default .navbar-nav > li > a:hover {
+    background-color: white;
+    color: #333; }
+
+h3 {
+  margin: 10px; }
+
 .container {
   margin-bottom: 40px; }
 
@@ -5831,6 +5845,21 @@ body {
   .navbar .navbar-text {
     text-align: center; }
 
+.input-group {
+  margin-bottom: 10px; }
+
+.btn-primary {
+  background-color: #0000ff;
+  font-size: 2em;
+  padding: 20px;
+  transition: all 0.5s ease;
+  border: none;
+  border-radius: 15px;
+  margin: 10px; }
+  .btn-primary:hover {
+    background-color: white;
+    color: #333; }
+
 .well {
   background-color: rgba(255, 255, 255, 0.4);
   border: none;
@@ -5838,9 +5867,9 @@ body {
   margin: 0 auto; }
   .well a {
     color: #0000ff; }
-
-.btn-primary {
-  background-color: #0000ff; }
+  .well .btn-primary {
+    font-size: 1em;
+    padding: 15px; }
 
 .hash {
   line-height: 4px;
@@ -5850,6 +5879,7 @@ body {
 
 .playlist-panel {
   background-color: rgba(255, 255, 255, 0.3);
+  color: white;
   padding: 20px;
   height: 250px;
   transition: all 0.5s ease;
@@ -5857,5 +5887,35 @@ body {
   .playlist-panel:hover {
     background-color: white;
     color: #333; }
+
+.track-panel {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 10px;
+  padding-bottom: 40px; }
+  .track-panel h2, .track-panel h4 {
+    padding: 0;
+    padding-left: 20px;
+    margin: 5px; }
+  .track-panel h4 {
+    margin-top: 0; }
+
+.label {
+  background-color: white;
+  color: #333;
+  font-size: 2em; }
+
+.delete {
+  background-color: transparent;
+  border: 1px solid red;
+  color: red;
+  font-size: 1.2em;
+  transition: all 0.5s ease; }
+  .delete:hover {
+    background-color: red;
+    color: white; }
+
+.add-track {
+  margin-bottom: 40px; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,38 @@
+<h1><%= playlist.name %></h1>
+<p>a playlist by <%= playlist.creator.name %></p>
+<hr>
+<div class="row">
+  <div class="col-md-6 col-md-push-6">
+    <div class="well add-track">
+      <h3>add a track.</h3>
+      <form action="<%= '/playlists/'+playlist._id+'/add' %>" method="post" accept-charset="utf-8">
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Title</span>
+          <input type="text" class="form-control" name="title" placeholder="'Get Ready To Wiggle'" aria-describedby="sizing-addon2">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Track</span>
+          <input type="text" class="form-control" name="artist" placeholder="'The Wiggles'" aria-describedby="sizing-addon2">
+        </div>
+        <button class="btn btn-primary" type="submit">put it in there!</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-6 col-md-pull-6">
+    <% if (playlist.tracks.length === 0) { %>
+      <h1>there's nothing here.<br>add some tracks!</h1>
+    <% } %>
+    <% playlist.tracks.forEach((e, i) => { %>
+      <div class="panel track-panel">
+        <div class="label pull-left"><%= i+1 %></div>
+        <a href="<%= '/playlists/'+playlist._id+'/delete/'+e._id %>"><div class="label pull-right delete"><i class="fa fa-trash"></i></div></a>
+          <hr>
+          <h2><%= e.title %></h2>
+          <hr>
+          <h4 class="pull-right"><em><%= e.artist %></em></h4>
+      </div>
+    <% }) %>
+    <!-- <%= playlist %> -->
+  </div>
+</div>
+<hr>

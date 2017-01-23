@@ -1,5 +1,9 @@
 <div class="title">
-  <h1>Welcome to the world.</h1>
-  <hr>
+  <h1>Right on CUE.</h1>
   <p>Don't be afraid. We've got cookies.</p>
+  <hr>
+  <% if (locals.user.firstName === 'stranger') { %>
+    <a href="/users/login"><button class="btn btn-primary">Log In</button></a>
+    <a href="/users/signup"><button class="btn btn-primary">Sign up</button></a>
+  <% } %>
 </div>

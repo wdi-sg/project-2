@@ -1,10 +1,14 @@
 <h1>this is where all the playlists live.</h1>
+<h1>get grooving.</h1>
+<a href="/playlists/create"><button class="btn btn-primary">create a playlist</button></a>
 <!-- <div class="hash"><%= playlists %></div> -->
 <hr>
 <% playlists.forEach(e => { %>
-  <div class="col-md-4 playlist-panel">
-    <h1><%= e.name %></h1>
-    <hr>
-    <p>By <%= e.creator.name %></p>
-  </div>
+  <a href=<%= '/playlists/' + e._id %>>
+    <div class="col-md-4 playlist-panel">
+      <h1><%= e.name %></h1>
+      <hr>
+      <p>By <%= e.creator.name %></p>
+    </div>
+  </a>
 <% }) %>
