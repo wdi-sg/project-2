@@ -7,7 +7,7 @@ const isLoggedIn = require('../middleware/isLoggedIn')
 const Playlist = require('../models/playlist')
 
 router.get('/', (req, res) => {
-  res.render('index', { title: 'My App' })
+  res.render('index', { title: 'CUE.' })
 })
 
 router.use(isLoggedIn)

@@ -53,7 +53,8 @@ router.post('/:id/add', (req, res) => {
     doc.tracks.push(req.body)
     doc.save((err, updated) => {
       if (err) return console.log(err.toString().red)
-      res.send(updated)
+      // res.send(updated)
+      res.redirect('/playlists/'+updated._id)
     })
   })
 })
@@ -69,7 +70,7 @@ router.get('/:playlistId/delete/:trackId', (req, res) => {
     doc.tracks.splice(removeIndex, 1)
     doc.save((err, updated) => {
       if (err) return console.log(err.toString().red)
-      res.send(updated)
+      res.redirect('/playlists/'+updated._id)
     })
   })
 })
@@ -94,7 +95,8 @@ router.get('/:id', (req, res) => {
     })
     .exec((err, doc) => {
       if (err) return console.log(err.toString().red)
-      res.send(doc)
+      // res.send(doc)
+      res.render('playlists/single', {title: doc.name, playlist: doc})
     })
 })
 
