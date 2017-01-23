@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const router = express.Router();
 const multer = require('multer');
 const User = require('../models/user');
@@ -14,12 +15,43 @@ const upload = multer({
 
 router.get('/',function(req,res){
   //need to find other users and put them in this page....
-  res.render('dashboard');
+  Profile.find({}).populate('user').exec(function(err,data){
+    if (err) console.log(err);
+    console.log(data);
+    let binaryImageArr = data.map(function(value,index){
+      return new Buffer(value.avatar).toString('base64');
+    })
+    // console.log(binaryImageArr);
+    res.render('dashboard', {
+      data : data,
+      binaryImageArr : binaryImageArr
+    });
+  })
 })
 
 router.get('/profile/create',function(req,res){
   console.log('i can see the user'.red,req.user);
   res.render('create');
+})
+
+router.get('/profile/:id',function(req,res){
+  console.log('i can see the user'.red,req.user);
+  console.log('the keyed in id is'.cyan,req.params.id);
+  Profile.findOne({user : req.params.id}).populate('user').exec(function(err,data){
+    //checking if a user manually types in his own profile to change his rating.
+    if (err) console.log(err);
+    if (req.user._id.equals(req.params.id)){
+      req.flash('error','cant rate yourself... are you a narcissist?')
+      res.redirect('/dashboard/profile');
+    }
+    let binaryImage = new Buffer(data.avatar).toString('base64');
+    console.log('populated data',data);
+    res.render('rate',{
+      data: data,
+      binaryImage : binaryImage,
+      username : data.user.name
+    });
+  })
 })
 
 router.get('/profile',function(req,res){
@@ -33,7 +65,8 @@ router.get('/profile',function(req,res){
     let binaryImage = new Buffer(data.avatar).toString('base64');
     res.render('profile', {
       data : data,
-      binaryImage : binaryImage
+      binaryImage : binaryImage,
+      username : req.user.name
     });
   })
 })

@@ -43,7 +43,7 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname,'public')));
 app.use(ejsLayouts);
 app.use(bodyParser.urlencoded({ extended : true }));
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 app.use(function(req,res,next){
   res.locals.alerts = req.flash();

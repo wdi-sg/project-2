@@ -4,7 +4,8 @@ const ratingSchema = require('./rating');
 const ProfileSchema = new mongoose.Schema({
   description : {
     type : String,
-    maxlength : [99, 'description cannot be more than 99 characters!!']
+    maxlength : [99, 'description cannot be more than 99 characters!!'],
+    required : true
   },
   avatar : Buffer,
   // ratings : [ratingSchema],

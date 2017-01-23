@@ -89,3 +89,18 @@ body {
   margin-left : 25%;
   margin-right : 25%;
 }
+
+.avatar {
+  border : 2px solid black;
+  border-radius : 50%;
+  width : 300px;
+  height : auto;
+  margin-bottom : 50px;
+}
+
+.mini-avatar {
+  border : 1px solid black;
+  border-radius : 30%;
+  width : 100px;
+  height : 100px;
+}

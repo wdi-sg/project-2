@@ -6,6 +6,7 @@ const User = require('../models/user');
 const Profile = require('../models/profile');
 const colors = require('colors');
 const mongoose = require('mongoose');
+const fs = require('fs');
 
 mongoose.connection.on('connected',function(){
   mongoose.connection.dropDatabase(function(){
@@ -17,6 +18,14 @@ new User({
   name : 'dummy',
   email : 'dummy@email.com',
   password : 'dummyPassword'
+}).save(function(err,data){
+  if (err) console.log(err);
+  console.log('dummy data successfully created!'.green);
+})
+new User({
+  name : 'dummy2',
+  email : 'dummy2@email.com',
+  password : 'dummyPassword2'
 }).save(function(err,data){
   if (err) console.log(err);
   console.log('dummy data successfully created!'.green);
@@ -37,8 +46,8 @@ describe('Test : test for authenticated requests....'.magenta, function(){
   it('should allow test to access /dashboard/'.magenta,function(done){
     authApp.get('/dashboard/').expect(200,done)
   })
-  it('should allow test to access /dashboard/profile'.magenta,function(done){
-    authApp.get('/dashboard/profile').expect(200,done)
+  it('test to access /dashboard/profile, should redirect to create new profile..'.magenta,function(done){
+    authApp.get('/dashboard/profile').expect('Location','/dashboard/profile/create').expect(302,done)
   })
 });
 
@@ -169,14 +178,29 @@ describe('Test : POST /auth/register..'.magenta,function(){
 
 describe('Test : testing the profile schema...'.magenta,function(){
   it('should create a profile and save it successfully..',function(done){
-    User.find({name : 'dummy'},function(err,data){
+    User.find({ name : 'dummy' },function(err,data){
+      if (err) console.log(err);
+      fs.readFile('test/test-pic.jpg',function(err,data2){
+        if (err) console.log(err);
+        new Profile({
+          description : 'this is a new description',
+          user : data._id,
+          avatar : data2
+        }).save(function(err,data3){
+          if (err) console.log(err2);
+          console.log(data3);
+          done();
+        })
+      })
+    })
+  })
+  it('should return an error if description is not provided...',function(done){
+    User.find({ name : 'dummy2' },function(err,data){
       if (err) console.log(err);
       new Profile({
-        description : 'this is a new description',
-        user : data._id
+        user : data._id,
       }).save(function(err,data2){
-        if (err) console.log(err2);
-        console.log(data2);
+        if (err) return done();
         done();
       })
     })
