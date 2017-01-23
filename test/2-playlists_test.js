@@ -27,7 +27,7 @@ let track1 = {
 }
 
 // TESTS
-describe('CLEARING DB'.underline, () => {
+describe('ACCESSING PAGES/CLEARING DB'.underline, () => {
   it('should redirect to /profile on successful login'.bold, (done) => {
     agent.post('/users/login')
       .send({email: 'a@b.com', password: 'tomato'})
@@ -38,20 +38,30 @@ describe('CLEARING DB'.underline, () => {
     agent.get('/playlists/destroyall')
       .expect('Location', '/')
       .end((err) => {
-        if (err) return console.log(err)
+        if (err) return console.log(err.toString().red)
         Playlist.find({}, (err, docs) => {
-          if (err) return console.log(err)
+          if (err) return console.log(err.toString().red)
           expect(docs).to.be.empty
           done()
         })
       })
+  })
+
+  it('should get 200 from the playlists page'.bold, (done) => {
+    agent.get('/playlists')
+      .expect(200, done)
+  })
+
+  it('should get 200 from the playlists/create page'.bold, (done) => {
+    agent.get('/playlists/create')
+      .expect(200, done)
   })
 })
 
 describe('WRITING PLAYLISTS AND TRACKS TO DATABASE'.underline, () => {
   it('should create a playlist with name and ref creator'.bold, (done) => {
     User.findOne({}, (err, doc) => {
-      if (err) return console.log(err)
+      if (err) return console.log(err.toString().red)
       playlist1.creator = doc._id
       playlist1.collaborators.push(doc._id)
       track1.contributor = doc._id
@@ -70,10 +80,10 @@ describe('WRITING PLAYLISTS AND TRACKS TO DATABASE'.underline, () => {
 
   it('should be able to push a track into the playlist'.bold,(done) => {
     Playlist.findOne({}, (err, playlist) => {
-      if (err) return console.log(err)
+      if (err) return console.log(err.toString().red)
       playlist.tracks.push(track1)
       playlist.save((err, updated) => {
-        if (err) return console.log(err)
+        if (err) return console.log(err.toString().red)
         // console.log('track pushed:', updated)
         expect(updated.tracks).to.have.length.of(1)
         expect(updated.tracks[0]).to.be.an.object
@@ -91,7 +101,7 @@ describe('FINDING AND POPULATING ITEMS FROM DATABASE'.underline, () => {
     Playlist.findOne()
       .populate('creator')
       .exec((err, doc) => {
-        if (err) return console.log(err)
+        if (err) return console.log(err.toString().red)
         // console.log('playlist found:', doc)
         // console.log('playlist creator found:', doc.creator)
         expect(doc.creator).to.be.an.object
@@ -125,28 +135,26 @@ describe('ACCESSING/MANIPULATING PLAYLISTS WITH HTTP REQUESTS'.underline, () => 
   let playlistId = ''
   let trackId = ''
 
-  it('should be able to create a playlist with a post request to /playlists/create'.bold, (done) => {
+  it('should be able to create a playlist and redirect to /profile with a post request to /playlists/create'.bold, (done) => {
     agent.post('/playlists/create')
       .send(playlist2)
-      .expect(200)
-      .end((err, res) => {
-        if (err) return console.log(err)
-        expect(res.body).to.be.an.object
-        expect(res.body).to.be.have.property('name')
-        expect(res.body).to.be.have.property('tracks')
-        expect(res.body).to.be.have.property('creator')
-        expect(res.body).to.be.have.property('collaborators')
-        expect(res.body).to.be.have.property('_id')
-        playlistId = res.body._id
-        done()
+      .expect('Location', '/profile')
+      .end((err) => {
+        if (err) return console.log(err.toString().red)
+        Playlist.findOne({name:playlist2.name}, (err, doc) => {
+          playlistId = doc._id
+          // console.log(JSON.stringify(doc,null,4).blue)
+          expect(doc).to.exist
+          done()
+        })
       })
   })
 
   it('should be able to get a single playlist with /playlists/id'.bold, (done) => {
     agent.get('/playlists/'+playlistId)
-      .expect(200)
       .end((err, res) => {
-        if (err) return console.log(err)
+        if (err) return console.log(err.toString().red)
+        // console.log(JSON.stringify(res.body,null,4).blue)
         expect(res.body).to.be.an.object
         expect(res.body).to.be.have.property('name')
         expect(res.body).to.be.have.property('tracks')
@@ -159,9 +167,8 @@ describe('ACCESSING/MANIPULATING PLAYLISTS WITH HTTP REQUESTS'.underline, () => 
 
   it('should be a populated playlist'.bold, (done) => {
     agent.get('/playlists/'+playlistId)
-      .expect(200)
       .end((err, res) => {
-        if (err) return console.log(err)
+        if (err) return console.log(err.toString().red)
         // console.log(JSON.stringify(res.body,null,4).blue)
         expect(res.body.creator).to.be.an.object
         expect(res.body.creator).to.have.property('name')
@@ -176,40 +183,40 @@ describe('ACCESSING/MANIPULATING PLAYLISTS WITH HTTP REQUESTS'.underline, () => 
       })
   })
 
-  it('should be able to get list of all playlists from /playlist'.bold, (done) => {
-    agent.get('/playlists')
-      .expect(200)
-      .end((err, res) => {
-        if (err) return console.log(err)
-        expect(res.body).to.be.an.array
-        expect(res.body).to.be.have.length(2)
-        expect(res.body[0]).to.be.an.object
-        expect(res.body[0]).to.have.property('name')
-        expect(res.body[0]).to.have.property('tracks')
-        expect(res.body[0]).to.have.property('creator')
-        expect(res.body[0]).to.have.property('collaborators')
-        done()
-      })
-  })
+  // it('should be able to get list of all playlists from /playlist'.bold, (done) => {
+  //   agent.get('/playlists')
+  //     .expect(200)
+  //     .end((err, res) => {
+  //       if (err) return console.log(err)
+  //       expect(res.body).to.be.an.array
+  //       expect(res.body).to.be.have.length(2)
+  //       expect(res.body[0]).to.be.an.object
+  //       expect(res.body[0]).to.have.property('name')
+  //       expect(res.body[0]).to.have.property('tracks')
+  //       expect(res.body[0]).to.have.property('creator')
+  //       expect(res.body[0]).to.have.property('collaborators')
+  //       done()
+  //     })
+  // })
 
-  it('should be a populated list'.bold, (done) => {
-    agent.get('/playlists')
-      .expect(200)
-      .end((err, res) => {
-        if (err) return console.log(err)
-        // console.log(JSON.stringify(res.body,null,4).blue)
-        expect(res.body[0]).to.be.an.object
-        expect(res.body[0].creator).to.be.an.object
-        expect(res.body[0].creator).to.have.property('name')
-        expect(res.body[0].creator).to.have.property('email')
-        expect(res.body[0].collaborators).to.be.an.array
-        expect(res.body[0].collaborators[0]).to.be.an.object
-        expect(res.body[0].collaborators[0]).to.have.property('name')
-        expect(res.body[0].collaborators[0]).to.have.property('email')
-        expect(res.body[0].tracks).to.be.an.array
-        done()
-      })
-  })
+  // it('should be a populated list'.bold, (done) => {
+  //   agent.get('/playlists')
+  //     .expect(200)
+  //     .end((err, res) => {
+  //       if (err) return console.log(err)
+  //       // console.log(JSON.stringify(res.body,null,4).blue)
+  //       expect(res.body[0]).to.be.an.object
+  //       expect(res.body[0].creator).to.be.an.object
+  //       expect(res.body[0].creator).to.have.property('name')
+  //       expect(res.body[0].creator).to.have.property('email')
+  //       expect(res.body[0].collaborators).to.be.an.array
+  //       expect(res.body[0].collaborators[0]).to.be.an.object
+  //       expect(res.body[0].collaborators[0]).to.have.property('name')
+  //       expect(res.body[0].collaborators[0]).to.have.property('email')
+  //       expect(res.body[0].tracks).to.be.an.array
+  //       done()
+  //     })
+  // })
 
   it('should add a track to a playlist at /playlists/:id/add'.bold, (done) => {
     agent.post('/playlists/'+playlistId+'/add')
