@@ -17,7 +17,7 @@ passport.use(new LocalStrategy({
   passwordField : 'password'
 }, function(email,password,done){
   User.findOne({ email : email }, function(err,user){
-    console.log(user);
+    console.log('\nfound a unique user!\n'.blue,user,'\n');
     if (err) return done(err);
     if (!user) return done(null,false);
     if (!user.validPassword(password)) return done(null,false);

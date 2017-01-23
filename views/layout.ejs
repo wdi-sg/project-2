@@ -13,8 +13,10 @@
           <ul class="nav nav-pills pull-right">
             <% if (!user) { %>
             <li role="presentation"><a href="/about">About</a></li>
+            <li role="presentation" class="active"><a href="/">Home</a></li>
             <% } else { %>
             <li role="presentation"><a href="/auth/logout">Logout</a></li>
+            <li role="presentation"><a href="/dashboard/profile">Profile</a></li>
             <li role="presentation" class="active"><a href="/dashboard/">Home</a></li>
             <% } %>
           </ul>
@@ -29,5 +31,7 @@
       </footer>
 
     </div> <!-- /container -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src='/js/bootstrap.js'></script>
   </body>
 </html>

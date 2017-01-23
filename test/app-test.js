@@ -21,9 +21,32 @@ new User({
   console.log('dummy data successfully created!'.green);
 })
 
+//put all authenticated requests in here..
+var authApp = request.agent(app);
+describe('Test : GET /dashboard/profile page...'.magenta, function(){
+  it('is logging in now...',function(done){
+    authApp.post('/auth/login').set('Accept','application/json').send({
+      email : 'dummy@email.com',
+      password : 'dummyPassword'
+    }).expect('Location','/dashboard/').end(function(err,res){
+      if (err) console.log(err);
+      done();
+    })
+  })
+  it('should allow test to access /dashboard/profile'.magenta,function(done){
+    authApp.get('/dashboard/profile').expect(200,done)
+  })
+});
+
 describe('Test : GET / page...'.magenta, function(){
   it('should return a 200 response',function(done){
     request(app).get('/').expect(200,done);
+  })
+})
+
+describe('Test : GET /about page...'.magenta,function(){
+  it('should return a 200 response',function(done){
+    request(app).get('/about').expect(200,done);
   })
 })
 
@@ -33,12 +56,11 @@ describe('Test : GET /auth/login page...'.magenta,function(){
   })
 })
 
-describe('Test : GET /auth/logout...'.magenta,function(){
-  it('should return a 302 response and redirect back to main page',function(done){
-    request(app).get('/auth/logout').expect('Location', '/').expect(302,done);
+describe('Test : GET /auth/register page...'.magenta,function(){
+  it('should return a 200 response',function(done){
+    request(app).get('/auth/register').expect(200,done);
   })
 })
-
 
 describe('Test : GET /dashboard/ page...'.magenta,function(){
   it('should return a 302 response if not logged in..',function(done){
@@ -53,17 +75,19 @@ describe('Test : GET /dashboard/ page...'.magenta,function(){
   })
 })
 
-describe('Test : GET /auth/register page...'.magenta,function(){
-  it('should return a 200 response',function(done){
-    request(app).get('/auth/register').expect(200,done);
+describe('Test : GET /auth/logout...'.magenta,function(){
+  it('should return a 302 response and redirect back to main page',function(done){
+    request(app).get('/auth/logout').expect('Location', '/').expect(302,done);
   })
 })
 
-describe('Test : GET /about page...'.magenta,function(){
-  it('should return a 200 response',function(done){
-    request(app).get('/about').expect(200,done);
+describe('Test : GET /dashboard/profile page...'.magenta,function(){
+  it('should return a 302 response if not logged in...',function(done){
+    request(app).get('/dashboard/profile').expect('Location','/').expect(302,done);
   })
 })
+
+
 
 //test for model!!
 describe('Test : testing the user schema...'.magenta,function(){
