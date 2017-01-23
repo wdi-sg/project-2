@@ -135,10 +135,9 @@ describe('ACCESSING/MANIPULATING PLAYLISTS WITH HTTP REQUESTS'.underline, () => 
   let playlistId = ''
   let trackId = ''
 
-  it('should be able to create a playlist and redirect to /profile with a post request to /playlists/create'.bold, (done) => {
+  it('should be able to create a playlist with a post request to /playlists/create'.bold, (done) => {
     agent.post('/playlists/create')
       .send(playlist2)
-      .expect('Location', '/profile')
       .end((err) => {
         if (err) return console.log(err.toString().red)
         Playlist.findOne({name:playlist2.name}, (err, doc) => {
