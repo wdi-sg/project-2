@@ -17,16 +17,16 @@ let participantController = {
     })
   },
   cancel: (req, res) => {
-    Participant.findOne({event: req.params.id, user: req.user.id}).populate('user')
-    .populate('event').exec((err, event) => {
-      if (event.user._id.equals(req.user.id)) {
+    Participant.findOne({event: req.params.id, user: req.user.id})
+    .populate('event').exec((err, participation) => {
+      if (participation.event.creator.equals(req.user.id)) {
         req.flash('error', 'Could withdraw from your own event.')
-        res.redirect(`/event/${event.event._id}`)
+        res.redirect(`/event/${participation.event._id}`)
         return
       }
 
-      event.remove({}, (err) => {
-        res.redirect(`/event/${event.event._id}`)
+      participation.remove({}, (err) => {
+        res.redirect(`/event/${participation.event._id}`)
       })
     })
   }

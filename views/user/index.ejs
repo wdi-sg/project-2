@@ -23,7 +23,11 @@
               <p class='pull-left'>
                   <%= event.event.startDate.toLocaleDateString() + '   ' + event.event.startDate.toLocaleTimeString() %>
                     <strong><%= event.event.name %></strong>
+                  <% if (event.event.category !== null) {%>
+                    <span class='label label-success'><%= event.event.category%></span>
+                      <%}%>
                   <% if (event.event.startDate.toLocaleDateString() === new Date().toLocaleDateString()) {%>
+
                 <span class='label label-danger'>Today</span>
                   <%}%>
               </p>
@@ -47,6 +51,9 @@
            <p class='pull-left'>
                <%= event.startDate.toLocaleDateString() + '   ' + event.startDate.toLocaleTimeString() %>
                  <strong><%= event.name %></strong>
+                 <% if (event.category !== null) {%>
+                   <span class='label label-success'><%= event.category%></span>
+                     <%}%>
                <% if (event.startDate.toLocaleDateString() === new Date().toLocaleDateString()) {%>
              <span class='label label-danger'>Today</span>
                <%}%>
@@ -74,6 +81,9 @@
            <div class='panel panel-default'>
                  <p class='h3'><%= event.name %></p>
                  <p><%= event.startDate.toDateString()%> <%= event.startDate.toLocaleTimeString()%></p>
+                 <% if (event.category !== null) {%>
+                   <span class='label label-success'><%= event.category%></span>
+                <%}%>
            </div>
          </a>
          <% })}%>

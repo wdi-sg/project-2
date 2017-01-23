@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Category = require('./category')
 
 let eventSchema = new mongoose.Schema({
   name: {
@@ -23,6 +24,7 @@ let eventSchema = new mongoose.Schema({
   description: {
     type: String
   },
+  category: {type: String},
   creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   created_at: {type: Date, default: Date.now()}
 })

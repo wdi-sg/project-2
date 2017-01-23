@@ -1,3 +1,6 @@
+body {
+  height: 100vh;
+}
 .login {
   height:100vh;
   width: 100vw;
@@ -50,4 +53,9 @@ form {
 
 .three-quarter-height {
   height: 65%;
+}
+
+.cat-box {
+  height: 20vh;
+  margin: 0;
 }

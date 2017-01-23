@@ -1,12 +1,15 @@
 const Event = require('../models/event')
 const User = require('../models/user')
+const Category = require('../models/category')
 const Participant = require('../models/participant')
 const async = require('async')
 const moment = require('moment')
 
 let eventController = {
   new: (req, res) => {
-    res.render('event/new', {user: req.user})
+    Category.find({}, (err, cat) => {
+      res.render('event/new', {user: req.user, cat: cat})
+    })
   },
   index: (req, res) => {
     async.parallel({
@@ -15,6 +18,9 @@ let eventController = {
       },
       past_event: (cb) => {
         Event.find({endDate: {$lte: Date.now()}}).populate('creator').exec(cb)
+      },
+      cat: (cb) => {
+        Category.find({}).sort({number: -1}).limit(12).exec(cb)
       }
     }
     , (err, results) => {
@@ -28,24 +34,32 @@ let eventController = {
     })
   },
   create: (req, res) => {
-    //console.log(req.body.startDate + req.body.startTime);
+    // console.log(req.body.startDate + req.body.startTime);
     Event.create({
       name: req.body.name,
       startDate: req.body.startDate,
       endDate: req.body.endDate,
       location: req.body.location,
       description: req.body.description,
+      category: req.body.category,
       creator: req.user.id
     }, (err, event) => {
       if (err) {
         req.flash('error', 'Create event not successful.')
         res.redirect('/event/new')
       } else {
-        Participant.create({
-        user: req.user.id,
-        event: event._id
-        }, (err, event) => {
-          req.flash('success', `${event.name} has benn created.`)
+        async.parallel({
+          participant: (cb) => {
+            Participant.create({
+              user: req.user.id,
+              event: event._id
+            }, cb)
+          },
+          cat: (cb) => {
+            Category.findOneAndUpdate({name: req.body.category}, { $inc: {number: 1} }, cb)
+          }
+        }, (err, results) => {
+          req.flash('success', `${event.name} has been created.`)
           res.redirect(`/user/profile`)
         })
       }
@@ -78,9 +92,20 @@ let eventController = {
         req.flash('error', 'Only event owner are able to cancel the event.')
         return res.redirect(`/event/${event._id}`)
       }
-      event.remove()
-      Participant.remove({event:req.params.id}, (err) => {
-          res.redirect(`/user/profile`)
+
+      async.parallel([
+        (cb) => {
+          Participant.remove({event: req.params.id}, cb)
+        },
+        (cb) => {
+          Category.findOneAndUpdate({name: event.category}, {$inc: {number: -1}}, cb)
+        },
+        (cb) => {
+          event.remove()
+          cb()
+        }
+      ], (err) => {
+        res.redirect(`/user/profile`)
       })
     })
   },
@@ -100,8 +125,14 @@ let eventController = {
       endDate: req.body.endDate,
       location: req.body.location,
       description: req.body.description,
+      category: req.body.category
     }, (err, editedEvent) => {
       res.redirect(`/event/${req.params.id}`)
+    })
+  },
+  search: (req, res)=> {
+    Event.find({category: req.params.cname, startDate: {$gt : Date.now()}}, (err, events) => {
+      res.render('event/search', {events: events, user: req.user, searchItem: req.params.cname})
     })
   }
 }

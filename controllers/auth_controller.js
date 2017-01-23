@@ -8,14 +8,14 @@ let authController = {
     passport.authenticate('local', {
       successRedirect: `/user/profile`,
       failureRedirect: '/auth/login',
-      successFlash: `Welcome Back ${req.user}!`,
+      successFlash: `Welcome Back!`,
       failureFlash: 'Invalid email/password.'
     })(req, res)
   },
   logOut: (req, res) => {
     req.logout()
     req.flash('success', 'You have been logged out.')
-    res.redirect('/auth/login')
+    res.redirect('/event')
   }
 }
 

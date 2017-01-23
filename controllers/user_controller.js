@@ -21,7 +21,7 @@ let userController = {
       } else {
         passport.authenticate('local', {
           successRedirect: '/user/profile',
-          successFlash: `Welcome to Bfit ${user.name}!`
+          successFlash: `Welcome to Kakis!`
         })(req, res)
       }
     })
@@ -32,10 +32,13 @@ let userController = {
         User.findById(req.user.id, cb)
       },
       (cb) => {
-        Event.find({creator: req.user.id, endDate: {$gt: Date.now()}}, cb)
+        Event.find({creator: req.user.id, endDate: {$gt: Date.now()}}).exec(cb)
       },
       (cb) => {
-        Participant.find({user: req.user.id}).populate('event').exec(cb)
+        Participant.find({user: req.user.id}).populate({
+          path: 'event',
+          model: 'Event',
+        }).exec(cb)
       },
       (cb) => {
         Event.find({startDate: {$gte: Date.now()}}).sort({'created_at': -1}).limit(5).exec(cb)
