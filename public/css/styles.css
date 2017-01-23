@@ -5837,7 +5837,9 @@ h3 {
   .title h1 {
     font-size: 10em; }
   .title p {
-    font-size: 5em; }
+    font-size: 2em; }
+  .title h2 {
+    font-size: 4em; }
 
 .navbar {
   color: #999;

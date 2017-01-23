@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     .exec((err, docs) => {
       if (err) return console.log(err.toString().red)
       if (logging) console.log('PLAYLISTS ACCESSED BY: '.blue, req.user.name, ', FOUND'.blue, docs.length, 'PLAYLISTS'.blue)
-      if (logging) console.log('PLAYLISTS FOUND: '.blue, JSON.stringify(docs, null, 4).blue)
+      // if (logging) console.log('PLAYLISTS FOUND: '.blue, JSON.stringify(docs, null, 4).blue)
       res.render('playlists', {title: 'Playlists', playlists: docs})
     })
 })
@@ -39,9 +39,9 @@ router.post('/create', (req, res) => {
   req.body.collaborators = []
   req.body.collaborators.push(req.user._id)
   if (logging) console.log(JSON.stringify(req.body, null, 4).blue)
-  Playlist.create(req.body, (err) => {
+  Playlist.create(req.body, (err, doc) => {
     if (err) return console.log(err.toString().red)
-    res.redirect('/profile')
+    res.redirect('/playlists/'+doc._id)
   })
 })
 
