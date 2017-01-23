@@ -1,0 +1,118 @@
+<%= user%>
+
+<%
+let ongoingTrades = [];
+let finishedTrades = [];
+user.trades.forEach( ( trade ) => {
+  if ( user.id === _firstUser._id ) {
+    trade[ otherUserName ] = trade.secondUser;
+    trade[ otherUserItems ] = trade.secondUserItems;
+    trade[ myUserItems ] = trade.firstUserItems;
+  } else {
+    trade[ otherUserName ] = trade.firstUser;
+    trade[ otherUserItems ] = trade.firstUserItems;
+    trade.dealSweetener = -trade.dealSweetener;
+    trade[ myUserItems ] = trade.secondUserItems;
+  }
+  if ( trade.status = "ongoing" ) ongoingTrades.push( trade );
+  else finishedTrades.push( trade );
+} )
+%>
+
+
+
+<div class="container">
+  <h2>BarterCenter </h2>
+  <h3>Welcome <%= user.name %>!</h3>
+  <br>
+  <form method='POST' action='/itemSearch/'>
+    <div class="form-group">
+      <label for="Search">Item Search:</label>
+      <input type="text" class="form-control" name="search" ">
+    </div>
+    <button type="submit" class="btn btn-default">Search</button>
+  </form>
+  <br>
+  <h3>Your items on offer:</h3>
+  <table class="table ">
+    <thead class = 'thead thead-inverse'>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Cash Value Estimate</th>
+        <th>In Ongoing Trade?</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% user.items.forEach(( item) => { %>
+      <tr>
+        <td><%= item.name%></td>
+        <td><%= item.description%></td>
+        <td>
+          <img src="<%= item.imagelink%>" alt=<%= item.name%> style="width:10em;height:auto;">
+        </td>
+        <td><%= item.valuation%></td>
+        <td>
+          <%
+  let itemTradeStatus = "No"
+  if ( item._trade )
+    if ( item._trade !== null )
+      itemTradeStatus = "Yes"
+          %>
+          <%= itemTradeStatus%>
+          <td class = >
+            <button type = "button" class = "btn btn-sm col-sm-12 buttonVertMargin"
+            onclick = "window.location.href = 'interface/item/show/<%= item._id%>' ">
+            Details</button>
+            <button type = "button" class = "btn btn-sm col-sm-12 buttonVertMargin"
+            onclick = "window.location.href = 'interface/item/edit/<%= item._id%>' ">
+            Modify</button>
+            <form method='POST' action='/interface/item/delete/<%= item._id %>?_method=DELETE'>
+              <button type="submit" class="btn btn-sm col-sm-12 buttonVertMargin">Delete</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <button type = "button" class = "btn btn-block "
+    onclick = "window.location.href = 'interface/item/create' ">
+    New Item</button>
+    
+    <h3>Your ongoing trades</h3>
+    <table class="table ">
+      <thead class = 'thead thead-inverse'>
+        <tr>
+          <th>Trading Partner</th>
+          <th>Items Desired</th>
+          <th>Items Offered<th>
+            <th>Deal Sweetener<th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% ongoingTrades.forEach(( trade ) => { %>
+            <tr>
+              <td><%= trade.otherUserName%></td>
+              <td><%= trade.otherUserItems%></td>
+              <td><%= trade.myUserItems%></td>
+              <td><%= trade.dealSweetener%></td>
+              <td>
+                <td class = "horizcenter">
+                  <button type = "button" class = "btn btn-sm "
+                  onclick = "window.location.href = 'interface/trade/show/<%= trade._id%>' ">
+                  Details</button>
+                  <button type = "button" class = "btn btn-sm "
+                  onclick = "window.location.href = 'interface/trade/edit/<%= trade._id%>' ">
+                  Update</button>
+                  
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <br>
+        <br>

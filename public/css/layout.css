@@ -1,0 +1,21 @@
+.item {
+  padding: 1em;
+}
+
+.container {
+  width: 100%;
+}
+
+body {
+  margin: 1%;
+}
+
+.horizcenter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.buttonVertMargin {
+  margin-top: 0.5em;
+}
