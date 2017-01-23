@@ -150,70 +150,30 @@ describe('ACCESSING/MANIPULATING PLAYLISTS WITH HTTP REQUESTS'.underline, () => 
       })
   })
 
-  it('should be able to get a single playlist with /playlists/id'.bold, (done) => {
-    agent.get('/playlists/'+playlistId)
-      .end((err, res) => {
-        if (err) return console.log(err.toString().red)
-        // console.log(JSON.stringify(res.body,null,4).blue)
-        expect(res.body).to.be.an.object
-        expect(res.body).to.be.have.property('name')
-        expect(res.body).to.be.have.property('tracks')
-        expect(res.body).to.be.have.property('creator')
-        expect(res.body).to.be.have.property('collaborators')
-        expect(res.body).to.be.have.property('_id')
-        done()
-      })
-  })
-
-  it('should be a populated playlist'.bold, (done) => {
-    agent.get('/playlists/'+playlistId)
-      .end((err, res) => {
-        if (err) return console.log(err.toString().red)
-        // console.log(JSON.stringify(res.body,null,4).blue)
-        expect(res.body.creator).to.be.an.object
-        expect(res.body.creator).to.have.property('name')
-        expect(res.body.creator).to.have.property('email')
-        expect(res.body.collaborators).to.be.an.array
-        expect(res.body.collaborators[0]).to.be.an.object
-        expect(res.body.collaborators[0]).to.have.property('name')
-        expect(res.body.collaborators[0]).to.have.property('email')
-        expect(res.body.tracks).to.be.an.array
-        expect(res.body.tracks[0]).to.be.an.object
-        done()
-      })
-  })
-
-  // it('should be able to get list of all playlists from /playlist'.bold, (done) => {
-  //   agent.get('/playlists')
-  //     .expect(200)
+  // it('should be able to get a single playlist with /playlists/id'.bold, (done) => {
+  //   agent.get('/playlists/'+playlistId)
   //     .end((err, res) => {
-  //       if (err) return console.log(err)
-  //       expect(res.body).to.be.an.array
-  //       expect(res.body).to.be.have.length(2)
-  //       expect(res.body[0]).to.be.an.object
-  //       expect(res.body[0]).to.have.property('name')
-  //       expect(res.body[0]).to.have.property('tracks')
-  //       expect(res.body[0]).to.have.property('creator')
-  //       expect(res.body[0]).to.have.property('collaborators')
+  //       if (err) return console.log(err.toString().red)
+  //       console.log(JSON.stringify(res.locals,null,4).blue)
+  //       expect(res.locals.playlist).to.be.an.object
   //       done()
   //     })
   // })
 
-  // it('should be a populated list'.bold, (done) => {
-  //   agent.get('/playlists')
-  //     .expect(200)
+  // it('should be a populated playlist'.bold, (done) => {
+  //   agent.get('/playlists/'+playlistId)
   //     .end((err, res) => {
-  //       if (err) return console.log(err)
+  //       if (err) return console.log(err.toString().red)
   //       // console.log(JSON.stringify(res.body,null,4).blue)
-  //       expect(res.body[0]).to.be.an.object
-  //       expect(res.body[0].creator).to.be.an.object
-  //       expect(res.body[0].creator).to.have.property('name')
-  //       expect(res.body[0].creator).to.have.property('email')
-  //       expect(res.body[0].collaborators).to.be.an.array
-  //       expect(res.body[0].collaborators[0]).to.be.an.object
-  //       expect(res.body[0].collaborators[0]).to.have.property('name')
-  //       expect(res.body[0].collaborators[0]).to.have.property('email')
-  //       expect(res.body[0].tracks).to.be.an.array
+  //       expect(res.body.creator).to.be.an.object
+  //       expect(res.body.creator).to.have.property('name')
+  //       expect(res.body.creator).to.have.property('email')
+  //       expect(res.body.collaborators).to.be.an.array
+  //       expect(res.body.collaborators[0]).to.be.an.object
+  //       expect(res.body.collaborators[0]).to.have.property('name')
+  //       expect(res.body.collaborators[0]).to.have.property('email')
+  //       expect(res.body.tracks).to.be.an.array
+  //       expect(res.body.tracks[0]).to.be.an.object
   //       done()
   //     })
   // })
@@ -221,27 +181,27 @@ describe('ACCESSING/MANIPULATING PLAYLISTS WITH HTTP REQUESTS'.underline, () => 
   it('should add a track to a playlist at /playlists/:id/add'.bold, (done) => {
     agent.post('/playlists/'+playlistId+'/add')
       .send(track1)
-      .expect(200)
-      .end((err, res) => {
+      .end((err) => {
         if (err) return console.log(err)
-        // console.log(JSON.stringify(res.body,null,4).blue)
-        expect(res.body.tracks).to.have.length.above(0)
-        expect(res.body.tracks[0]).to.have.property('title')
-        expect(res.body.tracks[0]).to.have.property('artist')
-        trackId = res.body.tracks[0]._id
-        done()
+        Playlist.findById(playlistId, (err, doc) => {
+          if (err) return console.log(err)
+          trackId = doc.tracks[0]._id
+          expect(doc.tracks).to.have.length(1)
+          done()
+        })
       })
   })
 
   it('should delete a track at /playlists/:playlistid/delete/:trackid'.bold, (done) => {
     agent.get('/playlists/'+playlistId+'/delete/'+trackId)
-      .expect(200)
-      .end((err, res) => {
+      .end((err) => {
         if (err) return console.log(err)
-        // console.log(JSON.stringify(res.body,null,4).blue)
-        expect(res.body.tracks).to.be.an.array
-        expect(res.body.tracks).to.have.length(0)
-        done()
+        Playlist.findById(playlistId, (err, doc) => {
+          if (err) return console.log(err)
+          expect(doc.tracks).to.be.an.array
+          expect(doc.tracks).to.have.length(0)
+          done()
+        })
       })
   })
 
