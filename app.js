@@ -71,10 +71,6 @@ app.use('/', index)
 
 app.use(isLoggedIn)
 
-app.get('/profile', (req, res) => {
-  res.render('profile', {title: 'Profile'})
-})
-
 app.use('/playlists', playlists)
 
 // catch 404 and forward to error handler
