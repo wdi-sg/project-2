@@ -5807,13 +5807,16 @@ button.close {
   .hidden-print {
     display: none !important; } }
 body {
-  padding-top: 60px; }
-
-h1 {
+  font-family: "Lato", sans-serif;
+  padding-top: 60px;
   color: white; }
 
 .container {
   margin-bottom: 40px; }
+
+.tiny {
+  font-size: 12px;
+  color: white; }
 
 .title {
   color: white; }
@@ -5823,14 +5826,36 @@ h1 {
     font-size: 5em; }
 
 .navbar {
+  color: #999;
   border-radius: 0; }
   .navbar .navbar-text {
     text-align: center; }
 
 .well {
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
   max-width: 400px;
   margin: 0 auto; }
-  .well h1 {
+  .well a {
+    color: #0000ff; }
+
+.btn-primary {
+  background-color: #0000ff; }
+
+.hash {
+  line-height: 4px;
+  color: #ccc;
+  padding-top: 20px;
+  position: absolute; }
+
+.playlist-panel {
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  height: 250px;
+  transition: all 0.5s ease;
+  cursor: pointer; }
+  .playlist-panel:hover {
+    background-color: white;
     color: #333; }
 
 /*# sourceMappingURL=styles.css.map */
