@@ -2,7 +2,7 @@
 const expect = require('chai').expect
 const app = require('../app')
 const request = require('supertest')
-const server = request.agent(app)
+const agent = request.agent(app)
 const User = require('../models/user')
 require('colors')
 
@@ -29,8 +29,8 @@ const testUser4 = {
 
 // TESTS
 describe('USER SIGNUP'.underline, () => {
-  it('should redirect to /users/login on post to /users/signup'.bold, (done) => {
-    server.post('/users/signup')
+  it('should redirect to /users/login on successful signup at /users/signup'.bold, (done) => {
+    agent.post('/users/signup')
       .send(testUser1)
       .expect('Location', '/users/login', done)
   })
@@ -42,22 +42,22 @@ describe('USER SIGNUP'.underline, () => {
     })
   })
   it('should redirect to /users/signup on unsuccessful signup (email already taken)'.bold, (done) => {
-    server.post('/users/signup')
+    agent.post('/users/signup')
       .send(testUser1)
       .expect('Location', '/users/signup', done)
   })
   it('should redirect to /users/signup on unsuccessful signup (email format invalid)'.bold, (done) => {
-    server.post('/users/signup')
+    agent.post('/users/signup')
       .send(testUser2)
       .expect('Location', '/users/signup', done)
   })
   it('should redirect to /users/signup on unsuccessful signup (password below 5 chars)'.bold, (done) => {
-    server.post('/users/signup')
+    agent.post('/users/signup')
       .send(testUser3)
       .expect('Location', '/users/signup', done)
   })
   it('should redirect to /users/signup on unsuccessful signup (no name provided)'.bold, (done) => {
-    server.post('/users/signup')
+    agent.post('/users/signup')
       .send(testUser4)
       .expect('Location', '/users/signup', done)
   })
@@ -65,33 +65,33 @@ describe('USER SIGNUP'.underline, () => {
 
 describe('USER LOGIN'.underline, () => {
   it('should redirect to /user/login on unsuccessful login (unregistered email)'.bold, (done) => {
-    server.post('/users/login')
+    agent.post('/users/login')
       .send({email: 'a@f.com', password: 'potato'})
       .expect('Location','/users/login', done)
   })
   it('should redirect to /user/login on unsuccessful login (invalid password)'.bold, (done) => {
-    server.post('/users/login')
+    agent.post('/users/login')
       .send({email: 'a@b.com', password: 'potato'})
       .expect('Location','/users/login', done)
   })
   it('should redirect to /profile on successful login'.bold, (done) => {
-    server.post('/users/login')
+    agent.post('/users/login')
       .send({email: 'a@b.com', password: 'tomato'})
       .expect('Location','/profile', done)
   })
   it('should be able to access /profile after logging in'.bold, (done) => {
-    server.get('/profile')
+    agent.get('/profile')
       .expect(200, done)
   })
 })
 
 describe('USER LOGOUT'.underline, () => {
   it('should log the user out and redirect to / on get to /users/logout'.bold, (done) => {
-    server.get('/users/logout')
+    agent.get('/users/logout')
       .expect('Location', '/', done)
   })
   it('should not be able to access /profile after logging out'.bold, (done) => {
-    server.get('/profile')
+    agent.get('/profile')
       .expect('Location', '/users/login', done)
   })
 })
