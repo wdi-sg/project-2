@@ -32,20 +32,20 @@ let userController = {
         User.findById(req.user.id, cb)
       },
       (cb) => {
-        Event.find({creator: req.user.id}, cb)
+        Event.find({creator: req.user.id, endDate: {$gt: Date.now()}}, cb)
       },
       (cb) => {
         Participant.find({user: req.user.id}).populate('event').exec(cb)
       },
       (cb) => {
-        Event.find({}).sort({'created_at': -1}).limit(5).exec(cb)
+        Event.find({startDate: {$gte: Date.now()}}).sort({'created_at': -1}).limit(5).exec(cb)
       }
 
     ]
 
     , (err, result) => {
       console.log(result)
-      console.log('result 2',result[2])
+      console.log('result 2', result[2])
       if (err) {
         req.flash('error', 'Please login to proceed.')
         res.redirect('/auth/login')

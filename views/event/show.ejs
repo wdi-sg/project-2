@@ -2,7 +2,7 @@
   <% include ../partials/alerts %>
   <div class='row'>
 
-    <div class='col-md-9 panel panel-default'>
+    <div class='col-md-9 panel panel-default full-height'>
       <h2><%= results.event.name%></h2>
       <span class="pull-right"><p>Organised by: <%= results.event.creator.name%></p></span>
 
@@ -13,11 +13,13 @@
 
         <li>Venue: <%= results.event.location%></li>
       </ul>
-      <div class='col-md-12'>
+      <hr>
+      <div class='col-md-12 three-quarter-height'>
         Details:
         <%- simpleFormat(results.event.description) %>
       </div>
 
+  <div class='pull-right'>
       <% if (user) {%>
         <% if (results.event.creator.equals(user.id)) {%>
           <a href='/event/<%=results.event._id%>/edit'><button class='btn btn-primary'>Edit</button></a>
@@ -26,11 +28,12 @@
             <button class='btn btn-danger' disabled>Joined</button>
             <a href='/event/<%=results.event._id%>/cancel'><button class='btn btn-primary'>Cancel</button></a>
         <%} else {%>
-              <a href='/event/<%= results.event._id%>/join'><button class='btn btn-danger'>RSVP</button></a>
+          <a href='/event/<%= results.event._id%>/join'><button class='btn btn-danger'>RSVP</button></a>
        <%}%>
       <%}%>
     </div>
-    <div class='col-md-3 panel panel-default'>
+  </div>
+    <div class='col-md-3 panel panel-default full-height'>
       <h2>Participants</h2>
       <% results.participants.forEach( (participant)=> { %>
         <div class='panel panel-default'>

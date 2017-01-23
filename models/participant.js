@@ -7,14 +7,14 @@ let participantSchema = new mongoose.Schema({
 }).index({event: 1, user: 1}, {unique: true});
 
 
-participantSchema.pre('remove', function(next) {
-  console.log('pre REMOVE validation from mongoose', this.user);
-  if (this.user._id.equals(this.event.creator)) {
-    let err = new Error('')
-    return next(err)
-  }
-  next()
-})
+// participantSchema.pre('remove', function(next) {
+//   console.log('pre REMOVE validation from mongoose', this.user);
+//   if (this.user._id.equals(this.event.creator)) {
+//     let err = new Error('')
+//     return next(err)
+//   }
+//   next()
+// })
 
 let Participant = mongoose.model('Participant', participantSchema)
 

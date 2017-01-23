@@ -19,12 +19,13 @@ let participantController = {
   cancel: (req, res) => {
     Participant.findOne({event: req.params.id, user: req.user.id}).populate('user')
     .populate('event').exec((err, event) => {
+      if (event.user._id.equals(req.user.id)) {
+        req.flash('error', 'Could withdraw from your own event.')
+        res.redirect(`/event/${event.event._id}`)
+        return
+      }
+
       event.remove({}, (err) => {
-        if (err) {
-          req.flash('error', 'Could withdraw from your own event.')
-          res.redirect(`/event/${event.event._id}`)
-          return
-        }
         res.redirect(`/event/${event.event._id}`)
       })
     })

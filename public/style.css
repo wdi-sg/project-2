@@ -39,3 +39,15 @@ form {
   border: 0;
   box-shadow: none;
 }
+
+.full-height {
+  height: 90vh;
+}
+
+.half-height {
+  height: 45%;
+}
+
+.three-quarter-height {
+  height: 65%;
+}
