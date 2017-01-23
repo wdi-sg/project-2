@@ -22,6 +22,7 @@
     "method-override": "^2.3.7",
     "mongoose": "^4.7.7",
     "morgan": "^1.7.0",
+    "multer": "^1.2.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "superagent": "^3.3.2"

@@ -3,6 +3,7 @@ const request = require('supertest');
 const bcrypt = require('bcryptjs');
 const app = require('../app');
 const User = require('../models/user');
+const Profile = require('../models/profile');
 const colors = require('colors');
 const mongoose = require('mongoose');
 
@@ -23,7 +24,7 @@ new User({
 
 //put all authenticated requests in here..
 var authApp = request.agent(app);
-describe('Test : GET /dashboard/profile page...'.magenta, function(){
+describe('Test : test for authenticated requests....'.magenta, function(){
   it('is logging in now...',function(done){
     authApp.post('/auth/login').set('Accept','application/json').send({
       email : 'dummy@email.com',
@@ -32,6 +33,9 @@ describe('Test : GET /dashboard/profile page...'.magenta, function(){
       if (err) console.log(err);
       done();
     })
+  })
+  it('should allow test to access /dashboard/'.magenta,function(done){
+    authApp.get('/dashboard/').expect(200,done)
   })
   it('should allow test to access /dashboard/profile'.magenta,function(done){
     authApp.get('/dashboard/profile').expect(200,done)
@@ -86,8 +90,6 @@ describe('Test : GET /dashboard/profile page...'.magenta,function(){
     request(app).get('/dashboard/profile').expect('Location','/').expect(302,done);
   })
 })
-
-
 
 //test for model!!
 describe('Test : testing the user schema...'.magenta,function(){
@@ -147,6 +149,7 @@ describe('Test : testing the user schema...'.magenta,function(){
 });
 
 // write a model first!!!
+//DONE
 describe('Test : POST /auth/register..'.magenta,function(){
   it('should redirect to /dashboard/ with a 302 response if successful',function(done){
     request(app).post('/auth/register').set('Accept','application/json').send({
@@ -161,5 +164,21 @@ describe('Test : POST /auth/register..'.magenta,function(){
       email : 'invalid',
       password : 'four'
     }).expect('Location','/').expect(302,done);
+  })
+})
+
+describe('Test : testing the profile schema...'.magenta,function(){
+  it('should create a profile and save it successfully..',function(done){
+    User.find({name : 'dummy'},function(err,data){
+      if (err) console.log(err);
+      new Profile({
+        description : 'this is a new description',
+        user : data._id
+      }).save(function(err,data2){
+        if (err) console.log(err2);
+        console.log(data2);
+        done();
+      })
+    })
   })
 })
