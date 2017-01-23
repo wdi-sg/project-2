@@ -123,12 +123,14 @@ describe('FINDING AND POPULATING ITEMS FROM DATABASE'.underline, () => {
 
 describe('ACCESSING/MANIPULATING PLAYLISTS WITH HTTP REQUESTS'.underline, () => {
   let playlistId = ''
+  let trackId = ''
 
   it('should be able to create a playlist with a post request to /playlists/create'.bold, (done) => {
     agent.post('/playlists/create')
       .send(playlist2)
       .expect(200)
       .end((err, res) => {
+        if (err) return console.log(err)
         expect(res.body).to.be.an.object
         expect(res.body).to.be.have.property('name')
         expect(res.body).to.be.have.property('tracks')
@@ -144,6 +146,7 @@ describe('ACCESSING/MANIPULATING PLAYLISTS WITH HTTP REQUESTS'.underline, () => 
     agent.get('/playlists/'+playlistId)
       .expect(200)
       .end((err, res) => {
+        if (err) return console.log(err)
         expect(res.body).to.be.an.object
         expect(res.body).to.be.have.property('name')
         expect(res.body).to.be.have.property('tracks')
@@ -158,6 +161,7 @@ describe('ACCESSING/MANIPULATING PLAYLISTS WITH HTTP REQUESTS'.underline, () => 
     agent.get('/playlists/'+playlistId)
       .expect(200)
       .end((err, res) => {
+        if (err) return console.log(err)
         // console.log(JSON.stringify(res.body,null,4).blue)
         expect(res.body.creator).to.be.an.object
         expect(res.body.creator).to.have.property('name')
@@ -176,6 +180,7 @@ describe('ACCESSING/MANIPULATING PLAYLISTS WITH HTTP REQUESTS'.underline, () => 
     agent.get('/playlists')
       .expect(200)
       .end((err, res) => {
+        if (err) return console.log(err)
         expect(res.body).to.be.an.array
         expect(res.body).to.be.have.length(2)
         expect(res.body[0]).to.be.an.object
@@ -191,6 +196,7 @@ describe('ACCESSING/MANIPULATING PLAYLISTS WITH HTTP REQUESTS'.underline, () => 
     agent.get('/playlists')
       .expect(200)
       .end((err, res) => {
+        if (err) return console.log(err)
         // console.log(JSON.stringify(res.body,null,4).blue)
         expect(res.body[0]).to.be.an.object
         expect(res.body[0].creator).to.be.an.object
@@ -202,6 +208,45 @@ describe('ACCESSING/MANIPULATING PLAYLISTS WITH HTTP REQUESTS'.underline, () => 
         expect(res.body[0].collaborators[0]).to.have.property('email')
         expect(res.body[0].tracks).to.be.an.array
         done()
+      })
+  })
+
+  it('should add a track to a playlist at /playlists/:id/add'.bold, (done) => {
+    agent.post('/playlists/'+playlistId+'/add')
+      .send(track1)
+      .expect(200)
+      .end((err, res) => {
+        if (err) return console.log(err)
+        // console.log(JSON.stringify(res.body,null,4).blue)
+        expect(res.body.tracks).to.have.length.above(0)
+        expect(res.body.tracks[0]).to.have.property('title')
+        expect(res.body.tracks[0]).to.have.property('artist')
+        trackId = res.body.tracks[0]._id
+        done()
+      })
+  })
+
+  it('should delete a track at /playlists/:playlistid/delete/:trackid'.bold, (done) => {
+    agent.get('/playlists/'+playlistId+'/delete/'+trackId)
+      .expect(200)
+      .end((err, res) => {
+        if (err) return console.log(err)
+        // console.log(JSON.stringify(res.body,null,4).blue)
+        expect(res.body.tracks).to.be.an.array
+        expect(res.body.tracks).to.have.length(0)
+        done()
+      })
+  })
+
+  it('should delete a playlist at /playlists/:playlistid/delete'.bold, (done) => {
+    agent.get('/playlists/'+playlistId+'/delete')
+      .end((err) => {
+        if (err) return console.log(err)
+        Playlist.findById(playlistId, (err, doc) => {
+          if (err) return console.log(err)
+          expect(doc).to.not.exist
+          done()
+        })
       })
   })
 })
