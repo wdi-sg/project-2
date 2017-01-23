@@ -1,5 +1,11 @@
-<h1>Welcome back, <%= locals.user.firstName %>!</h1>
-<h2>This is your profile page.</h2>
+<h1>welcome back, <%= locals.user.firstName.toLowerCase() %>!</h1>
+<h1>these are your playlists.</h1>
 <hr>
-<h3><%= locals.user.name %></h3>
-<p><%= locals.user.email %></p>
+<% playlists.forEach(e => { %>
+<div class="col-md-4 playlist-panel">
+  <h1><%= e.name %></h1>
+  <hr>
+  <p>By <%= e.creator.name %></p>
+  <p class="tiny pull-right"><%= e._id %></p>
+</div>
+<% }) %>

@@ -1,1 +1,10 @@
-<h1>this is where the playlists go</h1>
+<h1>this is where all the playlists live.</h1>
+<!-- <div class="hash"><%= playlists %></div> -->
+<hr>
+<% playlists.forEach(e => { %>
+  <div class="col-md-4 playlist-panel">
+    <h1><%= e.name %></h1>
+    <hr>
+    <p>By <%= e.creator.name %></p>
+  </div>
+<% }) %>
