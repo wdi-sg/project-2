@@ -1,0 +1,42 @@
+{
+  "name": "project-2-buy2gether",
+  "version": "1.0.0",
+  "description": "This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shanwan/project-2-starter.git"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.0",
+    "body-parser": "^1.15.2",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "express-ejs-layouts": "^2.2.0",
+    "express-session": "^1.14.2",
+    "method-override": "^2.3.7",
+    "mongoose": "^4.7.6",
+    "mongoose-type-url": "^1.0.2",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "supertest": "^2.0.1"
+  },
+  "author": "Loo Wan Shan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shanwan/project-2-starter/issues"
+  },
+  "homepage": "https://github.com/shanwan/project-2-starter#readme"
+}

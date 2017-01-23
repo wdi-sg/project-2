@@ -1,0 +1,61 @@
+- show one item that is created for review
+- can edit/ delete
+<div class="jumbotron container">
+  <h1><%= data.productname%></h1>
+</div>
+<div class="container">
+   <table class = "table">
+      <tbody>
+         <tr>
+            <td><label>Creator</label></td>
+            <td><%= req.user.id%> (how to add person's name?)</td>
+         </tr>
+
+         <tr>
+            <td><label>URL: </label></td>
+            <td><%= data.linkforproduct %></td>
+         </tr>
+
+         <tr>
+            <td><label>Price: </label></td>
+            <td> $ <%= data.price %></td>
+         </tr>
+
+         <tr>
+            <td><label>Description: </label></td>
+            <td><%= data.description %></td>
+         </tr>
+
+         <tr>
+            <td><label>Area I Live In: </label></td>
+            <td><%= data.buyerarea %></td>
+         </tr>
+
+         <tr>
+            <td><label>Date Created: </label></td>
+            <td><%= data.productdatecreated %></td>
+         </tr>
+
+         <tr>
+            <td><label>Respond By: </label></td>
+            <td><%= data.respondby %></td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+<p></p>
+<div class="container">
+  <div class="col-xs-2">
+    <form class="form-inline" method="POST" action=<%= "/todos/" + todo._id + "?_method=DELETE" %>>
+      <input type="hidden" name="_id" value="<%= todo._id %>">
+      <input class="btn btn-default" type="submit" value="Delete">
+    </form>
+  </div>
+  <div>
+    <form class="form-inline" method="GET" action="/todos/<%= todo._id %>/edit">
+      <input type="hidden" name="_id" value="<%= todo._id %>">
+      <input class="btn btn-default" type="submit" value="Edit">
+    </form>
+  </div>
+</div>
+<p></p>
