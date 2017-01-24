@@ -22,7 +22,7 @@ router.post('/signup', function (req, res) {
       res.redirect('/auth/signup')
     } else {
       passport.authenticate('local', {
-        successRedirect: '/profile',
+        successRedirect: '/products/',
         successFlash: 'Account created and logged in'
       })(req, res)
     }
@@ -30,7 +30,7 @@ router.post('/signup', function (req, res) {
 })
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/profile',
+  successRedirect: '/products/',
   failureRedirect: '/auth/login',
   failureFlash: 'Invalid username and/or password',
   successFlash: 'You have logged in'

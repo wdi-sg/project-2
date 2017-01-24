@@ -1,5 +1,3 @@
-- show one item that is created for review
-- can edit/ delete
 <div class="jumbotron container">
   <h1><%=data.productname%></h1>
 </div>
@@ -44,18 +42,24 @@
    </table>
 </div>
 <p></p>
-<div class="container">
-  <div class="col-xs-2">
+<div class="container ">
+  <div class="input-group-btn">
     <form class="form-inline" method="POST" action=<%= "/products/" + data._id + "?_method=DELETE" %>>
       <input type="hidden" name="_id" value="<%= data._id %>">
       <input class="btn btn-default" type="submit" value="Delete">
     </form>
   </div>
-  <div>
+  <div class="input-group-btn">
     <form class="form-inline" method="GET" action="/products/<%= data._id %>/edit">
       <input type="hidden" name="_id" value="<%= data._id %>">
       <input class="btn btn-default" type="submit" value="Edit">
     </form>
   </div>
+  <div class="input-group-btn">
+    <form action="/products/">
+      <input class="btn btn-default" type="submit" value="Go to Profile">
+    </form>
+  </div>
+</div>
 </div>
 <p></p>
