@@ -90,10 +90,13 @@ describe('Test : test for authenticated requests....'.magenta, function(){
     })
   })
   it(`should allow test to rate another person's profile if logged in then it will redirect to the same person's profile with a flash message`.magenta,function(done){
-    User.findOne({ email : 'dummy2@email.com'},function(err,data){
+    User.findOne({email : 'dummy@email.com'},function(err,data){
+      console.log(data);
       if (err) console.log(err);
       console.log('iseeeeeee'.yellow,data._id);
-      authApp.put(`/dashboard/rate/${data._id}/1`).expect(302,done);
+      Profile.findOne({user : data._id},function(err,data2){
+        authApp.put(`/dashboard/rate/${data2._id}/1`).expect(302,done);
+      })
     })
   })
   it('should allow test to delete the account if logged in...'.magenta,function(done){

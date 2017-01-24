@@ -36,16 +36,19 @@ router.get('/',function(req,res){
     })
     let bigRatingsArr = data.map(function(value,index){
       return value.ratings.map(function(value2,index2){
-        console.log(value2,index2);
+        return value2.rating;
       })
-      //from here need to somehow reduce stuff..
-      //to pass on data to the render page...
+    }).map(function(value,index){
+      return value.reduce(function(a,b){
+        return ((a+b)/value.length)
+      },0)
     })
-    // console.log(bigRatingsArr);
+    console.log('this is the array of value from the ratings schemas'.rainbow,bigRatingsArr);
     // console.log(binaryImageArr);
     res.render('dashboard', {
       data : data,
-      binaryImageArr : binaryImageArr
+      binaryImageArr : binaryImageArr,
+      bigRatingsArr : bigRatingsArr
     });
   })
 })
@@ -69,6 +72,8 @@ router.get('/profile/edit',function(req,res){
   })
 })
 
+//NOTE BIG EXCLAMATION THE :id here refers to user ids!!!!! BIG GOTCHA!!!
+//then you should name it properly right? yea ok..
 router.get('/profile/:id',function(req,res){
   console.log('i can see the user'.red,req.user);
   console.log('the keyed in id is'.cyan,req.params.id);
@@ -180,6 +185,8 @@ router.put('/profile/edit', upload.single('avatar'), function(req,res){
   }
 })
 
+//NOTE BIG EXCLAMATION THE :id here refers to profile ids!!!!! BIG GOTCHA
+//then you should name it properly right? yea ok..
 router.put('/rate/:id/:num',function(req,res){
   console.log('allyouzombies'.red,req.user);
   Profile.findOne({ _id : req.params.id},function(err,data){
