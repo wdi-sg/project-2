@@ -61,12 +61,18 @@ describe('Test : test for authenticated requests....'.magenta, function(){
     })
   })
   it('should allow test to access /dashboard/profile/edit if profile has been created..'.magenta,function(done){
-    authApp.get('/dashboard/profile/edit').expect(200,done)
+    authApp.get('/dashboard/profile/edit').expect(200,done);
   })
   it('should allow test to edit the fields involved in /dashboard/profile/edit'.magenta,function(done){
     authApp.put('/dashboard/profile/edit').set('Accept','application/json').send({
       description : 'yet another describ'
-    }).expect(302,done);
+    }).expect('Location','/dashboard/profile').expect(302,done);
+  })
+  it('should allow test to access /dashboard/settings if logged in...'.magenta,function(done){
+    authApp.get('/dashboard/settings').expect(200,done);
+  })
+  it('should allow test to delete the account if logged in...'.magenta,function(done){
+    authApp.delete('/dashboard/settings/delete').expect('Location','/').expect(302,done);
   })
 });
 
@@ -98,13 +104,6 @@ describe('Test : GET /dashboard/ page...'.magenta,function(){
   it('should return a 302 response if not logged in..',function(done){
     request(app).get('/dashboard/').expect('Location','/').expect(302,done);
   })
-  // write this test after writing login in!
-  it('should return a 200 response if logged in...',function(done){
-    request(app).post('/auth/login').set('Accept','application/json').send({
-      email : 'dummy@email.com',
-      password : 'dummyPassword'
-    }).expect('Location', '/dashboard/').expect(302,done);
-  })
 })
 
 describe('Test : GET /auth/logout...'.magenta,function(){
@@ -128,6 +127,12 @@ describe('Test : GET /dashboard/profile/create page...'.magenta,function(){
 describe('Test : GET /dashboard/profile/edit page...'.magenta,function(){
   it('should return a 302 response if not logged in...',function(done){
     request(app).get('/dashboard/profile/edit').expect('Location','/').expect(302,done);
+  })
+})
+
+describe('Test : GET /dashboard/settings page...'.magenta,function(){
+  it('should return a 302 response if not logged in...',function(done){
+    request(app).get('/dashboard/settings').expect('Location','/').expect(302,done);
   })
 })
 

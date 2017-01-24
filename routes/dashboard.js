@@ -42,6 +42,11 @@ router.get('/',function(req,res){
   })
 })
 
+router.get('/settings',function(req,res){
+  console.log('iseemanydeadpeople'.red,req.user);
+  res.render('settings');
+})
+
 router.get('/profile/create',function(req,res){
   console.log('i can see the user'.red,req.user);
   res.render('create');
@@ -149,6 +154,20 @@ router.put('/profile/edit', upload.single('avatar'), function(req,res){
       res.redirect('/dashboard/profile');
     })
   }
+})
+
+router.delete('/settings/delete',function(req,res){
+  console.log('toomanydeadpeopletosee'.red,req.user);
+  Profile.findOneAndRemove({user : req.user._id},function(err,data){
+    if (err) console.log(err);
+    console.log('delete profile successfully'.america);
+    User.findOneAndRemove({_id : req.user._id},function(err,data){
+      if (err) console.log(err);
+      console.log('deleted account successfully'.america);
+      req.flash('sucess','account deleted successfully!!')
+      res.redirect('/');
+    })
+  })
 })
 
 module.exports = router;
