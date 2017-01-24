@@ -28,8 +28,20 @@ new User({
   password : 'dummyPassword2'
 }).save(function(err,data){
   if (err) console.log(err);
+  console.log('LOOKHERE'.red,data);
+  fs.readFile('test/test-pic.jpg',function(err,data2){
+    new Profile({
+      description : 'describ for dummy2',
+      user : data._id,
+      avatar : data2
+    }).save(function(err,data3){
+      console.log('LOOKHEREHERE'.red,data);
+    })
+  })
   console.log('dummy data2 successfully created!'.green);
 })
+
+
 
 //put all authenticated requests in here..
 var authApp = request.agent(app);
@@ -70,6 +82,19 @@ describe('Test : test for authenticated requests....'.magenta, function(){
   })
   it('should allow test to access /dashboard/settings if logged in...'.magenta,function(done){
     authApp.get('/dashboard/settings').expect(200,done);
+  })
+  it(`should allow test to access another person's profile if logged in...`.magenta,function(done){
+    User.findOne({ email : 'dummy2@email.com'},function(err,data){
+      if (err) console.log(err);
+      authApp.get('/dashboard/profile/'+data._id).expect(200,done);
+    })
+  })
+  it(`should allow test to rate another person's profile if logged in then it will redirect to the same person's profile with a flash message`.magenta,function(done){
+    User.findOne({ email : 'dummy2@email.com'},function(err,data){
+      if (err) console.log(err);
+      console.log('iseeeeeee'.yellow,data._id);
+      authApp.put(`/dashboard/rate/${data._id}/1`).expect(302,done);
+    })
   })
   it('should allow test to delete the account if logged in...'.magenta,function(done){
     authApp.delete('/dashboard/settings/delete').expect('Location','/').expect(302,done);
@@ -221,7 +246,8 @@ describe('Test : testing the profile schema...'.magenta,function(){
         new Profile({
           description : 'this is a new description',
           user : data._id,
-          avatar : data2
+          avatar : data2,
+          ratings : [{rating : 4}]
         }).save(function(err,data3){
           if (err) console.log(err2);
           console.log(data3);

@@ -8,8 +8,21 @@ const ProfileSchema = new mongoose.Schema({
     required : true
   },
   avatar : Buffer,
-  // ratings : [ratingSchema],
+  ratings : [ratingSchema],
   user : { type : mongoose.Schema.Types.ObjectId, ref:'User'}
 })
 
-module.exports = mongoose.model('Profile', ProfileSchema);
+const Profile = module.exports = mongoose.model('Profile', ProfileSchema);
+
+// var test  = new Profile({
+//   description : 'this is a describ',
+//   ratings : [
+//     {
+//       rating : 5
+//      //whoCreated : ...
+//     },{
+//       rating : 4
+//     }]
+// })
+//
+// console.log(test);

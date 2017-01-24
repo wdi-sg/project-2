@@ -105,3 +105,28 @@ body {
   height : 100px;
   margin-bottom: 10px;
 }
+
+.customWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.rating {
+  /*border : 1px solid black;*/
+  border-radius : 10%;
+  width : 300px;
+  height : 300px;
+  margin-bottom : 50px;
+}
+
+.flexy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height :inherit;
+}
+
+.textSize {
+  font-size: 900%;
+}

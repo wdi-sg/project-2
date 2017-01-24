@@ -34,6 +34,14 @@ router.get('/',function(req,res){
     let binaryImageArr = data.map(function(value,index){
       return new Buffer(value.avatar).toString('base64');
     })
+    let bigRatingsArr = data.map(function(value,index){
+      return value.ratings.map(function(value2,index2){
+        console.log(value2,index2);
+      })
+      //from here need to somehow reduce stuff..
+      //to pass on data to the render page...
+    })
+    // console.log(bigRatingsArr);
     // console.log(binaryImageArr);
     res.render('dashboard', {
       data : data,
@@ -91,10 +99,18 @@ router.get('/profile',function(req,res){
     }
     console.log('look here'.red,data);
     let binaryImage = new Buffer(data.avatar).toString('base64');
+    let ratingsArr = data.ratings;
+    let reducedVal = 0;
+    ratingsArr.map(function(value,index){
+      reducedVal += value.rating;
+    })
+    reducedVal = Math.floor(reducedVal/data.ratings.length);
+    console.log('after applying a reduction... my ratings are : '.cyan,reducedVal);
     res.render('profile', {
       data : data,
       binaryImage : binaryImage,
-      username : req.user.name
+      username : req.user.name,
+      reducedVal : reducedVal
     });
   })
 })
@@ -110,7 +126,11 @@ router.post('/profile/create', upload.single('avatar'),function(req,res){
       new Profile({
         description : req.body.description,
         user : req.user.id,
-        avatar : data
+        avatar : data,
+        ratings : [{
+          rating : 3,
+          whoCreated : req.user.id
+        }]
       }).save(function(err,data2){
         if (err) return res.status(422).send('error saving profile...');
         console.log('look here default avatar'.blue,data2);
@@ -122,7 +142,11 @@ router.post('/profile/create', upload.single('avatar'),function(req,res){
     new Profile({
       description : req.body.description,
       user : req.user.id,
-      avatar : req.file.buffer
+      avatar : req.file.buffer,
+      ratings : [{
+        rating : 3,
+        whoCreated : req.user.id
+      }]
     }).save(function(err,data){
       if (err) return res.status(422).send('error saving profile...');
       console.log('look here'.cyan,data);
@@ -154,6 +178,24 @@ router.put('/profile/edit', upload.single('avatar'), function(req,res){
       res.redirect('/dashboard/profile');
     })
   }
+})
+
+router.put('/rate/:id/:num',function(req,res){
+  console.log('allyouzombies'.red,req.user);
+  Profile.findOne({ _id : req.params.id},function(err,data){
+    if (err) console.log(err);
+    console.log('prep for put'.cyan,data);
+    data.ratings.push({
+      rating : req.params.num,
+      whoCreated : req.user._id
+    })
+    data.save(function(err,data2){
+      if (err) console.log(err);
+      console.log('have we pushed the rating into the rating Schema?'.green,data2);
+      req.flash('success','you have rated this person! you go cool kat!')
+      res.redirect(`/dashboard/profile/${data2.user}`);
+    })
+  })
 })
 
 router.delete('/settings/delete',function(req,res){

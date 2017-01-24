@@ -1,11 +1,24 @@
-<!--<h3><%= data %></h3>
-<h3><%= username %></h3>-->
+<h3><%= data %></h3>
+<!--<h3><%= username %></h3>-->
 <div class='container'>
   <div class='text-center'>
     <h1>Welcome back <%=username%></h1>
-    <br />
-    <img class='avatar' src='data:image/jpeg;base64,<%=binaryImage%>'/>
   </div>
+    <br />
+    <div class="row">
+      <div class="col-lg-6">
+        <img class='avatar' src='data:image/jpeg;base64,<%=binaryImage%>'/>
+      </div>
+      <div class="col-lg-6">
+        <div class='rating'>
+          <div class="flexy">
+            <h3>Your current rating is:</h3>
+            <h1 class="textSize"><%= reducedVal %></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <blockquote class='blockquote-reverse'>
     <p><%= data.description %></p>
   </blockquote>
