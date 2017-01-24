@@ -24,7 +24,7 @@ let eventSchema = new mongoose.Schema({
   description: {
     type: String
   },
-  vacancy:{
+  vacancy: {
     type: Number
   },
   category: {type: String},

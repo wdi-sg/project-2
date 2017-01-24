@@ -10,6 +10,9 @@ let categorySchema = new mongoose.Schema({
     type: Number,
     require: true,
     default: 0
+  },
+  img: {
+    type: String
   }
 })
 

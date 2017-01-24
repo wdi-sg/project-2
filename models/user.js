@@ -21,6 +21,10 @@ let userSchema = new mongoose.Schema({
     minlength: [6, 'Password should be between 6 to 10 characters.'],
     maxlength: [10, 'Password should be between 6 to 10 characters.']
   },
+  avatar: {
+    type: String,
+    default: "sgzydpvkh5xz7f2uptov"
+  },
   memberSince: {
     type: Date,
     default: Date.now()

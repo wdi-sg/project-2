@@ -122,12 +122,12 @@ let eventController = {
   put: (req, res) => {
     Event.findOneAndUpdate({_id: req.params.id}, {
       name: req.body.name,
-      startDate: req.body.satartDate,
+      startDate: req.body.startDate,
       endDate: req.body.endDate,
       location: req.body.location,
-      description: req.body.description,
-      category: req.body.category
+      description: req.body.description
     }, (err, editedEvent) => {
+      console.log(req);
       res.redirect(`/event/${req.params.id}`)
     })
   },

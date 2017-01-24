@@ -13,17 +13,30 @@
         <span class='label label-primary'>no vacancy limits</span>
         <%}%>
     </div>
-      <span class="pull-right"><p>Organised by: <%= results.event.creator.name%></p></span>
+      <span class="pull-right"><p>Organised by: <img src="<%=cloudinary.url(results.event.creator.avatar, { width: 50, height: 50, crop: 'fill', gravity: 'face', radius: 'max' })%>"></img></p></span>
       <hr>
       <ul>
         <li>Date: <%= results.event.startDate.toDateString()%> <%= results.event.startDate.toLocaleTimeString()%>   - <%= results.event.endDate.toDateString()%> <%= results.event.endDate.toLocaleTimeString()%> </li>
 
-        <li>Venue: <%= results.event.location%></li>
+        <li>Venue: <%= results.event.location%>
+
+        </li>
+
       </ul>
       <hr>
-      <div class='col-md-12 three-quarter-height'>
+      <div class='col-md-12 three-quarter-height pull-left'>
+        <div class='col-md-6'>
         Details:
         <%- simpleFormat(results.event.description) %>
+      </div>
+        <iframe class='pull-right'
+          width="300"
+          height="250"
+          frameborder="0" style="border:0"
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCPmWIVaLCnyoz6_F88W7RxpGf3-bsJ6mg
+            &q=<%= results.event.location%>" allowfullscreen>
+        </iframe>
+
       </div>
 
   <div class='pull-right'>
@@ -42,15 +55,35 @@
           <%}%>
        <%}%>
       <%}%>
+
     </div>
+
+
+
   </div>
     <div class='col-md-3 panel panel-default full-height'>
       <h2>Participants</h2>
       <% results.participants.forEach( (participant)=> { %>
         <div class='panel panel-default'>
-          <%= participant.user.name%>
+          <img src="<%=cloudinary.url(participant.user.avatar, { width: 50, height: 50, crop: 'fill', gravity: 'face', radius: 'max' })%>"></img>
+          <strong><%= participant.user.name%></strong>
+          <% if (((Date.now()-participant.joined_at)/3600000) > 48) {%>
+            <p class='text-right'> Joined <%= Math.floor((Date.now()-participant.joined_at)/3600000/24) %> days ago </p>
+          <%} else if (((Date.now()-participant.joined_at)/3600000 > 24)) {%>
+        <p class='pull-right'>  Joined a day ago </p>
+            <% } else if (((Date.now()-participant.joined_at)/3600000 >1)) {%>
+              <p class='text-right'> Joined <%= Math.floor((Date.now()-participant.joined_at)/3600000) %> hr ago </p>
+              <% } else if ((Date.now()-participant.joined_at)/36000000 < 0.1){%>
+                <p class='text-right'> Join just now </p>
+              <%} else {%>
+                <p class='text-right'>  Joined <%= Math.floor((Date.now()-participant.joined_at)/3600000*60) %> min ago </p>
+              <%}%>
+
         </div>
       <%})%>
     </div>
  </div>
+</div>
+
+
 </div>

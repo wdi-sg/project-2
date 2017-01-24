@@ -13,6 +13,10 @@ const eventRoutes = require('./routes/event_router')
 const isLoggedIn = require('./middleware/isLoggedIn')
 const moment = require('moment')
 const tools = require('./lib/tools')
+const api = require('./lib/api')
+const multer = require('multer')
+const upload = multer({dest: './uploads/'})
+const cloudinary = require('cloudinary');
 const app = express()
 
 require('dotenv').config({silent: true})
@@ -42,12 +46,15 @@ app.use(function (req, res, next) {
 
 app.locals.simpleFormat = tools.simpleFormat
 app.locals.dateFormat = tools.dateFormat
+app.locals.cloudinary = cloudinary
+
 
 
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-  res.redirect('/event')
+  //  res.render('testpai', {user: req.user})
+   res.redirect('/event')
 })
 app.use('/auth', authRoutes)
 app.use('/user', userRoutes)

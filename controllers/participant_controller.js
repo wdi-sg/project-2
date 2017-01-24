@@ -1,5 +1,7 @@
 const Participant = require('../models/participant')
 const Event = require('../models/event')
+const multer = require('multer')
+const upload = multer({dest: './uploads/'})
 const async = require('async')
 
 let participantController = {

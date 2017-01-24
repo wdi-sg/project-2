@@ -2,6 +2,7 @@ const passport = require('../config/ppConfig')
 const User = require('../models/user')
 const Event = require('../models/event')
 const Participant = require('../models/participant')
+const cloudinary = require('cloudinary')
 const async = require('async')
 
 let userController = {
@@ -37,7 +38,9 @@ let userController = {
       (cb) => {
         Participant.find({user: req.user.id}).populate({
           path: 'event',
-          model: 'Event',
+          match: {
+            endDate: {$gt: Date.now()}
+          }
         }).exec(cb)
       },
       (cb) => {
@@ -55,19 +58,16 @@ let userController = {
       }
     })
   },
-    // User.findById(req.user.id)
-    // .populate('joined_events')
-    // .populate('my_events')
-    // .populate('past_events')
-    // .exec((err, user) => {
-    //   if (err) {
-    //     req.flash('error', 'Please login to proceed.')
-    //     res.redirect('/auth/login')
-    //   } else {
-    //     res.render(`user/index`, {user: user})
-    //   }
-    // })
-
+  avatar: (req, res) => {
+    res.render('dummy', {user: req.user})
+  },
+  upload: (req, res) => {
+    cloudinary.uploader.upload(req.file.path, function(result) {
+      User.findOneAndUpdate({_id: req.user.id}, {avatar: result.public_id}, (err, user)=>{
+        res.redirect('/user/profile')
+      })
+    });
+  },
   delete: (req, res) => {
     User.findByIdAndRemove(req.user.id, (err) => {
       if (err) {
