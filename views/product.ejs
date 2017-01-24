@@ -48,7 +48,7 @@
         <th>Comments:
         <form action="/products/<%=data._id%>/message" method="POST">
         <input type="text" name="comment" placeholder="input your comment">
-        <input class="btn btn-default" type="submit" value="Submit comment">
+        <input class="btn btn-primary btn-xs" type="submit" value="Submit comment">
         </form>
       </th>
       <th></th>
@@ -65,14 +65,14 @@
       </table>
     </div>
 <% if (data.creator.equals(currentUser._id)) { %>
-<div class="container ">
-  <div class="input-group-btn">
+<div class="container">
+  <div class="btn-group">
     <form class="form-inline" method="POST" action=<%= "/products/" + data._id + "?_method=DELETE" %>>
       <input type="hidden" name="_id" value="<%= data._id %>">
       <input class="btn btn-default" type="submit" value="Delete">
     </form>
   </div>
-  <div class="input-group-btn">
+  <div class="btn-group">
     <form class="form-inline" method="GET" action="/products/<%= data._id %>/edit">
       <input type="hidden" name="_id" value="<%= data._id %>">
       <input class="btn btn-default" type="submit" value="Edit">
@@ -82,12 +82,12 @@
   <% } %>
   <p></p>
   <div class="container ">
-  <div class="input-group-btn">
+  <div class="btn-group">
     <form action="/products/">
       <input class="btn btn-default" type="submit" value="Go to Profile">
     </form>
   </div>
-  <div class="input-group-btn">
+  <div class="btn-group">
     <form action="/products/catalogue">
       <input class="btn btn-default" type="submit" value="Go to All Products">
     </form>

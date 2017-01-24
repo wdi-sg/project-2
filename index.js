@@ -43,14 +43,6 @@ app.use(function (req, res, next) {
   next()
 })
 
-// app.pre('save', function (req, res, next) {
-//   if (this.respondby < this.productdatecreated) {
-//     req.flash('error', 'Pls input a respond by date later than today.')
-//     res.redirect('/products/new')
-//   }
-//   next()
-// })
-
 app.get('/index', function (req, res) {
   res.render('index')
 })
