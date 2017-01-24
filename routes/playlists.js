@@ -41,7 +41,10 @@ router.post('/create', (req, res) => {
   req.body.collaborators.push(req.user._id)
   if (logging) console.log(JSON.stringify(req.body, null, 4).blue)
   Playlist.create(req.body, (err, doc) => {
-    if (err) return console.log(err.toString().red)
+    if (err) {
+      console.log(err.toString().red)
+      res.redirect('/playlists/')
+    }
     res.redirect('/playlists/'+doc._id)
   })
 })
@@ -55,11 +58,54 @@ router.post('/:id/add', (req, res) => {
     doc.tracks.push(req.body)
     if (doc.collaborators.indexOf(req.user._id) < 0) doc.collaborators.push(req.user._id)
     doc.save((err, updated) => {
-      if (err) return console.log(err.toString().red)
-      // res.send(updated)
-      if (logging) console.log('TRACK ADDED: '.blue, JSON.stringify(updated,null,4).blue)
-      res.redirect('/playlists/'+updated._id)
+      if (err) {
+        console.log(err.toString().red)
+        res.redirect('/playlists/'+id)
+      } else {
+        if (logging) console.log('TRACK ADDED: '.blue, JSON.stringify(updated,null,4).blue)
+        res.redirect('/playlists/'+updated._id)
+      }
     })
+  })
+})
+
+router.get('/:playlistId/up/:trackId', (req, res) => {
+  const playlistId = req.params.playlistId
+  const trackId = req.params.trackId
+  if (logging) console.log('TRACK IS BEING VOTED UP: '.blue, req.user.name)
+  Playlist.findById(playlistId, (err, doc) => {
+    const toVote = doc.tracks.id(trackId)
+    const index = doc.tracks.indexOf(toVote)
+    if (index < 0) {
+      if (logging) console.log('ERROR: TRACK NOT FOUND'.red)
+      res.redirect('/playlists/'+playlistId)
+    } else {
+      doc.tracks[index].rank++
+      doc.save((err, updated) => {
+        if (err) return console.log(err)
+        res.redirect('/playlists/'+updated._id)
+      })
+    }
+  })
+})
+
+router.get('/:playlistId/down/:trackId', (req, res) => {
+  const playlistId = req.params.playlistId
+  const trackId = req.params.trackId
+  if (logging) console.log('TRACK IS BEING VOTED DOWN: '.blue, req.user.name)
+  Playlist.findById(playlistId, (err, doc) => {
+    const toVote = doc.tracks.id(trackId)
+    const index = doc.tracks.indexOf(toVote)
+    if (index < 0) {
+      if (logging) console.log('ERROR: TRACK NOT FOUND'.red)
+      res.redirect('/playlists/'+playlistId)
+    } else {
+      doc.tracks[index].rank--
+      doc.save((err, updated) => {
+        if (err) return console.log(err)
+        res.redirect('/playlists/'+updated._id)
+      })
+    }
   })
 })
 
@@ -89,7 +135,7 @@ router.get('/:id/delete', (req, res) => {
   const id = req.params.id
   Playlist.findByIdAndRemove(id, (err) => {
     if (err) return console.log(err.toString().red)
-    res.redirect('/playlists')
+    res.redirect('/profile')
   })
 })
 
