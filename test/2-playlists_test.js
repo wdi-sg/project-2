@@ -59,7 +59,7 @@ describe('ACCESSING PAGES/CLEARING DB'.underline, () => {
 })
 
 describe('WRITING PLAYLISTS AND TRACKS TO DATABASE'.underline, () => {
-  it('should create a playlist with name and ref creator'.bold, (done) => {
+  it('should create a playlist with name and referenced creator'.bold, (done) => {
     User.findOne({}, (err, doc) => {
       if (err) return console.log(err.toString().red)
       playlist1.creator = doc._id
@@ -177,6 +177,11 @@ describe('ACCESSING/MANIPULATING PLAYLISTS WITH HTTP REQUESTS'.underline, () => 
   //     })
   // })
 
+  it('should redirect to /playlists on receiving a bad playlist id'.bold, (done) => {
+    agent.get('/playlists/potato')
+      .expect('Location', '/playlists', done)
+  })
+
   it('should add a track to a playlist at /playlists/:id/add'.bold, (done) => {
     agent.post('/playlists/'+playlistId+'/add')
       .send(track1)
@@ -202,6 +207,11 @@ describe('ACCESSING/MANIPULATING PLAYLISTS WITH HTTP REQUESTS'.underline, () => 
           done()
         })
       })
+  })
+
+  it('should redirect to /playlists/playlistId on deleting a bad track id'.bold, (done) => {
+    agent.get('/playlists/'+playlistId+'/delete/potato')
+      .expect('Location', '/playlists/'+playlistId, done)
   })
 
   it('should delete a playlist at /playlists/:playlistid/delete'.bold, (done) => {
