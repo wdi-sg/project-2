@@ -16,6 +16,7 @@ let messageController = {
       sender: req.user.id
     }, (err, message) => {
       console.log(message);
+      global.io.emit(`chatmessages${req.params.id}`, message)
       res.redirect(`/user/message/${req.params.id}`)
     })
   },

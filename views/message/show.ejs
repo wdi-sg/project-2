@@ -1,17 +1,18 @@
 <div class='container'>
 
-  <% if (messages.length >0) {%>
+  <% if (messages.length >0) { %>
+  <div id="messages">
+    <% messages.forEach( (message)=> {%>
+      <% if (message.sender.equals(user.id)) {%>
+        <div class='col-md-12 panel panel-default text-right'><%= message.content%></div>
+      <%} else {%>
+        <div class='col-md-12 panel panel-default text-left'><%= message.content%></div>
+      <%}%>
+    <%})%>
+  </div>
 
-  <% messages.forEach( (message)=> {%>
-    <% if (message.sender.equals(user.id)) {%>
-      <div class='col-md-12 panel panel-default text-right'><%= message.content%></div>
-    <%} else {%>
-      <div class='col-md-12 panel panel-default text-left'><%= message.content%></div>
-    <%}%>
-  <%})%>
 
-
-  <%}%>
+  <% } %>
 
   <form action="/user/message/<%= req.params.id%>" method="POST">
 
@@ -29,3 +30,16 @@
 
 
 </div>
+
+<script>
+ var socket = io();
+
+ socket.on(`chatmessages<%= req.params.id %>`, function(msg) {
+   if (msg.sender == '<%=user.id%>') {
+     $('#messages').append($("<div class='col-md-12 panel panel-default text-right'>").text(msg.content));
+   } else {
+     $('#messages').append($("<div class='col-md-12 panel panel-default text-left'>").text(msg.content));
+   }
+
+});
+</script>

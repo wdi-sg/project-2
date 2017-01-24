@@ -22,6 +22,7 @@ const cloudinary = require('cloudinary')
 var app = require('express')()
 var aserver = require('http').createServer(app)
 var io = require('socket.io').listen(aserver)
+global.io = io
 // const http = require('http').Server(app);
 // const io = require('socket.io')(http);
 
@@ -76,9 +77,9 @@ io.on('connection', function (socket) {
   console.log('We have user connected !')
   console.log(io);
 
-  socket.on('chat message', function (msg) {
-   io.emit('chat message', msg);
-  })
+  //socket.on('chat message', function (msg) {
+  // io.emit('chat message', msg);
+  //})
 })
 
 module.exports = server
