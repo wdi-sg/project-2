@@ -37,7 +37,6 @@ describe('TRACK RANKING SYSTEM'.underline, () => {
   it('should return all playlists with populated tracks'.bold, (done) => {
     Playlist.find({}, (err, docs) => {
       if (err) return console.log(err)
-      // jstring(docs)
       expect(docs).to.be.an.array
       expect(docs).to.not.be.empty
       expect(docs[0].tracks).to.be.an.array
@@ -61,7 +60,6 @@ describe('TRACK RANKING SYSTEM'.underline, () => {
       doc.tracks.push(track3)
       doc.save((err, saved) => {
         if (err) return console.log(err)
-        // jstring(saved)
         playlistId = doc._id
         track1Id = doc.tracks[0]._id
         track3Id = doc.tracks[2]._id
@@ -78,7 +76,6 @@ describe('TRACK RANKING SYSTEM'.underline, () => {
         if (err) return console.log(err)
         Playlist.findById(playlistId, (err, doc) => {
           if (err) return console.log(err)
-          // jstring(doc)
           expect(doc.tracks[2].rank).to.equal(1)
           done()
         })
@@ -92,7 +89,6 @@ describe('TRACK RANKING SYSTEM'.underline, () => {
         if (err) return console.log(err)
         Playlist.findById(playlistId, (err, doc) => {
           if (err) return console.log(err)
-          // jstring(doc)
           expect(doc.tracks[0].rank).to.equal(-1)
           done()
         })

@@ -3,7 +3,6 @@ const expect = require('chai').expect
 const app = require('../app')
 const request = require('supertest')
 const agent = request.agent(app)
-// const Track = require('../models/track')
 const Playlist = require('../models/playlist')
 const User = require('../models/user')
 require('colors')
@@ -34,7 +33,7 @@ describe('ACCESSING PAGES/CLEARING DB'.underline, () => {
       .expect('Location','/profile', done)
   })
 
-  it('should destroy all playlists/tracks and redirect to / on get to /playlists/destroyall'.bold, (done) => {
+  it('should destroy all playlists/tracks and redirect to / on get to /playlists/destroyall (TEST ENVIRONMENT ONLY)'.bold, (done) => {
     agent.get('/playlists/destroyall')
       .expect('Location', '/')
       .end((err) => {
@@ -67,7 +66,6 @@ describe('WRITING PLAYLISTS AND TRACKS TO DATABASE'.underline, () => {
       track1.contributor = doc._id
       Playlist.create(playlist1, (err, doc) => {
         if (err) return console.log('error'.red)
-        // console.log('playlist created:', doc)
         expect(doc).to.have.property('_id')
         expect(doc).to.have.property('name')
         expect(doc).to.have.property('creator').that.is.a.string
@@ -84,7 +82,6 @@ describe('WRITING PLAYLISTS AND TRACKS TO DATABASE'.underline, () => {
       playlist.tracks.push(track1)
       playlist.save((err, updated) => {
         if (err) return console.log(err.toString().red)
-        // console.log('track pushed:', updated)
         expect(updated.tracks).to.have.length.of(1)
         expect(updated.tracks[0]).to.be.an.object
         expect(updated.tracks[0]).to.be.have.property('title').that.equals('Living on a Prayer')
@@ -102,8 +99,6 @@ describe('FINDING AND POPULATING ITEMS FROM DATABASE'.underline, () => {
       .populate('creator')
       .exec((err, doc) => {
         if (err) return console.log(err.toString().red)
-        // console.log('playlist found:', doc)
-        // console.log('playlist creator found:', doc.creator)
         expect(doc.creator).to.be.an.object
         expect(doc.creator).to.have.property('_id')
         expect(doc.creator).to.have.property('name')
@@ -142,40 +137,11 @@ describe('ACCESSING/MANIPULATING PLAYLISTS WITH HTTP REQUESTS'.underline, () => 
         if (err) return console.log(err.toString().red)
         Playlist.findOne({name:playlist2.name}, (err, doc) => {
           playlistId = doc._id
-          // console.log(JSON.stringify(doc,null,4).blue)
           expect(doc).to.exist
           done()
         })
       })
   })
-
-  // it('should be able to get a single playlist with /playlists/id'.bold, (done) => {
-  //   agent.get('/playlists/'+playlistId)
-  //     .end((err, res) => {
-  //       if (err) return console.log(err.toString().red)
-  //       console.log(JSON.stringify(res.locals,null,4).blue)
-  //       expect(res.locals.playlist).to.be.an.object
-  //       done()
-  //     })
-  // })
-
-  // it('should be a populated playlist'.bold, (done) => {
-  //   agent.get('/playlists/'+playlistId)
-  //     .end((err, res) => {
-  //       if (err) return console.log(err.toString().red)
-  //       // console.log(JSON.stringify(res.body,null,4).blue)
-  //       expect(res.body.creator).to.be.an.object
-  //       expect(res.body.creator).to.have.property('name')
-  //       expect(res.body.creator).to.have.property('email')
-  //       expect(res.body.collaborators).to.be.an.array
-  //       expect(res.body.collaborators[0]).to.be.an.object
-  //       expect(res.body.collaborators[0]).to.have.property('name')
-  //       expect(res.body.collaborators[0]).to.have.property('email')
-  //       expect(res.body.tracks).to.be.an.array
-  //       expect(res.body.tracks[0]).to.be.an.object
-  //       done()
-  //     })
-  // })
 
   it('should redirect to /playlists on receiving a bad playlist id'.bold, (done) => {
     agent.get('/playlists/potato')
