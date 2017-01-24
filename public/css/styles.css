@@ -5875,6 +5875,25 @@ h3 {
     font-size: 1em;
     padding: 15px; }
 
+.well-track {
+  margin: 10px;
+  transition: all 0.5s ease;
+  cursor: pointer; }
+  .well-track:hover {
+    background-color: white;
+    color: #333; }
+
+.well a {
+  color: white; }
+  .well a:hover {
+    color: #333;
+    text-decoration: none; }
+
+.result-thumbnail {
+  height: 75px;
+  width: 75px;
+  border-radius: 12px; }
+
 .hash {
   line-height: 4px;
   color: #ccc;

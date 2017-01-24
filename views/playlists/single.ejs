@@ -5,22 +5,14 @@
 <hr>
 <div class="row">
   <div class="col-md-6 col-md-push-6">
-    <div class="well add-track clearfix">
-      <h3>add a track.</h3>
-      <form action="<%= '/playlists/'+playlist._id+'/add' %>" method="post" accept-charset="utf-8">
-        <div class="input-group">
-          <span class="input-group-addon" id="sizing-addon2">Title</span>
-          <input type="text" class="form-control" name="title" placeholder="'Get Ready To Wiggle'" aria-describedby="sizing-addon2">
-        </div>
-        <div class="input-group">
-          <span class="input-group-addon" id="sizing-addon2">Artist</span>
-          <input type="text" class="form-control" name="artist" placeholder="'The Wiggles'" aria-describedby="sizing-addon2">
-        </div>
-        <button class="btn btn-primary pull-right" type="submit">put it in there!</button>
+    <div class="well add-track">
+      <form id="search-form">
+        <h4>search for a track.</h4>
+        <input type="text" class="form-control" id="query">
+        <button type="submit" class="btn btn-primary">Search</button>
+        <p class="tiny pull-right">powered by spotify!</p>
       </form>
-      <% if (locals.user.name === playlist.creator.name) { %>
-        <a href="<%= '/playlists/'+playlist._id+'/delete' %>"><div class="label pull-right delete">DELETE THIS PLAYLIST</div></a>
-      <% } %>
+      <div id="results"></div>
     </div>
   </div>
   <div class="col-md-6 col-md-pull-6">
@@ -47,3 +39,4 @@
   </div>
 </div>
 <hr>
+<script src="../js/spotify-search.js"></script>
