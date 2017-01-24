@@ -1,0 +1,7 @@
+body {
+  margin-top: 100px;
+}
+
+a, button, .form-check-input {
+  cursor: pointer;
+}

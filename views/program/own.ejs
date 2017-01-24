@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-3">your programs</h1>
+  </div>
+  <%
+  let createdProgramsHeader = ""
+  if (currentUser.userTypes.admin === true && currentUser.createdPrograms.length > 0) {
+    createdProgramsHeader = "programs you created"
+  }
+  %>
+  <h1 class="page-header"><%= createdProgramsHeader %></h1><br>
+  <div class="d-flex flex-wrap justify-content-start">
+  <% createdPrograms.forEach(function (indivProgram) { %>
+    <div class="card card-outline-primary m-2" style="width: 20rem;">
+      <div class="card-header" style="color:#0275d8;">
+      one of yours!
+      </div>
+      <img class="card-img-top" src="<%= indivProgram.imageURL %>" style="height:12rem; object-fit:cover; border-top: 1px solid #0275d8; border-bottom: 1px solid #0275d8;>">
+      <div class="card-block">
+        <a href=<%= "/program/" + indivProgram.id %>>
+          <h4 class="card-title"><%= indivProgram.name %></h4>
+        </a>
+        <span class="badge badge-info mb-2"><%= indivProgram.subject %></span>
+        <% for (var level in indivProgram.commitment) { %>
+          <% if (indivProgram.commitment[level] === true && level !== '$__isNested') { %>
+            <span class="badge badge-danger mb-2"><%= level %></span>
+          <% } %>
+        <% } %>
+        <br>
+        <p class="card-text mb-2"><%= indivProgram.description %></p>
+        <a href="<%= indivProgram.website %>" target="_blank">find out more</a><br>
+      </div>
+    </div>
+  <% }) %>
+  </div>
+</div>

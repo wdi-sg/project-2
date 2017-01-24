@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-3"><%= chosenProgram.name %></h1><br>
+    <p class="text-muted mb-0"><span class="badge badge-info"><%= chosenProgram.subject %></span><em> volunteer area</em></p>
+    <p class="text-muted">
+    <% for (var level in chosenProgram.commitment) { %>
+      <% if (chosenProgram.commitment[level] === true && level !== '$__isNested') { %>
+        <span class="badge badge-danger"><%= level %></span>
+      <% } %>
+    <% } %>
+    <em>expected volunteer commitment level</em></p>
+    <p class="lead"><%= chosenProgram.description %></p>
+    <a href="<%= chosenProgram.website %>">Find out more</a><br><br>
+    <%
+    let editDeletePresence = ""
+    if ((chosenProgram.admin).toString() !== (currentUser.id).toString()) {
+      editDeletePresence = "display: none; visibility: hidden"
+    }
+    %>
+    <a class="btn btn-info mb-2" style="<%= editDeletePresence %>" href="<%= "/program/" + chosenProgram._id + "/edit" %>">Edit</a>
+    <form style="<%= editDeletePresence %>" class="deleteForm "method="POST" action=<%= "/program/" + chosenProgram._id + "?_method=DELETE" %>>
+      <button type="submit" class="btn btn-danger">Delete this program</button>
+    </form>
+  </div>
+</div>

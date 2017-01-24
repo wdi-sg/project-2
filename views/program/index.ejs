@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-3">all programs</h1>
+  </div>
+  <div class="d-flex flex-wrap justify-content-start">
+  <% allPrograms.forEach(function (indivProgram) { %>
+    <%
+    let selfProgramCardStyle = ""
+    let selfProgramHeaderStyle = ""
+    let selfProgramImageStyle = ""
+    let selfProgramHeader = ""
+    if ((indivProgram.admin).toString() === (currentUser.id).toString()) {
+      selfProgramCardStyle = "card-outline-primary"
+      selfProgramHeaderStyle = "color:#0275d8"
+      selfProgramHeader = "you created this!"
+      selfProgramImageStyle = "border-top: 1px solid #0275d8; border-bottom: 1px solid #0275d8"
+    } else {
+      selfProgramHeaderStyle = "color:#a9a9a9"
+      selfProgramHeader = "programs created by others"
+    }
+    %>
+    <div class="card m-2 <%= selfProgramCardStyle %>" style="width: 20rem;">
+      <div class="card-header" style="<%= selfProgramHeaderStyle %>">
+      <%= selfProgramHeader %>
+      </div>
+      <img class="card-img-top" src="<%= indivProgram.imageURL %>" style="height:12rem; object-fit:cover; border-bottom: 1px solid #d3d3d3; <%= selfProgramImageStyle %>">
+      <div class="card-block">
+        <a href=<%= "/program/" + indivProgram.id %>>
+          <h4 class="card-title"><%= indivProgram.name %></h4>
+        </a>
+        <span class="badge badge-info mb-2"><%= indivProgram.subject %></span>
+        <% console.log(indivProgram.commitment) %>
+        <% for (var level in indivProgram.commitment) { %>
+          <% if (indivProgram.commitment[level] === true && level !== '$__isNested') { %>
+            <span class="badge badge-danger mb-2"><%= level %></span>
+          <% } %>
+        <% } %>
+        <br>
+        <p class="card-text mb-2"><%= indivProgram.description %></p>
+        <a href="<%= indivProgram.website %>" target="_blank">find out more</a><br>
+      </div>
+    </div>
+  <% }) %>
+  </div>
+</div>

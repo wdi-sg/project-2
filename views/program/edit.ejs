@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-3">edit <%= chosenProgram.name %></h1>
+  </div>
+  <form action=<%= "/program/" + chosenProgram._id + "?_method=PUT" %> method="POST">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="nameInput" name="name" value="<%= chosenProgram.name %>">
+    </div>
+    <div class="form-group">
+      <label for="subject">Volunteer area</label><br>
+      <select class="custom-select" id="subjectInput" name="subject">
+        <% if (chosenProgram.subject === "disability") { %>
+          <option value="disability" selected>Disability</option>
+        <% } else { %>
+          <option value="disability">Disability</option>
+        <% } %>
+        <% if (chosenProgram.subject === "education") { %>
+          <option value="education" selected>Education</option>
+        <% } else { %>
+          <option value="education">Education</option>
+        <% } %>
+        <% if (chosenProgram.subject === "elderly") { %>
+          <option value="elderly" selected>Elderly</option>
+        <% } else { %>
+          <option value="elderly">Elderly</option>
+        <% } %>
+        <% if (chosenProgram.subject === "environment") { %>
+          <option value="environment" selected>Environment</option>
+        <% } else { %>
+          <option value="environment">Environment</option>
+        <% } %>
+        <% if (chosenProgram.subject === "health") { %>
+          <option value="health" selected>Health</option>
+        <% } else { %>
+          <option value="health">Health</option>
+        <% } %>
+        <% if (chosenProgram.subject === "poverty") { %>
+          <option value="poverty" selected>Poverty</option>
+        <% } else { %>
+          <option value="poverty">Poverty</option>
+        <% } %>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="descriptionInput" rows="3" maxlength="140" name="description"><%= chosenProgram.description %></textarea>
+    </div>
+    <div class="form-group">
+      <label for="website">Website</label>
+      <input type="text" class="form-control" id="websiteInput" name="website" value="<%= chosenProgram.website %>">
+    </div>
+    <div class="form-group">
+      <label for="imageURL">Image URL</label>
+      <input type="text" class="form-control" id="imageURLInput" name="imageURL" value="<%= chosenProgram.imageURL %>" >
+    </div>
+    <div class="form-group">
+      Expected volunteer commitment levels<br>
+
+      <div class="form-check">
+        <label class="form-check-label" for="commitmentDaily">
+          <% if (chosenProgram.commitment.daily === true) { %>
+            <input class="form-check-input" type="checkbox" id="commitmentDaily" name="commitmentDaily" value=true checked="checked">
+          <% } else { %>
+            <input class="form-check-input" type="checkbox" id="commitmentDaily" name="commitmentDaily" value=true>
+          <% } %>
+          Daily
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label" for="commitmentWeekly">
+          <% if (chosenProgram.commitment.weekly === true) { %>
+            <input class="form-check-input" type="checkbox" id="commitmentWeekly" name="commitmentWeekly" value=true checked="checked">
+          <% } else { %>
+            <input class="form-check-input" type="checkbox" id="commitmentWeekly" name="commitmentWeekly" value=true>
+          <% } %>
+          Weekly
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label" for="commitmentFortnightly">
+          <% if (chosenProgram.commitment.fortnightly === true) { %>
+            <input class="form-check-input" type="checkbox" id="commitmentFortnightly" name="commitmentFortnightly" value=true checked="checked">
+          <% } else { %>
+            <input class="form-check-input" type="checkbox" id="commitmentFortnightly" name="commitmentFortnightly" value=true>
+          <% } %>
+          Fortnightly
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label" for="commitmentMonthly">
+          <% if (chosenProgram.commitment.monthly === true) { %>
+            <input class="form-check-input" type="checkbox" id="commitmentMonthly" name="commitmentMonthly" value=true checked="checked">
+          <% } else { %>
+            <input class="form-check-input" type="checkbox" id="commitmentMonthly" name="commitmentMonthly" value=true>
+          <% } %>
+          Monthly
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label" for="commitmentQuarterly">
+          <% if (chosenProgram.commitment.quarterly === true) { %>
+            <input class="form-check-input" type="checkbox" id="commitmentQuarterly" name="commitmentQuarterly" value=true checked="checked">
+          <% } else { %>
+            <input class="form-check-input" type="checkbox" id="commitmentQuarterly" name="commitmentQuarterly" value=true>
+          <% } %>
+          Quarterly
+        </label>
+      </div><br>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
