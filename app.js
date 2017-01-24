@@ -8,7 +8,8 @@ const cookieParser = require('cookie-parser');
 const ejsLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const flash = require('connect-flash');
-const methodOverride = require('connect-flash');
+//lol wtf you required methodOverride to be connect-flash..
+const methodOverride = require('method-override');
 const colors = require('colors');
 const morgan = require('morgan');
 
@@ -34,6 +35,7 @@ app.use(session({
   resave : false,
   saveUninitialized : true
 }));
+app.use(methodOverride('_method'));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -53,7 +55,7 @@ app.use(function(req,res,next){
 
 
 function customMiddleware(req,res,next){
-  console.log('---------------------------------------------'.rainbow);
+  console.log('------------------------------------------------------------------------------------------'.rainbow);
   //proceeding on towards the next middleware
   next();
 }

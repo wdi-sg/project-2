@@ -28,7 +28,7 @@ new User({
   password : 'dummyPassword2'
 }).save(function(err,data){
   if (err) console.log(err);
-  console.log('dummy data successfully created!'.green);
+  console.log('dummy data2 successfully created!'.green);
 })
 
 //put all authenticated requests in here..
@@ -46,8 +46,27 @@ describe('Test : test for authenticated requests....'.magenta, function(){
   it('should allow test to access /dashboard/'.magenta,function(done){
     authApp.get('/dashboard/').expect(200,done)
   })
-  it('test to access /dashboard/profile, should redirect to create new profile..'.magenta,function(done){
+  it('should allow test to access /dashboard/profile, should redirect to create new profile..'.magenta,function(done){
     authApp.get('/dashboard/profile').expect('Location','/dashboard/profile/create').expect(302,done)
+  })
+  it('is creating a new profile....',function(done){
+    User.findOne({email : 'dummy@email.com'},function(err,data){
+      if (err) console.log(err);
+      console.log(data);
+      authApp.post('/dashboard/profile/create').set('Accept','application/json').send({
+        //don't send image... too complicated for testing..
+        description : 'describb pls',
+        user : data._id
+      }).expect(302,done);
+    })
+  })
+  it('should allow test to access /dashboard/profile/edit if profile has been created..'.magenta,function(done){
+    authApp.get('/dashboard/profile/edit').expect(200,done)
+  })
+  it('should allow test to edit the fields involved in /dashboard/profile/edit'.magenta,function(done){
+    authApp.put('/dashboard/profile/edit').set('Accept','application/json').send({
+      description : 'yet another describ'
+    }).expect(302,done);
   })
 });
 
@@ -97,6 +116,18 @@ describe('Test : GET /auth/logout...'.magenta,function(){
 describe('Test : GET /dashboard/profile page...'.magenta,function(){
   it('should return a 302 response if not logged in...',function(done){
     request(app).get('/dashboard/profile').expect('Location','/').expect(302,done);
+  })
+})
+
+describe('Test : GET /dashboard/profile/create page...'.magenta,function(){
+  it('should return a 302 response if not logged in...',function(done){
+    request(app).get('/dashboard/profile/create').expect('Location','/').expect(302,done);
+  })
+})
+
+describe('Test : GET /dashboard/profile/edit page...'.magenta,function(){
+  it('should return a 302 response if not logged in...',function(done){
+    request(app).get('/dashboard/profile/edit').expect('Location','/').expect(302,done);
   })
 })
 

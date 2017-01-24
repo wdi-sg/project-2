@@ -13,11 +13,24 @@ const upload = multer({
   }
 });
 
+//util for shuffling
+function fisherYates(arr) {
+    var j, x, i;
+    for (i = arr.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        x = arr[i - 1];
+        arr[i - 1] = arr[j];
+        arr[j] = x;
+    }
+    return arr;
+}
+
 router.get('/',function(req,res){
   //need to find other users and put them in this page....
   Profile.find({}).populate('user').exec(function(err,data){
     if (err) console.log(err);
     console.log(data);
+    data = fisherYates(data);
     let binaryImageArr = data.map(function(value,index){
       return new Buffer(value.avatar).toString('base64');
     })
@@ -32,6 +45,15 @@ router.get('/',function(req,res){
 router.get('/profile/create',function(req,res){
   console.log('i can see the user'.red,req.user);
   res.render('create');
+})
+
+router.get('/profile/edit',function(req,res){
+  console.log('i can see the user'.bgRed,req.user);
+  Profile.findOne({user : req.user._id}).populate('user').exec(function(err,data){
+    if (err) console.log(err);
+    console.log(data);
+    res.render('edit',{data:data})
+  })
 })
 
 router.get('/profile/:id',function(req,res){
@@ -57,6 +79,7 @@ router.get('/profile/:id',function(req,res){
 router.get('/profile',function(req,res){
   //need to find current user and put them on this page...
   Profile.findOne({user : req.user._id},function(err,data){
+    if (err) console.log(err);
     if (!data){
       //if profile page does not exist redirect to create new profile...
       return res.redirect('/dashboard/profile/create');
@@ -76,16 +99,56 @@ router.post('/profile/create', upload.single('avatar'),function(req,res){
   console.log('what is inside req.body?'.green,req.body);
   console.log('is there something wrong here??'.red,req.body.description);
   console.log('can I see the file Buffer?'.blue,req.file);
-  new Profile({
-    description : req.body.description,
-    user : req.user.id,
-    avatar : req.file.buffer
-  }).save(function(err,data){
-    if (err) return res.status(422).send('error saving profile...');
-    console.log('look here'.cyan,data);
-    req.flash('success','profile created successfully!')
-    res.redirect('/dashboard/profile');
-  })
+  if (!req.file){
+    fs.readFile('public/assets/default.jpg',function(err,data){
+      if (err) console.log(err);
+      new Profile({
+        description : req.body.description,
+        user : req.user.id,
+        avatar : data
+      }).save(function(err,data2){
+        if (err) return res.status(422).send('error saving profile...');
+        console.log('look here default avatar'.blue,data2);
+        req.flash('success','profile created successfully!')
+        res.redirect('/dashboard/profile');
+      })
+    })
+  } else {
+    new Profile({
+      description : req.body.description,
+      user : req.user.id,
+      avatar : req.file.buffer
+    }).save(function(err,data){
+      if (err) return res.status(422).send('error saving profile...');
+      console.log('look here'.cyan,data);
+      req.flash('success','profile created successfully!')
+      res.redirect('/dashboard/profile');
+    })
+  }
+})
+
+router.put('/profile/edit', upload.single('avatar'), function(req,res){
+  console.log('iseedeadpeople'.red,req.user);
+  if (!req.file){
+    Profile.update({user : req.user._id},{ $set : {
+      description : req.body.description,
+    }}, function(err,data){
+      if (err) console.log(err);
+      console.log('successfully edited profile descrip'.yellow,data);
+      req.flash('success', 'successfully edited your profile!');
+      res.redirect('/dashboard/profile');
+    })
+  } else {
+    Profile.update({user : req.user._id},{ $set : {
+      description : req.body.description,
+      avatar : req.file.buffer
+    }}, function(err,data){
+      if (err) console.log(err);
+      console.log('successfully edited avatar + profile descrip'.yellow,data);
+      req.flash('success', 'successfully edited your profile!');
+      res.redirect('/dashboard/profile');
+    })
+  }
 })
 
 module.exports = router;
