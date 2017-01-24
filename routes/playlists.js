@@ -4,6 +4,7 @@ let logging = process.env.LOGGING
 const express = require('express')
 const router = express.Router()
 const Playlist = require('../models/playlist')
+// const User = require('../models/user')
 
 router.get('/', (req, res) => {
   // res.render('playlists', { title: 'Playlists' })
@@ -48,12 +49,15 @@ router.post('/create', (req, res) => {
 router.post('/:id/add', (req, res) => {
   if (logging) console.log('ADDING TRACK TO PLAYLIST: '.blue, req.user.name)
   const id = req.params.id
+  req.body.contributor = req.user._id
   Playlist.findById(id, (err, doc) => {
     if (err) return console.log(err.toString().red)
     doc.tracks.push(req.body)
+    if (doc.collaborators.indexOf(req.user._id) < 0) doc.collaborators.push(req.user._id)
     doc.save((err, updated) => {
       if (err) return console.log(err.toString().red)
       // res.send(updated)
+      if (logging) console.log('TRACK ADDED: '.blue, JSON.stringify(updated,null,4).blue)
       res.redirect('/playlists/'+updated._id)
     })
   })
@@ -67,11 +71,16 @@ router.get('/:playlistId/delete/:trackId', (req, res) => {
     if (err) return console.log(err.toString().red)
     const toRemove = doc.tracks.id(trackId)
     const removeIndex = doc.tracks.indexOf(toRemove)
-    doc.tracks.splice(removeIndex, 1)
-    doc.save((err, updated) => {
-      if (err) return console.log(err.toString().red)
-      res.redirect('/playlists/'+updated._id)
-    })
+    if (removeIndex < 0) {
+      if (logging) console.log('ERROR: TRACK NOT FOUND'.red)
+      res.redirect('/playlists/'+playlistId)
+    } else {
+      doc.tracks.splice(removeIndex, 1)
+      doc.save((err, updated) => {
+        if (err) return console.log(err.toString().red)
+        res.redirect('/playlists/'+updated._id)
+      })
+    }
   })
 })
 
@@ -94,9 +103,16 @@ router.get('/:id', (req, res) => {
       model: 'User'
     })
     .exec((err, doc) => {
-      if (err) return console.log(err.toString().red)
-      // res.send(doc)
-      res.render('playlists/single', {title: doc.name, playlist: doc})
+      if (err) {
+        if (logging) console.log(err.toString().red)
+        res.redirect('/playlists')
+      } else {
+        const options = {path: 'tracks.contributor', model: 'User'}
+        Playlist.populate(doc, options, (err, playlist) => {
+          // if (logging) console.log(JSON.stringify(doc, null, 4).blue)
+          res.render('playlists/single', {title: doc.name, playlist: playlist})
+        })
+      }
     })
 })
 
