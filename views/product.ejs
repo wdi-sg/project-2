@@ -11,7 +11,7 @@
 
          <tr>
             <td><label>URL: </label></td>
-            <td><%= data.linkforproduct %></td>
+            <td><a href="<%= data.linkforproduct %>">Click to see external website </a></td>
          </tr>
 
          <tr>
@@ -41,7 +41,21 @@
       </tbody>
    </table>
 </div>
-<p></p>
+<div class="container">
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Comments</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John</td>
+      </tr>
+      <tr>
+      </table>
+    </div>
+<% if (data.creator.equals(currentUser._id)) { %>
 <div class="container ">
   <div class="input-group-btn">
     <form class="form-inline" method="POST" action=<%= "/products/" + data._id + "?_method=DELETE" %>>
@@ -55,11 +69,19 @@
       <input class="btn btn-default" type="submit" value="Edit">
     </form>
   </div>
+  </div>
+  <% } %>
+  <p></p>
+  <div class="container ">
   <div class="input-group-btn">
     <form action="/products/">
       <input class="btn btn-default" type="submit" value="Go to Profile">
     </form>
   </div>
-</div>
+  <div class="input-group-btn">
+    <form action="/products/catalogue">
+      <input class="btn btn-default" type="submit" value="Go to All Products">
+    </form>
+  </div>
 </div>
 <p></p>

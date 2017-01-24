@@ -19,12 +19,16 @@
 <div class="form-group">
   <label class="col-sm-2 control-label">Description: </label>
     <input type="hidden" type="text" name="description">
-    <textarea rows="2" cols="50" name="description"> Enter text here...</textarea>
+    <textarea rows="2" cols="50" name="description">Enter text here...</textarea>
   </div>
 </div>
 <div class="form-group">
   <label class="col-sm-2 control-label">Area I Live In: </label>
-    <input type="text" name="buyerarea">
+    <select name="buyerarea">
+      <% for (var i = 0; i < locationlist.length; i++) { %>
+      <option value="<%=locationlist[i].districts%>"><%=  locationlist[i].districts%></option>
+      <% } %>
+    </select>
 </div>
 <div class="form-group">
   <label class="col-sm-2 control-label">Respond By: </label>
