@@ -1,12 +1,12 @@
 <div class="container jumbotron">
   <h1>Create New Product</h1>
 </div>
-<form action="/products" method="post">
+<form action="/products" method="POST">
 </div>
-    <input type="hidden" type="text" name="creator" value="currentUser">
+<input type="hidden" type="text" name="creator" value="<%=currentUser.id%>">
 <div class="form-group">
   <label class="col-sm-2 control-label">Product Name: </label>
-    <input type="text" name="productname">
+  <input type="text" name="productname">
 </div>
 <div class="form-group">
   <label class="col-sm-2 control-label">URL: </label>
@@ -14,27 +14,26 @@
 </div>
 <div class="form-group">
   <label class="col-sm-2 control-label">Price: $</label>
-    <input type="text" name="price">
+  <input type="text" name="price">
 </div>
 <div class="form-group">
   <label class="col-sm-2 control-label">Description: </label>
-    <input type="hidden" type="text" name="description">
-    <textarea rows="2" cols="50" name="description">Enter text here...</textarea>
-  </div>
+  <textarea rows="2" cols="50" name="description" placeholder="Enter text here..."></textarea>
+</div>
 </div>
 <div class="form-group">
   <label class="col-sm-2 control-label">Area I Live In: </label>
-    <select name="buyerarea">
-      <% for (var i = 0; i < locationlist.length; i++) { %>
+  <select name="buyerarea">
+    <% for (var i = 0; i < locationlist.length; i++) { %>
       <option value="<%=locationlist[i].districts%>"><%=  locationlist[i].districts%></option>
       <% } %>
     </select>
-</div>
-<div class="form-group">
-  <label class="col-sm-2 control-label">Respond By: </label>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Respond By: </label>
     <input type="date" name="respondby">
-</div>
-<div class="col-sm-offset-2 col-sm-12">
+  </div>
+  <div class="col-sm-offset-2 col-sm-12">
     <input class="btn btn-default" type="submit" value="Submit">
   </div>
 </form>

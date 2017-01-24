@@ -45,13 +45,22 @@
 <table class="table table-striped">
     <thead>
       <tr>
-        <th>Comments</th>
+        <th>Comments:
+        <form action="/products/<%=data._id%>/message" method="POST">
+        <input type="text" name="comment" placeholder="input your comment">
+        <input class="btn btn-default" type="submit" value="Submit comment">
+        </form>
+      </th>
+      <th></th>
       </tr>
     </thead>
     <tbody>
+      <% for (var i = 0; i < data.msgboard.length; i++) { %>
       <tr>
-        <td>John</td>
+        <td> <%= data.msgboard[i].comment %> </td>
+        <td> Posted By: <%= data.msgboard[i].creator %> </td>
       </tr>
+      <% } %>
       <tr>
       </table>
     </div>

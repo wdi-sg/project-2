@@ -18,7 +18,7 @@ router.post('/signup', function (req, res) {
     password: req.body.password
   }, function (err, createdUser) {
     if (err) {
-      req.flash('error', err.toString(), 'Could not create user account')
+      req.flash('error', 'Could not create user account')
       res.redirect('/auth/signup')
     } else {
       passport.authenticate('local', {

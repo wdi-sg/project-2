@@ -6,7 +6,8 @@ const session = require('express-session')
 const passport = require('./config/ppConfig')
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
-const productController = require('./controllers/productcontroller')
+const productController = require('./controllers/productController')
+const msgController = require('./controllers/msgController')
 const userAuth = require('./controllers/auth')
 const ejsLayouts = require('express-ejs-layouts')
 const methodOverride = require('method-override')
@@ -42,6 +43,14 @@ app.use(function (req, res, next) {
   next()
 })
 
+// app.pre('save', function (req, res, next) {
+//   if (this.respondby < this.productdatecreated) {
+//     req.flash('error', 'Pls input a respond by date later than today.')
+//     res.redirect('/products/new')
+//   }
+//   next()
+// })
+
 app.get('/index', function (req, res) {
   res.render('index')
 })
@@ -55,6 +64,7 @@ app.get('/profile', isLoggedIn, function (req, res) {
 app.use(isLoggedIn)
 
 app.use('/products', productController)
+app.use('/products', msgController)
 
 var server = app.listen(process.env.PORT || 3000)
 console.log('Server UP')

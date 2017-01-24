@@ -1,18 +1,6 @@
 const mongoose = require('mongoose')
+const MsgSchema = require('../models/msg').schema
 require('mongoose-type-url')
-
-const commentSchema = new mongoose.Schema({
-  creator: {
-    type: mongoose.Schema.Types.ObjectId, ref: 'User'
-  },
-  comment: {
-    type: String
-  },
-  commentdatecreated: {
-    type: Date,
-    default: Date.now
-  }
-})
 
 const productSchema = new mongoose.Schema({
   creator: {
@@ -22,7 +10,7 @@ const productSchema = new mongoose.Schema({
   },
   productname: {
     type: String,
-    minlength: [5, 'Product name must at least be 3 characters.'],
+    minlength: [3, 'Product name must at least be 3 characters.'],
     required: [true, 'Pls input a product name.']
   },
   linkforproduct: {
@@ -31,12 +19,14 @@ const productSchema = new mongoose.Schema({
     minlength: [10, 'This does not appear to be a correct URL.']
   },
   price: {
-    type: Number
+    type: Number,
+    required: [true, 'We want to know the best price!']
   },
   description: {
-    type: String
+    type: String,
+    required: [true, 'We want to know more about the product!']
   },
-  buyerarea: { // include required after figured it out
+  buyerarea: {
     type: String
   },
   productdatecreated: {
@@ -44,9 +34,16 @@ const productSchema = new mongoose.Schema({
     default: Date.now
   },
   respondby: {
-    type: Date
+    type: Date,
+    required: [true, 'Let me know how much time I have to think!'],
+    validate: ({
+      validator: function (val) {
+        return this.respondby > this.productdatecreated
+      },
+      message: 'Respond by date must be later than today.'
+    })
   },
-  commentboard: [commentSchema]
+  msgboard: [MsgSchema]
 })
 
 const Product = mongoose.model('Product', productSchema)

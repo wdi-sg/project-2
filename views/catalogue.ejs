@@ -12,6 +12,7 @@
     <h6> Respond By: <%= item.respondby %></h6>
     <p>
     <% if (item.creator.equals(currentUser._id)) { %>
+    
     <a href="/products/<%= item._id %>/edit" class="btn btn-default" role="button">Edit</a>
     <a href="/products/<%= item._id %>" class="btn btn-default" role="button">Delete</a>
     </p>
