@@ -61,8 +61,8 @@ app.locals.cloudinary = cloudinary
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-  //res.render('testsocket', {user: req.user})
-    res.redirect('/event')
+  res.render('testsocket', {user: req.user})
+  //  res.redirect('/event')
 })
 app.use('/auth', authRoutes)
 app.use('/user', userRoutes)
