@@ -67,6 +67,10 @@
         <div class='panel panel-default'>
           <img src="<%=cloudinary.url(participant.user.avatar, { width: 50, height: 50, crop: 'fill', gravity: 'face', radius: 'max' })%>"></img>
           <strong><%= participant.user.name%></strong>
+          <form action='/user/message' method='POST'>
+            <input name='id' hidden value='<%=participant.user._id%>'>
+            <button class='btn'>Chat</button>
+          </form>
           <% if (((Date.now()-participant.joined_at)/3600000) > 48) {%>
             <p class='text-right'> Joined <%= Math.floor((Date.now()-participant.joined_at)/3600000/24) %> days ago </p>
           <%} else if (((Date.now()-participant.joined_at)/3600000 > 24)) {%>

@@ -1,0 +1,31 @@
+<div class='container'>
+
+  <% if (messages.length >0) {%>
+
+  <% messages.forEach( (message)=> {%>
+    <% if (message.sender.equals(user.id)) {%>
+      <div class='col-md-12 panel panel-default text-right'><%= message.content%></div>
+    <%} else {%>
+      <div class='col-md-12 panel panel-default text-left'><%= message.content%></div>
+    <%}%>
+  <%})%>
+
+
+  <%}%>
+
+  <form action="/user/message/<%= req.params.id%>" method="POST">
+
+    <div class="form-group">
+      <!-- <label for="eventName">Name</label> -->
+      <textarea id="messageContent"  class='form-control' rows='10' type="string" name="content" placeholder="Enter your message here"></textarea>
+    </div>
+
+
+    <div class="form-group flex">
+      <input class="btn btn-primary" type="submit">
+    </div>
+
+  </form>
+
+
+</div>

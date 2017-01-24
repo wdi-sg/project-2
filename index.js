@@ -16,12 +16,22 @@ const tools = require('./lib/tools')
 const api = require('./lib/api')
 const multer = require('multer')
 const upload = multer({dest: './uploads/'})
-const cloudinary = require('cloudinary');
-const app = express()
+const cloudinary = require('cloudinary')
+
+
+var app = require('express')()
+var aserver = require('http').createServer(app)
+var io = require('socket.io').listen(aserver)
+// const http = require('http').Server(app);
+// const io = require('socket.io')(http);
+
+const server = aserver.listen(3000, () => {
+  console.log('Server up and listening to port 3000')
+})
 
 require('dotenv').config({silent: true})
 
-mongoose.connect('mongodb://localhost/bfittest')
+mongoose.connect('mongodb://127.0.0.1/bfittest')
 mongoose.Promises = global.Promises
 
 app.use(express.static(path.join(__dirname, 'public')))
@@ -48,18 +58,27 @@ app.locals.simpleFormat = tools.simpleFormat
 app.locals.dateFormat = tools.dateFormat
 app.locals.cloudinary = cloudinary
 
-
-
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-  //  res.render('testpai', {user: req.user})
-   res.redirect('/event')
+  //res.render('testsocket', {user: req.user})
+    res.redirect('/event')
 })
 app.use('/auth', authRoutes)
 app.use('/user', userRoutes)
 app.use('/event', eventRoutes)
 
-module.exports = app.listen(3000, () => {
-  console.log('Server up and listening to port 3000')
+app.get('/', function (req, res) {
+  res.render('testsocket', {user: req.user})
 })
+
+io.on('connection', function (socket) {
+  console.log('We have user connected !')
+  console.log(io);
+
+  socket.on('chat message', function (msg) {
+   io.emit('chat message', msg);
+  })
+})
+
+module.exports = server
