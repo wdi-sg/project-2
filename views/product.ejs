@@ -1,14 +1,14 @@
 - show one item that is created for review
 - can edit/ delete
 <div class="jumbotron container">
-  <h1><%= data.productname%></h1>
+  <h1><%=data.productname%></h1>
 </div>
 <div class="container">
    <table class = "table">
       <tbody>
          <tr>
             <td><label>Creator</label></td>
-            <td><%= req.user.id%> (how to add person's name?)</td>
+            <td><%=data.creator.name%></td>
          </tr>
 
          <tr>
@@ -46,14 +46,14 @@
 <p></p>
 <div class="container">
   <div class="col-xs-2">
-    <form class="form-inline" method="POST" action=<%= "/todos/" + todo._id + "?_method=DELETE" %>>
-      <input type="hidden" name="_id" value="<%= todo._id %>">
+    <form class="form-inline" method="POST" action=<%= "/products/" + data._id + "?_method=DELETE" %>>
+      <input type="hidden" name="_id" value="<%= data._id %>">
       <input class="btn btn-default" type="submit" value="Delete">
     </form>
   </div>
   <div>
-    <form class="form-inline" method="GET" action="/todos/<%= todo._id %>/edit">
-      <input type="hidden" name="_id" value="<%= todo._id %>">
+    <form class="form-inline" method="GET" action="/products/<%= data._id %>/edit">
+      <input type="hidden" name="_id" value="<%= data._id %>">
       <input class="btn btn-default" type="submit" value="Edit">
     </form>
   </div>

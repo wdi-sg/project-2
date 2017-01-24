@@ -16,16 +16,18 @@ const commentSchema = new mongoose.Schema({
 
 const productSchema = new mongoose.Schema({
   creator: {
-    type: mongoose.Schema.Types.ObjectId, ref: 'User'
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   },
   productname: {
     type: String,
-    required: true,
-    minlength: [3, 'Product name must at least be 3 characters.']
+    minlength: [5, 'Product name must at least be 3 characters.'],
+    required: [true, 'Pls input a product name.']
   },
   linkforproduct: {
     type: mongoose.SchemaTypes.Url,
-    required: true,
+    required: [true, 'Pls input a URL.'],
     minlength: [10, 'This does not appear to be a correct URL.']
   },
   price: {

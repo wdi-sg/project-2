@@ -1,0 +1,42 @@
+<form method="POST" class="form-horizontal" action=<%= "/products/" + data._id + "?_method=PUT" %>>
+  <div class="container jumbotron">
+    <h1>Edit <%=data.productname%></h1>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label"> Product Name: </label>
+      <input type="text" name="productname">
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label"> URL: </label>
+      <input type="text" name="linkforproduct">
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label"> Price: </label>
+      <input type="text" name="price">
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label"> Description: </label>
+    <input type="hidden" type="text" name="description">
+    <textarea rows="2" cols="50" name="description"> Enter text here...</textarea>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label"> Area I Live In: </label>
+      <input type="text" name="buyerarea">
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label"> Respond By: </label>
+      <input type="date" name="respondby">
+  </div>
+  <div class="form-inline container">
+    <div class="col-xs-2">
+      <input class="btn btn-default" type="submit" value="Save">
+    </div>
+  </form>
+  <div>
+    <form method="POST" action=<%= "/products/" + data._id + "?_method=DELETE" %>>
+      <input type="hidden" name="_id" value="<%= data._id %>">
+      <input class="btn btn-default" type="submit" value="Delete">
+    </form>
+  </div>
+</div>
+<p></p>

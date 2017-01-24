@@ -16,7 +16,7 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, res) {
   Product.create({
-    username: req.user.id,
+    creator: req.user.id,
     productname: req.body.productname,
     linkforproduct: req.body.linkforproduct,
     price: req.body.price,
@@ -30,7 +30,7 @@ router.post('/', function (req, res) {
       res.send('unsuccessful')
       return
     }
-    res.redirect('/products/:idx')
+    res.redirect('/products/' + data._id)
   })
 })
 
@@ -39,40 +39,54 @@ router.get('/new', function (req, res) {
 })
 
 router.get('/:idx', function (req, res) {
-  console.log('what is product find looking for', Product.findById(req.params.idx))
-  Product.findById(req.params.idx, function (err, data) {
+  Product.findById(req.params.idx)
+  .populate('creator')
+  .exec(function (err, data) {
     if (err) {
       return res.send('unsuccessful')
     }
-    res.render('product')
+    res.render('product', {data: data})
+  })
+})
+router.get('/:idx/edit', function (req, res) {
+  Product.findById(req.params.idx)
+  .populate('creator')
+  .exec(function (err, data) {
+    if (err) {
+      return res.send('unsuccessful')
+    }
+    res.render('edit', {data: data})
   })
 })
 
-// params is for routing
-// body is for request
+router.put('/:idx', function (req, res) {
+  Product.update({_id: req.params.idx}, {$set: {
+    productname: req.body.productname,
+    linkforproduct: req.body.linkforproduct,
+    price: req.body.price,
+    description: req.body.description,
+    buyerarea: req.body.buyerarea,
+    respondby: req.body.respondby
+  }},
+  {runValidators: true})
+  .populate('creator')
+  .exec(function (err, data) {
+    console.log('getting data to update', data)
+    if (err) {
+      return res.send('unsuccessful')
+    }
+    res.redirect('/products/' + req.params.idx)
+  })
+})
 
-// router.get('/:idx/edit', function (req, res) {
-//   res.render('edit', {id: req.params.idx})
-// })
-//
-// router.put('/:idx', function (req, res) {
-//   Todo.update({_id: req.params.idx}, {$set: {
-//     name: req.body.name,
-//     description: req.body.description,
-//     completed: req.body.completed
-//   }},
-//     {runValidators: true})
-//     .populate('username')
-//     .exec(function (err, todo) {
-//       if (err) return res.send('unsuccessful')
-//       res.redirect(`/todos/${req.params.idx}`)
-//     })
-// })
-// router.delete('/:idx', function (req, res) {
-//   Todo.findOneAndRemove({ _id: req.params.idx }).populate('username').exec(function (err) {
-//     if (err) return res.send('unsuccessful')
-//     res.redirect('/todos')
-//   })
-// })
+router.delete('/:idx', function (req, res) {
+  Product.findOneAndRemove({ _id: req.params.idx },
+    function (err) {
+      if (err) {
+        return res.send('unsuccessful')
+      }
+      res.redirect('/todos')
+    })
+})
 
 module.exports = router
