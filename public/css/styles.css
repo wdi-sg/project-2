@@ -5917,13 +5917,12 @@ h3 {
   background-color: rgba(255, 255, 255, 0.3);
   color: white;
   padding: 10px;
-  padding-bottom: 40px; }
-  .track-panel h2, .track-panel h4 {
+  padding-bottom: 50px; }
+  .track-panel h2 {
     padding: 0;
-    padding-left: 20px;
     margin: 5px; }
   .track-panel h4 {
-    margin-top: 5px; }
+    margin-top: 0; }
 
 .label {
   background-color: transparent;
@@ -5958,5 +5957,11 @@ h3 {
 
 .add-track {
   margin-bottom: 40px; }
+
+.track-img {
+  height: 100px;
+  width: 100px;
+  border-radius: 12px;
+  margin-right: 20px; }
 
 /*# sourceMappingURL=styles.css.map */
