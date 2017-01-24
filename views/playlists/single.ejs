@@ -16,7 +16,7 @@
           <span class="input-group-addon" id="sizing-addon2">Artist</span>
           <input type="text" class="form-control" name="artist" placeholder="'The Wiggles'" aria-describedby="sizing-addon2">
         </div>
-        <button class="btn btn-primary" type="submit">put it in there!</button>
+        <button class="btn btn-primary pull-right" type="submit">put it in there!</button>
       </form>
       <% if (locals.user.name === playlist.creator.name) { %>
         <a href="<%= '/playlists/'+playlist._id+'/delete' %>"><div class="label pull-right delete">DELETE THIS PLAYLIST</div></a>
