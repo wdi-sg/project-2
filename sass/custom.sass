@@ -131,6 +131,7 @@ h3
   color: white
   font-size: 1.5em
   margin-right: 5px
+  transition: all 0.5s ease
 .rank
   border: none
 .label-btn
@@ -139,7 +140,14 @@ h3
   border: none
   font-size: 1.5em
   margin-right: 5px
-  transition: all 0.5s ease
+  &:hover
+    background-color: white
+    color: #333
+.label-like
+  font-size: 0.5em
+  cursor: pointer
+  margin-left: 10px
+  margin-bottom: 5px
   &:hover
     background-color: white
     color: #333
@@ -152,6 +160,10 @@ h3
   &:hover
     background-color: red
     color: white
+
+a
+  &:hover
+    text-decoration: none
 
 .add-track
   margin-bottom: 40px

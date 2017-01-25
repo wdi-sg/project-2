@@ -1,8 +1,13 @@
 <h1>welcome back, <%= locals.user.firstName.toLowerCase() %>!</h1>
-<h1>these are your playlists.</h1>
 <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">create a playlist</button>
 <!-- <a href="/playlists/create"><button class="btn btn-primary">create a playlist</button></a> -->
 <hr>
+<% if (playlists.length === 0) { -%>
+  <h2>you have not made any playlists. go make some!</h2>
+<% } else { -%>
+  <h2>these are your created playlists:</h2>
+<% } -%>
+<div class="row">
 <% playlists.sort((a,b) => b.tracks.length - a.tracks.length).forEach(e => { %>
 <a href="<%= '/playlists/'+e._id %>">
   <div class="col-md-4 playlist-panel">
@@ -13,6 +18,25 @@
   </div>
 </a>
 <% }) %>
+</div>
+<hr>
+<% if (likedPlaylists.length === 0) { -%>
+  <h2>you have no liked playlists. go like some!</h2>
+<% } else { -%>
+  <h2>these are your liked playlists:</h2>
+<% } -%>
+<% likedPlaylists.forEach(e => { %>
+<div class="row">
+<a href="<%= '/playlists/'+e._id %>">
+  <div class="col-md-4 playlist-panel">
+    <h1><%= e.name %></h1>
+    <hr>
+    <p>by <%= e.creator.name %></p>
+    <p class="tiny pull-right"><%= e.tracks.length %> tracks from <%= e.collaborators.length %> collaborators</p>
+  </div>
+</a>
+<% }) %>
+</div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">

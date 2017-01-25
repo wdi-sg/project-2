@@ -1,4 +1,11 @@
-<h1><%= playlist.name %></h1>
+<h1>
+  <%= playlist.name %>
+  <% if (locals.user.likedPlaylists.indexOf(playlist._id) < 0) { -%>
+    <a href="<%= '/playlists/'+playlist._id+'/like' %>"><span class="label label-like"><i class="fa fa-thumbs-o-up"></i>  like this playlist!</span></a>
+  <% } else { -%>
+    <a href="<%= '/playlists/'+playlist._id+'/unlike' %>"><span class="label label-like"><i class="fa fa-thumbs-o-down"></i>  unlike this playlist!</span></a>
+  <% } -%>
+</h1>
 <p>a playlist by <%= playlist.creator.name %></p>
 <% let collaborators = playlist.tracks.map(e => e.contributor.name).filter((e, i, a) => a.indexOf(e) === i).join(', ') %>
 <p>collaborators: <%= collaborators %></p>
