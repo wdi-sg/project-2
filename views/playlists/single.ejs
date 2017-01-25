@@ -1,14 +1,31 @@
-<h1>
-  <%= playlist.name %>
+<div class="well well-comments clearfix" id="comments">
+  <i class="fa fa-close" id="hide-comments"></i>
+  <% playlist.comments.forEach(e => { %>
+    <h4><%= e.author.name %></h4>
+    <p><%= e.content %></p>
+    <hr>
+  <% }) %>
+  <form class="comment-form" action="<%= '/playlists/'+playlist._id+'/comment' %>" method="post" accept-charset="utf-8">
+    <div class="input-group">
+      <input name="content" class="form-control" placeholder="type a comment">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button"><i class="fa fa-mail-reply"></i></button>
+      </span>
+    </div>
+  </form>
+</div>
+<h1><%= playlist.name %></h1>
+<div class="row btn-row">
   <% if (locals.user.likedPlaylists.indexOf(playlist._id) < 0) { -%>
     <a href="<%= '/playlists/'+playlist._id+'/like' %>"><span class="label label-like"><i class="fa fa-thumbs-o-up"></i>  like this playlist!</span></a>
   <% } else { -%>
     <a href="<%= '/playlists/'+playlist._id+'/unlike' %>"><span class="label label-like"><i class="fa fa-thumbs-o-down"></i>  unlike this playlist!</span></a>
   <% } -%>
-</h1>
-<p>a playlist by <%= playlist.creator.name %></p>
+  <a><span class="label label-like" id="show-comments">view comments</span></a>
+</div>
+<h4>a playlist by <%= playlist.creator.name %></h4>
 <% let collaborators = playlist.tracks.map(e => e.contributor.name).filter((e, i, a) => a.indexOf(e) === i).join(', ') %>
-<p>collaborators: <%= collaborators %></p>
+<h4>collaborators: <%= collaborators %></h4>
 <hr>
 <div class="row">
   <div class="col-md-5 col-md-push-7">
@@ -16,8 +33,8 @@
       <form id="search-form">
         <h4>search for a track.</h4>
         <input type="text" class="form-control" id="query" placeholder="e.g. 'Here Comes The Sun'">
-        <button type="submit" class="btn btn-primary">Search</button>
-        <p class="tiny pull-right">powered by spotify!</p>
+        <h4><button type="submit" class="label label-like pull-right">search</button></h4>
+        <p class="tiny">powered by spotify!</p>
       </form>
       <div id="results"></div>
     </div>
@@ -48,3 +65,4 @@
 </div>
 <hr>
 <script src="../js/spotify-search.js"></script>
+<script src="../js/comments.js"></script>
