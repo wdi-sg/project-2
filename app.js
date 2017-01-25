@@ -63,7 +63,7 @@ app.use((req, res, next) => {
   } else {
     res.locals.user = {firstName: 'stranger'}
   }
-  console.log(JSON.stringify(res.locals,null, 2).blue)
+  // console.log(JSON.stringify(res.locals,null, 2).blue)
   next()
 })
 

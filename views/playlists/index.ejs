@@ -1,8 +1,8 @@
 <!-- <h1>this is where all the playlists live.</h1>
 <h1>get grooving.</h1> -->
 <h1><%= header %></h1>
-<a href="/playlists/create"><button class="btn btn-primary">create a playlist</button></a>
-<!-- <div class="hash"><%= playlists %></div> -->
+<!-- <a href="/playlists/create"><button class="btn btn-primary" data-toggle="modal" data-target="#myModal">create a playlist</button></a> -->
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">create a playlist</button>
 <hr>
 <% playlists.sort((a,b) => b.tracks.length - a.tracks.length).forEach(e => { %>
   <a href=<%= '/playlists/' + e._id %>>
@@ -18,3 +18,19 @@
   <h1>no playlists found!</h1>
   <h1>be the first and create your own.</h1>
 <% } %>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content clearfix">
+        <h1>give birth to greatness.</h1>
+        <hr>
+        <form action="/playlists/create" method="post" accept-charset="utf-8">
+          <label for="name">What's it going to be called?</label>
+          <div class="form-group">
+            <input type="text" class="form-control" name="name" id="name">
+          </div>
+          <button type="submit" class="btn btn-primary pull-right">Make my playlist!</button>
+        </form>
+    </div>
+  </div>
+</div>
