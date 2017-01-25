@@ -13,7 +13,7 @@ router.post('/:idx/message', function (req, res) {
     // console.log('2', product)
     console.log(req.user.name, 'for messages')
     Msg.create({
-      creator: req.user.name,
+      creatorname: req.user.name,
       comment: req.body.comment,
       commentdatecreated: Date.now()
     }, function (err, msg) {

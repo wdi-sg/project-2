@@ -9,7 +9,8 @@ router.get('/', function (req, res) {
   Product.find({}, function (err, data) {
     // console.log('what is items passed through', items)
     if (err) {
-      res.send('unsuccessful get of all product listings by user')
+      req.flash('error', 'Page is not found.')
+      res.redirect('/index')
       return
     }
     res.render('profile', {data: data})
@@ -22,7 +23,8 @@ router.get('/catalogue', function (req, res) {
   Product.find({}, function (err, items) {
     // console.log('what is items passed through', items)
     if (err) {
-      res.send('unsuccessful get of all product listings')
+      req.flash('error', 'Cannot find all items.')
+      res.redirect('/index')
       return
     }
     res.render('catalogue', {items: items})
@@ -44,7 +46,7 @@ router.post('/', function (req, res) {
   function (err, data) {
     console.log('post /', data)
     if (err) {
-      req.flash('error', err.toString())
+      req.flash('error', 'Unable to create new product.')
       res.redirect('/products/new')
       return
     }
@@ -57,7 +59,9 @@ router.get('/new', function (req, res) {
   Location.find({}, function (err, locationlist) {
     // console.log('what is location', locationlist[0].districts)
     if (err) {
-      return res.send('unsuccessful')
+      // return res.send('unsuccessful')
+      req.flash('error', 'Unable to find the page.')
+      res.redirect('/products/profile')
     }
     res.render('new', {locationlist: locationlist})
   })
@@ -69,41 +73,80 @@ router.get('/:idx', function (req, res) {
   .populate('creator')
   .exec(function (err, data) {
     if (err) {
-      return res.send('unsuccessful')
+      // return res.send('unsuccessful')
+      req.flash('error', 'Unable to find the product.')
+      res.redirect('/products/profile')
     }
     res.render('product', {data: data})
   })
 })
 
 router.get('/:idx/edit', function (req, res) {
-  console.log('to get the product to edit')
-  Product.findById(req.params.idx)
-  .populate('creator')
-  .exec(function (err, data) {
+  console.log('to get the product to edit & location')
+  Location.find({}, function (err, locationlist) {
     if (err) {
-      return res.send('unsuccessful')
+      req.flash('error', 'Locations not found.')
+      res.redirect('/products/profile')
     }
-    res.render('edit', {data: data})
+    Product.findById(req.params.idx)
+    .populate('creator')
+    .exec(function (err, data) {
+      if (err) {
+        // return res.send('unsuccessful')
+        req.flash('error', 'Unable to find the product.')
+        res.redirect('/products/profile')
+      }
+      res.render('edit', {data: data, locationlist: locationlist})
+    })
   })
 })
 
+// router.put('/:idx', function (req, res) {
+//   console.log('to update the product')
+//   console.log(Product.description)
+//   Product.findOneAndUpdate({_id: req.params.idx}, {$set: {
+//     productname: req.body.productname || Product.productname,
+//     linkforproduct: req.body.linkforproduct || Product.linkforproduct,
+//     price: req.body.price || Product.price,
+//     description: req.body.description || Product.description,
+//     buyerarea: req.body.buyerarea || Product.buyerarea,
+//     respondby: req.body.respondby || Product.respondby
+//   }
+// })
+//   .populate('creator')
+//   .exec(function (err, data) {
+//     // console.log('getting data to update', data)
+//     if (err) {
+//       req.flash('error', 'Product cannot be updated.')
+//     }
+//     res.redirect('/products/' + req.params.idx)
+//   })
+// })
+//
+
 router.put('/:idx', function (req, res) {
   console.log('to update the product')
-  Product.update({_id: req.params.idx}, {$set: {
-    productname: req.body.productname,
-    linkforproduct: req.body.linkforproduct,
-    price: req.body.price,
-    description: req.body.description,
-    buyerarea: req.body.buyerarea,
-    respondby: req.body.respondby
-  }},
-  {runValidators: true})
+  Product.findById({_id: req.params.idx})
   .populate('creator')
   .exec(function (err, data) {
     // console.log('getting data to update', data)
     if (err) {
-      return res.send('unsuccessful')
+      req.flash('error', 'Product cannot be updated.')
+    } else {
+      data.productname = req.body.productname || data.productname
+      data.linkforproduct = req.body.linkforproduct || data.linkforproduct
+      data.price = req.body.price || data.price
+      data.description = req.body.description || data.description
+      data.buyerarea = req.body.buyerarea || data.buyerarea
+      data.respondby = req.body.respondby || data.respondby
+      data.save(function (err, data) {
+        if (err) {
+          req.flash('error', 'Product cannot be saved')
+        }
+        req.flash('success', 'Product updated.')
+      })
     }
+    req.flash('success', 'Product updated.')
     res.redirect('/products/' + req.params.idx)
   })
 })
@@ -113,9 +156,11 @@ router.delete('/:idx', function (req, res) {
   Product.findOneAndRemove({ _id: req.params.idx },
     function (err) {
       if (err) {
-        return res.send('unsuccessful')
+        req.flash('error', err.toString())
+        res.redirect('/products/profile')
+        // return res.send('unsuccessful')
       }
-      res.redirect('/profile')
+      res.redirect('/products/')
     })
 })
 
