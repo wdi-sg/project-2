@@ -9,7 +9,7 @@ require('colors')
 
 // const jstring = (input) => console.log(JSON.stringify(input, null, 4).blue)
 
-describe('LIKING PLAYLISTS'.underline, () => {
+describe('LIKING AND COMMENTING ON PLAYLISTS'.underline, () => {
   let playlistId = ''
   let userId = ''
 
@@ -96,6 +96,44 @@ describe('LIKING PLAYLISTS'.underline, () => {
       // jstring(doc)
       expect(doc.likedPlaylists).to.be.an.array
       expect(doc.likedPlaylists).to.be.have.length(0)
+      done()
+    })
+  })
+
+  it('should have a comments property in playlists'.bold, (done) => {
+    Playlist.findOne({}, (err, doc) => {
+      playlistId = doc._id
+      expect(doc).to.have.property('comments')
+      expect(doc.comments).to.be.an.array
+      done()
+    })
+  })
+
+  it('should add a comment from /playlists/playlistid/comment'.bold, (done) => {
+    agent.post('/playlists/'+playlistId+'/comment')
+      .send({
+        content: 'first test comment'
+      })
+      .expect('Location', '/playlists/'+playlistId)
+      .end((err) => {
+        if (err) return console.log(err)
+        Playlist.findById(playlistId, (err, doc) => {
+          if (err) return console.log(err)
+          expect(doc.comments).to.have.length(1)
+          done()
+        })
+      })
+  })
+
+  it('should save comment author and be able to populate'.bold, (done) => {
+    Playlist.findById(playlistId)
+    .populate({
+      path: 'comments.author',
+      model: 'User'
+    })
+    .exec((err, doc) => {
+      // jstring(doc)
+      expect(doc.comments[0].author.name).to.equal('Test Saregreat')
       done()
     })
   })
