@@ -6,7 +6,7 @@ const agent = request.agent(app)
 const Playlist = require('../models/playlist')
 require('colors')
 
-// const jstring = (input) => console.log(JSON.stringify(input, null, 4).blue)
+const jstring = (input) => console.log(JSON.stringify(input, null, 2).blue)
 
 const playlist1 = {
   name:'ranking test',
@@ -60,6 +60,7 @@ describe('TRACK RANKING SYSTEM'.underline, () => {
       doc.tracks.push(track3)
       doc.save((err, saved) => {
         if (err) return console.log(err)
+        // jstring(saved)
         playlistId = doc._id
         track1Id = doc.tracks[0]._id
         track3Id = doc.tracks[2]._id
