@@ -35,5 +35,7 @@ const searchSpotify = function (query) {
 
 document.getElementById('search-form').addEventListener('submit', function (e) {
   e.preventDefault()
+  $('#results').slideUp(300)
+  resultsPlaceholder.innerHTML = ''
   searchSpotify(document.getElementById('query').value)
 }, false)
