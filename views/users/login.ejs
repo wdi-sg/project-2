@@ -1,9 +1,9 @@
 <h1>welcome back.</h1>
 <hr>
 
-<% if (msg.length > 0) { %>
-  <div class="alert alert-danger"><%= msg.toString() %></div>
-<% } %>
+<% if (locals.flash.error) locals.flash.error.forEach(e => { %>
+  <div class="alert alert-danger"><%= e.toString() %></div>
+<% }) %>
 
 <div class="well">
   <form action="/users/login" method="post" accept-charset="utf-8">

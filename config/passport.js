@@ -24,10 +24,10 @@ passport.use(new LocalStrategy({
     if (err) return done(err)
     if (user === null) {
       if (logging) console.log('TRIED TO LOG IN WITH AN EMAIL THAT DOES NOT EXIST'.red)
-      return done(err, false, {message:'Tried to log in with an email that does not exist!'})
+      return done(err, false, {message:'that email that does not exist. please try again.'})
     } else if (user.validatePassword(password) === false ) {
       if (logging) console.log('TRIED TO LOG IN WITH AN INVALID PASSWORD'.red)
-      return done(err, false, {message:'Tried to log in with an invalid password!'})
+      return done(err, false, {message:'that password is invalid. please try again.'})
     } else {
       if (logging) console.log('USER LOGIN SUCCESSFUL: '.blue + user.name)
       return done(err, user)

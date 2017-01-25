@@ -11,11 +11,11 @@ router.get('/', (req, res) => {
 })
 
 router.get('/signup', (req, res) => {
-  res.render('users/signup', {title: 'Sign up', msg: req.flash('error')})
+  res.render('users/signup', {title: 'sign up'})
 })
 
 router.get('/login', (req, res) => {
-  res.render('users/login', {title: 'Log in', msg: req.flash('error')})
+  res.render('users/login', {title: 'log in'})
 })
 
 router.get('/logout', (req, res) => {
@@ -41,6 +41,7 @@ router.post('/signup', (req, res) => {
     if (err) {
       // console.log(err)
       if (logging) console.log('SIGNUP ERROR'.red)
+      req.flash('error', 'there was a problem. please try again.')
       res.redirect('/users/signup')
     }
     else {
@@ -53,7 +54,7 @@ router.post('/signup', (req, res) => {
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/profile',
   failureRedirect: '/users/login',
-  failureMessage: true
+  failureFlash: true
 }))
 
 module.exports = router
