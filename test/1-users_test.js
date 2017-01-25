@@ -9,7 +9,7 @@ require('colors')
 // DEFINE DUMMY USERS
 const testUser1 = {
   email: 'a@b.com',
-  name: 'Agent Orange',
+  name: 'Test Saregreat',
   password: 'tomato'
 }
 const testUser2 = {
