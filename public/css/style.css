@@ -134,3 +134,8 @@ body {
 .spacing {
   margin : 3px;
 }
+
+#mmbIcon {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
