@@ -21,6 +21,11 @@ let eventSchema = new mongoose.Schema({
     type: String,
     require: true
   },
+  fee: {
+    type: String,
+    require: true,
+    default: 'Free'
+  },
   description: {
     type: String
   },

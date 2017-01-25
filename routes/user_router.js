@@ -15,8 +15,9 @@ router.use(isLoggedIn)
 
 router.get('/delete', userController.delete)
 router.get('/avatar', userController.avatar)
-router.post('/avatar', upload.single('myFile'), userController.upload)
+router.put('/edit', upload.single('myFile'), userController.update)
 
 router.get(`/profile`, userController.show)
+router.get(`/edit`, userController.edit)
 router.use(`/message`, messageRouter)
 module.exports = router

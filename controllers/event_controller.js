@@ -83,6 +83,12 @@ let eventController = {
         Participant.find({event: req.params.id}).populate('user').exec(cb)
       }
     }, (err, results) => {
+      console.log('SHOW',results);
+
+      if (!results.event) {
+        eventController.search(req, res)
+        return
+      }
       console.log('Event Show', results)
       res.render('event/show', {results: results, user: req.user})
     })
@@ -140,7 +146,7 @@ let eventController = {
         Category.find({}, cb)
       }
     }, (err, results) => {
-      res.render('event/search', {results: results, user: req.user, searchItem: req.params.category})
+      res.render('event/search', {results: results, user: req.user, searchItem: req.body.category})
     })
   }
 }

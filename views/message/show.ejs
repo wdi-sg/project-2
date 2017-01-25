@@ -1,12 +1,22 @@
-<div class='container'>
+<div class='background-yellow'>
+</div>
 
+<div class='container content'>
+  <div class='col-md-6'>
+  </div>
+<div class='col-md-6 white'>
   <% if (messages.length >0) { %>
   <div id="messages">
     <% messages.forEach( (message)=> {%>
       <% if (message.sender.equals(user.id)) {%>
-        <div class='col-md-12 panel panel-default text-right'><%= message.content%></div>
+        <div class='col-md-12 panel panel-default text-right'>
+        <p> <%= message.content%></p>
+        <p class='time'><%= dateShow(message.date)%></p>
+        </div>
       <%} else {%>
-        <div class='col-md-12 panel panel-default text-left'><%= message.content%></div>
+        <div class='col-md-12 panel panel-default text-left grey'>
+          <p> <%= message.content%></p>
+        </div>
       <%}%>
     <%})%>
   </div>
@@ -16,18 +26,19 @@
 
   <form action="/user/message/<%= req.params.id%>" method="POST">
 
-    <div class="form-group">
+
+    <div class="form-group col-md-11">
       <!-- <label for="eventName">Name</label> -->
-      <textarea id="messageContent"  class='form-control' rows='10' type="string" name="content" placeholder="Enter your message here"></textarea>
+      <input id="messageContent"  class='form-control' type="string" name="content" placeholder="Enter your message here">
     </div>
 
 
-    <div class="form-group flex">
+    <div class="form-group col-md-1">
       <input class="btn btn-primary" type="submit">
     </div>
 
   </form>
-
+</div>
 
 </div>
 

@@ -44,7 +44,7 @@ let userController = {
         }).exec(cb)
       },
       (cb) => {
-        Event.find({startDate: {$gte: Date.now()}, creator: {$ne: req.user.id}, vacancy: {$ne: 0}}).sort({'created_at': -1}).limit(5).exec(cb)
+        Event.find({startDate: {$gte: Date.now()}, creator: {$ne: req.user.id}, vacancy: {$ne: 0}}).populate('creator').sort({'created_at': -1}).limit(5).exec(cb)
       }
 
     ], (err, result) => {
@@ -61,12 +61,32 @@ let userController = {
   avatar: (req, res) => {
     res.render('dummy', {user: req.user})
   },
-  upload: (req, res) => {
-    cloudinary.uploader.upload(req.file.path, function(result) {
-      User.findOneAndUpdate({_id: req.user.id}, {avatar: result.public_id}, (err, user)=>{
+  update: (req, res) => {
+    if (req.file) {
+      cloudinary.uploader.upload(req.file.path, function (result) {
+        User.findOneAndUpdate({_id: req.user.id}, {
+          name: req.body.name,
+          email: req.body.email,
+          age: req.body.age,
+          motor: req.body.motor,
+          gender: req.body.gender,
+          avatar: result.public_id
+
+        }, (err, user) => {
+          res.redirect('/user/profile')
+        })
+      })
+    } else {
+      User.findOneAndUpdate({_id: req.user.id}, {
+        name: req.body.name,
+        email: req.body.email,
+        age: req.body.age,
+        motor: req.body.motor,
+        gender: req.body.gender
+      }, (err, user) => {
         res.redirect('/user/profile')
       })
-    });
+    }
   },
   delete: (req, res) => {
     User.findByIdAndRemove(req.user.id, (err) => {
@@ -78,6 +98,9 @@ let userController = {
         res.redirect('/')
       }
     })
+  },
+  edit: (req, res) => {
+    res.render('user/edit', {user: req.user})
   }
 }
 

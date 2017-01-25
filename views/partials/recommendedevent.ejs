@@ -1,4 +1,4 @@
-  <div class='panel panel-success full-height'>
+  <div class='panel full-height'>
 <div class='panel-heading'>
   <h1> Recommended </h1>
 </div>
@@ -19,7 +19,7 @@
             <span class='label label-warning'><%= event.vacancy%> slots left</span>
            <%}%>
 
-           <img class='pull-right' src="<%= cloudinary.url(user.avatar, { width: 50, height: 50, crop: 'fill', gravity: 'face', radius: 'max' })%>"></img></p>
+           <img class='pull-right' src="<%= cloudinary.url(event.creator.avatar, { width: 50, height: 50, crop: 'fill', gravity: 'face', radius: 'max' })%>"></img></p>
          <p><%= dateShow(event.startDate) %>
 
        </p>

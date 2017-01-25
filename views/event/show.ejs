@@ -1,8 +1,11 @@
-<div class='container'>
+<div class='background-yellow'>
+</div>
+
+<div class='container content'>
   <% include ../partials/alerts %>
   <div class='row'>
 
-    <div class='col-md-9 panel panel-default full-height'>
+    <div class='col-md-9 panel'>
       <div><h2><%= results.event.name%></h2>
         <% if (results.event.vacancy !== undefined) {%>
         <% if (results.event.vacancy > 0) {%>
@@ -15,7 +18,7 @@
     </div>
       <span class="pull-right"><p>Organised by: <img src="<%=cloudinary.url(results.event.creator.avatar, { width: 50, height: 50, crop: 'fill', gravity: 'face', radius: 'max' })%>"></img></p></span>
       <hr>
-      <ul>
+      <ul class='h5'>
         <li>Date: <%= results.event.startDate.toDateString()%> <%= results.event.startDate.toLocaleTimeString()%>   - <%= results.event.endDate.toDateString()%> <%= results.event.endDate.toLocaleTimeString()%> </li>
 
         <li>Venue: <%= results.event.location%>
@@ -24,7 +27,26 @@
 
       </ul>
       <hr>
-      <div class='col-md-12 three-quarter-height pull-left'>
+      <div class='pull-right'>
+          <% if (user) {%>
+            <% if (results.event.creator.equals(user.id)) {%>
+              <a href='/event/<%=results.event._id%>/edit'><button class='btn btn-primary'>Edit</button></a>
+              <a href='/event/<%=results.event._id%>/delete'><button class='btn btn-danger'>Delete</button></a>
+            <%} else if (results.joined !== null){%>
+                <button class='btn btn-danger' disabled>Joined</button>
+                <a href='/event/<%=results.event._id%>/cancel'><button class='btn btn-primary'>Cancel</button></a>
+            <%} else {%>
+              <% if (results.event.vacancy !== 0){%>
+                <a href='/event/<%= results.event._id%>/join'><button class='btn btn-danger'>RSVP</button></a>
+              <% } else {%>
+                <button class='btn btn-danger' disabled>RSVP</button>
+              <%}%>
+           <%}%>
+          <%} else {%>
+              <a href='/auth/login'><button class='btn btn-danger'>Log In to Join</button></a>
+            <%}%>
+        </div>
+      <div class='col-md-12 pull-left content h5'>
         <div class='col-md-6'>
         Details:
         <%- simpleFormat(results.event.description) %>
@@ -39,42 +61,26 @@
 
       </div>
 
-  <div class='pull-right'>
-      <% if (user) {%>
-        <% if (results.event.creator.equals(user.id)) {%>
-          <a href='/event/<%=results.event._id%>/edit'><button class='btn btn-primary'>Edit</button></a>
-          <a href='/event/<%=results.event._id%>/delete'><button class='btn btn-danger'>Delete</button></a>
-        <%} else if (results.joined !== null){%>
-            <button class='btn btn-danger' disabled>Joined</button>
-            <a href='/event/<%=results.event._id%>/cancel'><button class='btn btn-primary'>Cancel</button></a>
-        <%} else {%>
-          <% if (results.event.vacancy !== 0){%>
-            <a href='/event/<%= results.event._id%>/join'><button class='btn btn-danger'>RSVP</button></a>
-          <% } else {%>
-            <button class='btn btn-danger' disabled>RSVP</button>
-          <%}%>
-       <%}%>
-      <%}%>
 
-    </div>
 
 
 
   </div>
-    <div class='col-md-3 panel panel-default full-height'>
+    <div class='col-md-3 panel h95-vh'>
       <h2>Participants</h2>
       <% results.participants.forEach( (participant)=> { %>
         <div class='panel panel-default'>
           <img src="<%=cloudinary.url(participant.user.avatar, { width: 50, height: 50, crop: 'fill', gravity: 'face', radius: 'max' })%>"></img>
           <strong><%= participant.user.name%></strong>
-          <form action='/user/message' method='POST'>
+          <form  class='pull-right' action='/user/message' method='POST'>
             <input name='id' hidden value='<%=participant.user._id%>'>
-            <button class='btn'>Chat</button>
+            <button class='glyphicon glyphicon-envelope'></button>
           </form>
+
           <% if (((Date.now()-participant.joined_at)/3600000) > 48) {%>
             <p class='text-right'> Joined <%= Math.floor((Date.now()-participant.joined_at)/3600000/24) %> days ago </p>
           <%} else if (((Date.now()-participant.joined_at)/3600000 > 24)) {%>
-        <p class='pull-right'>  Joined a day ago </p>
+            <p class='text-right'>  Joined a day ago </p>
             <% } else if (((Date.now()-participant.joined_at)/3600000 >1)) {%>
               <p class='text-right'> Joined <%= Math.floor((Date.now()-participant.joined_at)/3600000) %> hr ago </p>
               <% } else if ((Date.now()-participant.joined_at)/36000000 < 0.1){%>

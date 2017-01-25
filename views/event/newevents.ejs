@@ -1,14 +1,14 @@
-<div class = 'col-md-12'>
+<div class = 'col-md-12 content'>
   <h1> New Events</h1>
   <div class='flex col-md-12'>
-<% results.events.forEach( (event) => { %>
-<a class='flex col-md-4' href='/event/<%=event._id%>'><div class='col-md-10 panel panel-default'>
-  <h2><%= event.name%></h2>
-  <ul>
-    <li>Date: <%= event.startDate.toDateString()%> <%= event.startDate.toLocaleTimeString()%>   - <%= event.endDate.toDateString()%> <%= event.endDate.toLocaleTimeString()%> </li>
-    <li>Venue: <%= event.location%></li>
-    <li>Organiser: <%= event.creator.name%></li>
-  </ul>
-</div></a>
-<%})%>
-</div>
+    <% results.events.forEach( (event) => { %>
+      <a class='flex col-md-4 event-box' href='/event/<%=event._id%>'><div class='col-md-10 panel panel-default '>
+        <h2><%= event.name%></h2>
+        <ul>
+          <li><strong>Date:</strong> <%= dateShow(event.startDate)%>  - <%= dateShow(event.endDate)%> </li>
+          <li><strong>Venue:</strong> <%= event.location%></li>
+          <li><strong>Organiser:</strong> <%= event.creator.name%></li>
+        </ul>
+      </div></a>
+      <%})%>
+    </div>

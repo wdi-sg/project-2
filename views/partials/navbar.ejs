@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar">
   <div class="container-fluid">
 
     <div class="navbar-header">
@@ -11,18 +11,26 @@
 
         <ul class="nav navbar-nav pull-right">
 
-          <li><a href="/auth/login">LogIn</a></li>
+          <li><a data-toggle="modal" data-target="#exampleModal">LogIn</a></li>
           <li><a href="/user/signup">SignUp</a></li>
         </ul>
         <%} else {%>
-          <ul class="nav navbar-nav pull-left">
+          <!-- <ul class="nav navbar-nav pull-left">
             <li><a href="/event">List All</a></li>
             <li><a href="/event/new">Create</a></li>
-          </ul>
-          <ul class="nav navbar-nav pull-right">
-            <li><a href="/user/profile"><%=user.name%> / <%= user.email%></a></li>
-            <li><a href="/auth/logout">LogOut</a></li>
-          </ul>
+          </ul> -->
+          <div class="dropdown pull-right">
+            <div class='dropdown-toggle' id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img  src="<%= cloudinary.url(user.avatar, { width: 30, height: 30, crop: 'fill', gravity: 'face', radius: 'max' })%>"></img>
+            </div>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="/user/profile">Profile</a>
+              <a class="dropdown-item" href="/user/edit">Edit Profile</a>
+              <a class="dropdown-item" href="/auth/logout">Log out</a>
+            </div>
+          </div>
+
           <%}%>
 
         </div>

@@ -1,16 +1,15 @@
 
-<div class='container'>
+
+<div class='background-yellow'>
+</div>
+<div class='container content'>
   <% include ../partials/alerts %>
   <div class='row'>
-    <div class='col-md-2 full-height'>
+    <div class='col-md-2 '>
 
       <img class='updatepic' src="<%= cloudinary.url(user.avatar, { width: 150, height: 150, crop: 'fill', gravity: 'face', radius: 'max' })%>"></img>
       <h2><%= user.name%></h2>
-      <% if (events[0]._id.equals(user.id)) { %>
-        <ul>
-          <li><a href="">Update Profile</a></li>
-        </ul>
-        <% } %>
+      <p class='text-center'><%= user.motor%></p>
       </div>
 
       <div class='col-md-6 full-height'>
@@ -24,4 +23,4 @@
 
       </div>
     </div>
-  </div>
+</div>
