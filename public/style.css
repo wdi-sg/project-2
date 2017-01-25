@@ -28,6 +28,7 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 
@@ -44,7 +45,7 @@ form {
 }
 
 .full-height {
-  height: 90vh;
+  height: 95vh;
 }
 
 .half-height {
@@ -58,4 +59,13 @@ form {
 .cat-box {
   height: 20vh;
   margin: 0;
+}
+
+.event-index {
+  background: url('../img/sport.jpg');
+  background-size: cover;
+}
+
+.full-vh {
+  height:100vh;
 }

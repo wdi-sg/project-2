@@ -1,0 +1,31 @@
+  <div class='panel panel-success half-height'>
+  <div class='panel-heading'>
+    <h1> My Events </h1>
+  </div>
+     <% if (events[1].length <= 0) {%>
+         <div class='panel panel-default'>
+           <p> You have not start any event yet. </p>
+           <a href='/event/new'> Start Your own event now<a>
+          </div>
+     <%} else {%>
+         <%events[1].forEach( (event)=> {%>
+            <div class='panel col-md-12'>
+              <p class='pull-left'>
+                 <%= dateShow(event.startDate) %>
+                 <strong><%= event.name %></strong>
+                 <% if (event.category !== null) {%>
+                   <span class='label label-success'><%= event.category%></span>
+                 <%}%>
+                 <% if (dateCheck(event.startDate)) {%>
+                   <span class='label label-danger'>Today</span>
+                 <%}%>
+               </p>
+               <a class='pull-right' href='/event/<%= event._id%>/edit'>Edit</a>
+           </div>
+        <% }) %>
+     <% } %>
+
+   <div class='panel panel-default col-md-12 text-center'>
+     <a href='/event/new'><span class='glyphicon glyphicon-plus' aria-hidden="true"></span></a>
+   </div>
+ </div>

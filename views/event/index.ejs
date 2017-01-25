@@ -1,7 +1,24 @@
 
-<div class='container half-height'>
+<div class='container-fluid full-height event-index flex'>
   <% include ../partials/alerts %>
-  <div class='row'>
+  <div class='col-md-4 text-center'>
+    <h1>Kakis</h1><br>
+    <p>Find your strength, find your passion, find your kakis</p>
+
+    <% include ../partials/searchbar %>
+
+</div>
+</div>
+
+
+<section class='container-fluid full-vh' id='newevents'>
+  <% include ./newevents %>
+</section>
+
+
+
+
+  <!-- <div class='row'>
     <div class = 'col-md-12 panel panel-default '>
       <h1> New Event</h1>
       <div class='flex col-md-12'>
@@ -18,12 +35,10 @@
   </div>
   </div>
   </div>
-</div>
 
-<div class='contaoner-fluid'>
+
   <div class='row'>
   <% results.cat.forEach( (c) => { %>
     <a href='/event/cat/<%= c.name%>'><div class='col-md-2 panel panel-default cat-box'><%=c.name%></div></a>
   <%})%>
-  </div>
-</div>
+  </div> -->

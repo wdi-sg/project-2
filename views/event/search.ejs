@@ -1,19 +1,25 @@
 <div class='container'>
 
-  <h1>Search Results for <strong><%= searchItem%></strong></h1>
+    <% if (results.events.length <= 0) { %>
+        <div class='container full-height flex'>
+            <div class='text-center'>
+                <h1> Sorry.</h1>
+                <h1>We are unable to locate any events under this catagory. </h1>
+                  <div>
+                  <% include ../partials/searchbar %>
+                  <a>Browse All Events</a>
+              </div>
 
-  <div class='container'>
-    <% if (events.length <= 0) { %>
-      <p> Sorry. We are unable to locate any events under this catagory. </p>
-    <% } else {%>
-      <% events.forEach((event)=>{ %>
-         <a href='/event/<%=event._id%>'>
-           <p><%= event.name%></p>
-         </a>
-      <%})%>
-    <% }%>
-  </div>
-
-
-
+            </div>
+        </div>
+        <% } else {%>
+            <% results.events.forEach((event)=>{ %>
+                <div class='container'>
+                    <h1>Search Results for <strong><%= searchItem%></strong></h1>
+                    <a href='/event/<%=event._id%>'>
+                        <p><%= event.name%></p>
+                    </a>
+                </div>
+                <%})%>
+                <% }%>
 </div>

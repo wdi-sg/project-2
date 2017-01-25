@@ -2,101 +2,26 @@
 <div class='container'>
   <% include ../partials/alerts %>
   <div class='row'>
-    <div class='col-md-2 panel panel-default full-height'>
+    <div class='col-md-2 full-height'>
 
-      <img src="<%= cloudinary.url(user.avatar, { width: 150, height: 150, crop: 'fill', gravity: 'face', radius: 'max' })%>"></img>
+      <img class='updatepic' src="<%= cloudinary.url(user.avatar, { width: 150, height: 150, crop: 'fill', gravity: 'face', radius: 'max' })%>"></img>
       <h2><%= user.name%></h2>
-    </div>
-
-    <div class='col-md-6 panel panel-default full-height'>
-
-      <div class='col-md-12 panel panel-default half-height'>
-      <h1> Upcomming Events </h1>
-      <hr>
-      <% if (events[2].length <= 0) {%>
-        <div class='panel panel-default'>
-          <p> You have not start any event yet. </p>
-          <a href='/event/new'> Start Your own event now<a>
-        </div>
-      <%} else {%>
-        <%events[2].forEach( (event)=> {%>
-
-            <div class='panel col-md-12'>
-              <p class='pull-left'>
-                  <%= event.event.startDate.toLocaleDateString() + '   ' + event.event.startDate.toLocaleTimeString() %>
-                    <strong><%= event.event.name %></strong>
-                  <% if (event.event.category !== null) {%>
-                    <span class='label label-success'><%= event.event.category%></span>
-                  <%}%>
-                  <% if (event.event.startDate.toLocaleDateString() === new Date().toLocaleDateString()) {%>
-
-                <span class='label label-danger'>Today</span>
-                  <%}%>
-              </p>
-                <a class='pull-right' href='/event/<%= event.event._id%>'>View</a>
-            </div>
-
-
-        <% })}%>
-     </div>
-
-     <div class='col-md-12 panel panel-default half-height'>
-       <h1> My Events </h1>
-       <% if (events[1].length <= 0) {%>
-         <div class='panel panel-default'>
-           <p> You have not start any event yet. </p>
-           <a href='/event/new'> Start Your own event now<a>
-         </div>
-       <%} else {%>
-         <%events[1].forEach( (event)=> {%>
-        <div class='panel col-md-12'>
-           <p class='pull-left'>
-               <%= event.startDate.toLocaleDateString() + '   ' + event.startDate.toLocaleTimeString() %>
-                 <strong><%= event.name %></strong>
-                 <% if (event.category !== null) {%>
-                   <span class='label label-success'><%= event.category%></span>
-                     <%}%>
-               <% if (event.startDate.toLocaleDateString() === new Date().toLocaleDateString()) {%>
-             <span class='label label-danger'>Today</span>
-               <%}%>
-           </p>
-           <a class='pull-right' href='/event/<%= event._id%>/edit'>Edit</a>
-             </div>
-         <% })}%>
-         <div class='panel panel-default col-md-12 text-center'>
-           <a href='/event/new'><span class='glyphicon glyphicon-plus' aria-hidden="true"></span></a>
-         </div>
-      </div>
-   </div>
-
-
-     <div class='col-md-4 panel panel-default full-height'>
-       <h1> Recommended </h1>
-       <% if (events[3].length <= 0) {%>
-         <div class='panel panel-default'>
-           <p> You have not start any event yet. </p>
-           <a href='/event/new'> Start Your own event now<a>
-         </div>
-       <%} else {%>
-         <%events[3].forEach( (event)=> {%>
-         <a href='/event/<%= event._id%>'>
-           <div class='panel panel-default'>
-                 <p class='h3'><%= event.name %></p>
-                 <p><%= event.startDate.toDateString()%> <%= event.startDate.toLocaleTimeString()%></p>
-                 <% if (event.category !== null) {%>
-                   <span class='label label-success'><%= event.category%></span>
-                <%}%>
-                <% if (event.vacancy > 0) {%>
-                 <span class='label label-warning'><%= event.vacancy%> slots left</span>
-                 <%}%>
-           </div>
-         </a>
-         <% })}%>
+      <% if (events[0]._id.equals(user.id)) { %>
+        <ul>
+          <li><a href="">Update Profile</a></li>
+        </ul>
+        <% } %>
       </div>
 
+      <div class='col-md-6 full-height'>
+        <% include ../partials/upcomming %>
+        <% include ../partials/myevent %>
+      </div>
 
+      <div class='col-md-4'>
 
+        <% include ../partials/recommendedevent %>
 
-
+      </div>
     </div>
-</div>
+  </div>

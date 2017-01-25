@@ -132,8 +132,15 @@ let eventController = {
     })
   },
   search: (req, res)=> {
-    Event.find({category: req.params.cname, startDate: {$gt : Date.now()}}, (err, events) => {
-      res.render('event/search', {events: events, user: req.user, searchItem: req.params.cname})
+    async.parallel({
+      events: (cb) => {
+        Event.find({category: req.body.category, startDate: {$gt : Date.now()}}, cb)
+      },
+      cat: (cb) => {
+        Category.find({}, cb)
+      }
+    }, (err, results) => {
+      res.render('event/search', {results: results, user: req.user, searchItem: req.params.category})
     })
   }
 }

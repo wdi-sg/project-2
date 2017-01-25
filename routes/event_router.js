@@ -9,7 +9,7 @@ router.get('/new', isLoggedIn, eventController.new)
 //router.get('/myindex', isLoggedIn, eventController.myindex)
 router.post('/new', isLoggedIn, eventController.create)
 
-router.get('/cat/:cname', eventController.search)
+router.post('/cat', eventController.search)
 router.get('/:id', eventController.show)
 
 router.use(isLoggedIn)
