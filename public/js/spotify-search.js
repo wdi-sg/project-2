@@ -9,6 +9,7 @@ const searchSpotify = function (query) {
       type: 'track'
     },
     success: function (response) {
+      console.log(response)
       response.tracks.items.forEach((e, i) => {
         if (i < 8) {
           let trackResult = document.createElement('div')
@@ -27,7 +28,7 @@ const searchSpotify = function (query) {
         }
       })
       $('#results').hide()
-      $('#results').fadeIn(300)
+      $('#results').slideDown(300)
     }
   })
 }

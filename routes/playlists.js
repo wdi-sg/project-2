@@ -15,20 +15,22 @@ router.get('/', (req, res) => {
     .exec((err, docs) => {
       if (err) return console.log(err.toString().red)
       if (logging) console.log('PLAYLISTS ACCESSED BY: '.blue, req.user.name, ', FOUND'.blue, docs.length, 'PLAYLISTS'.blue)
-      res.render('playlists', {title: 'Playlists', playlists: docs})
+      res.render('playlists', {title: 'playlists', header:'this is where the playlists live. get grooving.', playlists: docs})
     })
 })
 
 router.get('/destroyall', (req, res) => {
-  Playlist.remove({}, (err) => {
-    if (err) return console.log(err.toString().red)
-    if (logging) console.log('ALL PLAYLISTS HAVE BEEN REMOVED FROM THE DATABASE'.bold.underline.red)
-    res.redirect('/')
-  })
+  if (process.env.NODE_ENV === 'test') {
+    Playlist.remove({}, (err) => {
+      if (err) return console.log(err.toString().red)
+      if (logging) console.log('ALL PLAYLISTS HAVE BEEN REMOVED FROM THE DATABASE'.bold.underline.red)
+    })
+  }
+  res.redirect('/')
 })
 
 router.get('/create', (req, res) => {
-  res.render('playlists/create', {title: 'Create a Playlist'})
+  res.render('playlists/create', {title: 'create a playlist'})
 })
 
 router.post('/create', (req, res) => {
@@ -44,6 +46,22 @@ router.post('/create', (req, res) => {
     }
     res.redirect('/playlists/'+doc._id)
   })
+})
+
+router.post('/search', (req, res) => {
+  const search = new RegExp(req.body.search.toString(), 'i')
+  console.log(search.blue)
+  if (logging) console.log('PLAYLIST SEARCH BY'.blue, req.user.name, 'FOR:'.blue, search)
+  Playlist.find({name: search})
+    .populate('creator')
+    .populate({
+      path: 'collaborators',
+      model: 'User'
+    })
+    .exec((err, docs) => {
+      if (err) return console.log(err)
+      res.render('playlists', {title: 'search', header: 'search results for: '+ req.body.search, playlists: docs})
+    })
 })
 
 router.post('/:id/add', (req, res) => {

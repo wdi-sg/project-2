@@ -1,5 +1,6 @@
-<h1>this is where all the playlists live.</h1>
-<h1>get grooving.</h1>
+<!-- <h1>this is where all the playlists live.</h1>
+<h1>get grooving.</h1> -->
+<h1><%= header %></h1>
 <a href="/playlists/create"><button class="btn btn-primary">create a playlist</button></a>
 <!-- <div class="hash"><%= playlists %></div> -->
 <hr>
@@ -13,3 +14,7 @@
     </div>
   </a>
 <% }) %>
+<% if (playlists.length === 0) { %>
+  <h1>no playlists found!</h1>
+  <h1>be the first and create your own.</h1>
+<% } %>
