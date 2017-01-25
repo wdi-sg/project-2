@@ -139,3 +139,13 @@ body {
   margin-top: 10px;
   margin-bottom: 25px;
 }
+
+#abtMMB {
+  width : 400px;
+  height : auto;
+  border-radius: 10%;
+}
+
+#paragraphMMB {
+  font-size: 150%;
+}
