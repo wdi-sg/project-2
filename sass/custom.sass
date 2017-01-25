@@ -2,6 +2,7 @@ body
   font-family: 'Lato', sans-serif
   padding-top: 60px
   color: white
+  overflow-x: hidden
 
 .alert-danger
   max-width: 400px
@@ -14,6 +15,7 @@ body
 .navbar
   background-color: rgba(255,255,255,0.9)
   border: none
+  z-index: 10
 .navbar-default
   .navbar-nav > li > a
     color: #333
@@ -144,13 +146,18 @@ h3
     background-color: white
     color: #333
 .label-like
-  font-size: 0.5em
+  font-size: 1em
   cursor: pointer
   margin-left: 10px
   margin-bottom: 5px
   &:hover
     background-color: white
     color: #333
+.label-comment
+  font-size: 1em
+  cursor: pointer
+  background-color: blue
+  color: white
 .delete
   background-color: rgba(0,0,0,0)
   border: 1px solid red
@@ -178,3 +185,35 @@ a
   background-color: rgba(255,255,255,0.9)
   color: #666
   padding: 20px
+
+.well-comments
+  position: fixed
+  background-color: white
+  color: #333
+  height: 100vh
+  width: 500px
+  right: -500px
+  top: 0
+  z-index: 999
+  transition: all 0.5s ease
+  overflow: scroll
+  @media screen and (max-width: 500px)
+    width: 100vw
+
+.comment-form
+  // position: absolute
+  // top: 40px
+  // left: 0
+  width: 100%
+  padding: 20px
+
+.fa-close
+  position: absolute
+  right: 20px
+  top: 20px
+  font-size: 2em
+  cursor: pointer
+
+.btn-row
+  margin-top: 10px
+  margin-bottom: 20px
