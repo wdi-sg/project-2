@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const TrackSchema = require('./track').Schema
+const CommentSchema = require('./comment').Schema
 
 const PlaylistSchema = new mongoose.Schema({
   name: {
@@ -15,7 +16,8 @@ const PlaylistSchema = new mongoose.Schema({
     type: [mongoose.Schema.Types.ObjectId],
     ref: 'User'
   },
-  tracks: [TrackSchema]
+  tracks: [TrackSchema],
+  comments: [CommentSchema]
 })
 
 const Playlist = mongoose.model('Playlist', PlaylistSchema)
