@@ -120,6 +120,21 @@ router.get('/:playlistId/unlike', (req, res) => {
   })
 })
 
+router.post('/:playlistId/comment', (req, res) => {
+  if (logging) console.log('COMMENT MADE BY: '.blue, req.user.name)
+  const playlistId = req.params.playlistId
+  const userId = req.user._id
+  req.body.author = userId
+  Playlist.findById(playlistId, (err, doc) => {
+    if (err) return console.log(err)
+    doc.comments.push(req.body)
+    doc.save((err) => {
+      if (err) return console.log(err)
+      res.redirect('/playlists/'+playlistId)
+    })
+  })
+})
+
 router.get('/:playlistId/delete/:trackId', (req, res) => {
   if (logging) console.log('TRACK IS BEING DELETED FROM PLAYLIST: '.blue, req.user.name)
   const playlistId = req.params.playlistId
@@ -181,6 +196,10 @@ router.get('/:playlistId', (req, res) => {
   const id = req.params.playlistId
   Playlist.findById(id)
     .populate('creator')
+    .populate({
+      path: 'comments.author',
+      model: 'User'
+    })
     .populate({
       path: 'collaborators',
       model: 'User'
