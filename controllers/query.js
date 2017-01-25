@@ -24,28 +24,32 @@ router.get('/view/:id', isLoggedIn, function(req, resp) {
   Route.findById(req.params.id, function(err,selectedRoute){
     console.log('selected route is '+ selectedRoute);
     if(err) console.log(error);
-    var options = {
-      host: 'datamall2.mytransport.sg',
-      port: 80,
-      path: '/ltaodataservice/BusArrival?BusStopID='+selectedRoute.BusStopID+'&ServiceNo='+selectedRoute.ServiceNo+'&SST=True',
-      method: 'GET',
-      headers:{
-        AccountKey: 'DPqLfU7ZRV6NRIvHv329kg=='
-      }
-    };
-    console.log('options is '+ options);
+    BusStop.find({BusStopID:selectedRoute.BusStopID }, function(err, selectedStop){
+      if(err)console.log(err);
+      var options = {
+        host: 'datamall2.mytransport.sg',
+        port: 80,
+        path: '/ltaodataservice/BusArrival?BusStopID='+selectedRoute.BusStopID+'&ServiceNo='+selectedRoute.ServiceNo+'&SST=True',
+        method: 'GET',
+        headers:{
+          AccountKey: 'DPqLfU7ZRV6NRIvHv329kg=='
+        }
+      };
+      console.log('options is '+ options);
 
-    http.request(options, function(res) {
-      res.setEncoding('utf8');
-      var data=''
-      res.on('data', function (chunk) {
-        data+=chunk
-      })
-      res.on('end', function(){
-        var body = JSON.parse(data)
-        resp.render('view',{body: body})
-      })
-    }).end();
+      http.request(options, function(res) {
+        res.setEncoding('utf8');
+        var data=''
+        res.on('data', function (chunk) {
+          data+=chunk
+        })
+        res.on('end', function(){
+          var body = JSON.parse(data)
+          resp.render('view',{body: body, stop: selectedRoute, busStop: selectedStop})
+        })
+      }).end();
+    })
+
   })
 })
 
