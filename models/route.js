@@ -4,8 +4,7 @@ const Schema = mongoose.Schema;
 var RouteSchema = new mongoose.Schema({
   ServiceNo:  {type: String},
   BusStopID: {type: Array},
-  user_id: {type: Schema.Types.ObjectId, ref: 'User'},
-  //add lat or long or timing or whatever other data is needed
+  user_id: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 
 RouteSchema.pre('save', function(next) {

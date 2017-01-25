@@ -1,3 +1,4 @@
+
 var obj=[{ ServiceNo: '118',
     Operator: 'GAS',
     Direction: 1,
@@ -6725,3 +6726,13 @@ var obj=[{ ServiceNo: '118',
     LoopDesc: '' }]
 
     console.log(obj.length);
+    var arr=[]
+    obj.forEach(function(elem){
+      if(arr.every(function(val){
+        return elem.ServiceNo!=val
+      })){
+        arr.push(elem.ServiceNo)
+      }
+    })
+    console.log(arr)
+    var window.BusServices=arr

@@ -20,12 +20,12 @@
 
     <div class="form-group">
       <label for="BusStopID">Enter Bus Stop</label>
-      <input class="form-control" type="list" name="BusStopID">
-      <!-- <select name='BusStopID'>
-        <% bus.forEach(function(elem){ %>
-          <option name='ServiceNo'><%=elem.ServiceNo%></option>
-        <%})%>
-      </select> -->
+      <select name='BusStopID'>
+        <% stop.forEach(function(elem){ %>
+          <option name='ServiceNo'><%=elem.BusStopID%></option>
+        <% })%>
+      </select>
+
     </div>
 
     <input class="btn btn-primary" type="submit">

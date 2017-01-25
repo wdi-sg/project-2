@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var Route=require('../models/route')
+var Bus = require('../models/bus')
+var BusStop = require('../models/busStop')
 var passport = require('../config/ppConfig');
 var http= require('http')
-var isLoggedIn = require('./middleware/isLoggedIn');
+var isLoggedIn = require('../middleware/isLoggedIn');
 
 router.get('/', isLoggedIn, function(req, res) {
   Route.find({user_id: req.user._id}, function(err,bus){
@@ -17,95 +19,86 @@ router.get('/', isLoggedIn, function(req, res) {
   }
 });
 
+router.get('/view/:id', isLoggedIn, function(req, resp) {
+  console.log('entered into get');
+  Route.findById(req.params.id, function(err,selectedRoute){
+    console.log('selected route is '+ selectedRoute);
+    if(err) console.log(error);
+    var options = {
+      host: 'datamall2.mytransport.sg',
+      port: 80,
+      path: '/ltaodataservice/BusArrival?BusStopID='+selectedRoute.BusStopID+'&ServiceNo='+selectedRoute.ServiceNo+'&SST=True',
+      method: 'GET',
+      headers:{
+        AccountKey: 'DPqLfU7ZRV6NRIvHv329kg=='
+      }
+    };
+    console.log('options is '+ options);
+
+    http.request(options, function(res) {
+      res.setEncoding('utf8');
+      var data=''
+      res.on('data', function (chunk) {
+        data+=chunk
+      })
+      res.on('end', function(){
+        var body = JSON.parse(data)
+        resp.render('view',{body: body})
+      })
+    }).end();
+  })
+})
+
+router.get('/delete/:id',isLoggedIn, function(req,res){
+  Route.findOneAndRemove({_id: req.params.id}, function(err, routes){
+    if(err) console.log(err);
+    Route.find({user_id: req.user._id}, function(err,bus){
+      if(err) console.log(error);
+      callbackFunc(bus)
+    })
+    function callbackFunc(bus){
+      console.log(bus);
+      res.render('home', {bus:bus})
+    }
+  })
+})
+
+
 router.get('/create', function(req, res) {
-  Route.find({}, function(err,bus){
+  var busList
+  var stopList
+  Bus.find({}, function(err,bus){
     if(err) console.log(error);
     callbackFunc(bus)
   })
   function callbackFunc(bus){
-    console.log(bus);
-    res.render('create', {bus:bus})
-  }
-  ;
+    //console.log(bus);
+    busList=bus
+    BusStop.find({}, function(err,stop){
+      if(err) console.log(error);
+      callbackFunc1(stop)
+    })
+  };
+
+  function callbackFunc1(stop){
+    stopList=stop
+    res.render('create', {bus:busList, stop: stopList })
+  };
+  console.log(busList);
+  console.log(stopList);
+
 });
 
 router.post('/create', function(req,res){
   var busRoute = req.body.ServiceNo
   var busStop= req.body.BusStopID
-  // console.log(busRoute);
-  // console.log(busStop);
-  var options = {
-    host: 'datamall2.mytransport.sg',
-    port: 80,
-    path: '/ltaodataservice/BusArrival?BusStopID='+busStop+'&ServiceNo='+busRoute,
-    method: 'GET',
-    headers:{
-      AccountKey: 'DPqLfU7ZRV6NRIvHv329kg=='
-    }
-  };
-
-  http.request(options, function(res) {
-    // console.log('STATUS: ' + res.statusCode);
-    // console.log('HEADERS: ' + JSON.stringify(res.headers));
-    // console.log(res);
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      var body = JSON.parse(chunk)
-      // console.log('BODY: ' + chunk);
-      // console.log(chunkChange[0]);
-      Bus.create({
+  console.log(busRoute);
+  console.log(busStop);
+      Route.create({
         ServiceNo: busRoute,
         BusStopID: busStop,
-        user_id: req.user._id,
-        EstimatedArrival: body.Services[0].NextBus.EstimatedArrival
+        user_id: req.user._id
       })
-      console.log('Success');
-    });
-    successRedirect: 'home'
-  }).end();
-
+      res.redirect('/query/')
 })
-
-
-
-// router.post('/signup', function(req, res) {
-//   User.create({
-//     email: req.body.email,
-//     name: req.body.name,
-//     password: req.body.password
-//   }, function(err, createdUser) {
-//     if(err){
-//       req.flash('error', 'Could not create user account');
-//       res.redirect('/auth/signup');
-//     } else {
-//       passport.authenticate('local', {
-//         successRedirect: '/todos',
-//         successFlash: 'Account created and logged in'
-//       })(req, res);
-//     }
-//   });
-// });
-// router.get('/signup', function(req, res) {
-//   res.render('auth/signup');
-// });
-//
-// router.get('/login', function(req, res) {
-//   res.render('auth/login');
-// });
-//
-//
-//
-// router.post('/login', passport.authenticate('local', {
-//   successRedirect: '/todos',
-//   failureRedirect: '/auth/login',
-//   failureFlash: 'Invalid username and/or password',
-//   successFlash: 'You have logged in'
-// }));
-//
-// router.get('/logout', function(req, res) {
-//   req.logout();
-//   req.flash('success', 'You have logged out');
-//   res.redirect('/');
-// });
-
 module.exports = router;

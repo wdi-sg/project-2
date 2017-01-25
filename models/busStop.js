@@ -10,11 +10,4 @@ var StopSchema = new mongoose.Schema({
   BusServices: {type: Array}
 });
 
-// RouteSchema.pre('save', function(next) {
-//
-//   // check if the route number exists with the database
-//
-//    next();
-// });
-
 module.exports = mongoose.model('Stop', StopSchema);
