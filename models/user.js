@@ -16,6 +16,11 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     minlength: [5, 'Password must be at least 5 characters long.']
+  },
+  likedPlaylists: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'Playlist',
+    default: []
   }
 })
 
