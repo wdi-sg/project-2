@@ -4,6 +4,7 @@ let logging = process.env.LOGGING
 const express = require('express')
 const router = express.Router()
 const Playlist = require('../models/playlist')
+const User = require('../models/user')
 
 router.get('/', (req, res) => {
   Playlist.find({})
@@ -76,6 +77,46 @@ router.post('/:id/add', (req, res) => {
       if (err) console.log(err.toString().red)
       res.redirect('/playlists/'+id)
     })
+  })
+})
+
+router.get('/:playlistId/like', (req, res) => {
+  if (logging) console.log('PLAYLIST LIKED BY: '.blue, req.user.name)
+  const playlistId = req.params.playlistId
+  const userId = req.user._id
+  User.findById(userId, (err, doc) => {
+    if (err) {
+      console.log(err)
+      res.redirect('/playlists/'+playlistId)
+    } else {
+      doc.likedPlaylists.push(playlistId)
+      doc.save((err) => {
+        if (err) return console.log(err)
+        res.redirect('/playlists/'+playlistId)
+      })
+    }
+  })
+})
+
+router.get('/:playlistId/unlike', (req, res) => {
+  if (logging) console.log('PLAYLIST UNLIKED BY: '.blue, req.user.name)
+  const playlistId = req.params.playlistId
+  const userId = req.user._id
+  User.findById(userId, (err, doc) => {
+    if (err) {
+      console.log(err)
+      res.redirect('/playlists/'+playlistId)
+    } else {
+      const index = doc.likedPlaylists.indexOf(playlistId)
+      if (index < 0) res.redirect('/playlists/'+playlistId)
+      else {
+        doc.likedPlaylists.splice(index, 1)
+        doc.save((err) => {
+          if (err) return console.log(err)
+          res.redirect('/playlists/'+playlistId)
+        })
+      }
+    }
   })
 })
 
