@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 const CommentSchema = new mongoose.Schema({
-  comment: {
-    Type: String,
+  content: {
+    type: String,
     required: true
   },
   author: {
