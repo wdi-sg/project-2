@@ -21,7 +21,13 @@ passport.use(new LocalStrategy({
     if (err) return done(err);
     if (!user) return done(null,false);
     if (!user.validPassword(password)) return done(null,false);
-    return done(null,user);
+    //modifying passport stuff GASP!
+    user.loginTime = new Date();
+    user.save(function(err,data){
+      if (err) console.log(err);
+      console.log('after appending login time..'.green,data);
+      return done(null,data);
+    })
   })
 }))
 

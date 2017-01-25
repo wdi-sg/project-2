@@ -1,8 +1,15 @@
 <h3><%= data %></h3>
+<h3><%= ratingsAftLogoutArr %>
 <!--<h3><%= username %></h3>-->
 <div class='container'>
   <div class='text-center'>
     <h1>Welcome back <%=username%></h1>
+    <% if (logoutClean) { %>
+      <h3>"<%=ratingsAftLogoutArr.length%> nobles have rated you since you've logged out!"</h3>
+      <% ratingsAftLogoutArr.map(function(value,index){ %>
+        <h3><%= value.whoCreated.name %> has rated you : <%= value.rating %></h3>
+      <% }) %>
+    <% } %>
   </div>
     <br />
     <div class="row">

@@ -39,9 +39,10 @@ router.get('/',function(req,res){
         return value2.rating;
       })
     }).map(function(value,index){
-      return value.reduce(function(a,b){
-        return ((a+b)/value.length)
+      let res = value.reduce(function(a,b){
+        return (a+b)
       },0)
+      return Math.floor(res/(value.length))
     })
     console.log('this is the array of value from the ratings schemas'.rainbow,bigRatingsArr);
     // console.log(binaryImageArr);
@@ -85,7 +86,8 @@ router.get('/profile/:id',function(req,res){
       res.redirect('/dashboard/profile');
     }
     let binaryImage = new Buffer(data.avatar).toString('base64');
-    console.log('populated data',data);
+    //comment this in if you want more info on the main page
+    // console.log('populated data',data);
     res.render('rate',{
       data: data,
       binaryImage : binaryImage,
@@ -96,7 +98,7 @@ router.get('/profile/:id',function(req,res){
 
 router.get('/profile',function(req,res){
   //need to find current user and put them on this page...
-  Profile.findOne({user : req.user._id},function(err,data){
+  Profile.findOne({user : req.user._id}).populate('user').populate('ratings.whoCreated').exec(function(err,data){
     if (err) console.log(err);
     if (!data){
       //if profile page does not exist redirect to create new profile...
@@ -110,12 +112,28 @@ router.get('/profile',function(req,res){
       reducedVal += value.rating;
     })
     reducedVal = Math.floor(reducedVal/data.ratings.length);
+    let loginClean = data.user.loginTime.getTime();
+    let logoutClean = data.user.logoutTime ? data.user.logoutTime.getTime() : null;
     console.log('after applying a reduction... my ratings are : '.cyan,reducedVal);
+    console.log('sanitizing loginTime'.yellow,loginClean);
+    console.log('sanitizing logoutTime'.blue,logoutClean);
+    let ratingsAftLogoutArr = [];
+    data.ratings.map(function(value,index){
+      if (value.timeCreated){
+        if (value.timeCreated.getTime() > logoutClean){
+          ratingsAftLogoutArr.push(value);
+        }
+      }
+    })
+    console.log('these are the ratings created when user was logged out'.red,ratingsAftLogoutArr);
     res.render('profile', {
       data : data,
       binaryImage : binaryImage,
       username : req.user.name,
-      reducedVal : reducedVal
+      reducedVal : reducedVal,
+      loginClean : loginClean,
+      logoutClean : logoutClean,
+      ratingsAftLogoutArr : ratingsAftLogoutArr
     });
   })
 })
@@ -194,7 +212,8 @@ router.put('/rate/:id/:num',function(req,res){
     console.log('prep for put'.cyan,data);
     data.ratings.push({
       rating : req.params.num,
-      whoCreated : req.user._id
+      whoCreated : req.user._id,
+      timeCreated : new Date()
     })
     data.save(function(err,data2){
       if (err) console.log(err);

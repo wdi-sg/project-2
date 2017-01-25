@@ -130,3 +130,7 @@ body {
 .textSize {
   font-size: 900%;
 }
+
+.spacing {
+  margin : 3px;
+}

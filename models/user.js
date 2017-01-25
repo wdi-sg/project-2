@@ -21,7 +21,9 @@ const UserSchema = new mongoose.Schema({
     required : true,
     minlength : [5,'Password must be between 5 and 99 characters'],
     maxlength : [99,'Password must be between 5 and 99 characters']
-  }
+  },
+  loginTime : Date,
+  logoutTime : Date
 });
 
 UserSchema.pre('save',function(next){

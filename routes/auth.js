@@ -12,12 +12,19 @@ router.get('/register',function(req,res){
 })
 
 router.get('/logout',function(req,res){
-  req.logout();
-  req.flash('success','You have logged out!');
-  res.redirect('/');
+  console.log('iseetheuser'.red,req.user);
+  User.update({ _id : req.user._id }, { $set : {
+    logoutTime : new Date()
+  }},function(err,data){
+    if (err) console.log(err);
+    console.log('after logging out'.green,data);
+    req.logout();
+    req.flash('success','You have logged out!');
+    res.redirect('/');
+  })
 })
 
-router.post('/login',passport.authenticate('local',{
+router.post('/login',passport.authenticate('local', {
   successRedirect : '/dashboard/',
   failureRedirect : '/',
   failureFlash : 'Invalid username and/or password',

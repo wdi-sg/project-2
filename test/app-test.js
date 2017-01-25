@@ -22,6 +22,7 @@ new User({
   if (err) console.log(err);
   console.log('dummy data successfully created!'.green);
 })
+
 new User({
   name : 'dummy2',
   email : 'dummy2@email.com',
@@ -41,6 +42,15 @@ new User({
   console.log('dummy data2 successfully created!'.green);
 })
 
+new User({
+  name : 'dummy3',
+  email : 'dummy3@email.com',
+  password : 'dummyPassword3'
+}).save(function(err,data){
+  if (err) console.log(err);
+  console.log('dummy data3 successfully created!'.green);
+})
+
 
 
 //put all authenticated requests in here..
@@ -55,13 +65,21 @@ describe('Test : test for authenticated requests....'.magenta, function(){
       done();
     })
   })
+  it('should populate the loginTime field automatically'.magenta,function(done){
+    User.findOne({ email : 'dummy@email.com' }, function(err,data){
+      if (err) console.log(err);
+      console.log('the login time is'.yellow,data.loginTime);
+      expect(data.loginTime).to.exist;
+      done();
+    })
+  })
   it('should allow test to access /dashboard/'.magenta,function(done){
     authApp.get('/dashboard/').expect(200,done)
   })
   it('should allow test to access /dashboard/profile, should redirect to create new profile..'.magenta,function(done){
     authApp.get('/dashboard/profile').expect('Location','/dashboard/profile/create').expect(302,done)
   })
-  it('is creating a new profile....',function(done){
+  it('is creating a new profile....'.magenta,function(done){
     User.findOne({email : 'dummy@email.com'},function(err,data){
       if (err) console.log(err);
       console.log(data);
@@ -102,6 +120,26 @@ describe('Test : test for authenticated requests....'.magenta, function(){
   it('should allow test to delete the account if logged in...'.magenta,function(done){
     authApp.delete('/dashboard/settings/delete').expect('Location','/').expect(302,done);
   })
+  it('is logging in now to test for logout'.magenta,function(done){
+    authApp.post('/auth/login').set('Accept','application/json').send({
+      email : 'dummy3@email.com',
+      password : 'dummyPassword3'
+    }).expect('Location','/dashboard/').end(function(err,res){
+      if (err) console.log(err);
+      done();
+    })
+  })
+  it('should return a 302 response and redirect back to main page'.magenta,function(done){
+    authApp.get('/auth/logout').expect('Location', '/').expect(302,done);
+  })
+  it('dummy3 user should have a logoutTime field appended to itself'.magenta,function(done){
+    User.findOne({ email : 'dummy3@email.com'},function(err,data){
+      if (err) console.log(err);
+      console.log('the logout time is'.yellow,data.logoutTime);
+      expect(data.logoutTime).to.exist;
+      done();
+    })
+  })
 });
 
 describe('Test : GET / page...'.magenta, function(){
@@ -131,12 +169,6 @@ describe('Test : GET /auth/register page...'.magenta,function(){
 describe('Test : GET /dashboard/ page...'.magenta,function(){
   it('should return a 302 response if not logged in..',function(done){
     request(app).get('/dashboard/').expect('Location','/').expect(302,done);
-  })
-})
-
-describe('Test : GET /auth/logout...'.magenta,function(){
-  it('should return a 302 response and redirect back to main page',function(done){
-    request(app).get('/auth/logout').expect('Location', '/').expect(302,done);
   })
 })
 

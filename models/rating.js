@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const ratingSchema = new mongoose.Schema({
   rating : Number,
-  whoCreated : { type : mongoose.Schema.Types.ObjectId, ref : 'User'}
+  whoCreated : { type : mongoose.Schema.Types.ObjectId, ref : 'User'},
+  timeCreated : Date
 })
 module.exports = ratingSchema;
