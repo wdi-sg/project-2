@@ -10,33 +10,33 @@ let messageController = {
     })
   },
   create: (req, res) => {
-
+    Chatbox.findOne({_id: req.params.id}, (err, chatbox) => {
+      let newRecipient = ''
+      if (chatbox.firstuser.equals(req.user.id)) {
+        newRecipient = chatbox.seconduser
+      } else {
+        newRecipient = chatbox.firstuser
+      }
       Message.create({
         content: req.body.content,
         chatbox: req.params.id,
         sender: req.user.id,
-        recipient: req.user.id,
+        recipient: newRecipient,
         read: false
       }, (err, message) => {
-        console.log('message', message);
+        console.log('message', message)
         global.io.emit(`chatmessages${req.params.id}`, message)
         res.redirect(`/user/message/${req.params.id}`)
       })
+    })
   },
   list: (req, res) => {
-    async.parallel({
-      messages: (cb) => {
-        Message.find({chatbox: req.params.id}).populate('chatbox').exec(cb)
-      },
-      updateRead: (cb) => {
-        Message.update(
-          {recipient: req.user.id},
+    Message.find({chatbox: req.params.id}).populate('chatbox').exec((err, messages) => {
+      Message.update({recipient: req.user.id, chatbox: req.params.id},
           {$set: {read: true}},
-          {multi: true})
-          .exec(cb)
-      }
-    }, (err, results) => {
-      res.render('message/show', {messages: results.messages, user: req.user, req: req})
+          {multi: true}
+        ).exec(res.render('message/show', {messages: messages, user: req.user, req: req}))
+
     })
   }
 }

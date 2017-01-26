@@ -144,14 +144,22 @@ let eventController = {
     })
   },
   put: (req, res) => {
-    Event.findOneAndUpdate({_id: req.params.id}, {
-      name: req.body.name,
-      startDate: req.body.startDate,
-      endDate: req.body.endDate,
-      location: req.body.location,
-      description: req.body.description
-    }, (err, editedEvent) => {
-      res.redirect(`/event/${req.params.id}`)
+    Participant.find({event: req.params.id}, (err, participants) => {
+      if (participants.length > req.body.vacancy) {
+        req.flash('error', 'The vacancy must be greater than the number of participants')
+        res.redirect(`/event/${req.params.id}`)
+        return
+      }
+      Event.findOneAndUpdate({_id: req.params.id}, {
+        name: req.body.name,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate,
+        location: req.body.location,
+        vacancy: req.body.vacancy,
+        description: req.body.description
+      }, (err, editedEvent) => {
+        res.redirect(`/event/${req.params.id}`)
+      })
     })
   },
   search: (req, res) => {
