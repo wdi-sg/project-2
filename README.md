@@ -2,7 +2,9 @@
 
 This is the repository of my 2nd project from WDI immersive course. This is a full-stack web application, utilising technologies from the front end (HTML,CSS,JS) and back end (node.js, express, many other packages etc).
 
-The idea is a clone from the NBC tv series community. In one of the episodes, the characters are introduced to a social networking application called MeowMeowBeenz (yes, with the Z). The application is basically a glorified rating system, in which people upload their images of themselves in order to be rated from 1 - 5. Chaos ensues (as expected)
+The idea is a clone from the NBC tv series **Community**. In one of the episodes, the characters are introduced to a social networking application called MeowMeowBeenz (yes, with the Z). The application is basically a glorified rating system, in which people upload their images of themselves in order to be rated from 1 - 5. Chaos ensues (as expected)
+
+Link to wiki page is here : https://en.wikipedia.org/wiki/App_Development_and_Condiments
 
 Disclaimer alert! :
 
@@ -68,8 +70,10 @@ Workflow was me mapping it mostly on paper. I initially did not have a strong co
 
 Just me
 
-## References
+## References and Acknowledgments:
 
 * For my rating algorithm, I used a Dirichlet prior distribution algo derived from this particular website. I did not derive it but merely implemented the formula derived by evan miller.
 * http://www.evanmiller.org/ranking-items-with-star-ratings.html
 * http://www.evanmiller.org/how-not-to-sort-by-average-rating.html
+* Dan Harmon for creating/conceptualising Community
+* 6 seasons and a movie!
