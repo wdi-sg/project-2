@@ -2,7 +2,9 @@
 
 This is the repository of my 2nd project from WDI immersive course. This is a full-stack web application, utilising technologies from the front end (HTML,CSS,JS) and back end (node.js, express, many other packages etc).
 
-The idea is a clone from the NBC tv series **Community**. In one of the episodes, the characters are introduced to a social networking application called MeowMeowBeenz (yes, with the Z). The application is basically a glorified rating system, in which people upload their images of themselves in order to be rated from 1 - 5. Chaos ensues (as expected)
+The idea is a clone from the NBC tv series **Community**. In one of the episodes, the characters are introduced to a social networking application called MeowMeowBeenz (yes, with the Z).
+
+The application is basically a glorified rating system, in which people upload their images of themselves in order to be rated from 1 - 5. Chaos ensues (as expected)
 
 Link to wiki page is here : https://en.wikipedia.org/wiki/App_Development_and_Condiments
 
