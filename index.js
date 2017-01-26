@@ -108,6 +108,6 @@ app.get( "/profile", function( req, res ) {
 if ( process.env.NODE_ENV === "test" ) {
   app.listen( 3000 );
 } else
-  app.listen( process.env.PROD_PORT )
+  app.listen( process.env.PORT )
 
 module.exports = app;
