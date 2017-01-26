@@ -2,12 +2,12 @@ require( 'dotenv' ).config( { silent: true } );
 const mongoose = require( 'mongoose' );
 if ( process.env.NODE_ENV === "test" ) {
   console.log( "Test mode: using test db, debug and morgan logger" )
-  mongoose.connect( 'mongodb://localhost/barterFly-test' )
   var debug = require( "debug" );
   var logger = require( "morgan" );
-} else {
-  mongoose.connect( process.env.MONGODB_URI );
-};
+}
+mongoose.connect( process.env.MONGODB_URI ||
+  'mongodb://localhost/barterFly-test' );
+
 mongoose.Promise = global.Promise;
 
 const express = require( "express" );
