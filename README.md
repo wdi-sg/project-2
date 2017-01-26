@@ -77,6 +77,7 @@ Just me
 ## References and Acknowledgments:
 
 * For my rating algorithm, I used a Dirichlet prior distribution algo derived from this particular website. I did not derive it but merely implemented the formula derived by evan miller.
+![Image of formula](public/assets/wilsonformula.jpg)
 * http://www.evanmiller.org/ranking-items-with-star-ratings.html
 * http://www.evanmiller.org/how-not-to-sort-by-average-rating.html
 * Dan Harmon for creating/conceptualising Community
