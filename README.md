@@ -1,65 +1,42 @@
-# Your Project Name
+# BuszWatch
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+This project works uses data from an external API from the Land Transport Authority of Singapore for buses and google maps to plot the location of buses and gives estimated arrival times of buses.
 
 ## Getting Started
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+Clone the folder to your local disk and run the following code to execute
+
+node index.js
 
 ### Prerequisites
 
-What is needed to install and run the project, how do we install them
+Before executing the application, run the following code in install dependencies
 
-```
-Code example
-```
+npm install
 
 ### How to Use
 
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+Run the application by using the code above. Enter authentication details. If you are a first time user, click on signup and enter your details. If you are a returning user, enter your e-mail id and password to enter into the site.
 
+If you have added route cards to your profile already, they are available for you to view. From here you can check the estimated time of arrival of your bus and see the actual location on the map.
 
-```
-Code example
-```
-
-More steps...
-
-```
-until finished
-```
-
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
+If you are a new user, click on add route to add a new route to your profile. Select the route number and the bus stop at which you want to board the bus. the card will get added to your profile. Each time you log in again, the card will be available for you to view
 
 ## Live Version
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+The application is deployed on heroku and can be found on the following link
+https://buszwatch.herokuapp.com/
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
+Following are some ofthe packages used in the execution of the application
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
-
-## Workflow
-
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+* [jQuery](http://jquery.com/)
+* Express
+* Node
+* Materialize-css
+* Passport
 
 ## Authors
 
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+Just Me!
