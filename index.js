@@ -22,9 +22,7 @@ var io = require('socket.io').listen(aserver)
 global.io = io
 
 
-const server = aserver.listen(process.env.PORT || 3000, () => {
-  console.log('Server up and listening to port 3000')
-})
+
 
 require('dotenv').config({silent: true})
 
@@ -59,7 +57,6 @@ app.locals = {
   dateCheck: tools.dateCheck
 }
 
-
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
@@ -69,8 +66,8 @@ app.use('/auth', authRoutes)
 app.use('/user', userRoutes)
 app.use('/event', eventRoutes)
 
-app.get('/', function (req, res) {
-  res.redirect('/event')
+const server = aserver.listen(process.env.PORT || 3000, () => {
+  console.log('Server up and listening to port 3000')
 })
 
 io.on('connection', function (socket) {

@@ -36,7 +36,6 @@ let eventController = {
       }
     }
     , (err, results) => {
-      console.log(results)
       if (err) {
         req.flash('Could not retreive events.')
         res.redirect('/')
@@ -98,7 +97,6 @@ let eventController = {
         if (!req.user) {
           cb()
         } else {
-          console.log(req.user.id)
           Participant.findOne({user: req.user.id, event: req.params.id}, cb)
         }
       },
@@ -106,13 +104,10 @@ let eventController = {
         Participant.find({event: req.params.id}).populate('user').exec(cb)
       }
     }, (err, results) => {
-      console.log('SHOW', results)
-
       if (!results.event) {
         eventController.search(req, res)
         return
       }
-      console.log('Event Show', results)
       res.render('event/show', {results: results, user: req.user})
     })
   },
@@ -156,7 +151,6 @@ let eventController = {
       location: req.body.location,
       description: req.body.description
     }, (err, editedEvent) => {
-      console.log(req)
       res.redirect(`/event/${req.params.id}`)
     })
   },

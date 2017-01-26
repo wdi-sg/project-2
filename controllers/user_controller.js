@@ -10,7 +10,6 @@ let userController = {
     res.render('user/signup', {user: req.user})
   },
   create: function (req, res) {
-    //console.log(req)
     User.create({
       name: req.body.name,
       email: req.body.email,
@@ -48,8 +47,6 @@ let userController = {
       }
 
     ], (err, result) => {
-    //  console.log(result)
-      //console.log('result 2', result[2])
       if (err) {
         req.flash('error', 'Please login to proceed.')
         res.redirect('/auth/login')

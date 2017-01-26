@@ -1,62 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/style.css">
+<head>
+  <meta charset='utf-8'>
+  <title></title>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>
+  <link rel='stylesheet' href='/style.css'>
 
-        <script
-      src="https://code.jquery.com/jquery-3.1.1.min.js"
-      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-      crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src="/js/moment.min.js"></script>
-        <script src="/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="/js/application.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
-  </head>
-  <body>
-    <% include partials/navbar %>
-    <%- body%>
+  <script
+  src='https://code.jquery.com/jquery-3.1.1.min.js'
+  integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8='
+  crossorigin='anonymous'></script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous'></script>
+  <script src='/js/application.js'></script>
+  <script src='/socket.io/socket.io.js'></script>
+</head>
+<body>
+  <% include partials/navbar %>
+  <%- body%>
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
+  <!-- Modal -->
+  <div class='modal fade' id='exampleModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+    <div class='modal-dialog' role='document'>
+      <div class='modal-content'>
 
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+          <span aria-hidden='true'>&times;</span>
+        </button>
 
 
 
-          <div class="modal-body">
-              <% include ./partials/alerts %>
-              <form action="/auth/login" method="POST">
-                <div class="form-group">
-                  <label for="authEmail">Email</label>
-                  <input id="authEmail" class="form-control" type="email" name="email">
-                </div>
+        <div class='modal-body'>
+          <% include ./partials/alerts %>
+          <form action='/auth/login' method='POST'>
+            <div class='form-group'>
+              <label for='authEmail'>Email</label>
+              <input id='authEmail' class='form-control' type='email' name='email'>
+            </div>
 
-                <div class="form-group">
-                  <label for="authPassword">Password</label>
-                  <input id="authPassword" class="form-control" type="password" name="password">
-                </div>
-                  <button class=" col-md-12 btn btn-primary">Log In</button>
-              </form>
-              <form action="/user/signup" method="GET">
-              <button class="col-md-12 btn btn-danger">Sign Up</button>
-            </from>
-          </div>
-          <div class='modal-footer'>
-          </div>
-
+            <div class='form-group'>
+              <label for='authPassword'>Password</label>
+              <input id='authPassword' class='form-control' type='password' name='password'>
+            </div>
+            <button class=' col-md-12 btn btn-primary'>Log In</button>
+          </form>
+          <form action='/user/signup' method='GET'>
+            <button class='col-md-12 btn btn-danger'>Sign Up</button>
+          </from>
         </div>
+        <div class='modal-footer'>
+        </div>
+
       </div>
     </div>
+  </div>
 
 
-  </body>
+</body>
 </html>

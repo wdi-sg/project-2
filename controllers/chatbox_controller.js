@@ -11,10 +11,6 @@ let chatboxController = {
       return
     }
     Chatbox.find({ $or:[ {$and: [{firstuser: req.user.id}, {seconduser: req.body.id}]}, {$and: [{firstuser: req.body.id}, {seconduser: req.user.id}]}]}).exec((err, chatboxs) => {
-      console.log('user', req.user.id);
-      console.log('req', req.body.id);
-      console.log('chatbox', chatboxs)
-    //  console.log('chatbox', chatboxs)
       if (!chatboxs || chatboxs.length === 0) {
         Chatbox.create({
           firstuser: req.user.id,

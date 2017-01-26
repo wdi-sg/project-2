@@ -4,64 +4,64 @@
 <div class='container content'>
   <div class='col-md-6'>
   </div>
-<div class='col-md-6 white'>
-  <% if (messages.length >0) { %>
-  <div id="messages">
-    <% messages.forEach( (message)=> {%>
-      <% if (message.sender.equals(user.id)) {%>
-        <div class='col-md-12 panel panel-default text-right'>
-        <p> <%= message.content%></p>
-        <p class='time'><%= dateShow(message.date)%></p>
+  <div class='col-md-6 white'>
+    <% if (messages.length >0) { %>
+      <div id="messages">
+        <% messages.forEach( (message)=> {%>
+          <% if (message.sender.equals(user.id)) {%>
+            <div class='col-md-12 panel panel-default text-right'>
+              <p> <%= message.content%></p>
+              <p class='time'><%= dateShow(message.date)%></p>
+            </div>
+            <%} else {%>
+              <div class='col-md-12 panel panel-default text-left grey'>
+                <p> <%= message.content%></p>
+              </div>
+              <%}%>
+              <%})%>
+            </div>
+
+
+            <% } %>
+
+
+          </div>
+          <div class='col-md-6 col-md-offset-6'>
+            <form action="/user/message/<%= req.params.id%>" method="POST">
+
+
+              <div class="form-group col-md-10">
+                <!-- <label for="eventName">Name</label> -->
+                <input id="messageContent"  class='form-control' type="string" name="content" placeholder="Enter your message here">
+              </div>
+
+
+              <div class="form-group col-md-1">
+                <input class="btn btn-primary" type="submit">
+              </div>
+
+            </form>
+          </div>
+
         </div>
-      <%} else {%>
-        <div class='col-md-12 panel panel-default text-left grey'>
-          <p> <%= message.content%></p>
-        </div>
-      <%}%>
-    <%})%>
-  </div>
+
+        <script>
+        let socket = io();
 
 
-  <% } %>
+        socket.on(`chatmessages<%= req.params.id %>`, function(msg) {
+
+          if(messages[0].chatbox.firstuser === req.user.id || messages[0].chatbox.seconduser === req.user.id  ) {
+            if (msg.sender == '<%=user.id%>') {
+              $('#messages').append($("<div class='col-md-12 panel panel-default text-right'>").text(n));
+            } else {
+              $('#messages').append($("<div class='col-md-12 panel panel-default text-left'>").text(msg.content));
+            }
+          }
+
+        });
 
 
-</div>
-<div class='col-md-6 col-md-offset-6'>
-  <form action="/user/message/<%= req.params.id%>" method="POST">
+        $('.white').scrollTop(60 * $('#messages div').length)
 
-
-    <div class="form-group col-md-10">
-      <!-- <label for="eventName">Name</label> -->
-      <input id="messageContent"  class='form-control' type="string" name="content" placeholder="Enter your message here">
-    </div>
-
-
-    <div class="form-group col-md-1">
-      <input class="btn btn-primary" type="submit">
-    </div>
-
-  </form>
-</div>
-
-</div>
-
-<script>
- let socket = io();
-
-
- socket.on(`chatmessages<%= req.params.id %>`, function(msg) {
-
-   if(messages[0].chatbox.firstuser === req.user.id || messages[0].chatbox.seconduser === req.user.id  ) {
-   if (msg.sender == '<%=user.id%>') {
-     $('#messages').append($("<div class='col-md-12 panel panel-default text-right'>").text(n));
-   } else {
-     $('#messages').append($("<div class='col-md-12 panel panel-default text-left'>").text(msg.content));
-   }
- }
-
-});
-
-
-$('.white').scrollTop(60 * $('#messages div').length)
-
-</script>
+        </script>
