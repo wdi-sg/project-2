@@ -22,10 +22,9 @@ var app = require('express')()
 var aserver = require('http').createServer(app)
 var io = require('socket.io').listen(aserver)
 global.io = io
-// const http = require('http').Server(app);
-// const io = require('socket.io')(http);
 
-const server = aserver.listen(3000, () => {
+
+const server = aserver.listen(process.env.PORT || 3000, () => {
   console.log('Server up and listening to port 3000')
 })
 
