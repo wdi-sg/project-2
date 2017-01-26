@@ -30,7 +30,7 @@ const isLoggedIn = require( './middleware/isLoggedIn' );
 
 const Interface = require( './controllers/interface' );
 
-const Item = require( './models/item' );
+const Changetracker = require( './models/changetracker' );
 
 app.set( "view engine", "ejs" );
 
@@ -63,6 +63,19 @@ app.use( function( req, res, next ) {
     req.safeUserData = userData;
   }
   next();
+} );
+
+app.use( function( req, res, next ) {
+  // makes change tracker if tracker doesn't exist
+  Changetracker.find( {}, ( err, response ) => {
+    if ( !response[0] ) Changetracker.create( {
+      identifier: "tracker"
+    }, () => {
+      next();
+    } )
+    else
+      next();
+  } )
 } );
 
 if ( process.env.NODE_ENV === "test" ) {

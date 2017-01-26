@@ -29,8 +29,8 @@
       <thead class = 'thead thead-inverse'>
         <tr>
           <th>Name</th>
-          <th>Description</th>
-          <th>Image</th>
+          <th class="hidden-xs hidden-sm" >Description</th>
+          <th class="hidden-xs">Image</th>
           <th>Cash Value Estimate</th>
           <th></th>
         </tr>
@@ -39,17 +39,17 @@
         <% items.forEach(( item) => { %>
         <tr>
           <td><%= item.name%></td>
-          <td><%= item.description%></td>
-          <td>
+          <td class="hidden-xs hidden-sm" ><%= item.description%></td>
+          <td class="hidden-xs">
             <img src="<%= item.imagelink%>" alt=<%= item.name%> style="width:10em;height:auto;">
           </td>
           <td><%= item.valuation%></td>
           <td class >
             <form method='POST' action='/interface/trade/create/<%= item._id%>'>
-              <button type="submit" class="btn btn-sm col-sm-12 buttonVertMargin">
+              <button type="submit" class="btn btn-sm col-xs-12 buttonVertMargin">
               Make An Offer</button>
             </form>
-            <button type = "button" class = "btn btn-sm col-sm-12 buttonVertMargin"
+            <button type = "button" class = "btn btn-sm col-xs-12 buttonVertMargin"
             onclick = "window.location.href = '/interface/item/show/<%= item._id%>' ">
             Details</button>
           </td>

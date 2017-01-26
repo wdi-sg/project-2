@@ -1,5 +1,4 @@
 const mongoose = require( 'mongoose' );
-const bcrypt = require( 'bcryptjs' );
 
 const ItemSchema = new mongoose.Schema( {
   _owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },

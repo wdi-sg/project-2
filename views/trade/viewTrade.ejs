@@ -51,13 +51,14 @@
       %>
       
       <br>
-      <p class="text-center"> You have requested for agreement from trade partner; trade management is locked.</p>
+      <p class="text-center"> You have requested for agreement from your trade partner; trade management is locked.</p>
       <br>
       <form method='POST' action='/interface/trade/cancelagreedby/<%= trade._id%>/<%= currentUser._id%>'>
         <button type="submit" class = "btn btn-block center-block" style = "font-size:1.2em">
         Cancel Request For Agreement</button>
       </form>
-      
+      <br>
+      <br>
       <% } %>
       
       <%
@@ -80,7 +81,8 @@
         <button type="submit" class = "btn btn-block center-block" style = "font-size:1.2em">
         Make Changes To Trade (cancels request)</button>
       </form>
-      
+      <br>
+      <br>
       <% } %>
       <div class="panel panel-info">
         <div class="panel-heading"><h4>Discussion</h4></div>

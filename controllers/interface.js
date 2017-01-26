@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require( '../models/user' );
 const Item = require( '../models/item' );
 const Trade = require( '../models/trade' );
+const Changetracker = require( '../models/changetracker' );
 const multer = require( 'multer' );
 const cloudinary = require( 'cloudinary' );
 const upload = multer( { dest: './uploads/' } );
@@ -27,9 +28,27 @@ router.get( '/item/create', function( req, res ) {
 
 //item create
 router.post( '/item/create', upload.single( 'imageFile' ), function( req, res ) {
-  cloudinary.uploader.upload( req.file.path, function( cloudinaryData ) {
-    req.body.imagelink = cloudinaryData.secure_url;
-    req.body.imagePublicId = cloudinaryData.public_id;
+  if ( req.file ) {
+    // make item listing with image
+    cloudinary.uploader.upload( req.file.path, function( cloudinaryData ) {
+      req.body.imagelink = cloudinaryData.secure_url;
+      req.body.imagePublicId = cloudinaryData.public_id;
+      req.body._owner = req.user._id;
+      Item.create( req.body, ( err, newItem ) => {
+        if ( err ) {
+          req.flash( 'error', err.toString() );
+          res.redirect( '/interface/item/create' )
+          return;
+        }
+        User.findById( req.user._id, ( err, user ) => {
+          user.items.push( newItem._id );
+          user.save();
+          res.redirect( "/interface" )
+        } )
+      } );
+    } );
+  } else {
+    //make item listing without image
     req.body._owner = req.user._id;
     Item.create( req.body, ( err, newItem ) => {
       if ( err ) {
@@ -43,7 +62,7 @@ router.post( '/item/create', upload.single( 'imageFile' ), function( req, res ) 
         res.redirect( "/interface" )
       } )
     } );
-  } );
+  }
 } );
 
 //view item details
@@ -71,6 +90,7 @@ router.get( "/item/edit/:id", ( req, res ) => {
 //item edit
 router.put( "/item/edit/:id", upload.single( 'imageFile' ), ( req, res ) => {
   if ( req.file.path ) {
+    // edit with new image
     Item.findById( req.params.id, ( err, item ) => {
       cloudinary.uploader.destroy( item.imagePublicId, () => {
         cloudinary.uploader.upload(
@@ -96,6 +116,7 @@ router.put( "/item/edit/:id", upload.single( 'imageFile' ), ( req, res ) => {
       } );
     } );
   } else {
+    //edit keeping old image
     Item.findOneAndUpdate( {
         _id: req.params.id,
         _owner: req.user._id
@@ -117,8 +138,8 @@ router.put( "/item/edit/:id", upload.single( 'imageFile' ), ( req, res ) => {
 //item delete 
 router.delete( '/item/delete/:id', function( req, res ) {
   Item.findById( req.params.id, ( err, item ) => {
-    cloudinary.uploader.destroy( item.imagePublicId, (result) => {
-      console.log("cloudinary destroy result:",result)
+    cloudinary.uploader.destroy( item.imagePublicId, ( result ) => {
+      console.log( "cloudinary destroy result:", result )
       Item.findOneAndRemove( {
         _id: req.params.id,
         _owner: req.user._id
@@ -150,12 +171,24 @@ router.post( '/trade/create/:itemid', function( req, res ) {
           item.save();
           Trade.findById( newTrade._id )
             .exec( ( err, trade ) => {
-              req.flash( "success",
-                "New trade has been created with the item desired"
-              )
-              res.redirect(
-                "/interface/trade/edit/" +
-                newTrade._id )
+              // add other user to changetracker
+              Changetracker.findOne( {
+                identifier: "tracker"
+              }, ( err, tracker ) => {
+                if ( !tracker.usersWithChanges.includes(
+                    itemOwner._id.toString() ) ) {
+                  tracker.usersWithChanges.push(
+                    itemOwner._id.toString() );
+                  tracker.save();
+                }
+                req.flash( "success",
+                  "New trade has been created with the item desired"
+                )
+                res.redirect(
+                  "/interface/trade/edit/" +
+                  newTrade._id
+                )
+              } )
             } )
         } )
       } )
@@ -171,25 +204,40 @@ router.delete( '/trade/delete/:tradeid', function( req, res ) {
       firstUser.trades.splice( tradeIndex, 1 );
       firstUser.save();
       User.findById( trade.secondUser, ( err, secondUser ) => {
-        let tradeIndex = secondUser.trades.indexOf(
-          trade._id )
-        secondUser.trades.splice( tradeIndex, 1 );
-        secondUser.save();
-        //remove trade from items, no callback or error check
-        trade.firstUserItems.forEach( ( itemid ) => {
-          Item.findById( itemid, ( err, item ) => {
-            item._trade = null
-            item.save()
+        let otherTraderId = ""
+        if ( firstUser._id.toString() === req.user._id.toString() )
+          otherTraderId = secondUser._id.toString()
+        else
+          otherTraderId = firstUser._id.toString()
+        Changetracker.findOne( {
+          identifier: "tracker"
+        }, ( err, tracker ) => {
+          if ( !tracker.usersWithChanges.includes(
+              otherTraderId.toString() ) ) {
+            tracker.usersWithChanges.push(
+              otherTraderId.toString() );
+            tracker.save();
+          }
+          let tradeIndex = secondUser.trades.indexOf(
+            trade._id )
+          secondUser.trades.splice( tradeIndex, 1 );
+          secondUser.save();
+          //remove trade from items, no callback or error check
+          trade.firstUserItems.forEach( ( itemid ) => {
+            Item.findById( itemid, ( err, item ) => {
+              item._trade = null
+              item.save()
+            } )
           } )
-        } )
-        trade.secondUserItems.forEach( ( itemid ) => {
-          Item.findById( itemid, ( err, item ) => {
-            item._trade = null
-            item.save()
+          trade.secondUserItems.forEach( ( itemid ) => {
+            Item.findById( itemid, ( err, item ) => {
+              item._trade = null
+              item.save()
+            } )
           } )
-        } )
-        Trade.findOneAndRemove( { _id: trade._id }, () => {
-          res.redirect( "/interface" )
+          Trade.findOneAndRemove( { _id: trade._id }, () => {
+            res.redirect( "/interface" )
+          } )
         } )
       } )
     } )
@@ -225,10 +273,13 @@ router.get( '/trade/add/offered/:tradeid', function( req, res ) {
 router.post( '/trade/add/offered/:tradeid/:itemid', function( req, res ) {
   Trade.findById( req.params.tradeid, ( err, trade ) => {
     //check which array in the trade to add item to
+    let otherTraderId = "";
     if ( req.user._id.toString() === trade.firstUser._id.toString() ) {
       trade.firstUserItems.push( req.params.itemid );
+      otherTraderId = trade.secondUser._id
     } else {
       trade.secondUserItems.push( req.params.itemid );
+      otherTraderId = trade.firstUser._id
     }
     trade.save();
     Item.findById( req.params.itemid, ( err, item ) => {
@@ -243,7 +294,17 @@ router.post( '/trade/add/offered/:tradeid/:itemid', function( req, res ) {
         req.flash( "success",
           "Item added from your inventory." )
         res.redirect( "/interface/trade/edit/" + req.params.tradeid );
-        return;
+        Changetracker.findOne( {
+          identifier: "tracker"
+        }, ( err, tracker ) => {
+          if ( !tracker.usersWithChanges.includes(
+              otherTraderId.toString() ) ) {
+            tracker.usersWithChanges.push(
+              otherTraderId.toString() );
+            tracker.save();
+          }
+          return;
+        } )
       }
     } )
   } )
@@ -267,8 +328,10 @@ router.post( '/trade/add/desired/:tradeid/:itemid', function( req, res ) {
     //check which array in the trade to add item to
     if ( req.user._id.toString() === trade.firstUser._id.toString() ) {
       trade.secondUserItems.push( req.params.itemid );
+      otherTraderId = trade.secondUser._id
     } else {
       trade.firstUserItems.push( req.params.itemid );
+      otherTraderId = trade.firstUser._id
     }
     trade.save();
     Item.findById( req.params.itemid, ( err, item ) => {
@@ -280,10 +343,20 @@ router.post( '/trade/add/desired/:tradeid/:itemid', function( req, res ) {
       } else {
         item._trade = trade._id;
         item.save();
-        req.flash( "success",
-          "Item added from trade partner's inventory." )
-        res.redirect( "/interface/trade/edit/" + req.params.tradeid );
-        return;
+        Changetracker.findOne( {
+          identifier: "tracker"
+        }, ( err, tracker ) => {
+          if ( !tracker.usersWithChanges.includes(
+              otherTraderId.toString() ) ) {
+            tracker.usersWithChanges.push(
+              otherTraderId.toString() );
+            tracker.save();
+          }
+          req.flash( "success",
+            "Item added from trade partner's inventory." )
+          res.redirect( "/interface/trade/edit/" + req.params.tradeid );
+          return;
+        } )
       }
     } )
   } )
@@ -297,6 +370,21 @@ router.delete( '/trade/delete/:tradeid/:itemid', function( req, res ) {
         trade.firstUserItems.splice( idx, 1 )
         trade.save()
       }
+      if ( req.user._id.toString() === trade.firstUser._id.toString() ) {
+        otherTraderId = trade.secondUser._id
+      } else {
+        otherTraderId = trade.firstUser._id
+      }
+      Changetracker.findOne( {
+        identifier: "tracker"
+      }, ( err, tracker ) => {
+        if ( !tracker.usersWithChanges.includes(
+            otherTraderId.toString() ) ) {
+          tracker.usersWithChanges.push(
+            otherTraderId.toString() );
+          tracker.save();
+        }
+      } )
     } )
     trade.secondUserItems.forEach( ( item, idx ) => {
       if ( item._id.toString() === req.params.itemid.toString() ) {
@@ -308,6 +396,8 @@ router.delete( '/trade/delete/:tradeid/:itemid', function( req, res ) {
       console.log( "item found by item findbyid:", item )
       item._trade = null;
       item.save();
+      req.flash( "success",
+        "Item removed from trade." )
       res.redirect( "/interface/trade/edit/" + req.params.tradeid );
     } )
   } )
@@ -316,10 +406,13 @@ router.delete( '/trade/delete/:tradeid/:itemid', function( req, res ) {
 //add agreement to trade
 router.post( '/trade/agreedby/:tradeid/:userid', function( req, res ) {
   Trade.findById( req.params.tradeid, ( err, trade ) => {
+    let otherTraderId = ""
     if ( trade.firstUser._id.toString() === req.params.userid.toString() ) {
+      otherTraderId = trade.secondUser._id
       trade.firstUserAgreed = true
       trade.save()
     } else {
+      otherTraderId = trade.firstUser._id
       trade.secondUserAgreed = true
       trade.save()
     }
@@ -333,7 +426,17 @@ router.post( '/trade/agreedby/:tradeid/:userid', function( req, res ) {
         } )
       } )
     }
-    res.redirect( "/interface/trade/edit/" + req.params.tradeid );
+    Changetracker.findOne( {
+      identifier: "tracker"
+    }, ( err, tracker ) => {
+      if ( !tracker.usersWithChanges.includes(
+          otherTraderId.toString() ) ) {
+        tracker.usersWithChanges.push(
+          otherTraderId.toString() );
+        tracker.save();
+      }
+      res.redirect( "/interface/trade/edit/" + req.params.tradeid );
+    } )
   } )
 } )
 
@@ -342,13 +445,30 @@ router.post( '/trade/cancelagreedby/:tradeid/:userid', function( req,
   res ) {
   Trade.findById( req.params.tradeid, ( err, trade ) => {
     if ( trade.firstUser._id.toString() === req.params.userid.toString() ) {
+
       trade.firstUserAgreed = false
       trade.save()
     } else {
+
       trade.secondUserAgreed = false
       trade.save()
     }
-    res.redirect( "/interface/trade/edit/" + req.params.tradeid );
+    let otherTraderId = ""
+    if ( trade.firstUser._id.toString() === req.user._id.toString() )
+      otherTraderId = trade.secondUser._id;
+    else
+      otherTraderId = trade.firstUser._id;
+    Changetracker.findOne( {
+      identifier: "tracker"
+    }, ( err, tracker ) => {
+      if ( !tracker.usersWithChanges.includes(
+          otherTraderId.toString() ) ) {
+        tracker.usersWithChanges.push(
+          otherTraderId.toString() );
+        tracker.save();
+      }
+      res.redirect( "/interface/trade/edit/" + req.params.tradeid );
+    } )
   } )
 } )
 
@@ -361,10 +481,24 @@ router.post( '/trade/addchat/:tradeid', function( req, res ) {
         trade.discussion + "<br>" + user.name + ": " + req.body
         .chattext;
       trade.save();
-      res.redirect( "/interface/trade/edit/" + trade._id )
+      if ( trade.firstUser._id.toString() === req.user._id.toString() )
+        otherTraderId = trade.secondUser._id;
+      else
+        otherTraderId = trade.firstUser._id;
+      Changetracker.findOne( {
+        identifier: "tracker"
+      }, ( err, tracker ) => {
+        if ( !tracker.usersWithChanges.includes(
+            otherTraderId.toString() ) ) {
+          tracker.usersWithChanges.push(
+            otherTraderId.toString() );
+          tracker.save();
+        }
+        res.redirect( "/interface/trade/edit/" + trade._id )
+      } );
     } );
   } );
-} );
+} )
 
 //change sweetener in trade
 router.post( '/trade/changesweetener/:tradeid', function( req, res ) {
@@ -379,9 +513,42 @@ router.post( '/trade/changesweetener/:tradeid', function( req, res ) {
         sweetener = -sweetener
       trade.dealSweetener = sweetener
       trade.save();
-      res.redirect( "/interface/trade/edit/" + trade._id )
+      if ( trade.firstUser._id.toString() === req.user._id.toString() )
+        otherTraderId = trade.secondUser._id;
+      else
+        otherTraderId = trade.firstUser._id;
+      Changetracker.findOne( {
+        identifier: "tracker"
+      }, ( err, tracker ) => {
+        if ( !tracker.usersWithChanges.includes(
+            otherTraderId.toString() ) ) {
+          tracker.usersWithChanges.push(
+            otherTraderId.toString() );
+          tracker.save();
+        }
+        res.redirect( "/interface/trade/edit/" + trade._id )
+      } );
     } );
   } );
 } );
+
+//respond to ajax poll of whether user has an update
+router.get( '/pollforchanges/', function( req, res ) {
+  Changetracker.findOne( {
+    identifier: "tracker"
+  }, ( err, tracker ) => {
+    let changes = tracker.usersWithChanges;
+    let userid = req.user.id.toString();
+    if ( changes.includes( userid ) ) {
+      let index = changes.indexOf( userid )
+      tracker.usersWithChanges.splice( index, 1 )
+      tracker.save()
+      req.flash( "success", "A trade has updated" )
+      res.json( { "changefound": "true" } )
+    } else {
+      res.json( { "changefound": "false" } )
+    }
+  } )
+} )
 
 module.exports = router;

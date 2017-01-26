@@ -2,27 +2,27 @@
 let ongoingTrades = [];
 let finishedTrades = [];
 user.trades.forEach( ( trade ) => {
-if ( trade.secondUser._id.toString() === user.id.toString() ) {
-//if current user is seconduser, swap first and second user in trade
-let swapHolder = {};
-swapHolder = trade.firstUser;
-trade.firstUser = trade.secondUser;
-trade.secondUser = swapHolder;
-swapHolder = trade.firstUserItems;
-trade.firstUserItems = trade.secondUserItems;
-trade.secondUserItems = swapHolder;
-}
-if ( !trade.firstUserAgreed || !trade.secondUserAgreed )
-ongoingTrades.push( trade );
-else finishedTrades.push( trade );
+  if ( trade.secondUser._id.toString() === user.id.toString() ) {
+    //if current user is seconduser, swap first and second user in trade
+    let swapHolder = {};
+    swapHolder = trade.firstUser;
+    trade.firstUser = trade.secondUser;
+    trade.secondUser = swapHolder;
+    swapHolder = trade.firstUserItems;
+    trade.firstUserItems = trade.secondUserItems;
+    trade.secondUserItems = swapHolder;
+  }
+  if ( !trade.firstUserAgreed || !trade.secondUserAgreed )
+    ongoingTrades.push( trade );
+  else finishedTrades.push( trade );
 } )
 
 let availableItems = [];
 let pastItems = [];
 user.items.forEach( ( item ) => {
-if ( item.tradedaway === true )
-pastItems.push( item );
-else availableItems.push( item );
+  if ( item.tradedaway === true )
+    pastItems.push( item );
+  else availableItems.push( item );
 } )
 %>
 
@@ -84,9 +84,11 @@ else availableItems.push( item );
                   <button type = "button" class = "btn btn-sm col-xs-12 buttonVertMargin"
                   onclick = "window.location.href = '/interface/item/edit/<%= item._id%>' ">
                   Modify</button>
+                  <% if ( itemTradeStatus === "No") { %>
                   <form method='POST' action='/interface/item/delete/<%= item._id %>?_method=DELETE'>
                     <button type="submit" class="btn btn-sm col-xs-12 buttonVertMargin">Delete</button>
                   </form>
+                  <%}%>
                 </td>
               </tr>
               <% }) %>
