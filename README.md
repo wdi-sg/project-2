@@ -80,8 +80,6 @@ http://buy2getherlah.herokuapp.com
 User stories and task tracking done via trello.
 Bootstrap template created by Bootswatch used as basis to design the site.
 
-
-
 <!-- ## Authors
 
 Did you collaborate with others on this project, list them here

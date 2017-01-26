@@ -33,6 +33,18 @@
       <h3><a href="/products/<%=item._id%>"><%= item.productname %></a></h3>
       <h6> URL: <a href="<%=item.linkforproduct%>">Click to see product in external website</a></h6>
       <h6> Respond By: <%= item.respondby %></h6>
+      <div class="container">
+      <div class="row">
+      <div class="col-xs-2">
+      <h6><%=item.upvote%> Likes!</h6>
+      </div>
+      <div class="col-xs-1">
+      <form class="form-inline" action="/products/<%=item._id%>/?_method=PUT" method="POST">
+      <button class="btn btn-info btn-xs">Like!</button>
+      </form>
+      </div>
+      </div>
+      </div>
       <% if (item.creator.equals(currentUser._id)) { %>
         <a href="/products/<%= item._id %>/edit" class="btn btn-link" role="button">Edit</a>
         <a href="/products/<%= item._id %>" class="btn btn-link" role="button">Delete</a>

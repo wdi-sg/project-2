@@ -24,7 +24,7 @@ router.get('/catalogue', function (req, res) {
       res.redirect('/products/profile')
       return
     }
-    Product.find({}, function (err, items) {
+    Product.find({}).sort({upvote: -1}).exec(function (err, items) {
     // console.log('what is items passed through', items)
       if (err) {
         req.flash('error', 'Cannot find all items.')
@@ -130,6 +130,15 @@ router.get('/:idx/edit', function (req, res) {
       }
       res.render('edit', {data: data, locationlist: locationlist})
     })
+  })
+})
+
+router.put('/:idx', function (req, res) {
+  Product.findByIdAndUpdate(req.params.idx, {$inc: {upvote: 1}}, function (err, data) {
+    if (err) {
+      req.flash('error', err.toString())
+    }
+    res.redirect('/products/catalogue')
   })
 })
 
