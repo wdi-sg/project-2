@@ -28,7 +28,7 @@ const passport = require( './config/passportConfig' );
 // const todosWWWController = require( './controllers/todos_www_controller' );
 
 //custom middleware blocks route or path down route stack if not logged in
-const isLoggedIn = require( './middleware/isLoggedIn.js' );
+const isLoggedIn = require( '/middleware/isLoggedIn' );
 
 const Interface = require( './controllers/interface' );
 
