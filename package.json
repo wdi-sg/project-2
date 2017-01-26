@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV=dev node app.js",
+    "dev": "NODE_ENV=dev nodemon app.js",
     "test": "NODE_ENV=test mocha",
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.0",
