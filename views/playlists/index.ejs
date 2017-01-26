@@ -1,8 +1,7 @@
-<!-- <h1>this is where all the playlists live.</h1>
-<h1>get grooving.</h1> -->
-<h1><%= header %></h1>
-<!-- <a href="/playlists/create"><button class="btn btn-primary" data-toggle="modal" data-target="#myModal">create a playlist</button></a> -->
-<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">create a playlist</button>
+<div class="clearfix">
+  <h1><%= header %></h1>
+  <h2><span class="label label-like pull-left" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> create a playlist</span></h2>
+</div>
 <hr>
 <% playlists.sort((a,b) => b.tracks.length - a.tracks.length).forEach(e => { %>
   <a href=<%= '/playlists/' + e._id %>>
