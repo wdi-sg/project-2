@@ -12,7 +12,7 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash')
-const passport = require('./config/ppConfig')
+const passport = require('./config/ppconfig')
 const isLoggedIn = require('./middleware/isLoggedIn')
 require('dotenv').config({ silent: true })
 
