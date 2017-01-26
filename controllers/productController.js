@@ -48,7 +48,8 @@ router.get('/catalogue/search', function (req, res) {
     Product.find({$or: [{productname: req.query.productname}, {buyerarea: req.query.buyerarea}]}, function (err, items) {
       // console.log('what is items passed through', items)
       if (err) {
-        req.flash('error', 'Cannot find search.')
+        req.flash('error', err.toString())
+        // Cannot find search.
         res.redirect('/products/catalogue')
         return
       }
@@ -86,7 +87,8 @@ router.get('/new', function (req, res) {
     // console.log('what is location', locationlist[0].districts)
     if (err) {
       // return res.send('unsuccessful')
-      req.flash('error', 'Unable to find the page.')
+      req.flash('error', err.toString())
+      // 'Unable to find the page.
       res.redirect('/products/profile')
     }
     res.render('new', {locationlist: locationlist})
@@ -100,7 +102,8 @@ router.get('/:idx', function (req, res) {
   .exec(function (err, data) {
     if (err) {
       // return res.send('unsuccessful')
-      req.flash('error', 'Unable to find the product.')
+      req.flash('error', err.toString())
+      // 'Unable to find the product.'
       res.redirect('/products/profile')
     }
     res.render('product', {data: data})
@@ -111,7 +114,8 @@ router.get('/:idx/edit', function (req, res) {
   console.log('to get the product to edit & location')
   Location.find({}, function (err, locationlist) {
     if (err) {
-      req.flash('error', 'Locations not found.')
+      req.flash('error', err.toString())
+      // 'Locations not found.'
       res.redirect('/products/profile')
     }
     Product.findById(req.params.idx)
@@ -119,7 +123,8 @@ router.get('/:idx/edit', function (req, res) {
     .exec(function (err, data) {
       if (err) {
         // return res.send('unsuccessful')
-        req.flash('error', 'Unable to find the product.')
+        req.flash('error', err.toString())
+        // 'Locations not found.'
         res.redirect('/products/profile')
       }
       res.render('edit', {data: data, locationlist: locationlist})
@@ -134,7 +139,8 @@ router.put('/:idx', function (req, res) {
   .exec(function (err, data) {
     // console.log('getting data to update', data)
     if (err) {
-      req.flash('error', 'Product cannot be updated.')
+      req.flash('error', err.toString())
+      // 'Product cannot be updated.'
     } else {
       data.productname = req.body.productname || data.productname
       data.linkforproduct = req.body.linkforproduct || data.linkforproduct
@@ -144,7 +150,8 @@ router.put('/:idx', function (req, res) {
       data.respondby = req.body.respondby || data.respondby
       data.save(function (err, data) {
         if (err) {
-          req.flash('error', 'Product cannot be saved')
+          req.flash('error', err.toString())
+          // 'Product cannot be saved'
         }
         req.flash('success', 'Product updated.')
       })
