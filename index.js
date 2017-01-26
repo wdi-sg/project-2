@@ -16,7 +16,7 @@ const passport = require('./config/ppConfig')
 const isLoggedIn = require('./middleware/isLoggedIn')
 require('dotenv').config({ silent: true })
 
-mongoose.connect('mongodb://localhost/volenti')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/volenti')
 mongoose.Promise = global.Promise
 
 app.use(express.static(path.join(__dirname, 'public')))
