@@ -5,6 +5,7 @@ const multer = require('multer');
 const User = require('../models/user');
 const Profile = require('../models/profile');
 const fs = require('fs');
+const dirichletAlgo = require('../public/js/dirichlet-algo');
 const storage = multer.memoryStorage();
 const upload = multer({
   storage : storage,
@@ -28,6 +29,7 @@ function fisherYates(arr) {
 router.get('/',function(req,res){
   //need to find other users and put them in this page....
   Profile.find({}).populate('user').exec(function(err,data){
+    let bigRatingsArrDirichletAlgo = [];
     if (err) console.log(err);
     console.log(data);
     data = fisherYates(data);
@@ -39,17 +41,19 @@ router.get('/',function(req,res){
         return value2.rating;
       })
     }).map(function(value,index){
+      bigRatingsArrDirichletAlgo.push(Math.round(dirichletAlgo(value,value.length,5,1.65)));
       let res = value.reduce(function(a,b){
         return (a+b)
       },0)
       return Math.floor(res/(value.length))
     })
-    console.log('this is the array of value from the ratings schemas'.rainbow,bigRatingsArr);
+    console.log('this is the array of values from the ratings schemas using naive expectation'.cyan,bigRatingsArr);
+    console.log('this is the array of values from the ratings schemas using dirichletAlgo'.magenta,bigRatingsArrDirichletAlgo);
     // console.log(binaryImageArr);
     res.render('dashboard', {
       data : data,
       binaryImageArr : binaryImageArr,
-      bigRatingsArr : bigRatingsArr
+      bigRatingsArr : bigRatingsArrDirichletAlgo
     });
   })
 })
@@ -107,14 +111,24 @@ router.get('/profile',function(req,res){
     console.log('look here'.red,data);
     let binaryImage = new Buffer(data.avatar).toString('base64');
     let ratingsArr = data.ratings;
+    let bernoulliStuff = [];
     let reducedVal = 0;
     ratingsArr.map(function(value,index){
+      bernoulliStuff.push(value.rating);
       reducedVal += value.rating;
     })
-    reducedVal = Math.floor(reducedVal/data.ratings.length);
+    let beforeCleanReducedVal = reducedVal/data.ratings.length;
+    reducedVal = Math.round(reducedVal/data.ratings.length);
+    //where K = 5 because there are only 5 ratings...
+    // and z = 1.65 because i want to get a 0.95 confidence interval
+    let afterDirchletAlgo = Math.round(dirichletAlgo(bernoulliStuff,bernoulliStuff.length,5,1.65));
     let loginClean = data.user.loginTime.getTime();
     let logoutClean = data.user.logoutTime ? data.user.logoutTime.getTime() : null;
-    console.log('after applying a reduction... my ratings are : '.cyan,reducedVal);
+    console.log('4 bernoulli stuff'.red,bernoulliStuff);
+    console.log('\nafter applying a normal reduction... my ratings are : '.cyan,beforeCleanReducedVal);
+    console.log('but if I apply a dirichlet algo...'.magenta,dirichletAlgo(bernoulliStuff,bernoulliStuff.length,5,1.65),'\n');
+    console.log('sanitizing reducedVal..'.green,reducedVal);
+    console.log('sanitizing dirchletAlgo..'.red,afterDirchletAlgo);
     console.log('sanitizing loginTime'.yellow,loginClean);
     console.log('sanitizing logoutTime'.blue,logoutClean);
     let ratingsAftLogoutArr = [];
@@ -130,7 +144,7 @@ router.get('/profile',function(req,res){
       data : data,
       binaryImage : binaryImage,
       username : req.user.name,
-      reducedVal : reducedVal,
+      reducedVal : afterDirchletAlgo,
       loginClean : loginClean,
       logoutClean : logoutClean,
       ratingsAftLogoutArr : ratingsAftLogoutArr
