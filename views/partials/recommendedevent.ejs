@@ -1,0 +1,32 @@
+  <div class='panel'>
+<div class='panel-heading'>
+  <h4> Recommended </h4>
+</div>
+<div class='list'>
+  <% if (events[3].length <= 0) {%>
+    <div class='panel'>
+      <p> You have not start any event yet. </p>
+      <a href='/event/new'> Start Your own event now<a>
+    </div>
+  <%} else {%>
+    <%events[3].forEach( (event)=> {%>
+
+        <div class='panel'>
+         <p><span class='h5'><a href='/event/<%= event._id%>'><%= event.name %></a></span>
+           <% if (event.category !== null) {%>
+              <span class='label label-success'><%= event.category%></span>
+           <%}%>
+           <% if (event.vacancy > 0) {%>
+            <span class='label label-warning'><%= event.vacancy%> slots left</span>
+           <%}%>
+
+           <img class='pull-right' src="<%= cloudinary.url(event.creator.avatar, { width: 50, height: 50, crop: 'fill', gravity: 'face', radius: 'max' })%>"></img></p>
+         <p><%= dateShow(event.startDate) %>
+
+       </p>
+        </div>
+
+      <%})%>
+  <% }%>
+</div>
+</div>

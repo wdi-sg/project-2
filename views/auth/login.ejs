@@ -1,0 +1,23 @@
+<div class='login full-vh flex'>
+
+<div class='col-md-5 col-sm-10 col-xs-10'>
+  <% include ../partials/alerts %>
+  <form action='/auth/login' method='POST'>
+    <div class='form-group'>
+      <input id='authEmail' class='form-control' type='email' name='email' placeholder='Email'>
+    </div>
+
+    <div class='form-group'>
+      <input id='authPassword' class='form-control' type='password' name='password' placeholder='Password'>
+    </div>
+
+    <div class='form-group'>
+      <button class='form-control btn btn-primary'>Log in</button>
+    </div>
+  </form>
+  <form action='/user/signup' method='GET'>
+  <button class='form-control btn btn-danger'>Sign Up</button>
+  </from>
+</div>
+
+</div>

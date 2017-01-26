@@ -1,0 +1,41 @@
+{
+  "name": "bfit",
+  "version": "1.0.0",
+  "description": "Fitness and Personal Trainer Web App",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yisheng90/Bfit.git"
+  },
+  "author": "Lee Yi Sheng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yisheng90/Bfit/issues"
+  },
+  "homepage": "https://github.com/yisheng90/Bfit#readme",
+  "engines": {
+    "node": "^7.2.1"
+  },
+  "dependencies": {
+    "async": "^2.1.4",
+    "bcryptjs": "^2.4.0",
+    "body-parser": "^1.16.0",
+    "cloudinary": "^1.5.0",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "express-ejs-layouts": "^2.2.0",
+    "express-session": "^1.14.2",
+    "method-override": "^2.3.7",
+    "mongoose": "^4.7.7",
+    "multer": "^1.2.1",
+    "nodemon": "^1.11.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "socket.io": "^1.7.2"
+  }
+}

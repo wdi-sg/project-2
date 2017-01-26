@@ -1,0 +1,186 @@
+body {
+  height: 100vh;
+    word-wrap:break-word;
+}
+.login {
+  background: url('./img/sport.jpg');
+  background-size: cover;
+}
+
+.brand {
+  color: white;
+    text-shadow: 1px 1px black;
+}
+
+.brand h1 {
+  font-size: 100px;
+}
+
+.brand p {
+  font-size: 15px;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+form {
+  margin: 20px;
+}
+
+.alert {
+  margin: 10px;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+
+.bottom-border {
+    border: 2px solid grey;
+    border-width: 0 0 1px 0;
+    border-radius: 0;
+    box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
+}
+
+.no-border {
+  border: 0;
+  box-shadow: none;
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.half-height {
+  height: 40%;
+}
+
+.three-quarter-height {
+  height: 65%;
+}
+
+.cat-box {
+  height: 20vh;
+  margin: 0;
+}
+
+.event-index {
+  background: url('../img/sport.jpg');
+  background-size: cover;
+}
+
+.full-vh {
+  height:100vh;
+}
+
+.navbar {
+position:fixed;
+top: 0;
+width: 100vw;
+background: rgba(0,0,0,0);
+border:none;
+text-shadow: 1px 1px black;
+}
+
+.h95-vh {
+  height: 90vh;
+}
+
+.dropdown-menu a{
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px;
+
+}
+
+.navbar {
+    z-index: 9999999999;
+}
+
+.content {
+margin-top: 70px;
+}
+
+.background-yellow {
+  position: absolute;
+  background: url('../img/profile.jpg');
+  width: 100vw;
+  z-index: -1;
+  height: 40vh;
+  background-size: cover;
+
+
+}
+
+.panel-heading {
+  background: rgba(0,0,0,0.7);
+  color: white;
+}
+
+.panel {
+  border: none;
+  background: rgba(255,255,255,0.6)
+}
+
+.grey {
+  background-color: rgba(0,0,0,0.4);
+}
+
+.white {
+  background: white;
+  height: 80vh;
+  overflow-y: auto;
+}
+
+.time {
+  font-size: 10px;
+}
+
+footer {
+  position: fixed;
+  width: 100vw;
+  bottom:0;
+  z-index: -1;
+}
+
+button {
+  margin: 5px;
+}
+
+.event-box {
+  margin: 20px;
+  height: 15vh;
+  border: 1px solid grey;
+}
+
+.list {
+  max-height: 50%;
+  overflow-y: auto;
+}
+
+
+.black-trans {
+  background: rgba(0,0,0,0.3)
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.details-content {
+  height: 250px;
+  margin-top: 30px;
+  backgroung: white;
+}

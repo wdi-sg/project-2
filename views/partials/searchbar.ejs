@@ -1,0 +1,13 @@
+<form class='flex' action='/event/cat' method='POST'>
+<div class='search-bar col-md-10'>
+  <select class="form-control col" id="sel1" name="category">
+    <% results.cat.forEach((cat) => { %>
+        <option value='<%=cat.name%>'><%=cat.name%></option>
+    <%})%>
+
+  </select>
+</div>
+
+  <button class='btn btn-default'><span class='glyphicon glyphicon-search'> </span></button>
+
+</form>

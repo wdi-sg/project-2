@@ -1,0 +1,121 @@
+<div class='background-yellow' style='<% if (results.event.image) { %>
+  background: url(<%=cloudinary.url(results.event.image, { width: 1580, height: 800, crop: 'fill', gravity: 'face'})%>)
+<%}%>
+'>
+</div>
+
+<div class='container content'>
+  <% include ../partials/alerts %>
+  <div class='row'>
+  <div class='container'>
+    <div class='col-md-9 panel'>
+      <div><h2><%= results.event.name%></h2>
+        <% if (results.event.vacancy !== undefined) {%>
+        <% if (results.event.vacancy > 0) {%>
+        <span class='label label-warning'><%= results.event.vacancy%> slots left</span>
+        <%} else {%>
+        <span class='label label-danger'>full</span>
+        <%}}else {%>
+        <span class='label label-primary'>no vacancy limits</span>
+        <%}%>
+    </div>
+      <span class='pull-right organiser'>
+        <p>Organised by: <img src='<%=cloudinary.url(results.event.creator.avatar, { width: 50, height: 50, crop: 'fill', gravity: 'face', radius: 'max' })%>'></img></p>
+        <span class='pull-right organisername' style='display:none'><p><%= results.event.creator.name%></p></span>
+      </span>
+
+      <hr>
+      <ul class='h5'>
+        <li>Date: <%= results.event.startDate.toDateString()%> <%= results.event.startDate.toLocaleTimeString()%>   - <%= results.event.endDate.toDateString()%> <%= results.event.endDate.toLocaleTimeString()%> </li>
+
+        <li>Venue: <%= results.event.location%>
+
+        </li>
+
+      </ul>
+      <hr>
+
+      <div class='col-md-3 col-md-offset-9 text-right'>
+          <% if (user) {%>
+            <% if (results.event.creator.equals(user.id)) {%>
+              <a href='/event/<%=results.event._id%>/edit'><button class='btn btn-primary'>Edit</button></a>
+              <a href='/event/<%=results.event._id%>/delete'><button class='btn btn-danger'>Delete</button></a>
+            <%} else if (results.joined !== null){%>
+                <button class='btn btn-danger' disabled>Joined</button>
+                <a href='/event/<%=results.event._id%>/cancel'><button class='btn btn-primary'>Cancel</button></a>
+            <%} else {%>
+              <% if (results.event.vacancy !== 0){%>
+                <a href='/event/<%= results.event._id%>/join'><button class='btn btn-danger'>RSVP</button></a>
+              <% } else {%>
+                <button class='btn btn-danger' disabled>RSVP</button>
+              <%}%>
+           <%}%>
+          <%} else {%>
+              <a href='/auth/login'><button class='btn btn-danger'>Log In to Join</button></a>
+            <%}%>
+        </div>
+      <div class='col-md-12 content h5'>
+        <div class='col-md-6'>
+        Details:
+        <div class='col-md-12 details-content'>
+        <%- simpleFormat(results.event.description) %>
+      </div>
+        </div>
+          <iframe class='col-md-6 details-content'
+          width='300'
+          frameborder='0' style='border:0'
+          src='https://www.google.com/maps/embed/v1/place?key=AIzaSyCPmWIVaLCnyoz6_F88W7RxpGf3-bsJ6mg
+            &q=<%= results.event.location%>' allowfullscreen>
+          </iframe>
+      </div>
+  </div>
+
+
+    <div class='col-md-3 panel'>
+      <h2>Participants</h2>
+      <% results.participants.forEach( (participant)=> { %>
+
+        <div class='panel panel-default '>
+          <form action='/user/profile' method='POST'>
+            <input name='id' hidden value='<%=participant.user._id%>'>
+            <button class='col-md-12 text-left'>
+          <img src='<%=cloudinary.url(participant.user.avatar, { width: 50, height: 50, crop: 'fill', gravity: 'face', radius: 'max' })%>'></img>
+          <strong><%= participant.user.name%></strong>
+
+
+
+
+
+
+          <% if (((Date.now()-participant.joined_at)/3600000) > 48) {%>
+            <p class='text-right'> Joined <%= Math.floor((Date.now()-participant.joined_at)/3600000/24) %> days ago </p>
+          <%} else if (((Date.now()-participant.joined_at)/3600000 > 24)) {%>
+            <p class='text-right'>  Joined a day ago </p>
+            <% } else if (((Date.now()-participant.joined_at)/3600000 >1)) {%>
+              <p class='text-right'> Joined <%= Math.floor((Date.now()-participant.joined_at)/3600000) %> hr ago </p>
+              <% } else if ((Date.now()-participant.joined_at)/36000000 < 0.1){%>
+                <p class='text-right'> Join just now </p>
+              <%} else {%>
+                <p class='text-right'>  Joined <%= Math.floor((Date.now()-participant.joined_at)/3600000*60) %> min ago </p>
+              <%}%>
+            </button>
+                </form>
+
+        </div>
+      <%})%>
+    </div>
+ </div>
+</div>
+</div>
+
+
+</div>
+
+<script>
+$('.organiser').mouseenter( function () {
+  $('.organisername').show()
+})
+.mouseout(function () {
+    $('.organisername').hide()
+})
+</script>
