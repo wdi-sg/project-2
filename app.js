@@ -27,6 +27,9 @@ if (process.env.NODE_ENV === 'test') {
 } else if (process.env.NODE_ENV === 'dev') {
   mongoose.connect('mongodb://localhost/proj2-dev')
   console.log('CONNECTING TO DEV SERVER...'.blue)
+} else {
+  mongoose.connect('mongodb://localhost/proj2-production')
+  console.log('CONNECTING TO PRODUCTION SERVER...'.blue)
 }
 mongoose.Promise = global.Promise
 

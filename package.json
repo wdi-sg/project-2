@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=dev nodemon app.js",
-    "test": "NODE_ENV=test mocha"
+    "dev": "NODE_ENV=dev nodemon app.js",
+    "test": "NODE_ENV=test mocha",
+    "start": "nodemon app.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.0",
@@ -22,9 +23,7 @@
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "serve-favicon": "~2.3.0"
-  },
-  "devDependencies": {
+    "serve-favicon": "~2.3.0",
     "chai": "^3.5.0",
     "colors": "^1.1.2",
     "superagent": "^3.3.2",

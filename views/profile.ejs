@@ -1,6 +1,7 @@
-<h1>welcome back, <%= locals.user.firstName.toLowerCase() %>!</h1>
-<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">create a playlist</button>
-<!-- <a href="/playlists/create"><button class="btn btn-primary">create a playlist</button></a> -->
+<div class="clearfix">
+  <h1>welcome back, <%= locals.user.firstName.toLowerCase() %>!</h1>
+  <h2><span class="label label-like pull-left" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> create a playlist</span></h2>
+</div>
 <hr>
 <% if (playlists.length === 0) { -%>
   <h2>you have not made any playlists. go make some!</h2>
