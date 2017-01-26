@@ -1,0 +1,24 @@
+.contain {
+     position: absolute;
+     width: 100%;
+     top: 40%;
+}
+/*.contain1{
+  position: absolute;
+  width: 50%;
+  top: 40%;
+  left: 25%;
+}*/
+body{
+  text-align: center;
+}
+.card{
+  height: 300px;
+}
+.change{
+  width: 400px;
+  align-items: center;
+}
+.button{
+  align: left;
+}

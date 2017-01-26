@@ -33,7 +33,7 @@ app.get('/profile', isLoggedIn, function(req, res) {
 app.use(passport.initialize());
 app.use(passport.session());
 app.set('view engine', 'ejs');
-
+app.use(express.static(__dirname + '/views'));
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 

@@ -4,24 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+  <link rel='stylesheet' href='/style.css' type='text/css'>
   <title>Document</title>
 </head>
 <body>
-  <h2>Home</h2>
-  <div>
-    <ul>
+  <h2>Welcome to your profile!</h2><br><br><br><br>
+
+  <a class="red lighten-2 waves-effect waves-light col s4 btn" href="/query/create">Add a new Route</a>
+  <a class="red lighten-2 waves-effect waves-light col s4 btn" href="/auth/logout">Logout</a>
+<br><br><br><br>
+  <div class="row">
     <% var busVal = bus;
+    var stopVal = stop
+    console.log(stopVal)
     for(var i=0;i<busVal.length;i++){ %>
-      <li>Bus No : <%=busVal[i].ServiceNo %></li>
-      <li>Bus Stop no : <%=busVal[i].BusStopID %></li>
-      <a href=<%='/query/view/'+busVal[i]._id%>> View </a>
-      <a href=<%='/query/delete/'+busVal[i]._id%>> Remove </a>
+
+      <div class="card hoverable col s3 offset-s1">
+
+
+      <div class="card-title white-text red lighten-2">Route No : <%=busVal[i].ServiceNo %></div>
+      <br>
+      <span class="card-content"><b>Road:</b> <%=stopVal[i][0].RoadName %></span><br><br>
+      <span class="card-content"><b>Description:</b> <%=stopVal[i][0].Description%></span><br><br><br><br>
+
+      <div class="card-action">
+
+
+      <a class="red lighten-2 waves-effect waves-light col s4 btn" href=<%='/query/view/'+busVal[i]._id%>> View </a>
+      <a class="red lighten-2 waves-effect waves-light col s4 offset-m3 btn"href=<%='/query/delete/'+busVal[i]._id%>> Remove </a>
+      </div>
+      </div>
       <% } %>
     </ul>
 </div>
-  <a href="/query/create">Add a new Route</a>
-  <a href="/auth/logout">Logout</a>
 
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 
 </body>
 </html>

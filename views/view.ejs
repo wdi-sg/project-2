@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+  <link rel='stylesheet' href='/style.css' type='text/css'>
   <style>
     #map {
       height: 400px;
@@ -34,15 +37,90 @@
   var t3=t2.split('+')
   var time_bus2 = t3[0] %>
   <div>
-    <ul>
-      <li>Bus No : <%=body.Services[0].ServiceNo %></li>
-      <li>Bus Stop : <%=busStop[0].Description %></li>
-      <li>Road Name : <%=busStop[0].RoadName %></li>
-      <li>Arrival time: <%=time_bus%></li>
-      <li>Next Bus time: <%= time_bus2%></li>
-    </ul>
+    <table class="bordered striped">
+      <tr class="red lighten-2 white-text">
+        <th >Bus No</th>
+        <td><%=body.Services[0].ServiceNo %></td>
+        <th>Bus Stop</th>
+        <td><%=busStop[0].Description %></td>
+        <th>Road Name</th>
+        <td><%=busStop[0].RoadName %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>Next bus</th>
+        <td><%=time_bus%></td>
+        <% if(body.Services[0].NextBus.Load==='Standing Available'){%>
+          <td class="amber"><%=body.Services[0].NextBus.Load%></td>
+        <%}
+        else if(body.Services[0].NextBus.Load==='Seats Available'){%>
+          <td class="light-green"><%=body.Services[0].NextBus.Load%></td>
+        <%}
+        else if(body.Services[0].NextBus.Load==='Limited Standing'){%>
+          <td class="red accent-2"><%=body.Services[0].NextBus.Load%></td>
+        <%}%>
+        <th>Time remaining</th>
+        <% var time2= time_bus.split(':')
+        var hours= parseInt(time2[0])
+        var minutes=parseInt(time2[1])
+        var seconds=parseInt(time2[2])
+        var convert = (hours*60*60) +(minutes*60) + seconds
+
+        var timeNow = new Date()
+        var hourNow = timeNow.getHours()
+        var minuteNow = timeNow.getMinutes()
+        var secondNow = timeNow.getSeconds()
+        var convert1 = (hourNow*60*60)+ (minuteNow*60)+secondNow
+        var diff= convert-convert1
+        var timeRem = Math.round(diff/60)
+        console.log(timeRem)
+        if(timeRem>=0){%>
+        <td><%= timeRem %> mins</td>
+        <%}
+        else{%>
+          <td>0</td>
+        <%}%>
+      </tr>
+      <tr>
+        <th>Subsequent bus</th>
+        <td><%= time_bus2%></td>
+        <% if(body.Services[0].SubsequentBus.Load==='Standing Available'){%>
+          <td class="amber"><%=body.Services[0].SubsequentBus.Load%></td>
+        <%}
+        else if(body.Services[0].SubsequentBus.Load==='Seats Available'){%>
+          <td class="light-green"><%=body.Services[0].SubsequentBus.Load%></td>
+        <%}
+        else if(body.Services[0].SubsequentBus.Load==='Limited Standing'){%>
+          <td class="red accent-2"><%=body.Services[0].SubsequentBus.Load%></td>
+        <%}%>
+
+        <th>Time remaining</th>
+        <% var time3= time_bus2.split(':')
+        var hours1= parseInt(time3[0])
+        var minutes1=parseInt(time3[1])
+        var seconds1=parseInt(time3[2])
+        var convertSub = (hours1*60*60) +(minutes1*60) + seconds1
+        var diff1= convertSub-convert1
+        var timeRemSub = Math.round(diff1/60)
+        if(timeRemSub>=0){%>
+        <td><%= timeRemSub %> mins</td>
+        <%}
+        else{%>
+          <td>0</td>
+        <%}%>
+      </tr>
+    </table>
 </div>
+<br><br>
 <div id="map"></div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 <script>
   function initMap() {
     console.log("entered map")

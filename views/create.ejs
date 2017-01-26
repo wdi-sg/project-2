@@ -3,17 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge"><style>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+  <link rel='stylesheet' href='/style.css' type='text/css'>
+  <style>
     #map {
       height: 400px;
-      width: 100%;
+      width: 80%;
      }
   </style>
   <title>Document</title>
 </head>
 <body>
   <form action="/query/create" method="POST">
-    <div class="form-group">
+    <div class="change">
       <label for="routeNo">Select Route</label>
       <select name='ServiceNo'>
         <% bus.forEach(function(elem){ %>
@@ -23,9 +27,9 @@
 
     </div>
 
-    <div class="form-group">
+    <div class="change offset-m3">
       <label for="BusStopID">Enter Bus Stop</label>
-      <select name='BusStopID'>
+      <select class="offset-m3"name='BusStopID'>
         <% stop.forEach(function(elem){ %>
           <option name='ServiceNo'><%=elem.BusStopID%></option>
         <% })%>
@@ -33,10 +37,15 @@
 
     </div>
 
-    <input class="btn btn-primary" type="submit">
+    <input class="red lighten-2 waves-effect waves-light btn button offset-m1" type="submit">
   </form>
   <div id="map"></div>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
   <script>
+  $(document).ready(function() {
+    $('select').material_select();
+});
     function initMap() {
       console.log("entered map")
       var uluru = {lat: 1.29770970610083, lng: 103.8532247463225};
@@ -55,7 +64,10 @@
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
-
+          var marker = new google.maps.Marker({
+            position: pos,
+            map: map
+          });
           infoWindow.setPosition(pos);
           infoWindow.setContent('Current Location.');
           map.setCenter(pos);
@@ -66,10 +78,7 @@
         // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
       }
-      var marker = new google.maps.Marker({
-        position: pos,
-        map: map
-      });
+
     }
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {

@@ -8,6 +8,29 @@ var passport = require('../config/ppConfig');
 var http= require('http')
 var isLoggedIn = require('../middleware/isLoggedIn');
 
+// router.get('/', isLoggedIn, function(req, res) {
+//   Route.find({user_id: req.user._id}, function(err,bus){
+//     if(err) console.log(error);
+//     callbackFunc(bus)
+//   })
+//   function callbackFunc(bus){
+//     console.log(bus);
+//     var stops=[]
+//     bus.forEach(function(elem){
+//       BusStop.find({BusStopID: elem.BusStopID}, function(err, stop){
+//         if(err) console.log(err);
+//         console.log('bus stops found: ',stop)
+//         stops.push(stop)
+//       })
+//     })
+//     console.log('stops are: ', stops);
+//     callbackFuncView(bus, stops)
+//   }
+//   function callbackFuncView(bus, stop){
+//     res.render('home', {bus:bus, stop: stop})
+//   }
+// });
+var stops=[]
 router.get('/', isLoggedIn, function(req, res) {
   Route.find({user_id: req.user._id}, function(err,bus){
     if(err) console.log(error);
@@ -15,7 +38,20 @@ router.get('/', isLoggedIn, function(req, res) {
   })
   function callbackFunc(bus){
     console.log(bus);
-    res.render('home', {bus:bus})
+    bus.forEach(function(elem){
+      BusStop.find({BusStopID: elem.BusStopID}, function(err, stop){
+        if(err) console.log(err);
+        console.log('calling callback view');
+        callbackFuncView(bus, stop)
+        console.log('stops after return is ', stops);
+      })
+    })
+    res.render('home', {bus:bus, stop: stops})
+  }
+  function callbackFuncView(bus, stop){
+    console.log('stop is ', stop);
+    console.log('stops is ', stops);
+     return stops.push(stop)
   }
 });
 
@@ -88,8 +124,6 @@ router.get('/create', function(req, res) {
     stopList=stop
     res.render('create', {bus:busList, stop: stopList })
   };
-  console.log(busList);
-  console.log(stopList);
 
 });
 
