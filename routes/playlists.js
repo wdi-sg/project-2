@@ -212,6 +212,7 @@ router.get('/:playlistId', (req, res) => {
         const options = {path: 'tracks.contributor', model: 'User'}
         Playlist.populate(doc, options, (err, playlist) => {
           // if (logging) console.log(JSON.stringify(doc, null, 4).blue)
+          // if (logging) console.log(JSON.stringify(req.user, null, 4).blue)
           res.render('playlists/single', {title: doc.name, playlist: playlist})
         })
       }
