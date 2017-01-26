@@ -4,7 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "NODE_ENV=test node_modules/mocha/bin/mocha"
+  },
+  "engines": {
+    "node" : "^7.3.0"
   },
   "author": "",
   "license": "ISC",
