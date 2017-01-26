@@ -2,27 +2,27 @@
 let ongoingTrades = [];
 let finishedTrades = [];
 user.trades.forEach( ( trade ) => {
-  if ( trade.secondUser._id.toString() === user.id.toString() ) {
-    //if current user is seconduser, swap first and second user in trade
-    let swapHolder = {};
-    swapHolder = trade.firstUser;
-    trade.firstUser = trade.secondUser;
-    trade.secondUser = swapHolder;
-    swapHolder = trade.firstUserItems;
-    trade.firstUserItems = trade.secondUserItems;
-    trade.secondUserItems = swapHolder;
-  }
-  if ( !trade.firstUserAgreed || !trade.secondUserAgreed )
-    ongoingTrades.push( trade );
-  else finishedTrades.push( trade );
+if ( trade.secondUser._id.toString() === user.id.toString() ) {
+//if current user is seconduser, swap first and second user in trade
+let swapHolder = {};
+swapHolder = trade.firstUser;
+trade.firstUser = trade.secondUser;
+trade.secondUser = swapHolder;
+swapHolder = trade.firstUserItems;
+trade.firstUserItems = trade.secondUserItems;
+trade.secondUserItems = swapHolder;
+}
+if ( !trade.firstUserAgreed || !trade.secondUserAgreed )
+ongoingTrades.push( trade );
+else finishedTrades.push( trade );
 } )
 
 let availableItems = [];
 let pastItems = [];
 user.items.forEach( ( item ) => {
-  if ( item.tradedaway === true )
-    pastItems.push( item );
-  else availableItems.push( item );
+if ( item.tradedaway === true )
+pastItems.push( item );
+else availableItems.push( item );
 } )
 %>
 
@@ -46,7 +46,8 @@ user.items.forEach( ( item ) => {
         </div>
       </div>
       <div class="panel panel-info">
-        <div class="panel-heading" id="onOffer"><h4>Your items on offer</h4></div>
+      <a class="anchor" id ="onOffer"></a>
+        <div class="panel-heading" ><h4>Your items on offer</h4></div>
         <div class="panel-body">
           <table class="table ">
             <thead class = 'thead thead-inverse'>
@@ -101,7 +102,8 @@ user.items.forEach( ( item ) => {
       </div>
       
       <div class="panel panel-info">
-        <div class="panel-heading" id="ongoingTrades"><h4>Your ongoing trades</h4></div>
+      <a class="anchor" id="ongoingTrades"></a>
+        <div class="panel-heading"><h4>Your ongoing trades</h4></div>
         <div class="panel-body">
           <table class="table ">
             <thead class = 'thead thead-inverse'>
@@ -144,7 +146,8 @@ user.items.forEach( ( item ) => {
       </div>
       
       <div class="panel panel-info">
-        <div class="panel-heading" id="pastItems"><h4>Past items traded away</h4></div>
+      <a class="anchor" id="pastItems"></a>
+        <div class="panel-heading" ><h4>Past items traded away</h4></div>
         <div class="panel-body">
           <table class="table ">
             <thead class = 'thead thead-inverse'>
@@ -178,7 +181,8 @@ user.items.forEach( ( item ) => {
       </div>
       
       <div class="panel panel-info">
-        <div class="panel-heading" id="completedTrades"><h4>Your completed trades</h4></div>
+      <a class="anchor" id="completedTrades"></a>
+        <div class="panel-heading"><h4>Your completed trades</h4></div>
         <div class="panel-body">
           <table class="table ">
             <thead class = 'thead thead-inverse'>
@@ -217,11 +221,43 @@ user.items.forEach( ( item ) => {
         </div>
       </div>
     </div>
-    <!--
-    Panel example:
-    <div class="panel panel-primary">
-      <div class="panel-heading"><h4>Heading here</h4></div>
-      <div class="panel-body">
-        
-      </div>
-    </div> -->
+  </div>
+</div>
+
+<!--
+Panel example:
+<div class="panel panel-primary">
+  <div class="panel-heading"><h4>Heading here</h4></div>
+  <div class="panel-body">
+    
+  </div>
+</div> -->
+<script>
+setInterval( () => {
+  if ( userLoggedIn ) $.ajax( {
+      // The URL for the request
+      url: "/interface/pollforchanges/",
+
+      // Whether this is a POST or GET request
+      type: "GET",
+
+      // The type of data we expect back
+      dataType: "json",
+    } )
+    // Code to run if the request succeeds (is done);
+    // The response is passed to the function
+    .done( function( response ) {
+      if ( response.changefound === "true" ) {
+        window.location.reload()
+      }
+    } )
+    // Code to run if the request fails; the raw request and
+    // status codes are passed to the function
+    .fail( function( xhr, status, errorThrown ) {
+      console.log( "Problem occured with poll" );
+      console.log( "Error: " + errorThrown );
+      console.log( "Status: " + status );
+      console.dir( xhr );
+    } )
+}, 500 );
+</script>
