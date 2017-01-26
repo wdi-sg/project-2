@@ -6,7 +6,7 @@ if ( process.env.NODE_ENV === "test" ) {
   var debug = require( "debug" );
   var logger = require( "morgan" );
 } else {
-  mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/barterFly' )
+  mongoose.connect( 'mongodb://localhost/barterFly' )
 };
 mongoose.Promise = global.Promise;
 
