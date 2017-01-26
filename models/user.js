@@ -8,15 +8,15 @@ const emailRegex =
 const UserSchema = new mongoose.Schema( {
 name: {
   type: String,
-  minlength: [ 5, 'Please give a name with more than 4 characters' ],
+  minlength: [ 5, 'Please give a name with more than 5 characters' ],
   maxlength: [ 30, 'Please give a name with less than 30 characters' ],
 },
 email: {
   type: String,
   required: true,
-  unique: [true,'Your email is already in the database, please use another email.'],
+  unique: true,
   lowercase: true,
-  match: [ emailRegex, 'Please use another email address' ]
+  match: [ emailRegex, 'Your email is not recognised as valid, please use another email address' ]
 },
 password: {
   type: String,
