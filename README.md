@@ -1,3 +1,4 @@
+
 # Kakis
 
 Kakis is a social meetup app for sport event.
@@ -29,6 +30,7 @@ npm install
 ```
 
 ## Live Version
+
 
 This app is deployed on https://kakis.herokuapp.com/event
 
@@ -65,4 +67,4 @@ https://trello.com/b/ZZWqQRE6/kakis
 
 * **Lee Yi Sheng** - [Yisheng90](https://github.com/yisheng90)
 
-## Acknowledgments
+
