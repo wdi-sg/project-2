@@ -1,12 +1,12 @@
 # Your Project Name
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+This is a web application to facilitate new home owners in the same area to purchase items together to save costs!
 
-## Getting Started
+<!-- ## Getting Started
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+Go to http://buy2getherlah.herokuapp.com -->
 
-### Prerequisites
+<!-- ### Prerequisites
 
 What is needed to install and run the project, how do we install them
 
@@ -27,39 +27,53 @@ More steps...
 
 ```
 until finished
-```
+``` -->
 
 
-## Tests
+<!-- ## Tests
 
 Did you write automated tests? If so, how do we run them.
 
 
 ```
 Code example
-```
+``` -->
 
 ## Live Version
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+http://buy2getherlah.herokuapp.com
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+"bcryptjs": "^2.4.0"
+"body-parser": "^1.15.2"
+"connect-flash": "^0.1.1"
+"dotenv": "^4.0.0"
+"ejs": "^2.5.5"
+"express": "^4.14.0"
+"express-ejs-layouts": "^2.2.0"
+"express-session": "^1.14.2"
+"method-override": "^2.3.7"
+"mongoose": "^4.7.8"
+"mongoose-type-url": "^1.0.2"
+"morgan": "^1.7.0"
+"passport": "^0.3.2"
+"passport-local": "^1.0.0"
+"path": "^0.12.7"
 
 ## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+User stories and task tracking done via trello.
+Bootstrap template created by Bootswatch used as basis to design the site.
 
-## Authors
+
+
+<!-- ## Authors
 
 Did you collaborate with others on this project, list them here
 
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName) -->
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+Without Jeremiah and the TAs, Nick & Terence, this project will not be completed!

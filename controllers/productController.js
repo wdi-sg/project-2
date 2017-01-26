@@ -68,6 +68,7 @@ router.post('/', function (req, res) {
     description: req.body.description,
     buyerarea: req.body.buyerarea,
     productdatecreated: Date.now(),
+    upvote: 0,
     respondby: req.body.respondby
   },
   function (err, data) {
