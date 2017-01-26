@@ -1,65 +1,84 @@
-# Your Project Name
+# WDI Project 2 - mylittlequestionapp (Voice)
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+Project 2 of WDI7 course. Project started as mylittlequestionapp, built as a mobile friendly platform to facilitate a better experience between the host and audience interaction.
 
 ## Getting Started
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+To get started, please git clone this repo and proceed to run npm install to get the necessary dependencies.
+Open up a browser and type in 'localhost:3000', the program should be up and running.
 
 ### Prerequisites
 
-What is needed to install and run the project, how do we install them
+The project has several dependencies, most prominently Node and Express, as well as MongoDB.
+The following list the required dependencies for the project.
+```
+"bcryptjs": "^2.4.0",
+"body-parser": "^1.15.2",
+"connect-flash": "^0.1.1",
+"dotenv": "^4.0.0",
+"ejs": "^2.5.5",
+"express": "^4.14.0",
+"express-ejs-layouts": "^2.2.0",
+"express-session": "^1.14.2",
+"method-override": "^2.3.7",
+"mongoose": "^4.7.7",
+"morgan": "^1.7.0",
+"nodemon": "^1.11.0",
+"passport": "^0.3.2",
+"passport-local": "^1.0.0"
+```
 
-```
-Code example
-```
+Head over to https://nodejs.org/en/ to download and install node and npm on your system.
+Once done, run 'npm install' on your terminal, in the directory where you forked and cloned this repo. This will install the required dependencies.
+
 
 ### How to Use
 
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+To use the app, you are required to register an account. Once you're done with registering an account, you may proceed to 'Create' or 'Join' a room.
 
+You may join a room that has been created by someone else, provided you know the name of the room. The rooms are deliberately kept anonymous except only to the host. So to join a room, please get the name of the room from the host.
 
-```
-Code example
-```
+After joining a room, you may start posting questions regarding the topic that is being discussed. Your questions will be approved by the host before being put up for the rest of the users to vote. Users may choose to vote for questions that they wish to ask, and the more popular questions will go towards the top.
 
-More steps...
-
-```
-until finished
-```
-
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
+Creating a room makes you the host of the particular room, as the host you will be able to approve questions and submit a poll to the users that are currently in your room. You then can close the poll once you are happy with your results. You may also view your old polls that are closed, if you wish to.
 
 ## Live Version
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+The app has been deployed to http://mylittlequestionapp.herokuapp.com/
 
 ## Built With
 
 What did you use to build it, list the technologies, plugins, gems, packages etc.
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+* [javascript]
+* [node]
+* [npm]
+* [bootstrap]
+* [bcryptjs]
+* [body-parser]
+* [connect-flash]
+* [dotenv]
+* [ejs]
+* [express]
+* [express-ejs-layouts]
+* [express-session]
+* [method-override]
+* [mongoose]
+* [morgan]
+* [nodemon]
+* [passport]
+* [passport-local]
+
 
 ## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+Used trello for simple tracking of features that needs to be available in the app.
+https://trello.com/b/bLDRxyIR/mylittlequestionapp
 
 ## Authors
 
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+* **Dax Tan** - *Wrote this app for WDI7 Project 2* - [thisisdax](https://github.com/thisisdax)
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+* Used bootstrap for styling
