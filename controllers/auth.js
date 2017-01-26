@@ -20,7 +20,7 @@ router.post( '/signup', function( req, res ) {
     } else {
       // FLASH
       passport.authenticate( 'local', {
-        successRedirect: '/',
+        successRedirect: '/interface',
         successFlash: 'Account created and logged in'
       } )( req, res );
     }
