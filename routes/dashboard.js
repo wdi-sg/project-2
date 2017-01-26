@@ -48,8 +48,8 @@ router.get('/',function(req,res){
       return Math.floor(res/(value.length))
     })
     console.log('------------------------------------------------------------------------------------------'.rainbow);
-    console.log('this is the array of values from the ratings schemas using naive expectation'.cyan,bigRatingsArr);
-    console.log('this is the array of values from the ratings schemas using dirichletAlgo'.magenta,bigRatingsArrDirichletAlgo);
+    console.log('this is the array of values from the ratings schemas using naive expectation'.cyan,'\n',bigRatingsArr);
+    console.log('this is the array of values from the ratings schemas using dirichletAlgo'.magenta,'\n',bigRatingsArrDirichletAlgo);
     console.log('------------------------------------------------------------------------------------------'.rainbow);
     // console.log(binaryImageArr);
     res.render('dashboard', {
