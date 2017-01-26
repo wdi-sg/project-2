@@ -1,4 +1,5 @@
 const express = require('express');
+const favicon = require('serve-favicon');
 const mongoose = require('mongoose');
 const path = require('path');
 const passport = require('passport');
@@ -39,6 +40,7 @@ app.use(methodOverride('_method'));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use(favicon(__dirname + '/public/favicon.ico'));
 //using morgan middleware;
 app.use(morgan('dev'));
 //serving the public folder as static
