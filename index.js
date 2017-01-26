@@ -15,11 +15,14 @@ const express = require('express')
 const morgan = require('morgan')
 const app = express()
 
-if (process.env.NODE_ENV === 'test') {
-  mongoose.connect('mongodb://localhost/buy2gether-test')
-} else {
-  mongoose.connect('mongodb://localhost/buy2gether')
-}
+// if (process.env.NODE_ENV === 'test') {
+//   mongoose.connect('mongodb://localhost/buy2gether-test')
+// } else {
+//   mongoose.connect('mongodb://localhost/buy2gether')
+// }
+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/buy2gether')
+
 mongoose.Promise = global.Promise
 app.set('view engine', 'ejs')
 app.use(session({
