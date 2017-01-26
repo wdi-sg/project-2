@@ -79,10 +79,10 @@ else availableItems.push( item );
                 </td>
                 <td>
                   <button type = "button" class = "btn btn-sm col-xs-12 buttonVertMargin"
-                  onclick = "window.location.href = 'interface/item/show/<%= item._id%>' ">
+                  onclick = "window.location.href = '/interface/item/show/<%= item._id%>' ">
                   Details</button>
                   <button type = "button" class = "btn btn-sm col-xs-12 buttonVertMargin"
-                  onclick = "window.location.href = 'interface/item/edit/<%= item._id%>' ">
+                  onclick = "window.location.href = '/interface/item/edit/<%= item._id%>' ">
                   Modify</button>
                   <form method='POST' action='/interface/item/delete/<%= item._id %>?_method=DELETE'>
                     <button type="submit" class="btn btn-sm col-xs-12 buttonVertMargin">Delete</button>
@@ -165,7 +165,7 @@ else availableItems.push( item );
                 <td><%= item.valuation%></td>
                 <td>
                   <button type = "button" class = "btn btn-sm col-xs-12 buttonVertMargin"
-                  onclick = "window.location.href = 'interface/item/show/<%= item._id%>' ">
+                  onclick = "window.location.href = '/interface/item/show/<%= item._id%>' ">
                   Details</button>
                 </td>
               </tr>

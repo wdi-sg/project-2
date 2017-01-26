@@ -82,6 +82,25 @@
       </form>
       
       <% } %>
+      <div class="panel panel-info">
+        <div class="panel-heading"><h4>Discussion</h4></div>
+        <div class="panel-body">
+        <% if (!trade.discussion || trade.discussion.length === 0) {%>
+        No trade discussion yet
+        <%} else {%>
+          <%- trade.discussion%>
+          <%}%>
+          <% if (optionsLocked === false) { %>
+          <form method='POST'
+            action='/interface/trade/addchat/<%=trade._id%>'>
+            <div class="form-group">
+              <textarea rows="2" class="form-control" name="chattext" placeholder="Add to chat"></textarea>
+            </div>
+            <button type="submit" class="btn btn-sm">Add to chat</button>
+          </form>
+          <% } %>
+        </div>
+      </div>
       
       <div class="panel panel-info">
         <div class="panel-heading"><h4>Items Desired</h4></div>
@@ -215,25 +234,6 @@
       </div>
       
       
-      <div class="panel panel-info">
-        <div class="panel-heading"><h4>Discussion</h4></div>
-        <div class="panel-body">
-        <% if (!trade.discussion || trade.discussion.length === 0) {%>
-        No trade discussion yet
-        <%} else {%>
-          <%- trade.discussion%>
-          <%}%>
-          <% if (optionsLocked === false) { %>
-          <form method='POST'
-            action='/interface/trade/addchat/<%=trade._id%>'>
-            <div class="form-group">
-              <textarea rows="2" class="form-control" name="chattext" placeholder="Add to chat"></textarea>
-            </div>
-            <button type="submit" class="btn btn-sm">Add to chat</button>
-          </form>
-          <% } %>
-        </div>
-      </div>
       
       <% if (optionsLocked === false) { %>
       <br>
