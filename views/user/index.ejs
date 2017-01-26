@@ -6,9 +6,10 @@
   <% include ../partials/alerts %>
   <div class='row'>
     <div class='col-md-2 '>
-
-      <img class='updatepic' src="<%= cloudinary.url(user.avatar, { width: 150, height: 150, crop: 'fill', gravity: 'face', radius: 'max' })%>"></img>
-      <h2><%= user.name%></h2>
+<div class='text-center'>
+      <img  src="<%= cloudinary.url(user.avatar, { width: 150, height: 150, crop: 'fill', gravity: 'face', radius: 'max' })%>"></img>
+    </div>
+      <h2 class='text-center'><%= user.name%></h2>
       <p class='text-center'><%= user.motor%></p>
       </div>
 

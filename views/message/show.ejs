@@ -24,10 +24,13 @@
 
   <% } %>
 
+
+</div>
+<div class='col-md-6 col-md-offset-6'>
   <form action="/user/message/<%= req.params.id%>" method="POST">
 
 
-    <div class="form-group col-md-11">
+    <div class="form-group col-md-10">
       <!-- <label for="eventName">Name</label> -->
       <input id="messageContent"  class='form-control' type="string" name="content" placeholder="Enter your message here">
     </div>
@@ -43,14 +46,22 @@
 </div>
 
 <script>
- var socket = io();
+ let socket = io();
+
 
  socket.on(`chatmessages<%= req.params.id %>`, function(msg) {
+
+   if(messages[0].chatbox.firstuser === req.user.id || messages[0].chatbox.seconduser === req.user.id  ) {
    if (msg.sender == '<%=user.id%>') {
-     $('#messages').append($("<div class='col-md-12 panel panel-default text-right'>").text(msg.content));
+     $('#messages').append($("<div class='col-md-12 panel panel-default text-right'>").text(n));
    } else {
      $('#messages').append($("<div class='col-md-12 panel panel-default text-left'>").text(msg.content));
    }
+ }
 
 });
+
+
+$('.white').scrollTop(60 * $('#messages div').length)
+
 </script>

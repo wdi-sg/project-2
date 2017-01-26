@@ -3,6 +3,7 @@
     <h1>Upcomming Events</h1>
   </div>
   <hr>
+  <div class='list'>
   <% if (events[2].length <= 0) {%>
     <div class='panel panel-default'>
       <p> You have not start any event yet. </p>
@@ -29,4 +30,5 @@
       <a class='pull-right' href='/event/<%= participation.event._id%>'>View</a>
     </div>
   <% })}%>
+</div>
 </div>

@@ -23,7 +23,7 @@ let participantController = {
             res.redirect(`/event/${req.params.id}`)
           } else {
             req.flash('success', 'You have joined this event.')
-            res.redirect(`/user/${req.user.name}`)
+            res.redirect(`/user/profile`)
           }
         })
       } else {

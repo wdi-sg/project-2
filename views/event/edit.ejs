@@ -1,4 +1,7 @@
-<div class='background-yellow'>
+<div class='background-yellow' style='<% if (event.image) { %>
+  background: url(<%=cloudinary.url(event.image, { width: 1580, height: 800, crop: 'fill', gravity: 'face'})%>)
+<%}%>
+'>
 </div>
 <div class="container content">
 <% include ../partials/alerts %>

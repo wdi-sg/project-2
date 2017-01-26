@@ -5,7 +5,8 @@ let eventSchema = new mongoose.Schema({
   name: {
     type: String,
     require: true,
-    minlength: [5, 'Name of the event must be atleast 5 characters.']
+    minlength: [5, 'Name of the event must be atleast 5 characters.'],
+    maxlength: [15, 'Name of the event must be less than 15 characters.']
   },
   startDate: {
     type: Date,
@@ -28,6 +29,10 @@ let eventSchema = new mongoose.Schema({
   },
   description: {
     type: String
+  },
+  image: {
+    type: String,
+    default:'zzqmq8dh9gjrdjm32yhg'
   },
   vacancy: {
     type: Number

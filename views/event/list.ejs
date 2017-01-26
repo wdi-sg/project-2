@@ -3,21 +3,23 @@
 
 <div class='container content'>
 
+
     <% if (results.events.length <= 0) { %>
         <div class='container full-height flex'>
             <div class='text-center'>
                 <h1> Sorry.</h1>
-                <h1>We are unable to locate any events under this catagory. </h1>
+                <h1>We do not have any listed events yet. </h1>
                 <div>
                     <% include ../partials/searchbar %>
-                    <a href='/event/list'>Browse All Events</a>
                 </div>
-
             </div>
         </div>
         <% } else {%>
             <div class='container'>
-                <h1>Search Results for <strong><%= searchItem%></strong></h1>
+              <h1>All Upcomming Events</h1>
+              <div>
+                  <% include ../partials/searchbar %>
+              </div>
                 <div class='conatiner content'>
                     <% results.events.forEach((event)=>{ %>
 

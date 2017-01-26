@@ -2,8 +2,8 @@ const Event = require('../models/event')
 const User = require('../models/user')
 const Category = require('../models/category')
 const Participant = require('../models/participant')
+const cloudinary = require('cloudinary')
 const async = require('async')
-const moment = require('moment')
 
 let eventController = {
   new: (req, res) => {
@@ -11,16 +11,28 @@ let eventController = {
       res.render('event/new', {user: req.user, cat: cat})
     })
   },
+  list: (req, res) => {
+    async.parallel({
+      events: (cb) => {
+        Event.find({startDate: {$gte: Date.now()}}).sort({startDate: -1}).populate('creator').exec(cb)
+      },
+      cat: (cb) => {
+        Category.find({}).sort({number: -1}).exec(cb)
+      }
+    }, (err, results) => {
+      res.render('event/list', {results: results, user: req.user})
+    })
+  },
   index: (req, res) => {
     async.parallel({
       events: (cb) => {
-        Event.find({startDate: {$gte: Date.now()}}).sort({startDate: -1}).limit(5).populate('creator').exec(cb)
+        Event.find({startDate: {$gte: Date.now()}}).sort({startDate: -1}).limit(8).populate('creator').exec(cb)
       },
       past_event: (cb) => {
         Event.find({endDate: {$lte: Date.now()}}).populate('creator').exec(cb)
       },
       cat: (cb) => {
-        Category.find({}).sort({number: -1}).limit(12).exec(cb)
+        Category.find({}).sort({number: -1}).exec(cb)
       }
     }
     , (err, results) => {
@@ -58,6 +70,17 @@ let eventController = {
           },
           cat: (cb) => {
             Category.findOneAndUpdate({name: req.body.category}, { $inc: {number: 1} }, cb)
+          },
+          addpic: (cb) => {
+            console.log('req.file', req.file)
+            if (req.file) {
+              cloudinary.uploader.upload(req.file.path, (result) => {
+                event.image = result.public_id
+                event.save()
+                return
+              })
+            }
+            cb()
           }
         }, (err, results) => {
           req.flash('success', `${event.name} has been created.`)
@@ -83,7 +106,7 @@ let eventController = {
         Participant.find({event: req.params.id}).populate('user').exec(cb)
       }
     }, (err, results) => {
-      console.log('SHOW',results);
+      console.log('SHOW', results)
 
       if (!results.event) {
         eventController.search(req, res)
@@ -133,14 +156,14 @@ let eventController = {
       location: req.body.location,
       description: req.body.description
     }, (err, editedEvent) => {
-      console.log(req);
+      console.log(req)
       res.redirect(`/event/${req.params.id}`)
     })
   },
-  search: (req, res)=> {
+  search: (req, res) => {
     async.parallel({
       events: (cb) => {
-        Event.find({category: req.body.category, startDate: {$gt : Date.now()}}, cb)
+        Event.find({category: req.body.category, startDate: {$gt: Date.now()}}).populate('creator').exec(cb)
       },
       cat: (cb) => {
         Category.find({}, cb)

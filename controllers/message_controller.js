@@ -9,20 +9,20 @@ let messageController = {
     })
   },
   create: (req, res) => {
-    console.log('req.params', req.params);
+  //  console.log('req.params', req.params);
     Message.create({
       content: req.body.content,
       chatbox: req.params.id,
       sender: req.user.id
     }, (err, message) => {
-      console.log(message);
+    //  console.log(message);
       global.io.emit(`chatmessages${req.params.id}`, message)
       res.redirect(`/user/message/${req.params.id}`)
     })
   },
   list: (req, res) => {
-    Message.find({chatbox: req.params.id}).exec((err, messages) => {
-      console.log('Messages', messages)
+    Message.find({chatbox: req.params.id}).populate('chatbox').exec((err, messages) => {
+    //  console.log('Messages', messages)
       res.render('message/show', {messages: messages, user: req.user, req: req})
     })
   }
