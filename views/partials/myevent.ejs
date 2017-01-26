@@ -1,16 +1,17 @@
   <div class='panel half-height'>
-  <div class='panel-heading'>
-    <h1> My Events </h1>
-  </div>
-  <div class='list'>
-     <% if (events[1].length <= 0) {%>
-         <div class='panel panel-default'>
+    <div class='panel-heading'>
+          <h4>My Events</h4>
+    </div>
+
+    <div class='list'>
+       <% if (events[1].length <= 0) {%>
+         <div class='panel'>
            <p> You have not start any event yet. </p>
            <a href='/event/new'> Start Your own event now<a>
-          </div>
-     <%} else {%>
+        </div>
+       <%} else {%>
          <%events[1].forEach( (event)=> {%>
-            <div class='panel col-md-12'>
+            <div class='col-md-12'>
               <p class='pull-left'>
                  <%= dateShow(event.startDate) %>
                  <strong><%= event.name %></strong>
@@ -26,8 +27,6 @@
         <% }) %>
      <% } %>
 
-   <div class='panel panel-default col-md-12 text-center'>
-     <a href='/event/new'><span class='glyphicon glyphicon-plus' aria-hidden="true"></span></a>
-   </div>
+
  </div>
  </div>

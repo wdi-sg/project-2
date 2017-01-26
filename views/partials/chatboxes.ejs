@@ -1,0 +1,33 @@
+<div class='panel list'>
+
+<div class='panel-heading'><h4> Chatboxes </h4></div>
+<% if (events[4].length <= 0 ) {%>
+  <div>
+    <p>You have not chat available.</p>
+  </div>
+<% } else { %>
+  <% events[4].forEach( (chatbox) => { %>
+    <div>
+      <% if (chatbox.firstuser.equals(user.id)) {%>
+        <div>
+          <img src='<%=cloudinary.url(chatbox.seconduser.avatar, { width: 50, height: 50, crop: 'fill', gravity: 'face', radius: 'max' })%>'></img>
+          <form  class='pull-right' action='/user/message' method='POST'>
+            <input name='id' hidden value='<%=chatbox.seconduser._id%>'>
+            <button class='glyphicon glyphicon-envelope'></button>
+          </form>
+          <p><strong><%= chatbox.seconduser.name%></strong><p>
+        </div>
+        <% } else { %>
+          <div>
+            <img src='<%=cloudinary.url(chatbox.firstuser.avatar, { width: 50, height: 50, crop: 'fill', gravity: 'face', radius: 'max' })%>'></img>
+            <form  class='pull-right' action='/user/message' method='POST'>
+                <input name='id' hidden value='<%=chatbox.firstuser._id%>'>
+                <button class='glyphicon glyphicon-envelope'></button>
+            </form>
+            <p><strong><%= chatbox.firstuser.name%></strong><p>
+          </div>
+        <% } %>
+    </div>
+  <% }) %>
+<% } %>
+</div>

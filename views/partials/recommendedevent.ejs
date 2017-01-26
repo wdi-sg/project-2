@@ -1,18 +1,18 @@
-  <div class='panel full-height'>
+  <div class='panel'>
 <div class='panel-heading'>
-  <h1> Recommended </h1>
+  <h4> Recommended </h4>
 </div>
 <div class='list'>
   <% if (events[3].length <= 0) {%>
-    <div class='panel panel-default'>
+    <div class='panel'>
       <p> You have not start any event yet. </p>
       <a href='/event/new'> Start Your own event now<a>
     </div>
   <%} else {%>
     <%events[3].forEach( (event)=> {%>
-      <a href='/event/<%= event._id%>'>
-        <div class='panel panel-default'>
-         <p><span class='h4'><%= event.name %></span>
+
+        <div class='panel'>
+         <p><span class='h5'><a href='/event/<%= event._id%>'><%= event.name %></a></span>
            <% if (event.category !== null) {%>
               <span class='label label-success'><%= event.category%></span>
            <%}%>
@@ -25,7 +25,7 @@
 
        </p>
         </div>
-      </a>
+
       <%})%>
   <% }%>
 </div>

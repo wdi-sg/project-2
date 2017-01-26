@@ -5,51 +5,51 @@
   <div class='row'>
     <div class='col-md-2 '>
 
-      <img class='updatepic' src="<%= cloudinary.url(user.avatar, { width: 150, height: 150, crop: 'fill', gravity: 'face', radius: 'max' })%>"></img>
+      <img class='updatepic' src='<%= cloudinary.url(user.avatar, { width: 150, height: 150, crop: 'fill', gravity: 'face', radius: 'max' })%>'></img>
       <h2><%= user.name%></h2>
   <p class='text-center'><%= user.motor%></p>
 </div>
-      <div class='col-md-10 content'>
+      <div class='col-md-10 content black-trans'>
         <% include ../partials/alerts %>
 
-        <form enctype="multipart/form-data" action='/user/edit?_method=PUT' method="POST">
-          <div class="form-group">
-            <label for="authEmail">Email</label>
-            <input id="authEmail" class="form-control" type="email" name="email" value='<%= user.email %>'>
+        <form enctype='multipart/form-data' action='/user/edit?_method=PUT' method='POST'>
+          <div class='form-group'>
+            <label for='authEmail'>Email</label>
+            <input id='authEmail' class='form-control' type='email' name='email' value='<%= user.email %>'>
           </div>
 
-          <div class="form-group">
-            <label for="authName">Name</label>
-            <input id="authName" class="form-control" type="text" name="name" value='<%= user.name %>'>
+          <div class='form-group'>
+            <label for='authName'>Name</label>
+            <input id='authName' class='form-control' type='text' name='name' value='<%= user.name %>'>
           </div>
 
-          <div class="form-group">
-            <label for="authAge">Age</label>
-            <input id="authAge" class="form-control" type="number" name="age" min=0 value='<%= user.age %>'>
+          <div class='form-group'>
+            <label for='authAge'>Age</label>
+            <input id='authAge' class='form-control' type='number' name='age' min=0 value='<%= user.age %>'>
           </div>
 
-          <div class="form-group">
-            <label for="authGender">Gender</label>
-            <input id="authGender" class="form-control" type="number" name="Gender" value='<%= user.gender%>'>
+          <div class='form-group'>
+            <label for='authGender'>Gender</label>
+            <input id='authGender' class='form-control' type='string' name='Gender' value='<%= user.gender%>'>
           </div>
 
-          <div class="form-group">
-            <label for="userMotor">Life Motor</label>
-            <input id="userMotor" class="form-control" type="string" name="motor" value='<%= user.motor%>'>
+          <div class='form-group'>
+            <label for='userMotor'>Life Motor</label>
+            <input id='userMotor' class='form-control' type='string' name='motor' value='<%= user.motor%>'>
           </div>
 
-          <div class="form-group">
-            <label for="userMAvatar">Avatar</label>
-            <input type="file" name="myFile">
+          <div class='form-group'>
+            <label for='userMAvatar'>Avatar</label>
+            <input type='file' name='myFile'>
           </div>
 
 
-          <div class="form-group ">
-            <button class="btn btn-primary col-md-12"> Edit </button>
+          <div class='form-group '>
+            <button class='btn btn-primary col-md-12'> Edit </button>
           </div>
         </form>
-        <form action="/user/profile" method="GET">
-          <button class="btn btn-danger col-md-12">Cancel</button>
+        <form action='/user/profile' method='GET'>
+          <button class='btn btn-danger col-md-12'>Cancel</button>
           </form
       </div>
 

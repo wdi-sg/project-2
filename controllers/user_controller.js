@@ -2,6 +2,7 @@ const passport = require('../config/ppConfig')
 const User = require('../models/user')
 const Event = require('../models/event')
 const Participant = require('../models/participant')
+const Chatbox = require('../models/chatbox')
 const cloudinary = require('cloudinary')
 const async = require('async')
 
@@ -44,6 +45,12 @@ let userController = {
       },
       (cb) => {
         Event.find({startDate: {$gte: Date.now()}, creator: {$ne: req.user.id}, vacancy: {$ne: 0}}).populate('creator').sort({'created_at': -1}).limit(5).exec(cb)
+      },
+      (cb) => {
+        Chatbox.find({ $or: [{firstuser: req.user.id}, {seconduser: req.user.id}]})
+        .populate('firstuser')
+        .populate('seconduser')
+        .exec(cb)
       }
 
     ], (err, result) => {

@@ -1,29 +1,29 @@
 <div class='login full-vh flex'>
 
-<div class='col-md-5'>
+<div class='col-md-5 col-sm-10 col-xs-10'>
   <% include ../partials/alerts %>
-  <form action="/user/signup" method="POST">
-    <div class="form-group">
-      <label for="authEmail">Email</label>
-      <input id="authEmail" class="form-control" type="email" name="email">
+  <form action='/user/signup' method='POST'>
+    <div class='form-group'>
+      <label for='authEmail'>Email</label>
+      <input id='authEmail' class='form-control' type='email' name='email' placeholder='Email'>
     </div>
 
-    <div class="form-group">
-      <label for="authName">Name</label>
-      <input id="authName" class="form-control" type="text" name="name">
+    <div class='form-group'>
+      <label for='authName'>Name</label>
+      <input id='authName' class='form-control' type='text' name='name' placeholder='6 - 20 characters'>
     </div>
 
-    <div class="form-group">
-      <label for="authPassword">Password</label>
-      <input id="authPassword" class="form-control" type="password" name="password">
+    <div class='form-group'>
+      <label for='authPassword'>Password</label>
+      <input id='authPassword' class='form-control' type='password' name='password' placeholder='6 - 10 characters'>
     </div>
 
-    <div class="form-group">
-        <button class="col-md-12 btn btn-primary">Sign Up</button>
+    <div class='form-group'>
+        <button class='form-control btn btn-primary'>Sign Up</button>
     </div>
   </form>
-  <form action="/auth/login" method="GET">
-  <button class="col-md-12 btn btn-danger">Log in</button>
+  <form action='/auth/login' method='GET'>
+    <button class='form-control btn btn-danger'>Log in</button>
   </from>
 </div>
 

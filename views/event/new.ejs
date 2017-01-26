@@ -2,27 +2,27 @@
 </div>
 
 
-<div class='container content'>
+<div class='container content black-trans'>
   <% include ../partials/alerts %>
   <div class='col-md-12  align-middle'>
     <form enctype='multipart/form-data' action='/event/new' method='POST'>
       <div class='form-group'>
-        <!-- <label for='eventName'>Name</label> -->
+        <label for='eventName'>Name</label>
         <input id='eventName' class='form-control form-control-lg bottom-border' type='string' name='name' placeholder='Event Name'>
       </div>
 
-      <div class='form-group col-md-6'>
+      <div class='form-group col-md-6 col-sm-12'>
         <label for='eventStartDate'>Start Date</label>
         <input id='eventStartDate' class='form-control' type='datetime-local'  name='startDate'>
 
       </div>
 
-      <div class='form-group col-md-6'>
+      <div class='form-group col-md-6 col-sm-12'>
         <label for='eventEndDate'>End Date</label>
         <input id='eventEndDate' class='form-control' type='datetime-local' name='endDate'>
       </div>
 
-      <div class='form-group col-md-6'>
+      <div class='form-group col-md-6 col-sm-12'>
         <!-- <label for='eventLocation'>Location</label> -->
         <!-- <input id='eventCategory' class='form-control' type='string' name='category' placeholder='Category'> -->
         <label for='sel1'>Category</label>
@@ -33,18 +33,18 @@
         </select>
       </div>
 
-      <div class='form-group col-md-6'>
+      <div class='form-group col-md-6 col-sm-12'>
         <label for='eventVacancy'>Vacancies</label>
         <input id='eventVacancy' class='form-control' type='Number' min=0 name='vacancy'>
       </div>
 
       <div class='form-group'>
-        <!-- <label for='eventLocation'>Location</label> -->
+         <label for='eventLocation'>Location</label>
         <input id='eventLocation' class='form-control' type='string' name='location' placeholder='Location'>
       </div>
 
       <div class='form-group'>
-        <!-- <label for='eventLocation'>Location</label> -->
+         <label for='eventLocation'>Description</label>
         <textarea id='descriptionInput' class='form-control' type='string' rows='10'  name='description' placeholder='Description'></textarea>
       </div>
 
@@ -53,11 +53,16 @@
         <input type='file' name='myFile'>
       </div>
 
-      <div class='form-group flex'>
-        <input class='btn btn-primary' type='submit'>
+      <div class='form-group text-right'>
+        <button class='btn btn-primary'>Submit</button>
       </div>
 
     </form>
-  <a class='flex' href='/event'><button class='btn btn-danger'>Cancel</button></a>
+
+    <form action='/event' method='GET'>
+      <div class='form-group text-right'>
+        <button class='btn btn-danger'>Cancel</button>
+      </div>
+    </form>
   </div>
 </div>

@@ -1,11 +1,11 @@
   <div class='panel half-height'>
   <div class='panel-heading'>
-    <h1>Upcomming Events</h1>
+    <h4>Upcomming Events</h4>
   </div>
   <hr>
   <div class='list'>
   <% if (events[2].length <= 0) {%>
-    <div class='panel panel-default'>
+    <div class='panel'>
       <p> You have not start any event yet. </p>
       <a href='/event/new'> Start Your own event now<a>
     </div>
@@ -14,7 +14,7 @@
       <% if (participation.event === null) {%>
         <%return%>
       <%}%>
-    <div class='panel col-md-12'>
+    <div class='col-md-12'>
       <p class='pull-left'>
 
         <%= dateShow(participation.event.startDate) %>

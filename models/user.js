@@ -18,8 +18,7 @@ let userSchema = new mongoose.Schema({
   password: {
     type: String,
     require: true,
-    minlength: [6, 'Password should be between 6 to 10 characters.'],
-    maxlength: [10, 'Password should be between 6 to 10 characters.']
+    minlength: [6, 'Password should be between 6 to 10 characters.']
   },
   age: {
     type: Number
