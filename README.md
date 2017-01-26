@@ -63,6 +63,8 @@ On the front end, this project was created using:
 * [Bootstrap](http://getbootstrap.com/)
 * [Sass](http://sass-lang.com/)
 
+For track search, Spotify's [Web API](https://developer.spotify.com/web-api/) was leveraged.
+
 ## Acknowledgments
 
 * The dynamic gradient background was generated using javascript found [here](https://codepen.io/quasimondo/pen/lDdrF) - Credit to [Mario Klingemann](https://codepen.io/quasimondo/).
