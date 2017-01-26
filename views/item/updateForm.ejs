@@ -2,7 +2,7 @@
   <div class="panel panel-primary">
     <div class="panel-heading"><h4>Modify Item Information</h4></div>
     <div class="panel-body">
-      <form method='POST' action='/interface/item/edit/<%= item._id %>?_method=PUT'>
+      <form enctype="multipart/form-data" method='POST' action='/interface/item/edit/<%= item._id %>?_method=PUT'>
         <div class="form-group">
           <label for="name">Name:</label>
           <input type="text" class="form-control" name="name" value="<%= item.name%>">
@@ -11,9 +11,14 @@
           <label for="description">Description:</label>
           <input type="text" class="form-control" name="description" value="<%= item.description%>">
         </div>
+        <br>
+        <img src="<%= item.imagelink%>" style="width:50%" >
+        <br>
+        <br>
+        <br>
         <div class="form-group">
-          <label for="description">Image Link:</label>
-          <input type="text" class="form-control" name="imagelink" value="<%= item.imagelink%>">
+          <label for="imagelink">To replace image, select new image file:</label>
+          <input type="file" name="imageFile">
         </div>
         <div class="form-group">
           <label for="valuation">Valuation:</label>

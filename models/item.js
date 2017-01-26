@@ -15,7 +15,8 @@ const ItemSchema = new mongoose.Schema( {
     maxlength: [ 2000,
       "Please shorten your description to less than 2000 characters" ]
   },
-  imagelink: { type: String },
+  imagelink: String,
+  imagePublicId: String,
   _trade: { type: mongoose.Schema.Types.ObjectId, ref: "Trade" }, //blank if not in trade
   valuation: { type: Number }, // dollars
   tradedaway: Boolean

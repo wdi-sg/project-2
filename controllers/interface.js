@@ -3,6 +3,9 @@ const router = express.Router();
 const User = require( '../models/user' );
 const Item = require( '../models/item' );
 const Trade = require( '../models/trade' );
+const multer = require( 'multer' );
+const cloudinary = require( 'cloudinary' );
+const upload = multer( { dest: './uploads/' } );
 
 //show userHome
 router.get( '/', function( req, res ) {
@@ -23,19 +26,23 @@ router.get( '/item/create', function( req, res ) {
 } );
 
 //item create
-router.post( '/item/create', function( req, res ) {
-  req.body._owner = req.user._id;
-  Item.create( req.body, ( err, newItem ) => {
-    if ( err ) {
-      req.flash( 'error', err.toString() );
-      res.redirect( '/interface/item/create' )
-      return;
-    }
-    User.findById( req.user._id, ( err, user ) => {
-      user.items.push( newItem._id );
-      user.save();
-      res.redirect( "/interface" )
-    } )
+router.post( '/item/create', upload.single( 'imageFile' ), function( req, res ) {
+  cloudinary.uploader.upload( req.file.path, function( cloudinaryData ) {
+    req.body.imagelink = cloudinaryData.secure_url;
+    req.body.imagePublicId = cloudinaryData.public_id;
+    req.body._owner = req.user._id;
+    Item.create( req.body, ( err, newItem ) => {
+      if ( err ) {
+        req.flash( 'error', err.toString() );
+        res.redirect( '/interface/item/create' )
+        return;
+      }
+      User.findById( req.user._id, ( err, user ) => {
+        user.items.push( newItem._id );
+        user.save();
+        res.redirect( "/interface" )
+      } )
+    } );
   } );
 } );
 
@@ -55,7 +62,6 @@ router.get( "/item/edit/:id", ( req, res ) => {
     _id: req.params.id,
     _owner: req.user._id
   }, ( err, itemList ) => {
-    console.log( itemList )
     res.render( "item/updateForm", {
       item: itemList[ 0 ],
     } )
@@ -63,27 +69,65 @@ router.get( "/item/edit/:id", ( req, res ) => {
 } );
 
 //item edit
-router.put( "/item/edit/:id", ( req, res ) => {
-  Item.findOneAndUpdate( {
-    _id: req.params.id,
-    _owner: req.user._id
-  }, req.body, { new: true, upsert: true, runValidators: true }, ( err ) => {
-    if ( err ) {
-      req.flash( 'error', err.toString() )
-      res.redirect( "/interface/item/edit/" + req.params.id )
-    } else res.redirect( "/interface" );
-  } );
+router.put( "/item/edit/:id", upload.single( 'imageFile' ), ( req, res ) => {
+  if ( req.file.path ) {
+    Item.findById( req.params.id, ( err, item ) => {
+      cloudinary.uploader.destroy( item.imagePublicId, () => {
+        cloudinary.uploader.upload(
+          req.file.path, ( cloudinaryData ) => {
+            req.body.imagelink = cloudinaryData.secure_url
+            req.body.imagePublicId = cloudinaryData.public_id;
+            Item.findOneAndUpdate( {
+                _id: req.params.id,
+                _owner: req.user._id
+              }, req.body, {
+                new: true,
+                upsert: true,
+                runValidators: true
+              },
+              ( err, item ) => {
+                if ( err ) {
+                  req.flash( 'error', err.toString() )
+                  res.redirect( "/interface/item/edit/" + req.params
+                    .id )
+                } else res.redirect( "/interface" );
+              } )
+          } )
+      } );
+    } );
+  } else {
+    Item.findOneAndUpdate( {
+        _id: req.params.id,
+        _owner: req.user._id
+      }, req.body, {
+        new: true,
+        upsert: true,
+        runValidators: true
+      },
+      ( err ) => {
+        if ( err ) {
+          req.flash( 'error', err.toString() )
+          res.redirect( "/interface/item/edit/" + req.params
+            .id )
+        } else res.redirect( "/interface" );
+      } )
+  }
 } );
 
 //item delete 
 router.delete( '/item/delete/:id', function( req, res ) {
-  Item.findOneAndRemove( {
-    _id: req.params.id,
-    _owner: req.user._id
-  }, () => {
-    res.redirect( "/interface" )
+  Item.findById( req.params.id, ( err, item ) => {
+    cloudinary.uploader.destroy( item.imagePublicId, (result) => {
+      console.log("cloudinary destroy result:",result)
+      Item.findOneAndRemove( {
+        _id: req.params.id,
+        _owner: req.user._id
+      }, () => {
+        res.redirect( "/interface" )
+      } )
+    } );
   } )
-} );
+} )
 
 //make new trade
 router.post( '/trade/create/:itemid', function( req, res ) {
@@ -109,7 +153,8 @@ router.post( '/trade/create/:itemid', function( req, res ) {
               req.flash( "success",
                 "New trade has been created with the item desired"
               )
-              res.redirect( "/interface/trade/edit/" +
+              res.redirect(
+                "/interface/trade/edit/" +
                 newTrade._id )
             } )
         } )
@@ -126,7 +171,8 @@ router.delete( '/trade/delete/:tradeid', function( req, res ) {
       firstUser.trades.splice( tradeIndex, 1 );
       firstUser.save();
       User.findById( trade.secondUser, ( err, secondUser ) => {
-        let tradeIndex = secondUser.trades.indexOf( trade._id )
+        let tradeIndex = secondUser.trades.indexOf(
+          trade._id )
         secondUser.trades.splice( tradeIndex, 1 );
         secondUser.save();
         //remove trade from items, no callback or error check
@@ -194,7 +240,8 @@ router.post( '/trade/add/offered/:tradeid/:itemid', function( req, res ) {
       } else {
         item._trade = trade._id;
         item.save();
-        req.flash( "success", "Item added from your inventory." )
+        req.flash( "success",
+          "Item added from your inventory." )
         res.redirect( "/interface/trade/edit/" + req.params.tradeid );
         return;
       }
@@ -291,7 +338,8 @@ router.post( '/trade/agreedby/:tradeid/:userid', function( req, res ) {
 } )
 
 //remove agreement from trade
-router.post( '/trade/cancelagreedby/:tradeid/:userid', function( req, res ) {
+router.post( '/trade/cancelagreedby/:tradeid/:userid', function( req,
+  res ) {
   Trade.findById( req.params.tradeid, ( err, trade ) => {
     if ( trade.firstUser._id.toString() === req.params.userid.toString() ) {
       trade.firstUserAgreed = false
@@ -310,7 +358,8 @@ router.post( '/trade/addchat/:tradeid', function( req, res ) {
     Trade.findById( req.params.tradeid, ( err, trade ) => {
       if ( !trade.discussion ) trade.discussion = ""
       trade.discussion =
-        trade.discussion + "<br>" + user.name + ": " + req.body.chattext;
+        trade.discussion + "<br>" + user.name + ": " + req.body
+        .chattext;
       trade.save();
       res.redirect( "/interface/trade/edit/" + trade._id )
     } );
@@ -325,7 +374,7 @@ router.post( '/trade/changesweetener/:tradeid', function( req, res ) {
       //default is give, if take then flip value
       if ( req.body.sweetenerDirection === "take" )
         sweetener = -sweetener
-      //default is firstuser, if seconduser then flip value
+        //default is firstuser, if seconduser then flip value
       if ( req.user._id.toString() === trade.secondUser._id.toString() )
         sweetener = -sweetener
       trade.dealSweetener = sweetener

@@ -2,22 +2,22 @@
   <div class="panel panel-primary">
     <div class="panel-heading"><h4>Create New Item</h4></div>
     <div class="panel-body">
-      <form method='POST' action='/interface/item/create/'>
+      <form enctype="multipart/form-data" method='POST' action='/interface/item/create/'>
         <div class="form-group">
           <label for="name">Name:</label>
-          <input type="text" class="form-control" name="name" ">
+          <input type="text" class="form-control" name="name" placeholder="minimum length of 8 characters">
         </div>
         <div class="form-group">
           <label for="description">Description:</label>
-          <textarea rows="5" class="form-control" name="description" placeholder="searches will look for keywords you write here, so add lots of descriptive words!"></textarea>
+          <textarea rows="5" class="form-control" name="description" placeholder="searches will look for keywords you write here, so add lots of descriptive words!  minimum length of 20 characters"></textarea>
         </div>
         <div class="form-group">
-          <label for="imagelink">Image Link:</label>
-          <input type="text" class="form-control" name="imagelink" placeholder="if using Imgur please use 'direct link'" >
+          <label for="imagelink">Picture Of Item:</label>
+          <input type="file" name="imageFile">
         </div>
         <div class="form-group">
           <label for="valuation">Valuation:</label>
-          <input type="number" class="form-control" name="valuation" placeholder="in SGD" >
+          <input type="number" class="form-control" name="valuation" placeholder="SGD dollars - no cents, they don't make sense" >
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>

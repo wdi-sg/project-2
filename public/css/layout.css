@@ -25,7 +25,8 @@ body {
    background-attachment: fixed;
    background-position: center center;
    background-size: cover;
-   height: 200%; 
+   height: auto;
+   min-height: 100%; 
 }
 
 body,html,container {

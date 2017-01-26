@@ -29,8 +29,11 @@
                         <li><a href="/interface">BarterCenter</a></li>
                         <li><a href="/auth/signup">New Account</a></li>
                         <li><a href="/profile">Profile</a></li>
-                        <li><a href="/auth/login">Login</a></li>
+                        <% if (currentUser) {%>
                         <li><a href="/auth/logout">Logout</a></li>
+                        <%} else {%>
+                        <li><a href="/auth/login">Login</a></li>
+                        <%}%>
                     </ul>
                     <form class="navbar-form navbar-right"
                         form method='POST' action='/itemSearch/'>
