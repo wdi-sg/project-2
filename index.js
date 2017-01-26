@@ -6,7 +6,7 @@ if ( process.env.NODE_ENV === "test" ) {
   var debug = require( "debug" );
   var logger = require( "morgan" );
 } else {
-  mongoose.connect( 'mongodb://localhost/barterFly' )
+  mongoose.connect( process.env.MONGODB_URI );
 };
 mongoose.Promise = global.Promise;
 
@@ -33,7 +33,6 @@ const Interface = require( './controllers/interface' );
 const Item = require( './models/item' );
 
 app.set( "view engine", "ejs" );
-
 
 app.use( session( {
   secret: process.env.SESSION_SECRET,
