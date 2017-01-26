@@ -23,7 +23,7 @@ let authController = {
       } else {
         passport.authenticate('local', {
           successRedirect: '/program',
-          successFlash: 'Account created for ' + req.body.name + ' and logged in'
+          successFlash: 'Account set up successfully, ' + req.body.name + '! You\'re logged in'
         })(req, res)
       }
     })
@@ -34,7 +34,7 @@ let authController = {
   },
 
   postLogIn: passport.authenticate('local', {
-    successRedirect: '/profile',
+    successRedirect: '/program',
     failureRedirect: '/auth/login',
     failureFlash: 'Invalid username and/or password',
     successFlash: 'You have successfully logged in'
@@ -70,22 +70,32 @@ let authController = {
         res.redirect('/auth/edit/' + req.user.id)
       } else {
         req.flash('success', 'Profile settings successfully updated!')
-        res.redirect('/profile')
+        res.redirect('/profile/' + req.user.id)
       }
     })
   },
 
   newPassword: function (req, res) {
-
-  },
-
-  delete: function (req, res) {
-    User.findByIdAndRemove(req.user.id, function (err, chosenUser) {
-      if (err) throw err
-      req.flash('success', 'Account successfully deleted')
-      res.redirect('/')
+    User.findById(req.user.id, function (err, user) {
+      user.password = req.body.password
+      user.save()
+      if (err) {
+        req.flash('error', 'Error updating password')
+        res.redirect('/auth/edit/' + req.user.id)
+      } else {
+        req.flash('success', 'Password updated!')
+        res.redirect('/profile/' + req.user.id)
+      }
     })
   }
+  //
+  // delete: function (req, res) {
+  //   User.findByIdAndRemove(req.user.id, function (err, chosenUser) {
+  //     if (err) throw err
+  //     req.flash('success', 'Account successfully deleted')
+  //     res.redirect('/')
+  //   })
+  // }
 
 }
 

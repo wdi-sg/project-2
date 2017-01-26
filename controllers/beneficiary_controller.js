@@ -22,7 +22,7 @@ let beneficiaryController = {
           user.signedTheseBeneficiariesUp.push(savedBeneficiary._id)
           user.save()
         })
-        res.redirect('/profile/')
+        res.redirect('/profile/' + req.user.id)
       }
     })
   }

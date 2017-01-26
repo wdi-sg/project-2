@@ -1,29 +1,39 @@
 <div class="jumbotron">
   <div class="container">
-    <h1 class="display-3">your profile</h1>
+    <% if (user.id === currentUser.id) { %>
+      <h1 class="display-3">your profile</h1>
+    <% } else { %>
+      <h1 class="display-3"><%= user.name %>'s profile</h1>
+    <% } %>
   </div>
 </div>
 <div class="container">
   <%
   let createdProgramsPresence = ""
-  if (currentUser.createdPrograms.length === 0 && currentUser.userTypes.admin === false) {
+  if (user.createdPrograms.length === 0 && user.userTypes.admin === false) {
     createdProgramsPresence = "display: none; visibility: hidden;"
   }
   %>
   <div style="<%= createdProgramsPresence %>" class="mb-5">
-    <h1>programs you created</h1><br>
+    <% if (user.id === currentUser.id) { %>
+      <h1>programs you created</h1><br>
+    <% } else { %>
+      <h1>programs created by <%= user.name %></h1><br>
+    <% } %>
     <div class="d-flex flex-wrap justify-content-start mb-4">
     <% createdProgramsPopulated.forEach(function (indivProgram) { %>
       <div class="card card-outline-primary m-2" style="width: 20rem;">
-        <a href="<%= "/program/" + indivProgram.id %>">
-          <div class="card-header" style="color:#0275d8;">
+        <div class="card-header" style="color:#0275d8;">
+        <% if (user.id === currentUser.id) { %>
           one of yours!
-          </div>
-        </a>
+        <% } else { %>
+          created by <%= user.name %>
+        <% } %>
+        </div>
         <img class="card-img-top" src="<%= indivProgram.imageURL %>" style="height:12rem; object-fit:cover; border-top: 1px solid #0275d8; border-bottom: 1px solid #0275d8;>">
         <div class="card-block">
           <a href=<%= "/program/" + indivProgram.id %>>
-            <h4 class="card-title"><%= indivProgram.name %></h4>
+            <h3 class="card-title"><%= indivProgram.name %></h3>
           </a>
           <span class="badge badge-info mb-2"><%= indivProgram.subject %></span>
           <% for (var level in indivProgram.commitment) { %>
@@ -45,7 +55,7 @@
     <% }) %>
       <%
       let createProgramsButtonPresence = ""
-      if (currentUser.userTypes.admin === false) {
+      if (currentUser.userTypes.admin === false || user.id !== currentUser.id) {
         createProgramsButtonPresence = "display: none; visibility: hidden;"
       }
       %>
@@ -74,18 +84,22 @@
   let ifNoBeneficiaries = ""
   let ifNoGuardian = ""
   let ifNoBeneficiariesGuardian = ""
-  if (currentUser.signedTheseBeneficiariesUp.length === 0) {
+  if (user.signedTheseBeneficiariesUp.length === 0) {
     ifNoBeneficiaries = "display: none; visibility: hidden;"
   }
-  if (currentUser.userTypes.guardian === false) {
+  if (currentUser.userTypes.guardian === false || user.id !== currentUser.id) {
     ifNoGuardian = "display: none; visibility: hidden;"
   }
-  if (currentUser.signedTheseBeneficiariesUp.length === 0 && currentUser.userTypes.guardian === false) {
+  if (user.signedTheseBeneficiariesUp.length === 0 && user.userTypes.guardian === false) {
     ifNoBeneficiariesGuardian = "display: none; visibility: hidden;"
   }
   %>
   <div style="<%= ifNoBeneficiariesGuardian %>" class="mb-5">
-    <h1 class="mb-3">your beneficiaries </h1>
+    <% if (user.id === currentUser.id) { %>
+      <h1 class="mb-3">your beneficiaries </h1>
+    <% } else { %>
+      <h1 class="mb-3"><%= user.name %>'s beneficiaries </h1>
+    <% } %>
     <table class="table table-hover table-responsive" style="<%= ifNoBeneficiaries %>">
       <thead class="thead-default">
         <tr>
@@ -112,7 +126,7 @@
                 <% } %>
               <% }) %>
             <% }) %>
-          <% if (indivBeneficiary.programs.length === 0) { %>
+          <% if (indivBeneficiary.programs.length === 0 && user.id === currentUser.id) { %>
             <a href="../program">Sign up!</a></td>
           <% } %>
         </tr>

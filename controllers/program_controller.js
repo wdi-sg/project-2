@@ -4,21 +4,27 @@ const Beneficiary = require('../models/beneficiary')
 
 let programController = {
   listAll: function (req, res) {
-    Program.find({}, function (err, allPrograms) {
-      if (err) throw err
-      res.render('program/index', { allPrograms: allPrograms })
-    })
+    Program.find({})
+      .populate('admin')
+      .exec(function (err, allPrograms) {
+        if (err) throw err
+        res.render('program/index', {
+          allPrograms: allPrograms
+        })
+      })
   },
 
   listOne: function (req, res) {
     Program.findById(req.params.id, function (err, chosenProgram) {
       if (err) throw err
       Program.findById(req.params.id)
+        .populate('admin')
         .populate('beneficiaries')
         .exec(function (err, program) {
           if (err) throw err
           res.render('program/single', {
             chosenProgram: chosenProgram,
+            programAdmin: program.admin,
             programBeneficiaries: program.beneficiaries
           })
         })
@@ -54,7 +60,7 @@ let programController = {
           user.createdPrograms.push(savedProgram._id)
           user.save()
         })
-        res.redirect('/program/')
+        res.redirect('/profile/' + req.user.id)
       }
     })
   },
@@ -180,7 +186,7 @@ let programController = {
         User.update({ _id: { $in: chosenProgram.guardians } }, { $pull: { signedBeneficiariesUpToThesePrograms: chosenProgram.id } }, { multi: true }, function (err, chosenGuardians) {
           if (err) throw err
           req.flash('success', 'Program successfully deleted')
-          res.redirect('/profile')
+          res.redirect('/profile/' + req.user.id)
         })
       })
     })
@@ -191,8 +197,6 @@ let programController = {
       chosenProgram.beneficiaries.splice(chosenProgram.beneficiaries.indexOf(req.body.id), 1)
       if (err) throw err
       chosenProgram.save()
-      console.log('The beneficiary\'s ID sent from the form is ' + req.body.id)
-      console.log('The program\'s ID to be pulled from the beneficiary is ' + chosenProgram.id)
       Beneficiary.findByIdAndUpdate(req.body.beneficiaryToDelete, { $pull: { programs: chosenProgram.id } }, { new: true }, function (err, chosenBeneficiary) {
         if (err) throw err
         Program.findById(req.params.id)
@@ -205,8 +209,6 @@ let programController = {
                 chosenProgram.guardians.splice(chosenProgram.guardians.indexOf(individualGuardianID), 1)
                 if (err) throw err
                 chosenProgram.save()
-                console.log('The ID of the guardian whose programs array should now remove the program\'s ID is ' + individualGuardianID)
-                console.log('The program\'s ID to be pulled from the guardian\'s programs array is ' + chosenProgram.id)
                 User.findByIdAndUpdate(individualGuardianID, { $pull: { signedBeneficiariesUpToThesePrograms: chosenProgram.id } }, { new: true }, function (err, chosenGuardian) {
                   if (err) throw err
                 })

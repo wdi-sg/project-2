@@ -40,7 +40,7 @@
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" style="<%= dropDownStyle %>">hey, <%= currentUserName %>!</a>
           <div class="dropdown-menu dropdown-menu-right" style="<%= dropDownStyle %>">
             <h6 class="dropdown-header" style="<%= dropDownStyle %>"><em>all users</em></h6>
-            <a class="dropdown-item" href="/profile" style="<%= dropDownStyle %>">view your profile</a>
+            <a class="dropdown-item" href="<%= "/profile/" + currentUserId %>" style="<%= dropDownStyle %>">view your profile</a>
             <a class="dropdown-item" href="/program" style="<%= dropDownStyle %>">browse all programs</a>
             <a class="dropdown-item" href="<%= "/auth/edit/" + currentUserId %>" style="<%= dropDownStyle %>">account settings</a>
             <div class="dropdown-divider" style="<%= dropDownStyle %>"></div>

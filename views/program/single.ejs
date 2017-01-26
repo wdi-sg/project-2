@@ -9,6 +9,11 @@
       <% } %>
     <% } %>
     <em>expected volunteer commitment level</em></p>
+    <% if (chosenProgram.admin.toString() === currentUser.id.toString()) { %>
+      <p>created by you!</p>
+    <% } else { %>
+      <p>created by <a href="<%= "/profile/" + chosenProgram.admin %>"><%= programAdmin.name %></a></p>
+    <% } %>
     <p class="lead"><%= chosenProgram.description %></p>
     <a href="<%= chosenProgram.website %>">External site</a><br><br>
   </div>

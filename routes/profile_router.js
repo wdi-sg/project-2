@@ -2,6 +2,6 @@ const express = require('express')
 const router = express.Router()
 const profileController = require('../controllers/profile_controller')
 
-router.get('/', profileController.list)
+router.get('/:id', profileController.list)
 
 module.exports = router

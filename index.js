@@ -59,12 +59,14 @@ app.use('/beneficiary', beneficiary)
 
 app.use(isLoggedIn)
 
-app.get('/profile', function (req, res) {
-  res.render('profile')
-})
+// app.get('/profile', function (req, res) {
+//   res.render('profile')
+// })
 
 app.get('/program', function (req, res) {
   res.render('program')
 })
+
+app.get('/beneficiary')
 
 app.listen(process.env.PORT || 3000)

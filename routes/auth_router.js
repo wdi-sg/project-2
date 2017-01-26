@@ -17,7 +17,7 @@ router.get('/edit/:id', authController.edit)
 router.put('/update/:id', authController.update)
 
 router.put('/password/:id', authController.newPassword)
-
-router.delete('/:id', authController.delete)
+//
+// router.delete('/:id', authController.delete)
 
 module.exports = router
