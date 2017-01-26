@@ -28,8 +28,6 @@
   <% console.log(playlist.creator._id) %>
   <% if (locals.user._id.toString() === playlist.creator._id.toString()) { %>
     <a href="<%= '/playlists/'+playlist._id+'/delete' %>"><span class="label label-like delete">delete this playlist</span></a>
-  <% } else { %>
-    <h1>NOPE</h1>
   <% } %>
 </div>
 <h4>a playlist by <%= playlist.creator.name %></h4>
