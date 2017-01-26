@@ -1,65 +1,72 @@
-# Your Project Name
+# CUE
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+> CUE is a collaborative playlist creation tool meant for the discerning enthusiast. you could be stacking up a sick set for a party with friends, or curiously curating a mixtape for a special somebody - CUE is meant for you.
 
 ## Getting Started
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+To get started, clone this repo and run `npm install` to install the necessary dependancies on your machine.
+To get the server up and running, run `npm start` to start the server on the port defined in an `.env` file (default is 3000 if not found).
 
 ### Prerequisites
 
-What is needed to install and run the project, how do we install them
-
-```
-Code example
-```
+Running `npm install` will install all the necessary dependancies.
 
 ### How to Use
 
 A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+Run `npm install` to install all necessary dependancies and run `npm start` to start the server.
 
+CUE requires user registration for use. After signing up and logging in, users can start by creating new playlists, looking at a list of all playlists, or searching for playlists by name.
 
-```
-Code example
-```
+Users can create playlists collaboratively by adding tracks or voting on tracks to place them higher or lower in the playlists. Users can only delete tracks in a playlist if they are the creator of the playlist or the contributor of the track. Users can only delete playlists that they have created.
 
-More steps...
-
-```
-until finished
-```
-
+Users can also like playlists so that they can be easily accessed in their profile page, along with playlists that they have created.
 
 ## Tests
 
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
+This project was created using test-driven development, with tests written using Mocha, Chai, Superagent/Supertest.
+Tests are found in the `/test` directory, split into 5 files.
+To run the full test suite, run `npm test`.
+Tests are run using the `test` environment and will create their own database for app testing.
 
 ## Live Version
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+CUE is deployed online via heroku at https://cueup.herokuapp.com/.
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
+NPM packages used in this project:
+* bcryptjs
+* body-parser
+* colors
+* connect-flash
+* cookie-parser
+* debug
+* dotenv
+* ejs
+* express
+* express-ejs-layouts
+* express-session
+* mongoose
+* morgan
+* passport
+* passport-local
+* serve-favicon
+* chai
+* colors
+* superagent
+* supertest
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+On the front end, this project was created using:
+* [ejs](http://www.ejs.co/)
+* [jQuery](http://jquery.com/)
+* [Bootstrap](http://getbootstrap.com/)
+* [Sass](http://sass-lang.com/)
 
-## Workflow
-
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
-
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+For track search, Spotify's [Web API](https://developer.spotify.com/web-api/) was leveraged.
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+* The dynamic gradient background was generated using javascript found [here](https://codepen.io/quasimondo/pen/lDdrF) - Credit to [Mario Klingemann](https://codepen.io/quasimondo/).
+
 

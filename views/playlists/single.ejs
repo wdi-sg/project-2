@@ -1,0 +1,75 @@
+<div class="well well-comments clearfix" id="comments">
+  <i class="fa fa-close" id="hide-comments"></i>
+  <div class="comments-wrapper">
+    <% playlist.comments.forEach(e => { %>
+      <h4><%= e.author.name %></h4>
+      <p><%= e.content %></p>
+      <hr>
+    <% }) %>
+  </div>
+  <form class="comment-form" action="<%= '/playlists/'+playlist._id+'/comment' %>" method="post" accept-charset="utf-8">
+    <div class="input-group">
+      <input name="content" class="form-control" placeholder="type a comment">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-default" type="button"><i class="fa fa-mail-reply"></i></button>
+      </span>
+    </div>
+  </form>
+</div>
+<h1><%= playlist.name %></h1>
+<div class="row btn-row">
+  <% if (locals.user.likedPlaylists.indexOf(playlist._id) < 0) { -%>
+    <a href="<%= '/playlists/'+playlist._id+'/like' %>"><span class="label label-like"><i class="fa fa-thumbs-o-up"></i>  like this playlist!</span></a>
+  <% } else { -%>
+    <a href="<%= '/playlists/'+playlist._id+'/unlike' %>"><span class="label label-like"><i class="fa fa-thumbs-o-down"></i>  unlike this playlist!</span></a>
+  <% } -%>
+  <a><span class="label label-like" id="show-comments">view comments</span></a>
+  <% console.log(locals.user._id) %>
+  <% console.log(playlist.creator._id) %>
+  <% if (locals.user._id.toString() === playlist.creator._id.toString()) { %>
+    <a href="<%= '/playlists/'+playlist._id+'/delete' %>"><span class="label label-like delete">delete this playlist</span></a>
+  <% } %>
+</div>
+<h4>a playlist by <%= playlist.creator.name %></h4>
+<% let collaborators = playlist.tracks.map(e => e.contributor.name).filter((e, i, a) => a.indexOf(e) === i).join(', ') %>
+<h4>collaborators: <%= collaborators %></h4>
+<hr>
+<div class="row">
+  <div class="col-md-5 col-md-push-7">
+    <div class="well add-track">
+      <form id="search-form">
+        <h4>search for a track.</h4>
+        <input type="text" class="form-control" id="query" placeholder="e.g. 'Here Comes The Sun'">
+        <h4><button type="submit" class="label label-like pull-right">search</button></h4>
+        <p class="tiny">powered by spotify!</p>
+      </form>
+      <div id="results"></div>
+    </div>
+  </div>
+  <div class="col-md-7 col-md-pull-5">
+    <% if (playlist.tracks.length === 0) { %>
+      <h1>there's nothing here.<br>add some tracks!</h1>
+    <% } %>
+    <% playlist.tracks.sort((a,b) => b.rank - a.rank).forEach((e, i) => { %>
+      <div class="panel track-panel">
+        <div class="label pull-left"><%= i+1 %></div>
+        <a href="<%= '/playlists/'+playlist._id+'/up/'+e._id %>"><div class="label label-btn pull-right"><i class="fa fa-angle-up"></i></div></a>
+        <div class="label pull-right rank"><%= e.rank %></div>
+        <a href="<%= '/playlists/'+playlist._id+'/down/'+e._id %>"><div class="label label-btn pull-right"><i class="fa fa-angle-down"></i></div></a>
+        <% if (locals.user._id.toString() === e.contributor._id.toString() || locals.user._id.toString() === playlist.creator._id.toString()) { %>
+          <a href="<%= '/playlists/'+playlist._id+'/delete/'+e._id %>"><div class="label pull-right delete"><i class="fa fa-trash"></i></div></a>
+        <% } %>
+          <hr>
+          <img class="track-img pull-left" src="<%= e.image %>">
+          <h2><%= e.title %></h2>
+          <hr>
+          <h4 class="pull-left"><%= e.artist %></h4>
+          <p class="tiny pull-right"><em>contributed by <%= e.contributor.name %></em></p>
+      </div>
+    <% }) %>
+    <!-- <%= playlist %> -->
+  </div>
+</div>
+<hr>
+<script src="../js/spotify-search.js"></script>
+<script src="../js/comments.js"></script>
