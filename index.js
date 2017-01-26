@@ -17,21 +17,19 @@ const multer = require('multer')
 const upload = multer({dest: './uploads/'})
 const cloudinary = require('cloudinary')
 
-
 var app = require('express')()
 var aserver = require('http').createServer(app)
 var io = require('socket.io').listen(aserver)
 global.io = io
-// const http = require('http').Server(app);
-// const io = require('socket.io')(http);
 
-const server = aserver.listen(3000, () => {
+
+const server = aserver.listen(process.env.PORT || 3000, () => {
   console.log('Server up and listening to port 3000')
 })
 
 require('dotenv').config({silent: true})
 
-mongoose.connect('mongodb://127.0.0.1/bfittest')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1/bfittest')
 mongoose.Promises = global.Promises
 
 app.use(express.static(path.join(__dirname, 'public')))
@@ -54,7 +52,7 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.locals= {
+app.locals = {
   simpleFormat: tools.simpleFormat,
   dateFormat: tools.dateFormat,
   cloudinary: cloudinary,
@@ -68,7 +66,7 @@ app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
   // res.render('testsocket', {user: req.user})
-   res.redirect('/event')
+  res.redirect('/event')
 })
 app.use('/auth', authRoutes)
 app.use('/user', userRoutes)
@@ -80,11 +78,11 @@ app.get('/', function (req, res) {
 
 io.on('connection', function (socket) {
   console.log('We have user connected !')
-  console.log(io);
+  console.log(io)
 
-  //socket.on('chat message', function (msg) {
+  // socket.on('chat message', function (msg) {
   // io.emit('chat message', msg);
-  //})
+  // })
 })
 
 module.exports = server
