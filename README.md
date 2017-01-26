@@ -20,6 +20,8 @@ Set up the needed local process.env variables and connect to your local version 
 
 Otherwise, this application will be hosted on a heroku platform after I finish writing up this readme.md
 
+and the link is..... https://meow-meow-beenz.herokuapp.com/
+
 ### How to Use
 
 This web application is a social networking app
@@ -52,7 +54,7 @@ you should see a list of tests appearing...
 
 Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
 
-I will update this later!
+the website is hosted live @ this link : https://meow-meow-beenz.herokuapp.com/
 
 ## Built With
 
