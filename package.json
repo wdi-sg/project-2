@@ -6,6 +6,9 @@
     "start": "node index.js",
     "test": "mocha"
   },
+  "engines" : {
+  "node" : "^6.6.0"
+  },
   "license": "ISC",
   "devDependencies": {
     "chai": "^3.5.0",

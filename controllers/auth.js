@@ -11,15 +11,18 @@ router.get('/signup', function(req, res) {
 });
 
 router.post('/signup', function(req, res) {
+  console.log('inside POST signup');
   User.create({
     email: req.body.email,
     name: req.body.name,
     password: req.body.password
   }, function(err, createdUser) {
     if(err){
+      console.log('ERROR', err);
       req.flash('error', 'Could not create user account');
       res.redirect('/auth/signup');
     } else {
+      console.log('SUCCESS', createdUser);
       passport.authenticate('local', {
         successRedirect: '/query/',
         successFlash: 'Account created and logged in',

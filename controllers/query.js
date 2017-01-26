@@ -10,10 +10,14 @@ var isLoggedIn = require('../middleware/isLoggedIn');
 
 var stops=[]
 router.get('/', isLoggedIn, function(req, res) {
-
+  console.log('inside GET /query');
   Route.find({user_id: req.user._id}, function(err,buses){
     if(err) console.log(error);
-    callbackFunc(buses)
+    if (buses.length > 0) {
+      callbackFunc(buses)
+    } else {
+      res.render('home', {bus:buses})
+    }
   })
   function callbackFunc(buses){
     stops=[]
@@ -52,7 +56,7 @@ router.get('/view/:id', isLoggedIn, function(req, resp) {
         path: '/ltaodataservice/BusArrival?BusStopID='+selectedRoute.BusStopID+'&ServiceNo='+selectedRoute.ServiceNo+'&SST=True',
         method: 'GET',
         headers:{
-          AccountKey: 'DPqLfU7ZRV6NRIvHv329kg=='
+          AccountKey: process.env.LTA
         }
       };
       console.log('options is '+ options);
@@ -101,7 +105,21 @@ router.get('/delete/:id',isLoggedIn, function(req,res){
   })
 })
 
-
+router.post('/dropdown', function(req,res){
+  var selectedBusStop=[]
+  console.log('req body', req.body);
+  Bus.findOne({ServiceNo: req.body}, function(err, bus){
+    console.log('bus ', bus);
+    bus.BusStop.forEach(function(elem){
+      BusStop.findOne({BusStopID: elem}, function(err, busstop){
+        selectedBusStop.push(busstop)
+        if(selectedBusStop.length===bus.BusStop.length){
+          res.JSON(selectedBusStop)
+        }
+      })
+    })
+  })
+})
 router.get('/create', function(req, res) {
   var busList
   var stopList

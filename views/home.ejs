@@ -15,10 +15,14 @@
   <a class="red lighten-2 waves-effect waves-light col s4 btn" href="/query/create">Add a new Route</a>
   <a class="red lighten-2 waves-effect waves-light col s4 btn" href="/auth/logout">Logout</a>
 <br><br><br><br>
+
+<% if(bus.length>0){
+  var busVal = bus;
+var stopVal = stop
+%>
   <div class="row">
-    <% var busVal = bus;
-    var stopVal = stop
-    console.log('Stop val is ', stopVal)
+
+    <% console.log('Stop val is ', stopVal)
     for(var i=0;i<busVal.length;i++){ %>
 
       <div class="card hoverable col s3 offset-s1">
@@ -39,6 +43,7 @@
       <% } %>
     </ul>
 </div>
+<%}%>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
