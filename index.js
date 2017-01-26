@@ -18,7 +18,7 @@ app.use(bodyParser.json())
 if (process.env.NODE_ENV === "test") {
   mongoose.connect('mongodb://localhost/express-authentication')
 } else {
-  mongoose.connect('mongodb://localhost/project2')
+  mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/project2')
 }
 app.use(session({
   secret: process.env.SESSION_SECRET,
