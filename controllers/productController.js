@@ -1,7 +1,6 @@
 const express = require('express')
 const Product = require('../models/product')
 const Location = require('../models/location')
-// const Msg = require('../models/msg')
 const router = express.Router()
 
 router.get('/', function (req, res) {
@@ -16,18 +15,45 @@ router.get('/', function (req, res) {
     res.render('profile', {data: data})
   })
 })
-// {title: 'Your To Do Lists', listname: listname}
 
 router.get('/catalogue', function (req, res) {
   console.log('getting / and finding all products')
-  Product.find({}, function (err, items) {
-    // console.log('what is items passed through', items)
+  Location.find({}, function (err, locationlist) {
     if (err) {
-      req.flash('error', 'Cannot find all items.')
-      res.redirect('/index')
+      res.flash('error', 'Unable to populate location')
+      res.redirect('/products/profile')
       return
     }
-    res.render('catalogue', {items: items})
+    Product.find({}, function (err, items) {
+    // console.log('what is items passed through', items)
+      if (err) {
+        req.flash('error', 'Cannot find all items.')
+        res.redirect('/index')
+        return
+      }
+      res.render('catalogue', {items: items, locationlist: locationlist})
+    })
+  })
+})
+
+router.get('/catalogue/search', function (req, res) {
+  console.log('getting / and finding searched products')
+  console.log(req.query.productname)
+  Location.find({}, function (err, locationlist) {
+    if (err) {
+      res.flash('error', 'Cannot find search.')
+      res.redirect('/products/catalogue')
+      return
+    }
+    Product.find({$or: [{productname: req.query.productname}, {buyerarea: req.query.buyerarea}]}, function (err, items) {
+      // console.log('what is items passed through', items)
+      if (err) {
+        req.flash('error', 'Cannot find search.')
+        res.redirect('/products/catalogue')
+        return
+      }
+      res.render('catalogue', {items: items, locationlist: locationlist})
+    })
   })
 })
 
@@ -46,7 +72,7 @@ router.post('/', function (req, res) {
   function (err, data) {
     console.log('post /', data)
     if (err) {
-      req.flash('error', 'Unable to create new product.')
+      req.flash('error', err.toString())
       res.redirect('/products/new')
       return
     }
@@ -100,29 +126,6 @@ router.get('/:idx/edit', function (req, res) {
     })
   })
 })
-
-// router.put('/:idx', function (req, res) {
-//   console.log('to update the product')
-//   console.log(Product.description)
-//   Product.findOneAndUpdate({_id: req.params.idx}, {$set: {
-//     productname: req.body.productname || Product.productname,
-//     linkforproduct: req.body.linkforproduct || Product.linkforproduct,
-//     price: req.body.price || Product.price,
-//     description: req.body.description || Product.description,
-//     buyerarea: req.body.buyerarea || Product.buyerarea,
-//     respondby: req.body.respondby || Product.respondby
-//   }
-// })
-//   .populate('creator')
-//   .exec(function (err, data) {
-//     // console.log('getting data to update', data)
-//     if (err) {
-//       req.flash('error', 'Product cannot be updated.')
-//     }
-//     res.redirect('/products/' + req.params.idx)
-//   })
-// })
-//
 
 router.put('/:idx', function (req, res) {
   console.log('to update the product')

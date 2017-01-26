@@ -1,0 +1,15 @@
+#indexBackground {
+  background-image: url("/images/shoppingbackground.jpg");
+  background-size: cover;
+}
+
+#indexWords {
+  color: black;
+  background-color: white;
+  opacity: 0.75;
+}
+
+#logo {
+  width: 50px;
+  height: 50px;
+}

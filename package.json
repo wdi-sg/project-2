@@ -1,7 +1,7 @@
 {
   "name": "project-2-buy2gether",
   "version": "1.0.0",
-  "description": "This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.",
+  "description": "This is a web app for new house owners to aggregate purchases to maximise value.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,13 +20,12 @@
     "express-ejs-layouts": "^2.2.0",
     "express-session": "^1.14.2",
     "method-override": "^2.3.7",
-    "mongoose": "^4.7.6",
+    "mongoose": "^4.7.8",
     "mongoose-type-url": "^1.0.2",
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "path": "^0.12.7",
-    "uuid": "^3.0.1"
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "chai": "^3.5.0",

@@ -43,6 +43,9 @@ const productSchema = new mongoose.Schema({
       message: 'Respond by date must be later than today.'
     })
   },
+  upvote: {
+    type: Number
+  },
   msgboard: [MsgSchema]
 })
 
