@@ -36,6 +36,7 @@ UserSchema.options.toJSON = {
 }
 
 UserSchema.pre('save', function(next) {
+  if (!this.isModified('password')) return next()
   const hash = bcrypt.hashSync(this.password)
   this.password = hash
   next()
