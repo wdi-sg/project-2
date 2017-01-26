@@ -1,6 +1,7 @@
 const Message = require('../models/message')
-// const Mail = require('../models/mail')
+const Chatbox = require('../models/chatbox')
 const User = require('../models/user')
+const async = require('async')
 
 let messageController = {
   new: (req, res) => {
@@ -9,18 +10,38 @@ let messageController = {
     })
   },
   create: (req, res) => {
-    Message.create({
-      content: req.body.content,
-      chatbox: req.params.id,
-      sender: req.user.id
-    }, (err, message) => {
-      global.io.emit(`chatmessages${req.params.id}`, message)
-      res.redirect(`/user/message/${req.params.id}`)
+    Chatbox.findOne({_id: req.params.id}, (err, chatbox) => {
+      let newrecipient = ''
+      if (chatbox.firstuser.equals(req.user.id)) {
+        newrecipient = chatbox.seconduser
+      } else {
+        newrecipient = chatbox.firstuser
+      }
+
+      Message.create({
+        content: req.body.content,
+        chatbox: req.params.id,
+        sender: req.user.id,
+        recipient: newrecipient,
+        read: false
+      }, (err, message) => {
+        global.io.emit(`chatmessages${req.params.id}`, message)
+        res.redirect(`/user/message/${req.params.id}`)
+      })
     })
   },
   list: (req, res) => {
-    Message.find({chatbox: req.params.id}).populate('chatbox').exec((err, messages) => {
-      res.render('message/show', {messages: messages, user: req.user, req: req})
+    async.parallel({
+      messages: (cb) => {
+        Message.find({chatbox: req.params.id}).populate('chatbox').exec(cb)
+      },
+      updateRead: (cb) => {
+        Message.find({recipient: req.user.id, read: false})
+        .update({read: true}, {multi: true})
+        .exec(cb)
+      }
+    }, (err, results) => {
+      res.render('message/show', {messages: results.messages, user: req.user, req: req})
     })
   }
 }

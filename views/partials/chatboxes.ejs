@@ -15,7 +15,11 @@
             <input name='id' hidden value='<%=chatbox.seconduser._id%>'>
             <button class='glyphicon glyphicon-envelope'></button>
           </form>
-          <p><strong><%= chatbox.seconduser.name%></strong><p>
+          <p><strong><%= chatbox.seconduser.name%></strong>
+            <% if (events[5].length > 0){ %>
+              <span class='label label-danger'> unread </span>
+            <% } %>
+          </p>
         </div>
         <% } else { %>
           <div>
@@ -24,7 +28,11 @@
                 <input name='id' hidden value='<%=chatbox.firstuser._id%>'>
                 <button class='glyphicon glyphicon-envelope'></button>
             </form>
-            <p><strong><%= chatbox.firstuser.name%></strong><p>
+            <p><strong><%= chatbox.firstuser.name%></strong>
+              <% if (events[5].length > 0){ %>
+                <span class='label label-danger'> unread </span>
+              <% } %>
+            </p>
           </div>
         <% } %>
     </div>

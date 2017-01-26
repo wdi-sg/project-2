@@ -3,6 +3,7 @@ const User = require('../models/user')
 const Event = require('../models/event')
 const Participant = require('../models/participant')
 const Chatbox = require('../models/chatbox')
+const Message = require('../models/message')
 const cloudinary = require('cloudinary')
 const async = require('async')
 
@@ -51,8 +52,10 @@ let userController = {
         .populate('firstuser')
         .populate('seconduser')
         .exec(cb)
+      },
+      (cb) => {
+        Message.find({recipient: req.user.id, read: false}, cb)
       }
-
     ], (err, result) => {
       if (err) {
         req.flash('error', 'Please login to proceed.')

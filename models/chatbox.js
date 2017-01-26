@@ -9,6 +9,9 @@ let chatboxSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
+  read: {
+    type: Boolean
+  },
   update: {
     type: Date,
     default: Date.now()

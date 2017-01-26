@@ -13,11 +13,19 @@ let messageSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId, ref: 'User',
     require: true
   },
+  recipient: {
+    type: mongoose.Schema.Types.ObjectId, ref: 'User',
+    require: true
+  },
+  read: {
+    type: Boolean
+  },
   date: {
     type: Date,
     default: Date.now()
   }
 })
+
 
 let Message = mongoose.model('Message', messageSchema)
 
