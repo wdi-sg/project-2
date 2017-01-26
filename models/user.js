@@ -14,7 +14,7 @@ name: {
 email: {
   type: String,
   required: true,
-  unique: [true,'Your email is already in the database, please use another email.']
+  unique: [true,'Your email is already in the database, please use another email.'],
   lowercase: true,
   match: [ emailRegex, 'Please use another email address' ]
 },
