@@ -17,7 +17,8 @@ const ItemSchema = new mongoose.Schema( {
   },
   imagelink: { type: String },
   _trade: { type: mongoose.Schema.Types.ObjectId, ref: "Trade" }, //blank if not in trade
-  valuation: { type: Number } // cents
+  valuation: { type: Number }, // dollars
+  tradedaway: Boolean
 } );
 
 module.exports = mongoose.model( 'Item', ItemSchema );

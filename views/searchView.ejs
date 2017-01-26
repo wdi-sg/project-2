@@ -1,61 +1,62 @@
-<form method='POST' action='/itemSearch'>
-  <div class="form-group">
-    <label for="Search">Item Search:</label>
-    <input type="text" class="form-control" name="search" ">
+<div class="panel panel-primary">
+  <div class="panel-heading"><h4>Item Search</h4></div>
+  <div class="panel-body">
+    <form method='POST' action='/itemSearch'>
+      <div class="form-group">
+        <label for="Search"></label>
+        <input type="text" class="form-control" name="search" ">
+      </div>
+      <button type="submit" class="btn btn-default">Search</button>
+    </form>
   </div>
-  <button type="submit" class="btn btn-default">Search</button>
-</form>
+</div>
 
-<h3>Items Found:</h3>
-<% let items = itemsList%>
-
-<% if (items.length === 0 ) {%>
-No items found, please try another search.
-<%} else {%>
-<table class="table ">
-  <thead class = 'thead thead-inverse'>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Image</th>
-      <th>Cash Value Estimate</th>
-      <th>In Ongoing Trade?</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% items.forEach(( item) => { %>
-    <tr>
-      <td><%= item.name%></td>
-      <td><%= item.description%></td>
-      <td>
-        <img src="<%= item.imagelink%>" alt=<%= item.name%> style="width:10em;height:auto;">
-      </td>
-      <td><%= item.valuation%></td>
-      <td>
-        <%
-        let itemTradeStatus = "No"
-        if ( item._trade )
-        if ( item._trade !== null )
-        itemTradeStatus = "Yes"
-        %>
-        <%= itemTradeStatus%>
-        <td class = >
-          <button type = "button" class = "btn btn-sm col-sm-12 buttonVertMargin"
-          onclick = "window.location.href = '/interface/trade/create/<%= item._id%>' ">
-          Make An Offer</button>
-          <button type = "button" class = "btn btn-sm col-sm-12 buttonVertMargin"
-          onclick = "window.location.href = '/interface/item/show/<%= item._id%>' ">
-          Details</button>
-          <button type = "button" class = "btn btn-sm col-sm-12 buttonVertMargin"
-          onclick = "window.location.href = '/interface/item/edit/<%= item._id%>' ">
-          Modify</button>
-          <form method='POST' action='/interface/item/delete/<%= item._id %>?_method=DELETE'>
-            <button type="submit" class="btn btn-sm col-sm-12 buttonVertMargin">Delete</button>
-          </form>
-        </td>
-      </tr>
-      <% }) %>
-    </tbody>
-  </table>
-  <%}%>
+<div class="panel panel-info">
+  <div class="panel-heading"><h4>Items Found</h4></div>
+  <div class="panel-body">
+    <% let items = itemsList%>
+    
+    <%
+    items = items.filter( ( item ) => {
+    return !item._trade
+    } )
+    %>
+    
+    <% if (items.length === 0 ) {%>
+    No items found, please try another search.
+    <%} else {%>
+    <table class="table ">
+      <thead class = 'thead thead-inverse'>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Image</th>
+          <th>Cash Value Estimate</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% items.forEach(( item) => { %>
+        <tr>
+          <td><%= item.name%></td>
+          <td><%= item.description%></td>
+          <td>
+            <img src="<%= item.imagelink%>" alt=<%= item.name%> style="width:10em;height:auto;">
+          </td>
+          <td><%= item.valuation%></td>
+          <td class >
+            <form method='POST' action='/interface/trade/create/<%= item._id%>'>
+              <button type="submit" class="btn btn-sm col-sm-12 buttonVertMargin">
+              Make An Offer</button>
+            </form>
+            <button type = "button" class = "btn btn-sm col-sm-12 buttonVertMargin"
+            onclick = "window.location.href = '/interface/item/show/<%= item._id%>' ">
+            Details</button>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <%}%>
+  </div>
+</div>

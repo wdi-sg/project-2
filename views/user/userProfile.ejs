@@ -1,5 +1,12 @@
-<h2>Profile Page</h2>
+<div class="panel panel-info">
+  <div class="panel-heading"><h4>User Profile</h4></div>
+  <div class="panel-body">
 
-<%= user%>
-
-<a href="/">Home</a>
+    <strong>
+    Name: <%= user.name%><br><br>
+    Email: <%= user.email%><br><br>
+    Number of items listed or traded away: <%= user.items.length%><br><br>
+    Number of trades ongoing or finished: <%= user.trades.length %>
+    </strong>
+  </div>
+</div>

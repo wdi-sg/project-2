@@ -15,7 +15,7 @@ router.post( '/signup', function( req, res ) {
   }, function( err, createdUser ) {
     if ( err ) {
       // FLASH -
-      req.flash( 'error', 'Could not create user account' );
+      req.flash( 'error', err.toString() );
       res.redirect( '/auth/signup' );
     } else {
       // FLASH
@@ -32,7 +32,7 @@ router.get( '/login', function( req, res ) {
 } );
 
 router.post( '/login', passport.authenticate( 'local', {
-  successRedirect: '/',
+  successRedirect: '/interface',
   failureRedirect: '/auth/login',
   failureFlash: 'Login not successful. Please try again or create a new account.'
 } ) );

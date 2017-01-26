@@ -6,30 +6,26 @@ const emailRegex =
 // almost every email regex
 
 const UserSchema = new mongoose.Schema( {
-  name: {
-    type: String,
-    minlength: [ 5, 'Please give a name with more than 4 characters' ],
-    maxlength: [ 30, 'Please give a name with less than 30 characters' ],
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    lowercase: true,
-    match: [ emailRegex, 'Please use another email address' ]
-  },
-  password: {
-    type: String,
-    required: true,
-    minlength: [ 8, 'Please use a password with more than 7 characters' ],
-  },
-  items: [ { type: mongoose.Schema.Types.ObjectId, ref: "Item" } ],
-  trades: [ { type: mongoose.Schema.Types.ObjectId, ref: "Trade" } ],
-  messages: [ { type: mongoose.Schema.Types.ObjectId, ref: "Message" } ],
-  activityList: [ {
-    text: { type: String },
-    activityType: { enum: [ "Item", "Trade", "Message" ] }
-  } ]
+name: {
+  type: String,
+  minlength: [ 5, 'Please give a name with more than 4 characters' ],
+  maxlength: [ 30, 'Please give a name with less than 30 characters' ],
+},
+email: {
+  type: String,
+  required: true,
+  unique: true,
+  lowercase: true,
+  match: [ emailRegex, 'Please use another email address' ]
+},
+password: {
+  type: String,
+  required: true,
+  minlength: [ 8, 'Please use a password with more than 7 characters' ],
+},
+items: [ { type: mongoose.Schema.Types.ObjectId, ref: "Item" } ],
+trades: [ { type: mongoose.Schema.Types.ObjectId, ref: "Trade" } ],
+
 } );
 
 UserSchema.pre( 'save', function( next ) {

@@ -1,7 +1,14 @@
-<p>Viewing Item</p>
-
-Name:<%= item.name%><br>
-Description:<%= item.description%><br>
-Imagelink:<%= item.imagelink%><br>
-Estimate Of Cash Value:<%= item.valuation%><br>
-
+<div class="panel panel-primary">
+  <div class="panel-heading"><h4>Item Details</h4></div>
+  <div class="panel-body">
+    
+    <img src="<%= item.imagelink%>" style="width:100%" >
+    <br>
+    <br>
+    <strong>
+    Name: <%= item.name%><br><br>
+    Description: <%= item.description%><br><br>
+    Estimate Of Cash Value: <%= item.valuation%><br><br>
+    </strong>
+  </div>
+</div>

@@ -1,15 +1,82 @@
-<h2>User Menu</h2>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="/public/css/jumbotron.css" rel="stylesheet">
+    <link href="/public/css/layout.css" rel="stylesheet" >
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BarterFly</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">BarterFly</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/interface">BarterCenter</a></li>
+            <li><a href="/auth/signup">New Account</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/auth/login">Login</a></li>
+          </ul>
+          <form class="navbar-form navbar-right"
+            form method='POST' action='/itemSearch/'>
+            <input type="text" class="form-control" name="search" placeholder="Marketplace Search...">
+          </form>
+        </div>
+      </div>
+    </nav>
+<!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="text-center">everything for everything</h1>
+        <p class="text-center">Barterfly lets you find the vintage and the lovingly used, or a place for just sharing your own.</p>
+        <br>
+        <br>
+        <form method='POST' action='/itemSearch'>
+          <div class="form-group">
+            <label for="Search"></label>
+            <input type="text" class="form-control" name="search" placeholder="Find what you want now!">
+          </div>
+          <button type="submit" class="btn btn-default">Search</button>
+        </form>
+      </div>
+    </div>
 
-<a href="/auth/signup">Signup</a>
-<a href="/auth/login">Login</a>
-<a href="/profile">Profile</a>
-<a href="/interface">BarterCenter</a>
-<br>
-<br>
-<form method='POST' action='/itemSearch'>
-  <div class="form-group">
-    <label for="Search">Find Items Now!</label>
-    <input type="text" class="form-control" name="search" ">
-  </div>
-  <button type="submit" class="btn btn-default">Search</button>
-</form>
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Find what you want </h2>
+          <p> Want that bargain price or vintage item that might be in someone's bottom drawer? Barterfly has a listing of over 3 users you can pick through. </p>
+
+        </div>
+        <div class="col-md-4">
+          <h2>Trade what you don't want </h2>
+          <p> Running out of space to store your precious knickknacks and that old guitar you haven't touched in a decade? Barterfly lets you trade them for other things you can clutter your apartment with!</p>
+       </div>
+        <div class="col-md-4">
+          <h2>Make a flexible trade. </h2>
+          <p> Like, REALLY flexible dude. Cash for their item? Your item for their cash? Their items for your items? Exchange items, plus some cash, plus haggle over it in chat all day long? Barterfly lets you do it all!</p>
+
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; 2017 Adrian Ke Not Actually Real Enterprises Pte. Ltd. LLC Inc. Sdn Berhad</p>
+      </footer>
+    </div> <!-- /container -->

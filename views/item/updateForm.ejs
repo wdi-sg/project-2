@@ -1,22 +1,27 @@
-<h1>Modify Item Information</h1>
-
 <div class="container">
-  <form method='POST' action='/interface/item/edit/<%= item._id %>?_method=PUT'>
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" class="form-control" name="name" value="<%= item.name%>">
+  <div class="panel panel-primary">
+    <div class="panel-heading"><h4>Modify Item Information</h4></div>
+    <div class="panel-body">
+      <form method='POST' action='/interface/item/edit/<%= item._id %>?_method=PUT'>
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" name="name" value="<%= item.name%>">
+        </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <input type="text" class="form-control" name="description" value="<%= item.description%>">
+        </div>
+        <div class="form-group">
+          <label for="description">Image Link:</label>
+          <input type="text" class="form-control" name="imagelink" value="<%= item.imagelink%>">
+        </div>
+        <div class="form-group">
+          <label for="valuation">Valuation:</label>
+          <input type="number" class="form-control" name="valuation" value="<%= item.valuation%>">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <br>
     </div>
-    <div class="form-group">
-      <label for="description">Description:</label>
-      <input type="text" class="form-control" name="description" value="<%= item.description%>">
-    </div>
-    <div class="form-group">
-      <label for="description">Image Link:</label>
-      <input type="text" class="form-control" name="imagelink" value="<%= item.imagelink%>">
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
-  <br>
+  </div>
 </div>
-</body>
-</html>

@@ -30,12 +30,12 @@ const passport = require( './config/passportConfig' );
 //custom middleware blocks route or path down route stack if not logged in
 const isLoggedIn = require( './middleware/isLoggedIn' );
 
-const Interface = require('./controllers/interface');
+const Interface = require( './controllers/interface' );
 
 const Item = require( './models/item' );
 
 app.set( "view engine", "ejs" );
-app.use( ejsLayouts );
+
 
 app.use( session( {
   secret: process.env.SESSION_SECRET,
@@ -49,22 +49,6 @@ app.use( passport.session() );
 
 //MUST BE BELOW app.use(session)
 app.use( flash() );
-
-// autologin attempt, not working 
-// app.use( function( req, res, next ) {
-//   if ( !req.user ) {
-//     req.body = {}
-//     req.body.email = "adrianke77@gmail.com"
-//     req.body.password = "password"
-//     console.log("trying to autologin")
-//     passport.authenticate( 'local', {
-//       successRedirect: '/',
-//       successFlash: 'autologin succeeded',
-//       failureFlash: "autologin failed"
-//     } )(req,res,next)
-//   };
-//   next();
-// } );
 
 app.use( function( req, res, next ) {
   // before every route, attach the flash messages and current user to res.locals
@@ -86,11 +70,13 @@ app.use( function( req, res, next ) {
 
 if ( process.env.NODE_ENV === "test" ) {
   app.use( logger( "dev" ) );
-  app.use( require( 'morgan' )( 'dev' ) );
 }
 
 // add public access to public folder
 app.use( '/public', express.static( __dirname + '/public' ) );
+
+// add public access to assets folder
+app.use( '/assets', express.static( __dirname + '/assets' ) );
 
 //put in form tag: action="/resource?_method=DELETE" (for a delete)
 app.use( methodOverride( '_method' ) )
@@ -98,26 +84,17 @@ app.use( methodOverride( '_method' ) )
 app.use( bodyParser.urlencoded( { extended: false } ) );
 app.use( bodyParser.json() );
 
-
 app.get( "/", ( req, res ) => {
   res.render( "user/landing" );
 } );
 
-// authorization router
-app.use( '/auth', require( './controllers/auth' ) );
+app.use( ejsLayouts );
 
 //search and browse items
-app.post( "/itemSearch", ( req, res ) => {
-  userid = null;
-  if ( req.user ) userid = req.user.id
-  let searchRegex = ".*" + req.body.search + ".*"
-  Item.find( {
-    _owner: { $ne: userid },
-    description: { $regex: searchRegex, $options: 'i' }
-  }, ( err, itemsList ) => {
-    res.render( "searchView", { itemsList: itemsList } )
-  } )
-} )
+app.use( "/itemSearch", require( './controllers/search' ) );
+
+// authorization router
+app.use( '/auth', require( './controllers/auth' ) );
 
 // block routes below this line unless logged in
 app.use( isLoggedIn );
@@ -127,7 +104,7 @@ app.use( "/interface", Interface );
 
 // route to user details
 app.get( "/profile", function( req, res ) {
-  res.render( "user/userProfile", { user:req.user } );
+  res.render( "user/userProfile", { user: req.user } );
 } );
 
 // spin up server to port

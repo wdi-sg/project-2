@@ -1,0 +1,53 @@
+<div class="panel panel-primary">
+  <div class="panel-heading"><h4>Trading Partner's Available Items:</h4></div>
+  <div class="panel-body">
+    
+    <% let items = itemsList%>
+    
+    <%
+    //filter out items that already are in a trade
+    items = items.filter( ( item ) => {
+    return !item._trade
+    } )
+    %>
+    <div class="panel panel-info">
+      
+      <div class="panel-body">
+        
+        <table class="table ">
+          <thead class = 'thead thead-inverse'>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Image</th>
+              <th>Cash Value Estimate</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% items.forEach(( item) => { %>
+            <tr>
+              <td><%= item.name%></td>
+              <td><%= item.description%></td>
+              <td>
+                <img src="<%= item.imagelink%>" alt=<%= item.name%> style="width:10em;height:auto;">
+              </td>
+              <td><%= item.valuation%></td>
+              <td >
+                <form method='POST'
+                  action='/interface/trade/add/desired/<%= tradeid%>/<%= item._id%>'>
+                  <button type="submit" class="btn btn-sm col-sm-12 buttonVertMargin">
+                  Add Item To Trade</button>
+                </form>
+                <button type = "button" class = "btn btn-sm col-sm-12 buttonVertMargin"
+                onclick = "window.location.href = '/interface/item/show/<%= item._id%>' ">
+                Details</button>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,9 @@
     "start": "node index.js",
     "test": "mocha"
   },
+  "engines": {
+    "node":"^6.9.2"
+  },
   "repository": {
     "type": "git",
     "url": ""
@@ -14,6 +17,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.0",
     "body-parser": "^1.15.2",
+    "cli-color": "^1.1.0",
     "connect-flash": "^0.1.1",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.5",

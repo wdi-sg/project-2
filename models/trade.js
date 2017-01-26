@@ -7,14 +7,24 @@ const TradeSchema = new mongoose.Schema( {
   secondUser: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   firstUserItems: [ { type: mongoose.Schema.Types.ObjectId, ref: "Item" } ],
   secondUserItems: [ { type: mongoose.Schema.Types.ObjectId, ref: "Item" } ],
-  dealSweetener: { type: Number }, //in cents, positive means offered by firstUser
-  status: {
-    type: String,
-    enum: [ "ongoing", "finished" ]
-  },
+  dealSweetener: { type: Number }, 
+  //convention: positive is first user giving to second user
   firstUserAgreed: Boolean,
   secondUserAgreed: Boolean,
-  messages: { type: mongoose.Schema.Types.ObjectId, ref: "Message" }
+  discussion: String,
 } );
+
+const autoPopulate = function( next ) {
+  this.populate( 'firstUser' )
+    .populate( 'secondUser' )
+    .populate( 'firstUserItems' )
+    .populate( 'secondUserItems' )
+    .populate( 'messages' );
+  next();
+};
+
+TradeSchema.
+pre( 'findOne', autoPopulate ).
+pre( 'find', autoPopulate );
 
 module.exports = mongoose.model( 'Trade', TradeSchema );

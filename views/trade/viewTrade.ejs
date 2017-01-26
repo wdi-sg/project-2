@@ -1,1 +1,247 @@
-<%= trade%>
+<div class = "container">
+  <div class="panel panel-primary">
+    <div class="panel-heading"><h3>Trade View</h3></div>
+    <div class="panel-body">
+      
+      <%
+      let secondId = trade.secondUser._id.toString();
+      let firstId = trade.firstUser._id.toString();
+      let currentId = currentUser._id.toString();
+      let firstAgreed = trade.firstUserAgreed;
+      let secondAgreed = trade.secondUserAgreed;
+      if ( secondId === currentId ) {
+      //if current user is seconduser, swap first and second user in trade
+      let swapHolder = {};
+      swapHolder = trade.firstUser;
+      trade.firstUser = trade.secondUser;
+      trade.secondUser = swapHolder;
+      swapHolder = trade.firstUserItems;
+      trade.firstUserItems = trade.secondUserItems;
+      trade.secondUserItems = swapHolder;
+      }
+      %>
+      
+      <div class="panel panel-info">
+        <div class="panel-heading"><h4>Trade Partner:</h4></div>
+        <div class="panel-body">
+          
+          <h4><strong><%=trade.secondUser.name%></strong></h4>
+        </div>
+      </div>
+      
+      
+      <%
+      let optionsLocked = false;
+      let concluded = false;
+      
+      if ( firstAgreed && secondAgreed ) {
+      optionsLocked = true;
+      concluded = true;
+      %>
+      
+      <p class="text-center" style="font-size:1.5em"> This trade is concluded.</p>
+      <br>
+      
+      <% } %>
+      
+      <%
+      if ( (concluded === false && firstAgreed && firstId === currentId ) ||
+      ( concluded === false && secondAgreed && secondId === currentId ) ) {
+      optionsLocked = true
+      %>
+      
+      <br>
+      <p class="text-center"> You have requested for agreement from trade partner; trade management is locked.</p>
+      <br>
+      <form method='POST' action='/interface/trade/cancelagreedby/<%= trade._id%>/<%= currentUser._id%>'>
+        <button type="submit" class = "btn btn-block center-block" style = "font-size:1.2em">
+        Cancel Request For Agreement</button>
+      </form>
+      
+      <% } %>
+      
+      <%
+      if ( ( concluded === false && firstAgreed && firstId != currentId ) ||
+      ( concluded === false && secondAgreed && secondId != currentId ) ) {
+      optionsLocked = true;
+      let otherUserId = '';
+      if ( firstId === currentId ) otherUserId = secondId;
+      else otherUserId = firstId;
+      %>
+      
+      <p class="text-center"> Your trade partner has requested your agreement to the trade; trade management is locked. </p>
+      <br>
+      <form method='POST' action='/interface/trade/agreedby/<%= trade._id%>/<%= currentUser._id%>'>
+        <button type="submit" class = "btn btn-block center-block" style = "font-size:1.2em">
+        Agree To Trade! (finalizes trade)</button>
+      </form>
+      <br>
+      <form method='POST' action='/interface/trade/cancelagreedby/<%= trade._id%>/<%= otherUserId%>'>
+        <button type="submit" class = "btn btn-block center-block" style = "font-size:1.2em">
+        Make Changes To Trade (cancels request)</button>
+      </form>
+      
+      <% } %>
+      
+      <div class="panel panel-info">
+        <div class="panel-heading"><h4>Items Desired</h4></div>
+        <div class="panel-body">
+          
+          <table class="table ">
+            <thead class = 'thead thead-inverse'>
+              <tr>
+                <th>Name</th>
+                <th class="hidden-xs">Description</th>
+                <th class="hidden-xs">Image</th>
+                <th>Cash Value Estimate</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% trade.secondUserItems.forEach(( item) => { %>
+              <tr>
+                <td><%= item.name%></td>
+                <td class="hidden-xs"><%= item.description%></td>
+                <td class="hidden-xs"
+                  <% if (item.imagelink) { %>
+                  <img src="<%= item.imagelink%>"  style="width:10em;height:auto;">
+                  <% } %>%>
+                </td>
+                <td><%= item.valuation%></td>
+                <td class = >
+                  <button type = "button" class = "btn btn-sm col-xs-12 buttonVertMargin"
+                  onclick = "window.location.href = '/interface/item/show/<%= item._id%>' ">
+                  Details</button>
+                  <% if (optionsLocked === false) { %>
+                  <form method='POST'
+                    action='/interface/trade/delete/<%=trade._id%>/<%=item._id %>?_method=DELETE'>
+                    <button type="submit" class="btn btn-sm col-xs-12 buttonVertMargin">Delete</button>
+                  </form>
+                  <% } %>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+          <% if (optionsLocked === false) { %>
+          <button type = "button" class = "btn btn-block center-block" style = "width:80%"
+          onclick = "window.location.href =
+          '/interface/trade/add/desired/<%= trade._id%>/<%= trade.secondUser._id%>/' ">
+          Add Another Item From Trading Partner</button>
+          <%} %>
+        </div>
+      </div>
+      <div class="panel panel-info">
+        <div class="panel-heading"><h4>Items Offered</h4></div>
+        <div class="panel-body">
+          <table class="table ">
+            <thead class = 'thead thead-inverse'>
+              <tr>
+                <th>Name</th>
+                <th class="hidden-xs">Description</th>
+                <th class="hidden-xs">Image</th>
+                <th>Cash Value Estimate</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% trade.firstUserItems.forEach(( item) => { %>
+              <tr>
+                <td><%= item.name%></td>
+                <td class="hidden-xs"><%= item.description%></td>
+                <td class="hidden-xs">
+                  <img src="<%= item.imagelink%>"  style="width:10em;height:auto;">
+                </td>
+                <td><%= item.valuation%></td>
+                <td>
+                  <button type = "button" class = "btn btn-sm col-xs-12 buttonVertMargin"
+                  onclick = "window.location.href = '/interface/item/show/<%= item._id%>' ">
+                  Details</button>
+                  <% if (optionsLocked === false) { %>
+                  <form method='POST'
+                    action='/interface/trade/delete/<%=trade._id%>/<%=item._id %>?_method=DELETE'>
+                    <button type="submit" class="btn btn-sm col-xs-12 buttonVertMargin">Delete</button>
+                  </form>
+                  <% } %>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+          <% if (optionsLocked === false) { %>
+          <button type = "button" class = "btn btn-block center-block" style = "width:80%"
+          onclick = "window.location.href = '/interface/trade/add/offered/<%= trade._id%>' ">
+          Add Your Item To Offered Items </button>
+          <% } %>
+        </div>
+      </div>
+      
+      <%
+      let sweetener = 0;
+      let sweetenerString = '';
+      if ( trade.dealSweetener ) {
+        sweetener = trade.dealSweetener;
+        if ( secondId === currentId ) sweetener = -sweetener;
+        if ( sweetener < 0 ) {
+          sweetener = -sweetener;
+          sweetenerString =
+            "Taking $" + sweetener + " from " + trade.secondUser.name;
+        } else if ( sweetener > 0 ) {
+          sweetenerString =
+            "Giving $" + sweetener + " to " + trade.secondUser.name;
+        } else sweetenerString = "- No sweetener applied -";
+      } else sweetenerString = "- No sweetener applied -";
+      %>
+      
+      <div class="panel panel-info">
+        <div class="panel-heading"><h4>Sweetener</h4></div>
+        <div class="panel-body">
+          <h4 class="text-center"><%= sweetenerString %> </h4>
+          <br>
+          <% if (optionsLocked === false) { %>
+          <form method='POST'
+            action='/interface/trade/changesweetener/<%=trade._id%>'>
+            <div class="form-group col-xs-6">
+              <input type="number" class="form-control" name="sweetenerValue" placeholder = "Enter an amount to balance the trade." >
+            </div>
+            <div class="form-group col-xs-6">
+              <input type="radio" name="sweetenerDirection" value="take"> Take from trade partner<br>
+              <input type="radio" name="sweetenerDirection" value="give"> Give to trade partner<br>
+            </div>
+            <button type="submit" class="btn btn-sm btn-block">Change Sweetener</button>
+          </form>
+          <% } %>
+        </div>
+      </div>
+      
+      
+      <div class="panel panel-info">
+        <div class="panel-heading"><h4>Discussion</h4></div>
+        <div class="panel-body">
+        <% if (!trade.discussion || trade.discussion.length === 0) {%>
+        No trade discussion yet
+        <%} else {%>
+          <%- trade.discussion%>
+          <%}%>
+          <% if (optionsLocked === false) { %>
+          <form method='POST'
+            action='/interface/trade/addchat/<%=trade._id%>'>
+            <div class="form-group">
+              <textarea rows="2" class="form-control" name="chattext" placeholder="Add to chat"></textarea>
+            </div>
+            <button type="submit" class="btn btn-sm">Add to chat</button>
+          </form>
+          <% } %>
+        </div>
+      </div>
+      
+      <% if (optionsLocked === false) { %>
+      <br>
+      <br>
+      <form method='POST' action='/interface/trade/agreedby/<%= trade._id%>/<%= currentUser._id%>'>
+        <button type="submit" class = "btn btn-block center-block" style = "font-size:1.2em">
+        Ask Partner To Finalize Trade</button>
+      </form>
+      <% } %>
+    </div>
+  </div>
