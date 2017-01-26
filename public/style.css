@@ -3,12 +3,22 @@ body {
     word-wrap:break-word;
 }
 .login {
-
   background: url('./img/sport.jpg');
   background-size: cover;
-
 }
 
+.brand {
+  color: white;
+    text-shadow: 1px 1px black;
+}
+
+.brand h1 {
+  font-size: 100px;
+}
+
+.brand p {
+  font-size: 15px;
+}
 
 .navbar {
   margin-bottom: 0;
