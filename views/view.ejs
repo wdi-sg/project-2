@@ -106,7 +106,7 @@
         var minutes1=parseInt(time3[1])
         var seconds1=parseInt(time3[2])
         var convertSub = (hours1*60*60) +(minutes1*60) + seconds1
-        var diff1= convertSub-convert1
+        var diff1= convertSub-convert1-28800
         var timeRemSub = Math.round(diff1/60)
         if(timeRemSub>=0){%>
         <td><%= timeRemSub %> mins</td>
