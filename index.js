@@ -12,7 +12,7 @@ const path = require('path')
 const methodOverride = require('method-override')
 const Classroom = require('./models/classroom').model
 const Assignment = require('./models/assignment').model
-
+const School = require('./models/school').model
 
 mongoose.connect('mongodb://localhost/managehomework')
 mongoose.Promise = global.Promise;
@@ -41,13 +41,35 @@ app.use('/auth', require('./controllers/authentications_controller'))
 app.use('/assignment', require('./controllers/assignments_controller'))
 app.use('/classroom', require('./controllers/classrooms_controller'))
 
+
+
 app.get('/', function(req, res) {
-  res.render('index')
+  School.find({}, function (err, schools) {
+    if (err) { return console.log(err) }
+    res.render('index', {schools: schools})
+  })
 })
 
 app.get('/dashboard', isLoggedIn, function(req, res) {
   res.redirect('auth/dashboard')
 })
+
+app.get('/logout', function(req, res) {
+  req.logout();
+  req.flash('success', 'You have logged out');
+  res.redirect('/');
+});
+
+
+// <div class="form-group">
+//   <select class="bfh-selectbox"" name="school">
+//     <option value="">-Please select your school-</option>
+//     <% for (var i = 0; i < schools.length; i++) { %>
+//    <option value="<%= schools[i]._id %>"> <%=  schools[i].name %></option>
+//      <% } %>
+//   </select>
+// </div>
+
 
 
 var server = app.listen(process.env.PORT || 3000)

@@ -24,70 +24,50 @@ router.get('/dashboard', isLoggedIn, function (req, res) {
           console.log('assignments is ' + assignments);
 
           res.render('dashboard', {assignments: assignments, user: user})
-    })
-
-
-
-      // var counter = 0
-      // var result = []
-      //
-      // for (var i = 0; i < classroomsArray.length; i++) {
-      //   Classroom.find({_id: classroomsArray[i]})
-      //   .populate('assignments')
-      //   .exec(function (err, classrooms) {
-      //     if (err) {return console.log(err)}
-      //     console.log(classrooms);
-      //     result.push(classrooms)
-      //     callback()
-      //   })
-      // }
-      // function callback () {
-      //   counter++
-      //   if (counter === classroomsArray.length - 1){
-      //     res.render('dashboard', {assignments: assignments, classrooms: result})
-      //   }
-      // }
-    })
+        })
+      })
   }
   else {
+
     res.render('dashboard')
   }
 
 })
 
+router.get('/accountinfo/:id', isLoggedIn, function (req, res) {
+  User.findById(req.params.id, function (err, user) {
+  if (err) { return console.log(err) }
+  res.render('accountinfo', {user: user})
+  })
+
+})
+
+router.post('/accountinfo/:id', function (req, res) {
+  console.log("accountinfo post fired");
+  School.findOne({name: req.body.school}, function (err, school) {
+    if (err) { return console.log(err) }
+    console.log("acctinfo found school " + school);
+    req.body.school = school._id
+  })
+  User.update({_id: req.params.id}, {school: req.body.school, name: req.body.name}, function (err, user) {
+    console.log("acct info updated " + user);
+    if(err) {return console.log(err)}
+    res.redirect('/dashboard')
+  })
+})
 
 router.post('/signup', function (req, res, next) {
   User.create({
     role: req.body.role,
     email: req.body.email,
-    name: req.body.name,
-    password: req.body.password,
-    school: req.body.school
+    password: req.body.password
   }, function (err, createdUser) {
-    if (req.body.role === 'teacher') {
-      console.log('this is the school create function');
-      School.create ({
-        name: req.body.school,
-        teacher: req.body.email
-      }, function (err, createdSchool) {
-        if (err) {
-          req.flash('error', 'Could not create school');
-          res.redirect('/index')
-        } else {
-          passport.authenticate('local', {
-            successRedirect: '/dashboard',
-            failureRedirect: '/index',
-            successFlash: 'Account created and logged in'
-          })(req, res, next)
-        }
-      })
-    }
     if(err){
         req.flash('error', 'Could not create user account');
         res.redirect('/index');
       } else {
         passport.authenticate('local', {
-          successRedirect: '/dashboard',
+          successRedirect: '/auth/accountinfo/' + createdUser._id,
           failureRedirect: '/index',
           successFlash: 'Account created and logged in'
         })(req, res, next)
@@ -103,19 +83,31 @@ router.post('/login', passport.authenticate('local', {
   successFlash: 'You have logged in'
 }))
 
-// router.get('/signup', function(req, res) {
+
+// router.get('/logout', function(req, res) {
+//   req.logout();
+//   req.flash('success', 'You have logged out');
 //   res.render('index');
-// });
-//
-// router.get('/login', function(req, res) {
-//   res.render('login');
-// });
+// })
 
-router.get('/logout', function(req, res) {
-  req.logout();
-  req.flash('success', 'You have logged out');
-  res.render('index');
-});
 
+// if (req.body.role === 'teacher') {
+//   console.log('this is the school create function');
+//   School.create ({
+//     name: req.body.school,
+//     teacher: req.body.email
+//   }, function (err, createdSchool) {
+//     if (err) {
+//       req.flash('error', 'Could not create school');
+//       res.redirect('/index')
+//     } else {
+//       passport.authenticate('local', {
+//         successRedirect: '/edit_profile',
+//         failureRedirect: '/index',
+//         successFlash: 'Account created and logged in'
+//       })(req, res, next)
+//     }
+//   })
+// }
 
 module.exports = router
