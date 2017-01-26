@@ -5,8 +5,8 @@ let userSchema = new mongoose.Schema({
   name: {
     type: String,
     require: true,
-    minlength: [6, 'Name should be between 6 to 20 characters.'],
-    maxlength: [20, 'Name should be between 6 to 20 characters.']
+    minlength: [6, 'Name should be between 6 to 10 characters.'],
+    maxlength: [10, 'Name should be between 6 to 10 characters.']
   },
   email: {
     type: String,
