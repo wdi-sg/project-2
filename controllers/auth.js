@@ -22,7 +22,9 @@ router.post('/signup', function(req, res) {
     } else {
       passport.authenticate('local', {
         successRedirect: '/query/',
-        successFlash: 'Account created and logged in'
+        successFlash: 'Account created and logged in',
+        failureFlash: 'Invalid username and/or password',
+        successFlash: 'You have logged in'
       })(req, res);
     }
   });

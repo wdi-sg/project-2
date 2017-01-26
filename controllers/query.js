@@ -8,50 +8,34 @@ var passport = require('../config/ppConfig');
 var http= require('http')
 var isLoggedIn = require('../middleware/isLoggedIn');
 
-// router.get('/', isLoggedIn, function(req, res) {
-//   Route.find({user_id: req.user._id}, function(err,bus){
-//     if(err) console.log(error);
-//     callbackFunc(bus)
-//   })
-//   function callbackFunc(bus){
-//     console.log(bus);
-//     var stops=[]
-//     bus.forEach(function(elem){
-//       BusStop.find({BusStopID: elem.BusStopID}, function(err, stop){
-//         if(err) console.log(err);
-//         console.log('bus stops found: ',stop)
-//         stops.push(stop)
-//       })
-//     })
-//     console.log('stops are: ', stops);
-//     callbackFuncView(bus, stops)
-//   }
-//   function callbackFuncView(bus, stop){
-//     res.render('home', {bus:bus, stop: stop})
-//   }
-// });
 var stops=[]
 router.get('/', isLoggedIn, function(req, res) {
-  Route.find({user_id: req.user._id}, function(err,bus){
+
+  Route.find({user_id: req.user._id}, function(err,buses){
     if(err) console.log(error);
-    callbackFunc(bus)
+    callbackFunc(buses)
   })
-  function callbackFunc(bus){
-    console.log(bus);
-    bus.forEach(function(elem){
-      BusStop.find({BusStopID: elem.BusStopID}, function(err, stop){
+  function callbackFunc(buses){
+    stops=[]
+    console.log(buses);
+    for(let i=0;i<buses.length;i++){
+    // buses.forEach(function(elem){
+      BusStop.find({BusStopID: buses[i].BusStopID}, function(err, stop){
         if(err) console.log(err);
         console.log('calling callback view');
-        callbackFuncView(bus, stop)
+        callbackFuncView(buses, stop)
         console.log('stops after return is ', stops);
       })
-    })
-    res.render('home', {bus:bus, stop: stops})
+    }
+
   }
-  function callbackFuncView(bus, stop){
+  function callbackFuncView(buses, stop){
     console.log('stop is ', stop);
     console.log('stops is ', stops);
-     return stops.push(stop)
+    stops.push(stop)
+    if(stops.length===buses.length){
+      res.render('home', {bus:buses, stop: stops})
+    }
   }
 });
 
@@ -81,6 +65,7 @@ router.get('/view/:id', isLoggedIn, function(req, resp) {
         })
         res.on('end', function(){
           var body = JSON.parse(data)
+          console.log('data acquired is ', data);
           resp.render('view',{body: body, stop: selectedRoute, busStop: selectedStop})
         })
       }).end();
@@ -98,7 +83,20 @@ router.get('/delete/:id',isLoggedIn, function(req,res){
     })
     function callbackFunc(bus){
       console.log(bus);
-      res.render('home', {bus:bus})
+      bus.forEach(function(elem){
+        BusStop.find({BusStopID: elem.BusStopID}, function(err, stop){
+          if(err) console.log(err);
+          console.log('calling callback view');
+          callbackFuncView(bus, stop)
+          console.log('stops after return is ', stops);
+        })
+      })
+      res.render('home', {bus:bus, stop: stops})
+    }
+    function callbackFuncView(bus, stop){
+      console.log('stop is ', stop);
+      console.log('stops is ', stops);
+       return stops.push(stop)
     }
   })
 })

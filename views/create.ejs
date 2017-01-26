@@ -31,7 +31,7 @@
       <label for="BusStopID">Enter Bus Stop</label>
       <select class="offset-m3"name='BusStopID'>
         <% stop.forEach(function(elem){ %>
-          <option name='ServiceNo'><%=elem.BusStopID%></option>
+          <option name='BusStopId' value='<%=elem.BusStopID%>'><%=elem.Description%></option>
         <% })%>
       </select>
 
