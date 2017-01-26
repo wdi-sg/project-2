@@ -77,7 +77,7 @@
         var minuteNow = timeNow.getMinutes()
         var secondNow = timeNow.getSeconds()
         var convert1 = (hourNow*60*60)+ (minuteNow*60)+secondNow
-        var diff= convert-convert1
+        var diff= convert-convert1-28800
         var timeRem = Math.round(diff/60)
         console.log(timeRem)
         if(timeRem>=0){%>
