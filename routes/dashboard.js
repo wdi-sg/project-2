@@ -47,8 +47,10 @@ router.get('/',function(req,res){
       },0)
       return Math.floor(res/(value.length))
     })
+    console.log('------------------------------------------------------------------------------------------'.rainbow);
     console.log('this is the array of values from the ratings schemas using naive expectation'.cyan,bigRatingsArr);
     console.log('this is the array of values from the ratings schemas using dirichletAlgo'.magenta,bigRatingsArrDirichletAlgo);
+    console.log('------------------------------------------------------------------------------------------'.rainbow);
     // console.log(binaryImageArr);
     res.render('dashboard', {
       data : data,
@@ -125,10 +127,13 @@ router.get('/profile',function(req,res){
     let loginClean = data.user.loginTime.getTime();
     let logoutClean = data.user.logoutTime ? data.user.logoutTime.getTime() : null;
     console.log('4 bernoulli stuff'.red,bernoulliStuff);
+    console.log('------------------------------------------------------------------------------------------'.rainbow);
     console.log('\nafter applying a normal reduction... my ratings are : '.cyan,beforeCleanReducedVal);
     console.log('but if I apply a dirichlet algo...'.magenta,dirichletAlgo(bernoulliStuff,bernoulliStuff.length,5,1.65),'\n');
-    console.log('sanitizing reducedVal..'.green,reducedVal);
-    console.log('sanitizing dirchletAlgo..'.red,afterDirchletAlgo);
+    console.log('------------------------------------------------------------------------------------------'.rainbow);
+    console.log('\nsanitizing reducedVal..'.green,reducedVal);
+    console.log('sanitizing dirchletAlgo..'.red,afterDirchletAlgo,'\n');
+    console.log('------------------------------------------------------------------------------------------'.rainbow);
     console.log('sanitizing loginTime'.yellow,loginClean);
     console.log('sanitizing logoutTime'.blue,logoutClean);
     let ratingsAftLogoutArr = [];
