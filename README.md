@@ -31,7 +31,7 @@ Tests are run using the `test` environment and will create their own database fo
 
 ## Live Version
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+CUE is deployed online via heroku at https://cueup.herokuapp.com/.
 
 ## Built With
 
