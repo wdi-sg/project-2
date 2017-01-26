@@ -53,7 +53,7 @@ router.get('/view/:id', isLoggedIn, function(req, resp) {
       var options = {
         host: 'datamall2.mytransport.sg',
         port: 80,
-        path: '/ltaodataservice/BusArrival?BusStopID='+selectedRoute.BusStopID+'&ServiceNo='+selectedRoute.ServiceNo+'SST=True',
+        path: '/ltaodataservice/BusArrival?BusStopID='+selectedRoute.BusStopID+'&ServiceNo='+selectedRoute.ServiceNo+'&SST=True',
         method: 'GET',
         headers:{
           AccountKey: process.env.LTA
