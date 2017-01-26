@@ -50,6 +50,10 @@ eventSchema.pre('save', function (next) {
     return next(err)
   }
 
+  if (event.description.length <= 0) {
+    event.description = event.name
+  }
+
   next()
 })
 
