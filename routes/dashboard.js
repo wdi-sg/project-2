@@ -89,7 +89,7 @@ router.get('/profile/:id',function(req,res){
     if (err) console.log(err);
     if (req.user._id.equals(req.params.id)){
       req.flash('error','cant rate yourself... are you a narcissist?')
-      res.redirect('/dashboard/profile');
+      return res.redirect('/dashboard/profile');
     }
     let binaryImage = new Buffer(data.avatar).toString('base64');
     //comment this in if you want more info on the main page
