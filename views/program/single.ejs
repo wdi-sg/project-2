@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="jumbotron">
+<div class="jumbotron">
+  <div class="container">
     <h1 class="display-3"><%= chosenProgram.name %></h1><br>
     <p class="text-muted mb-0"><span class="badge badge-info"><%= chosenProgram.subject %></span><em> volunteer area</em></p>
     <p class="text-muted">
@@ -10,16 +10,114 @@
     <% } %>
     <em>expected volunteer commitment level</em></p>
     <p class="lead"><%= chosenProgram.description %></p>
-    <a href="<%= chosenProgram.website %>">Find out more</a><br><br>
-    <%
-    let editDeletePresence = ""
-    if ((chosenProgram.admin).toString() !== (currentUser.id).toString()) {
-      editDeletePresence = "display: none; visibility: hidden"
+    <a href="<%= chosenProgram.website %>">External site</a><br><br>
+  </div>
+</div>
+<div class="container">
+  <%
+  let adminBeneficiariesView  = ""
+  if ((chosenProgram.admin).toString() !== (currentUser.id).toString()) {
+    adminBeneficiariesView = "display: none; visibility: hidden;"
+  }
+  %>
+  <div style="<%= adminBeneficiariesView %>" class="mb-5">
+    <h1 class="mb-3">all beneficiaries</h1>
+    <table class="table table-hover table-responsive">
+      <thead class="thead-default">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let count = 0 %>
+        <% programBeneficiaries.forEach(function (individualBeneficiary) { %>
+          <% count++ %>
+          <tr>
+            <th scope="row"><%= count %></th>
+            <td><%= individualBeneficiary.name %></td>
+            <td><%= individualBeneficiary.gender %></td>
+            <td><%= individualBeneficiary.age %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <%
+  let guardianBeneficiariesPresence  = "display: none; visibility: hidden;"
+  programBeneficiaries.forEach(function (indivBeneficiary1) {
+    if (indivBeneficiary1.guardian.toString() === currentUser.id.toString() && currentUser.userTypes.guardian === true) {
+      guardianBeneficiariesPresence = ""
     }
-    %>
-    <a class="btn btn-info mb-2" style="<%= editDeletePresence %>" href="<%= "/program/" + chosenProgram._id + "/edit" %>">Edit</a>
-    <form style="<%= editDeletePresence %>" class="deleteForm "method="POST" action=<%= "/program/" + chosenProgram._id + "?_method=DELETE" %>>
-      <button type="submit" class="btn btn-danger">Delete this program</button>
-    </form>
+  })
+  %>
+  <div style="<%= guardianBeneficiariesPresence %>" class="mb-5">
+    <h1 class="mb-3">your beneficiaries</h1>
+    <table class="table table-hover table-responsive">
+      <thead class="thead-default">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Age</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let counter = 0 %>
+        <% programBeneficiaries.forEach(function (indivBeneficiary2) { %>
+          <% if (indivBeneficiary2.guardian.toString() === currentUser.id.toString()) { %>
+            <% counter++ %>
+            <tr>
+              <th scope="row"><%= counter %></th>
+              <td><%= indivBeneficiary2.name %></td>
+              <td><%= indivBeneficiary2.gender %></td>
+              <td><%= indivBeneficiary2.age %></td>
+              <td>
+                <form class="deleteForm "method="POST" action="/program/guardianDelete/<%= chosenProgram._id %>?_method=DELETE" %>>
+                  <button type="submit" class="btn btn-sm btn-danger" name="beneficiaryToDelete" value="<%= indivBeneficiary2._id %>">Remove</button>
+                </form>
+              </td>
+            </tr>
+          <% } %>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <%
+  let adminActionsPresence = ""
+  let guardianActionPresence = ""
+  if ((chosenProgram.admin).toString() !== (currentUser.id).toString()) {
+    adminActionsPresence = "display: none; visibility: hidden;"
+  }
+  if (currentUser.signedTheseBeneficiariesUp.length === 0) {
+    guardianActionPresence = "display: none; visibility: hidden;"
+  }
+  %>
+  <h1 class="mb-3">your actions</h1>
+  <div class="d-flex flex-wrap justify-content-start mb-5">
+    <div class="card m-2" style="width: 20rem; <%= adminActionsPresence %>">
+      <div class="card-header">
+      <em>manage this program as its</em>
+      </div>
+      <div class="card-block">
+        <h4 class="card-title">creator</h4><br>
+        <a class="btn btn-primary mb-2" href="<%= "/program/adminEdit/" + chosenProgram._id %>">Edit</a>
+        <form class="deleteForm "method="POST" action=<%= "/program/adminDelete/" + chosenProgram._id + "?_method=DELETE" %>>
+          <button type="submit" class="btn btn-danger">Delete this program</button>
+        </form><br>
+      </div>
+    </div>
+    <div class="card m-2" style="width: 20rem; <%= guardianActionPresence %>">
+      <div class="card-header">
+      <em>sign up beneficiaries as a</em>
+      </div>
+      <div class="card-block">
+        <h4 class="card-title">guardian</h4><br>
+        <a class="btn btn-primary" href="<%= "/program/guardianNewB/" + chosenProgram._id %>">Proceed</a>
+      </div>
+    </div>
   </div>
 </div>

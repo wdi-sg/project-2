@@ -1,5 +1,10 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">welcome</h1><br>
+  </div>
+</div>
 <div class="container">
-  <form action="/auth/signup" method="POST">
+  <form action="/auth/signup" method="POST" class="mb-5">
     <div class="form-group">
       <label for="authEmail">Email</label>
       <input id="authEmail" class="form-control" type="email" name="email" placeholder="name@email.com">
@@ -11,9 +16,11 @@
     <div class="form-group">
       <label for="authPassword">Password</label>
       <input id="authPassword" class="form-control" type="password" name="password" placeholder="**********">
-    </div><br>
+    </div>
     <div class="form-group">
+      <div class="mb-2">
       Intended involvement<br>
+      </div>
       <div class="form-check">
         <label class="form-check-label" for="userTypeAdmin">
           <input class="form-check-input" type="checkbox" id="userTypeAdmin" name="userTypeAdmin" value=true>
@@ -31,7 +38,7 @@
           <input class="form-check-input" type="checkbox" id="userTypeVolunteer" name="userTypeVolunteer" value=true>
           I am looking for existing programs to volunteer in
         </label>
-      </div><br><br>
-    <button class="btn btn-default" type="submit">Submit</button>
+      </div><br>
+    <button class="btn btn-primary" type="submit">Submit</button>
   </form>
 </div>

@@ -14,6 +14,7 @@ let ProgramSchema = new mongoose.Schema({
   },
   subject: {
     type: String,
+    enum: ['disability', 'education', 'elderly', 'environment', 'health', 'poverty'],
     required: [
       true,
       'please select a volunteer area'
@@ -52,11 +53,25 @@ let ProgramSchema = new mongoose.Schema({
   admin: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
-  }
-  // guardians
-  // voluneers
-  // students
-  // sessions
+  },
+  guardians: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ],
+  beneficiaries: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Beneficiary',
+      // unique validator does not prevent repeats!
+      unique: [
+        true,
+        'this beneficiary is already signed up to this program'
+      ]
+    }
+  ]
+  // volunteers
 })
 
 let Program = mongoose.model('Program', ProgramSchema)

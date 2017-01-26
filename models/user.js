@@ -64,6 +64,22 @@ let UserSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Program'
     }
+  ],
+  signedTheseBeneficiariesUp: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Beneficiary'
+    }
+  ],
+  signedBeneficiariesUpToThesePrograms: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Program'
+      // unique: [
+      //   true,
+      //   'this beneficiary is already signed up to this program'
+      // ]
+    }
   ]
 })
 
@@ -79,13 +95,13 @@ UserSchema.methods.validPassword = function (password) {
   return bcrypt.compareSync(password, this.password)
 }
 
-// UserSchema.options.toJSON = {
-//   transform: function (doc, ret, options) {
-//     delete ret.password
-//     return ret
-//   }
-// }
-//
+UserSchema.options.toJSON = {
+  transform: function (doc, ret, options) {
+    delete ret.password
+    return ret
+  }
+}
+
 let User = mongoose.model('User', UserSchema)
 
 UserSchema.path('userTypes').validate(function (userTypes) {

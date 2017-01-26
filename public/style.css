@@ -1,7 +1,48 @@
 body {
-  margin-top: 100px;
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 a, button, .form-check-input {
   cursor: pointer;
+}
+
+img {
+  object-fit: cover;
+}
+
+footer {
+  background-color: #f7f7f7;
+  padding: 1.5rem;
+}
+
+.jumbotron {
+  background-color: #d9edf7;
+}
+
+.carousel-item {
+  height: 33rem;
+}
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  text-align: left;
+  padding: 0.5em 0.5em;
+}
+
+@media (min-width: 48em) {
+  .container {
+    max-width: 46rem;
+  }
+}
+
+@media screen and (min-width: 48em) {
+  body {
+    margin-top: 2.7rem;
+    padding-right: 0;
+    padding-left: 0;
+  }
 }

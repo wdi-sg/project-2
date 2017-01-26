@@ -12,10 +12,22 @@
 </head>
 <body>
   <% include ./partials/navbar %>
-  <div class="container">
-    <% include ./partials/alerts %>
-  </div>
+  <% include ./partials/alerts %>
   <%- body %>
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Back to top</a>
+      </p>
+      <p>
+        © volenti 2017
+         ·
+        <a href="/">Privacy</a>
+         ·
+        <a href="/">Terms</a>
+      </p>
+    </div>
+  </footer>
   <script
   src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
   integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"

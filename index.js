@@ -3,8 +3,10 @@ const app = express()
 const path = require('path')
 const ejsLayouts = require('express-ejs-layouts')
 const mongoose = require('mongoose')
-const user = require('./routes/user_router')
+const auth = require('./routes/auth_router')
+const profile = require('./routes/profile_router')
 const program = require('./routes/program_router')
+const beneficiary = require('./routes/beneficiary_router')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
@@ -50,11 +52,19 @@ app.get('/', function (req, res) {
   res.render('index')
 })
 
-app.use('/auth', user)
+app.use('/auth', auth)
+app.use('/profile', profile)
 app.use('/program', program)
+app.use('/beneficiary', beneficiary)
 
-// app.get('/profile', isLoggedIn, function (req, res) {
-//   res.render('profile')
-// })
-//
+app.use(isLoggedIn)
+
+app.get('/profile', function (req, res) {
+  res.render('profile')
+})
+
+app.get('/program', function (req, res) {
+  res.render('program')
+})
+
 app.listen(process.env.PORT || 3000)

@@ -1,8 +1,10 @@
-<div class="container">
-  <div class="jumbotron">
+<div class="jumbotron">
+  <div class="container">
     <h1 class="display-3">all programs</h1>
   </div>
-  <div class="d-flex flex-wrap justify-content-start">
+</div>
+<div class="container">
+  <div class="d-flex flex-wrap justify-content-start mb-4">
   <% allPrograms.forEach(function (indivProgram) { %>
     <%
     let selfProgramCardStyle = ""
@@ -29,7 +31,6 @@
           <h4 class="card-title"><%= indivProgram.name %></h4>
         </a>
         <span class="badge badge-info mb-2"><%= indivProgram.subject %></span>
-        <% console.log(indivProgram.commitment) %>
         <% for (var level in indivProgram.commitment) { %>
           <% if (indivProgram.commitment[level] === true && level !== '$__isNested') { %>
             <span class="badge badge-danger mb-2"><%= level %></span>
@@ -37,9 +38,40 @@
         <% } %>
         <br>
         <p class="card-text mb-2"><%= indivProgram.description %></p>
-        <a href="<%= indivProgram.website %>" target="_blank">find out more</a><br>
+        <%
+        let hasWebsite = ""
+        if (!indivProgram.website) {
+          hasWebsite = "display:none; visibility:hidden"
+        }
+        %>
+        <a href="<%= indivProgram.website %>" target="_blank" style="<%= hasWebsite %>">external site</a><br>
       </div>
     </div>
   <% }) %>
+  <%
+  let createProgramsButtonPresence = ""
+  if (currentUser.userTypes.admin === false) {
+    createProgramsButtonPresence = "display: none; visibility: hidden;"
+  }
+  %>
+  <div class="card m-2" style="width: 20rem; <%= createProgramsButtonPresence %>">
+    <div class="card-header text-muted">
+    (your next program)
+    </div>
+    <div class="text-muted pl-4" style="height:12rem; border-bottom: 1px solid #d3d3d3;">
+    <br>
+    <br>
+    <br>
+    <p>(insert beautiful image here)</p>
+    </div>
+    <div class="card-block">
+      <a class="btn btn-primary mt-0 mb-0" href="/program/new">Create a new program</a><br>
+      <span class="badge badge-default mb-2">some</span>
+      <span class="badge badge-default mb-2">awesome</span>
+      <span class="badge badge-default mb-2">program</span>
+      <p class="card-text text-muted mb-2">That will make a world of difference to some very important people henceforth and for a very long time</p>
+      <p class="card-text text-muted"><em>can't wait</em></p>
+    </div>
+  </div>
   </div>
 </div>
