@@ -1,7 +1,7 @@
 const express = require('express')
 const eventController = require('../controllers/event_controller')
 const participantController = require('../controllers/participant_controller')
-const isLoggedIn = require('../middleware/isLoggedin')
+const isLoggedIn = require('../middleware/isLoggedIn')
 const router = express.Router()
 const multer = require('multer')
 const upload = multer({dest: './uploads/'})
