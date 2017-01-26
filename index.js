@@ -11,7 +11,6 @@ const authRoutes = require('./routes/auth_router')
 const userRoutes = require('./routes/user_router')
 const eventRoutes = require('./routes/event_router')
 const isLoggedIn = require('./middleware/isLoggedIn')
-const moment = require('moment')
 const tools = require('./lib/tools')
 const multer = require('multer')
 const upload = multer({dest: './uploads/'})
@@ -59,13 +58,11 @@ app.locals = {
   dateShow: tools.dateShow,
   dateCheck: tools.dateCheck
 }
-// app.locals.dateFormat = tools.dateFormat
-// app.locals.cloudinary = cloudinary
+
 
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-  // res.render('testsocket', {user: req.user})
   res.redirect('/event')
 })
 app.use('/auth', authRoutes)
@@ -73,16 +70,11 @@ app.use('/user', userRoutes)
 app.use('/event', eventRoutes)
 
 app.get('/', function (req, res) {
-  res.render('testsocket', {user: req.user})
+  res.redirect('/event')
 })
 
 io.on('connection', function (socket) {
   console.log('We have user connected !')
-  console.log(io)
-
-  // socket.on('chat message', function (msg) {
-  // io.emit('chat message', msg);
-  // })
 })
 
 module.exports = server
