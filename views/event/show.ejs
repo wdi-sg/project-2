@@ -72,7 +72,7 @@
       <% results.participants.forEach( (participant)=> { %>
 
         <div class='panel panel-default '>
-          <form action='/user/message' method='POST'>
+          <form action='/user/profile' method='POST'>
             <input name='id' hidden value='<%=participant.user._id%>'>
             <button class='col-md-12 text-left'>
           <img src='<%=cloudinary.url(participant.user.avatar, { width: 50, height: 50, crop: 'fill', gravity: 'face', radius: 'max' })%>'></img>

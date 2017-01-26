@@ -108,6 +108,28 @@ let userController = {
   },
   edit: (req, res) => {
     res.render('user/edit', {user: req.user})
+  },
+  profile: (req, res) => {
+    if (req.user && req.body.id === req.user.id) {
+      res.redirect('/user/profile')
+      return
+    }
+    async.parallel({
+      friend: (cb) => {
+        User.findOne({_id: req.body.id}, cb)
+      },
+      events: (cb) => {
+        Event.find({creator: req.body.id, endDate: {$gt: Date.now()}}, cb)
+      }
+    }, (err, results) => {
+      if (err) {
+        req.flash('error', 'User not Found')
+        res.redirect('/user/profile')
+        return
+      }
+      res.render('user/otherprofile', {user: req.user, results: results})
+    })
+
   }
 }
 

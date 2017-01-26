@@ -10,6 +10,7 @@ const router = express.Router()
 router.get('/signup', userController.signup)
 
 router.post('/signup', userController.create)
+router.post('/profile', userController.profile)
 
 router.use(isLoggedIn)
 

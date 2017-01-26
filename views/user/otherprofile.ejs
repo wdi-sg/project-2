@@ -1,0 +1,56 @@
+
+
+<div class='background-yellow'>
+</div>
+<div class='container content'>
+  <% include ../partials/alerts %>
+  <div class='row'>
+
+    <div class='col-md-3'>
+        <div class='text-center'>
+          <img  src="<%= cloudinary.url(results.friend.avatar, { width: 150, height: 150, crop: 'fill', gravity: 'face', radius: 'max' })%>"></img>
+
+          <h2 class='text-center'><%= results.friend.name%></h2>
+          <form  class='text-center' action='/user/message' method='POST'>
+              <input name='id' hidden value='<%=results.friend._id%>'>
+              <button class='glyphicon glyphicon-envelope'></button>
+          </form>
+        </div>
+        <p class='text-center'><%= results.friend.motor%></p>
+    </div>
+  </div>
+  <div class='row content'>
+    <% if (results.events.length <=0) { %>
+      <div class='flex'>
+        <h1>This user have no created any event yet.</h1>
+      </div>
+    <% } else {%>
+    <div class='panel '>
+      <div class='panel-heading'>
+        <h4>Member's Events</h4>
+      </div>
+
+      <div class='member-events'>
+        <% results.events.forEach( (event) => { %>
+          <a class='flex col-md-3' href='/event/<%=event._id%>'>
+              <div class='thumbnail'>
+                  <img src='<%=cloudinary.url(event.image, { width: 380, height: 200, crop: 'fill', gravity: 'face'})%>'>
+
+                  <h2><%= event.name%></h2>
+                  <ul>
+                      <li><strong>Date:</strong> <%= dateShow(event.startDate)%>  - <%= dateShow(event.endDate)%> </li>
+                      <li><strong>Venue:</strong> <%= event.location%></li>
+                      <li><strong>Organiser:</strong> <%= event.creator.name%></li>
+                  </ul>
+              </div>
+          </a>
+      <%  }) %>
+      </div>
+
+<% } %>
+      </div>
+    </div>
+
+
+  </div>
+</div>
