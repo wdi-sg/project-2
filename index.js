@@ -4,7 +4,7 @@ const express = require('express')
 const session = require('express-session')
 const ejsLayouts = require('express-ejs-layouts')
 const passport = require('./config/ppConfig')
-const isLoggedIn = require('./middleware/isLoggedin')
+const isLoggedin = require('./middleware/isLoggedin')
 const bodyParser = require('body-parser')
 const flash = require('connect-flash')
 const app = express()
@@ -44,7 +44,7 @@ app.get('/', function(req, res) {
     res.render('index')
 })
 
-app.get('/dashboard', isLoggedIn, function(req, res) {
+app.get('/dashboard', isLoggedin, function(req, res) {
   res.redirect('auth/dashboard')
 })
 

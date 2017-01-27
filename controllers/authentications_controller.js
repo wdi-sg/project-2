@@ -1,7 +1,7 @@
 const express = require('express')
 const passport = require('../config/ppConfig')
 const router = express.Router();
-const isLoggedIn = require('../middleware/isLoggedIn')
+const isLoggedin = require('../middleware/isLoggedin')
 const User = require('../models/user').model
 const School = require('../models/school').model
 const Assignment = require('../models/assignment').model
@@ -9,7 +9,7 @@ const Classroom = require('../models/classroom').model
 const schoolSchema = require('../models/school').schema
 
 
-router.get('/dashboard', isLoggedIn, function (req, res) {
+router.get('/dashboard', isLoggedin, function (req, res) {
   if (req.user.role === 'teacher') {
     console.log("I am a teacher.");
     let classroomsArray = req.user.classrooms
@@ -35,7 +35,7 @@ router.get('/dashboard', isLoggedIn, function (req, res) {
 
 })
 
-router.get('/accountinfo/:id', isLoggedIn, function (req, res) {
+router.get('/accountinfo/:id', isLoggedin, function (req, res) {
   User.findById(req.params.id, function (err, user) {
   if (err) { return console.log(err) }
   res.render('accountinfo', {user: user})
@@ -43,7 +43,7 @@ router.get('/accountinfo/:id', isLoggedIn, function (req, res) {
 
 })
 
-router.post('/accountinfo/:id', isLoggedIn, function (req, res) {
+router.post('/accountinfo/:id', isLoggedin, function (req, res) {
   console.log("accountinfo post fired");
   School.findOne({name: req.body.school}, function (err, school) {
     if (err) { return console.log(err) }
