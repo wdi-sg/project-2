@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router();
 const Assignment = require('../models/assignment').model
 const Classroom = require('../models/classroom').model
+const School = require('../models/school').model
+const schoolSchema = require('../models/school').schema
 
 
 function requireRole (role) {
@@ -25,6 +27,29 @@ router.get('/create', function(req, res) {
   res.render('create')
 })
 
+router.get('/update/:id', function(req,res) {
+  console.log("this is update" + req.params.id);
+  Assignment.findOne({_id: req.params.id}, function (err, assignment) {
+    if (err) { return console.log(err)}
+    res.render('update', {assignment: assignment})
+  })
+})
+
+
+router.put('/update/:id', function(req, res) {
+  Assignment.update({_id: req.params.id}, function (err, assignment){
+    if (err) console.log(err);
+    res.redirect('dashboard')
+  })
+})
+
+router.delete('/remove/:id', function(req, res) {
+  Assignment.remove({_id: req.body.id }, function (err) {
+    if (err) { return console.log(err)}
+    console.log('assignment deleted')
+    res.redirect("/dashboard")
+  })
+})
 
 router.post('/create', requireRole('teacher'), getClassroomId, function(req, res) {
   console.log(req.body);

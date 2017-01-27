@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt   = require('bcrypt');
 const Classroom = require('../models/classroom').schema
-//const School = require('../models/school').schema
+const School = require('../models/school').schema
 
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ ;
 

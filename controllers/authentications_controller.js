@@ -6,6 +6,7 @@ const User = require('../models/user').model
 const School = require('../models/school').model
 const Assignment = require('../models/assignment').model
 const Classroom = require('../models/classroom').model
+const schoolSchema = require('../models/school').schema
 
 
 router.get('/dashboard', isLoggedIn, function (req, res) {
@@ -29,7 +30,7 @@ router.get('/dashboard', isLoggedIn, function (req, res) {
   }
   else {
 
-    res.render('dashboard')
+    res.render('accountinfo')
   }
 
 })
@@ -42,19 +43,20 @@ router.get('/accountinfo/:id', isLoggedIn, function (req, res) {
 
 })
 
-router.post('/accountinfo/:id', function (req, res) {
+router.post('/accountinfo/:id', isLoggedIn, function (req, res) {
   console.log("accountinfo post fired");
   School.findOne({name: req.body.school}, function (err, school) {
     if (err) { return console.log(err) }
     console.log("acctinfo found school " + school);
     req.body.school = school._id
+    User.update({_id: req.user._id}, {school: req.body.school, name: req.body.name}, function (err, user) {
+      console.log("acct info updated " + user);
+      if(err) {return console.log(err)}
+      res.redirect('/dashboard')
+    })
+
   })
-  User.update({_id: req.params.id}, {school: req.body.school, name: req.body.name}, function (err, user) {
-    console.log("acct info updated " + user);
-    if(err) {return console.log(err)}
-    res.redirect('/dashboard')
   })
-})
 
 router.post('/signup', function (req, res, next) {
   User.create({
@@ -64,11 +66,11 @@ router.post('/signup', function (req, res, next) {
   }, function (err, createdUser) {
     if(err){
         req.flash('error', 'Could not create user account');
-        res.redirect('/index');
+        res.redirect('/');
       } else {
         passport.authenticate('local', {
           successRedirect: '/auth/accountinfo/' + createdUser._id,
-          failureRedirect: '/index',
+          failureRedirect: '/',
           successFlash: 'Account created and logged in'
         })(req, res, next)
       }
@@ -78,17 +80,17 @@ router.post('/signup', function (req, res, next) {
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/dashboard',
-  failureRedirect: '/index',
+  failureRedirect: '/',
   failureFlash: 'Invalid username and/or password',
   successFlash: 'You have logged in'
 }))
 
 
-// router.get('/logout', function(req, res) {
-//   req.logout();
-//   req.flash('success', 'You have logged out');
-//   res.render('index');
-// })
+router.get('/logout', function(req, res) {
+  req.logout();
+  req.flash('success', 'You have logged out');
+  res.render('index');
+})
 
 
 // if (req.body.role === 'teacher') {

@@ -8,8 +8,8 @@ const Assignment = require("../models/assignment").schema
 
 const classroomSchema = new mongoose.Schema({
   name: {type: String},
-  school: {type: mongoose.Schema.Types.ObjectId, ref: 'schoolSchema'},
-  members: [{type: mongoose.Schema.Types.ObjectId, ref: 'userSchema'}],
+  school: {type: mongoose.Schema.Types.ObjectId, ref: 'School'},
+  members: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   assignments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Assignment'}]
 })
 

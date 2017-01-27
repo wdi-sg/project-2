@@ -10,9 +10,6 @@ const flash = require('connect-flash')
 const app = express()
 const path = require('path')
 const methodOverride = require('method-override')
-const Classroom = require('./models/classroom').model
-const Assignment = require('./models/assignment').model
-const School = require('./models/school').model
 
 mongoose.connect('mongodb://localhost/managehomework')
 mongoose.Promise = global.Promise;
@@ -44,10 +41,7 @@ app.use('/classroom', require('./controllers/classrooms_controller'))
 
 
 app.get('/', function(req, res) {
-  School.find({}, function (err, schools) {
-    if (err) { return console.log(err) }
-    res.render('index', {schools: schools})
-  })
+    res.render('index')
 })
 
 app.get('/dashboard', isLoggedIn, function(req, res) {
@@ -61,14 +55,7 @@ app.get('/logout', function(req, res) {
 });
 
 
-// <div class="form-group">
-//   <select class="bfh-selectbox"" name="school">
-//     <option value="">-Please select your school-</option>
-//     <% for (var i = 0; i < schools.length; i++) { %>
-//    <option value="<%= schools[i]._id %>"> <%=  schools[i].name %></option>
-//      <% } %>
-//   </select>
-// </div>
+
 
 
 

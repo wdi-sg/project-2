@@ -3,6 +3,8 @@ const router = express.Router();
 const Classroom = require('../models/classroom').model
 const User = require('../models/user').model
 const School = require('../models/school').model
+const schoolSchema = require('../models/school').schema
+const Assignment = require('../models/assignment').model
 
 
 function getschoolId (req, res, next) {
@@ -23,25 +25,34 @@ function getschoolId (req, res, next) {
 // })
 
 router.get('/classBulletin/:id', function(req, res) {
-  Classroom.findById(req.params.id, function (err, classroom) {
-    if (err) { return console.log(err) }
-    res.render('classBulletin', {classroom: classroom})
+  Assignment.find({classroom: req.params.id}, function (err, assignments) {
+    if (err) {return console.log(err)}
+    console.log(assignments);
+    res.render('classBulletin', {assignments:assignments})
+
   })
 })
 
 
+
 router.get('/addclass', function(req, res) {
-  console.log('this is running?');
-  console.log(req.user);
-  res.render('addclass', {currentUser: req.user})
+  // console.log('this is running?');
+  // console.log(req.user);
+  School.find({_id: req.user.school})
+  .populate('classrooms')
+  .exec(function (err, school) {
+    console.log("this is classrooms" + school);
+    if (err) { return console.log(err) }
+    res.render('addclass', {currentUser: req.user, school: school})
+  })
 })
 
-router.post('/addclass', getschoolId, function (req, res) {
+router.post('/addclass', function (req, res) {
 
   Classroom.create({
     name: req.body.name,
     members: req.user._id,
-    school: req.body.school
+    school: req.user.school
   }, function (err, classroom) {
     if (err) {  return console.log(err)  }
     console.log(classroom._id);

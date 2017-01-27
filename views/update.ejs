@@ -2,7 +2,7 @@
 
 <div class="container">
 <h1>Create New Assignment</h1>
-<form action="/assignment/create" method="POST">
+<form action="/assignment/update/:id?_PUT" method="POST">
   <div class="form-group">
     <div class="radio-inline">
       <label><input type="radio" name="a_type" value="online">Online Assignment</label>
@@ -15,15 +15,15 @@
     </div>
   </div>
 <div class="form-group">
-  <div class="col-sm-4"><label for="due_date">Due Date</label></div>
+  <div class="col-sm-4"><label for="due_date" >Due Date</label></div>
   <div class="col-sm-4"><label for="classroom">Classroom</label></div>
   <div class="col-sm-4"><label for="est_time">Estimated Time to complete</label></div>
 </div>
 
 <div class="form-group">
-  <div class="col-sm-4"><input type="date" class="form-control" name="due_date"></div>
-  <div class="col-sm-4"><input type="text" class="form-control" name="classroom"></div>
-  <div class="input-group col-sm-3"><input type="text" class="form-control" name="est_time"><span class="input-group-addon">hrs</span></div>
+  <div class="col-sm-4"><input type="date" class="form-control" name="due_date" value="<%= assignment[0].due_date"></div>
+  <div class="col-sm-4"><input type="text" class="form-control" name="classroom" value="<%= assignment[0].classroom"></div>
+  <div class="input-group col-sm-3"><input type="text" class="form-control" name="est_time" value="<%= assignment[0].est_time"><span class="input-group-addon">hrs</span></div>
 </div>
 
 <div class="form-group">
@@ -31,13 +31,12 @@
 </div>
 
 <div class="form-group">
-    <div class="col-sm-12"><input type="text" class="form-control" name="title"></div>
+    <div class="col-sm-12"><input type="text" class="form-control" name="title" value="<%= assignment[0].title %>"></div>
 </div>
 
-
-  <div class="form-group">
-  <div class="col-sm-12"><label for="description">Description</label><textarea class="form-control" rows="5" name="description"></textarea> </div>
-  </div>
+<div class="form-group">
+  <div class="col-sm-12"><label for="description">Description</label><textarea class="form-control" rows="5" name="description" value="<%= assignment[0].description %>"></textarea> </div>
+</div>
 
 <div class="form-group">
   <div class="col-sm-2"><input class="form-control btn btn-primary" type="submit" value="Submit"></div>
