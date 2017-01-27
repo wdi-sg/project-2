@@ -89,7 +89,7 @@ router.get( "/item/edit/:id", ( req, res ) => {
 
 //item edit
 router.put( "/item/edit/:id", upload.single( 'imageFile' ), ( req, res ) => {
-  if ( req.file.path ) {
+  if ( req.file ) {
     // edit with new image
     Item.findById( req.params.id, ( err, item ) => {
       cloudinary.uploader.destroy( item.imagePublicId, () => {
