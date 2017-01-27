@@ -74,6 +74,16 @@ Workflow was me mapping it mostly on paper. I initially did not have a strong co
 
 Just me
 
+## Further Extensions
+
+Further extensions will only limit the number of users displayed in the dashboard (I know this code is kinda easy, I'm just lazy); in order to emphasize the ephemerality of human life.
+
+You only get a random chance to see this person's profile and rate them but if you refresh the dashboard all the users depopulate. (Of course you could manually record a profile's address though, definitely will have a work around for it.)
+
+Thinking of implementing the wholesome version of this application, that means only positive ratings will be added, and ratings dont really mean anything after a while.
+
+Of course being able to upload larger file sizes would be great, and also, better avatar handling would be a plus, but those are really minor updates.
+
 ## References and Acknowledgments:
 
 * For my rating algorithm, I used a Dirichlet prior distribution algo derived from this particular website. I did not derive it but merely implemented the formula derived by evan miller.
