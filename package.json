@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js"
   },
+  "node" : "^6.6.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EstherLow/project-2-starter.git"
