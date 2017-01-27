@@ -1,5 +1,5 @@
 const User = require('../models/user')
-const passport = require('../config/ppConfig')
+const passport = require('../config/ppconfig')
 
 let authController = {
   getSignUp: function (req, res) {

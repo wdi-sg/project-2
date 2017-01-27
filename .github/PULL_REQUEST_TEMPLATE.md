@@ -2,8 +2,8 @@
 
 Please describe your comfort and completeness levels before submitting.
 
-Comfort Level (1-5): 4
+Comfort Level (1-5):
 
-Completeness Level (1-5): 3
+Completeness Level (1-5):
 
-What did you think of this deliverable?: An serviceable MVP which can be extended
+What did you think of this deliverable?:
