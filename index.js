@@ -11,7 +11,7 @@ const app = express()
 const path = require('path')
 const methodOverride = require('method-override')
 
-mongoose.connect('mongodb://localhost/managehomework')
+mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/managehomework')
 mongoose.Promise = global.Promise;
 
 
