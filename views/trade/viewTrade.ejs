@@ -255,18 +255,19 @@ setInterval( () => {
       // Whether this is a POST or GET request
       type: "GET",
 
+      // Send data if desired
+      // data:{}
+
       // The type of data we expect back
       dataType: "json",
     } )
-    // Code to run if the request succeeds (is done);
-    // The response is passed to the function
+    // If changefound is true, reload window
     .done( function( response ) {
       if ( response.changefound === "true" ) {
         window.location.reload()
       }
     } )
-    // Code to run if the request fails; the raw request and
-    // status codes are passed to the function
+    // Error messages on failure
     .fail( function( xhr, status, errorThrown ) {
       console.log( "Problem occured with poll" );
       console.log( "Error: " + errorThrown );
