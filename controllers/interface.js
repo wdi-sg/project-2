@@ -14,11 +14,11 @@ router.get( '/', function( req, res ) {
     .populate( "items" )
     .populate( "trades" ) //subdocument autopopulates
     .exec( ( err, user ) => {
-      if ( err ) return console.log( err )
+      if ( err ) return console.log( err );
       res.render( "user/userHome", {
         user: user
       } );
-    } )
+    } );
 } );
 
 //item createForm
@@ -37,14 +37,14 @@ router.post( '/item/create', upload.single( 'imageFile' ), function( req, res ) 
       Item.create( req.body, ( err, newItem ) => {
         if ( err ) {
           req.flash( 'error', err.toString() );
-          res.redirect( '/interface/item/create' )
+          res.redirect( '/interface/item/create' );
           return;
         }
         User.findById( req.user._id, ( err, user ) => {
           user.items.push( newItem._id );
           user.save();
-          res.redirect( "/interface" )
-        } )
+          res.redirect( "/interface" );
+        } );
       } );
     } );
   } else {
@@ -53,14 +53,14 @@ router.post( '/item/create', upload.single( 'imageFile' ), function( req, res ) 
     Item.create( req.body, ( err, newItem ) => {
       if ( err ) {
         req.flash( 'error', err.toString() );
-        res.redirect( '/interface/item/create' )
+        res.redirect( '/interface/item/create' );
         return;
       }
       User.findById( req.user._id, ( err, user ) => {
         user.items.push( newItem._id );
         user.save();
-        res.redirect( "/interface" )
-      } )
+        res.redirect( "/interface" );
+      } );
     } );
   }
 } );
@@ -68,7 +68,7 @@ router.post( '/item/create', upload.single( 'imageFile' ), function( req, res ) 
 //view item details
 router.get( '/item/show/:id', function( req, res ) {
   Item.findById( req.params.id, ( err, item ) => {
-    console.log( item )
+    console.log( item );
     res.render( "item/viewItem", {
       item: item
     } );
@@ -83,8 +83,8 @@ router.get( "/item/edit/:id", ( req, res ) => {
   }, ( err, itemList ) => {
     res.render( "item/updateForm", {
       item: itemList[ 0 ],
-    } )
-  } )
+    } );
+  } );
 } );
 
 //item edit
@@ -95,7 +95,7 @@ router.put( "/item/edit/:id", upload.single( 'imageFile' ), ( req, res ) => {
       cloudinary.uploader.destroy( item.imagePublicId, () => {
         cloudinary.uploader.upload(
           req.file.path, ( cloudinaryData ) => {
-            req.body.imagelink = cloudinaryData.secure_url
+            req.body.imagelink = cloudinaryData.secure_url;
             req.body.imagePublicId = cloudinaryData.public_id;
             Item.findOneAndUpdate( {
                 _id: req.params.id,
@@ -105,14 +105,14 @@ router.put( "/item/edit/:id", upload.single( 'imageFile' ), ( req, res ) => {
                 upsert: true,
                 runValidators: true
               },
-              ( err, item ) => {
+              ( err ) => {
                 if ( err ) {
-                  req.flash( 'error', err.toString() )
+                  req.flash( 'error', err.toString() );
                   res.redirect( "/interface/item/edit/" + req.params
-                    .id )
+                    .id );
                 } else res.redirect( "/interface" );
-              } )
-          } )
+              } );
+          } );
       } );
     } );
   } else {
@@ -127,11 +127,11 @@ router.put( "/item/edit/:id", upload.single( 'imageFile' ), ( req, res ) => {
       },
       ( err ) => {
         if ( err ) {
-          req.flash( 'error', err.toString() )
+          req.flash( 'error', err.toString() );
           res.redirect( "/interface/item/edit/" + req.params
-            .id )
+            .id );
         } else res.redirect( "/interface" );
-      } )
+      } );
   }
 } );
 
@@ -139,16 +139,36 @@ router.put( "/item/edit/:id", upload.single( 'imageFile' ), ( req, res ) => {
 router.delete( '/item/delete/:id', function( req, res ) {
   Item.findById( req.params.id, ( err, item ) => {
     cloudinary.uploader.destroy( item.imagePublicId, ( result ) => {
-      console.log( "cloudinary destroy result:", result )
+      console.log( "cloudinary destroy result:", result );
       Item.findOneAndRemove( {
         _id: req.params.id,
         _owner: req.user._id
       }, () => {
-        res.redirect( "/interface" )
-      } )
+        res.redirect( "/interface" );
+      } );
     } );
-  } )
-} )
+  } );
+} );
+
+function updateChangeTracker( trade, req ) {
+  // adds userid in trade that is not current user to Changetracker
+  // needs a queried Trade and req.user.id
+  // best to call this right before the last response from a route
+  if ( trade.firstUser._id.toString() === req.user._id.toString() )
+    otherTraderId = trade.secondUser._id;
+  else
+    otherTraderId = trade.firstUser._id;
+  Changetracker.findOne( {
+    identifier: "tracker"
+  }, ( err, tracker ) => {
+    if ( !tracker.usersWithChanges.includes(
+        otherTraderId.toString() ) ) {
+      tracker.usersWithChanges.push(
+        otherTraderId.toString() );
+      tracker.save();
+    }
+  } );
+}
 
 //make new trade
 router.post( '/trade/create/:itemid', function( req, res ) {
@@ -167,80 +187,54 @@ router.post( '/trade/create/:itemid', function( req, res ) {
           itemOwner.trades.push( newTrade._id );
           itemOwner.save();
           //record in item status that item is in a trade
-          item._trade = newTrade._id
+          item._trade = newTrade._id;
           item.save();
           Trade.findById( newTrade._id )
             .exec( ( err, trade ) => {
-              // add other user to changetracker
-              Changetracker.findOne( {
-                identifier: "tracker"
-              }, ( err, tracker ) => {
-                if ( !tracker.usersWithChanges.includes(
-                    itemOwner._id.toString() ) ) {
-                  tracker.usersWithChanges.push(
-                    itemOwner._id.toString() );
-                  tracker.save();
-                }
-                req.flash( "success",
-                  "New trade has been created with the item desired"
-                )
-                res.redirect(
-                  "/interface/trade/edit/" +
-                  newTrade._id
-                )
-              } )
-            } )
-        } )
-      } )
-    } )
-  } )
-} )
+              req.flash( "success",
+                "New trade has been created with the item desired"
+              );
+              updateChangeTracker( trade, req );
+              res.redirect(
+                "/interface/trade/edit/" +
+                newTrade._id
+              );
+            } );
+        } );
+      } );
+    } );
+  } );
+} );
 
 //delete trade
 router.delete( '/trade/delete/:tradeid', function( req, res ) {
   Trade.findById( req.params.tradeid, ( err, trade ) => {
     User.findById( trade.firstUser, ( err, firstUser ) => {
-      let tradeIndex = firstUser.trades.indexOf( trade._id )
+      let tradeIndex = firstUser.trades.indexOf( trade._id );
       firstUser.trades.splice( tradeIndex, 1 );
       firstUser.save();
-      User.findById( trade.secondUser, ( err, secondUser ) => {
-        let otherTraderId = ""
-        if ( firstUser._id.toString() === req.user._id.toString() )
-          otherTraderId = secondUser._id.toString()
-        else
-          otherTraderId = firstUser._id.toString()
-        Changetracker.findOne( {
-          identifier: "tracker"
-        }, ( err, tracker ) => {
-          if ( !tracker.usersWithChanges.includes(
-              otherTraderId.toString() ) ) {
-            tracker.usersWithChanges.push(
-              otherTraderId.toString() );
-            tracker.save();
-          }
-          let tradeIndex = secondUser.trades.indexOf(
-            trade._id )
-          secondUser.trades.splice( tradeIndex, 1 );
-          secondUser.save();
-          //remove trade from items, no callback or error check
-          trade.firstUserItems.forEach( ( itemid ) => {
-            Item.findById( itemid, ( err, item ) => {
-              item._trade = null
-              item.save()
-            } )
-          } )
-          trade.secondUserItems.forEach( ( itemid ) => {
-            Item.findById( itemid, ( err, item ) => {
-              item._trade = null
-              item.save()
-            } )
-          } )
-          Trade.findOneAndRemove( { _id: trade._id }, () => {
-            res.redirect( "/interface" )
-          } )
-        } )
-      } )
-    } )
+      tradeIndex = secondUser.trades.indexOf(
+        trade._id );
+      secondUser.trades.splice( tradeIndex, 1 );
+      secondUser.save();
+      //remove trade from items, no callback or error check
+      trade.firstUserItems.forEach( ( itemid ) => {
+        Item.findById( itemid, ( err, item ) => {
+          item._trade = null;
+          item.save();
+        } );
+      } );
+      trade.secondUserItems.forEach( ( itemid ) => {
+        Item.findById( itemid, ( err, item ) => {
+          item._trade = null;
+          item.save();
+        } );
+      } );
+      updateChangeTracker( trade, req );
+      Trade.findOneAndRemove( { _id: trade._id }, () => {
+        res.redirect( "/interface" );
+      } );
+    } );
   } );
 } );
 
@@ -248,14 +242,14 @@ router.delete( '/trade/delete/:tradeid', function( req, res ) {
 router.get( '/trade/edit/:tradeid', function( req, res ) {
   Trade.findById( req.params.tradeid, ( err, trade ) => {
     if ( err ) {
-      req.flash( "error", err.toString )
-      res.redirect( "/interface" )
+      req.flash( "error", err.toString );
+      res.redirect( "/interface" );
     }
     res.render( "trade/viewTrade", {
       trade: trade
-    } )
-  } )
-} )
+    } );
+  } );
+} );
 
 //show form for adding another offered item (from user inventory)
 router.get( '/trade/add/offered/:tradeid', function( req, res ) {
@@ -265,50 +259,36 @@ router.get( '/trade/add/offered/:tradeid', function( req, res ) {
       res.render( "trade/addItemToOfferForm", {
         tradeid: req.params.tradeid,
         itemsList: user.items
-      } )
-    } )
-} )
+      } );
+    } );
+} );
 
 //add item from own inventory to offered items in trade 
 router.post( '/trade/add/offered/:tradeid/:itemid', function( req, res ) {
   Trade.findById( req.params.tradeid, ( err, trade ) => {
     //check which array in the trade to add item to
-    let otherTraderId = "";
     if ( req.user._id.toString() === trade.firstUser._id.toString() ) {
       trade.firstUserItems.push( req.params.itemid );
-      otherTraderId = trade.secondUser._id
     } else {
       trade.secondUserItems.push( req.params.itemid );
-      otherTraderId = trade.firstUser._id
     }
     trade.save();
+    updateChangeTracker( trade, req );
     Item.findById( req.params.itemid, ( err, item ) => {
       if ( item._trade ) {
         req.flash( "error",
           "item already in trade, please pick another" );
         res.redirect( "/interface/trade/edit/" + req.params.tradeid );
-        return;
       } else {
         item._trade = trade._id;
         item.save();
         req.flash( "success",
-          "Item added from your inventory." )
+          "Item added from your inventory." );
         res.redirect( "/interface/trade/edit/" + req.params.tradeid );
-        Changetracker.findOne( {
-          identifier: "tracker"
-        }, ( err, tracker ) => {
-          if ( !tracker.usersWithChanges.includes(
-              otherTraderId.toString() ) ) {
-            tracker.usersWithChanges.push(
-              otherTraderId.toString() );
-            tracker.save();
-          }
-          return;
-        } )
       }
-    } )
-  } )
-} )
+    } );
+  } );
+} );
 
 //show form for adding another desired item (from trade partner's inventory)
 router.get( '/trade/add/desired/:tradeid/:partnerid', function( req, res ) {
@@ -318,9 +298,9 @@ router.get( '/trade/add/desired/:tradeid/:partnerid', function( req, res ) {
       res.render( "trade/addItemFromTradePartnerForm", {
         tradeid: req.params.tradeid,
         itemsList: user.items
-      } )
-    } )
-} )
+      } );
+    } );
+} );
 
 //add item from trade partner's inventory to desired items in trade
 router.post( '/trade/add/desired/:tradeid/:itemid', function( req, res ) {
@@ -328,12 +308,11 @@ router.post( '/trade/add/desired/:tradeid/:itemid', function( req, res ) {
     //check which array in the trade to add item to
     if ( req.user._id.toString() === trade.firstUser._id.toString() ) {
       trade.secondUserItems.push( req.params.itemid );
-      otherTraderId = trade.secondUser._id
     } else {
       trade.firstUserItems.push( req.params.itemid );
-      otherTraderId = trade.firstUser._id
     }
     trade.save();
+    updateChangeTracker( trade, req );
     Item.findById( req.params.itemid, ( err, item ) => {
       if ( item._trade ) {
         req.flash( "error",
@@ -343,192 +322,113 @@ router.post( '/trade/add/desired/:tradeid/:itemid', function( req, res ) {
       } else {
         item._trade = trade._id;
         item.save();
-        Changetracker.findOne( {
-          identifier: "tracker"
-        }, ( err, tracker ) => {
-          if ( !tracker.usersWithChanges.includes(
-              otherTraderId.toString() ) ) {
-            tracker.usersWithChanges.push(
-              otherTraderId.toString() );
-            tracker.save();
-          }
-          req.flash( "success",
-            "Item added from trade partner's inventory." )
-          res.redirect( "/interface/trade/edit/" + req.params.tradeid );
-          return;
-        } )
+
+        req.flash( "success",
+          "Item added from trade partner's inventory." );
+        res.redirect( "/interface/trade/edit/" + req.params.tradeid );
+        return;
       }
-    } )
-  } )
-} )
+    } );
+  } );
+} );
 
 //remove item from trade
 router.delete( '/trade/delete/:tradeid/:itemid', function( req, res ) {
   Trade.findById( req.params.tradeid, ( err, trade ) => {
     trade.firstUserItems.forEach( ( item, idx ) => {
       if ( item._id.toString() === req.params.itemid.toString() ) {
-        trade.firstUserItems.splice( idx, 1 )
-        trade.save()
+        trade.firstUserItems.splice( idx, 1 );
+        trade.save();
       }
-      if ( req.user._id.toString() === trade.firstUser._id.toString() ) {
-        otherTraderId = trade.secondUser._id
-      } else {
-        otherTraderId = trade.firstUser._id
-      }
-      Changetracker.findOne( {
-        identifier: "tracker"
-      }, ( err, tracker ) => {
-        if ( !tracker.usersWithChanges.includes(
-            otherTraderId.toString() ) ) {
-          tracker.usersWithChanges.push(
-            otherTraderId.toString() );
-          tracker.save();
-        }
-      } )
-    } )
+    } );
     trade.secondUserItems.forEach( ( item, idx ) => {
       if ( item._id.toString() === req.params.itemid.toString() ) {
-        trade.secondUserItems.splice( idx, 1 )
-        trade.save()
+        trade.secondUserItems.splice( idx, 1 );
+        trade.save();
       }
-    } )
+    } );
     Item.findById( req.params.itemid, ( err, item ) => {
-      console.log( "item found by item findbyid:", item )
+      console.log( "item found by item findbyid:", item );
       item._trade = null;
       item.save();
       req.flash( "success",
-        "Item removed from trade." )
+        "Item removed from trade." );
+      updateChangeTracker( trade, req );
       res.redirect( "/interface/trade/edit/" + req.params.tradeid );
-    } )
-  } )
-} )
+    } );
+  } );
+} );
 
 //add agreement to trade
 router.post( '/trade/agreedby/:tradeid/:userid', function( req, res ) {
   Trade.findById( req.params.tradeid, ( err, trade ) => {
-    let otherTraderId = ""
     if ( trade.firstUser._id.toString() === req.params.userid.toString() ) {
-      otherTraderId = trade.secondUser._id
-      trade.firstUserAgreed = true
-      trade.save()
+      trade.firstUserAgreed = true;
+      trade.save();
     } else {
-      otherTraderId = trade.firstUser._id
-      trade.secondUserAgreed = true
-      trade.save()
+      trade.secondUserAgreed = true;
+      trade.save();
     }
     if ( trade.firstUserAgreed === true &&
       trade.secondUserAgreed === true ) {
-      let allItems = trade.firstUserItems.concat( trade.secondUserItems )
+      let allItems = trade.firstUserItems.concat( trade.secondUserItems );
       allItems.forEach( ( item ) => {
         Item.findById( item._id, ( err, item ) => {
           item.tradedaway = true;
-          item.save()
-        } )
-      } )
+          item.save();
+        } );
+      } );
     }
-    Changetracker.findOne( {
-      identifier: "tracker"
-    }, ( err, tracker ) => {
-      if ( !tracker.usersWithChanges.includes(
-          otherTraderId.toString() ) ) {
-        tracker.usersWithChanges.push(
-          otherTraderId.toString() );
-        tracker.save();
-      }
-      res.redirect( "/interface/trade/edit/" + req.params.tradeid );
-    } )
-  } )
-} )
+    updateChangeTracker( trade, req );
+    res.redirect( "/interface/trade/edit/" + req.params.tradeid );
+  } );
+} );
 
 //remove agreement from trade
-router.post( '/trade/cancelagreedby/:tradeid/:userid', function( req,
-  res ) {
+router.post( '/trade/cancelagreedby/:tradeid/:userid', function( req, res ) {
   Trade.findById( req.params.tradeid, ( err, trade ) => {
     if ( trade.firstUser._id.toString() === req.params.userid.toString() ) {
-
-      trade.firstUserAgreed = false
-      trade.save()
+      trade.firstUserAgreed = false;
+      trade.save();
     } else {
-
-      trade.secondUserAgreed = false
-      trade.save()
+      trade.secondUserAgreed = false;
+      trade.save();
     }
-    let otherTraderId = ""
-    if ( trade.firstUser._id.toString() === req.user._id.toString() )
-      otherTraderId = trade.secondUser._id;
-    else
-      otherTraderId = trade.firstUser._id;
-    Changetracker.findOne( {
-      identifier: "tracker"
-    }, ( err, tracker ) => {
-      if ( !tracker.usersWithChanges.includes(
-          otherTraderId.toString() ) ) {
-        tracker.usersWithChanges.push(
-          otherTraderId.toString() );
-        tracker.save();
-      }
-      res.redirect( "/interface/trade/edit/" + req.params.tradeid );
-    } )
-  } )
-} )
+  } );
+  updateChangeTracker( trade, req );
+  res.redirect(
+    "/interface/trade/edit/" + req.params.tradeid );
+} );
 
 //add text to chat
 router.post( '/trade/addchat/:tradeid', function( req, res ) {
   User.findById( req.user._id, ( err, user ) => {
     Trade.findById( req.params.tradeid, ( err, trade ) => {
-      if ( !trade.discussion ) trade.discussion = ""
+      if ( !trade.discussion ) trade.discussion = "";
       trade.discussion =
         trade.discussion + "<br>" + user.name + ": " + req.body
         .chattext;
       trade.save();
-      if ( trade.firstUser._id.toString() === req.user._id.toString() )
-        otherTraderId = trade.secondUser._id;
-      else
-        otherTraderId = trade.firstUser._id;
-      Changetracker.findOne( {
-        identifier: "tracker"
-      }, ( err, tracker ) => {
-        if ( !tracker.usersWithChanges.includes(
-            otherTraderId.toString() ) ) {
-          tracker.usersWithChanges.push(
-            otherTraderId.toString() );
-          tracker.save();
-        }
-        res.redirect( "/interface/trade/edit/" + trade._id )
-      } );
+      updateChangeTracker( trade, req );
+      res.redirect( "/interface/trade/edit/" + trade._id );
     } );
   } );
-} )
+} );
 
 //change sweetener in trade
 router.post( '/trade/changesweetener/:tradeid', function( req, res ) {
-  User.findById( req.user._id, ( err, user ) => {
-    Trade.findById( req.params.tradeid, ( err, trade ) => {
-      sweetener = req.body.sweetenerValue;
-      //default is give, if take then flip value
-      if ( req.body.sweetenerDirection === "take" )
-        sweetener = -sweetener
-        //default is firstuser, if seconduser then flip value
-      if ( req.user._id.toString() === trade.secondUser._id.toString() )
-        sweetener = -sweetener
-      trade.dealSweetener = sweetener
-      trade.save();
-      if ( trade.firstUser._id.toString() === req.user._id.toString() )
-        otherTraderId = trade.secondUser._id;
-      else
-        otherTraderId = trade.firstUser._id;
-      Changetracker.findOne( {
-        identifier: "tracker"
-      }, ( err, tracker ) => {
-        if ( !tracker.usersWithChanges.includes(
-            otherTraderId.toString() ) ) {
-          tracker.usersWithChanges.push(
-            otherTraderId.toString() );
-          tracker.save();
-        }
-        res.redirect( "/interface/trade/edit/" + trade._id )
-      } );
-    } );
+  Trade.findById( req.params.tradeid, ( err, trade ) => {
+    sweetener = req.body.sweetenerValue;
+    //default is give, if take then flip value
+    if ( req.body.sweetenerDirection === "take" )
+      sweetener = -sweetener;
+    //default is firstuser, if seconduser then flip value
+    if ( req.user._id.toString() === trade.secondUser._id.toString() )
+      sweetener = -sweetener;
+    trade.dealSweetener = sweetener;
+    trade.save();
+    updateChangeTracker( trade, req );
+    res.redirect( "/interface/trade/edit/" + trade._id );
   } );
 } );
 
@@ -540,15 +440,15 @@ router.get( '/pollforchanges/', function( req, res ) {
     let changes = tracker.usersWithChanges;
     let userid = req.user.id.toString();
     if ( changes.includes( userid ) ) {
-      let index = changes.indexOf( userid )
-      tracker.usersWithChanges.splice( index, 1 )
-      tracker.save()
-      req.flash( "success", "A trade has updated" )
-      res.json( { "changefound": "true" } )
+      let index = changes.indexOf( userid );
+      tracker.usersWithChanges.splice( index, 1 );
+      tracker.save();
+      req.flash( "success", "A trade has updated" );
+      res.json( { "changefound": "true" } );
     } else {
-      res.json( { "changefound": "false" } )
+      res.json( { "changefound": "false" } );
     }
-  } )
-} )
+  } );
+} );
 
 module.exports = router;
