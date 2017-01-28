@@ -6,7 +6,7 @@ const Trade = require( '../models/trade' );
 const Changetracker = require( '../models/changetracker' );
 const multer = require( 'multer' );
 const cloudinary = require( 'cloudinary' );
-const upload = multer( { dest: '../uploads/' } );
+const upload = multer( { dest: './uploads/' } );
 
 //show userHome
 router.get( '/', function( req, res ) {
