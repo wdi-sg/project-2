@@ -32,6 +32,13 @@ const Interface = require( './controllers/interface' );
 
 const Changetracker = require( './models/changetracker' );
 
+// make changetracker if does not exist
+Changetracker.find( {}, ( err, response ) => {
+  if ( !response[ 0 ] ) Changetracker.create( {
+    identifier: "tracker"
+  } )
+} )
+
 app.set( "view engine", "ejs" );
 
 app.use( session( {
@@ -63,19 +70,6 @@ app.use( function( req, res, next ) {
     req.safeUserData = userData;
   }
   next();
-} );
-
-app.use( function( req, res, next ) {
-  // makes change tracker if tracker doesn't exist
-  Changetracker.find( {}, ( err, response ) => {
-    if ( !response[0] ) Changetracker.create( {
-      identifier: "tracker"
-    }, () => {
-      next();
-    } )
-    else
-      next();
-  } )
 } );
 
 if ( process.env.NODE_ENV === "test" ) {
