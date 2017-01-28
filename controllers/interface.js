@@ -394,8 +394,8 @@ router.post( '/trade/cancelagreedby/:tradeid/:userid', function( req, res ) {
       trade.secondUserAgreed = false;
       trade.save();
     }
+    updateChangeTracker( trade, req );
   } );
-  updateChangeTracker( trade, req );
   res.redirect(
     "/interface/trade/edit/" + req.params.tradeid );
 } );
