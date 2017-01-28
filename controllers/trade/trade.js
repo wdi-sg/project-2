@@ -6,7 +6,7 @@ const Trade = require( '../../models/trade' );
 const Changetracker = require( '../../models/changetracker' );
 const multer = require( 'multer' );
 const cloudinary = require( 'cloudinary' );
-const upload = multer( { dest: '../../uploads/' } );
+const upload = multer( { dest: '../uploads/' } );
 
 function updateChangeTracker( trade, req ) {
   // adds userid in trade that is not current user to Changetracker
