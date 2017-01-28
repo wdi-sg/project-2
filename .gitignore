@@ -50,7 +50,4 @@ jspm_packages
 # Yarn Integrity file
 .yarn-integrity
 
-# Image uploads directory
-uploads
-
 # End of https://www.gitignore.io/api/node
