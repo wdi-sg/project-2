@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
     minlength: [8, 'Password must be between 8 and 99 characters'],
     maxlength: [99, 'Password must be between 8 and 99 characters'],
   },
-  school: { type: String },
+  school: { type: mongoose.Schema.Types.ObjectId, ref: "School"},
   classrooms: [{type: mongoose.Schema.Types.ObjectId, ref: 'Classroom'}]
 
 });

@@ -44,6 +44,8 @@ router.put('/update/:id', function(req, res) {
 })
 
 router.delete('/remove/:id', function(req, res) {
+  console.log("assign delete request params " + req.params.id);
+
   Assignment.remove({_id: req.body.id }, function (err) {
     if (err) { return console.log(err)}
     console.log('assignment deleted')
@@ -62,8 +64,7 @@ router.post('/create', requireRole('teacher'), getClassroomId, function(req, res
     est_time: req.body.time,
     createdOn: Date.now(),
     created_by: req.user._id,
-  }
-, function (err, assignment) {
+  }, function (err, assignment) {
     if (err) {  return console.log(err)  }
     res.redirect('/classroom/classBulletin/' + req.body.classroom)
   })

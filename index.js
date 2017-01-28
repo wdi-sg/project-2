@@ -34,7 +34,8 @@ app.use(methodOverride('_method'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true}))
 
-app.use('/auth', require('./controllers/authentications_controller'))
+app.use('/auth', require('./routes/auth'))
+app.use('/profile', require('./routes/profile'))
 app.use('/assignment', require('./controllers/assignments_controller'))
 app.use('/classroom', require('./controllers/classrooms_controller'))
 
