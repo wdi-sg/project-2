@@ -1,73 +1,65 @@
 const express = require('express')
-const router = express.Router();
 const Assignment = require('../models/assignment').model
 const Classroom = require('../models/classroom').model
 const School = require('../models/school').model
 const schoolSchema = require('../models/school').schema
 
+module.exports = {
+  loadAssignmentForm: function (req, res, next) {
+                      User.findById({_id: req.user._id})
+                          .populate('classrooms')
+                          .exec (function (err, user) {
+                            if (err) { return console.log(err) }
+                            res.render('createAssignment', {user: user})
+                          })
+                      },
 
-function requireRole (role) {
-    return function(req, res, next) {
-      if (req.user && req.user.role === role) next();
-      else
-          res.send(404);
-    }
+  createAssignment: function (req, res, next) {
+                    Assignment.create({
+                      a_type: req.body.atype,
+                      title: req.body.title,
+                      description: req.body.description,
+                      createdOn: Date.now(),
+                      due_date: req.body.due_date,
+                      est_time: req.body.est_time,
+                      created_by: req.user._id
+                    }, function (err, assigment) {
+                      if (err) { return console.log(err) }
+                      res.redirect('/dashboard')
+                    })
+
+                  },
+  viewOneAssignment: function (req, res, next) {
+                      Assignment.findOne({_id: req.params._id}, function (err, assignment) {
+                        if (err) { return console.log(err) }
+                        res.render('updateAssignment', {assignment: assignment})
+                      })
+                    },
+  editOneAssignment: function (req, res, next) {
+                      Assignment.update({_id: assignment._id}, {
+                        a_type: req.body.atype,
+                        title: req.body.title,
+                        description: req.body.description,
+                        due_date: req.body.due_date,
+                        est_time: req.body.est_time
+                      }, function (err, assignment) {
+                        if (err) { console.log(err) }
+                        res.redirect('/dashboard')
+                      })
+                    },
+
+  deleteAssignment: function (req, res, next) {
+                      Assignment.remove({_id: req.params.id}, function (err) {
+                        if (err) { return console.log(err) }
+                        res.redirect('/dashboard')
+                      })
+                    }
 }
 
-function getClassroomId (req, res, next) {
-  Classroom.findOne({name: req.body.classroom}, function (err, classroom){
-    if (err) { return console.log(err)}
-    console.log();
-    req.body.classroom = classroom._id
-    next()
-  })
-}
-
-router.get('/create', function(req, res) {
-  res.render('create')
-})
-
-router.get('/update/:id', function(req,res) {
-  console.log("this is update" + req.params.id);
-  Assignment.findOne({_id: req.params.id}, function (err, assignment) {
-    if (err) { return console.log(err)}
-    res.render('update', {assignment: assignment})
-  })
-})
-
-
-router.put('/update/:id', function(req, res) {
-  Assignment.update({_id: req.params.id}, function (err, assignment){
-    if (err) console.log(err);
-    res.redirect('dashboard')
-  })
-})
-
-router.delete('/remove/:id', function(req, res) {
-  console.log("assign delete request params " + req.params.id);
-
-  Assignment.remove({_id: req.body.id }, function (err) {
-    if (err) { return console.log(err)}
-    console.log('assignment deleted')
-    res.redirect("/dashboard")
-  })
-})
-
-router.post('/create', requireRole('teacher'), getClassroomId, function(req, res) {
-  console.log(req.body);
-  Assignment.create({
-    a_type: req.body.a_type,
-    classroom: req.body.classroom,
-    title: req.body.title,
-    description: req.body.description,
-    due_date: req.body.date,
-    est_time: req.body.time,
-    createdOn: Date.now(),
-    created_by: req.user._id,
-  }, function (err, assignment) {
-    if (err) {  return console.log(err)  }
-    res.redirect('/classroom/classBulletin/' + req.body.classroom)
-  })
-})
-
-module.exports = router
+// function requireRole (role) {
+//     return function(req, res, next) {
+//       if (req.user && req.user.role === role) next();
+//       else
+//           res.send(404);
+//     }
+// }

@@ -8,3 +8,5 @@ router.get('/signup', auth_controllers.loadSignUpForm)
 router.post('/signup', auth_controllers.sendSignupForm)
 router.post('/login', auth_controllers.login)
 router.get('/logout', auth_controllers.logout)
+
+module.exports = router
