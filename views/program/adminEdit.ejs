@@ -1,6 +1,17 @@
 <div class="jumbotron">
   <div class="container">
     <h1 class="display-3">edit <%= chosenProgram.name %></h1>
+    <p class="text-muted mb-0"><span class="badge badge-info"><%= chosenProgram.subject %></span><em> volunteer area</em></p>
+    <p class="text-muted">
+    <% for (var level in chosenProgram.commitment) { %>
+      <% if (chosenProgram.commitment[level] === true && level !== '$__isNested') { %>
+        <span class="badge badge-danger"><%= level %></span>
+      <% } %>
+    <% } %>
+    <em>expected volunteer commitment level</em></p>
+    <p>created by you!</p>
+    <p class="lead"><%= chosenProgram.description %></p>
+    <a href="<%= chosenProgram.website %>">External site</a><br><br>
   </div>
 </div>
 <div class="container">

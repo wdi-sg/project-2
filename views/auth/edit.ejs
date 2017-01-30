@@ -10,6 +10,33 @@
       <input type="text" class="form-control" id="nameInput" name="name" value="<%= currentUser.name %>">
     </div>
     <div class="form-group">
+      <label for="gender">Gender</label><br>
+      <select class="custom-select" id="genderInput" name="gender">
+        <% if (currentUser.gender === "male") { %>
+          <option value="male" selected>Male</option>
+        <% } else { %>
+          <option value="male">Male</option>
+        <% } %>
+        <% if (currentUser.gender === "female") { %>
+          <option value="female" selected>Female</option>
+        <% } else { %>
+          <option value="female">Female</option>
+        <% } %>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="age">Age</label><br>
+      <select class="custom-select" id="ageInput" name="age">
+        <% for (var i = 15; i < 110; i++) { %>
+          <% if (currentUser.age === i) { %>
+            <option value="<%= i %>" selected><%= i %></option>
+          <% } else { %>
+            <option value="<%= i %>"><%= i %></option>
+          <% } %>
+        <% } %>
+      </select>
+    </div>
+    <div class="form-group">
       <label for="email">Email</label>
       <input type="text" class="form-control" id="emailInput" name="email" value="<%= currentUser.email %>">
     </div>
@@ -35,7 +62,7 @@
           I am looking for existing programs to enter a loved one in
         </label>
       </div>
-      <!-- <div class="form-check">
+      <div class="form-check">
         <label class="form-check-label" for="userTypeVolunteer">
           <% if (currentUser.userTypes.volunteer === true) { %>
             <input class="form-check-input" type="checkbox" id="userTypeVolunteer" name="userTypeVolunteer" value=true checked="checked">
@@ -44,7 +71,7 @@
           <% } %>
           I am looking for existing programs to volunteer in
         </label>
-      </div> -->
+      </div>
     </div>
     <button type="submit" class="btn btn-primary mt-2">Submit</button><br><br>
   </form>

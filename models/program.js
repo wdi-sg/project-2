@@ -70,8 +70,13 @@ let ProgramSchema = new mongoose.Schema({
         'this beneficiary is already signed up to this program'
       ]
     }
+  ],
+  volunteers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
   ]
-  // volunteers
 })
 
 let Program = mongoose.model('Program', ProgramSchema)

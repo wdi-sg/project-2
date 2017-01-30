@@ -9,6 +9,11 @@
       <% } %>
     <% } %>
     <em>expected volunteer commitment level</em></p>
+    <% if (chosenProgram.admin.toString() === currentUser.id.toString()) { %>
+      <p>created by you!</p>
+    <% } else { %>
+      <p>created by <a href="<%= "/profile/" + chosenProgram.admin %>"><%= programAdmin.name %></a></p>
+    <% } %>
     <p class="lead"><%= chosenProgram.description %></p>
     <a href="<%= chosenProgram.website %>">External site</a><br><br>
   </div>
@@ -18,17 +23,19 @@
       <% beneficiariesOfUser.forEach(function (indiv) { %>
       <div class="form-check ml-4">
         <label class="form-check-label" for="<%= indiv.name %>">
-          <% if (chosenProgram.beneficiaries.toString() === indiv.id.toString()) { %>
-            <input class="form-check-input" type="checkbox" id="<%= indiv.name %>" name="signedUpBeneficiaryID[]" value=<%= indiv.id %> checked="checked">
-          <% } else { %>
-            <input class="form-check-input" type="checkbox" id="<%= indiv.name %>" name="signedUpBeneficiaryID[]" value=<%= indiv.id %>>
-          <% } %>
+          <% if (chosenProgram.beneficiaries.some(function (beneficiary) { %>
+            <% return beneficiary.toString() === indiv.id.toString() %>
+            <% })) { %>
+              <input class="form-check-input" type="checkbox" id="<%= indiv.name %>" name="signedUpBeneficiaryID[]" value=<%= indiv.id %> checked="checked" disabled>
+            <% } else { %>
+              <input class="form-check-input" type="checkbox" id="<%= indiv.name %>" name="signedUpBeneficiaryID[]" value=<%= indiv.id %>>
+            <% } %>
           <%= indiv.name %>
         </label>
       </div>
       <% }) %>
     </div>
     <br>
-    <button type="submit" class="btn btn-info mb-5">Submit</button>
+    <button type="submit" class="btn btn-primary mb-5">Submit</button>
   </form>
 </div>

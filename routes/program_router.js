@@ -18,6 +18,10 @@ router.put('/adminUpdate/:id', programController.adminUpdate)
 
 router.put('/guardianAddB/:id', programController.guardianAddB)
 
+router.put('/volunteerSignUp/:id', programController.volunteerSignUp)
+
+router.put('/volunteerQuit/:id', programController.volunteerQuit)
+
 router.delete('/adminDelete/:id', programController.adminDelete)
 
 router.delete('/guardianDelete/:id', programController.guardianDelete)

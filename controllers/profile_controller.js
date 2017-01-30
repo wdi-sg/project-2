@@ -6,13 +6,15 @@ let profileController = {
       .populate('createdPrograms')
       .populate('signedTheseBeneficiariesUp')
       .populate('signedBeneficiariesUpToThesePrograms')
+      .populate('joinedPrograms')
       .exec(function (err, user) {
         if (err) throw err
         res.render('profile', {
           user: user,
           createdProgramsPopulated: user.createdPrograms,
           signedTheseBeneficiariesUpPopulated: user.signedTheseBeneficiariesUp,
-          signedBeneficiariesUpToTheseProgramsPopulated: user.signedBeneficiariesUpToThesePrograms
+          signedBeneficiariesUpToTheseProgramsPopulated: user.signedBeneficiariesUpToThesePrograms,
+          joinedProgramsPopulated: user.joinedPrograms
         })
       })
   }

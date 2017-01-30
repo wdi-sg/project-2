@@ -14,6 +14,29 @@ let UserSchema = new mongoose.Schema({
       'your user name must be between 3 and 99 characters'
     ]
   },
+  gender: {
+    type: String,
+    enum: ['male', 'female'],
+    required: [
+      true,
+      'please provide your gender'
+    ]
+  },
+  age: {
+    type: Number,
+    min: [
+      15,
+      'your age must be between ages 15 and 109 to volunteer'
+    ],
+    max: [
+      109,
+      'your age must be between ages 15 and 109 to volunteer'
+    ],
+    required: [
+      true,
+      'please provide your age'
+    ]
+  },
   email: {
     type: String,
     required: [
@@ -79,6 +102,12 @@ let UserSchema = new mongoose.Schema({
       //   true,
       //   'this beneficiary is already signed up to this program'
       // ]
+    }
+  ],
+  joinedPrograms: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Program'
     }
   ]
 })

@@ -10,6 +10,8 @@ let authController = {
     User.create({
       email: req.body.email,
       name: req.body.name,
+      gender: req.body.gender,
+      age: req.body.age,
       password: req.body.password,
       userTypes: {
         admin: (req.body.userTypeAdmin === 'true') || false,
@@ -59,6 +61,8 @@ let authController = {
     }, {
       email: req.body.email,
       name: req.body.name,
+      gender: req.body.gender,
+      age: req.body.age,
       userTypes: {
         admin: (req.body.userTypeAdmin === 'true') || false,
         guardian: (req.body.userTypeGuardian === 'true') || false,

@@ -127,7 +127,7 @@
               <% }) %>
             <% }) %>
           <% if (indivBeneficiary.programs.length === 0 && user.id === currentUser.id) { %>
-            <a href="../program">Sign up!</a></td>
+            <a href="../program">Enroll!</a></td>
           <% } %>
         </tr>
         <% }) %>
@@ -135,5 +135,58 @@
     </table>
     <br>
     <a class="btn btn-primary ml-4" style="<%= ifNoGuardian %>" href="../beneficiary/new">Sign a new beneficiary up</a>
+  </div>
+  <%
+  let ifNoPrograms = ""
+  let ifNoVolunteer = ""
+  let ifNoProgramsVolunteer = ""
+  if (user.joinedPrograms.length === 0) {
+    ifNoPrograms = "display: none; visibility: hidden;"
+  }
+  if (currentUser.userTypes.volunteer === false || user.id !== currentUser.id) {
+    ifNoVolunteer = "display: none; visibility: hidden;"
+  }
+  if (user.joinedPrograms.length === 0 && user.userTypes.volunteer === false) {
+    ifNoProgramsVolunteer = "display: none; visibility: hidden;"
+  }
+  %>
+  <div style="<%= ifNoProgramsVolunteer %>" class="mb-5">
+    <% if (user.id === currentUser.id) { %>
+      <h1 class="mb-3">you are a volunteer in </h1>
+    <% } else { %>
+      <h1 class="mb-3"><%= user.name %> is a volunteer in </h1>
+    <% } %>
+    <table class="table table-hover table-responsive" style="<%= ifNoPrograms %>">
+      <thead class="thead-default">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Area</th>
+          <th>Frequency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% joinedProgramsPopulated.forEach(function (indivProgram4, index) { %>
+        <tr>
+          <th scope="row"><%= index + 1 %></th>
+          <td>
+            <a href="<%= "/program/" + indivProgram4.id %>"><%= indivProgram4.name %></a>
+          </td>
+          <td>
+            <span class="badge badge-info mb-1"><%= indivProgram4.subject %></span>
+          </td>
+          <td>
+            <% for (var level in indivProgram4.commitment) { %>
+              <% if (indivProgram4.commitment[level] === true && level !== '$__isNested') { %>
+                <span class="badge badge-danger mb-1"><%= level %></span><br>
+              <% } %>
+            <% } %>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <br>
+    <a class="btn btn-primary ml-4" style="<%= ifNoVolunteer %>" href="../program">Volunteer</a>
   </div>
 </div>

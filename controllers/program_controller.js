@@ -20,12 +20,14 @@ let programController = {
       Program.findById(req.params.id)
         .populate('admin')
         .populate('beneficiaries')
+        .populate('volunteers')
         .exec(function (err, program) {
           if (err) throw err
           res.render('program/single', {
             chosenProgram: chosenProgram,
             programAdmin: program.admin,
-            programBeneficiaries: program.beneficiaries
+            programBeneficiaries: program.beneficiaries,
+            programVolunteers: program.volunteers
           })
         })
     })
@@ -100,17 +102,20 @@ let programController = {
   },
 
   guardianNewB: function (req, res) {
-    Program.findById(req.params.id, function (err, chosenProgram) {
-      if (err) throw err
-      User.findById(req.user.id)
-        .populate('signedTheseBeneficiariesUp')
-        .exec(function (err, user) {
-          if (err) throw err
-          res.render('program/guardianNewB', {
-            chosenProgram: chosenProgram,
-            beneficiariesOfUser: user.signedTheseBeneficiariesUp
+    Program.findById(req.params.id)
+      .populate('admin')
+      .exec(function (err, chosenProgram) {
+        if (err) throw err
+        User.findById(req.user.id)
+          .populate('signedTheseBeneficiariesUp')
+          .exec(function (err, user) {
+            if (err) throw err
+            res.render('program/guardianNewB', {
+              chosenProgram: chosenProgram,
+              programAdmin: chosenProgram.admin,
+              beneficiariesOfUser: user.signedTheseBeneficiariesUp
+            })
           })
-        })
     })
   },
 
@@ -173,6 +178,28 @@ let programController = {
     })
   },
 
+  volunteerSignUp: function (req, res) {
+    User.findByIdAndUpdate(req.user.id, { $addToSet: { joinedPrograms: req.params.id } }, { new: true }, function (err, chosenUser) {
+      if (err) throw err
+      Program.findByIdAndUpdate(req.params.id, { $addToSet: { volunteers: req.user.id } }, { new: true }, function (err, chosenProgram) {
+        if (err) throw err
+        req.flash('success', 'You are now a volunteer in this program!')
+        res.redirect('/program/' + chosenProgram.id)
+        })
+      })
+  },
+
+  volunteerQuit: function (req, res) {
+    User.findByIdAndUpdate(req.user.id, { $pull: { joinedPrograms: req.params.id } }, { new: true }, function (err, chosenUser) {
+      if (err) throw err
+      Program.findByIdAndUpdate(req.params.id, { $pull: { volunteers: req.user.id } }, { new: true }, function (err, chosenProgram) {
+        if (err) throw err
+        req.flash('success', 'You are no longer a volunteer in this program')
+        res.redirect('/program/' + chosenProgram.id)
+        })
+      })
+  },
+
   adminDelete: function (req, res) {
     Program.findByIdAndRemove(req.params.id, function (err, chosenProgram) {
       if (err) throw err
@@ -213,9 +240,9 @@ let programController = {
                   if (err) throw err
                 })
               }
-              req.flash('success', 'Beneficiary successfully removed')
-              res.redirect('/program/' + chosenProgram.id)
             })
+            req.flash('success', 'Beneficiary successfully removed')
+            res.redirect('/program/' + chosenProgram.id)
           })
       })
     })

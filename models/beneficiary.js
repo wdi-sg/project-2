@@ -24,11 +24,11 @@ let BeneficiarySchema = new mongoose.Schema({
     type: Number,
     min: [
       5,
-      'your beneficiary age must be between ages 5 and 109 to qualify for this program'
+      'your beneficiary\'s age must be between ages 5 and 109 to qualify for this program'
     ],
     max: [
       109,
-      'your beneficiary age must be between ages 5 and 109 to qualify for this program'
+      'your beneficiary\'s age must be between ages 5 and 109 to qualify for this program'
     ],
     required: [
       true,

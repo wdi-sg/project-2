@@ -20,12 +20,12 @@
 </div>
 <div class="container">
   <%
-  let adminBeneficiariesView  = ""
-  if ((chosenProgram.admin).toString() !== (currentUser.id).toString()) {
-    adminBeneficiariesView = "display: none; visibility: hidden;"
+  let beneficiariesView  = "display: none; visibility: hidden;"
+  if (((chosenProgram.admin).toString() === (currentUser.id).toString() || chosenProgram.volunteers.some(function (indivVolunteer) { return indivVolunteer.toString() === currentUser.id.toString() })) && chosenProgram.beneficiaries.length > 0) {
+    beneficiariesView = ""
   }
   %>
-  <div style="<%= adminBeneficiariesView %>" class="mb-5">
+  <div style="<%= beneficiariesView %>" class="mb-5">
     <h1 class="mb-3">all beneficiaries</h1>
     <table class="table table-hover table-responsive">
       <thead class="thead-default">
@@ -45,6 +45,37 @@
             <td><%= individualBeneficiary.name %></td>
             <td><%= individualBeneficiary.gender %></td>
             <td><%= individualBeneficiary.age %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <%
+  let adminVolunteersView  = "display: none; visibility: hidden;"
+  if (((chosenProgram.admin).toString() === (currentUser.id).toString() || chosenProgram.volunteers.some(function (indivVolunteer) { return indivVolunteer.toString() === currentUser.id.toString() })) && chosenProgram.volunteers.length > 0) {
+    adminVolunteersView = ""
+  }
+  %>
+  <div style="<%= adminVolunteersView %>" class="mb-5">
+    <h1 class="mb-3">all volunteers</h1>
+    <table class="table table-hover table-responsive">
+      <thead class="thead-default">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let index = 0 %>
+        <% programVolunteers.forEach(function (individualVolunteer) { %>
+          <% index++ %>
+          <tr>
+            <th scope="row"><%= index %></th>
+            <td><a href=<%= "/profile/" + individualVolunteer.id %>><%= individualVolunteer.name %></a></td>
+            <td><%= individualVolunteer.gender %></td>
+            <td><%= individualVolunteer.age %></td>
           </tr>
         <% }) %>
       </tbody>
@@ -94,11 +125,15 @@
   <%
   let adminActionsPresence = ""
   let guardianActionPresence = ""
+  let volunteerActionPresence = ""
   if ((chosenProgram.admin).toString() !== (currentUser.id).toString()) {
     adminActionsPresence = "display: none; visibility: hidden;"
   }
   if (currentUser.signedTheseBeneficiariesUp.length === 0) {
     guardianActionPresence = "display: none; visibility: hidden;"
+  }
+  if (currentUser.userTypes.volunteer === false) {
+    volunteerActionPresence = "display: none; visibility: hidden;"
   }
   %>
   <h1 class="mb-3">your actions</h1>
@@ -117,11 +152,36 @@
     </div>
     <div class="card m-2" style="width: 20rem; <%= guardianActionPresence %>">
       <div class="card-header">
-      <em>sign up beneficiaries as a</em>
+      <em>enroll beneficiaries as a</em>
       </div>
       <div class="card-block">
         <h4 class="card-title">guardian</h4><br>
-        <a class="btn btn-primary" href="<%= "/program/guardianNewB/" + chosenProgram._id %>">Proceed</a>
+        <a class="btn btn-primary" href="<%= "/program/guardianNewB/" + chosenProgram._id %>">Enroll</a>
+      </div>
+    </div>
+    <div class="card m-2" style="width: 20rem; <%= volunteerActionPresence %>">
+      <div class="card-header">
+      <% if (chosenProgram.volunteers.some(function (indivVolunteer) { %>
+        <% return indivVolunteer.toString() === currentUser.id.toString() %>
+        <% })) { %>
+        <em>quit being a</em>
+      <% } else { %>
+        <em>sign up as a</em>
+      <% } %>
+      </div>
+      <div class="card-block">
+        <h4 class="card-title">volunteer</h4><br>
+        <% if (chosenProgram.volunteers.some(function (indivVolunteer) { %>
+          <% return indivVolunteer.toString() === currentUser.id.toString() %>
+          <% })) { %>
+          <form action="<%= "/program/volunteerQuit/" + chosenProgram._id + "?_method=PUT" %>" method="POST">
+            <button class="btn btn-primary mb-5" type="submit">Quit</button>
+          </form>
+        <% } else { %>
+          <form action="<%= "/program/volunteerSignUp/" + chosenProgram._id + "?_method=PUT" %>" method="POST">
+            <button class="btn btn-primary mb-5" type="submit">Sign up</button>
+          </form>
+        <% } %>
       </div>
     </div>
   </div>
