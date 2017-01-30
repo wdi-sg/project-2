@@ -1,6 +1,6 @@
-<div class="login-bg">
+
 <div class="header">
-   <div class="container">
+<div class="container">
       <div class="row">
          <div class="col-md-12">
             <!-- Logo -->
@@ -18,26 +18,37 @@
     <div class="login-wrapper">
           <div class="box">
               <div class="content-wrap">
-                  <h3>Sign Up</h3>
-                  <form  action="auth/signup" method="POST">
+                  <h3>Log in</h3>
+                  <form  action="/auth/login" method="POST">
                   <div class="form-group">
-                    <div class="col-sm-3"><label class="radio radio-inline"><input type="radio" id="roles" name="role" value="teacher">Teacher</label></div>
-                    <div class="col-sm-3"><label class="radio radio-inline"><input type="radio" id="roles" name="role" value="student">Student</label></div>
-                    <div class="col-sm-3"><label class="radio radio-inline"><input type="radio" id="roles" name="role" value="parent">Parent</label></div>
+                    <div class="col-md-3">
+                      <label class="radio radio-inline">
+                      <input type="radio" id="roles" name="role" value="teacher">Teacher</label>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="radio radio-inline">
+                        <input type="radio" id="roles" name="role" value="student">Student</label>
+                      </div>
+                    <div class="col-md-3">
+                      <label class="radio radio-inline"><input type="radio" id="roles" name="role" value="parent">Parent</label>
+                    </div>
                   </div>
 
-                  <div class="form-group"><input class="form-control" type="text" placeholder="E-mail address" name="email"></div></div>
+                  <div class="form-group"><input class="form-control" type="text" placeholder="E-mail address" name="email"></div>
                   <div class="form-group"><input class="form-control" type="password" placeholder="Password" name="password"></div>
+                </div>
                   <div class="action">
-                      <input id="signup"class="btn btn-primary signup" type="submit" value="Sign Up">
+                      <input id="signup"class="btn btn-primary signup" type="submit" value="Log in">
                   </div>
               </div>
+              <div class="already">
+                  <p>Don't have an account yet? Sign up now!
+                    <input id="signup" class="navbar-link" formaction="/auth/signup" type="submit" value="Sign Up"></p>
+              </div>
+            </form>
           </div>
 
-          <div class="already">
-              <p>Have an account already? <input formaction="auth/login" id="login" class="navbar-link" type="submit" value="Log In"></p>
-          </div>
-        </form>
+
       </div>
   </div>
 </div>

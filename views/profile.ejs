@@ -1,23 +1,56 @@
-<div class="panel-heading">
-  <div class="panel-title">Edit Profile</div>
-</div>
-<div class="panel-body">
-  <form action="/auth/accountinfo/:id" method="POST">
-      <div class="form-group">
-        <label>School</label>
-        <input class="form-control" placeholder="Please key in your school name" type="text" name="school">
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="logo">
+       <h1><a href="#">Profile Page</a></h1>
       </div>
-      <div class="form-group">
-        <label>Name</label>
-        <input class="form-control" placeholder="Please enter your full name" type="text" name="name">
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input class="form-control" type="text" name="email" value="<%= user.email %>" >
-      </div>
-      <div class="col-sm-2"><input class="form-control btn btn-primary" type="submit" value="Submit"></div>
-  </form>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-</div>
+
+<div class="page-content">
+  <div class="row">
+  <div class="col-md-2">
+    <div class="sidebar content-box" style="display: block;">
+            <ul class="nav">
+                <!-- Main menu -->
+                <li class="active"><a href="/profile/view/:id/dashboard"> Dashboard</a></li>
+                <li class="active"><a href="/profile/view/:id"> Profile </a></li>
+                <li class="active"><a href="/classroom/add">Add/Join Classes </a></li>
+                <li class="active"><a href="/assignment/create">Add Assignments </a></li>
+                <li class="active"><a href="/auth/logout">Log Out</a></li>
+         </div>
+  </div>
+  <div class="col-md-10">
+
+		<div class="content-box-large">
+      <div class="row">
+            <div class="col-md-12">
+                <div class="panel-heading content-box-header">
+                    <div class="panel-title"> <% if (!user.name) { %>
+                      Please Update Your Name
+                    <% } else { %>
+                      <%= user.name %>
+                      <% } %>
+                    </div>
+                </div>
+                    <div class="panel-body">
+                    <p><strong>Role: </strong> <% var role = user.role.toUpperCase() %><%= role %>  </p>
+                    <p><strong>School: </strong><% if (!user.school) { %>
+                           Please update your school </p>
+                          <% } else { %>
+                      <%= user.school.name %> </p>
+                      <% } %>
+                    <p><strong>Email: </strong> <%= user.email %> </p>
+                </div>
+            </div>
+            <div class="col-xs-12 divider text-center">
+                <div class="col-xs-12 col-sm-4 emphasis">
+                    <button class="btn btn-success btn-block" onclick="location.href='/profile/edit/:id'"><span class="fa fa-plus-circle"> Edit Profile</button>
+                </div>
+            </div>
+		</div>
+	</div>
+
+  </div>
+  </div>

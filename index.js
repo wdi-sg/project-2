@@ -2,20 +2,25 @@ require('dotenv').config({silent: true})
 const mongoose = require('mongoose')
 const express = require('express')
 const session = require('express-session')
+const flash = require('connect-flash')
 const ejsLayouts = require('express-ejs-layouts')
 const passport = require('./config/ppConfig')
 const isLoggedin = require('./middleware/isLoggedin')
 const bodyParser = require('body-parser')
-const flash = require('connect-flash')
 const app = express()
 const path = require('path')
 const methodOverride = require('method-override')
+const auth = require('./routes/auth')
+const profile = require('./routes/profile')
+const assignment = require('./routes/assignment')
+const classroom = require('./routes/classroom')
 
-mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/managehomework')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/managehomework')
 mongoose.Promise = global.Promise;
 
 
 app.set('view engine', 'ejs')
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(flash())
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -34,26 +39,26 @@ app.use(methodOverride('_method'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true}))
 
-app.use('/auth', require('./routes/auth'))
-app.use('/profile', require('./routes/profile'))
-app.use('/assignment', require('./controllers/assignments_controller'))
-app.use('/classroom', require('./controllers/classrooms_controller'))
+app.use('/auth', auth)
+app.use('/profile', profile)
+app.use('/assignment', assignment)
+app.use('/classroom', classroom)
 
 
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
     res.render('index')
 })
 
-app.get('/dashboard', isLoggedin, function(req, res) {
-  res.redirect('auth/dashboard')
-})
+// app.get('/dashboard', isLoggedin, function (req, res) {
+//   res.redirect('/dashboard')
+// })
 
-app.get('/logout', function(req, res) {
-  req.logout();
-  req.flash('success', 'You have logged out');
-  res.redirect('/');
-});
+// app.get('/logout', function (req, res) {
+//   req.logout()
+//   req.flash('success', 'You have logged out')
+//   res.redirect('/')
+// });
 
 
 

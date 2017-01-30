@@ -1,8 +1,6 @@
 const express = require('express')
 const Classroom = require('../models/classroom').model
 const User = require('../models/user').model
-const School = require('../models/school').model
-const Assignment = require('../models/assignment').model
 
 module.exports = {
 
@@ -16,19 +14,6 @@ module.exports = {
     },
 
   createClass: function (req, res, next) {
-    // Assignment.create({
-    //   a_type: req.body.atype,
-    //   title: req.body.title,
-    //   description: req.body.description,
-    //   createdOn: Date.now(),
-    //   due_date: req.body.due_date,
-    //   est_time: req.body.est_time,
-    //   created_by: req.user._id
-    // }, function (err, assigment) {
-    //   if (err) { return console.log(err) }
-    //
-    // })
-
     Classroom.create({
       name: req.body.name,
       members: req.user._id

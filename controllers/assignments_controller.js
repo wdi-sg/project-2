@@ -1,8 +1,7 @@
 const express = require('express')
 const Assignment = require('../models/assignment').model
 const Classroom = require('../models/classroom').model
-const School = require('../models/school').model
-const schoolSchema = require('../models/school').schema
+const User = require ('../models/user').model
 
 module.exports = {
   loadAssignmentForm: function (req, res, next) {
@@ -25,7 +24,7 @@ module.exports = {
                       created_by: req.user._id
                     }, function (err, assigment) {
                       if (err) { return console.log(err) }
-                      res.redirect('/dashboard')
+                      res.redirect('/profile/' + req.user._id + '/dashboard')
                     })
 
                   },
@@ -36,7 +35,7 @@ module.exports = {
                       })
                     },
   editOneAssignment: function (req, res, next) {
-                      Assignment.update({_id: assignment._id}, {
+                      Assignment.update({_id: req.params._id}, {
                         a_type: req.body.atype,
                         title: req.body.title,
                         description: req.body.description,
@@ -49,9 +48,11 @@ module.exports = {
                     },
 
   deleteAssignment: function (req, res, next) {
-                      Assignment.remove({_id: req.params.id}, function (err) {
+                      console.log('delete assignment ' + req.body.id)
+                      console.log('delete assignment user ' + req.user.id)
+                      Assignment.remove({_id: req.body.id}, function (err) {
                         if (err) { return console.log(err) }
-                        res.redirect('/dashboard')
+                        res.redirect('/profile/' + req.user._id + '/dashboard')
                       })
                     }
 }

@@ -1,7 +1,6 @@
 const express = require('express')
 const passport = require('../config/ppConfig')
 const User = require('../models/user').model
-const School = require('../models/school').model
 
 module.exports = {
   loadSignUpForm: function (req, res, next) {
@@ -14,12 +13,13 @@ module.exports = {
                       email: req.body.email,
                       password: req.body.password
                     }, function (err, createdUser) {
+                        console.log("the created user is " + createdUser);
                         if(err) {
                           req.flash('error', 'Could not create user account')
                           res.redirect('/')
                         } else {
                             passport.authenticate('local', {
-                              successRedirect: '/profile/' + createdUser._id,
+                              successRedirect: 'profile/' + createdUser._id,
                               failureRedirect: '/',
                               successFlash: 'Account created and logged in'
                             })(req, res, next)
@@ -27,19 +27,29 @@ module.exports = {
                         })
                       },
 
-  login: function (req, res, next) {
-          passport.authenticate('local', {
-            successRedirect: '/dashboard/' + req.user._id,
-            failureRedirect: '/',
-            failureFlash: 'Invalid username and/or password',
-            successFlash: 'You have logged in'
-          })
-        },
+    login: function (req, res, next) {
+      passport.authenticate('local', {failureFlash: true}, function (err, user, info) {
+        if (err) { return next(err) }
+        if(!user) { return res.redirect('/') }
+        req.logIn(user, function (err) {
+          if (err) { return next(err) }
+          return res.redirect('/profile/' + user._id + '/dashboard')
+        })
+      })(req, res, next)
+    },
 
-logout: function (req, res, next) {
-          req.logout();
-          req.flash('success', 'You have logged out');
-          res.render('index');
+ // login: passport.authenticate('local', {
+ //          successRedirect: '/dashboard',
+ //          failureRedirect: '/auth/login',
+ //          failureFlash: true,
+ //          successFlash: 'You have logged in'
+ //        }),
+
+
+ logout: function (req, res, next) {
+          req.logout()
+          req.flash('success', 'You have logged out')
+          res.render('index')
         }
 
 }

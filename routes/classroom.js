@@ -1,8 +1,11 @@
 const express = require('express')
+const router = express.Router()
 const classrooms_controller = require('../controllers/classrooms_controller')
 
-router.get('/classroom/:id', classrooms_controller.viewClass)
+router.get('/:id', classrooms_controller.viewClass)
 
-router.post('/classroom/create', classrooms_controller.createClass)
+router.post('/add', classrooms_controller.createClass)
 
-router.post('/classroom/edit', classrooms_controller.leaveClass)
+router.post('/:id/edit', classrooms_controller.leaveClass)
+
+module.exports = router
