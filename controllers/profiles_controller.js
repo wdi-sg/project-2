@@ -54,7 +54,7 @@ module.exports = {
                         school: req.body.school,
                         name: req.body.name }, function (err, user) {
                           if(err) { return console.log(err) }
-                          res.redirect('/'+ req.user._id + '/dashboard')
+                          res.redirect('/profile/view/'+ req.user._id + '/dashboard')
                         })
                     }
               })
