@@ -8,7 +8,7 @@
     "debug": "nodemon"
   },
   "engines": {
-    "node": "^6.9.2"
+    "node": "^7.4.0"
   },
   "repository": {
     "type": "git",
