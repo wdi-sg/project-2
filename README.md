@@ -31,9 +31,7 @@ No automated tests included.
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [Node.js 7.2.0](https://nodejs.org/en/)
+* [Node.js 7.4.0](https://nodejs.org/en/)
 * [Express 4.14.0](http://expressjs.com/)
 * [Mongoose 4.7.8](http://mongoosejs.com/)
 * [Bootstrap 4](https://v4-alpha.getbootstrap.com/)
