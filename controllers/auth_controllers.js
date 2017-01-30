@@ -19,7 +19,7 @@ module.exports = {
                           res.redirect('/')
                         } else {
                             passport.authenticate('local', {
-                              successRedirect: 'profile/' + createdUser._id,
+                              successRedirect: '/profile/' + createdUser._id,
                               failureRedirect: '/',
                               successFlash: 'Account created and logged in'
                             })(req, res, next)
