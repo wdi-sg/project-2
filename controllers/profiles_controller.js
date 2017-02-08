@@ -61,7 +61,7 @@ module.exports = {
             },
 
   loadDashboard: function (req, res, next) {
-                  console.log('load dashboard req.params.id ' + req.params.id);
+                  console.log('load dashboard req.param ' + req.params.id);
                   User.find({_id: req.params.id})
                       .populate('school')
                       .populate('classrooms')
