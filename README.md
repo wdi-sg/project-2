@@ -1,5 +1,7 @@
 # mmb
 
+https://app.codeship.com/projects/280676a0-d16c-0134-7c93-0275da32878f/status?branch=masters
+
 This is the repository of my 2nd project from WDI immersive course. This is a full-stack web application, utilising technologies from the front end (HTML,CSS,JS) and back end (node.js, express, many other packages etc).
 
 The idea is a clone from the NBC tv series **Community**. In one of the episodes, the characters are introduced to a social networking application called MeowMeowBeenz (yes, with the Z).
