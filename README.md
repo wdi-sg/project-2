@@ -1,7 +1,6 @@
 # mmb
 
-![alt text](https://app.codeship.com/projects/280676a0-d16c-0134-7c93-0275da32878f/status?branch=masters)
-
+[ ![Codeship Status for cavacado/mmb](https://app.codeship.com/projects/280676a0-d16c-0134-7c93-0275da32878f/status?branch=master)](https://app.codeship.com/projects/201511)
 
 
 This is the repository of my 2nd project from WDI immersive course. This is a full-stack web application, utilising technologies from the front end (HTML,CSS,JS) and back end (node.js, express, many other packages etc).
