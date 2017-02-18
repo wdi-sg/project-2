@@ -43,6 +43,8 @@ After completing your profile page, now head back to the home(dashboard) and sta
 Inside another person's profile page, you will be presented a bigger picture of the person's profile.
 In addition, you can rate the person, starting from **Scum**,**Foul Beast**,**Acceptable**,**Good work Skeleton** to **Praise the Sun**! Praise the Sun is the highest rating that you can give to a single person, and Scum is the lowest rating that you can give.
 
+![alt text](public/assets/mmb-demo.gif)
+
 ## Tests
 
 YES I did write tests!!!
