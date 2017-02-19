@@ -1,0 +1,31 @@
+<!--<h3><%= data %></h3>-->
+<div class='container'>
+  <div class='text-center'>
+    <h1>This is <%=username%>'s profile..'</h1>
+    <br />
+    <img class='avatar' src='data:image/jpeg;base64,<%=binaryImage%>'/>
+  </div>
+  <blockquote class='blockquote-reverse'>
+    <p><%= data.description %></p>
+  </blockquote>
+</div>
+<div class="text-center">
+  <h3>Do you like or dislike this person? pls rate!</h3>
+</div>
+<div class="customWrapper" aria-label="buttonGroup">
+  <form class="form-inline" action="/dashboard/rate/<%= data._id %>/1?_method=PUT" method="POST">
+    <button type="submit" class="btn btn-danger btn-lg spacing">Scum</button>
+  </form>
+  <form class="form-inline" action="/dashboard/rate/<%= data._id %>/2?_method=PUT" method="POST">
+    <button type="submit" class="btn btn-warning btn-lg spacing">Foul Beast</button>
+  </form>
+  <form class="form-inline" action="/dashboard/rate/<%= data._id %>/3?_method=PUT" method="POST">
+    <button type="submit" class="btn btn-info btn-lg spacing">Acceptable</button>
+  </form>
+  <form class="form-inline" action="/dashboard/rate/<%= data._id %>/4?_method=PUT" method="POST">
+    <button type="submit" class="btn btn-primary btn-lg spacing">Fine work Skeleton!</button>
+  </form>
+  <form class="form-inline" action="/dashboard/rate/<%= data._id %>/5?_method=PUT" method="POST">
+    <button type="submit" class="btn btn-success btn-lg spacing">\[T]/Praise the Sun!\[T]/</button>
+  </form>
+</div>

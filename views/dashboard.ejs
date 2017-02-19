@@ -1,0 +1,20 @@
+<!--<h3><%= data %></h3>-->
+<!--<h4><%= binaryImageArr %></h4>-->
+<h1>dashboard</h1>
+
+<div class="row text-center">
+  <% data.map(function(value,index){ %>
+    <div>
+      <div class="col-lg-4">
+        <br /><br />
+        <h5><strong><%= value.user.name %></strong></h5>
+        <br />
+        <a href='/dashboard/profile/<%= value.user._id%>'><div class='overlayWrapper'>
+          <div class="imageOverlay" data-content="<%=bigRatingsArr[index]%>">
+            <img class='mini-avatar' src='data:image/jpeg;base64,<%=binaryImageArr[index]%>'/>
+          </div>
+        </div></a>
+      </div>
+    </div>
+  <% }) %>
+</div>

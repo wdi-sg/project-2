@@ -1,0 +1,43 @@
+<!--if you want to see the data populated pls uncomment this<h3><%= data %></h3>-->
+<!--<h3><%= ratingsAftLogoutArr %>-->
+<div class='container'>
+  <div class='text-center'>
+    <h1>Welcome back <%=username%></h1>
+    <% if (logoutClean) { %>
+      <h3>"<%=ratingsAftLogoutArr.length%> nobles have rated you since you've logged out!"</h3>
+      <% ratingsAftLogoutArr.map(function(value,index){ %>
+        <h3><%= value.whoCreated.name %> has rated you : <%= value.rating %></h3>
+      <% }) %>
+    <% } %>
+  </div>
+    <br />
+    <div class="row">
+      <div class="col-lg-6">
+        <img class='avatar' src='data:image/jpeg;base64,<%=binaryImage%>'/>
+      </div>
+      <div class="col-lg-6">
+        <div class='rating'>
+          <div class="flexy">
+            <% if(reducedVal === 1){ %>
+              <h4>Keep it up peasant!</h4>
+            <% } else if(reducedVal === 2){ %>
+              <h4>Keep it up peon!</h4>
+            <% } else if(reducedVal === 3){ %>
+              <h4>Keep it up minion!</h4>
+            <% } else if(reducedVal === 4){ %>
+              <h4>Keep it up human!</h4>
+            <% } else if(reducedVal === 5){ %>
+              <h4>Welldone my man!</h4>
+            <% } %>
+            <h3>Your current rating</h3>
+            <h1 class="textSize"><%= reducedVal %></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <blockquote class='blockquote-reverse'>
+    <p><%= data.description %></p>
+  </blockquote>
+  <a class="btn btn-block btn-default" href="/dashboard/profile/edit">Edit your profile!</a>
+</div>
