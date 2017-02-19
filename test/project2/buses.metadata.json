@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"project2.buses"},{"v":2,"unique":true,"key":{"ServiceNo":1},"name":"ServiceNo_1","ns":"project2.buses","background":true}]}
