@@ -30,6 +30,9 @@
     <div class="change offset-m3">
       <label for="BusStopID">Enter Bus Stop</label>
       <select id="item" class="offset-m3"name='BusStopID'>
+        <% stop.forEach(function(elem){ %>
+          <option name='BusStopID'><%=elem.Description%></option>
+        <%})%>
       </select>
 
     </div>
@@ -43,31 +46,8 @@
   $(document).ready(function() {
     console.log("entered")
     $('select').material_select(); //for Materialize-css framework - to load the dropdown menu
-    $('#list').change(function(){
-            populateSelect();
-        });
+  });
 
-    });
-});
-
-var bus= <%=bus%>
-
-var busObj={}
-var busSelect
-
-
-function populateSelect(){
-    busSelect=$('#list').val();
-    for(var i=0;i<bus.length;i++){
-      if(bus[i].ServiceNo===busSelect){
-        busObj=bus[i]
-      }
-    }
-
-       eval(busObj.BusStop).forEach(function(t) {
-            $('#item').append('<option value='+t+'>'+t+'</option>');
-        });
-    }
     function initMap() {
       console.log("entered map")
       var uluru = {lat: 1.29770970610083, lng: 103.8532247463225};
