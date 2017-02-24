@@ -77,6 +77,29 @@ router.get('/view/:id', isLoggedIn, function(req, resp) {
 
   })
 })
+//===============
+//ajax
+//=================
+
+router.get('/search', function(req, res){
+  Bus.find({ServiceNo: req.query.search}, function(err, bus){
+    if(err) console.log(err);
+    var StopArr=bus[0].BusStop
+    var stopReturn=[]
+    var length= StopArr.length
+    StopArr.forEach(function(elem){
+      BusStop.find({BusStopID: elem}, function(err, busStops){
+        if(err) console.log(err);
+        stopReturn.push(busStops)
+        if(stopReturn.length===length){
+          res.send(stopReturn)
+        }
+      })
+    })
+  })
+});
+
+//==============
 
 router.get('/delete/:id',isLoggedIn, function(req,res){
   Route.findOneAndRemove({_id: req.params.id}, function(err, routes){
@@ -105,21 +128,21 @@ router.get('/delete/:id',isLoggedIn, function(req,res){
   })
 })
 
-router.post('/dropdown', function(req,res){
-  var selectedBusStop=[]
-  console.log('req body', req.body);
-  Bus.findOne({ServiceNo: req.body}, function(err, bus){
-    console.log('bus ', bus);
-    bus.BusStop.forEach(function(elem){
-      BusStop.findOne({BusStopID: elem}, function(err, busstop){
-        selectedBusStop.push(busstop)
-        if(selectedBusStop.length===bus.BusStop.length){
-          res.JSON(selectedBusStop)
-        }
-      })
-    })
-  })
-})
+// router.post('/dropdown', function(req,res){
+//   var selectedBusStop=[]
+//   console.log('req body', req.body);
+//   Bus.findOne({ServiceNo: req.body}, function(err, bus){
+//     console.log('bus ', bus);
+//     bus.BusStop.forEach(function(elem){
+//       BusStop.findOne({BusStopID: elem}, function(err, busstop){
+//         selectedBusStop.push(busstop)
+//         if(selectedBusStop.length===bus.BusStop.length){
+//           res.JSON(selectedBusStop)
+//         }
+//       })
+//     })
+//   })
+// })
 router.get('/create', function(req, res) {
   var busList
   var stopList
@@ -144,6 +167,7 @@ router.get('/create', function(req, res) {
 });
 
 router.post('/create', function(req,res){
+  console.log("body is", req.body);
   var busRoute = req.body.ServiceNo
   var busStop= req.body.BusStopID
   console.log(busRoute);

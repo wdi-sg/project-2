@@ -27,14 +27,23 @@
 
     </div>
 
-    <div class="change offset-m3">
+    <!-- <div class="change offset-m3">
       <label for="BusStopID">Enter Bus Stop</label>
       <select id="item" class="offset-m3"name='BusStopID'>
         <% stop.forEach(function(elem){ %>
           <option name='BusStopID'><%=elem.Description%></option>
         <%})%>
       </select>
+    </div> -->
 
+    <div class="change offset-m3">
+      <label for="BusStopID">Enter Bus Stop</label>
+      <!-- <select id="results" class="offset-m3"name='BusStopID'> -->
+        <select id="result" name='BusStopID'>Select</select>
+        <!-- <% stop.forEach(function(elem){ %>
+          <option name='BusStopID'><%=elem.Description%></option>
+        <%})%> -->
+      <!-- </select> -->
     </div>
 
     <input class="red lighten-2 waves-effect waves-light btn button offset-m1" type="submit">
@@ -46,7 +55,24 @@
   $(document).ready(function() {
     console.log("entered")
     $('select').material_select(); //for Materialize-css framework - to load the dropdown menu
+
   });
+$(function(){
+  $('#list').on('change', function(e){
+    console.log('entered ajax')
+    var parameters = { search: $(this).val() };
+    $.get( '/query/search',parameters, function(data) {
+      data.forEach(function(elem){
+        console.log(elem)
+        if(elem.length!=0){
+          var temp=elem[0].RoadName
+          $('#result').append('<option value="'+elem[0].BusStopID+'">'+temp+'</option>');
+        }
+      })
+      $('select').material_select();
+    });
+  });
+})
 
     function initMap() {
       console.log("entered map")
