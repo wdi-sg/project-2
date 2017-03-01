@@ -1,4 +1,4 @@
-# Buy2TogetherLah
+# Buy2getherLah
 
 This is a web application to facilitate new home owners in the same area to purchase items together to save costs! 
 User authentication using passport is also demonstrated in this project. 
