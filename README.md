@@ -6,6 +6,7 @@ User authentication using passport is also demonstrated in this project.
 ## Live Version
 
 http://buy2getherlah.herokuapp.com
+
 ![gif](http://i.giphy.com/DcnWWHrCBs93O.gif)
 
 ## Built With
@@ -16,6 +17,7 @@ Nodejs, MongoDB, Expressjs
 
 User stories and task tracking done via trello.
 Bootstrap template created by Bootswatch used as basis to design the site.
+![trelloworkflow](https://github.com/shanwan/WDI-Project-2-Buy2getherLah/blob/master/TrelloBoard.png)
 
 ## Acknowledgments
 
