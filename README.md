@@ -6,6 +6,7 @@ User authentication using passport is also demonstrated in this project.
 ## Live Version
 
 http://buy2getherlah.herokuapp.com
+![gif](http://i.giphy.com/DcnWWHrCBs93O.gif)
 
 ## Built With
 
