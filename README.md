@@ -5,7 +5,11 @@ A volunteering platform on which users can:
 * create programs for others to benefit from; and
 * browse created programs and sign their loved ones up for any of them.
 
+![alt tag](http://i.giphy.com/13RQMJjXBF4Yco.gif)
+
 After a program is set up, its creator may make changes to its description or delete it. After signing their loved ones up for programs, users may subsequently remove them. Users may also access one another's profile pages for information on programs and beneficiaries.
+
+![alt tag](http://i.giphy.com/o39eby5nK03fi.gif)
 
 In short, this project is a modest implementation of the Model-View-Controller design pattern, RESTful routing, and database manipulation using Create, Read, Update and Destroy functions.
 
