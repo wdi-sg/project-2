@@ -76,7 +76,6 @@ router.get( "/edit/:id", ( req, res ) => {
 
 //item edit
 router.put( "/edit/:id", upload.single( 'imageFile' ), ( req, res ) => {
-  // have to do this in both routes so put in a function
   function updateAndRedirect() {
     Item.findOneAndUpdate( {
         _id: req.params.id,

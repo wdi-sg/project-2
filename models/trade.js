@@ -7,8 +7,7 @@ const TradeSchema = new mongoose.Schema( {
   secondUser: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   firstUserItems: [ { type: mongoose.Schema.Types.ObjectId, ref: "Item" } ],
   secondUserItems: [ { type: mongoose.Schema.Types.ObjectId, ref: "Item" } ],
-  dealSweetener: { type: Number }, 
-  //convention: positive is first user giving to second user
+  dealSweetener: { type: Number }, //convention: positive is first user giving to second user
   firstUserAgreed: Boolean,
   secondUserAgreed: Boolean,
   discussion: String,

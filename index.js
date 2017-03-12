@@ -79,9 +79,6 @@ if ( process.env.NODE_ENV === "test" ) {
 // add public access to public folder
 app.use( '/public', express.static( __dirname + '/public' ) );
 
-// add public access to assets folder
-app.use( '/assets', express.static( __dirname + '/assets' ) );
-
 //put in form tag: action="/resource?_method=DELETE" (for a delete)
 app.use( methodOverride( '_method' ) )
 
