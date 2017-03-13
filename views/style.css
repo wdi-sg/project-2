@@ -1,24 +1,31 @@
 .contain {
      position: absolute;
-     width: 100%;
-     top: 40%;
+     width: 50%;
+     left: 50%;
+     top: 50%;
+     transform: translate(-50%, -50%);
 }
-/*.contain1{
-  position: absolute;
-  width: 50%;
-  top: 40%;
-  left: 25%;
-}*/
+.back{
+  background: url('https://s8.postimg.org/nh7dmyb5x/jpeg.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
 body{
   text-align: center;
 }
-.card{
-  height: 300px;
+.flex{
+  display: flex;
+  flex-wrap: wrap;
 }
+
 .change{
   width: 400px;
   align-items: center;
 }
 .button{
   align: left;
+}
+.image{
+  width: 20px;
+  height: 40px;
 }

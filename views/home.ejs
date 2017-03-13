@@ -21,14 +21,14 @@
 var stopVal = stop
 %>
   <div class="row">
-
+  <div class="flex">
     <% console.log('Stop val is ', stopVal)
     for(var i=0;i<busVal.length;i++){ %>
 
-      <div class="card hoverable col s3 offset-s1">
+      <div class="card hoverable col s3 offset-s1 random">
 
 
-      <div class="card-title white-text red lighten-2">Route No : <%=busVal[i].ServiceNo %></div>
+      <div class="card-title">Route No : <%=busVal[i].ServiceNo %></div>
       <br>
       <span class="card-content"><b>Road:</b> <%=stopVal[i][0].RoadName %></span><br><br>
       <span class="card-content"><b>Description:</b> <%=stopVal[i][0].Description%></span><br><br><br><br>
@@ -36,12 +36,13 @@ var stopVal = stop
       <div class="card-action">
 
 
-      <a class="red lighten-2 waves-effect waves-light col s4 btn" href=<%='/query/view/'+busVal[i]._id%>> View </a>
-      <a class="red lighten-2 waves-effect waves-light col s4 offset-m3 btn"href=<%='/query/delete/'+busVal[i]._id%>> Remove </a>
+      <a class="red-text" href=<%='/query/view/'+busVal[i]._id%>> View </a>
+      <a class="red-text"href=<%='/query/delete/'+busVal[i]._id%>> Remove </a>
       </div>
       </div>
       <% } %>
     </ul>
+  </div>
 </div>
 <%}%>
 
