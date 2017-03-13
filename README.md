@@ -1,6 +1,6 @@
 # BuszWatch
 
-This project works uses data from an external API from the Land Transport Authority of Singapore for buses and google maps to plot the location of buses and gives estimated arrival times of buses.
+This project uses data from an external API from the Land Transport Authority of Singapore for buses and google maps to plot the location of buses and gives estimated arrival times and other useful information about buses
 
 ## Getting Started
 
@@ -29,7 +29,7 @@ https://buszwatch.herokuapp.com/
 
 ## Built With
 
-Following are some ofthe packages used in the execution of the application
+Following are some of the packages used in the execution of the application
 
 * [jQuery](http://jquery.com/)
 * Express

@@ -8,7 +8,7 @@ var passport = require('./config/ppConfig');
 var flash = require('connect-flash');
 var Bus= require('./models/bus')
 var BusStop= require('./models/busStop')
-var http=require('http')
+// var http=require('http')
 
 
 require('dotenv').config({ silent: true })
