@@ -16,10 +16,6 @@ Server Side: Nodejs, MongoDB, Expressjs
 
 Client Side: Bootstrap, jQuery, eJS
 
-## Get the code
-
-`git clone https://github.com/shanwan/WDI-7-Project-2-Buy2getherLah.git`
-
 ## Workflow
 
 User stories and task tracking done via trello.
