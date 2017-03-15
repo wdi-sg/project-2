@@ -25,9 +25,9 @@ None.
 
 The main actions available to users as described above can be found in the app's navigation bar and its various links and forms.
 
-## Tests
+## Tests?
 
-No automated tests included.
+
 
 ## Live Version
 
@@ -45,7 +45,6 @@ No automated tests included.
 
 Some notes found [here](https://www.evernote.com/shard/s62/sh/2fc121ad-4843-4236-aec6-626c0bc5c0f0/c2299bc69feee152cf546182d7b42b09) and [here](https://trello.com/b/qw9Bt9qV).
 
-Commits in [Github repository](https://github.com/melvinthemok/wdi-7-project-2-melvinthemok)
 
 ## Authors
 
