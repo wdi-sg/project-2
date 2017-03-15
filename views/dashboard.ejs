@@ -1,13 +1,9 @@
 <div class="container">
 
-<% if (currentUser.name === null) { %>
-    <h3> Please <a href="/profile/<%= currentUser._id %>"> update </a> your profile </h3>
-  <% } %>
-
 
 <h2>Hi, <%= currentUser.name %></h2>
 
-<% if (currentUser.role === "teacher") { %>
+
 
 
   <div class="row">
@@ -19,6 +15,7 @@
       <li class="list-group-item">
         <a href="/profile/<%= currentUser._id %>"> Profile </a>
       </li>
+      <% if (currentUser.role === "teacher") { %>
       <li class="list-group-item">
         <a href="/classroom">Add/Join Classes </a>
       </li>
