@@ -33,7 +33,7 @@ module.exports = {
         if(!user) { return res.redirect('/') }
         req.logIn(user, function (err) {
           if (err) { return next(err) }
-          return res.redirect('/profile/' + user._id + '/dashboard')
+          return res.redirect('/profile/' + user._id)
         })
       })(req, res, next)
     },

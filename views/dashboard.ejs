@@ -5,7 +5,7 @@
 
 
 
-
+<% if (currentUser.role === "teacher") { %>
   <div class="row">
   <div class="col-md-2">
     <ul class="list-group">
@@ -15,7 +15,6 @@
       <li class="list-group-item">
         <a href="/profile/<%= currentUser._id %>"> Profile </a>
       </li>
-      <% if (currentUser.role === "teacher") { %>
       <li class="list-group-item">
         <a href="/classroom">Add/Join Classes </a>
       </li>
