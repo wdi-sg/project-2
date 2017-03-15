@@ -1,0 +1,26 @@
+<div class="container-fluid jumbotron">
+  <h2>Welcome to your Profile Page, <%= currentUser.name %></h2>
+  <h5>This page lists the products that you have created at buy2togetherLah!</h5>
+</div>
+
+<div class="container">
+  <% data.forEach(function(data) { %>
+  <% if (data.creator.equals(currentUser._id)) { %>
+    <div id="eachProduct">
+      <div class="thumbnail">
+      <div class="caption">
+        <h3><a href="/products/<%=data._id%>"><%= data.productname %></a></h3>
+        <h6> URL: <a href="<%=data.linkforproduct%>">Click to see product in external website</a></h6>
+        <h6> Respond By: <%= data.respondby %></h6>
+        <div class"btn-group btn-group-justified">
+        <form method="POST" action="/products/<%= data._id %>?_method=DELETE">
+          <a href="/products/<%= data._id %>/edit" class="btn btn-primary">Edit</a>
+          <button class="btn btn-default" type="submit">Delete</button>
+          </form>
+        </div>
+      </div>
+      </div>
+    </div>
+    <% } %>
+    <% }) %>
+  </div>

@@ -1,0 +1,56 @@
+<div class="container-fluid jumbotron">
+  <h1>All Products Listed</h1>
+  <h5>There are <%=items.length%> products listed.</h5>
+</div>
+
+<div class="container">
+  <form class="form-horizontal" action="/products/catalogue/search" method="GET">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Search by Product Name: </label>
+      <div class="col-lg-8">
+        <input type="text" class="form-control" name="productname" placeholder="Must be more than 3 characters" type="submit">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">User Area: </label>
+      <div class="col-lg-8">
+        <select name="buyerarea">
+          <% for (var i = 0; i < locationlist.length; i++) { %>
+            <option value="<%=locationlist[i].districts%>"><%=  locationlist[i].districts%></option>
+            <% } %>
+          </select>
+          <button type="submit" class"btn btn-primary btn-xs">Submit Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="container">
+    <% items.forEach(function(item) { %>
+      <div>
+      <div class="thumbnail">
+      <div class="caption">
+      <h3><a href="/products/<%=item._id%>"><%= item.productname %></a></h3>
+      <h6> URL: <a href="<%=item.linkforproduct%>">Click to see product in external website</a></h6>
+      <h6> Respond By: <%= item.respondby %></h6>
+      <div class="container">
+      <div class="row">
+      <div class="col-xs-2">
+      <h6><%=item.upvote%> Likes!</h6>
+      </div>
+      <div class="col-xs-1">
+      <form class="form-inline" action="/products/<%=item._id%>/?_method=PUT" method="POST">
+      <button class="btn btn-info btn-xs">Like!</button>
+      </form>
+      </div>
+      </div>
+      </div>
+      <% if (item.creator.equals(currentUser._id)) { %>
+        <a href="/products/<%= item._id %>/edit" class="btn btn-link" role="button">Edit</a>
+        <a href="/products/<%= item._id %>" class="btn btn-link" role="button">Delete</a>
+        <% } %>
+        </div>
+        </div>
+        </div>
+        <% }) %>
+      </div>

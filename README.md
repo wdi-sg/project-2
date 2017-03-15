@@ -1,65 +1,27 @@
-# Your Project Name
+# Buy2getherLah
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
-
-## Getting Started
-
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
-
-### Prerequisites
-
-What is needed to install and run the project, how do we install them
-
-```
-Code example
-```
-
-### How to Use
-
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
-
-
-```
-Code example
-```
-
-More steps...
-
-```
-until finished
-```
-
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
+This is a web application to facilitate new home owners in the same area to purchase items together to save costs! 
+User authentication using passport is also demonstrated in this project. 
 
 ## Live Version
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+You can test the version in this link:
+http://buy2getherlah.herokuapp.com
+
+![gif](http://i.giphy.com/DcnWWHrCBs93O.gif)
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
+Server Side: Nodejs, MongoDB, Expressjs
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+Client Side: Bootstrap, jQuery, eJS
 
 ## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
-
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+User stories and task tracking done via trello.
+Bootstrap template created by Bootswatch used to design the site.
+![trelloworkflow](https://github.com/shanwan/WDI-Project-2-Buy2getherLah/blob/master/TrelloBoard.png)
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+Appreciate the guidance from the instructor and teaching assistants.

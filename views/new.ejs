@@ -1,0 +1,53 @@
+<div class="container jumbotron">
+  <h2>Create New Product</h2>
+</div>
+<form class="form-horizontal" action="/products" method="POST">
+  <fieldset>
+  </div>
+  <input type="hidden" type="text" name="creator" value="<%=currentUser.id%>">
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Product Name: </label>
+    <div class="col-lg-8">
+      <input type="text" class="form-control" name="productname" required="true" placeholder="Must be more than 3 characters">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label">URL: </label>
+    <div class="col-lg-8">
+      <input type="text" class="form-control" name="linkforproduct" required="true" placeholder="Pls input valid link.">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Price: $</label>
+    <div class="col-lg-8">
+      <input type="text" class="form-control" name="price" required="true" placeholder="We like to know how much we need to save for this item!">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Description: </label>
+    <div class="col-lg-8">
+      <textarea class="form-control" rows="2" name="description" required="true" placeholder="What is this item like and why should we buy with you!"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label">User Area: </label>
+    <div class="col-lg-8">
+      <select name="buyerarea">
+        <% for (var i = 0; i < locationlist.length; i++) { %>
+          <option value="<%=locationlist[i].districts%>"><%=locationlist[i].districts%></option>
+          <% } %>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Respond By: </label>
+      <div class="col-lg-8">
+        <input type="date" class="form-control" required="true" name="respondby">
+      </div>
+    </div>
+    <div class="col-lg-10 col-lg-offset-2">
+      <input class="btn btn-primary" type="submit" value="Submit">
+    </div>
+  </fieldset>
+</form>
+<label></label>

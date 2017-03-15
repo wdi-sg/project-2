@@ -1,0 +1,57 @@
+<div class="container jumbotron">
+  <h1>Edit <%=data.productname%></h1>
+</div>
+<form method="POST" class="form-horizontal" action=<%= "/products/" + data._id + "?_method=PUT" %>>
+  <div class="form-group">
+    <label class="col-lg-2 control-label"> Product Name: </label>
+    <div class="col-lg-8">
+      <input type="text" class="form-control" name="productname">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label"> URL: </label>
+    <div class="col-lg-8">
+      <input type="text" class="form-control" name="linkforproduct">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label"> Price: </label>
+    <div class="col-lg-8">
+      <input type="text" class="form-control" name="price">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label"> Description: </label>
+    <div class="col-lg-8">
+      <textarea class="form-control" rows="2" name="description" placeholder="What would you like to change?"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label"> User Area: </label>
+    <div class="col-lg-8">
+      <select name="buyerarea">
+        <% for (var i = 0; i < locationlist.length; i++) { %>
+          <option value="<%=locationlist[i].districts%>"><%=  locationlist[i].districts%></option>
+          <% } %>
+        </select>
+  </div>
+</div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label"> Respond By: </label>
+    <div class="col-lg-8">
+      <input type="date" class="form-control" name="respondby">
+    </div>
+  </div>
+  <div class="form-inline container">
+    <div class="col-xs-2">
+      <input class="btn btn-primary" type="submit" value="Save">
+    </div>
+  </form>
+  <div>
+    <form method="POST" action=<%= "/products/" + data._id + "?_method=DELETE" %>>
+      <input type="hidden" name="_id" value="<%= data._id %>">
+      <input class="btn btn-default" type="submit" value="Delete">
+    </form>
+  </div>
+</div>
+<p></p>

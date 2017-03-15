@@ -1,0 +1,101 @@
+<div class="jumbotron container">
+  <h1><%=data.productname%></h1>
+</div>
+<div class="container">
+   <table class = "table">
+      <tbody>
+         <tr>
+            <td><label>Creator</label></td>
+            <td><%=data.creator.name%></td>
+         </tr>
+
+         <tr>
+            <td><label>URL: </label></td>
+            <td><a href="<%= data.linkforproduct %>">Click to see external website </a></td>
+         </tr>
+
+         <tr>
+            <td><label>Price: </label></td>
+            <td> $ <%= data.price %></td>
+         </tr>
+
+         <tr>
+            <td><label>Description: </label></td>
+            <td><%= data.description %></td>
+         </tr>
+
+         <tr>
+            <td><label>User Area: </label></td>
+            <td><%= data.buyerarea %></td>
+         </tr>
+
+         <tr>
+            <td><label>Date Created: </label></td>
+            <td><%= data.productdatecreated %></td>
+         </tr>
+
+         <tr>
+            <td><label>Respond By: </label></td>
+            <td><%= data.respondby %></td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+
+<div class="container">
+  <h5>Comments: </h5>
+  <form action="/products/<%=data._id%>/message" method="POST">
+    <div class="form-group col-lg-12">
+  <input class="form-control" type="text" name="comment" placeholder="Input your comment and press enter to submit">
+  </div>
+  </form>
+</div>
+
+<div class="container">
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Comment Thread: </th>
+        <th>Posted By: </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (var i = 0; i < data.msgboard.length; i++) { %>
+      <tr>
+        <td> <%= data.msgboard[i].comment %> </td>
+        <td> <%= data.msgboard[i].creatorname %> </td>
+      </tr>
+      <% } %>
+      <tr>
+      </table>
+    </div>
+<% if (data.creator.equals(currentUser._id)) { %>
+<div class="container">
+  <div class="btn-group">
+    <form class="form-inline" method="POST" action=<%= "/products/" + data._id + "?_method=DELETE" %>>
+      <input type="hidden" name="_id" value="<%= data._id %>">
+      <input class="btn btn-default" type="submit" value="Delete">
+    </form>
+  </div>
+  <div class="btn-group">
+    <form class="form-inline" method="GET" action="/products/<%= data._id %>/edit">
+      <input type="hidden" name="_id" value="<%= data._id %>">
+      <input class="btn btn-primary" type="submit" value="Edit">
+    </form>
+  </div>
+  </div>
+  <% } %>
+  <p></p>
+  <div class="container ">
+  <div class="btn-group">
+    <form action="/products/">
+      <input class="btn btn-primary" type="submit" value="Go to Profile">
+    </form>
+  </div>
+  <div class="btn-group">
+    <form action="/products/catalogue">
+      <input class="btn btn-primary" type="submit" value="Go to All Products">
+    </form>
+  </div>
+</div>
+<p></p>
