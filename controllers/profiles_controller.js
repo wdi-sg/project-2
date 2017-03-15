@@ -18,13 +18,11 @@ module.exports = {
               },
 
   getProfile: function (req, res, next) {
-                User.findById(req.user._id, function (err, user) {
-                  console.log('getProfile return user is ' + user);
-                  if (err) { return console.log(err) }
-                  School.find({}, function (err, schools) {
-                    if (err) { return console.log(err) }
-                    res.render('editProfile', {user: user, schools: schools})
-                  })
+                User.findById(req.user._id)
+                    .populate('school')
+                    .exec(function (err, user) {
+                      if (err) { return console.log(err) }
+                  res.render('editProfile', {user: user})
                 })
               },
 

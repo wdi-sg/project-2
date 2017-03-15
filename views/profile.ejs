@@ -1,56 +1,38 @@
-<div class="header">
-  <div class="container">
-    <div class="row">
-      <div class="logo">
-       <h1><a href="#">Profile Page</a></h1>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="page-content">
+<div class="container">
   <div class="row">
-  <div class="col-md-2">
-    <div class="sidebar content-box" style="display: block;">
-            <ul class="nav">
-                <!-- Main menu -->
-                <li class="active"><a href="/profile/<%= currentUser._id %>/dashboard"> Dashboard</a></li>
-                <li class="active"><a href="/profile/view/:id"> Profile </a></li>
-                <li class="active"><a href="/classroom">Add/Join Classes </a></li>
-                <li class="active"><a href="/assignment/create">Add Assignments </a></li>
-                <li class="active"><a href="/auth/logout">Log Out</a></li>
-         </div>
+    <h1>Profile Page</h1>
   </div>
-  <div class="col-md-10">
-
-		<div class="content-box-large">
-      <div class="row">
-            <div class="col-md-12">
-                <div class="panel-heading content-box-header">
-                    <div class="panel-title"> <% if (!user.name) { %>
-                      Please Update Your Name
-                    <% } else { %>
-                      <%= user.name %>
-                      <% } %>
-                    </div>
-                </div>
-                    <div class="panel-body">
-                    <p><strong>Role: </strong> <% var role = user.role.toUpperCase() %><%= role %>  </p>
-                    <p><strong>School: </strong><% if (!user.school) { %>
-                           Please update your school </p>
-                          <% } else { %>
-                      <%= user.school.name %> </p>
-                      <% } %>
-                    <p><strong>Email: </strong> <%= user.email %> </p>
-                </div>
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="list-group">
+        <!-- Main menu -->
+        <li class="list-group-item"><a href="/profile/<%= currentUser._id %>/dashboard"> Dashboard</a></li>
+        <li class="list-group-item"><a href="/profile/view/:id"> Profile </a></li>
+        <li class="list-group-item"><a href="/classroom">Add/Join Classes </a></li>
+        <li class="list-group-item"><a href="/assignment/create">Add Assignments </a></li>
+        <li class="list-group-item"><a href="/auth/logout">Log Out</a></li>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-block">
+          <div class="card-title"><h2> <% if (!user.name) { %>
+            Please Update Your Name
+            <% } else { %>
+              <%= user.name %>
+              <% } %>
+            </h2>
             </div>
-            <div class="col-xs-12 divider text-center">
-                <div class="col-xs-12 col-sm-4 emphasis">
-                    <button class="btn btn-success btn-block" onclick="location.href='/profile/<%= currentUser._id%>/edit'"><span class="fa fa-plus-circle"> Edit Profile</button>
+            <div class="card-text">
+              <p><strong>Role: </strong> <% var role = user.role.toUpperCase() %><%= role %>  </p>
+              <p><strong>School: </strong><% if (!user.school) { %>
+                Please update your school </p>
+                <% } else { %>
+                  <%= user.school.name %> </p>
+                  <% } %>
+                  <p><strong>Email: </strong> <%= user.email %> </p>
                 </div>
+                <button class="btn btn-success" onclick="location.href='/profile/<%= currentUser._id%>/edit'"> Edit Profile</button>
+              </div>
             </div>
-		</div>
-	</div>
-
-  </div>
-  </div>
+          </div>
