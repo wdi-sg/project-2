@@ -3,10 +3,10 @@
     <h1>Edit Profile</h1>
   </div>
   <form action="/profile/<%= currentUser._id %>/edit" method="POST">
-    <div class="form-group row row">
+    <div class="form-group row">
       <label class="col-2 col-form-label">Name of school: </label>
       <div class="col-6">
-        <% if (user.school.name) { %>
+        <% if (user.school) { %>
               <input class="form-control" type="text" name="school" value="<%= user.school.name %>">
           <% } else {%>
         <input class="form-control" type="text" name="school">
