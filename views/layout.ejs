@@ -24,6 +24,7 @@
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <% if (currentUser) { %>
         <ul class="nav navbar-nav">
           <li></li>
           <li><a href="/products/">Your Profile</a></li>
@@ -31,10 +32,15 @@
           <li><a href="/products/catalogue">All Products</a></li>
           <li></li>
         </ul>
+      <% } %>
         <ul class="nav navbar-nav navbar-right">
+          <% if (!currentUser) %>
           <li><a href="/auth/signup">Sign Up</a></li>
           <li><a href="/auth/login">Log In</a></li>
+          <% } %>
+          <% if (currentUser) { %>
           <li><a href="/auth/logout">Log Out</a></li>
+          <% } %>
         </ul>
       </ul>
     </div><!-- /.navbar-collapse -->
