@@ -24,7 +24,8 @@
             </h2>
             </div>
             <div class="card-text">
-              <p><strong>Role: </strong> <% var role = user.role.toUpperCase() %><%= role %>  </p>
+              <p><strong>Role: </strong> <% if (user.role) { let role = user.role.toUpperCase()%>
+                <%= role %> <% } %> </p>
               <p><strong>School: </strong><% if (!user.school) { %>
                 Please update your school </p>
                 <% } else { %>
