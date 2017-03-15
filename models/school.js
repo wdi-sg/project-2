@@ -4,7 +4,6 @@ const Classroom = require("../models/classroom").schema
 
 const schoolSchema = new mongoose.Schema({
   name: {type: String},
-  teacher: { type: String},
   classrooms: [{type: mongoose.Schema.Types.ObjectId, ref: 'Classroom'}],
   members: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
 })

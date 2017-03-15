@@ -8,6 +8,7 @@
   </div>
 </div>
 
+<%= classrooms %>
 <% if (currentUser.role === "teacher") { %>
 
 <div class="page-content">
@@ -25,7 +26,27 @@
   </div>
   <div class="col-md-10">
     <div class="row">
-      <div class="col-md-10">
+      <div class="col-md-6">
+        <div class="content-box-large">
+          <div class="panel-heading">
+          <div class="panel-title">Your classrooms are: </div>
+          </div>
+          <div class="panel-body">
+            <ul class="list-inline">
+            <% classroomArray.forEach(function(elem) { %>
+             <form action="/classBulletin/:id" method="GET">
+              <li class="list-group-item col-sm-2"> <%= elem.name %></li>
+            </form>
+            <% }) %>
+
+            </ul>
+
+          <br /><br />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
         <div class="row">
           <div class="col-md-12">
             <div class="content-box-header">
@@ -40,7 +61,6 @@
                           <th>Title</th>
                           <th>Description</th>
                           <th>Due Date</th>
-                          <th>Est Time to Complete</th>
                           <th>Class</th>
                         </tr>
                       </thead>
@@ -51,8 +71,7 @@
                           <td><input type="checkbox" name="id" value="<%= elem._id %>"> </td>
                           <td> <%= elem.title %> </td>
                           <td><%= elem.description %> </td>
-                          <td><%= elem.due_date.toString().substring(0, 15) %></td>
-                          <td><%= elem.classroom %></td>
+                          <td><%= elem.due_date %></td>
                           <td><%= elem.classroom %></td>
                         </tr>
                         <% }) %>

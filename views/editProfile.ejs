@@ -13,7 +13,7 @@
   <div class="panel-title">Edit Profile</div>
 </div>
 <div class="panel-body">
-  <form action="/profile/edit/:id" method="POST">
+  <form action="/profile/<%= currentUser._id %>/edit" method="POST">
     <div class="form-group">
       <div class="col-md-4">
       <label>School</label>
