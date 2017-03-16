@@ -14,20 +14,20 @@ module.exports = {
                       },
 
   createAssignment: function (req, res, next) {
-                    Assignment.create({
-                      a_type: req.body.atype,
-                      title: req.body.title,
-                      description: req.body.description,
-                      createdOn: Date.now(),
-                      due_date: req.body.due_date,
-                      est_time: req.body.est_time,
-                      created_by: req.user._id
-                    }, function (err, assigment) {
-                      if (err) { return console.log(err) }
-                      res.redirect('/profile/' + req.user._id + '/dashboard')
-                    })
-
-                  },
+                      Assignment.create({
+                        a_type: req.body.atype,
+                        title: req.body.title,
+                        description: req.body.description,
+                        createdOn: Date.now(),
+                        due_date: req.body.due_date,
+                        est_time: req.body.est_time,
+                        created_by: req.user._id,
+                        classroom: req.body.classroom
+                        }, function (err, assignment) {
+                          if (err) { return console.log(err) }
+                          res.redirect('/profile/' + req.user._id + '/dashboard')
+                          })
+                      },
   viewOneAssignment: function (req, res, next) {
                       Assignment.findOne({_id: req.params._id}, function (err, assignment) {
                         if (err) { return console.log(err) }
