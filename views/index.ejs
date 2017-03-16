@@ -6,6 +6,7 @@
         <h1> Welcome! </h1>
         <h5>Enter your email and password to log-in or sign up.</h5>
         <form class="form-inline my-2 my-lg-0" action="/auth/login" method="POST">
+          <input type="hidden" name="role" value="">
           <input class="form-control mr-xs-2" type="text" placeholder="E-mail address" name="email">
           <input class="form-control mr-xs-2" type="password" placeholder="Password, min 9 char" name="password">
           <input id="signup"class="btn btn-success my-2 my-lg-0" type="submit" value="Log in">

@@ -34,9 +34,11 @@ module.exports = {
                     School.create({name: req.body.school, members: req.user._id}, function (err, createdSchool) {
                       if (err) { return console.log(err) }
                       console.log("edit profile created school is " + createdSchool);
+                      console.log('req role',req.body.role);
                       User.update({_id: req.user._id}, {
                         school: createdSchool._id,
-                        name: req.body.name }, function (err, user) {
+                        name: req.body.name,
+                        role: req.body.role }, function (err, user) {
                           if(err) { return console.log(err) }
                           res.redirect('/profile/'+ req.user._id + '/dashboard')
                         })
@@ -51,7 +53,8 @@ module.exports = {
                       })
                       User.update({_id: req.user._id}, {
                         school: req.body.school,
-                        name: req.body.name }, function (err, user) {
+                        name: req.body.name,
+                        role: req.body.role}, function (err, user) {
                           if(err) { return console.log(err) }
                           res.redirect('/profile/'+ req.user._id + '/dashboard')
                         })
