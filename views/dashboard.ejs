@@ -6,23 +6,6 @@
 
 
 <% if (currentUser.role === "teacher") { %>
-  <div class="row">
-  <div class="col-md-2">
-    <ul class="list-group">
-      <li class="list-group-item">
-        <a href="index"> Dashboard</a>
-      </li>
-      <li class="list-group-item">
-        <a href="/profile/<%= currentUser._id %>"> Profile </a>
-      </li>
-      <li class="list-group-item">
-        <a href="/classroom">Add/Join Classes </a>
-      </li>
-      <li class="list-group-item">
-        <a href="/assignment/create">Add Assignments </a>
-      </li>
-    </ul>
-  </div>
   <div class="col-md-10">
     <div class="row">
       <div class="col-md-10">
@@ -47,20 +30,26 @@
                       <tbody>
                         <% assignments.forEach(function (elem) { %>
                         <tr>
-                          <form action="/assignment/:id/delete?_method=DELETE" method="POST">
+                          <form method="POST">
                           <td><input type="checkbox" name="id" value="<%= elem._id %>"> </td>
                           <td> <%= elem.title %> </td>
                           <td><%= elem.description %> </td>
-                          <td><%= elem.due_date.toString().substring(0, 15) %></td>
+                          <td><%= elem.due_date %></td>
                           <td><%= elem.est_time %>hrs</td>
                           <td><%= elem.classroom %></td>
                         </tr>
-                        <% }) %>
+                          <% }) %>
+                        <tr>
+                          <td colspan="6">
+                            <input type="submit" formaction="" class="btn btn-outline-success" value="Edit"></a>
+                            <input type="submit" formaction="/assignment?_method=DELETE" class="btn btn-outline-danger" value="Delete">
+                        </td>
+                        </tr>
                       </tbody>
+                      </form>
                     </table>
-                    <input class="col-sm-4 btn btn-primary" type="submit" value="Remove Assignment">
-                    <input class="col-sm-4 btn btn-primary" type="submit" value="Update Assignment" style="display:none">
-                </form>
+
+
               </div>
             <br /><br />
           </div>
@@ -72,18 +61,17 @@
 </div>
 </div>
   <% } else if (currentUser.role === "student") {  %>
-
+<!--
     <div class="page-content">
       <div class="row">
       <div class="col-md-2">
         <div class="sidebar content-box" style="display: block;">
                 <ul class="nav">
-                    <!-- Main menu -->
-                    <li class="current"><a href="index"> Dashboard</a></li>
+                  <li class="current"><a href="index"> Dashboard</a></li>
                     <li><a href="/profile/view/:id"> Profile </a></li>
                     <li><a href="/auth/logout">Log Out</a></li>
              </div>
-      </div>
+      </div> -->
 
       <div class="col-md-10">
         <div class="row">

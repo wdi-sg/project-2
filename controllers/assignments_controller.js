@@ -14,6 +14,7 @@ module.exports = {
                       },
 
   createAssignment: function (req, res, next) {
+                      console.log("due date is ", req.body.due_date);
                       Assignment.create({
                         a_type: req.body.atype,
                         title: req.body.title,
@@ -48,14 +49,28 @@ module.exports = {
                     },
 
   deleteAssignment: function (req, res, next) {
-                      console.log('delete assignment ' + req.body.id)
-                      console.log('delete assignment user ' + req.user.id)
-                      Assignment.remove({_id: req.body.id}, function (err) {
-                        if (err) { return console.log(err) }
-                        res.redirect('/profile/' + req.user._id + '/dashboard')
-                      })
+                      let query = req.body.id
+                      if (typeof query === 'object' && query.length > 1) {
+                        for(let i = 0; i < query.length; i++) {
+                          Assignment.find({_id: query[i]}).remove().exec(function (err){
+                            if (err) {return console.log(err)}
+                          })
+                          if (i === (query.length - 1)) {
+                            Assignment.find({_id: query[i]}).remove().exec(function (err) {
+                                if (err) {return console.log(err) }
+                                res.redirect('/profile/'+ req.user.id + '/dashboard')
+                              })
+                            }
+                          }
+                        } else {
+                        Assignment.remove({_id: req.body.id}, function (err){
+                          if (err) { return console.log(err) }
+                          res.redirect('/profile/'+ req.user.id + '/dashboard')
+                        })
+                      }
                     }
 }
+
 
 // function requireRole (role) {
 //     return function(req, res, next) {

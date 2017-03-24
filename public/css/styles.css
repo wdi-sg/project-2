@@ -7,6 +7,15 @@ body {
   padding: 0px;
 }
 
+#alerts {
+  margin-bottom: 0px;
+}
+
+
+.view {
+  background-color: #e3ddd9
+}
+
 .view img {
   position: relative;
   width: 100%;
@@ -23,12 +32,12 @@ body {
   z-index: 1000;
 }
 
-#login-form {
-  margin-top: 15%;
-}
 
 #welcome {
+  width: 80%;
   color: white;
   justify-content: center;
-  margin-left: 25%
+  margin-top: 15%;
+  margin-left: 10%;
+  text-align: center;
 }

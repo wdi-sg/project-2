@@ -9,7 +9,6 @@ module.exports = {
 
   sendSignUpForm: function (req, res, next) {
                     User.create({
-                      role: req.body.role,
                       email: req.body.email,
                       password: req.body.password
                     }, function (err, createdUser) {
@@ -49,7 +48,6 @@ module.exports = {
  logout: function (req, res, next) {
           req.logout()
           req.flash('success', 'You have logged out')
-          res.render('index')
+          res.redirect('/')
         }
-
 }

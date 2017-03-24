@@ -10,8 +10,8 @@ router.post('/create', assignments_controller.createAssignment)
 
 router.get('/:id', assignments_controller.viewOneAssignment)
 
-router.put('/:id/edit', assignments_controller.editOneAssignment)
+router.put('/', assignments_controller.editOneAssignment)
 
-router.delete('/:id/delete', assignments_controller.deleteAssignment)
+router.delete('/', assignments_controller.deleteAssignment)
 
 module.exports = router
