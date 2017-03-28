@@ -8,6 +8,8 @@ router.get('/', classrooms_controller.listClassrooms)
 
 router.post('/add', classrooms_controller.createClass)
 
-router.put('/:id/edit', classrooms_controller.leaveClass)
+router.put('/:id', classrooms_controller.joinClass)
+
+router.delete('/:id', classrooms_controller.leaveClass)
 
 module.exports = router

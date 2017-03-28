@@ -5,16 +5,16 @@ const User = require ('../models/user').model
 
 module.exports = {
   loadAssignmentForm: function (req, res, next) {
-                      User.findById({_id: req.user._id})
-                          .populate('classrooms')
-                          .exec (function (err, user) {
-                            if (err) { return console.log(err) }
-                            res.render('createAssignment', {user: user})
+                      User.findById({_id: req.user._id}, (function (err, user) {
+                          if (err) { return console.log(err) }
+                          Classroom.find({members: req.user.id}, function (err, classrooms){
+                              res.render('createAssignment', {user: user, classrooms: classrooms})
+                            })
                           })
+                        )
                       },
 
   createAssignment: function (req, res, next) {
-                      console.log("due date is ", req.body.due_date);
                       Assignment.create({
                         a_type: req.body.atype,
                         title: req.body.title,
@@ -26,11 +26,19 @@ module.exports = {
                         classroom: req.body.classroom
                         }, function (err, assignment) {
                           if (err) { return console.log(err) }
-                          res.redirect('/profile/' + req.user._id + '/dashboard')
+                          Classroom.find({_id: assignment.classroom}, function (err, classroom) {
+                            if (err) { return console.log(err) }
+                            console.log('classroom', classroom)
+                            classroom[0].assignments.push(assignment._id)
+                            classroom[0].save(function (err) {
+                              if (err) { return console.log(err) }
+                            })
+                            res.redirect('/profile/' + req.user._id + '/dashboard')
                           })
+                        })
                       },
   viewOneAssignment: function (req, res, next) {
-                      Assignment.findOne({_id: req.params._id}, function (err, assignment) {
+                      Assignment.find({_id: req.params._id}, function (err, assignment) {
                         if (err) { return console.log(err) }
                         res.render('updateAssignment', {assignment: assignment})
                       })

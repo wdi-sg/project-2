@@ -9,7 +9,7 @@ const assignmentSchema = new mongoose.Schema({
   createdOn: {type: Date},
   due_date: {type: Date},
   est_time: {type: Number},
-  classroom: {type: String},
+  classroom: {type: mongoose.Schema.Types.ObjectId, ref:'Classroom'},
   created_by: {type: mongoose.Schema.Types.ObjectId, ref:'User'}
 })
 

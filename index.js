@@ -14,6 +14,7 @@ const auth = require('./routes/auth')
 const profile = require('./routes/profile')
 const assignment = require('./routes/assignment')
 const classroom = require('./routes/classroom')
+const Classroom = require('./models/classroom').model
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/managehomework')
 mongoose.Promise = global.Promise;
@@ -47,7 +48,12 @@ app.use('/classroom', classroom)
 
 
 app.get('/', function (req, res) {
-    res.render('index')
+  Classroom.find({})
+  .populate('school', 'name')
+  .exec(function (err, classrooms) {
+    if (err) {return console.log(err)}
+    res.render('index', {classrooms: classrooms})
+  })
 })
 
 // app.get('/dashboard', isLoggedin, function (req, res) {

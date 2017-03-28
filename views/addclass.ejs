@@ -1,18 +1,27 @@
 <div class="container">
-
-    <form  class="form-horizontal" action="/classroom/add" method="POST">
-      <h3>  Create Classroom </h3>
-      <div class="form-group">
-        <label class="col-sm-2 control-label" for="name">Name of Class:</label>
-        <div class="col-sm-3">
-          <input id="name" class="form-control" type="text" name="name">
-        </div>
-        <label class="col-sm-2 control-label" for="name">School:</label>
-        <div class="col-sm-3">
-          <input id="name" class="form-control" type="text" name="school_name" value="<%= result[0].name %>">
-          <input id="name" class="form-control" type="hidden" name="school" value="<%= result[0]._id %>">
-        </div>
-        <input class="col-sm-2 btn btn-primary" type="submit" value="Submit">
+  <h4>Current classes listed from your school : </h4>
+  <div class="d-inline-flex flex-wrap">
+    <% classrooms.forEach(function (classroom) { %>
+    <div class="card card-outline-success my-3 mr-1 text-center">
+      <div class="card-block">
+        <h5 class="card-title"><%= classroom.name %></h5>
+        <form action="/classroom/<%= classroom._id %>?_method=PUT" method="POST">
+          <input type="hidden" value="<%= classroom._id %>" name="_id">
+          <button type="submit" class="btn btn-success btn-block">Join class</button>
+        </form>
       </div>
-    </form>
+    </div>
+    <% }) %>
   </div>
+
+  <h4 class="mt-4">Add class : </h4>
+  <form class="form-inline mt-3" action="/classroom/add" method="POST">
+    <div class="form-group">
+    <input type="text" class="form-control mr-1" name="name" placeholder="Enter Name of Class">
+  </div>
+    <input type="hidden" class="form-control mr-1" name="school" value="<%= currentUser.school %>">
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary ml-2">Submit</button>
+    </div>
+  </form>
+</div>

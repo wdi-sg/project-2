@@ -22,7 +22,10 @@ module.exports = {
                     .populate('school')
                     .exec(function (err, user) {
                       if (err) { return console.log(err) }
-                  res.render('editProfile', {user: user})
+                      School.find({}, function (err, schools) {
+                        if (err) { return console.log(err) }
+                        res.render('editProfile', {user: user, schools: schools})  
+                      })
                 })
               },
 
@@ -66,18 +69,20 @@ module.exports = {
                   console.log('load dashboard req.param ' + req.user.id);
                   User.find({_id: req.user.id})
                       .populate('school')
-                      .populate('classrooms')
                       .exec(function (err, user) {
                         if (err) { return console.log(err) }
-                        Assignment.find({created_by: req.user.id}, function (err, assignments) {
+                        Assignment.find({created_by: req.user.id}).
+                        populate('classroom').
+                        exec(function (err, assignments) {
                           if (err) { return console.log(err) }
-                          Classroom.find({members: req.user.id}, function (err, classrooms) {
+                          Classroom.find({members: req.user.id})
+                          .populate('assignments')
+                          .exec(function (err, classrooms) {
                             console.log(classrooms);
                             if (err) { return console.log(err) }
                             res.render('dashboard', {user: user, assignments: assignments, classrooms: classrooms})
                             })
                         })
-
                       })
                     },
 

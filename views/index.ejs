@@ -21,8 +21,33 @@
             </div>
           </form>
         </div>
+        <div class="col-sm-12 col-md-12 my-xs-5 my-md-2" id="view-class">
+          <button class="btn btn-lg btn-warning" id="scroll-class">Click to see classes</button>
+        </div>
       </div>
     </div>
-    <div class="">
+    <div id="classes" class="container-fluid">
+      <h3 class="mt-3 ml-5">View all listings</h3>
+      <div class="class-group col-sm-12 mt-3 ml-5 d-inline-flex flex-wrap">
+        <% classrooms.forEach(function (classroom) { %>
+        <div class="card card-outline-warning mr-2 mb-2 text-center" id="classes-card">
+          <div class="card-block">
+            <h4 class="card-title"><%= classroom.school.name %></h4>
+            <h5 class="card-text"><%= classroom.name %></h5>
+          </div>
+            <button id="scroll-top" class="btn btn-warning btn-block">Log-in to see details</button>
+        </div>
+      <%})%>
     </div>
+  </div>
 </div>
+
+<script type="text/javascript">
+  $('#scroll-class').on('click', function () {
+    let $anchor = $('#classes').offset()
+    window.scrollTo($anchor.left, $anchor.top)
+  })
+  $('#scroll-top').on('click', function () {
+    window.scrollTo(0,0)
+  })
+</script>

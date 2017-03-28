@@ -27,8 +27,6 @@ const userSchema = new mongoose.Schema({
     maxlength: [99, 'Password must be between 8 and 99 characters'],
   },
   school: { type: mongoose.Schema.Types.ObjectId, ref: "School"},
-  classrooms: [{type: mongoose.Schema.Types.ObjectId, ref: 'Classroom'}]
-
 });
 
 userSchema.pre('save', function(next) {

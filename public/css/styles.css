@@ -2,9 +2,9 @@ body {
   font-family: 'Open Sans', sans-serif;
   background-color: #f7f7f7;
   position: relative;
-  margin: 0px;
+  margin: 0;
   font-size: 12px;
-  padding: 0px;
+  padding: 0
 }
 
 #alerts {
@@ -29,7 +29,7 @@ body {
   height: 100vh;
   background: rgba(50, 50, 50, 0.5);
   background-size: cover;
-  z-index: 1000;
+  z-index: 900;
 }
 
 
@@ -37,7 +37,25 @@ body {
   width: 80%;
   color: white;
   justify-content: center;
-  margin-top: 15%;
+  margin-top: 10%;
   margin-left: 10%;
   text-align: center;
+}
+
+
+
+#classes {
+  height: 100vh
+}
+
+
+#classes-card {
+  width: 20%
+}
+
+@media (max-width: 767px) {
+  #classes-card {
+    width: 80%;
+    margin-left: 10%
+  }
 }
