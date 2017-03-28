@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <h3 class="mt-2 ml-3">Profile Page</h3>
+  </div>
+  <div class="row">
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-block">
+          <div class="card-title"><h2> <% if (!user.name) { %>
+            Please Update Your Name
+            <% } else { %>
+              <%= user.name %>
+              <% } %>
+            </h2>
+            </div>
+            <div class="card-text">
+              <p><strong>Role: </strong> <% if (user.role) { let role = user.role.toUpperCase()%>
+                <%= role %> <% } %> </p>
+              <p><strong>School: </strong><% if (!user.school) { %>
+                Please update your school </p>
+                <% } else { %>
+                  <%= user.school.name %> </p>
+                  <% } %>
+                  <p><strong>Email: </strong> <%= user.email %> </p>
+                </div>
+                <button class="btn btn-success" onclick="location.href='/profile/<%= currentUser._id%>/edit'"> Edit Profile</button>
+              </div>
+            </div>
+          </div>
+        </div>

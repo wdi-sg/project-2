@@ -1,0 +1,124 @@
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="logo">
+       <h1><a href="#">Dashboard for <%= currentUser.name %></a></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= classrooms %>
+<% if (currentUser.role === "teacher") { %>
+
+<div class="page-content">
+  <div class="row">
+  <div class="col-md-2">
+    <div class="sidebar content-box" style="display: block;">
+            <ul class="nav">
+                <!-- Main menu -->
+                <li class="current"><a href="index"> Dashboard</a></li>
+                <li><a href="/profile/<%= currentUser._id %>"> Profile </a></li>
+                <li><a href="/classroom">Add/Join Classes </a></li>
+                <li><a href="/assignment/create">Add Assignments </a></li>
+                <li><a href="/auth/logout">Log Out</a></li>
+         </div>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="content-box-large">
+          <div class="panel-heading">
+          <div class="panel-title">Your classrooms are: </div>
+          </div>
+          <div class="panel-body">
+            <ul class="list-inline">
+            <% classroomArray.forEach(function(elem) { %>
+             <form action="/classBulletin/:id" method="GET">
+              <li class="list-group-item col-sm-2"> <%= elem.name %></li>
+            </form>
+            <% }) %>
+
+            </ul>
+
+          <br /><br />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="content-box-header">
+              <div class="panel-title">Your Assignments: </div>
+            </div>
+            <div class="content-box-large box-with-header">
+              <div class="table-responsive">
+                <table class="table">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Title</th>
+                          <th>Description</th>
+                          <th>Due Date</th>
+                          <th>Class</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% assignments.forEach(function (elem) { %>
+                        <tr>
+                          <form action="/assignment/:id/delete?_method=DELETE" method="POST">
+                          <td><input type="checkbox" name="id" value="<%= elem._id %>"> </td>
+                          <td> <%= elem.title %> </td>
+                          <td><%= elem.description %> </td>
+                          <td><%= elem.due_date %></td>
+                          <td><%= elem.classroom %></td>
+                        </tr>
+                        <% }) %>
+                      </tbody>
+                    </table>
+                    <input class="col-sm-4 btn btn-primary" type="submit" value="Remove Assignment">
+                    <input class="col-sm-4 btn btn-primary" type="submit" value="Update Assignment" style="display:none">
+                </form>
+              </div>
+            <br /><br />
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+  <% } else if (currentUser.role === "student") {  %>
+
+    <div class="page-content">
+      <div class="row">
+      <div class="col-md-2">
+        <div class="sidebar content-box" style="display: block;">
+                <ul class="nav">
+                    <!-- Main menu -->
+                    <li class="current"><a href="index"> Dashboard</a></li>
+                    <li><a href="/profile/view/:id"> Profile </a></li>
+                    <li><a href="/auth/logout">Log Out</a></li>
+             </div>
+      </div>
+
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="content-box-large">
+              <div class="panel-heading">
+              <% if (user.classrooms === null) { %>
+              <div class="panel-title">Please join a class: </div>
+              <% } else {%>
+                <div class="panel-title">Please join a class: </div>
+              <% } %>
+              </div>
+              <div class="panel-body">
+
+              </div>
+
+    <% } %>
+
+</div>
