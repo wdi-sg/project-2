@@ -24,7 +24,7 @@ module.exports = {
                       if (err) { return console.log(err) }
                       School.find({}, function (err, schools) {
                         if (err) { return console.log(err) }
-                        res.render('editProfile', {user: user, schools: schools})  
+                        res.render('editProfile', {user: user, schools: schools})
                       })
                 })
               },
@@ -55,7 +55,7 @@ module.exports = {
                       console.log('school members saved')
                       })
                       User.update({_id: req.user._id}, {
-                        school: req.body.school,
+                        school: school._id,
                         name: req.body.name,
                         role: req.body.role}, function (err, user) {
                           if(err) { return console.log(err) }
