@@ -26,10 +26,11 @@
               <input class="form-control" type="text" name="school" value="<%= user.school.name %>">
           <% } else {%>
             <label for="school">Select or enter name of school:</label>
-            <input type="text" name="school" class="form-control">
-            <select class="form-control" id="select-school" name="school" >
+            <input type="text" name="school" class="form-control" list="school-list">
               <% schools.forEach(function (school) { %>
+              <datalist id="school-list">
                 <option value="<%= school._id %>"><%= school.name %> </option>
+              </datalist>
               <% }) %>
             </select>
 
