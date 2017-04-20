@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-3"><%= chosenProgram.name %></h1><br>
+    <p class="text-muted mb-0"><span class="badge badge-info"><%= chosenProgram.subject %></span><em> volunteer area</em></p>
+    <p class="text-muted">
+    <% for (var level in chosenProgram.commitment) { %>
+      <% if (chosenProgram.commitment[level] === true && level !== '$__isNested') { %>
+        <span class="badge badge-danger"><%= level %></span>
+      <% } %>
+    <% } %>
+    <em>expected volunteer commitment level</em></p>
+    <% if (chosenProgram.admin.toString() === currentUser.id.toString()) { %>
+      <p>created by you!</p>
+    <% } else { %>
+      <p>created by <a href="<%= "/profile/" + chosenProgram.admin %>"><%= programAdmin.name %></a></p>
+    <% } %>
+    <p class="lead"><%= chosenProgram.description %></p>
+    <a href="<%= chosenProgram.website %>">External site</a><br><br>
+  </div>
+  <h1 class="mb-4">sign up your beneficiaries</h1>
+  <form action=<%= "/program/guardianAddB/" + chosenProgram._id + "?_method=PUT" %> method="POST">
+    <div class="form-group">
+      <% beneficiariesOfUser.forEach(function (indiv) { %>
+      <div class="form-check ml-4">
+        <label class="form-check-label" for="<%= indiv.name %>">
+          <% if (chosenProgram.beneficiaries.some(function (beneficiary) { %>
+            <% return beneficiary.toString() === indiv.id.toString() %>
+            <% })) { %>
+              <input class="form-check-input" type="checkbox" id="<%= indiv.name %>" name="signedUpBeneficiaryID[]" value=<%= indiv.id %> checked="checked" disabled>
+            <% } else { %>
+              <input class="form-check-input" type="checkbox" id="<%= indiv.name %>" name="signedUpBeneficiaryID[]" value=<%= indiv.id %>>
+            <% } %>
+          <%= indiv.name %>
+        </label>
+      </div>
+      <% }) %>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary mb-5">Submit</button>
+  </form>
+</div>

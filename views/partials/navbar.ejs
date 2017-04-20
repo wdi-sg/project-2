@@ -1,0 +1,60 @@
+<div class="container">
+  <nav class="navbar navbar-default navbar-toggleable-sm navbar-light bg-faded fixed-top">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="btn" href="/"><h4>{ v }</h4></a>
+    <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <%
+        let registerStyle = ""
+        let logInStyle = ""
+        let dropDownStyle = ""
+        let currentUserName = ""
+        let isAdminStyle = ""
+        let isGuardianStyle = ""
+        if (currentUser) {
+          registerStyle = "display:none; visibility:hidden"
+          logInStyle = "display:none; visibility:hidden"
+          currentUserName = currentUser.name
+          currentUserId = currentUser.id
+          if (currentUser.userTypes.admin === false) {
+            isAdminStyle = "display:none; visibility hidden"
+          }
+          if (currentUser.userTypes.guardian === false) {
+            isGuardianStyle = "display:none; visibility hidden"
+          }
+        } else if (!currentUser) {
+          dropDownStyle = "display:none; visibility:hidden"
+          currentUserName = ""
+          currentUserId = ""
+        }
+        %>
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/signup" style="<%= registerStyle %>">sign up </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/login" style="<%= logInStyle %>">log in </a>
+        </li>
+        <li class="nav-item dropdown" style="<%= dropDownStyle %>">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" style="<%= dropDownStyle %>">hey, <%= currentUserName %>!</a>
+          <div class="dropdown-menu dropdown-menu-right" style="<%= dropDownStyle %>">
+            <h6 class="dropdown-header" style="<%= dropDownStyle %>"><em>all users</em></h6>
+            <a class="dropdown-item" href="<%= "/profile/" + currentUserId %>" style="<%= dropDownStyle %>">view your profile</a>
+            <a class="dropdown-item" href="/program" style="<%= dropDownStyle %>">browse all programs</a>
+            <a class="dropdown-item" href="<%= "/auth/edit/" + currentUserId %>" style="<%= dropDownStyle %>">account settings</a>
+            <div class="dropdown-divider" style="<%= dropDownStyle %>"></div>
+            <h6 class="dropdown-header" style="<%= dropDownStyle %> <%= isAdminStyle %>"><em>program creators</em></h6>
+            <a class="dropdown-item" href="/program/new" style="<%= dropDownStyle %> <%= isAdminStyle %>">create a program</a>
+            <div class="dropdown-divider" style="<%= dropDownStyle %> <%= isAdminStyle %>"></div>
+            <h6 class="dropdown-header" style="<%= dropDownStyle %> <%= isGuardianStyle %>"><em>guardians</em></h6>
+            <a class="dropdown-item" href="/beneficiary/new" style="<%= dropDownStyle %> <%= isGuardianStyle %>">sign a beneficiary up for { v }</a>
+            <div class="dropdown-divider" style="<%= dropDownStyle %> <%= isGuardianStyle %>"></div>
+            <h6 class="dropdown-header" style="<%= dropDownStyle %>"><em>stay don't go</em></h6>
+            <a class="dropdown-item" href="/auth/logout" style="<%= dropDownStyle %>">log out</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

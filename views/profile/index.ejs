@@ -1,0 +1,192 @@
+<div class="jumbotron">
+  <div class="container">
+    <% if (user.id === currentUser.id) { %>
+      <h1 class="display-3">your profile</h1>
+    <% } else { %>
+      <h1 class="display-3"><%= user.name %>'s profile</h1>
+    <% } %>
+  </div>
+</div>
+<div class="container">
+  <%
+  let createdProgramsPresence = ""
+  if (user.createdPrograms.length === 0 && user.userTypes.admin === false) {
+    createdProgramsPresence = "display: none; visibility: hidden;"
+  }
+  %>
+  <div style="<%= createdProgramsPresence %>" class="mb-5">
+    <% if (user.id === currentUser.id) { %>
+      <h1>programs you created</h1><br>
+    <% } else { %>
+      <h1>programs created by <%= user.name %></h1><br>
+    <% } %>
+    <div class="d-flex flex-wrap justify-content-start mb-4">
+    <% createdProgramsPopulated.forEach(function (indivProgram) { %>
+      <div class="card card-outline-primary m-2" style="width: 20rem;">
+        <div class="card-header" style="color:#0275d8;">
+        <% if (user.id === currentUser.id) { %>
+          one of yours!
+        <% } else { %>
+          created by <%= user.name %>
+        <% } %>
+        </div>
+        <img class="card-img-top" src="<%= indivProgram.imageURL %>" style="height:12rem; object-fit:cover; border-top: 1px solid #0275d8; border-bottom: 1px solid #0275d8;>">
+        <div class="card-block">
+          <a href=<%= "/program/" + indivProgram.id %>>
+            <h3 class="card-title"><%= indivProgram.name %></h3>
+          </a>
+          <span class="badge badge-info mb-2"><%= indivProgram.subject %></span>
+          <% for (var level in indivProgram.commitment) { %>
+            <% if (indivProgram.commitment[level] === true && level !== '$__isNested') { %>
+              <span class="badge badge-danger mb-2"><%= level %></span>
+            <% } %>
+          <% } %>
+          <br>
+          <p class="card-text mb-2"><%= indivProgram.description %></p>
+          <%
+          let hasWebsite = ""
+          if (!indivProgram.website) {
+            hasWebsite = "display:none; visibility:hidden"
+          }
+          %>
+          <a href="<%= indivProgram.website %>" target="_blank" style="<%= hasWebsite %>">external site</a><br>
+        </div>
+      </div>
+    <% }) %>
+      <%
+      let createProgramsButtonPresence = ""
+      if (currentUser.userTypes.admin === false || user.id !== currentUser.id) {
+        createProgramsButtonPresence = "display: none; visibility: hidden;"
+      }
+      %>
+      <div class="card m-2" style="width: 20rem; <%= createProgramsButtonPresence %>">
+        <div class="card-header text-muted">
+        (your next program)
+        </div>
+        <div class="text-muted pl-4" style="height:12rem; border-bottom: 1px solid #d3d3d3;">
+        <br>
+        <br>
+        <br>
+        <p>(insert beautiful image here)</p>
+        </div>
+        <div class="card-block">
+          <a class="btn btn-primary mt-0 mb-0" href="/program/new">Create a new program</a><br>
+          <span class="badge badge-default mb-2">some</span>
+          <span class="badge badge-default mb-2">awesome</span>
+          <span class="badge badge-default mb-2">program</span>
+          <p class="card-text text-muted mb-2">That will make a world of difference to some very important people henceforth and for a very long time</p>
+          <p class="card-text text-muted"><em>can't wait</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%
+  let ifNoBeneficiaries = ""
+  let ifNoGuardian = ""
+  let ifNoBeneficiariesGuardian = ""
+  if (user.signedTheseBeneficiariesUp.length === 0) {
+    ifNoBeneficiaries = "display: none; visibility: hidden;"
+  }
+  if (currentUser.userTypes.guardian === false || user.id !== currentUser.id) {
+    ifNoGuardian = "display: none; visibility: hidden;"
+  }
+  if (user.signedTheseBeneficiariesUp.length === 0 && user.userTypes.guardian === false) {
+    ifNoBeneficiariesGuardian = "display: none; visibility: hidden;"
+  }
+  %>
+  <div style="<%= ifNoBeneficiariesGuardian %>" class="mb-5">
+    <% if (user.id === currentUser.id) { %>
+      <h1 class="mb-3">your beneficiaries </h1>
+    <% } else { %>
+      <h1 class="mb-3"><%= user.name %>'s beneficiaries </h1>
+    <% } %>
+    <table class="table table-hover table-responsive" style="<%= ifNoBeneficiaries %>">
+      <thead class="thead-default">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Age</th>
+          <th>Programs</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% signedTheseBeneficiariesUpPopulated.forEach(function (indivBeneficiary, index) { %>
+        <tr>
+          <th scope="row"><%= index + 1 %></th>
+          <td><%= indivBeneficiary.name %></td>
+          <td><%= indivBeneficiary.gender %></td>
+          <td><%= indivBeneficiary.age %></td>
+          <td>
+            <% indivBeneficiary.programs.forEach(function (indivProgram2) { %>
+              <% signedBeneficiariesUpToTheseProgramsPopulated.forEach(function (indivProgram3) { %>
+                <% if (indivProgram2.toString() === indivProgram3.id.toString()) { %>
+                  <a href="<%= "/program/" + indivProgram3.id %>"><%= indivProgram3.name %></a>
+                  <br>
+                <% } %>
+              <% }) %>
+            <% }) %>
+          <% if (indivBeneficiary.programs.length === 0 && user.id === currentUser.id) { %>
+            <a href="../program">Enroll!</a></td>
+          <% } %>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <br>
+    <a class="btn btn-primary ml-4" style="<%= ifNoGuardian %>" href="../beneficiary/new">Sign a new beneficiary up</a>
+  </div>
+  <%
+  let ifNoPrograms = ""
+  let ifNoVolunteer = ""
+  let ifNoProgramsVolunteer = ""
+  if (user.joinedPrograms.length === 0) {
+    ifNoPrograms = "display: none; visibility: hidden;"
+  }
+  if (currentUser.userTypes.volunteer === false || user.id !== currentUser.id) {
+    ifNoVolunteer = "display: none; visibility: hidden;"
+  }
+  if (user.joinedPrograms.length === 0 && user.userTypes.volunteer === false) {
+    ifNoProgramsVolunteer = "display: none; visibility: hidden;"
+  }
+  %>
+  <div style="<%= ifNoProgramsVolunteer %>" class="mb-5">
+    <% if (user.id === currentUser.id) { %>
+      <h1 class="mb-3">you are a volunteer in </h1>
+    <% } else { %>
+      <h1 class="mb-3"><%= user.name %> is a volunteer in </h1>
+    <% } %>
+    <table class="table table-hover table-responsive" style="<%= ifNoPrograms %>">
+      <thead class="thead-default">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Area</th>
+          <th>Frequency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% joinedProgramsPopulated.forEach(function (indivProgram4, index) { %>
+        <tr>
+          <th scope="row"><%= index + 1 %></th>
+          <td>
+            <a href="<%= "/program/" + indivProgram4.id %>"><%= indivProgram4.name %></a>
+          </td>
+          <td>
+            <span class="badge badge-info mb-1"><%= indivProgram4.subject %></span>
+          </td>
+          <td>
+            <% for (var level in indivProgram4.commitment) { %>
+              <% if (indivProgram4.commitment[level] === true && level !== '$__isNested') { %>
+                <span class="badge badge-danger mb-1"><%= level %></span><br>
+              <% } %>
+            <% } %>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <br>
+    <a class="btn btn-primary ml-4" style="<%= ifNoVolunteer %>" href="../program">Volunteer</a>
+  </div>
+</div>
