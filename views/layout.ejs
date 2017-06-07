@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="/public/css/dashboard.css" rel="stylesheet">
+        <link href="/public/css/layout.css" rel="stylesheet" >
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>BarterFly</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">BarterFly</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/interface">BarterCenter</a></li>
+                        <li><a href="/auth/signup">New Account</a></li>
+                        <li><a href="/profile">Profile</a></li>
+                        <% if (currentUser) {%>
+
+                        <script> let userLoggedIn = true </script>
+                        <li><a href="/auth/logout">Logout</a></li>
+                        
+                        <%} else {%>
+                        
+                        <script> let userLoggedIn = false </script>
+                        <li><a href="/auth/login">Login</a></li>
+                        
+                        <%}%>
+                    </ul>
+                    <form class="navbar-form navbar-right"
+                        form method='POST' action='/itemSearch/'>
+                        <input type="text" class="form-control" name="search" placeholder="Marketplace Search...">
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="/interface">BarterCenter <span class="sr-only">(current)</span></a></li>
+                <li><a href="/interface/#onOffer">Your Items On Offer</a></li>
+                <li><a href="/interface/#ongoingTrades">Ongoing Trades</a></li>
+                <li><a href="/interface/#pastItems">Past Items Traded Away</a></li>
+                <li><a href="/interface/#completedTrades">Completed Trades</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <% include ./partials/alerts.ejs %>
+            <%- body %>
+        </div>
+        
+        <script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+       
+    </body>
+</html>

@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading"><h4>Modify Item Information</h4></div>
+    <div class="panel-body">
+      <form enctype="multipart/form-data" method='POST' action='/interface/item/edit/<%= item._id %>?_method=PUT'>
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" name="name" value="<%= item.name%>">
+        </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea rows='5' class="form-control" name="description"><%= item.description%></textarea>
+        <br>
+        <img src="<%= item.imagelink%>" style="width:50%" >
+        <br>
+        <br>
+        <br>
+        <div class="form-group">
+          <label for="imagelink">To replace image, select new image file:</label>
+          <input type="file" name="imageFile">
+        </div>
+        <div class="form-group">
+          <label for="valuation">Valuation:</label>
+          <input type="number" class="form-control" name="valuation" value="<%= item.valuation%>">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <br>
+    </div>
+  </div>
+</div>

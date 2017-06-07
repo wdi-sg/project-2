@@ -1,0 +1,60 @@
+.item {
+  padding: 1em;
+}
+
+body {
+  margin: 1%;
+}
+
+.horizcenter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.buttonVertMargin {
+  margin-top: 0.5em;
+}
+
+.btn {
+    white-space: normal;
+}
+
+.main{ 
+   background: url('/public/background.jpg') no-repeat;
+   background-attachment: fixed;
+   background-position: center center;
+   background-size: cover;
+   height: auto;
+   min-height: 100%; 
+}
+
+body,html,container {
+  height: 100%;
+}
+
+.panel {
+  opacity: 0.95;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.jumbotron {
+   background: url('/public/jumbotron.jpg') no-repeat;
+   background-attachment: fixed;
+   background-position: center center;
+   background-size: cover; 
+   color: white;
+   text-shadow: 0 0 2px black;
+}
+
+a.anchor {
+  display: block;
+  position: relative;
+  top: -75px;
+  visibility: hidden;
+}
