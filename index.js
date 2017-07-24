@@ -61,11 +61,7 @@ app.get('/about', function (req, res) {
   res.render('about')
 })
 
-app.get('/contact', function (req, res) {
-  res.render('contact')
-})
-
-app.get('logout', function (req, res) {
+app.get('/logout', function (req, res) {
   req.logout()
   res.redirect('/')
 })
