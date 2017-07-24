@@ -1,14 +1,14 @@
 # ETF Allocator Beta
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+The ETF Allocator (in Beta stage) is a portfolio management tool for exchange-traded funds investors. It is meant to provide tools in portfolio allocation, monitoring, trading and risk management for ETF portfolios. This Beta version comprises these features: user authentication, portfolio overview, API link up for real ETF prices, and basic charting. 
 
 ## Progress
 
-Follow the project's progress here: link
+Follow the project's progress here [link](https://etfallocator.herokuapp.com/)
 
 ## Getting Started
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+Access the heroku deployment [here]() Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
 
 ### Prerequisites
 
