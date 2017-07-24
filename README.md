@@ -4,11 +4,11 @@ The ETF Allocator (in Beta stage) is a portfolio management tool for exchange-tr
 
 ## Progress
 
-Follow the project's progress here [link](https://etfallocator.herokuapp.com/)
+Follow the project's progress [link](documentation/update.md)
 
 ## Getting Started
 
-Access the heroku deployment [here]() Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+Access the heroku deployment [here](https://etfallocator.herokuapp.com/) 
 
 ### Prerequisites
 
