@@ -1,6 +1,20 @@
+require('dotenv').config()
 const express = require('express')
 const exphbs = require('express-handlebars')
 const app = express()
+const mongoose = require('mongoose')
+
+mongoose.Promise = global.Promise
+mongoose.connect(process.env.MONGODB_URI, {
+  useMongoClient: true
+}).then(
+  function () { // resolve cb
+    console.log('connected to MongoDB successfully')
+  },
+  function (err) { // reject cb
+    console.log(err)
+  }
+)
 
 app.use(express.static('public'))
 app.engine('handlebars', exphbs({
@@ -19,9 +33,13 @@ app.set('view engine', 'handlebars')
 // }))
 //app.use(flash)
 
+
+
+
 const homeRoute = require('./routes/homeRoute')
 const usersRoute = require('./routes/usersRoute')
-
+app.use('/home', homeRoute)
+app.use('/users', usersRoute)
 app.get('/', function (req, res) {
   res.render('index')
 })
@@ -31,10 +49,6 @@ app.get('/about', function (req, res) {
 app.get('/contact', function (req, res) {
   res.render('contact')
 })
-
-
-app.use('/home', homeRoute)
-app.use('/users', usersRoute)
 
 const port = process.env.PORT || 3000
 app.listen(port, function () {
