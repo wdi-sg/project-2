@@ -34,9 +34,10 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars')
 
 app.get('/', function (req, res) {
-  if (req.user) {
-    return res.send('hide login link')
-  }
+  // if (req.user) {
+  //   res.render('/')
+  //   // return res.send('hide login link')
+  // }
   res.render('index')
 })
 

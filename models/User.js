@@ -1,13 +1,15 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
+const findOrCreate = require('mongoose-findorcreate')
 
 const userSchema = new Schema({
-  name: String,
-  email: String,
-  password: String,
-  fbid: String
+  igId: String,
+  username: String,
+  access_token: String
 })
+
+userSchema.plugin(findOrCreate)
 
 userSchema.pre('save', function (next) {
   var user = this

@@ -5,7 +5,17 @@
     <title>Project 2</title>
   </head>
   <body>
+
+  <a href="/iglogin">Login</a>
+  {{#if user}}
+      <ul>
+        <li>
+          <a href="/logout">Logout</a>
+        </li>
+      </ul>
+    {{/if}}
     {{{body}}}
+
     <script src="//code.jquery.com/jquery.js"></script>
   </body>
 </html>

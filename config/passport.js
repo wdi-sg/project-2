@@ -1,6 +1,7 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const InstagramStrategy = require('passport-instagram').Strategy
+const findOrCreate = require('mongoose-findorcreate')
 
 const User = require('../models/User')
 
@@ -14,44 +15,45 @@ passport.deserializeUser(function (id, next) {
   })
 })
 
-passport.use(
-  new LocalStrategy(
-    {
-      usernameField: 'user[email]',
-      passwordField: 'user[password]',
-      passReqToCallback: true
-    },
-    localVerify
-  )
-)
-
-function localVerify (req, passportEmail, passportPassword, next) {
-  User
-  .findOne({
-    email: passportEmail
-  })
-  .exec(function (err, foundUser){
-    if(err) {
-      console.log('err', err)
-      return next(err)
-    }
-
-    if (foundUser.validPassword(passportPassword)) {
-      console.log('success, redirect to /profile')
-      next(null, foundUser)
-    }
-  })
-}
-
 passport.use(new InstagramStrategy({
     clientID: 	'37222635b0644552ba1a1fe525108687',
     clientSecret: 'a0caafce5b364a05b8153ff37ed050c0',
     callbackURL: "http://localhost:4000/igcallback"
   },
+  // function(accessToken, refreshToken, profile, done) {
+  //   User.findOrCreate({ instagramId: profile.id }, function (err, user) {
+  //     return done(err, user)
+  //   })
+  // }
+
+  // function(accessToken, refreshToken, profile, next) {
+  //   var newUser = new User({
+  //     igId: profile.id,
+  //     username: profile.username
+  //   })
+  //
+  //   newUser.save(function (err, igUser) {
+  //     return next(err, igUser)
+  //   })
+  // }
+
+
   function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate({ instagramId: profile.id }, function (err, user) {
-      return done(err, user)
-    })
+      User.findOrCreate({
+        igId: profile.id,
+        username: profile.username
+      },
+          function (err, result) {
+              if(result) {
+                  result.access_token = accessToken;
+                  result.save(function(err, doc) {
+                      done(err, doc);
+                  })
+              } else {
+                  done(err, result)
+              }
+          }
+      )
   }
 ))
 
