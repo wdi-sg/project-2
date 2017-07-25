@@ -20,7 +20,11 @@ const userSchema = new Schema({
     type: String,
     required: [true, 'Please type your email'],
     match: [emailRegex, 'Email is invalid']
-  }
+  },
+  carparks: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Carpark'
+  }]
 })
 
 userSchema.pre('save', function (next) {
