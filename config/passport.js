@@ -1,5 +1,6 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
+const InstagramStrategy = require('passport-instagram').Strategy
 
 const User = require('../models/User')
 
@@ -41,5 +42,17 @@ function localVerify (req, passportEmail, passportPassword, next) {
     }
   })
 }
+
+passport.use(new InstagramStrategy({
+    clientID: 	'37222635b0644552ba1a1fe525108687',
+    clientSecret: 'a0caafce5b364a05b8153ff37ed050c0',
+    callbackURL: "http://localhost:4000/igcallback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    User.findOrCreate({ instagramId: profile.id }, function (err, user) {
+      return done(err, user)
+    })
+  }
+))
 
 module.exports = passport

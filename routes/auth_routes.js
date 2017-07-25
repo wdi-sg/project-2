@@ -17,9 +17,9 @@ router.post('/login',
       failureRedirect: '/register'
   }))
 
-router.get('/fblogin', passport.authenticate('facebook'))
+router.get('/iglogin', passport.authenticate('instagram'))
 
-router.get('/fbcallback', passport.authenticate('facebook',
+router.get('/igcallback', passport.authenticate('instagram',
   {failureRedirect: '/register'}
 ),
   function (req, res) {
