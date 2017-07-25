@@ -1,34 +1,43 @@
 const User = require('../models/User')
+const Portfolio = require('../models/Portfolio')
+const homeController = require('../controllers/homeController')
 
 function signUp (req, res) {
-  var newUser = new User({
-    name: req.body.user.name,
-    email: req.body.user.email,
-    password: req.body.user.password
+  
+  var newPortfolio = new Portfolio({
+    name: 'My Portfolio'
   })
 
-  console.log(newUser)
+  console.log('aaa ', newPortfolio)
 
-  newUser.save(function (err, createdUser) {
-    console.log('a')
-    if (err) {
-      console.log('b')
-      return res.send(err)
-    }
-    req.login(createdUser, function(err) {
-      if (err) {
-        console.log('error from req.login(createdUser, error)')
-      } else {
-        return res.redirect('/home')        
-      }
+  newPortfolio.save(function (err, createdPortfolio) {
+
+    console.log('bbb ', createdPortfolio)
+
+    var newUser = new User({
+      name: req.body.user.name,
+      email: req.body.user.email,
+      password: req.body.user.password,
+      portfolio: [createdPortfolio.id]
     })
-  })
-    //return createdUser
-    //console.log('New user created successfully. Directing to portfolio home...')
-    //res.redirect('/home') // to show user name in portfolios
 
-//{userDisplayName: req.user.name}
+    console.log(newUser)
 
+    newUser.save(function (err, createdUser) {
+      //console.log('a')
+      if (err) {
+        //console.log('b')
+        return res.send(err)
+      }
+      req.login(createdUser, function(err) {
+        if (err) {
+          console.log('error from req.login(createdUser, error)')
+        } else {
+          return res.redirect('/home')        
+        }
+      })
+    })
+  }) 
 }
 
 //, { userDisplayName: req.body.user.displayName }

@@ -11,7 +11,11 @@ const userSchema = new Schema({
     type: String,
     required: [true, 'Please type your email']
   },
-  password: String
+  password: String,
+  portfolio: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Portfolio'
+  }]
 })
 
 //userSchema.pre('save', function (next) {

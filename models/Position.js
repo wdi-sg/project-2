@@ -4,13 +4,13 @@ const Schema = mongoose.Schema
 const positionSchema = new Schema({
   date: Date,
   quantity: Number,
-  price: Number
+  price: Number,
   instrument: [{
     type: Schema.Types.ObjectId,
     ref: 'Instrument'
   }]
 })
 
-const Position = mongoose.model('Position', portfolioSchema)
+const Position = mongoose.model('Position', positionSchema)
 
 module.exports = Position

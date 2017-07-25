@@ -1,10 +1,16 @@
 const express = require('express')
 const homeRouter = express.Router()
-//const homeController = require('../controllers/homeController')
+const homeController = require('../controllers/homeController')
 
 homeRouter.get('/', function (req, res) {
+  
+  // get user info
+  
   if (req.user) {
-  	res.render('home/home', {userDisplayName: req.user.name})  	
+  	res.render('home/home', {
+  		userDisplayName: req.user.name, 
+  		portMktVal: homeController.marketValue
+  	})
   } else {
   	res.render('home/home')  	
   }
