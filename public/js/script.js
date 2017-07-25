@@ -5,31 +5,34 @@ $(function () {
     ajaxStart: function () { $body.addClass('loading') },
     ajaxStop: function () { $body.removeClass('loading') }
   })
-
   const $carparkSearch = $('#carparkSearch')
-
   // maps
-  var map
+  var $map = $('#map')
   var service
   var infowindow = new google.maps.InfoWindow()
-  var query
 
   var singapore = {lat: 1.352083, lng: 103.819836}
+  var carparkMarkers = []
 
-  map = new google.maps.Map(document.getElementById('map'), {
+  var map = new google.maps.Map(document.getElementById('map'), {
     center: singapore,
     zoom: 11
   })
 
-  var request = {
-    location: singapore,
-    radius: '',
-    query: query
-  }
-
   service = new google.maps.places.PlacesService(map)
-
-  service.textSearch(request, callback)
+  // service.textSearch(request, callback)
+  $carparkSearch.on('submit', function (e) {
+    e.preventDefault()
+    carparkMarkers.forEach(function (marker) {
+      marker.setMap(null)
+    })
+    carparkMarkers = []
+    var query = $(this).serializeArray()[0].value
+    var qString = `car+parks+near+${query}+singapore`
+    service.textSearch({
+      query: qString
+    }, callback)
+  })
 
   function callback (results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -37,7 +40,7 @@ $(function () {
         var place = results[i]
         createMarker(results[i])
       }
-      map.setZoom()
+      map.setZoom = 13
     }
   }
 
@@ -49,19 +52,22 @@ $(function () {
     })
 
     google.maps.event.addListener(marker, 'click', function () {
-      infowindow.setContent(place.name)
+      // content of the clicked marker
+      infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                place.formatted_address + '<br>' +
+                (`<button class='addBtn' data-name="${place.name}" data-address="${place.formatted_address}">add</button>`) + '</div>')
       infowindow.open(map, this)
     })
   }
 
-  // search function
-
-  $carparkSearch.on('submit', function (e) {
+  $map.on('click', '.addBtn', function (e) {
     e.preventDefault()
-    var keywordObj = $(this).serializeArray()
-    var keyword = keywordObj[0].value
-    var qString = `car+parks+near+${keyword}+singapore`
-    query = qString
-    service.textSearch(query, callback)
+    const theBttn = $(this)
+
+    var newCarpark = {
+      name: theBttn.data('name'),
+      address: theBttn.data('address')
+    }
+    $.post
   })
 })

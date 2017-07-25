@@ -54,7 +54,9 @@ const usersRoute = require('./routes/userRoute')
 const carparksRoute = require('./routes/carparkRoute')
 
 app.get('/', function (req, res) {
-  res.render('home')
+  res.render('home', {
+    user: req.user
+  })
 })
 
 app.get('/about', function (req, res) {

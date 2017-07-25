@@ -11,21 +11,25 @@
   <h1> Park Where Sia!?</h1>
   <a href='/'>Home</a>
   <a href='/about'>About Us</a>
-  <a href='/login'>Log In</a>
-  <a href='/register'>Sign Up</a>
-  <a href="/logout">Logout</a>
+  {{#if user }}
+    <a href="/logout">Logout</a>
+  {{/if}}
+  {{#unless user}}
+    <a href='/login'>Log In</a>
+    <a href='/register'>Sign Up</a>
+  {{/unless}}
 
   {{{ body }}}
 
   <footer>&copy;Park Where Sia!?
     <p>Contact Us</br>
-    email: ParkWhereSia@gmail.com</br>
-    address: 8 Claymore Hill</p>
+      email: ParkWhereSia@gmail.com</br>
+      address: 8 Claymore Hill</p>
   </footer>
   <div class="modal">
   </div>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYPEqSeBMxiEB2Uk8iS5xBOapJxBavJAQ&libraries=places"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="/js/script.js" charset="utf-8"></script>
 </body>
 
