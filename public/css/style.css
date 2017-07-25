@@ -17,7 +17,8 @@ header {
   position: relative;
 }
 #homeTitle {
-  width: 75%;
+  width: 100%;
+  text-align: center;
   display: inline-block;
 }
 #headerButtons {
@@ -25,6 +26,7 @@ header {
   float: right;
   position: absolute;
   bottom: 0;
+  right: 0px;
   display: inline-block;
   text-align: right;
 }
@@ -40,13 +42,13 @@ header {
 .headerLi, .tabs {
   list-style-type: none;
   display: inline;
-  padding: 0 10px;
+  padding-right: 10px;
 }
 ul {
   padding: 0;
 }
-.signupForm, .loginForm {
-  width: 20%;
+.signupForm, .loginForm, .tripCreateForm {
+  width: 30%;
   margin: 15px auto;
   display: block;
   text-align: center;
@@ -61,6 +63,7 @@ ul {
 }
 #textSearchForm {
   margin-top: 10px;
+  display: none;
 }
 .loginButtonsContainer {
   width: 680px;
@@ -74,10 +77,20 @@ ul {
 a {
   text-decoration: none;
 }
-.loginButtonsLinks:hover {
+.buttonLinks:hover {
   text-decoration: none;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 a:hover {
   text-decoration: underline;
+}
+.tripButtons {
+  margin: 0 10px;
+}
+#selectedTrip {
+  width: 200px;
+}
+.tripContent {
+  font-size: 30pt;
+  text-align: center;
 }

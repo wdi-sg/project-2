@@ -1,17 +1,19 @@
-<div class="container">
-  <h1>Add Places</h1>
-  <form id="textSearchForm" action="#" method="post">
-      <input id="textSearchInput" type="text" name="keyword" placeholder="insert query here">
-      <button>submit</button>
-  </form>
+<h1>Add Places</h1>
+<form id="textSearchForm" action="#" method="post">
+  <input id="textSearchInput" type="text" name="keyword" placeholder="insert query here">
+  <button>submit</button>
+</form>
 {{!-- <button id="test">test</button> --}}
-  <select class="" name="trips">
+<select id="selectedTrip" name="trips">
     <option value="" disabled selected>Select a Trip</option>
+    {{#each theUser.trips as |trip|}}
+      <option value="{{trip.id}}">{{trip.name}}</option>
+    {{/each}}
   </select>
-  <select class="" name="date">
+<select id="selectedDate" name="date">
     <option value="" disabled selected>Select a Date</option>
   </select><br><br>
-  <div id="map">
-  </div>
+<div id="map">
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPPIJi451Gb2Ee2ehiwOiar1HtiE10UGg&&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPPIJi451Gb2Ee2ehiwOiar1HtiE10UGg&&libraries=places">
+</script>

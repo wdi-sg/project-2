@@ -7,8 +7,7 @@ var tripSchema = new Schema({
     required: [true, 'Name is required']
   },
   dates: [{
-    date: Date,
-    required: [true, 'Please choose date'],
+    date: String,
     places: [{
       type: Schema.Types.ObjectId,
       ref: 'Place'

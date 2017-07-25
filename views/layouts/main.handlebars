@@ -24,14 +24,16 @@
         </ul>
       </div>
     </header>
-    {{#if user}}
-    <ul>
-      <li class="tabs"><a href="/trips">Manage Trips</a></li>
-      <li class="tabs"><a href="/places">Add Places</a></li>
-      <li class="tabs"><a href="/places/top">Show Top Places</a></li>
-    </ul>
-    {{/if}}
-    {{{body}}}
+    <div class="container">
+      {{#if user}}
+      <ul>
+        <li class="tabs"><a href="/trips">Manage Trips</a></li>
+        <li class="tabs"><a href="/places">Add Places</a></li>
+        <li class="tabs"><a href="/places/top">Show Top Places</a></li>
+      </ul>
+      {{/if}}
+      {{{body}}}
+    </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="/js/script.js" charset="utf-8"></script>
   </body>

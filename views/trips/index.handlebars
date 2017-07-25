@@ -1,0 +1,17 @@
+<h1>Manage Trips</h1>
+<h2>{{flash}}</h2>
+<div class="TripNav">
+  <select id="selectedTrip" name="trip">
+    <option value="" disabled selected>Select a Trip</option>
+    {{#each theUser.trips as |trip|}}
+      <option value="{{trip.id}}">{{trip.name}}</option>
+    {{/each}}
+  </select>
+  <select id="selectedDate" class="" name="date">
+    <option value="" disabled selected>Select a Date</option>
+  </select>
+  <button class="tripButtons" id="showTrip">Show Selected Trip</button>
+  <button class="tripButtons" id="deletedTrip">Delete Selected Trip</button>
+  <button class="tripButtons"><a class="buttonLinks" href="/trips/create">Create New Trip</a></button>
+</div>
+<div id="tripDisplay"></div>

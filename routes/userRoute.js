@@ -27,7 +27,7 @@ router.get('/logout', function (req, res) {
   res.redirect('/')
 })
 
-router.post('/register', usersController.register)
+router.post('/', usersController.register)
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/users/profile',
   failureRedirect: '/users/login'

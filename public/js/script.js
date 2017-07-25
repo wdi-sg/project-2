@@ -1,15 +1,18 @@
-$( function () {
+$(function() {
   if (document.getElementById('map')) {
-    var pyrmont = {lat: -33.867, lng: 151.195};
+    var pyrmont = {
+      lat: -33.867,
+      lng: 151.195
+    }
     var markers = []
 
     var map = new google.maps.Map(document.getElementById('map'), {
       center: pyrmont,
       zoom: 13
-    });
+    })
 
-    var infowindow = new google.maps.InfoWindow();
-    var service = new google.maps.places.PlacesService(map);
+    var infowindow = new google.maps.InfoWindow()
+    var service = new google.maps.places.PlacesService(map)
     $('#textSearchForm').on('submit', function(e) {
       e.preventDefault()
       markers.forEach(function(marker) {
@@ -19,12 +22,15 @@ $( function () {
       var query = $(this).serializeArray()[0].value
       service.textSearch({
         query: query
-      }, callback);
+      }, callback)
     })
 
     var input = document.querySelector('#textSearchInput')
     var form = document.querySelector('#textSearchForm')
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(form)
+    map.addListener('tilesloaded', function () {
+      form.style.display = 'initial'
+    })
 
     var autocomplete = new google.maps.places.Autocomplete(input, {
       types: ['establishment']
@@ -49,9 +55,9 @@ $( function () {
         for (var i = 0; i < results.length; i++) {
           createMarker(results[i]);
         }
-        if(pagination.hasNextPage) pagination.nextPage()
+        if (pagination.hasNextPage) pagination.nextPage()
         console.log(results)
-        if(!pagination.hasNextPage){
+        if (!pagination.hasNextPage) {
           map.panTo(results[0].geometry.location)
           map.setZoom(13)
         }
@@ -66,13 +72,13 @@ $( function () {
         icon: {
           url: place.icon, // url
           scaledSize: new google.maps.Size(20, 20), // scaled size
-          origin: new google.maps.Point(0,0), // origin
-          anchor: new google.maps.Point(0,0) // anchor
+          origin: new google.maps.Point(0, 0), // origin
+          anchor: new google.maps.Point(0, 0) // anchor
         }
       })
       markers.push(marker)
 
-      google.maps.event.addListener(marker, 'click', function () {
+      google.maps.event.addListener(marker, 'click', function() {
         if (place.photos) {
           var img = `<img src=${place.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150})}>`
         } else {
@@ -81,11 +87,64 @@ $( function () {
         infowindow.setContent(`${img}<div class="infoWindowText">${place.name} @ ${place.formatted_address}</div><br><br><button class="addPlace">Add</button><br>`)
         infowindow.open(map, this)
         console.log(place)
-        $('.addPlace').on('click', function () {
+        $('.addPlace').on('click', function() {
           console.log('button is clicked')
           console.log(place.place_id, place.name, place.formatted_address)
         })
       })
     }
   }
+  $('#selectedTrip').change(function() {
+    var selectedTripID = $('#selectedTrip').serializeArray()[0].value
+    $('.dateOption').remove()
+    $.get(`/trips/${selectedTripID}`).done(function (data) {
+      for (var i = 0; i < data.dates.length; i++) {
+        var $option = $('<option>')
+        $option.addClass('dateOption')
+        $option.val(data.dates[i].date)
+        $option.text(data.dates[i].date)
+        $option.appendTo($('#selectedDate'))
+      }
+    })
+  })
+  $('#showTrip').on('click', function () {
+    var selectedTripID = $('#selectedTrip').serializeArray()[0].value
+    var selectedDate = $('#selectedDate').serializeArray()[0].value
+    console.log(selectedDate);
+    $.get(`/trips/${selectedTripID}`).done(function (data) {
+      console.log(data.name)
+      $('#tripDisplay').text('')
+      var $tripContent = $('<p>')
+      $tripContent.addClass('tripContent')
+      $tripContent.html(`${data.name} <br>`)
+      $tripContent.appendTo($('#tripDisplay'))
+      var selectedDateObj = data.dates.filter(function (date) {
+        return date.date === selectedDate
+      })
+      console.log(selectedDateObj);
+      var $dateContent = $('<p>')
+      $dateContent.addClass('tripContent')
+      $dateContent.html(`${selectedDateObj[0].date} <br> Places: ${selectedDateObj[0].places}`)
+      $dateContent.appendTo($('#tripDisplay'))
+      // for (var i = 0; i < data.dates.length; i++) {
+      // }
+    })
+  })
+  $('#deletedTrip').on('click', function () {
+    var $selectedTripID = $('#selectedTrip').serializeArray()[0].value
+    $.ajax({
+    url: `/trips/${$selectedTripID}`,
+    type: 'DELETE',
+    success: function(data) {
+      console.log(data.name)
+      $('option').filter(`:contains(${data.name})`).remove()
+      $('.dateOption').remove()
+      $('#tripDisplay').text('')
+      var $tripContent = $('<p>')
+      $tripContent.addClass('tripContent')
+      $tripContent.html(`${data.name} is deleted!`)
+      $tripContent.appendTo($('#tripDisplay'))
+      }
+    })
+  })
 })

@@ -1,3 +1,4 @@
+require('dotenv').config()
 const mongoose = require('mongoose')
 const express = require('express')
 const exphbs = require('express-handlebars')
@@ -45,6 +46,7 @@ app.use(flash())
 
 const placesRoute = require('./routes/placeRoute')
 const usersRoute = require('./routes/userRoute')
+const tripsRoute = require('./routes/tripRoute')
 
 app.get('/', function (req, res) {
   res.render('index', {
@@ -54,6 +56,11 @@ app.get('/', function (req, res) {
 
 app.use('/places', placesRoute)
 app.use('/users', usersRoute)
+app.use('/trips', tripsRoute)
+
+app.locals = {
+  GOOGLE_MAPS_KEY: process.env.GOOGLE_MAPS_KEY
+}
 
 const port = process.env.PORT || 5100
 app.listen(port, function () {
