@@ -9,7 +9,8 @@ homeRouter.get('/', function (req, res) {
   if (req.user) {
   	res.render('home/home', {
   		userDisplayName: req.user.name, 
-  		portMktVal: homeController.marketValue
+  		portMktVal: homeController.marketValue(req, res),
+  		ETFList: homeController.fullListETF(req, res)
   	})
   } else {
   	res.render('home/home')  	

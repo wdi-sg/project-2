@@ -1,30 +1,6 @@
 const express = require('express')
 const usersRouter = express.Router()
 const usersController = require('../controllers/usersController')
-
-// /////////////////////////
-// // User Database Related
-// /////////////////////////
-
-// usersRouter.get('/', function (req, res) {
-//   res.render('signUp')
-// })
-
-// usersRouter.get('/signIn', function (req, res) {
-//   res.render('users/signIn')
-// })
-
-// usersRouter.get('/signUp', function (req, res) {
-//   res.render('users/signUp')
-// })
-
-
-// module.exports = usersRouter
-
-// ///////////////////////////////
-// // User Authentication Related
-// ///////////////////////////////
-
 const authController = require('../controllers/usersController')
 const passport = require('../config/passport')
 
@@ -34,7 +10,11 @@ usersRouter.get('/signUp', function (req, res) {
 })
 
 usersRouter.get('/signIn', function (req, res) {
-  res.render('users/signIn')
+  if (!req.user) {
+  	res.render('users/signIn')
+  } else {
+  	// to be handled
+  }
 })
 
 usersRouter.get('/errorMsg', function (req, res) {
@@ -54,7 +34,6 @@ usersRouter.post('/signUp', usersController.signUp)
 	// 	successRedirect: '/home',
  //   		failureRedirect: 'errorMsg'
 	// })
-
 
 usersRouter.get('/signOut', function (req, res) {
 	req.logout()

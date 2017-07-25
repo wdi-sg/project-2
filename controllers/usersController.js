@@ -40,6 +40,15 @@ function signUp (req, res) {
   }) 
 }
 
+module.exports = {
+  signUp
+  //,
+  //signIn
+}
+
+
+
+
 //, { userDisplayName: req.body.user.displayName }
 
 // function signIn (req, res) {
@@ -63,8 +72,3 @@ function signUp (req, res) {
 //   // User.valid(req.body.user.password) // returns true or false
 // }
 
-module.exports = {
-  signUp
-  //,
-  //signIn
-}
