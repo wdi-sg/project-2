@@ -7,13 +7,28 @@ function signUp (req, res) {
     password: req.body.user.password
   })
 
+  console.log(newUser)
+
   newUser.save(function (err, createdUser) {
+    console.log('a')
     if (err) {
+      console.log('b')
       return res.send(err)
     }
-
-    res.redirect('/home') // to show user name in portfolios
+    req.login(createdUser, function(err) {
+      if (err) {
+        console.log('error from req.login(createdUser, error)')
+      } else {
+        return res.redirect('/home')        
+      }
+    })
   })
+    //return createdUser
+    //console.log('New user created successfully. Directing to portfolio home...')
+    //res.redirect('/home') // to show user name in portfolios
+
+//{userDisplayName: req.user.name}
+
 }
 
 //, { userDisplayName: req.body.user.displayName }

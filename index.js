@@ -46,13 +46,26 @@ app.set('view engine', 'handlebars')
 app.use('/home', homeRoute)
 app.use('/users', usersRoute)
 app.get('/', function (req, res) {
-  res.render('index')
+  if (req.user) {
+    res.render('index', {userDisplayName: req.user.name})   
+  } else {
+    res.render('index')   
+  }
 })
+
 app.get('/about', function (req, res) {
-  res.render('about')
+  if (req.user) {
+    res.render('about', {userDisplayName: req.user.name})   
+  } else {
+    res.render('about')   
+  }
 })
 app.get('/contact', function (req, res) {
-  res.render('contact')
+  if (req.user) {
+    res.render('contact', {userDisplayName: req.user.name})   
+  } else {
+    res.render('contact')   
+  }
 })
 
 const port = process.env.PORT || 3000

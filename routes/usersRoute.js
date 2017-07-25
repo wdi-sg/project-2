@@ -47,8 +47,18 @@ usersRouter.post('/signIn',
    failureRedirect: 'errorMsg'
 }))
 
-
-
 usersRouter.post('/signUp', usersController.signUp)
+	//console.log('New user created successfully. Directing to portfolio home...')
+	//console.log()
+	// passport.authenticate('local', {
+	// 	successRedirect: '/home',
+ //   		failureRedirect: 'errorMsg'
+	// })
+
+
+usersRouter.get('/signOut', function (req, res) {
+	req.logout()
+	res.redirect('../')
+})
 
 module.exports = usersRouter

@@ -14,7 +14,7 @@ const userSchema = new Schema({
   password: String
 })
 
-userSchema.pre('save', function (next) {
+//userSchema.pre('save', function (next) {
   // var user = this // this keyword ==> the newUser obj instance
 
   //  // Only hash the password if it has been modified (or is new)
@@ -28,7 +28,7 @@ userSchema.pre('save', function (next) {
   //   user.password = hash
   //   next() // call the save fn
   // })
-})
+//})
 
 userSchema.methods.validPassword = function (givenPassword) {
   // t/f based on the user.hashed compared with form.password

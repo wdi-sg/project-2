@@ -5,8 +5,9 @@ const homeRouter = express.Router()
 homeRouter.get('/', function (req, res) {
   if (req.user) {
   	res.render('home/home', {userDisplayName: req.user.name})  	
+  } else {
+  	res.render('home/home')  	
   }
-  res.render('home/home')
 })
 
 module.exports = homeRouter
