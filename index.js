@@ -6,6 +6,7 @@ const exphbs = require('express-handlebars')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const flash = require('connect-flash')
+const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
 
 const url = process.env.MLAB_URI || 'mongodb://localhost:27017/project-2'
@@ -46,6 +47,7 @@ app.engine('handlebars', exphbs({
   partialsDir: 'views/partials'
 }))
 app.set('view engine', 'handlebars')
+app.use(methodOverride('_method'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(flash())

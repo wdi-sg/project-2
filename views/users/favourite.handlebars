@@ -5,9 +5,12 @@
   <ul multiple>
   {{#each user.carparks as |carpark|}}
     <li>
-      <h3>{{ carpark.name }}</h3></br>
+      <h3>{{ carpark.name }}</h3>
       <p>{{ carpark.address }}</p>
-      <button>delete</button>
+      <p>{{ carpark.id }}
+      <form action="/{{ user.username }}?_method=delete" method="post">
+        <button>Delete</button>
+      </form>
     </li>
   {{else}}
     <li>no place</li>

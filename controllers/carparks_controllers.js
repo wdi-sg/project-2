@@ -16,6 +16,16 @@ function create (req, res) {
   })
 }
 
+function destroy (req, res) {
+  Carpark.findOneAndRemove({ _id: req.params.id }, function (err) {
+    if (err) console.log(err)
+    // res.send('destroyed')
+    res.redirect('/:username')
+    // console.log(req.params)
+  })
+}
+
 module.exports = {
-  create
+  create,
+  destroy
 }
