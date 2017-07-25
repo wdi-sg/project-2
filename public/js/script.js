@@ -6,7 +6,7 @@ $(function () {
     ajaxStop: function () { $body.removeClass('loading') }
   })
   const $carparkSearch = $('#carparkSearch')
-  // maps
+  // maps (from google map API)
   var $map = $('#map')
   var service
   var infowindow = new google.maps.InfoWindow()
@@ -20,6 +20,8 @@ $(function () {
   })
 
   service = new google.maps.places.PlacesService(map)
+
+  // search function
   $carparkSearch.on('submit', function (e) {
     e.preventDefault()
     carparkMarkers.forEach(function (marker) {
@@ -43,6 +45,7 @@ $(function () {
     }
   }
 
+  // for each to create marker and button to add
   function createMarker (place) {
     var placeLoc = place.geometry.location
     var marker = new google.maps.Marker({
@@ -58,7 +61,7 @@ $(function () {
       infowindow.open(map, this)
     })
   }
-
+  // addBtn to add carparks to DB
   $map.on('click', '.addBtn', function (e) {
     e.preventDefault()
     const theBttn = $(this)
@@ -67,7 +70,8 @@ $(function () {
       name: theBttn.data('name'),
       address: theBttn.data('address')
     }
-    $.post('/', newCarpark).done(function(data){
+    // for saving
+    $.post('/', newCarpark).done(function (data) {
       if (data.status === 200) {
         alert('Hurray! ' + data.message)
       }
