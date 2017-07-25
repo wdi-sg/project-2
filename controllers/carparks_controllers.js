@@ -1,23 +1,19 @@
-const Place = require('../models/Carpark')
-
-// logic
+const Carpark = require('../models/Carpark')
 
 function create (req, res) {
   // use req to create new database
-  var newCarpark = new Place({
+  var newCarpark = new Carpark({
     name: req.body.name,
     address: req.body.address,
-    reference: req.body.reference
   })
-  newPlace.save(function (err, newPlace) {
+  newCarpark.save(function (err, newCarpark) {
     if (err) throw err
     res.send({
       status: 200, // 200 means ok
-      message: 'new place created',
+      message: 'new carpark created',
       err: 'ERROR'
     })
   })
-  // Place.create()
 }
 
 module.exports = {

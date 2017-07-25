@@ -20,7 +20,6 @@ $(function () {
   })
 
   service = new google.maps.places.PlacesService(map)
-  // service.textSearch(request, callback)
   $carparkSearch.on('submit', function (e) {
     e.preventDefault()
     carparkMarkers.forEach(function (marker) {
@@ -68,6 +67,10 @@ $(function () {
       name: theBttn.data('name'),
       address: theBttn.data('address')
     }
-    $.post
+    $.post('/', newCarpark).done(function(data){
+      if (data.status === 200) {
+        alert('Hurray! ' + data.message)
+      }
+    })
   })
 })

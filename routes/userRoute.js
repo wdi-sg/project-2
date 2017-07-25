@@ -3,6 +3,8 @@ var router = express.Router()
 
 const usersController = require('../controllers/users_controllers')
 
+const carparksController = require('../controllers/carparks_controllers')
+
 const passport = require('../config/passport')
 
 router.get('/register', function (req, res) {
@@ -19,6 +21,8 @@ router.post('/login',
     failureRedirect: '/login'
   })
 )
+
+router.post('/', carparksController.create)
 
 router.post('/register', usersController.register)
 
