@@ -15,6 +15,10 @@ router.get('/login', function (req, res) {
   res.render('users/login')
 })
 
+router.get('/favourites', function (req, res) {
+  res.render('users/favourite')
+})
+
 router.post('/login',
   passport.authenticate('local', {
     successRedirect: '/',

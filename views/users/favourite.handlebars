@@ -1,0 +1,16 @@
+<h2>Hey there {{ user.username }}, </h2>
+
+<div>
+  <p>These are your favourite carparks: </p>
+  <ul multiple>
+  {{#each user.carparks as |carpark|}}
+    <li>
+      <h3>{{ carpark.name }}</h3></br>
+      <p>{{ carpark.address }}</p>
+      <button>delete</button>
+    </li>
+  {{else}}
+    <li>no place</li>
+  {{/each}}
+</ul>
+</div>

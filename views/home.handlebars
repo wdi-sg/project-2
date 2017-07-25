@@ -1,20 +1,18 @@
 <h2>Hello
 {{#if user }}
   <span> {{user.username}}, </h2></span>
+  <p> where are you driving to? </p>
+
+  <form id="carparkSearch" action="/" method="post">
+    <label>
+      <input type="text" name="keyword" placeholder="location" id="keyword">
+    </label>
+    <button>park where sia!?</button>
+  </form>
+
+  <div id="map"></div>
 {{/if}}
 {{#unless user}}
   <span>kawan kawan</span>,</h2>
+  <p> please log in/ sign up with us</p>
 {{/unless}}
-
-<p> where are you driving to? </p>
-
-<form id="carparkSearch" action="/" method="post">
-  <label>
-    <input type="text" name="keyword" placeholder="location" id="keyword">
-  </label>
-  <button>park where sia!?</button>
-</form>
-
-<div id="map"></div>
-<ul id="searchResults">
-</ul>

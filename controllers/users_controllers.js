@@ -1,4 +1,7 @@
 const User = require('../models/User')
+const Carpark = require('../models/Carpark')
+
+const request = require('request')
 
 function register (req, res) {
   var newUser = new User({
@@ -16,6 +19,22 @@ function register (req, res) {
   })
 }
 
+function show (req, res) {
+  User
+  .findOne({
+    username: req.params.username
+  })
+  .populate('carparks')
+  .exec(function (err, theUser) {
+    if (err) res.send(err)
+
+    res.render('/favourites', {
+      user: theUser
+    })
+  })
+}
+
 module.exports = {
-  register
+  register,
+  show
 }
