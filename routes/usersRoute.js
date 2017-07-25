@@ -37,11 +37,17 @@ usersRouter.get('/signIn', function (req, res) {
   res.render('users/signIn')
 })
 
+usersRouter.get('/errorMsg', function (req, res) {
+  res.render('users/errorMsg')
+})
+
 usersRouter.post('/signIn',
  passport.authenticate('local', {
    successRedirect: '/home',
-   failureRedirect: '/signUp'
- }))
+   failureRedirect: 'errorMsg'
+}))
+
+
 
 usersRouter.post('/signUp', usersController.signUp)
 

@@ -46,9 +46,6 @@ app.set('view engine', 'handlebars')
 app.use('/home', homeRoute)
 app.use('/users', usersRoute)
 app.get('/', function (req, res) {
-  if (req.user) {
-    return res.render('/home/home')
-  }
   res.render('index')
 })
 app.get('/about', function (req, res) {

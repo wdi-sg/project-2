@@ -18,29 +18,29 @@ function signUp (req, res) {
 
 //, { userDisplayName: req.body.user.displayName }
 
-function signIn (req, res) {
-  // find the user by email
+// function signIn (req, res) {
+//   // find the user by email
+//   User
+//   .findOne({
+//     email: req.body.user.email
+//   })
+//   .exec(function (err, foundUser) {
+//     if (err) return res.send(err)
 
-  User
-  .findOne({
-    email: req.body.user.email
-  })
-  .exec(function (err, foundUser) {
-    if (err) return res.send(err)
+//     const formPassword = req.body.user.password
 
-    const formPassword = req.body.user.password
+//     if (foundUser.validPassword(formPassword)) {
+//       res.send('valid, redirect to home')
+//     } else {
+//       res.send('invalid, show flash message')
+//     }
+//   })
 
-    if (foundUser.validPassword(formPassword)) {
-      res.send('valid, redirect to home')
-    } else {
-      res.send('invalid, show flash message')
-    }
-  })
-
-  // User.valid(req.body.user.password) // returns true or false
-}
+//   // User.valid(req.body.user.password) // returns true or false
+// }
 
 module.exports = {
-  signUp,
-  signIn
+  signUp
+  //,
+  //signIn
 }

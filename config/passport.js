@@ -34,15 +34,18 @@ function localVerify (req, passportEmail, passportPassword, next) {
     email: passportEmail
   })
   .exec(function (err, foundUser) {
-    if (err) {
-      console.log('err', err)
+    if (err) { // exceptions thrown 
       return next(err) // go to failureRedirect
     }
 
-    if (foundUser.validPassword(passportPassword)) {
-      console.log('success, redirect to /profile')
-      next(null, foundUser) // go to successRedirect
+    if (!foundUser) return next(err)
+
+    if (foundUser.validPassword(passportPassword)) { // email correct
+      console.log('success, redirect to /home')
+      return next(null, foundUser) // go to successRedirect
     }
+
+    next(err) // password not correct, go to failureRedirect
   })
 }
 
