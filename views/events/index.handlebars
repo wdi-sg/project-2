@@ -1,0 +1,51 @@
+{{!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> --}}
+<h2>Search for events</h2>
+
+<form id="eventSearch" action="#" method="post">
+  <label for="keyword">Search</label>
+  <input type="text" name="keyword" id="keyword" value="">
+
+  <button>Search</button>
+</form>
+{{!-- <ul class="w3-ul w3-card-4">
+  <li class="w3-padding-16">
+    <span onclick="this.parentElement.style.display='none'"
+    class="w3-button w3-white w3-xlarge w3-right">×</span>
+    <img src="img_avatar2.png" class="w3-left w3-circle w3-margin-right" style="width:50px">
+    <span class="w3-large">Mike</span><br>
+    <span>Web Designer</span>
+  </li>
+
+
+  <li class="w3-padding-16">
+    <span onclick="this.parentElement.style.display='none'"
+    class="w3-button w3-white w3-xlarge w3-right">×</span>
+    <img src="img_avatar5.png" class="w3-left w3-circle w3-margin-right" style="width:50px">
+    <span class="w3-large">Jill</span><br>
+    <span>Support</span>
+  </li>
+
+
+  <li class="w3-padding-16">
+    <span onclick="this.parentElement.style.display='none'"
+    class="w3-button w3-white w3-xlarge w3-right">×</span>
+    <img src="img_avatar6.png" class="w3-left w3-circle w3-margin-right" style="width:50px">
+    <span class="w3-large">Jane</span><br>
+    <span>Accountant</span>
+  </li>
+</ul> --}}
+<h2 id="keywordSearch">Results for keyword</h2>
+<img id="spinner"
+data-speed="300" class="hidden" src="img/spinner.gif" alt="loading" width="30">
+<ul id="searchResults">
+  {{!-- <li>
+    <h2>mrs.pho</h2>
+    <p>address</p>
+    <button class="addBttn" data-name="Mrs Pho" data-address="349 Beach Rd, Singapore 199570" data-reference="CmRaAAAA5VGho3fWHJN70QXnnlRViSNwACI-h53TlLKcuXaqr-gLLZErxjkJ8vKcrK65Zq1vKAjxKRylsrG7FeA74rFZAbPAVZwHiCnrBymSzixt8TO8qj5xSQi3-5tZBd0E7P0sEhAvnLBbaKjjgSojQenV2hYrGhReQgXxgrMW80k-vcmyUJ1C8JX1iw">add</button>
+  </li>
+  <li>
+    <h2>pho real</h2>
+    <p>address</p>
+    <button class="addBttn" data-name="pho real" data-address="my hood">add</button>
+  </li> --}}
+</ul>
