@@ -1,0 +1,83 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  height: 80%;
+  width: 80%;
+  margin: 0 auto;
+}
+#map {
+  height: 100%;
+  width: 100%;
+}
+header {
+  background-color: rgb(179, 236, 255);
+  position: relative;
+}
+#homeTitle {
+  width: 75%;
+  display: inline-block;
+}
+#headerButtons {
+  width: 25%;
+  float: right;
+  position: absolute;
+  bottom: 0;
+  display: inline-block;
+  text-align: right;
+}
+#userName {
+  width: 25%;
+  float: right;
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  display: inline-block;
+  text-align: right;
+}
+.headerLi, .tabs {
+  list-style-type: none;
+  display: inline;
+  padding: 0 10px;
+}
+ul {
+  padding: 0;
+}
+.signupForm, .loginForm {
+  width: 20%;
+  margin: 15px auto;
+  display: block;
+  text-align: center;
+}
+.infoWindowText {
+  float: right;
+  max-width: 100px;
+  margin-left: 10px;
+}
+#textSearchInput {
+  width: 300px;
+}
+#textSearchForm {
+  margin-top: 10px;
+}
+.loginButtonsContainer {
+  width: 680px;
+  margin: 0 auto;
+}
+.loginButtons {
+  width: 300px;
+  font-size: 40pt;
+  margin: 0 10px;
+}
+a {
+  text-decoration: none;
+}
+.loginButtonsLinks:hover {
+  text-decoration: none;
+  opacity: 0.5;
+}
+a:hover {
+  text-decoration: underline;
+}

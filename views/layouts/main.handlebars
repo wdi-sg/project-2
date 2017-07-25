@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <header>
+      <div id="homeTitle">
+        <h1>Project 2!</h1>
+      </div>
+      <div id="userName">
+        {{#if user}}
+          <p>Currently logged in as {{user.name}}</p>
+        {{/if}}
+      </div>
+      <div id="headerButtons">
+        <ul>
+          {{#if user}}
+          <li class="headerLi"><a href="/users/profile">Profile</a></li>
+          <li class="headerLi"><a href="/users/logout">Logout</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </header>
+    {{#if user}}
+    <ul>
+      <li class="tabs"><a href="/trips">Manage Trips</a></li>
+      <li class="tabs"><a href="/places">Add Places</a></li>
+      <li class="tabs"><a href="/places/top">Show Top Places</a></li>
+    </ul>
+    {{/if}}
+    {{{body}}}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="/js/script.js" charset="utf-8"></script>
+  </body>
+</html>
