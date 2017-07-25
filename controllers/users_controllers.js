@@ -28,7 +28,7 @@ function show (req, res) {
   .exec(function (err, theUser) {
     if (err) res.send(err)
 
-    res.render('/favourites', {
+    res.render('users/favourite', {
       user: theUser
     })
   })

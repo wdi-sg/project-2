@@ -51,7 +51,6 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(flash())
 
 const usersRoute = require('./routes/userRoute')
-const carparksRoute = require('./routes/carparkRoute')
 
 app.get('/', function (req, res) {
   res.render('home', {

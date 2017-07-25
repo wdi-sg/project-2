@@ -13,7 +13,7 @@
   <a href='/about'>About Us</a>
   {{#if user }}
     <a href="/logout">Logout</a>
-    <a href='/favourites'>Favourite Carparks</a>
+    <a href='/:username'>Favourite Carparks</a>
   {{/if}}
   {{#unless user}}
     <a href='/login'>Log In</a>

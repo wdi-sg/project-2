@@ -15,9 +15,7 @@ router.get('/login', function (req, res) {
   res.render('users/login')
 })
 
-router.get('/favourites', function (req, res) {
-  res.render('users/favourite')
-})
+router.get('/:username', usersController.show)
 
 router.post('/login',
   passport.authenticate('local', {
