@@ -11,14 +11,12 @@ function register (req, res) {
     if (err) {
       return res.send(err)
     }
-
-    res.redirect('/profile')
+    res.redirect('/')
   })
 }
 
 function login (req, res) {
   // find the user by email
-
   User
   .findOne({
     email: req.body.user.email
