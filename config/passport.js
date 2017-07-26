@@ -20,24 +20,6 @@ passport.use(new InstagramStrategy({
     clientSecret: 'a0caafce5b364a05b8153ff37ed050c0',
     callbackURL: "http://localhost:4000/igcallback"
   },
-  // function(accessToken, refreshToken, profile, done) {
-  //   User.findOrCreate({ instagramId: profile.id }, function (err, user) {
-  //     return done(err, user)
-  //   })
-  // }
-
-  // function(accessToken, refreshToken, profile, next) {
-  //   var newUser = new User({
-  //     igId: profile.id,
-  //     username: profile.username
-  //   })
-  //
-  //   newUser.save(function (err, igUser) {
-  //     return next(err, igUser)
-  //   })
-  // }
-
-
   function(accessToken, refreshToken, profile, done) {
       User.findOrCreate({
         igId: profile.id,

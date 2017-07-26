@@ -22,6 +22,7 @@ app.use(session({
   saveUninitialized: true
 }))
 
+app.use(express.static('public'))
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(require('morgan')('dev'))
@@ -38,14 +39,16 @@ app.get('/', function (req, res) {
   //   res.render('/')
   //   // return res.send('hide login link')
   // }
-  res.render('index')
+  res.render('home')
 })
 
-app.get('/profile', function (req, res) {
-  res.render('profile', {
-    user: req.user
-  })
-})
+const profileRoute = require('./routes/profile_routes')
+
+app.use('/profile', profileRoute)
+
+const episodeRoute = require('./routes/episode_routes')
+
+app.use('/episode', episodeRoute)
 
 app.get('/logout', function (req, res){
   req.logout()

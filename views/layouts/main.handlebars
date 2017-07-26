@@ -6,16 +6,19 @@
   </head>
   <body>
 
-  <a href="/iglogin">Login</a>
-  {{#if user}}
+    <a href="/iglogin">Login</a>
+
+    {{#if user}}
       <ul>
         <li>
           <a href="/logout">Logout</a>
         </li>
       </ul>
     {{/if}}
+
     {{{body}}}
 
     <script src="//code.jquery.com/jquery.js"></script>
+    <script src="/js/script.js" charset="utf-8"></script>
   </body>
 </html>
