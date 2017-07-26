@@ -1,7 +1,8 @@
-<h1>Welcome to Project 2</h1>
-{{!-- <div class="homeButtons"> --}}
-  <div class="loginButtonsContainer">
-    <button class="loginButtons"><a class="buttonLinks" href="users/login">LOGIN</a></button>
-    <button class="loginButtons"><a class="buttonLinks" href="users/register">SIGNUP</a></button>
-  </div>
-{{!-- </div> --}}
+{{#if user}}
+<h2>
+  Welcome to Tripanzee, {{user.name}}. Please click on manage trips to get started.
+</h2>
+{{/if}}
+{{#unless user}}
+  <h2>Welcome to Tripanzee! Please signup or login to get started.</h2>
+{{/unless}}

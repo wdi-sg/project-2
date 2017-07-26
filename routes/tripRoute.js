@@ -5,6 +5,8 @@ const tripsController = require('../controllers/trips_controller')
 
 router.get('/', tripsController.showMain)
 
+router.get('/place', tripsController.checkIfPlaceAlreadyAdded)
+
 router.get('/create', function (req, res) {
   res.render('trips/create', {
     user: req.user,
@@ -17,5 +19,7 @@ router.get('/:id', tripsController.showSelected)
 router.post('/', tripsController.create)
 
 router.delete('/:id', tripsController.deleteSelected)
+
+router.put('/:id', tripsController.removePlaceFromTrip)
 
 module.exports = router

@@ -36,17 +36,18 @@ $(function() {
       types: ['establishment']
     })
 
-    // $('#test').on('click', function () {
-    //   service.getDetails({
-    //     placeId: 'ChIJYb3mA_sa2jERZqkAo2winQE'
-    //   }, callbackId)
-    // })
+    if (placeID !== 0) {
+      service.getDetails({
+        placeId: placeID
+      }, callbackId)
+    }
+
 
     function callbackId(results, status) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         createMarker(results)
         map.panTo(results.geometry.location)
-        map.setZoom(13)
+        map.setZoom(16)
       }
     }
 
@@ -71,7 +72,7 @@ $(function() {
         position: place.geometry.location,
         icon: {
           url: place.icon, // url
-          scaledSize: new google.maps.Size(20, 20), // scaled size
+          scaledSize: new google.maps.Size(30, 30), // scaled size
           origin: new google.maps.Point(0, 0), // origin
           anchor: new google.maps.Point(0, 0) // anchor
         }
@@ -84,12 +85,14 @@ $(function() {
         } else {
           img = ''
         }
-        infowindow.setContent(`${img}<div class="infoWindowText">${place.name} @ ${place.formatted_address}</div><br><br><button class="addPlace">Add</button><br>`)
+        infowindow.setContent(`${img}<div class="infoWindowText">${place.name} @ ${place.formatted_address}</div><br><br><button class="addPlace">Add to Trip</button><br>`)
         infowindow.open(map, this)
         console.log(place)
         $('.addPlace').on('click', function() {
           console.log('button is clicked')
           console.log(place.place_id, place.name, place.formatted_address)
+          if ($('#selectedTrip').serializeArray().length === 0) return alert('Please select a trip!')
+          if ($('#selectedDate').serializeArray().length === 0) return alert('Please select a date!')
           var selectedTripID = $('#selectedTrip').serializeArray()[0].value
           var selectedDate = $('#selectedDate').serializeArray()[0].value
           var newPlace = {
@@ -119,7 +122,9 @@ $(function() {
       }
     })
   })
+
   $('#showTrip').on('click', function () {
+    if ($('#selectedTrip').serializeArray().length === 0) return alert('Please select a trip!')
     if ($('#selectedDate').serializeArray().length === 0) return alert('Please select a date!')
     var selectedTripID = $('#selectedTrip').serializeArray()[0].value
     var selectedDate = $('#selectedDate').serializeArray()[0].value
@@ -144,6 +149,7 @@ $(function() {
         var $placeContent = $('<li>')
         var $removeButton = $('<button>')
         var $viewOnMapButton = $('<button>')
+        var $viewOnMapForm = $('<form>')
         var $placeContentButtons = $('<div>')
         var $placeContentContainer = $('<div>')
         $placeContentContainer.addClass('placeContentContainer')
@@ -151,25 +157,47 @@ $(function() {
         $placeContent.addClass('placeContent')
         $removeButton.text(`Remove from ${data.name}`)
         $removeButton.addClass('placeContentButton')
-        $removeButton.appendTo($placeContentButtons)
+        $removeButton.attr('placeID', selectedDateObj[0].places[i]._id)
         $viewOnMapButton.text('View on Google Maps')
         $viewOnMapButton.addClass('placeContentButton')
-        $viewOnMapButton.appendTo($placeContentButtons)
+        $viewOnMapForm.attr({
+          action: `/places/${selectedDateObj[0].places[i].place_id}`,
+          method: 'GET',
+          class: 'form'
+        })
+        $viewOnMapButton.appendTo($viewOnMapForm)
+        $viewOnMapForm.appendTo($placeContentButtons)
+        $placeContentButtons.addClass('placeContentButtons')
         $placeContent.appendTo($placeContentContainer)
+        $removeButton.on('click', function () {
+          var placeID = $(this).attr('placeID')
+          $(this).parents('.placeContentContainer').remove()
+          $.ajax({
+            url: `/trips/${selectedTripID}`,
+            type: 'PUT',
+            data: {
+              tripID: selectedTripID,
+              date: selectedDate,
+              placeID: placeID
+            },
+            success: function (data) {
+              alert(data);
+            }
+          })
+        })
+        $removeButton.appendTo($placeContentButtons)
         $placeContentButtons.appendTo($placeContentContainer)
         $placeContentContainer.appendTo($ul)
-        $removeButton.on('click', function () {
-          $(this).parents('.placeContentContainer').remove()
-        })
       }
       $ul.appendTo($('#tripDisplay'))
     })
   })
+
   $('#deletedTrip').on('click', function () {
     if (confirm('Are you sure?')){
-      var $selectedTripID = $('#selectedTrip').serializeArray()[0].value
+      var selectedTripID = $('#selectedTrip').serializeArray()[0].value
       $.ajax({
-        url: `/trips/${$selectedTripID}`,
+        url: `/trips/${selectedTripID}`,
         type: 'DELETE',
         success: function(data) {
           console.log(data.name)

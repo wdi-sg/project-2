@@ -39,9 +39,14 @@ header {
   display: inline-block;
   text-align: right;
 }
+.nav {
+  display: block;
+  width: 383px;
+  margin: 10px auto;
+}
 .headerLi, .tabs {
   list-style-type: none;
-  display: inline;
+  display: inline-block;
   padding-right: 10px;
 }
 ul {
@@ -77,9 +82,12 @@ ul {
 a {
   text-decoration: none;
 }
+.buttonLinks {
+  color: black;
+}
 .buttonLinks:hover {
   text-decoration: none;
-  opacity: 0.8;
+  cursor: default;
 }
 a:hover {
   text-decoration: underline;
@@ -97,6 +105,16 @@ a:hover {
 .placeContent {
   font-size: 20pt;
   text-align: justify;
+  width: 60%;
+  float: left;
+}
+.form{
+  display: inline;
+}
+
+.placeContentButtons {
+  width: 30%;
+  float: right;
 }
 .placeContentButton {
   margin-right: 10px;

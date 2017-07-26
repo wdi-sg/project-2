@@ -46,7 +46,9 @@ function create (req, res) {
       user.save()
     })
     req.flash('message', 'New Trip Created.')
-    return res.redirect('/trips/create')
+    return req.session.save(function () {
+      res.redirect('/trips/create')
+    })
   })
 }
 
@@ -61,8 +63,7 @@ function showMain (req, res) {
     }
     res.render('trips/index', {
       theUser: foundUser,
-      user: req.user,
-      flash: req.flash('message')
+      user: req.user
     })
   })
 }
@@ -121,9 +122,63 @@ function deleteSelected(req, res) {
   })
 }
 
+function removePlaceFromTrip(req, res) {
+  Trip.findOne({
+    _id: req.body.tripID
+  }, function (err, foundTrip) {
+    if (err) return res.send(err)
+    foundTrip.dates.forEach(function(date) {
+      if (date.date === req.body.date) {
+        var index = date.places.findIndex(function (placeID) {
+          return placeID == req.body.placeID
+        })
+        if (index !== -1) {
+          date.places.splice(index, 1)
+        }
+      }
+    })
+    foundTrip.save()
+  })
+  Place.findOne({
+    _id: req.body.placeID
+  }, function (err, foundPlace) {
+    if (err) return res.send(err)
+    var index = foundPlace.trips.findIndex(function (trip) {
+      return trip == req.body.tripID
+    })
+    if (index !== -1) {
+      foundPlace.trips.splice(index, 1)
+      foundPlace.save()
+      return res.send('deleted!')
+    } else {
+      return res.send('fail to delete')
+    }
+  })
+}
+
+function checkIfPlaceAlreadyAdded (req, res) {
+  Trip.findOne({
+    _id: req.body.id
+  }, function (err, foundTrip) {
+    if (err) return res.send(err)
+    foundTrip.dates.forEach(function (date) {
+      if (date.date === req.body.date) {
+        Place.count({
+          place_id: req.body.place_id
+        }, function (err, placeCount) {
+          if (err) res.send(err)
+          return res.send(placeCount)
+        })
+      }
+    })
+  })
+}
+
 module.exports = {
   create,
   showMain,
   showSelected,
-  deleteSelected
+  deleteSelected,
+  removePlaceFromTrip,
+  checkIfPlaceAlreadyAdded
 }

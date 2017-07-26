@@ -16,12 +16,6 @@ router.get('/register', function (req, res) {
   })
 })
 
-router.get('/home', function (req, res) {
-  res.render('users/home', {
-    user: req.user
-  })
-})
-
 router.get('/logout', function (req, res) {
   req.logout()
   res.redirect('/')
@@ -29,7 +23,7 @@ router.get('/logout', function (req, res) {
 
 router.post('/', usersController.register)
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/users/profile',
+  successRedirect: '/',
   failureRedirect: '/users/login'
 }))
 

@@ -54,31 +54,56 @@ function createOrUpdate(req, res) {
       Place.findOne({
         place_id: req.body.place_id
       }, function(err, foundPlace) {
-        if (err) res.send(err)
+        if (err) return res.send(err)
         Trip.findOne({
           _id: req.body.id
         }, function(err, foundTrip) {
           if (err) return res.send(err)
           foundTrip.dates.forEach(function(date) {
             if (date.date === req.body.date) {
-              date.places.push(foundPlace.id)
+              var index = date.places.findIndex(function (place) {
+                return place == foundPlace.id
+              })
+              if (index !== -1) {
+                return res.send('Already Added Before!')
+              } else {
+                date.places.push(foundPlace.id)
+                foundTrip.save()
+                if (foundPlace.trips.findIndex(function (id) {
+                  return id == foundTrip.id
+                }) === -1) {
+                  foundPlace.trips.push(foundTrip.id)
+                  foundPlace.save()
+                }
+                return res.send('updated')
+              }
             }
           })
-          foundTrip.save()
-          if (foundPlace.trips.findIndex(function (id) {
-            return id == foundTrip.id
-          }) === -1) {
-            foundPlace.trips.push(foundTrip.id)
-            foundPlace.save()
-          }
         })
-        return res.send('updated')
       })
     }
   })
 }
 
+function showOneOnMap (req, res) {
+  User.findOne({
+    _id: req.user.id
+  })
+  .populate('trips')
+  .exec(function (err, foundUser) {
+    if (err) {
+      return res.send(err)
+    }
+    res.render('places/index', {
+      theUser: foundUser,
+      user: req.user,
+      placeID: req.params.id
+    })
+  })
+}
+
 module.exports = {
   showMain,
-  createOrUpdate
+  createOrUpdate,
+  showOneOnMap
 }
