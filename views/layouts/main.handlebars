@@ -9,28 +9,20 @@
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   </head>
+
   <body>
     <div class="container">
-      <h1>{{country.ISOcode}}</h1>
-      <h1>Vacay</h1>
       <header>
-      <ul>
-        <li><a href="/register">Signup</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/logout">Logout</a></li>
-        <li><a href="/profile">Profile</a></li>
-      </ul>
-    </header>
-
-      {{#if user}}
         <ul>
-          <li>
-            <a href="/logout">Logout</a>
-          </li>
-        </ul>
-      {{/if}}
-
-      {{{ body }}}
+          <li><a href="/register">Signup</a></li>
+          {{#if user}}
+          <li><a href="/login">Login</a></li>
+          {{/if}}
+          {{#unless user}}
+          <li><a href="/logout">Logout</a></li>
+          {{/unless}}
+      </header>
+          {{{ body }}}
     </div>
 
     <script src="//code.jquery.com/jquery.js"></script>

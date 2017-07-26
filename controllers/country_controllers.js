@@ -1,9 +1,15 @@
 const Country = require('../models/Country')
 
 function search (req, res) {
-  Country.find({}, function (err, doc) {
-      res.send(doc)
+  Country.findOne({
+    name: req.body.searchInput
+  }, function (err, theCountry) {
+    if (err) res.send(err)
+
+    res.render('country', {
+      country: theCountry
     })
+  })
 }
 
 module.exports = {
