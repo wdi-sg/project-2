@@ -13,14 +13,15 @@ Portfolio Market Value (as of MM-DD-YYYY): ${{portMktVal}}
 <br>
 <br>
 
-<form method="post">	
-	<select name="selectETF">
-	{{#each instrumentsList as |instrument|}}
-		<option value="{{ instrument.id }}">{{instrument.name}}</option>
-	{{/each}}
+<form action="" id="transact" method="post">	
+	<select id="instrumentsMenu">
+		<option value="" selected></option>
+		{{#each instrumentsList as |instrument|}}
+			<option value="{{ instrument.id }}">{{instrument.name}}</option>
+		{{/each}}
 	</select>
-	<a class="buyInstrument" href="/">Buy</a>
-	<a class="sellInstrument" href="/">Sell</a>
+	<a id="buyInstrument" href="">Buy</a>
+	<a class="sellInstrument" href="">Sell</a>
 </form>
 
 <br>
@@ -32,4 +33,4 @@ Portfolio Market Value (as of MM-DD-YYYY): ${{portMktVal}}
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<!-- <script src="script.js"></script> -->
+<script src="script/script.js"></script>

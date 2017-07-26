@@ -5,10 +5,10 @@ const positionSchema = new Schema({
   date: Date,
   quantity: Number,
   price: Number,
-  instrument: [{
+  instrument: {
     type: Schema.Types.ObjectId,
     ref: 'Instrument'
-  }]
+  } // need to include square brackets if one-to-one?
 })
 
 const Position = mongoose.model('Position', positionSchema)

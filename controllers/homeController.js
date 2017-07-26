@@ -16,27 +16,6 @@ function marketValue (req, res) {
 	return 12
 }
 
-// buy ETF
-function addPosition (req, res) {
-
-}
-
-// sell ETF
-
-// 
-
-// retrieve 'universal' list of ETFs
-// function instrumentsList (req, res) {
-// 	// var aa = Instrument.find({})
-// 	// 	console.log(aa)
-// 	// return aa
-//   Instrument.find({}, function (err, foundList) {
-//     if (err) res.send(err)
-//     //console.log('xyxyxyxyx ', foundList)
-//     res.send(foundList)	 // foundList	
-//     })
-//   // //return 34
-// }
 
 function buildPage (req, res) {
 
@@ -55,10 +34,66 @@ function buildPage (req, res) {
 	})
 }
 
+// buy ETF
+function addPosition (req, res) {
+	console.log('in add Position: just id: ', req.body.instrumentID)
+
+	//Instrument.findOne({}, function (err, instrumentsList) {
+
+	// find portfolio first
+	
+	console.log('xxx user ID: ', req.user.id)
+
+
+	User.findOne({_id: req.user.id}).exec(function (err, result) {
+		console.log(result)
+	})
+	// .populate('portfolio')
+	// .exec(function (err, userPortfolio) {
+	// 	if (err) res.send(err)
+	// 	// if (!userPortfolio) { // no portfolio yet
+	// 	// 	var newPortfolio = 
+	// 	// }
+
+	// })
+
+
+	// var newPosition = new Position ({
+	//   date: new Date().toISOString(),
+	//   quantity: 1,
+	//   price: 23.00, // to be retrieved from API
+	//   instrument: req.body.instrumentID // only one instance of instrument to one position
+	// })
+    
+	// console.log(newPosition)
+
+	// newPosition
+	// .populate('instrument')
+	// .exec(function (err, jb) {
+ //  		if (err) throw err
+ //  		console.log(jb)
+	// })
+
+	// newPosition.save(function (err, createdPosition) {
+	// 	if (err) res.send(err)
+ //      	createdPosition.songs.push(createdSong.id)
+	// 	createdAlbum.save()
+	// })
+
+    	//if (err) res.send(err)
+
+
+
+	res.render('home/home')
+}
+
+// sell ETF
+
 
 module.exports = {
 	marketValue,
-	buildPage
+	buildPage,
+	addPosition
 }
 
 // retrieve 'universal' list of ETFs
