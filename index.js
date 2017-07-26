@@ -61,7 +61,9 @@ app.get('/', function (req, res) {
 })
 
 app.get('/about', function (req, res) {
-  res.render('about')
+  res.render('about', {
+    user: req.user
+  })
 })
 
 app.get('/logout', function (req, res) {

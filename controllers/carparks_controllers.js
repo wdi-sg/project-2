@@ -1,4 +1,5 @@
 const Carpark = require('../models/Carpark')
+const User = require('../models/User')
 
 function create (req, res) {
   // use req to create new database
@@ -10,22 +11,21 @@ function create (req, res) {
     if (err) throw err
     res.send({
       status: 200, // 200 means ok
-      message: 'new carpark created',
+      message: 'new carpark added to your favourites!',
       err: 'ERROR'
     })
   })
-}
-
-function destroy (req, res) {
-  Carpark.findOneAndRemove({ _id: req.params.id }, function (err) {
+  User.findOne({
+    username: req.user.username
+  },
+  function (err, foundUser) {
     if (err) console.log(err)
-    // res.send('destroyed')
-    res.redirect('/:username')
-    // console.log(req.params)
+
+    foundUser.carparks.push(newCarpark.id)
+    foundUser.save()
   })
 }
 
 module.exports = {
-  create,
-  destroy
+  create
 }

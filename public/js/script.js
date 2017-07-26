@@ -75,7 +75,7 @@ $(function () {
     // for saving
     $.post('/', newCarpark).done(function (data) {
       if (data.status === 200) {
-        alert('Hurray! ' + data.message)
+        alert('HUAT AH! ' + data.message)
       }
     })
   })

@@ -28,6 +28,6 @@ router.post('/', carparksController.create)
 
 router.post('/register', usersController.register)
 
-router.delete('/:username', carparksController.destroy)
+router.post('/:username', usersController.destroy)
 
 module.exports = router

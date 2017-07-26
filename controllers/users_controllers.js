@@ -27,14 +27,33 @@ function show (req, res) {
   .populate('carparks')
   .exec(function (err, theUser) {
     if (err) res.send(err)
-
+    // res.send(req.params.username)
     res.render('users/favourite', {
       user: theUser
+      // loggedInUser: req.user
     })
+  })
+}
+
+function destroy (req, res) {
+  // console.log(req.params)
+  User.findOne({
+    user: req.user.username
+  },
+  function (err, foundUser) {
+    if (err) console.log(err)
+    foundUser.carparks.findIndex(function (id) {
+
+    })
+    console.log(req.body)
+    // res.send('destroyed')
+    res.redirect('/:username')
+    // console.log(req.params)
   })
 }
 
 module.exports = {
   register,
-  show
+  show,
+  destroy
 }
