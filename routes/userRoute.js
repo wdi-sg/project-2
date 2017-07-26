@@ -26,6 +26,6 @@ router.post('/login',
 
 router.post('/register', usersController.register)
 
-router.delete('/:id', usersController.destroy)
+router.delete('/delete', usersController.destroy)
 
 module.exports = router

@@ -7,7 +7,8 @@
         <li>
           <h3>{{ carpark.name }}</h3>
           <p>{{ carpark.address }}</p>
-          <form action="/users/{{ user.id }}?_method=delete" method="post">
+          <p>{{ carpark.id }}</p>
+          <form action="/users/delete?_method=delete" method="post">
             <button>Delete</button>
           </form>
         </li>
