@@ -13,7 +13,7 @@ function marketValue (req, res) {
 	//console.log('aaaaaaaaaaa REQ', req)
 	console.log('aaaaaaaaaaa REQ.USER aaaaaaaaaaaaa')
 	console.log(req.user)
-	return 0
+	return 12
 }
 
 // buy ETF
@@ -26,18 +26,39 @@ function addPosition (req, res) {
 // 
 
 // retrieve 'universal' list of ETFs
-function fullListETF (req, res) {
-  Instrument.find({}, function (err, foundList) {
-    if (err) res.send(err)
-    //console.log('xyxyxyxyx ', foundList)
-    return foundList	
-    })
+// function instrumentsList (req, res) {
+// 	// var aa = Instrument.find({})
+// 	// 	console.log(aa)
+// 	// return aa
+//   Instrument.find({}, function (err, foundList) {
+//     if (err) res.send(err)
+//     //console.log('xyxyxyxyx ', foundList)
+//     res.send(foundList)	 // foundList	
+//     })
+//   // //return 34
+// }
+
+function buildPage (req, res) {
+
+// nested callback to find retrieve required data before rendering page?
+// http://blog.revathskumar.com/2015/07/using-promises-with-mongoosejs.html
+// callback hell?
+
+	Instrument.find({}, function (err, instrumentsList) {
+    	if (err) res.send(err)
+
+    	res.render('home/home', {
+  			userDisplayName: req.user.name, 
+  			portMktVal: marketValue(req, res),
+  			instrumentsList: instrumentsList
+  		})
+	})
 }
 
 
 module.exports = {
 	marketValue,
-	fullListETF
+	buildPage
 }
 
 // retrieve 'universal' list of ETFs

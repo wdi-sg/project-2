@@ -7,13 +7,9 @@ homeRouter.get('/', function (req, res) {
   // get user info
   
   if (req.user) {
-  	res.render('home/home', {
-  		userDisplayName: req.user.name, 
-  		portMktVal: homeController.marketValue(req, res),
-  		ETFList: homeController.fullListETF(req, res)
-  	})
+    homeController.buildPage(req,res)
   } else {
-  	res.render('home/home')  	
+  	res.redirect('./') // user not signed in; redirect to public Welcome page   	
   }
 })
 

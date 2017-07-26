@@ -1,5 +1,5 @@
 <br>
-Portfolio Overview - Private Page (home.handlebars)
+<b>Portfolio Overview - Private Page (home.handlebars)</b>
 
 <br>
 <br>
@@ -11,41 +11,18 @@ Portfolio Market Value (as of MM-DD-YYYY): ${{portMktVal}}
 <b>Transact</b>
 
 <br>
-
-xx
-{{instrumentList}}
-yy
-
-{{#each instrumentList as |instrument|}}
-        <option value="{{ instrument.id }}">{{instrument.name}}</option>
-{{/each}}
-<br>zz
-
 <br>
 
-<form method="post">
-	<a class="buyETF" href="/">Buy</a>
+<form method="post">	
 	<select name="selectETF">
-	    <option value="double chocolate">Double Chocolate</option>
-	    <option value="vanilla">Vanilla</option>
-	    <option value="strawberry">Strawberry</option>
-	    <option value="caramel">Caramel</option>
+	{{#each instrumentsList as |instrument|}}
+		<option value="{{ instrument.id }}">{{instrument.name}}</option>
+	{{/each}}
 	</select>
+	<a class="buyInstrument" href="/">Buy</a>
+	<a class="sellInstrument" href="/">Sell</a>
 </form>
 
-<form method="post">
-	<a href="/">Sell</a>
-	<select name="ETFs">
-	    <option value="double chocolate">Double Chocolate</option>
-	    <option value="vanilla">Vanilla</option>
-	    <option value="strawberry">Strawberry</option>
-	    <option value="caramel">Caramel</option>
-	</select>
-</form>
-
-<br>
-<br>
-<br>
 <br>
 
 <b>Positions</b>
