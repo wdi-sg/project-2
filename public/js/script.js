@@ -90,6 +90,18 @@ $(function() {
         $('.addPlace').on('click', function() {
           console.log('button is clicked')
           console.log(place.place_id, place.name, place.formatted_address)
+          var selectedTripID = $('#selectedTrip').serializeArray()[0].value
+          var selectedDate = $('#selectedDate').serializeArray()[0].value
+          var newPlace = {
+            place_id: place.place_id,
+            name: place.name,
+            address: place.formatted_address,
+            id: selectedTripID,
+            date: selectedDate
+          }
+          $.post('/places', newPlace).done(function (data) {
+              alert(data)
+          })
         })
       })
     }
@@ -108,11 +120,12 @@ $(function() {
     })
   })
   $('#showTrip').on('click', function () {
+    if ($('#selectedDate').serializeArray().length === 0) return alert('Please select a date!')
     var selectedTripID = $('#selectedTrip').serializeArray()[0].value
     var selectedDate = $('#selectedDate').serializeArray()[0].value
-    console.log(selectedDate);
+    // console.log(selectedDate);
     $.get(`/trips/${selectedTripID}`).done(function (data) {
-      console.log(data.name)
+      // console.log(data.name)
       $('#tripDisplay').text('')
       var $tripContent = $('<p>')
       $tripContent.addClass('tripContent')
@@ -123,28 +136,52 @@ $(function() {
       })
       console.log(selectedDateObj);
       var $dateContent = $('<p>')
+      var $ul = $('<ul>')
       $dateContent.addClass('tripContent')
-      $dateContent.html(`${selectedDateObj[0].date} <br> Places: ${selectedDateObj[0].places}`)
+      $dateContent.html(`${selectedDateObj[0].date} <br>`)
       $dateContent.appendTo($('#tripDisplay'))
-      // for (var i = 0; i < data.dates.length; i++) {
-      // }
+      for (var i = 0; i < selectedDateObj[0].places.length; i++) {
+        var $placeContent = $('<li>')
+        var $removeButton = $('<button>')
+        var $viewOnMapButton = $('<button>')
+        var $placeContentButtons = $('<div>')
+        var $placeContentContainer = $('<div>')
+        $placeContentContainer.addClass('placeContentContainer')
+        $placeContent.html(`${selectedDateObj[0].places[i].name} @ ${selectedDateObj[0].places[i].address}<br>`)
+        $placeContent.addClass('placeContent')
+        $removeButton.text(`Remove from ${data.name}`)
+        $removeButton.addClass('placeContentButton')
+        $removeButton.appendTo($placeContentButtons)
+        $viewOnMapButton.text('View on Google Maps')
+        $viewOnMapButton.addClass('placeContentButton')
+        $viewOnMapButton.appendTo($placeContentButtons)
+        $placeContent.appendTo($placeContentContainer)
+        $placeContentButtons.appendTo($placeContentContainer)
+        $placeContentContainer.appendTo($ul)
+        $removeButton.on('click', function () {
+          $(this).parents('.placeContentContainer').remove()
+        })
+      }
+      $ul.appendTo($('#tripDisplay'))
     })
   })
   $('#deletedTrip').on('click', function () {
-    var $selectedTripID = $('#selectedTrip').serializeArray()[0].value
-    $.ajax({
-    url: `/trips/${$selectedTripID}`,
-    type: 'DELETE',
-    success: function(data) {
-      console.log(data.name)
-      $('option').filter(`:contains(${data.name})`).remove()
-      $('.dateOption').remove()
-      $('#tripDisplay').text('')
-      var $tripContent = $('<p>')
-      $tripContent.addClass('tripContent')
-      $tripContent.html(`${data.name} is deleted!`)
-      $tripContent.appendTo($('#tripDisplay'))
-      }
-    })
+    if (confirm('Are you sure?')){
+      var $selectedTripID = $('#selectedTrip').serializeArray()[0].value
+      $.ajax({
+        url: `/trips/${$selectedTripID}`,
+        type: 'DELETE',
+        success: function(data) {
+          console.log(data.name)
+          $('option').filter(`:contains(${data.name})`).remove()
+          $('.dateOption').remove()
+          $('#tripDisplay').text('')
+          var $tripContent = $('<p>')
+          $tripContent.addClass('tripContent')
+          $tripContent.html(`${data.name} is deleted!`)
+          $tripContent.appendTo($('#tripDisplay'))
+        }
+      })
+    }
   })
 })

@@ -11,6 +11,10 @@ var placeSchema = new Schema({
   trips: [{
     type: Schema.Types.ObjectId,
     ref: 'Trip'
+  }],
+  users: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }]
 })
 

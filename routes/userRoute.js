@@ -16,8 +16,8 @@ router.get('/register', function (req, res) {
   })
 })
 
-router.get('/profile', function (req, res) {
-  res.render('users/profile', {
+router.get('/home', function (req, res) {
+  res.render('users/home', {
     user: req.user
   })
 })

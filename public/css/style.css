@@ -85,7 +85,7 @@ a:hover {
   text-decoration: underline;
 }
 .tripButtons {
-  margin: 0 10px;
+  margin-left: 20px;
 }
 #selectedTrip {
   width: 200px;
@@ -93,4 +93,13 @@ a:hover {
 .tripContent {
   font-size: 30pt;
   text-align: center;
+}
+.placeContent {
+  font-size: 20pt;
+  text-align: justify;
+}
+.placeContentButton {
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

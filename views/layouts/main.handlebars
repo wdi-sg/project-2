@@ -18,7 +18,7 @@
       <div id="headerButtons">
         <ul>
           {{#if user}}
-          <li class="headerLi"><a href="/users/profile">Profile</a></li>
+          <li class="headerLi"><a href="/users/home">Home</a></li>
           <li class="headerLi"><a href="/users/logout">Logout</a></li>
           {{/if}}
         </ul>
@@ -30,6 +30,7 @@
         <li class="tabs"><a href="/trips">Manage Trips</a></li>
         <li class="tabs"><a href="/places">Add Places</a></li>
         <li class="tabs"><a href="/places/top">Show Top Places</a></li>
+        <li class="tabs"><a href="/places/favorites">Favorites</a></li>
       </ul>
       {{/if}}
       {{{body}}}
