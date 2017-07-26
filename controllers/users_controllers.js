@@ -15,7 +15,7 @@ function register (req, res) {
       return res.send(err)
     }
 
-    res.redirect('/login')
+    res.redirect('/users/login')
   })
 }
 
