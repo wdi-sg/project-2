@@ -6,7 +6,7 @@ const portfolioSchema = new Schema({
     type: String,
     required: [true, 'Portfolio name required']
   },
-  position: [{
+  positions: [{
     type: Schema.Types.ObjectId,
     ref: 'Position'
   }]

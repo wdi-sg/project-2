@@ -1,3 +1,4 @@
+<body>
 <br>
 <b>Portfolio Overview - Private Page (home.handlebars)</b>
 
@@ -21,16 +22,21 @@ Portfolio Market Value (as of MM-DD-YYYY): ${{portMktVal}}
 		{{/each}}
 	</select>
 	<a id="buyInstrument" href="">Buy</a>
-	<a class="sellInstrument" href="">Sell</a>
 </form>
 
 <br>
 
 <b>Positions</b>
 <br>
-{{positions}}
+<ul id='positionUl'>
+	{{#each portHolding as |position|}}
+		<li id="{{ position.id }}"><b>Name:</b> {{position.instrument.name}}, <b<b>Qty:</b> {{position.quantity}}, <b>Unit Cost:</b> {{position.unitCost}}<a id="sellInstrument:{{ position.id }}" href="">Sell</a></li>
+	{{/each}}
+</ul>
+
 
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="script/script.js"></script>
+</body>

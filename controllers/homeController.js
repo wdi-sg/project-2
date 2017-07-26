@@ -4,14 +4,14 @@ const Position = require('../models/Position')
 const Instrument = require('../models/Instrument')
 
 // return user's current portfolio positions
-function listPositions (req, res) {
+function portHoldings (req, res) {
 	console.log(req)
 }
 
 // return user's portfolio market value as of DD MM YYYY
 function marketValue (req, res) {
 	//console.log('aaaaaaaaaaa REQ', req)
-	console.log('aaaaaaaaaaa REQ.USER aaaaaaaaaaaaa')
+	console.log('fn:marketValue:REQ.USER')
 	console.log(req.user)
 	return 12
 }
@@ -26,65 +26,148 @@ function buildPage (req, res) {
 	Instrument.find({}, function (err, instrumentsList) {
     	if (err) res.send(err)
 
-    	res.render('home/home', {
-  			userDisplayName: req.user.name, 
-  			portMktVal: marketValue(req, res),
-  			instrumentsList: instrumentsList
-  		})
+    	User
+		.findOne({_id: req.user.id})
+		.exec(function (err, foundUser) {
+
+			//console.log('portfolio ID: ', foundUser.portfolio[0])
+
+			Portfolio
+			.findOne({_id: foundUser.portfolio[0]})
+			.exec(function (err, foundPortfolio) {
+
+				if (!foundPortfolio) {
+					res.render('home/home', {
+			  			userDisplayName: req.user.name, 
+			  			portMktVal: 5, // marketValue(req, res),
+			  			instrumentsList: instrumentsList
+		  			})
+				} else {
+
+					// for (var pos=0; pos<foundPortfolio.positions.length; pos++) {
+					// 	var position = foundPortfolio.positions[pos]
+					// 	//console.log(pos+': '+position)
+					// 	Instrument.findOne
+					// }
+
+
+					//console.log('fn: buildPage: ', foundPortfolio.positions)
+
+					Position // find all positions given an array of positions IDs  
+					.find({
+						_id: {
+							$in: foundPortfolio.positions
+						}
+					}, function(err, foundInstruments) {
+						// populate an array of positions
+						Instrument.populate(foundInstruments, 'instrument', function (err, populatedInstruments) {
+
+							//console.log('fn:buildPage ', populatedInstruments)
+
+							//populatedInstruments[].instrument.name
+			
+							res.render('home/home', {
+					  			userDisplayName: req.user.name, 
+					  			portMktVal: 6, //marketValue(req, res),
+					  			instrumentsList: instrumentsList,
+					  			portHolding: populatedInstruments				  		
+				  			})
+				  			console.log('buildpage rendering is done...',Date())
+						})
+					})
+
+
+					// Position // find all positions given an array of positions IDs  
+					// .find({
+					// 	_id: {
+					// 		$in: foundPortfolio.positions
+					// 	}
+					// }, function(err, foundInstruments) {
+
+					// 	Instrument.populate(foundInstruments, 'instrument', function (err, instr) {
+					// 		console.log(instr)
+					// 	})
+					// 	// for (var pos=0; pos<foundPortfolio.positions.length; pos++) {
+					// 	// var position = foundPortfolio.positions[pos]
+
+					// 	// foundInstruments.populate('instrument')
+					// })
+
+					// foundPortfolio
+					// .find() // find all portfolio holdings
+					// .exec(function (err, xxx) {
+					// 	res.render('home/home', {
+				 //  			userDisplayName: req.user.name, 
+				 //  			portMktVal: marketValue(req, res),
+				 //  			instrumentsList: instrumentsList,
+				 //  			portHolding: portfolio(req,res)
+			  // 			})	
+					// })								
+				}
+			})
+		})		    	
 	})
 }
 
 // buy ETF
 function addPosition (req, res) {
-	console.log('in add Position: just id: ', req.body.instrumentID)
+	//console.log('in add Position: just id: ', req.body.instrumentID)
 
-	//Instrument.findOne({}, function (err, instrumentsList) {
-
-	// find portfolio first
-	
-	console.log('xxx user ID: ', req.user.id)
+	//console.log('fn:addPosition: user ID: ', req.user.id)
 
 
-	User.findOne({_id: req.user.id}).exec(function (err, result) {
-		console.log(result)
+	User
+	.findOne({_id: req.user.id})
+	.exec(function (err, foundUser) {
+
+		//console.log('portfolio ID: ', foundUser.portfolio[0])
+
+		Portfolio
+		.findOne({_id: foundUser.portfolio[0]})
+		.exec(function (err, foundPortfolio) {
+
+			//console.log('portfolio name: ', foundPortfolio)
+
+			var newPosition = new Position ({
+			  date: new Date().toISOString(),
+			  quantity: 1,
+			  unitCost: 23.00, // to be retrieved from API
+			  instrument: req.body.instrumentID // only one instance of instrument to one position
+			})
+
+			//console.log('fn:addPosition: new position: ', newPosition)
+
+			newPosition.save(function (err, savedPosition) {
+				if (err) res.send(err)
+      			foundPortfolio.positions.push(savedPosition.id)
+				foundPortfolio.save(function (err, savePortfolio) {
+					console.log('save is done...',Date())
+					//buildPage(req,res)					
+
+					//console.log('xxxxyyyy ', savedPosition)
+
+					savedPosition
+					.populate('instrument', function (err, populatedPosition) {
+						console.log('in newpos.save: ', populatedPosition)
+						res.send({
+							savedPosition: populatedPosition
+						})
+					})
+				})
+
+				// Instrument.find({}, function (err, instrumentsList) {
+    // 				if (err) res.send(err)
+
+				// 	res.render('home/home', {
+				// 	  			userDisplayName: req.user.name, 
+				// 	  			portMktVal: marketValue(req, res),
+				// 	  			instrumentsList: instrumentsList,
+				// 	  			portHolding: populatedInstruments
+				//   	})
+				// })
+			})
+		}) 
 	})
-	// .populate('portfolio')
-	// .exec(function (err, userPortfolio) {
-	// 	if (err) res.send(err)
-	// 	// if (!userPortfolio) { // no portfolio yet
-	// 	// 	var newPortfolio = 
-	// 	// }
-
-	// })
-
-
-	// var newPosition = new Position ({
-	//   date: new Date().toISOString(),
-	//   quantity: 1,
-	//   price: 23.00, // to be retrieved from API
-	//   instrument: req.body.instrumentID // only one instance of instrument to one position
-	// })
-    
-	// console.log(newPosition)
-
-	// newPosition
-	// .populate('instrument')
-	// .exec(function (err, jb) {
- //  		if (err) throw err
- //  		console.log(jb)
-	// })
-
-	// newPosition.save(function (err, createdPosition) {
-	// 	if (err) res.send(err)
- //      	createdPosition.songs.push(createdSong.id)
-	// 	createdAlbum.save()
-	// })
-
-    	//if (err) res.send(err)
-
-
-
-	res.render('home/home')
 }
 
 // sell ETF

@@ -12,8 +12,11 @@ homeRouter.get('/', function (req, res) {
 
 homeRouter.post('/', function (req, res) {
   if (req.user) {
-  	console.log('in homeRouter.post: ', req.body)
+  	//console.log('in homeRouter.post: ', req.body)
     homeController.addPosition(req, res)
+    // res.render('/', function (err, html) {
+    //   console.log('render is done...', Date())
+    // })
     //homeController.buildPage(req,res)
   } else {
   	res.redirect('./') // user not signed in; redirect to public Welcome page   	
