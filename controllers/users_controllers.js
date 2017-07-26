@@ -22,7 +22,7 @@ function register (req, res) {
 function show (req, res) {
   User
   .findOne({
-    username: req.params.username
+    _id: req.params.id
   })
   .populate('carparks')
   .exec(function (err, theUser) {
@@ -35,16 +35,16 @@ function show (req, res) {
 }
 
 function destroy (req, res) {
-  // console.log(req.params)
+  console.log(req.params)
   User.findOne({
-    user: req.user.username
+    _id: req.params.id
   },
   function (err, foundUser) {
     if (err) console.log(err)
     console.log(foundUser)
   })
     // res.send('destroyed')
-  res.redirect('/:username')
+  res.redirect('/:id')
     // console.log(req.params)
 }
 

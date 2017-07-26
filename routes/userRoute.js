@@ -15,7 +15,7 @@ router.get('/login', function (req, res) {
   res.render('users/login')
 })
 
-router.get('/:username', usersController.show)
+router.get('/:id', usersController.show)
 
 router.post('/login',
   passport.authenticate('local', {
@@ -26,6 +26,6 @@ router.post('/login',
 
 router.post('/register', usersController.register)
 
-router.delete('/:username', usersController.destroy)
+router.delete('/:id', usersController.destroy)
 
 module.exports = router

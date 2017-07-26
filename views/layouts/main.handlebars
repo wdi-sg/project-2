@@ -15,7 +15,7 @@
   <a href='/about'>About Us</a>
   {{#if user }}
     <a href="/logout">Logout</a>
-    <a href='/users/{{ user.username }}'>Favourite Carparks</a>
+    <a href='/users/{{ user.id }}'>Favourite Carparks</a>
   {{/if}}
   {{#unless user}}
     <a href='/users/login'>Log In</a>

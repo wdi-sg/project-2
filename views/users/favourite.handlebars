@@ -1,5 +1,5 @@
 {{#if user }}
-  <h2>Username: {{ user.username }}, </h2>
+  <h2>Username: {{ user.username }} </h2>
   <div>
     <p>Favourite carparks: </p>
     <ul id='carparkList'>
@@ -7,7 +7,7 @@
         <li>
           <h3>{{ carpark.name }}</h3>
           <p>{{ carpark.address }}</p>
-          <form action="/{{ user.username }}" method="post">
+          <form action="/users/{{ user.id }}?_method=delete" method="post">
             <button>Delete</button>
           </form>
         </li>
