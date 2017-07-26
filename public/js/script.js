@@ -41,7 +41,6 @@ $(function () {
         var place = results[i]
         createMarker(results[i])
       }
-      map.setZoom = 13
     }
   }
 
@@ -52,6 +51,9 @@ $(function () {
       map: map,
       position: place.geometry.location
     })
+    carparkMarkers.push(marker)
+    map.setZoom(13)
+    map.panTo(carparkMarkers[0].position)
 
     google.maps.event.addListener(marker, 'click', function () {
       // content of the clicked marker
