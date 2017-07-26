@@ -11,14 +11,15 @@
 <body>
   <h1> Park Where Sia!?</h1>
   <a href='/'>Home</a>
+  <a href='/carparks'>Search Carparks</a>
   <a href='/about'>About Us</a>
   {{#if user }}
     <a href="/logout">Logout</a>
-    <a href='/{{ user.username }}'>Favourite Carparks</a>
+    <a href='/users/{{ user.username }}'>Favourite Carparks</a>
   {{/if}}
   {{#unless user}}
-    <a href='/login'>Log In</a>
-    <a href='/register'>Sign Up</a>
+    <a href='/users/login'>Log In</a>
+    <a href='/users/register'>Sign Up</a>
   {{/unless}}
 
   {{{ body }}}

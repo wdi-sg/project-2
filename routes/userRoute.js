@@ -19,15 +19,13 @@ router.get('/:username', usersController.show)
 
 router.post('/login',
   passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login'
+    successRedirect: '/carparks',
+    failureRedirect: '/users/login'
   })
 )
 
-router.post('/', carparksController.create)
-
 router.post('/register', usersController.register)
 
-router.post('/:username', usersController.destroy)
+router.delete('/:username', usersController.destroy)
 
 module.exports = router

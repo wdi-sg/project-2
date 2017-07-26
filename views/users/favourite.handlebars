@@ -2,12 +2,12 @@
   <h2>Username: {{ user.username }}, </h2>
   <div>
     <p>Favourite carparks: </p>
-    <ul multiple>
+    <ul id='carparkList'>
       {{#each user.carparks as |carpark|}}
         <li>
           <h3>{{ carpark.name }}</h3>
           <p>{{ carpark.address }}</p>
-          <form action="/{{ user.username }}" method="post" data-carpark="{{carparks.id}}">
+          <form action="/{{ user.username }}" method="post">
             <button>Delete</button>
           </form>
         </li>

@@ -6,6 +6,7 @@ $(function () {
     ajaxStop: function () { $body.removeClass('loading') }
   })
   const $carparkSearch = $('#carparkSearch')
+
   // maps (from google map API)
   var $map = $('#map')
   var service
@@ -73,10 +74,17 @@ $(function () {
       address: theBttn.data('address')
     }
     // for saving
-    $.post('/', newCarpark).done(function (data) {
+    $.post('/carparks', newCarpark).done(function (data) {
       if (data.status === 200) {
         alert('HUAT AH! ' + data.message)
       }
     })
   })
+
+  // const $carparkList = $('#carparkList')
+  //
+  // $carparkList.on('submit', function (e) {
+  //   e.preventDefault()
+  //   alert('clicked')
+  // })
 })

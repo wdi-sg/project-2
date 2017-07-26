@@ -53,6 +53,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(flash())
 
 const usersRoute = require('./routes/userRoute')
+const carparksRoute = require('./routes/carparkRoute')
 
 app.get('/', function (req, res) {
   res.render('home', {
@@ -72,7 +73,8 @@ app.get('/logout', function (req, res) {
 })
 
 // non public paths
-app.use('/', usersRoute)
+app.use('/users', usersRoute)
+app.use('/carparks', carparksRoute)
 
 const port = process.env.PORT || 4000
 app.listen(port, function () {

@@ -30,7 +30,6 @@ function show (req, res) {
     // res.send(req.params.username)
     res.render('users/favourite', {
       user: theUser
-      // loggedInUser: req.user
     })
   })
 }
@@ -42,14 +41,11 @@ function destroy (req, res) {
   },
   function (err, foundUser) {
     if (err) console.log(err)
-    foundUser.carparks.findIndex(function (id) {
-
-    })
-    console.log(req.body)
-    // res.send('destroyed')
-    res.redirect('/:username')
-    // console.log(req.params)
+    console.log(foundUser)
   })
+    // res.send('destroyed')
+  res.redirect('/:username')
+    // console.log(req.params)
 }
 
 module.exports = {
