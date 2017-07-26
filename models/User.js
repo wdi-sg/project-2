@@ -16,8 +16,8 @@ const userSchema = new Schema({
     // match: emailRegex
   },
   password: {
-    type: String,
-    maxlength: [8, 'Password too long']
+    type: String
+    // maxlength: [8, 'Password too long']
   },
   events: [{
     type: Schema.Types.ObjectId,
@@ -41,9 +41,9 @@ userSchema.pre('save', function (next) {
   })
 })
 
-// userSchema.methods.validPassword = function (password) {
-//   return bcrypt.compareSync(password, this.password)
-// }
+userSchema.methods.validPassword = function (password) {
+  return bcrypt.compareSync(password, this.password)
+}
 
 const User = mongoose.model('User', userSchema)
 

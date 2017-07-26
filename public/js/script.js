@@ -44,10 +44,13 @@ $(function () {
     const theBttn = $(this)
 
     var newEvent = {
-      name: theBttn.data('name'),
-      address: theBttn.data('address'),
-      reference: theBttn.data('reference')
+      name: theBttn[0].dataset.name,
+      dateTime: theBttn[0].dataset.datetime,
+      imgUrl: theBttn[0].dataset.imgurl,
+      eventUrl: theBttn[0].dataset.eventurl
     }
+
+    console.log(newEvent);
 
     $.post('/events', newEvent).done(function (data) {
       if (data.status === 'ok') {
@@ -94,22 +97,6 @@ $(function () {
         var $newImg = $('<img>')
         var $newBr = $('<br>')
 
-
-        var photoReference = ''
-
-        if (!event.photos) {
-          photoReference = ''
-        } else {
-          photoReference = event.photos[0].photo_reference
-        }
-
-        var $addBttn = $(`<button class="addBttn"
-          data-name="${event.name.text}"
-          data-address="${event.description.text}"
-          data-reference="${photoReference}"
-        >add</button>`)
-// ===========================================================
-        //var rawDate = event.start.local
         var year = event.start.local.slice(0, 4)
         var month = event.start.local.slice(5, 7)
         var day = event.start.local.slice(8, 10)
@@ -120,8 +107,14 @@ $(function () {
         var seconds = event.start.local.slice(17, 19)
 
         var d = new Date(year, monthJS, day, hour, minutes, seconds)
-        console.log(d.toString())
-// =============================================================
+
+        var $addBttn = $(`<button class="addBttn"
+          data-name="${event.name.text}"
+          data-dateTime="${event.start.local}"
+          data-imgUrl="${event.logo.url}"
+          data-eventUrl="${d.toString()}"
+        >add</button>`)
+
         $newH2.text(event.name.text)
         //$newP2.text(event.description.text)
         $newImg.attr('src', event.logo.url)

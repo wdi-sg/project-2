@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const request = require('request')
-const eventsController = require('../controllers/eventsController')
+//const eventsController = require('../controllers/contactsController')
 
 router.get('/flash', function (req, res) {
   res.send({
@@ -10,10 +10,10 @@ router.get('/flash', function (req, res) {
 })
 // Extension: /events
 router.get('/', function (req, res) {
-  res.render('events/index')
+  res.render('contact/index')
 })
 
 // Extension: /events
-router.post('/', eventsController.create)
+//router.post('/', contactsController.create)
 
 module.exports = router

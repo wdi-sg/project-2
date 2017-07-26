@@ -1,30 +1,21 @@
 const User = require('../models/User')
 const Event = require('../models/Event')
+const passport = require('../config/passport')
 
 const request = require('request')
 
-// function login (req, res) {
-//   // getting all places from my list of places in the db
-//   Event.find({}, function (err, allEvents) {
-//     if (err) res.send(err)
-//
-//     res.render('users/login', {
-//       events: allEvents,
-//       flash: req.flash('errors')
-//     })
-//   })
-// }
 
-function register (req, res) {
-  // getting all places from my list of places in the db
-  Event.find({}, function (err, allEvents) {
-    if (err) res.send(err)
 
-    res.render('users/new', {
-      events: allEvents,
-      flash: req.flash('errors')
+  function list (req, res) {
+    // getting all places from my list of places in the db
+    Event.find({}, function (err, allEvents) {
+      if (err) res.send(err)
+
+      res.render('profile', {
+        events: allEvents,
+        flash: req.flash('errors')
+      })
     })
-  })
 
 
   // getting all places from google place api
@@ -50,50 +41,33 @@ function create (req, res, next) {
     password: req.body.user.password
   })
 
-  newUser.events.push(req.body.event.id)
+  // newUser.events.push(req.body.event.id)
 
   newUser.save(function (err, createdUser) {
     if (err) {
-      // return res.send(err)
       req.flash('errors', err.message)
       return res.redirect('/users/new')
-
-      // next(err)
     }
-
-    res.send({
-      reqbody: req.body,
-      newUser: newUser,
-      createdUser: createdUser
-    })
+    passport.authenticate('local', {
+      successRedirect: '/users/profile',
+      failureRedirect: '/'
+    })(req, res)
   })
-
-  // User.create(req.body.user, function (err, newUser) {
-  //   if (err) {
-  //     // flow if user is invalid
-  //     // passing error message to /users
-  //
-  //     res.send(err)
-  //     // res.redirect('/users')
-  //   }
-  //
-  //   // flow is user is created
-  //
-  //   res.format({
-  //     html: function () {
-  //       res.redirect('/users/new')
-  //     },
-  //
-  //     json: function () {
-  //       res.send('respond for ajax')
-  //     }
-  //   })
-  //   // res.redirect('/users/new')
-  // })
 }
 
+function login (req, res) {
+  passport.authenticate('local', {
+  successRedirect: '/users/profile',
+  failureRedirect: '/users/login',
+  failureFlash: 'Invalid username and/or password'
+  })(req, res)
+}
+
+
 module.exports = {
+  // show,
   create,
-  register
-  // login
+  // register,
+  login,
+  list
 }

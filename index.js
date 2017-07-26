@@ -9,10 +9,10 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const flash = require('connect-flash')
 const bodyParser = require('body-parser')
+// const validate = require('../controller/valController.js')
 
 // heroku addon way
 const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/placies'
-
 
 mongoose.Promise = global.Promise
 mongoose.connect(url, {
@@ -47,9 +47,16 @@ app.use(session({
   })
 }))
 
+// initialize passport
+const passport = require('./config/passport')
+app.use(passport.initialize())
+// the line below must be AFTER the session setup
+app.use(passport.session())
+
 // setup all files that the proj needs to require
 const eventRoute = require('./routes/eventRoute')
 const userRoute = require('./routes/userRoute')
+const contactRoute = require('./routes/contactRoute')
 
 // setup app.locals variables
 app.locals = {
@@ -67,9 +74,18 @@ app.get('/', function (req, res) {
 // non public paths
 app.use('/events', eventRoute)
 app.use('/users', userRoute)
+app.use('/contact', contactRoute)
+
+app.get('/logout', function(req, res) {
+  req.logout()
+  res.redirect('/')
+})
 
 // and this is opening the port
-const port = process.env.PORT || 6661
+const port = process.env.PORT || 911
+
+
+
 app.listen(port, function () {
   console.log(`express is running on ${port}`)
 })

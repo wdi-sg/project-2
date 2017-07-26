@@ -6,14 +6,24 @@ var eventSchema = new Schema({
     type: String,
     required: [true, 'Name is required']
   },
-  address: {
+  dateTime: {
     type: String,
-    required: [true, 'Address is required']
+    required: [true, 'Date and Time required']
   },
-  reference: String
+  imgUrl: {
+    type: String
+  },
+  eventUrl: {
+    type: String,
+    required: [true, 'Event link required']
+  }
+  // users: [{
+  //   type: Schema.Type.ObjectId,
+  //   ref: 'User'
+  // }]
 })
 
-// mongoose.model(<singular form of model>, <schemaName>)
+
 const Event = mongoose.model('Event', eventSchema)
 
 module.exports = Event
