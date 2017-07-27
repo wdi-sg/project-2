@@ -8,10 +8,10 @@
 </section>
 
 
-<h3> {{flash}} </h3>
 
 <form action="/users/register" method="post" id='newUserForm'>
-  <p><em>All inputs are compulsory.</em></p>
+  <h3> {{flash}} </h3>
+  <p><em>All inputs are compulsory</em></p>
   <div class="field">
     <p class="control has-icons-left has-icons-right">
       <input class="input" type="text" name="user[username]" placeholder="Username">
@@ -22,7 +22,7 @@
   </div>
   <div class="field">
     <p class="control has-icons-left">
-      <input class="input" type="password" name="user[password]" placeholder="Password">
+      <input class="input" type="password" name="user[password]" placeholder="Password: Minimum 6 characters">
       <span class="icon is-small is-left">
         <i class="fa fa-lock"></i>
       </span>
