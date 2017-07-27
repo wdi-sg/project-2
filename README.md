@@ -30,6 +30,7 @@ Pre-Development Phase
 
 <br>
 * **Web Flow Diagram:**
+
   ![](public/img/webflow.jpg)
 
   Schematic overview of website and functionalities.
@@ -45,7 +46,7 @@ Development Phase
   Highlighted are the core values to be targetted.
 
 
-  * **Defining the Models:**
+* **Defining the Models:**
 
   ```Javascript
   const userSchema = new Schema({
@@ -152,6 +153,8 @@ Development Phase
   })
   ```
 <br>
+
+
 * **Peg a returned Event:**
 
   ```Javascript
@@ -175,6 +178,8 @@ Development Phase
   })
   ```
 <br>
+
+
 * **Creating an Account:**
 
   ```Javascript
@@ -228,6 +233,8 @@ Development Phase
     router.post('/new', usersController.create)
     ```
 <br>
+
+
 * **Checks if User is currently Logged In**
 
     ```Javascript
@@ -253,6 +260,7 @@ Development Phase
     ```
 <br>
 
+
 * **Route for Event**
 
   ```Javascript
@@ -265,6 +273,8 @@ Development Phase
   ```
 
   <br>
+
+
 * **Tagging Event to User**
 
     ```Javascript
@@ -292,6 +302,7 @@ Development Phase
     ```
 
     <br>
+
 
 * **Showing Eventory**
 
