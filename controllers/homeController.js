@@ -133,7 +133,8 @@ function addPosition (req, res) {
 
 			newPosition.save(function (err, savedPosition) {
 				if (err) res.send(err)
-      			foundPortfolio.positions.push(savedPosition.id)
+					console.log('newposition.save, save position ID: ', savedPosition._id)
+      			foundPortfolio.positions.push(savedPosition._id)
 				foundPortfolio.save(function (err, savePortfolio) {
 					console.log('save is done...',Date())
 					//buildPage(req,res)					
@@ -156,7 +157,60 @@ function addPosition (req, res) {
 }
 
 // sell ETF
+function sellPosition (req, res) {
 
+	User
+	.findOne({_id: req.user.id})
+	.exec(function (err, foundUser) {
+
+		Portfolio
+		.findOne({_id: foundUser.portfolio[0]})
+		.exec(function (err, foundPortfolio) {
+
+				// unhandled error!
+				
+				if (foundPortfolio) {
+
+					console.log('found Positions:')
+					console.log(foundPortfolio.positions)
+
+					console.log('position to sell:', req.body.positionID)
+					console.log('position to sell typeof:', typeof(req.body.positionID))
+
+					// remove position document from Position collection
+					Position 
+					.findOneAndRemove({_id: req.body.positionID}, function (err, deletedPosition) {
+						
+						if (err) res.send(err)
+
+						console.log('abababa ', deletedPosition)
+
+						// unhandled error!
+						
+						// remove position ID from user's portfolio						
+						var index = foundPortfolio.positions.indexOf(req.body.positionID)
+						if (index !== -1) {
+							foundPortfolio.positions.splice(index, 1) 
+						} else {
+							//unhandled error!
+						}
+						foundPortfolio.save(function (err) {
+							// unhandled error!
+							console.log('jkjkjk ', deletedPosition)
+							var response = {
+        						deletedId: deletedPosition._id
+    						}
+    						res.send(response)
+
+						})						
+					})
+
+				}
+			})
+	})
+
+
+}	
 
 // get price from API
 function getEODMarketPrice (req, res) {
@@ -192,6 +246,7 @@ module.exports = {
 	marketValue,
 	buildPage,
 	addPosition,
+	sellPosition,
 	getEODMarketPrice
 }
 

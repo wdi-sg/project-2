@@ -53,41 +53,38 @@ $(document).ready(function () {
   })
 
 
-//"a[id*=\'sellInstrument\`]"
-        // var aaa = 
-        // console.log(aaa)
-
-  $positionUl.on('click', `a[id*='sellInstrument']` , function(event) {
+  $positionUl.on('click', `a[id*='sellPosition']` , function(event) {
 
         event.preventDefault()
 
+        var positionID = {positionID: event.target.id.substring(13)}
+
         console.log(event.target.id)
+        console.log(event.target.id.substring(13))
 
-        // $.ajax({
-        //   url: '/home/sellPosition',
-        //   type: 'POST',
-        //   data: event.target.id,
-        // }).done(function (res) {
-        //   console.log('success submitting sell selection')
-        //   console.log('xx', res.savedPosition)
-        //   var newPosition = res.savedPosition
+        $.ajax({
+          url: '/home/sellPosition',
+          type: 'POST',
+          data: positionID,
+        }).done(function (res) {
+          console.log('success submitting sell selection')
+          console.log(res.deletedId)
+          //var newPosition = res.savedPosition
 
-        //   // console.log(newPosition._id)
-        //   // console.log(newPosition.instrument.name)
-        //   // console.log(newPosition.quantity)
-        //   // console.log(newPosition.unitCost)
+          // console.log(newPosition._id)
+          // console.log(newPosition.instrument.name)
+          // console.log(newPosition.quantity)
+          // console.log(newPosition.unitCost)
 
-        //   $('#positionUl').append(`<li id="${newPosition._id}"><b>Name:</b> ${newPosition.instrument.name}, <b<b>Qty:</b> ${newPosition.quantity}, <b>Unit Cost:</b> ${newPosition.unitCost}<a id="sellInstrument:${newPosition._id}" href="">Sell</a></li>`)
+          //$('#positionUl').append(`<li id="${newPosition._id}"><b>Name:</b> ${newPosition.instrument.name}, <b<b>Qty:</b> ${newPosition.quantity}, <b>Unit Cost:</b> ${newPosition.unitCost}<a id="sellInstrument:${newPosition._id}" href="">Sell</a></li>`)
 
-        // }).fail(function (res) {
-        //   console.log('error submitting sell selection')
-        // })
+        }).fail(function (res) {
+          console.log('error submitting sell selection')
+        })
 
 
 
   }) 
-
-console.log('aqaq', $positionUl)
 
 
   $instrumentsMenu.change(function (event) {

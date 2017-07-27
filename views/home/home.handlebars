@@ -32,7 +32,7 @@ Portfolio Market Value (as of MM-DD-YYYY): ${{portMktVal}}
 <br>
 <ul id='positionUl'>
 	{{#each portHolding as |position|}}
-		<li id="{{ position.id }}"><b>Name:</b> {{position.instrument.name}}, <b<b>Qty:</b> {{position.quantity}}, <b>Unit Cost:</b> {{position.unitCost}}<a id="sellInstrument:{{ position.id }}" href="">Sell</a></li>
+		<li id="{{ position.id }}"><b>Name:</b> {{position.instrument.name}}, <b<b>Qty:</b> {{position.quantity}}, <b>Unit Cost:</b> {{position.unitCost}}<a id="sellPosition:{{ position.id }}" href="">Sell</a></li>
 	{{/each}}
 </ul>
 
