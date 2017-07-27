@@ -8,7 +8,7 @@ const passport = require('./config/passport')
 const flash = require('connect-flash');
 
 
-const url = process.env.MLAB_URI || 'mongodb://localhost:27017/project-2'
+const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/project-2'
 
 mongoose.Promise = global.Promise
 mongoose.connect(url, {
@@ -26,7 +26,7 @@ const app = express();
 
 app.use(session({
   store: new MongoStore({
-    url: process.env.MLAB_URI || 'mongodb://localhost/project-2'
+    url: process.env.MONGODB_URI || 'mongodb://localhost/project-2'
   }),
   secret: 'foo',
   resave: false,
