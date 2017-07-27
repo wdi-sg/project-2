@@ -35,18 +35,13 @@ function show (req, res) {
 }
 
 function destroy (req, res) {
-  console.log(req.user);
-  // Carpark.findOne({
-  //   _id: req.params.id
-  // },
-  // function (err, foundCarpark) {
-  //   if (err) console.log(err)
-  //   res.send(foundCarpark)
-  // })
-  //   // res.send('destroyed')
-  // // res.redirect('/:id')
-  // res.send('hello')
-    // console.log(req.params)
+  // console.log(req.params.id);
+  Carpark.findOneAndRemove({
+    _id: req.params.id
+  }, function (err, foundCarpark) {
+    if (err) console.log(err)
+    res.redirect('/carparks')
+  })
 }
 
 module.exports = {
