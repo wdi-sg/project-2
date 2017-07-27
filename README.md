@@ -10,7 +10,8 @@ Provide instructions here about how to get your project running on our local mac
 
 ## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+![Wireframe](http://i.imgur.com/IgqthtVl.jpg?1)
+![Workflow](http://i.imgur.com/QCgmCKUl.jpg)
 
 ## Built With
 
