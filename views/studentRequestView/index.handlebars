@@ -1,0 +1,23 @@
+<a href="/students/studentLoginView">Search for Teachers</a><br>
+
+<h1>SENT REQUESTS</h1>
+
+{{#each teachers as |teacher|}}
+
+<ul>
+  <form method="post" action="/students/deleteRequest">
+
+  <li>          Name:{{teacher.name}}<br>
+                Subject:{{teacher.subject}}<br>
+                Highest qualification: {{teacher.education}}<br>
+                Gender:{{teacher.gender}}<br>
+                Description:{{teacher.description}}<br>
+                Expected Fee: {{teacher.fee}}<br>
+
+  </li>
+  <button name="id" value={{teacher.id}}>Delete</button>
+</form>
+</ul>
+
+
+{{/each}}

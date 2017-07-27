@@ -1,0 +1,34 @@
+<a href="/students/studentRequestView">Sent Requests</a><br>
+
+  <form action="/students/searchTeacher" method="post">
+      <label>Search teachers by subject</label>
+      {{!-- <input type="text" name="searchField"> --}}
+
+      <select name="searchField">
+        <option value="English">English</option>
+        <option value="Math">Math</option>
+        <option value="Science">Science</option>
+      </select>
+
+      <button id="searchButton">Search</button>
+
+  </form>
+
+<div class="teacherList">
+    {{#each teachers as |teacher|}}
+    <ul id="allTeachers">
+
+    <form action ="/students/refer" method="post">
+      {{!-- <li id="list">Name:{{teacher.name}}<br>
+                    Subject:{{teacher.subject}}<br>
+                    Highest qualifications: {{teacher.education}}<br>
+                    {{!-- Gender:{{teacher.gender}}<br> --}}
+                    Description:{{teacher.description}}<br>
+                    Expected Fee: {{teacher.fee}}<br>
+        <button name="email" value={{teacher.email}} id="requestButton">Request Session</button> --}}
+      </li>
+    </form>
+
+    </ul>
+    {{/each}}
+</div>
