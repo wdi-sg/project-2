@@ -23,6 +23,14 @@ homeRouter.post('/addPosition', function (req, res) {
   }
 })
 
+homeRouter.post('/sellPosition', function (req, res) {
+  if (req.user) {
+    homeController.sellPosition(req, res)
+  } else {
+    res.redirect('./') // user not signed in; redirect to public Welcome page     
+  }
+})
+
 homeRouter.post('/eodMktPricing', function (req, res) {
   if (req.user) {
     homeController.getEODMarketPrice(req, res)

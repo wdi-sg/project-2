@@ -5,12 +5,12 @@ const Position = require('../models/Position')
 const Instrument = require('../models/Instrument')
 var request = require('request')
 
-// return user's current portfolio positions
+// ** NOT IN USE ** return user's current portfolio positions
 function portHoldings (req, res) {
-	console.log(req)
+	console.log(req) 
 }
 
-// return user's portfolio market value as of DD MM YYYY
+// ** NOT IN USE ** return user's portfolio market value as of DD MM YYYY
 function marketValue (req, res) {
 	//console.log('aaaaaaaaaaa REQ', req)
 	console.log('fn:marketValue:REQ.USER')

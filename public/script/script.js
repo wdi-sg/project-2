@@ -1,6 +1,7 @@
 $(document).ready(function () {
   var $form = $('#transact')
   var $buyInstrument = $('#buyInstrument')
+  var $positionUl = $('#positionUl') // set at level of positionUl ensures newly ajax-added positions can be selected 
   var $instrumentsMenu = $('#instrumentsMenu')
 
 //   //var $tbody = $('tbody')
@@ -50,6 +51,44 @@ $(document).ready(function () {
           console.log('error submitting buy selection')
         })
   })
+
+
+//"a[id*=\'sellInstrument\`]"
+        // var aaa = 
+        // console.log(aaa)
+
+  $positionUl.on('click', `a[id*='sellInstrument']` , function(event) {
+
+        event.preventDefault()
+
+        console.log(event.target.id)
+
+        // $.ajax({
+        //   url: '/home/sellPosition',
+        //   type: 'POST',
+        //   data: event.target.id,
+        // }).done(function (res) {
+        //   console.log('success submitting sell selection')
+        //   console.log('xx', res.savedPosition)
+        //   var newPosition = res.savedPosition
+
+        //   // console.log(newPosition._id)
+        //   // console.log(newPosition.instrument.name)
+        //   // console.log(newPosition.quantity)
+        //   // console.log(newPosition.unitCost)
+
+        //   $('#positionUl').append(`<li id="${newPosition._id}"><b>Name:</b> ${newPosition.instrument.name}, <b<b>Qty:</b> ${newPosition.quantity}, <b>Unit Cost:</b> ${newPosition.unitCost}<a id="sellInstrument:${newPosition._id}" href="">Sell</a></li>`)
+
+        // }).fail(function (res) {
+        //   console.log('error submitting sell selection')
+        // })
+
+
+
+  }) 
+
+console.log('aqaq', $positionUl)
+
 
   $instrumentsMenu.change(function (event) {
     event.preventDefault()
