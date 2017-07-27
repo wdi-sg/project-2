@@ -10,7 +10,7 @@ homeRouter.get('/', function (req, res) {
   }
 })
 
-homeRouter.post('/', function (req, res) {
+homeRouter.post('/addPosition', function (req, res) {
   if (req.user) {
   	//console.log('in homeRouter.post: ', req.body)
     homeController.addPosition(req, res)
@@ -20,6 +20,14 @@ homeRouter.post('/', function (req, res) {
     //homeController.buildPage(req,res)
   } else {
   	res.redirect('./') // user not signed in; redirect to public Welcome page   	
+  }
+})
+
+homeRouter.post('/eodMktPricing', function (req, res) {
+  if (req.user) {
+    homeController.getEODMarketPrice(req, res)
+  } else {
+    res.redirect('./') // user not signed in; redirect to public Welcome page     
   }
 })
 

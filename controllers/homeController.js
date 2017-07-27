@@ -1,7 +1,9 @@
+require('dotenv').config()
 const User = require('../models/User')
 const Portfolio = require('../models/Portfolio')
 const Position = require('../models/Position')
 const Instrument = require('../models/Instrument')
+var request = require('request')
 
 // return user's current portfolio positions
 function portHoldings (req, res) {
@@ -15,7 +17,6 @@ function marketValue (req, res) {
 	console.log(req.user)
 	return 12
 }
-
 
 function buildPage (req, res) {
 
@@ -43,13 +44,6 @@ function buildPage (req, res) {
 			  			instrumentsList: instrumentsList
 		  			})
 				} else {
-
-					// for (var pos=0; pos<foundPortfolio.positions.length; pos++) {
-					// 	var position = foundPortfolio.positions[pos]
-					// 	//console.log(pos+': '+position)
-					// 	Instrument.findOne
-					// }
-
 
 					//console.log('fn: buildPage: ', foundPortfolio.positions)
 
@@ -130,8 +124,8 @@ function addPosition (req, res) {
 
 			var newPosition = new Position ({
 			  date: new Date().toISOString(),
-			  quantity: 1,
-			  unitCost: 23.00, // to be retrieved from API
+			  quantity: 1, // current default
+			  unitCost: 23.00,
 			  instrument: req.body.instrumentID // only one instance of instrument to one position
 			})
 
@@ -155,16 +149,7 @@ function addPosition (req, res) {
 					})
 				})
 
-				// Instrument.find({}, function (err, instrumentsList) {
-    // 				if (err) res.send(err)
 
-				// 	res.render('home/home', {
-				// 	  			userDisplayName: req.user.name, 
-				// 	  			portMktVal: marketValue(req, res),
-				// 	  			instrumentsList: instrumentsList,
-				// 	  			portHolding: populatedInstruments
-				//   	})
-				// })
 			})
 		}) 
 	})
@@ -173,10 +158,41 @@ function addPosition (req, res) {
 // sell ETF
 
 
+// get price from API
+function getEODMarketPrice (req, res) {
+
+	Instrument
+	.findOne({_id: req.body.instrumentID})
+	.exec(function (err, foundInstrument) {
+
+		var url = process.env.QUANDL_URL + foundInstrument.databaseCode + '/' + foundInstrument.ticker + '/data.json?api_key=' + process.env.QUANDL_API_KEY
+
+		console.log(url)
+
+		request(url, function (err, apiRes, data) {
+	  		console.log('error:', err); // Print the error if one occurred
+	  		console.log('statusCode:', apiRes && apiRes.statusCode); // Print the response status code if a response was received
+	  		//console.log('body:', JSON.stringify(data, undefined, '\t')); 
+
+
+	  		res.send(data)
+
+
+
+
+
+
+
+
+		})
+	})
+}
+
 module.exports = {
 	marketValue,
 	buildPage,
-	addPosition
+	addPosition,
+	getEODMarketPrice
 }
 
 // retrieve 'universal' list of ETFs
@@ -190,5 +206,4 @@ module.exports = {
 //       flash: req.flash('errors')
 //     })
 //   })
-
 

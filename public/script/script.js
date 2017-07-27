@@ -29,8 +29,10 @@ $(document).ready(function () {
       //.serializeArray()
       //console.log('aaaa', typeof($formData))
 
+      // *** TO CHECK IF ID = NULL. ONLY PASS AJAX IF ID NOT NULL. ***
+
         $.ajax({
-          url: '/home',
+          url: '/home/addPosition',
           type: 'POST',
           data: instrumentID,
         }).done(function (res) {
@@ -48,4 +50,35 @@ $(document).ready(function () {
           console.log('error submitting buy selection')
         })
   })
+
+  $instrumentsMenu.change(function (event) {
+    event.preventDefault()
+    var id = $('#instrumentsMenu option:selected').val()
+
+    $('#eodMktPricing').html('') // clears listing while waiting for res
+
+    if (id !== '') { // send ajax req only if instrument is selected
+
+      var instrumentID = {instrumentID: id}
+      
+      $.ajax({
+          url: '/home/eodMktPricing',
+          type: 'POST',
+          data: instrumentID,
+        }).done(function (res) {
+          console.log('success getting market price thru backend')
+          var parseRes = JSON.parse(res)
+          var eodMktPrice = parseRes.dataset_data.data[0][4]
+          var eodMktPriceDate = parseRes.dataset_data.data[0][0]
+          console.log('price: ', eodMktPrice)
+          console.log('date: ', eodMktPriceDate)
+          $('#eodMktPricing').html(`End of Day Market Price (as of ${eodMktPriceDate}): \$${eodMktPrice}`)
+        }).fail(function (res) {
+          console.log('error getting market price thru backend')
+        })
+    }
+  })
+
+
+
 })
