@@ -24,6 +24,7 @@ Inspiration from the phone app **Park-a-Lot**.
 * Only got 2 models: **Users** and **Carparks**.
 
 One user can have zero, one or many carparks and one carpark can have only one user.
+
 Entity Relationship Diagram:
 
 ![](public/img/ERD.png)
