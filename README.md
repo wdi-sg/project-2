@@ -1,6 +1,8 @@
-# Your Project Name
+# Vacays
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+https://secure-sea-88829.herokuapp.com/
+
+You might have a destination on your bucket list and wondered when to go, 
 
 ## Getting Started
 
@@ -28,22 +30,6 @@ More steps...
 ```
 until finished
 ```
-
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
-
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
-
-
 
 ## Workflow
 

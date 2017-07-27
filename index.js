@@ -10,7 +10,7 @@ const bodyParser = require('body-parser')
 const app = express()
 
 // connect to mongoose database
-const url = 'mongodb://localhost:27017/vacays'
+const url = process.env.MLAB_URI || 'mongodb://localhost:27017/vacays'
 mongoose.Promise = global.Promise
 mongoose.connect(url, {
   useMongoClient: true
@@ -26,7 +26,7 @@ mongoose.connect(url, {
 // setup express session
 app.use(session({
   store: new MongoStore({
-    url: 'mongodb://localhost/vacays' || process.env.MLAB_URI
+    url: process.env.MLAB_URI || 'mongodb://localhost/vacays'
   }),
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -59,12 +59,6 @@ app.use('/', function (req, res, next) {
   app.locals.user = req.user
   next()
 })
-
-// app.get('/profile', function (req, res) {
-//   res.render('profile', {
-//     user: req.user
-//   })
-// })
 
 // all the routes variables
 const authRoutes = require('./routes/auth_routes')
