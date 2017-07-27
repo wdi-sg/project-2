@@ -27,7 +27,6 @@ function show (req, res) {
   .populate('carparks')
   .exec(function (err, theUser) {
     if (err) res.send(err)
-    // res.send(req.params.username)
     res.render('users/favourite', {
       user: theUser
     })
@@ -35,12 +34,11 @@ function show (req, res) {
 }
 
 function destroy (req, res) {
-  // console.log(req.params.id);
   Carpark.findOneAndRemove({
     _id: req.params.id
   }, function (err, foundCarpark) {
     if (err) console.log(err)
-    res.redirect('/carparks')
+    res.redirect(`/users/${req.user.id}`)
   })
 }
 
