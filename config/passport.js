@@ -1,6 +1,6 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-const InstagramStrategy = require('passport-instagram').Strategy
+const FacebookStrategy = require('passport-facebook').Strategy
 const findOrCreate = require('mongoose-findorcreate')
 
 const User = require('../models/User')
@@ -15,25 +15,17 @@ passport.deserializeUser(function (id, next) {
   })
 })
 
-passport.use(new InstagramStrategy({
-    clientID: 	'37222635b0644552ba1a1fe525108687',
-    clientSecret: 'a0caafce5b364a05b8153ff37ed050c0',
-    callbackURL: "http://localhost:4000/igcallback"
+passport.use(new FacebookStrategy({
+    clientID: 	'1664878330224291',
+    clientSecret: 'bb435d0cf64335de37880912064a2bdd',
+    callbackURL: "http://localhost:4000/fbcallback"
   },
   function(accessToken, refreshToken, profile, done) {
       User.findOrCreate({
-        igId: profile.id,
-        username: profile.username
+        fbId: profile.id,
       },
-          function (err, result) {
-              if(result) {
-                  result.access_token = accessToken;
-                  result.save(function(err, doc) {
-                      done(err, doc);
-                  })
-              } else {
-                  done(err, result)
-              }
+          function (err, user) {
+            return done(err, user)
           }
       )
   }

@@ -67,7 +67,7 @@ app.use('/', authRoutes)
 
 const port = process.env.PORT || 4000
 var server = app.listen(port, function () {
-  console.log('express is running on' + port)
+  console.log('express is running on ' + port)
 })
 
 module.exports = server

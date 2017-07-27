@@ -4,9 +4,8 @@ const Schema = mongoose.Schema
 const findOrCreate = require('mongoose-findorcreate')
 
 const userSchema = new Schema({
-  igId: String,
+  fbId: String,
   username: String,
-  access_token: String
 })
 
 userSchema.plugin(findOrCreate)

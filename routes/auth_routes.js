@@ -2,9 +2,9 @@ var express = require('express')
 var router = express.Router()
 const passport = require('../config/passport')
 
-router.get('/iglogin', passport.authenticate('instagram'))
+router.get('/fblogin', passport.authenticate('facebook'))
 
-router.get('/igcallback', passport.authenticate('instagram',
+router.get('/fbcallback', passport.authenticate('facebook',
   {failureRedirect: '/register'}
 ),
   function (req, res) {
