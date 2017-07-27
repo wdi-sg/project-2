@@ -9,9 +9,9 @@ $(function () {
 
   const apiUrl = 'https://www.eventbriteapi.com/v3/events/search/?'
 
-  //const apiKey = `&key=${GOOGLE_PLACE_KEY}`
-  const apiKey = `&token=${GOOGLE_PLACE_KEY}`
+  const apiKey = `&token=${EVENTBRITE_API_KEY}`
 
+// captures user input in form
   $newUserForm.on('submit', function (e) {
     e.preventDefault()
 
@@ -37,6 +37,8 @@ $(function () {
     })
   })
 
+
+// 'add' button's functionality
   $searchResults.on('click', '.addBttn', function (e) {
     e.preventDefault()
 
@@ -58,6 +60,7 @@ $(function () {
 
   $('#spinner').data('speed')
 
+// append events, identifies values 'add' button should capture and send to
   $eventSearch.on('submit', function (e) {
     e.preventDefault()
 
@@ -103,19 +106,15 @@ $(function () {
 
         var $addBttn = $(`<button class="addBttn"
           data-name="${event.name.text}"
-          data-dateTime="${event.start.local}"
+          data-dateTime="${d.toString()}"
           data-imgUrl="${event.logo.url}"
-          data-eventUrl="${d.toString()}"
+          data-eventUrl="${event.url}"
         >add</button>`)
 
         $newH2.text(event.name.text)
-        //$newP2.text(event.description.text)
         $newImg.attr('src', event.logo.url)
-
         $newP.text(d.toString())
-
         $newLi.append($newImg, $newH2, $newP, $addBttn, $newBr)
-
         $searchResults.append($newLi)
       })
     })

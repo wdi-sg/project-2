@@ -1,48 +1,26 @@
 <link rel="stylesheet" href="/css/alt.css">
 
-<h2>Sign Up here</h2>
+<h1>Sign Up here</h1>
 
-
-<div style="color: red">
+<div id="flash" style="color: red">
   {{#if sessionFlash.message}}
     <div class="{{ sessionFlash.type }}">
-        <strong>FLASH!</strong> {{ sessionFlash.message }}
+        <strong>INVALID!</strong> {{ sessionFlash.message }}
     </div>
 {{/if}}
 </div>
 
-<form action="/users/new" method="post">
-  <div class="form-group">
-    <label>
-      Name:
-      <input type="text" name="user[name]" placeholder="Submit your name">
-    </label>
-  </div>
-
-  <div class="form-group">
-    <label>
-      Email:
-      <input type="text" name="user[email]" placeholder="e.g. jane@gmail.com">
-    </label>
-  </div>
-
-  <div class="form-group">
-    <label>
-      Password:
-      <input type="password" name="user[password]" placeholder="password min. 8">
-    </label>
-  </div>
-
-  {{!-- <div class="form-group">
-    <label>
-      Sign up to keep tabs of your events:
-      <select name="event[id]">
-        {{#each events as |event|}}
-        <option value="{{ event.id }}">{{event.name}}</option>
-        {{/each}}
-      </select>
-    </label>
-  </div> --}}
-
-  <button>Submit</button>
+<div class="l-box-lrg">
+<form class="pure-form pure-form-stacked" action="/users/login" method="post">
+  <label>Name:</label>
+  <input type="text" name="user[name]" placeholder="Submit your name">
+    <br />
+  <label>Email:</label>
+  <input type="text" name="user[email]" placeholder="e.g. jane@gmail.com">
+    <br />
+  <label>Password:</label>
+  <input type="password" name="user[password]" placeholder="password min. 8">
+    <br />
+  <button class="pure-button2">Submit</button>
 </form>
+</div>

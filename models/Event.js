@@ -17,10 +17,6 @@ var eventSchema = new Schema({
     type: String,
     required: [true, 'Event link required']
   }
-  // users: [{
-  //   type: Schema.Type.ObjectId,
-  //   ref: 'User'
-  // }]
 })
 
 

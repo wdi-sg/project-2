@@ -2,7 +2,7 @@
 <html lang="en"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A layout example that shows off a responsive pricing table.">
+    <meta name="description" content="Keep tabs of your upcoming events so you won't miss them again!">
     <title>Eventory | Your Events Bookmarking Manager</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/pure.css">
@@ -14,26 +14,37 @@
 <div class="pure-menu pure-menu-horizontal">
     <a href="/" class="pure-menu-heading" id="logo">Eventory</a>
     <ul class="pure-menu-list">
-        <li class="pure-menu-item pure-menu-selected"><a href="/events" class="pure-menu-link">Events</a></li>
-        {{!-- <li class="pure-menu-item"><a href="/users/login" class="pure-menu-link" name="login">Login</a></li> --}}
+        <li class="pure-menu-item pure-menu-selected">
+        {{#if user}}
+            <a href="/users/profile" class="pure-menu-link" name="logout">
+            Profile
+            </a>
+          {{else}}
+            <a href="/events" class="pure-menu-link" name="login">
+            Events
+            </a>
+        {{/if}}
+        </li>
         <li class="pure-menu-item">
         {{#if user}}
             <a href="/logout" class="pure-menu-link" name="logout">
             Logout
-            </a></li>
+            </a>
           {{else}}
             <a href="/users/login" class="pure-menu-link" name="login">
             Login
-            </a></li>
+            </a>
         {{/if}}
+        </li>
         <li class="pure-menu-item"><a href="/users/new" class="pure-menu-link">Signup</a></li>
         <li class="pure-menu-item"><a href="/contact" class="pure-menu-link">Contact</a></li>
     </ul>
+
 </div>
 
 <div class="banner">
     <h1 class="banner-head">
-        With Eventory You'll Never Forget<br>
+        With <a style="color: #ff7b01">Eventory</a> You'll Never Forget<br>
         Your Favourite Activities!
     </h1>
 </div>
@@ -41,13 +52,9 @@
 {{{ body }}}
 
 
-<div class="footer l-box">
-    <p>
-      <a href="/users/new">Sign Up </a>for an account now!. Free and always will be free.
-    </p>
-</div>
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript">var GOOGLE_PLACE_KEY = '{{ GOOGLE_PLACE_KEY }}'</script>
+<script type="text/javascript">var EVENTBRITE_API_KEY = '{{ EVENTBRITE_API_KEY }}'</script>
 <script src="/js/script.js" charset="utf-8"></script>
 </body></html>

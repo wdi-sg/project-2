@@ -30,16 +30,6 @@ body {
   margin: 0;
 }
 
-/* HTML5 display definitions
-   ========================================================================== */
-
-/**
- * Correct `block` display not defined for any HTML5 element in IE 8/9.
- * Correct `block` display not defined for `details` or `summary` in IE 10/11
- * and Firefox.
- * Correct `block` display not defined for `main` in IE 11.
- */
-
 article,
 aside,
 details,
@@ -145,7 +135,11 @@ dfn {
 
 h1 {
   font-size: 2em;
-  margin: 0.67em 0;
+  margin: 0.67em 0.5em;
+}
+
+#flash {
+  margin: 0.67em 1.5em;
 }
 
 /**
@@ -779,6 +773,14 @@ this the same font stack that Normalize.css sets for the `body`.
     text-rendering: optimizespeed; /* Webkit: fixes text-rendering: optimizeLegibility */
 }
 
+.pure-button2 {
+    background-color: #1f8dd6;
+    color: white;
+    padding: 0.5em 2em;
+    border-radius: 5px;
+    width: 150px;
+}
+
 .opera-only :-o-prefocus,
 .pure-button-group {
     word-spacing: -0.43em;
@@ -902,6 +904,7 @@ so we can ignore the csslint warning.
     border-radius: 4px;
     vertical-align: middle;
     box-sizing: border-box;
+    width: 300px;
 }
 
 /*
@@ -1026,6 +1029,8 @@ since IE8 won't execute CSS that contains a CSS3 selector.
 }
 .pure-form label {
     margin: 0.5em 0 0.2em;
+    color: rgb(28, 105, 195);
+    font-weight: bold;
 }
 .pure-form fieldset {
     margin: 0;
@@ -1060,7 +1065,7 @@ since IE8 won't execute CSS that contains a CSS3 selector.
 .pure-form-stacked label,
 .pure-form-stacked textarea {
     display: block;
-    margin: 0.25em 0;
+    margin: 0.1em 0;
 }
 
 /*
@@ -1070,6 +1075,11 @@ since IE8 won't execute CSS that contains a CSS3 selector.
 .pure-form-stacked input:not([type]) {
     display: block;
     margin: 0.25em 0;
+}
+
+.l-box-lrg {
+    padding: 2em;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 .pure-form-aligned input,
 .pure-form-aligned textarea,
@@ -1207,6 +1217,7 @@ since IE8 won't execute CSS that contains a CSS3 selector.
     .pure-form label {
         margin-bottom: 0.3em;
         display: block;
+
     }
 
     .pure-group input:not([type]),
@@ -1283,12 +1294,17 @@ since IE8 won't execute CSS that contains a CSS3 selector.
     display: block;
     text-decoration: none;
     white-space: nowrap;
+    font-family: sans-serif; /* 1 */
+    -ms-text-size-adjust: 100%; /* 2 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+
 }
 
 /* HORIZONTAL MENU */
 .pure-menu-horizontal {
     width: 100%;
     white-space: nowrap;
+
 }
 
 .pure-menu-horizontal .pure-menu-list {
@@ -1377,13 +1393,13 @@ since IE8 won't execute CSS that contains a CSS3 selector.
 .pure-menu-separator,
 .pure-menu-horizontal .pure-menu-children .pure-menu-separator {
     background-color: #ccc;
-    height: 1px;
+    height: 1.5px;
     margin: .3em 0;
 }
 
 .pure-menu-horizontal .pure-menu-separator {
     width: 1px;
-    height: 1.3em;
+    height: 1.5em;
     margin: 0 .3em ;
 }
 
@@ -1419,12 +1435,14 @@ since IE8 won't execute CSS that contains a CSS3 selector.
 
 .pure-menu-disabled .pure-menu-link:hover {
     background-color: transparent;
+    cursor: pointer;
 }
 
 .pure-menu-active > .pure-menu-link,
 .pure-menu-link:hover,
 .pure-menu-link:focus {
     background-color: #eee;
+    cursor: pointer;
 }
 
 .pure-menu-selected .pure-menu-link,
@@ -1506,4 +1524,40 @@ striping:
 }
 .pure-table-horizontal tbody > tr:last-child > td {
     border-bottom-width: 0;
+}
+
+.post {
+    padding-bottom: 0.6em;
+    border-bottom: 1px solid #eee;
+    margin-left: 2.2em;
+
+}
+.post-title {
+    font-size: 2em;
+    color: #222;
+    margin-bottom: 0.2em;
+}
+
+.post-images {
+    margin: 1em 0;
+
+
+}
+
+#imglink:hover{
+  border: 5px solid #ff7b01;
+  margin: -5px
+
+}
+
+#toggle {
+  display: none;
+}
+
+#split {
+  border-top: 1px solid #eee;
+}
+
+#avatar{
+  height: 32px;
 }

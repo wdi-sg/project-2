@@ -3,17 +3,12 @@ const router = express.Router()
 const request = require('request')
 const eventsController = require('../controllers/eventsController')
 
-// router.get('/flash', function (req, res) {
-//   res.send({
-//     'flash': req.flash('message')
-//   })
-// })
-// Extension: /events
 router.get('/', function (req, res) {
-  res.render('events/index')
+  res.render('events/index', {
+    user: req.user
+  })
 })
 
-// Extension: /events
 router.post('/', eventsController.create)
 
 module.exports = router

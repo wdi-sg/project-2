@@ -1,65 +1,108 @@
-# Your Project Name
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+<!---
+Read Me Contents
+-->
 
-## Getting Started
-
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
-
-### Prerequisites
-
-What is needed to install and run the project, how do we install them
-
-```
-Code example
-```
-
-### How to Use
-
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
+# The Bouncy Bunny
+**[Play It Here](https://karl-x.github.io/project-1/)**
 
 
-```
-Code example
-```
+### Overview
 
-More steps...
+The Bouncy Bunny is a 2D side-scrolling game, inspired by Google's T-Rex Game.
+User controls the character with a single key, jumping obstacles as the come.
 
-```
-until finished
-```
+---
+
+### Game Controls
+![](img/overview.png)
+
+* **'Up Arrow'** - primary control of the character
+* **'E'**, **'H'** - toggle between Easy and Hard mode
+* **'P'** - pauses the game
+* **'R'** - resets the game
+
+**All controls may also be initiated on mouse click.**
+
+---
+Game Script
+---
+**startGame ()**
+* Starts countdown()
+* Starts timeout for gameOver()
+* Sets value for gameStarted to true
+
+**Starting The Game:**
+* Game is initiated by user's choice of difficulty (Easy vs Hard)
+* Easy initiates gameModeEasy(), Hard initiates gameModeHard()
+
+**gameModeEasy()  &  gameModeHard():**
+* Starts createSpikes() - creates a spike.
+* Starts moveSpikes() - moves the created spikes by 10px across the screen from right to left.
+* Starts collision() - detects if the objects intersect.
+
+* Starts Timer() - a  timer was used to represent a scoring system
+
+**collision():**
+* Logic behind detecing a collision
+![](img/collision.png)
+
+**Character Controls:**
+* canJump() - prevents the user from floating the character above the obstacles
+* jump() - enables the rabbit to move over the obstacles
+* drop() - brings the rabbit back to initial state immediately
+
+**Misc Controls:**
+
+**Pausing The Game**
+* pause() initiates a confirm box - if cancel is selected, rePause() will be initiated
+* rePause() - reinitates pause()
+* pause() also initiates blur(), which filters out the background
+* undoBlur() will occur if 'ok' is selected in the confirm box
+
+**Restarting The Game**
+* runs restart() which reloads the browser
+* function can be initiated at any point during gameplay, or game over
 
 
-## Tests
+---
 
-Did you write automated tests? If so, how do we run them.
+### Design
 
 
-```
-Code example
-```
+* Moving background image made from an image disected and made into gif.
+![](img/movingbackground.png)
 
-## Live Version
+* Phases of Character Design:
+![](img/skating.gif)
+![](img/skatejump2.png)
+![](img/dead.png)
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
 
-## Built With
+---
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
+### Issues Faced
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
 
-## Workflow
+* Usage of getBoundingClientRect() created a lot of errors in the moveSpikes(), where spikes were commonly seen headed in unwanted directions.
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+* Issue was solved by implementing .style.left/right/top/bottom, but not without difficulties at the onset - where it was found that JavaScript could not pull values determined in CSS.
+* Oustanding issues unresolved: inability to implement a switch to Hard mode after X amount of time/ score.
 
-## Authors
+* A recursive setTimeout was initially used in tandem with a timer however this caused stacking issues.
 
-Did you collaborate with others on this project, list them here
+---
 
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+### Lanugages
 
-## Acknowledgments
+* HTML
+* CSS
+* JavaScript
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+---
 
+### Acknowledgements
+
+
+* **[Play Area Image](http://www.deepbluethemes.com/images/mario-game-aquarium-background-custom-001.jpg)**

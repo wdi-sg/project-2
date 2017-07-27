@@ -2,10 +2,7 @@
   display: none;
 }
 
-/*
- * -- BASE STYLES --
- * Most of these are inherited from Base, but I want to change a few.
- */
+
 body {
     color: #526066;
     background-color: rgba(253, 253, 255, 0.2);
@@ -13,7 +10,6 @@ body {
 
 
 h2, h3 {
-    letter-spacing: 0.25em;
     text-transform: uppercase;
     font-weight: 600;
 }
@@ -32,6 +28,7 @@ p {
 
 .pure-menu {
     box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+    padding: 0.6em;
 }
 
 .pure-menu-link {
@@ -49,7 +46,7 @@ p {
 
 
 .banner {
-    background: 
+    background:
     url('https://cdn.handy.travel/video/handy-landing.mp4') 0 0 no-repeat fixed;
 
     /*url('http://24.media.tumblr.com/ccb268832580ac12951828a1c179de69/tumblr_mo2xbk8JUK1st5lhmo1_1280.jpg') 0 0 no-repeat fixed;*/
@@ -74,103 +71,6 @@ p {
         text-shadow: 0 1px 1px black;
     }
 
-
-
-/*
- * -- PRICING TABLE WRAPPER --
- * This element wraps up all the pricing table elements
- */
- .pricing-tables,
- .information {
-    max-width: 980px;
-    margin: 0 auto;
- }
-.pricing-tables {
-    margin-bottom: 3.125em;
-    text-align: center;
-}
-
-/*
- * -- PRICING TABLE  --
- * Every pricing table has the .pricing-table class
- */
-.pricing-table {
-    border: 1px solid #ddd;
-    margin: 0 0.5em 2em;
-    padding: 0 0 3em;
-}
-
-/*
- * -- PRICING TABLE HEADER COLORS --
- * Choose a different color based on the type of pricing table.
- */
-.pricing-table-free .pricing-table-header {
-    background: #519251;
-}
-
-.pricing-table-biz .pricing-table-header {
-    background: #2c4985;
-}
-
-/*
- * -- PRICING TABLE HEADER --
- * By default, a header is black/white, and has some styles for its <h2> name.
- */
-.pricing-table-header {
-    background: #111;
-    color: #fff;
-}
-    .pricing-table-header h2 {
-        margin: 0;
-        padding-top: 2em;
-        font-size: 1em;
-        font-weight: normal;
-
-    }
-
-
-/*
- * -- PRICING TABLE PRICE --
- * Styles for the price and the corresponding <span>per month</span>
- */
-.pricing-table-price {
-    font-size: 6em;
-    margin: 0.2em 0 0;
-    font-weight: 100;
-}
-    .pricing-table-price span {
-        display: block;
-        text-transform: uppercase;
-        font-size: 0.2em;
-        padding-bottom: 2em;
-        font-weight: 400;
-        color: rgba(255, 255, 255, 0.5);
-        *color: #fff;
-    }
-
-
-
-/*
- * -- PRICING TABLE LIST --
- * Each pricing table has a <ul> which is denoted by the .pricing-table-list class
- */
-.pricing-table-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
-
-
-/*
- * -- PRICING TABLE LIST ELEMENTS --
- * Styles for the individual list elements within each pricing table
- */
-.pricing-table-list li {
-    padding: 0.8em 0;
-    background: #f7f7f7;
-    border-bottom: 1px solid #e7e7e7;
-}
 
 
 /*
@@ -214,9 +114,6 @@ p {
     .banner-head {
         font-size: 4em;
     }
-    .pricing-table {
-        margin-bottom: 0;
-    }
 
 }
 
@@ -239,13 +136,6 @@ li {
   list-style: none;
 }
 
-img {
-  float: left;
-  margin-right: 16px;
-  max-width: 340px;
-  min-width: 340px;
-  overflow: hidden;
-}
 
 h2 {
   vertical-align: top;
