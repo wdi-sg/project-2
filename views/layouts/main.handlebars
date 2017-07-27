@@ -4,35 +4,110 @@
 <head>
   <meta charset="utf-8">
   <title>ParkWhereSia!?</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.3/css/bulma.min.css" />
   <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-  <h1> Park Where Sia!?</h1>
-  <a href='/'>Home</a>
-  <a href='/carparks'>Search Carparks</a>
-  {{#if user }}
-  <a href='/users/{{ user.id }}'>Favourite Carparks</a>
-    <a href="/logout">Logout</a>
-  {{/if}}
-  {{#unless user}}
-    <a href='/users/login'>Log In</a>
-    <a href='/users/register'>Sign Up</a>
-  {{/unless}}
+  <nav class="navbar ">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="http://bulma.io">
+        <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+      </a>
+
+      <a class="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
+        <span class="icon" style="color: #333;">
+          <i class="fa fa-github"></i>
+        </span>
+      </a>
+
+      <a class="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
+        <span class="icon" style="color: #55acee;">
+          <i class="fa fa-twitter"></i>
+        </span>
+      </a>
+
+      <div class="navbar-burger burger" data-target="navMenuExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div id="navMenuExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item " href="/">
+          Home
+        </a>
+        <a class="navbar-item " href="/carparks">
+          Search Carparks
+        </a>
+      </div>
+
+      <div class="navbar-end">
+        {{#if user }}
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link ">
+            {{ user.username }}
+          </a>
+            <div id="blogDropdown" class="navbar-dropdown " data-style="width: 18rem;">
+
+              <a class="navbar-item" href="/users/{{user.id}}" target="_blank">
+                <div class="navbar-content">
+                  <p>Favourites</p>
+                </div>
+              </a>
+
+              <a class="navbar-item" href="/logout">
+                <div class="navbar-content">
+                  <p>Logout</p>
+                </div>
+              </a>
+              <hr class="navbar-divider">
+            </div>
+          </div>
+        {{/if}}
+        {{#unless user}}
+          <a class="navbar-item" href="/users/login">
+          Login
+        </a>
+          <a class="navbar-item" href="/users/register">
+          Sign Up
+        </a>
+        {{/unless}}
+      </div>
+    </div>
+  </nav>
+  <section class="hero is-dark">
+      <div class="hero-body">
+        <div class="container">
+          <p class="title">
+            Park Where Sia!?
+          </p>
+        </div>
+      </div>
+    </section>
 
   {{{ body }}}
 
-  <footer>&copy;Park Where Sia!?</br>
-      Contact Us</br>
-      Email: ParkWhereSia@gmail.com</br>
-      Address: 8 Claymore Hill
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          <strong>&copy;ParkWhereSia</strong> by <a href="https://github.com/bleetdh">Lee Brian</a>.
+          <p>Contact Us</br>
+            Email: ParkWhereSia@gmail.com</br>
+            Address: 8 Claymore Hill</p>
+        </p>
+      </div>
+    </div>
   </footer>
 
   <div class="modal">
   </div>
-  
-  <script src={{GOOGLE_KEY}}>
+
+  <script src= {{GOOGLE_KEY}}>
   </script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="/js/script.js" charset="utf-8"></script>

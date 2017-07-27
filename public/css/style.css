@@ -19,6 +19,13 @@ body.loading .modal {
 }
 /*for google map*/
 #map {
-  height: 400px;
-  width: 700px;
+  height: 450px;
+  width: 900px;
+  margin: auto auto 20px auto;
+}
+#loginForm, #newUserForm {
+  margin: 0 100px 20px 100px;
+}
+#carparkList {
+  margin: auto 100px 20px 100px;
 }
