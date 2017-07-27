@@ -4,10 +4,10 @@
 
 <br>
 <br>
-Portfolio Market Value (as of MM-DD-YYYY): ${{portMktVal}}
+<!-- Portfolio Market Value (as of MM-DD-YYYY): ${{portMktVal}} -->
 
 <br>
-<br>
+<!-- <br> -->
 
 <b>Transact</b>
 
@@ -32,11 +32,11 @@ Portfolio Market Value (as of MM-DD-YYYY): ${{portMktVal}}
 <br>
 <ul id='positionUl'>
 	{{#each portHolding as |position|}}
-		<li id="{{ position.id }}"><b>Name:</b> {{position.instrument.name}}, <b<b>Qty:</b> {{position.quantity}}, <b>Unit Cost:</b> {{position.unitCost}}<a id="sellPosition:{{ position.id }}" href="">Sell</a></li>
+		<li id="{{ position.id }}"> {{position.instrument.name}}, <b>Unit Cost:</b> {{position.unitCost}}<a id="sellPosition:{{ position.id }}" href="">Sell</a></li>
 	{{/each}}
 </ul>
 
-
+<!-- <b>Name:</b> <b>Qty:</b> {{position.quantity}} -->
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

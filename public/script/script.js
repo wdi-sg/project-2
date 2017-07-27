@@ -19,18 +19,20 @@ $(document).ready(function () {
       // var instrumentID = {
       //   instrumentID: $('#instrumentsMenu option:selected').val()
       // }
-      var id = $('#instrumentsMenu option:selected').val()
-      var instrumentID = {instrumentID: id}
 
+      var id = $('#instrumentsMenu option:selected').val()
+      
       //console.log($instrumentsMenu.children("option").filter(":selected").val‌​())
       //console.log($form)
-      console.log('instrumentID ', instrumentID)
-
+      
       //var $formData = $form["0"]["0"].value
       //.serializeArray()
       //console.log('aaaa', typeof($formData))
 
-      // *** TO CHECK IF ID = NULL. ONLY PASS AJAX IF ID NOT NULL. ***
+      if (id !== '') { // only make ajax req is id not null
+
+        var instrumentID = {instrumentID: id}
+        console.log('instrumentID ', instrumentID)
 
         $.ajax({
           url: '/home/addPosition',
@@ -50,6 +52,8 @@ $(document).ready(function () {
         }).fail(function (res) {
           console.log('error submitting buy selection')
         })
+      }
+        
   })
 
 
@@ -90,6 +94,10 @@ $(document).ready(function () {
 
     if (id !== '') { // send ajax req only if instrument is selected
 
+      $('#eodMktPricing').html(
+
+        `Downloading price...<img src="http://static.spotapps.co/assets/widgets/loading.gif" style="width:20px;height:20px;">`)
+
       var instrumentID = {instrumentID: id}
       
       $.ajax({
@@ -103,7 +111,7 @@ $(document).ready(function () {
           var eodMktPriceDate = parseRes.dataset_data.data[0][0]
           console.log('price: ', eodMktPrice)
           console.log('date: ', eodMktPriceDate)
-          $('#eodMktPricing').html(`End of Day Market Price (as of ${eodMktPriceDate}): \$${eodMktPrice}`)
+          $('#eodMktPricing').html(`End of Day Market Price (as of ${eodMktPriceDate}): \$${eodMktPrice} <br><i>Source: Quandl Inc.</i>`)
         }).fail(function (res) {
           console.log('error getting market price thru backend')
         })
