@@ -35,6 +35,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+app.use(flash())
 
 // initialize passport
 const passport = require('./config/passport')
@@ -57,12 +58,6 @@ const carparksRoute = require('./routes/carparkRoute')
 
 app.get('/', function (req, res) {
   res.render('home', {
-    user: req.user
-  })
-})
-
-app.get('/about', function (req, res) {
-  res.render('about', {
     user: req.user
   })
 })

@@ -10,7 +10,8 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: [true, 'Please type your username'],
-    unique: true
+    unique: true,
+    uniqueCaseInsensitive: true
   },
   password: {
     type: String,
@@ -47,7 +48,7 @@ userSchema.methods.validPassword = function (givenPassword) {
   return bcrypt.compareSync(givenPassword, this.password)
 }
 
-userSchema.plugin(uniqueValidator)
+userSchema.plugin(uniqueValidator, { message: 'Username has been taken! {User.username}' })
 
 const User = mongoose.model('User', userSchema)
 

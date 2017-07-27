@@ -8,11 +8,15 @@ const carparksController = require('../controllers/carparks_controllers')
 const passport = require('../config/passport')
 
 router.get('/register', function (req, res) {
-  res.render('users/new')
+  res.render('users/new', {
+    flash: req.flash('errors')
+  })
 })
 
 router.get('/login', function (req, res) {
-  res.render('users/login')
+  res.render('users/login' , {
+    flash: req.flash('message')
+  })
 })
 
 router.get('/:id', usersController.show)

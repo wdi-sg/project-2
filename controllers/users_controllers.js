@@ -12,10 +12,15 @@ function register (req, res) {
 
   newUser.save(function (err, createdUser) {
     if (err) {
-      return res.send(err)
+      req.flash('errors', err.message)
+      return req.session.save(function () {
+        res.redirect('/users/register')
+      })
     }
-
-    res.redirect('/users/login')
+    req.flash('message', 'new account created, please log in')
+    return req.session.save(function () {
+      res.redirect('/users/login')
+    })
   })
 }
 
