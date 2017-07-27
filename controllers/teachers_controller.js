@@ -60,14 +60,13 @@ function showAllRequests (req,res) {
 }
 
 function remove (req,res) {
-  // res.send(req.body.id)
+
 Teacher.findOne({_id: req.user.id}, function (err,teacher) {
   if(err) res.send(err)
   var index = teacher.students.indexOf(req.body.id)
 teacher.students.splice(index, 1)
 teacher.save()
 res.redirect('/teachers/teacherLoginView')
-// res.send(req.body.id)
 })
 }
 

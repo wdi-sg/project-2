@@ -5,16 +5,16 @@
     <label></label> <br>
     <input type="text" name="student[email]" placeholder="Email">
     <input type="password" name="student[password]" placeholder="Password">
-    <button>Login as a student</button>
+    <button class="button">Login as a student</button>
 </form>
 
 <form id="form" action="/teachers/login" method="post">
     <label></label> <br>
     <input type="text" name="teacher[email]" placeholder="Email">
     <input type="password" name="teacher[password]" placeholder="Password">
-    <button>Login as a teacher</button>
+    <button class="button">Login as a teacher</button>
 </form>
 
-<a href="/students/new"><button>REGISTER AS A STUDENT</button></a>
-<a href="/teachers/new"><button>REGISTER AS A TEACHER</button></a>
+<a href="/students/new"><button class="button">REGISTER AS A STUDENT</button></a>
+<a href="/teachers/new"><button class="button">REGISTER AS A TEACHER</button></a>
 {{/unless}}
