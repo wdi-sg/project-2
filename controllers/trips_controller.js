@@ -138,20 +138,29 @@ function removePlaceFromTrip(req, res) {
       }
     })
     foundTrip.save()
-  })
-  Place.findOne({
-    _id: req.body.placeID
-  }, function (err, foundPlace) {
-    if (err) return res.send(err)
-    var index = foundPlace.trips.findIndex(function (trip) {
-      return trip == req.body.tripID
+    var ifPlaceExist = foundTrip.dates.map(function (date) {
+      var index = date.places.findIndex(function (placeID) {
+        return placeID == req.body.placeID
+      })
+      if (index !== -1) return 'yes'
+      else return 'no'
     })
-    if (index !== -1) {
-      foundPlace.trips.splice(index, 1)
-      foundPlace.save()
-      return res.send('Successfully deleted!')
+    if (ifPlaceExist.includes('yes')) {
+      return res.send('Successfully deleted! Place still exists in another date')
     } else {
-      return res.send('Failed to delete! Please refresh and try again.')
+      Place.findOne({
+        _id: req.body.placeID
+      }, function (err, foundPlace) {
+        if (err) return res.send(err)
+        var index = foundPlace.trips.findIndex(function (trip) {
+          return trip == req.body.tripID
+        })
+        if (index !== -1) {
+          foundPlace.trips.splice(index, 1)
+          foundPlace.save()
+        }
+        return res.send('Successfully deleted!')
+      })
     }
   })
 }
