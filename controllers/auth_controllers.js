@@ -27,9 +27,9 @@ function login (req, res) {
     const formPassword = req.body.user.password
 
     if (foundUser.validPassword(formPassword)) {
-      res.send('valid, redirect to profile')
+      res.redirect('/')
     } else {
-      res.send('invalid, show flash message')
+      res.render('/login')
     }
   })
 }

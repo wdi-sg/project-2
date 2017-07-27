@@ -36,9 +36,11 @@ function localVerify (req, passportEmail, passportPassword, next) {
       return next(err) // go to failureRedirect
     }
 
-    if (foundUser.validPassword(passportPassword)) {
-      console.log('success, redirect to /profile')
+    if (foundUser && foundUser.validPassword(passportPassword)) {
+      // console.log('success, redirect to /profile')
       next(null, foundUser) // go to successRedirect
+    } else {
+      next()
     }
   })
 }

@@ -14,10 +14,15 @@ router.get('/login', function (req, res) {
 
 router.post('/login',
  passport.authenticate('local', {
-   successRedirect: '/profile',
-   failureRedirect: '/register'
+   successRedirect: '/',
+   failureRedirect: '/login'
  }))
 
 router.post('/register', authController.register)
+
+router.get('/logout', function (req, res) {
+  req.logout()
+  res.redirect('/')
+})
 
 module.exports = router

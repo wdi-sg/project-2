@@ -1,18 +1,17 @@
-<form action="/register" method="POST">
-  <div class="form-group">
-    <label for="authEmail">Email</label>
-    <input id="authEmail" class="form-control" type="email" name="user[email]">
-  </div>
+<br><br><br><br>
+    <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
+        <form class="pure-form pure-form-stacked" action="/register" method="POST">
+            <fieldset>
+              <label for="authName">Name</label>
+              <input id="authName" class="form-control" type="text" name="user[name]">
 
-  <div class="form-group">
-    <label for="authName">Name</label>
-    <input id="authName" class="form-control" type="text" name="user[name]">
-  </div>
+              <label for="authEmail">Email</label>
+              <input id="authEmail" class="form-control" type="email" name="user[email]">
 
-  <div class="form-group">
-    <label for="authPassword">Password</label>
-    <input id="authPassword" class="form-control" type="text" name="user[password]">
-  </div>
+              <label for="authPassword">Password</label>
+              <input id="authPassword" class="form-control" type="text" name="user[password]">
 
-  <input class="btn btn-primary" type="submit">
-</form>
+              <button type="submit" class="pure-button">Sign Up</button>
+            </fieldset>
+        </form>
+    </div>

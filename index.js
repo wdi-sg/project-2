@@ -52,22 +52,19 @@ app.use(express.static('public'))
 app.use(flash())
 
 app.get('/', function (req, res) {
-  if (req.user) {
-    return res.send('hide login link')
-  }
   res.render('index')
 })
 
-app.get('/profile', function (req, res) {
-  res.render('profile', {
-    user: req.user
-  })
+app.use('/', function (req, res, next) {
+  app.locals.user = req.user
+  next()
 })
 
-app.get('/logout', function (req, res) {
-  req.logout()
-  res.redirect('/')
-})
+// app.get('/profile', function (req, res) {
+//   res.render('profile', {
+//     user: req.user
+//   })
+// })
 
 // all the routes variables
 const authRoutes = require('./routes/auth_routes')
