@@ -1,8 +1,9 @@
-# PROJECT 2
+# teachSync <br>
+https://cryptic-forest-97137.herokuapp.com/
 
 ## ABOUT
 
-Project 2 allows potential tutors to "advertise" themselves on the platform to students. Upon registering, a tutor would then have to wait for a request from potential students.
+teachSync allows potential tutors to "advertise" themselves on the platform to students. Upon registering, a tutor would then have to wait for a request from potential students.
 
 Students upon registering would be able to access the site and filter through potential teachers. Once they have found suitable teacher/s, they would then be able to send a request to them requesting for a session. The tutors would then get back to the students if interested.
 
