@@ -1,14 +1,14 @@
 $(function() {
   if (document.getElementById('map')) {
-    var pyrmont = {
-      lat: -33.867,
-      lng: 151.195
+    var singapore = {
+      lat: 1.352083,
+      lng: 103.819836
     }
     var markers = []
 
     var map = new google.maps.Map(document.getElementById('map'), {
-      center: pyrmont,
-      zoom: 13
+      center: singapore,
+      zoom: 11
     })
 
     var infowindow = new google.maps.InfoWindow()
@@ -26,6 +26,8 @@ $(function() {
     })
 
     $('#viewPlaces').on('click', function () {
+      if ($('#selectedTrip').serializeArray().length === 0) return alert('Please select a trip!')
+      if ($('#selectedDate').serializeArray().length === 0) return alert('Please select a date!')
       var selectedTripID = $('#selectedTrip').serializeArray()[0].value
       var selectedDate = $('#selectedDate').serializeArray()[0].value
       $.get(`/places/${selectedTripID}/${selectedDate}`).done(function (data) {
@@ -82,12 +84,12 @@ $(function() {
       for (var i = 0; i < results.length; i++) {
         createMarker(results[i]);
       }
-      if (pagination.hasNextPage) pagination.nextPage()
-      console.log(results)
-      if (!pagination.hasNextPage) {
+      // if (pagination.hasNextPage) pagination.nextPage()
+      // console.log(results)
+      // if (!pagination.hasNextPage) {
         map.panTo(results[0].geometry.location)
         map.setZoom(13)
-      }
+      // }
     }
   }
 

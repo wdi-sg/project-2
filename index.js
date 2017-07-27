@@ -26,7 +26,7 @@ const app = express()
 
 app.use(session({
   store: new MongoStore({
-    url: 'mongodb://localhost/project2'
+    url: process.env.MLAB_URI
   }),
   secret: process.env.SESSION_SECRET,
   resave: false,

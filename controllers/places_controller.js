@@ -19,7 +19,7 @@ function showMain(req, res) {
 }
 
 function showTopPlaces (req, res) {
-  console.log(req.query.city)
+  // console.log(req.query.city)
   if (!req.query.city) {
     Place.find({})
     .sort('-trips')
@@ -49,23 +49,6 @@ function showTopPlaces (req, res) {
       })
     })
   }
-}
-
-function showTopPlacesFiltered (req, res) {
-  console.log(req.params);
-  Place.find({
-    address: {$regex : `.*${req.body.city}.*`}
-  })
-  .sort('-trips')
-  .limit(10)
-  .exec(function (err, foundPlaces) {
-    if (err) return res.send(err)
-    // console.log(foundPlaces);
-    res.render('places/top', {
-      user: req.user,
-      places: foundPlaces
-    })
-  })
 }
 
 function createOrUpdate(req, res) {
@@ -98,7 +81,7 @@ function createOrUpdate(req, res) {
             newPlace.save()
           }
         })
-        return res.send('created')
+        return res.send(`Added ${newPlace.name}!`)
       })
     } else if (count === 1) {
       Place.findOne({
@@ -125,7 +108,7 @@ function createOrUpdate(req, res) {
                   foundPlace.trips.push(foundTrip.id)
                   foundPlace.save()
                 }
-                return res.send('updated')
+                return res.send(`Added ${newPlace.name}!`)
               }
             }
           })
@@ -183,7 +166,6 @@ function showTripOnMap (req, res) {
 module.exports = {
   showMain,
   showTopPlaces,
-  showTopPlacesFiltered,
   createOrUpdate,
   showOneOnMap,
   showTripOnMap

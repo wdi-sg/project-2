@@ -149,9 +149,9 @@ function removePlaceFromTrip(req, res) {
     if (index !== -1) {
       foundPlace.trips.splice(index, 1)
       foundPlace.save()
-      return res.send('deleted!')
+      return res.send('Successfully deleted!')
     } else {
-      return res.send('fail to delete')
+      return res.send('Failed to delete! Please refresh and try again.')
     }
   })
 }
