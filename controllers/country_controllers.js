@@ -12,6 +12,18 @@ function search (req, res) {
   })
 }
 
+function update (req, res) {
+  Country.findOne({'name':'singapore'},(err, country) => {
+    let newUpvote = country.upvotes[0] + 1
+    Country.findOneAndUpdate({ 'name': 'singapore' }, {
+      '$set': {'upvotes.0': newUpvote}
+    }, function (err, theCountry) {
+      if (err) res.send(err)
+      res.json(theCountry)
+    })
+  })
+}
+
 module.exports = {
-  search
+  search, update
 }
