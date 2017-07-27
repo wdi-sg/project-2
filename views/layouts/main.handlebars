@@ -14,8 +14,8 @@
   <a href='/'>Home</a>
   <a href='/carparks'>Search Carparks</a>
   {{#if user }}
+  <a href='/users/{{ user.id }}'>Favourite Carparks</a>
     <a href="/logout">Logout</a>
-    <a href='/users/{{ user.id }}'>Favourite Carparks</a>
   {{/if}}
   {{#unless user}}
     <a href='/users/login'>Log In</a>

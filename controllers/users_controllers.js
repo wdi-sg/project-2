@@ -39,6 +39,16 @@ function show (req, res) {
 }
 
 function destroy (req, res) {
+  User.findOne({
+    _id: req.user.id
+  }, function (err, foundUser) {
+    if (err) res.send(err)
+    var index = foundUser.carparks.indexOf(req.params.id)
+    if (index > -1) {
+      foundUser.carparks.splice(index, 1)
+      foundUser.save()
+    }
+  })
   Carpark.findOneAndRemove({
     _id: req.params.id
   }, function (err, foundCarpark) {
