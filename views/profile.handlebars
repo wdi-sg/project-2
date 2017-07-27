@@ -1,9 +1,17 @@
-<li class="pure-menu-item"><a href="/logout" class="pure-menu-link">Logout</a></li>
+
+<div style="color: red">
+  {{#if sessionFlash.message}}
+    <div class="{{ sessionFlash.type }}">
+        <strong>FLASH!</strong> {{ sessionFlash.message }}
+    </div>
+  {{/if}}
+</div>
 <h2>Welcome Back! What Would You Like To Do?</h2>
 <a href="/events" class="pure-menu-link">Search For Events</a>
 <a class="pure-menu-link">View Your Eventory</a>
 <select name="event[id]">
-        {{#each events as |event|}}
-        <option value="{{ event.id }}">{{event.name}}</option>
-        {{/each}}
-      </select>
+  {{#each user.events as |event|}}
+    <option value="{{ event.id }}">{{event.name}}</option>
+    <option value="{{ event.id }}">{{event.dateTime}}</option>
+  {{/each}}
+</select>

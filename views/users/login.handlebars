@@ -1,10 +1,21 @@
 <link rel="stylesheet" href="/css/alt.css">
 
-<h2>Welcome Back! Login Here:</h2>
+<h1>Welcome Back! Login Here:</h1>
 
 
 <div style="color: red">
-  {{ flash }}
+  {{#if sessionFlash.message}}
+    <div class="{{ sessionFlash.type }}">
+        <strong>FLASH!</strong> {{ sessionFlash.message }}
+    </div>
+{{/if}}
+</div>
+
+<div style="color: red">
+  {{message}}
+    <div class="{{ sessionFlash.type }}">
+      {{message}}
+    </div>
 </div>
 
 <form action="/users/login" method="post">

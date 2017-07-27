@@ -3,6 +3,16 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const User = require('../models/User')
 
+// module.exports = function (app) {
+//   app.use(function (req, res, next) {
+//     app.locals.sessionFlash = req.flash('message')
+//     app.locals.currentUser = req.user
+//     next()
+//   })
+//   app.use('/', router)
+// }
+
+
 function create (req, res) {
   var newEvent = new Event({
     name: req.body.name,
@@ -20,15 +30,9 @@ function create (req, res) {
 
     res.send(
       newEvent
-      // status: 'ok',
-      // message: 'New event created'
     )
-    User.findOne({
-      _id: req.user.id
-    }, function(err, foundUser) {
+    User.findOne({_id: req.user.id}, function (err, foundUser) {
       if (err) res.send(err)
-      console.log(foundUser);
-      console.log(newEvent);
       foundUser.events.push(newEvent._id)
       foundUser.save()
     })

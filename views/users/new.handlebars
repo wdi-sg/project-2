@@ -4,7 +4,11 @@
 
 
 <div style="color: red">
-  {{ flash }}
+  {{#if sessionFlash.message}}
+    <div class="{{ sessionFlash.type }}">
+        <strong>FLASH!</strong> {{ sessionFlash.message }}
+    </div>
+{{/if}}
 </div>
 
 <form action="/users/new" method="post">

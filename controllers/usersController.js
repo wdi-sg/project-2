@@ -1,37 +1,29 @@
 const User = require('../models/User')
 const Event = require('../models/Event')
 const passport = require('../config/passport')
+const router = require('../routes/userRoute')
 
 const request = require('request')
 
+// module.exports = function (app) {
+//   app.use(function (req, res, next) {
+//     app.locals.sessionflash = req.flash('message')
+//     app.locals.user = req.user
+//     next()
+//   })
+//   app.use('/', router)
+// }
 
+  // list all events user has previously added
+function list (req, res) {
+  User.findOne({_id: req.user.id}).populate('events').exec(function (err, user) {
+    if (err) res.send(err)
 
-  function list (req, res) {
-    // getting all places from my list of places in the db
-    Event.find({}, function (err, allEvents) {
-      if (err) res.send(err)
-
-      res.render('profile', {
-        events: allEvents,
-        flash: req.flash('errors')
-      })
+    res.render('profile', {
+      user: user,
+      flash: req.flash('message')
     })
-
-
-  // getting all places from google place api
-  // const apiUrl = 'https://maps.googleapis.com/maps/api/place/textsearch/json?'
-  // const apiKey = `&key=${process.env.GOOGLE_PLACE_KEY}`
-  // const qString = `query=hotels in new york`
-  //
-  // request(`${apiUrl}${qString}${apiKey}`, function (err, response, body) {
-  //   if (err) res.send(err)
-  //
-  //   var data = JSON.parse(body)
-  //
-  //   res.render('users/new', {
-  //     places: data.results
-  //   })
-  // })
+  })
 }
 
 function create (req, res, next) {
@@ -41,12 +33,10 @@ function create (req, res, next) {
     password: req.body.user.password
   })
 
-  // newUser.events.push(req.body.event.id)
-
   newUser.save(function (err, createdUser) {
     if (err) {
-      req.flash('errors', err.message)
-      return res.redirect('/users/new')
+      flash: req.flash('message', 'bonjour!')
+      return res.redirect('/users/profile')
     }
     passport.authenticate('local', {
       successRedirect: '/users/profile',
@@ -57,17 +47,14 @@ function create (req, res, next) {
 
 function login (req, res) {
   passport.authenticate('local', {
-  successRedirect: '/users/profile',
-  failureRedirect: '/users/login',
-  failureFlash: 'Invalid username and/or password'
+    successRedirect: '/users/profile',
+    failureRedirect: '/users/login',
+    failureFlash: true
   })(req, res)
 }
 
-
 module.exports = {
-  // show,
   create,
-  // register,
   login,
   list
 }

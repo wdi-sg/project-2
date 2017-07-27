@@ -7,7 +7,6 @@ $(function () {
   const $spinner = $('#spinner')
   const $newUserForm = $('#newUserForm')
 
-  //const apiUrl = 'https://maps.googleapis.com/maps/api/place/textsearch/json?'
   const apiUrl = 'https://www.eventbriteapi.com/v3/events/search/?'
 
   //const apiKey = `&key=${GOOGLE_PLACE_KEY}`
@@ -50,8 +49,6 @@ $(function () {
       eventUrl: theBttn[0].dataset.eventurl
     }
 
-    console.log(newEvent);
-
     $.post('/events', newEvent).done(function (data) {
       if (data.status === 'ok') {
         alert('Hurray! ' + data.message)
@@ -59,7 +56,6 @@ $(function () {
     })
   })
 
-  // accessing data for spinner
   $('#spinner').data('speed')
 
   $eventSearch.on('submit', function (e) {
@@ -71,7 +67,6 @@ $(function () {
     var qString = `q=${keyword}`
     var sort = `&sort_by=date&location.address=singapore`
 
-    //var finalUrl = `http://crossorigin.me/${apiUrl}${qString}${apiKey}`
     var finalUrl = `${apiUrl}${qString}${sort}${apiKey}`
     ajaxTextSearch(finalUrl, keyword)
   })
@@ -83,8 +78,6 @@ $(function () {
       $spinner.fadeOut()
 
       var results = data.events
-      //console.log(data.events[0].name.text + 'over here')
-
 
       $keywordSearch.text(`Results for keyword: ${keyword}`)
 

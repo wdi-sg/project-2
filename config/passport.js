@@ -30,19 +30,31 @@ passport.use(
 
 // verify callback for local strategy
 function localVerify (req, passportEmail, passportPassword, next) {
+  console.log(req.body)
+  console.log(passportEmail)
+  console.log(passportPassword)
   User
   .findOne({
     email: passportEmail
-  })
-  .exec(function (err, foundUser) {
+  }, function (err, foundUser) {
     if (err) {
+
       console.log('err', err)
       return next(err) // go to failureRedirect
     }
 
+    if (!foundUser) {
+      console.log('user not found')
+      return next(null, false, {
+        message: 'email exists'
+      })
+    }
+    console.log('fondUser', foundUser)
+    console.log('err', err)
+    console.log('hello')
     if (foundUser.validPassword(passportPassword)) {
       console.log('success, redirect to /profile')
-      next(null, foundUser) // go to successRedirect
+      return next(null, foundUser) // go to successRedirect
     }
   })
 }
