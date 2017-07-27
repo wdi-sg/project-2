@@ -74,6 +74,7 @@ app.use('/carparks', carparksRoute)
 app.locals = {
   GOOGLE_KEY: process.env.GOOGLE_KEY
 }
+
 const port = process.env.PORT || 4000
 app.listen(port, function () {
   console.log(`express is running on ${port}`)

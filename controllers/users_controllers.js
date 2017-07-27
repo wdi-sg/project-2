@@ -3,6 +3,7 @@ const Carpark = require('../models/Carpark')
 
 const request = require('request')
 
+// register
 function register (req, res) {
   var newUser = new User({
     username: req.body.user.username,
@@ -17,13 +18,14 @@ function register (req, res) {
         res.redirect('/users/register')
       })
     }
-    req.flash('message', 'new account created, please log in')
+    req.flash('message', 'New account created, please log in')
     return req.session.save(function () {
       res.redirect('/users/login')
     })
   })
 }
 
+// list carparks of User
 function show (req, res) {
   User
   .findOne({
@@ -38,10 +40,13 @@ function show (req, res) {
   })
 }
 
+// delete cp from User.carparks and Carparks DB
 function destroy (req, res) {
+  // locate current user
   User.findOne({
     _id: req.user.id
   }, function (err, foundUser) {
+    // remove carpark from User.carparks array
     if (err) res.send(err)
     var index = foundUser.carparks.indexOf(req.params.id)
     if (index > -1) {
@@ -49,6 +54,7 @@ function destroy (req, res) {
       foundUser.save()
     }
   })
+  // remove carpark from Carpark DB
   Carpark.findOneAndRemove({
     _id: req.params.id
   }, function (err, foundCarpark) {

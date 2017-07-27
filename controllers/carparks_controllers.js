@@ -7,14 +7,16 @@ function create (req, res) {
     name: req.body.name,
     address: req.body.address
   })
+  // save carpark into Carpark DB
   newCarpark.save(function (err, newCarpark) {
     if (err) throw err
     res.send({
       status: 200, // 200 means ok
-      message: 'new carpark added to your favourites!',
+      message: 'New carpark added to your favourites!',
       err: 'ERROR'
     })
   })
+  // save carpark into User.carparks DB
   User.findOne({
     username: req.user.username
   },

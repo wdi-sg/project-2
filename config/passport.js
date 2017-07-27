@@ -33,11 +33,17 @@ function localVerify (req, passportUsername, passportPassword, next) {
     username: passportUsername
   })
   .exec(function (err, foundUser) {
+    // failure
     if (err) return next(err) // go to failureRedirect
-    if (!foundUser.validPassword(passportPassword)) {
-      req.flash('message', 'Invalid password/ username')
+    if(!foundUser) {
+      req.flash('message', 'Invalid username')
       return next(null, false)
     }
+    if (!foundUser.validPassword(passportPassword)) {
+      req.flash('message', 'Invalid password')
+      return next(null, false)
+    }
+    // success
     if (foundUser.validPassword(passportPassword)) {
       next(null, foundUser) // go to successRedirect
     }

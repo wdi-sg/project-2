@@ -1,5 +1,6 @@
 {{#if user }}
   <h2>Username: {{ user.username }} </h2>
+
   <div>
     <p>Favourite carparks: </p>
     <ul id='carparkList'>
@@ -16,6 +17,7 @@
       {{/each}}
     </ul>
   </div>
+  
 {{/if}}
 
 {{#unless user }}

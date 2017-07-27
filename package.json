@@ -10,7 +10,8 @@
   },
   "standard": {
     "globals": [
-      "$"
+      "$",
+      "google"
     ]
   },
   "dependencies": {
