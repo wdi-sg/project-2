@@ -277,3 +277,10 @@ a.pure-button-primary {
     }
 }
 /*My own css*/
+#map {
+  float: left
+}
+
+.chart-container {
+  float: right
+}
