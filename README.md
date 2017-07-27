@@ -1,18 +1,14 @@
-# Your Project Name
+# PROJECT 2
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+## ABOUT
 
-## Getting Started
+Project 2 allows potential tutors to "advertise" themselves on the platform to students. Upon registering, a tutor would then have to wait for a request from potential students.
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+Students upon registering would be able to access the site and filter through potential teachers. Once they have found suitable teacher/s, they would then be able to send a request to them requesting for a session. The tutors would then get back to the students if interested.
 
-### Prerequisites
+### Using Two Passport Strategies
 
-What is needed to install and run the project, how do we install them
-
-```
-Code example
-```
+As the app allows both students and teachers to log on, passport would need to authenticate
 
 ### How to Use
 
@@ -62,4 +58,3 @@ Did you collaborate with others on this project, list them here
 ## Acknowledgments
 
 * Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
