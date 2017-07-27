@@ -28,6 +28,7 @@ var myChart = new Chart(ctx, {
 })
 
 $(document).ready(function() {
+
   $('#Up1').on('click', function (e) {
     e.preventDefault()
 
