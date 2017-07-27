@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="css/alt.css">
 
-<h2>Search for events</h2>
+<h1>Search for events</h1>
 
 <form id="eventSearch" action="#" method="post">
   <label for="keyword">Search</label>
@@ -9,10 +9,12 @@
 </form>
 
 <h2 id="keywordSearch"></h2>
-<div style="color: red">
-  {{ flash }}
-</div>
 <img id="spinner"
 data-speed="300" class="hidden" src="img/spinner.gif" alt="loading" width="30">
+<section class="post" name="event[id]">
+  <header class="post-header">
 <ul id="searchResults">
+
 </ul>
+</header>
+</section>

@@ -66,7 +66,6 @@ $(function () {
 
     var keywordObj = $(this).serializeArray()
     var keyword = keywordObj[0].value
-    //var qString = `query=${keyword}`
     var qString = `q=${keyword}`
     var sort = `&sort_by=date&location.address=singapore`
 
@@ -90,6 +89,7 @@ $(function () {
         var $newLi = $('<li>')
         var $newH2 = $('<h2>')
         var $newP = $('<p>')
+        var $newP2 = $('<p>')
         var $newImg = $('<img>')
         var $newBr = $('<br>')
 
@@ -114,7 +114,8 @@ $(function () {
         $newH2.text(event.name.text)
         $newImg.attr('src', event.logo.url)
         $newP.text(d.toString())
-        $newLi.append($newImg, $newH2, $newP, $addBttn, $newBr)
+        $newP2.text(event.description.text)
+        $newLi.append($newH2,$newP, $newImg, $newP2, $addBttn, $newBr)
         $searchResults.append($newLi)
       })
     })

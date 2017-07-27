@@ -27,14 +27,11 @@ const userSchema = new Schema({
 userSchema.pre('save', function (next) {
   var user = this
 
-   // Only hash the password if it has been modified (or is new)
   if (!user.isModified('password')) return next()
 
-  // hash the password
   bcrypt.hash(user.password, 10, function (err, hash) {
     if (err) return next(err)
 
-    // Override the cleartext password with the hashed one
     user.password = hash
     next()
   })

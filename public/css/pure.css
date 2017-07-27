@@ -22,12 +22,19 @@ html {
   -webkit-text-size-adjust: 100%; /* 2 */
 }
 
-/**
- * Remove default margin.
- */
+.foxyform {
+
+      width: 350px;
+      margin: 0 auto;
+
+}
 
 body {
   margin: 0;
+}
+
+#eventSearch {
+margin-left: 1.3em;
 }
 
 article,
