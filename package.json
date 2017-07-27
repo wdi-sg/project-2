@@ -2,7 +2,10 @@
   "name": "project-2",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/wdi-sg/project-2.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wdi-sg/project-2.git"
+  },
   "author": "Prima Aulia Gusta <primaulia@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -23,5 +26,12 @@
     "passport-facebook": "^2.1.1",
     "passport-instagram": "^1.0.0",
     "passport-local": "^1.0.0"
-  }
+  },
+  "description": "This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.",
+  "bugs": {
+    "url": "https://github.com/wdi-sg/project-2/issues"
+  },
+  "homepage": "https://github.com/wdi-sg/project-2#readme",
+  "devDependencies": {},
+  "keywords": []
 }
