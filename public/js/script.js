@@ -56,11 +56,13 @@ $(function() {
       types: ['establishment']
     })
 
-    if (placeID !== 0) {
-      service.getDetails({
-        placeId: placeID
-      }, callbackId)
-    }
+    setTimeout(function () {
+      if (placeID !== 0) {
+        service.getDetails({
+          placeId: placeID
+        }, callbackId)
+      }
+    }, 2000)
   }
 
   function callbackId(results, status) {
