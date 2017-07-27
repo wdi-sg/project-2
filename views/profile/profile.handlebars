@@ -1,0 +1,23 @@
+<h2>Search for New Shows</h2>
+
+<form id="tvSearch" action="#" method="post">
+  <label for="keyword">Search</label>
+  <input type="text" name="keyword" id="keyword" value="">
+  <button>Submit</button>
+</form>
+
+<ul id="searchResult">
+</ul>
+
+<h2>List of Saved Shows</h2>
+
+<ul>
+  {{#each episode as |episode|}}
+    <li>
+      Name: {{{episode.name}}}<br>
+      Season: {{{episode.season}}}<br>
+      Episode Number: {{{episode.episode}}}<br>
+    </li>
+    <br>
+  {{/each}}
+</ul>
