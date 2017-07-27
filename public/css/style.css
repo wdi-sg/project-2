@@ -19,7 +19,7 @@ body.loading .modal {
 }
 /*for google map*/
 #map {
-  height: 450px;
+  height: 400px;
   width: 900px;
   margin: auto auto 20px auto;
 }
@@ -28,4 +28,15 @@ body.loading .modal {
 }
 #carparkList {
   margin: auto 100px 20px 100px;
+}
+.navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+.hero {
+  margin-top:52px;
+}
+.navbar-item{
+  width: 144;
 }
