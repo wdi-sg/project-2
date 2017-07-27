@@ -108,7 +108,7 @@ function createOrUpdate(req, res) {
                   foundPlace.trips.push(foundTrip.id)
                   foundPlace.save()
                 }
-                return res.send(`Added ${newPlace.name}!`)
+                return res.send(`Added ${foundPlace.name}!`)
               }
             }
           })
