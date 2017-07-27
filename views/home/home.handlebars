@@ -1,6 +1,8 @@
 <body>
 <br>
-<b>Portfolio Overview - Private Page (home.handlebars)</b>
+<b>Portfolio Overview - Private Page</b> 
+
+<!-- (home.handlebars) -->
 
 <br>
 <br>
@@ -32,11 +34,11 @@
 <br>
 <ul id='positionUl'>
 	{{#each portHolding as |position|}}
-		<li id="{{ position.id }}"> {{position.instrument.name}}, <b>Unit Cost:</b> {{position.unitCost}}<a id="sellPosition:{{ position.id }}" href="">Sell</a></li>
+		<li id="{{ position.id }}"> {{position.instrument.name}} <a id="sellPosition:{{ position.id }}" href="">Sell</a></li>
 	{{/each}}
 </ul>
 
-<!-- <b>Name:</b> <b>Qty:</b> {{position.quantity}} -->
+<!-- <b>Name:</b> <b>Qty:</b> {{position.quantity}} <b>Unit Cost:</b> {{position.unitCost}}-->
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

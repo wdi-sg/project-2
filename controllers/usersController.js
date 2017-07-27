@@ -17,7 +17,7 @@ function signUp (req, res) {
     var newUser = new User({
       name: req.body.user.name,
       email: req.body.user.email,
-      password: req.body.user.password,
+      password: User.encrypt(req.body.user.password),
       portfolio: [createdPortfolio.id]
     })
 

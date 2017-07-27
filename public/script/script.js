@@ -47,7 +47,9 @@ $(document).ready(function () {
           // console.log(newPosition.quantity)
           // console.log(newPosition.unitCost)
 
-          $('#positionUl').append(`<li id="${newPosition._id}"><b>Name:</b> ${newPosition.instrument.name}, <b<b>Qty:</b> ${newPosition.quantity}, <b>Unit Cost:</b> ${newPosition.unitCost}<a id="sellPosition:${newPosition._id}" href="">Sell</a></li>`)
+          $('#positionUl').append(`<li id="${newPosition._id}">${newPosition.instrument.name} <a id="sellPosition:${newPosition._id}" href="">Sell</a></li>`)
+
+          // <b>Name:</b> <b>Qty:</b> ${newPosition.quantity}, <b>Unit Cost:</b> ${newPosition.unitCost}
 
         }).fail(function (res) {
           console.log('error submitting buy selection')

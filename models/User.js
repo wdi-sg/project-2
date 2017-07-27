@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-//const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt')
 
 const userSchema = new Schema({
   name: {
@@ -36,11 +36,16 @@ const userSchema = new Schema({
 
 userSchema.methods.validPassword = function (givenPassword) {
   // t/f based on the user.hashed compared with form.password
-  if (givenPassword === this.password) {return true}
-  return false
-  //return bcrypt.compareSync(givenPassword, this.password)
+  // if (givenPassword === this.password) {return true}
+  // return false
+  // console.log('given ', givenPassword)
+  // console.log('this password ', this.password)
+  return bcrypt.compareSync(givenPassword, this.password)
 }
 
+userSchema.statics.encrypt = function(password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+}
 
 const User = mongoose.model('User', userSchema)
 
