@@ -45,7 +45,7 @@ $(document).ready(function () {
           // console.log(newPosition.quantity)
           // console.log(newPosition.unitCost)
 
-          $('#positionUl').append(`<li id="${newPosition._id}"><b>Name:</b> ${newPosition.instrument.name}, <b<b>Qty:</b> ${newPosition.quantity}, <b>Unit Cost:</b> ${newPosition.unitCost}<a id="sellInstrument:${newPosition._id}" href="">Sell</a></li>`)
+          $('#positionUl').append(`<li id="${newPosition._id}"><b>Name:</b> ${newPosition.instrument.name}, <b<b>Qty:</b> ${newPosition.quantity}, <b>Unit Cost:</b> ${newPosition.unitCost}<a id="sellPosition:${newPosition._id}" href="">Sell</a></li>`)
 
         }).fail(function (res) {
           console.log('error submitting buy selection')
@@ -69,6 +69,15 @@ $(document).ready(function () {
         }).done(function (res) {
           console.log('success submitting sell selection')
           console.log(res.deletedId)
+
+          var element = '#' + res.deletedId
+          $(element).remove()
+
+          //$(`#${res.deletedId}`).remove()
+
+          //console.log($(`li #${res.deletedId}`))
+          //$(`li #${res.deletedId}`).html('')
+
           //var newPosition = res.savedPosition
 
           // console.log(newPosition._id)
@@ -87,33 +96,33 @@ $(document).ready(function () {
   }) 
 
 
-  $instrumentsMenu.change(function (event) {
-    event.preventDefault()
-    var id = $('#instrumentsMenu option:selected').val()
+  // $instrumentsMenu.change(function (event) {
+  //   event.preventDefault()
+  //   var id = $('#instrumentsMenu option:selected').val()
 
-    $('#eodMktPricing').html('') // clears listing while waiting for res
+  //   $('#eodMktPricing').html('') // clears listing while waiting for res
 
-    if (id !== '') { // send ajax req only if instrument is selected
+  //   if (id !== '') { // send ajax req only if instrument is selected
 
-      var instrumentID = {instrumentID: id}
+  //     var instrumentID = {instrumentID: id}
       
-      $.ajax({
-          url: '/home/eodMktPricing',
-          type: 'POST',
-          data: instrumentID,
-        }).done(function (res) {
-          console.log('success getting market price thru backend')
-          var parseRes = JSON.parse(res)
-          var eodMktPrice = parseRes.dataset_data.data[0][4]
-          var eodMktPriceDate = parseRes.dataset_data.data[0][0]
-          console.log('price: ', eodMktPrice)
-          console.log('date: ', eodMktPriceDate)
-          $('#eodMktPricing').html(`End of Day Market Price (as of ${eodMktPriceDate}): \$${eodMktPrice}`)
-        }).fail(function (res) {
-          console.log('error getting market price thru backend')
-        })
-    }
-  })
+  //     $.ajax({
+  //         url: '/home/eodMktPricing',
+  //         type: 'POST',
+  //         data: instrumentID,
+  //       }).done(function (res) {
+  //         console.log('success getting market price thru backend')
+  //         var parseRes = JSON.parse(res)
+  //         var eodMktPrice = parseRes.dataset_data.data[0][4]
+  //         var eodMktPriceDate = parseRes.dataset_data.data[0][0]
+  //         console.log('price: ', eodMktPrice)
+  //         console.log('date: ', eodMktPriceDate)
+  //         $('#eodMktPricing').html(`End of Day Market Price (as of ${eodMktPriceDate}): \$${eodMktPrice}`)
+  //       }).fail(function (res) {
+  //         console.log('error getting market price thru backend')
+  //       })
+  //   }
+  // })
 
 
 
