@@ -27,10 +27,14 @@ function localVerify (req, email, password, next) {
   })
   .exec(function (err, foundUser) {
     if (err) next(err)
+    if (!foundUser) {
+      req.flash('message', 'Email does not exist, please register')
+      return next(null, false)
+    }
     const formPassword = req.body.password
     if (!foundUser.validPassword(formPassword)) {
       req.flash('message', 'Incorrect password, please try again.')
-      next(null, false)
+      return next(null, false)
     }
     if (foundUser.validPassword(formPassword)) {
       next(null, foundUser)

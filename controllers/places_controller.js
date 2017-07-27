@@ -18,6 +18,56 @@ function showMain(req, res) {
     })
 }
 
+function showTopPlaces (req, res) {
+  console.log(req.query.city)
+  if (!req.query.city) {
+    Place.find({})
+    .sort('-trips')
+    .limit(10)
+    .exec(function (err, foundPlaces) {
+      if (err) return res.send(err)
+      // console.log(foundPlaces);
+      return res.render('places/top', {
+        user: req.user,
+        places: foundPlaces
+      })
+    })
+  } else {
+    Place.find({
+      $text: {
+        $search: req.query.city
+      }
+    })
+    .sort('-trips')
+    .limit(10)
+    .exec(function (err, foundPlaces) {
+      if (err) return res.send(err)
+      // console.log(foundPlaces);
+      res.render('places/top', {
+        user: req.user,
+        places: foundPlaces
+      })
+    })
+  }
+}
+
+function showTopPlacesFiltered (req, res) {
+  console.log(req.params);
+  Place.find({
+    address: {$regex : `.*${req.body.city}.*`}
+  })
+  .sort('-trips')
+  .limit(10)
+  .exec(function (err, foundPlaces) {
+    if (err) return res.send(err)
+    // console.log(foundPlaces);
+    res.render('places/top', {
+      user: req.user,
+      places: foundPlaces
+    })
+  })
+}
+
 function createOrUpdate(req, res) {
   Place.count({
     place_id: req.body.place_id
@@ -102,8 +152,39 @@ function showOneOnMap (req, res) {
   })
 }
 
+function showTripOnMap (req, res) {
+  Trip.findOne({
+    _id: req.params.tripid
+  }, function (err, foundTrip) {
+    if (err) return res.send(err)
+    foundTrip.dates.forEach(function (date) {
+      if (date.date === req.params.date) {
+        var placesArray = []
+        if (date.places.length === 0) return res.send({
+          message: 'No place found for this date!',
+          status: 'fail'
+        })
+        date.places.forEach(function (place) {
+          Place.findOne({
+            _id: place
+          }, function (err, foundPlace) {
+            if (err) return res.send(err)
+            placesArray.push(foundPlace.place_id)
+            if (placesArray.length === date.places.length) {
+              return res.send(placesArray)
+            }
+          })
+        })
+      }
+    })
+  })
+}
+
 module.exports = {
   showMain,
+  showTopPlaces,
+  showTopPlacesFiltered,
   createOrUpdate,
-  showOneOnMap
+  showOneOnMap,
+  showTripOnMap
 }

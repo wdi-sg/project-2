@@ -28,7 +28,7 @@ app.use(session({
   store: new MongoStore({
     url: 'mongodb://localhost/project2'
   }),
-  secret: 'foo',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
@@ -59,10 +59,10 @@ app.use('/users', usersRoute)
 app.use('/trips', tripsRoute)
 
 app.locals = {
-  GOOGLE_MAPS_KEY: process.env.GOOGLE_MAPS_KEY
+  GOOGLE_MAPS_URL: process.env.GOOGLE_MAPS_URL
 }
 
-const port = process.env.PORT || 5100
+const port = process.env.PORT || 5200
 app.listen(port, function () {
   console.log(`express is running on ${port}`)
 })

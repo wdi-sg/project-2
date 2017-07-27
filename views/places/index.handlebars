@@ -1,4 +1,4 @@
-<h1>Add Places</h1>
+<h1>Add/View Places</h1>
 <form id="textSearchForm" action="#" method="post">
   <input id="textSearchInput" type="text" name="keyword" placeholder="insert query here">
   <button>submit</button>
@@ -12,10 +12,12 @@
   </select>
 <select id="selectedDate" name="date">
     <option value="" disabled selected>Select a Date</option>
-  </select><br><br>
+</select>
+<button id="viewPlaces">View places from selected date</button>
+<br><br>
 <div id="map">
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPPIJi451Gb2Ee2ehiwOiar1HtiE10UGg&&libraries=places">
+<script src={{GOOGLE_MAPS_URL}}>
 </script>
 <script type="text/javascript">
   var placeID = 0

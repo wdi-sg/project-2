@@ -18,6 +18,10 @@ var placeSchema = new Schema({
   }]
 })
 
+placeSchema.index({
+  address: 'text'
+})
+
 const Place = mongoose.model('Place', placeSchema)
 
 module.exports = Place

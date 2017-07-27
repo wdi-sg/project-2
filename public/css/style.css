@@ -40,9 +40,7 @@ header {
   text-align: right;
 }
 .nav {
-  display: block;
-  width: 383px;
-  margin: 10px auto;
+  text-align: center;
 }
 .headerLi, .tabs {
   list-style-type: none;
@@ -113,11 +111,35 @@ a:hover {
 }
 
 .placeContentButtons {
-  width: 30%;
+  width: 35%;
   float: right;
 }
 .placeContentButton {
   margin-right: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.topPlacesListContainer {
+  width: 50%;
+  margin: 0 auto;
+  position: relative;
+}
+.topPlacesFilter {
+  text-align: center;
+}
+.topPlacesTable{
+  width: 100%;
+}
+.topPlacesName {
+  width: 50%;
+}
+.timesAdded {
+  text-align: center;
+  width: 20%;
+}
+.viewOnMapLink {
+  width: 30%;
+}
+.topPlacesHeader {
+  font-weight: bold;
 }

@@ -25,6 +25,24 @@ $(function() {
       }, callback)
     })
 
+    $('#viewPlaces').on('click', function () {
+      var selectedTripID = $('#selectedTrip').serializeArray()[0].value
+      var selectedDate = $('#selectedDate').serializeArray()[0].value
+      $.get(`/places/${selectedTripID}/${selectedDate}`).done(function (data) {
+        console.log(data)
+        if (data.status === 'fail') return alert(data.message)
+        markers.forEach(function (marker) {
+          marker.setMap(null)
+        })
+        markers = []
+        data.forEach(function (placeID) {
+          service.getDetails({
+            placeId: placeID
+          }, callbackViewPlaces)
+        })
+      })
+    })
+
     var input = document.querySelector('#textSearchInput')
     var form = document.querySelector('#textSearchForm')
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(form)
@@ -41,74 +59,82 @@ $(function() {
         placeId: placeID
       }, callbackId)
     }
+  }
 
-
-    function callbackId(results, status) {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        createMarker(results)
-        map.panTo(results.geometry.location)
-        map.setZoom(16)
-      }
-    }
-
-    function callback(results, status, pagination) {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-          createMarker(results[i]);
-        }
-        if (pagination.hasNextPage) pagination.nextPage()
-        console.log(results)
-        if (!pagination.hasNextPage) {
-          map.panTo(results[0].geometry.location)
-          map.setZoom(13)
-        }
-      }
-    }
-
-    function createMarker(place) {
-      var placeLoc = place.geometry.location;
-      var marker = new google.maps.Marker({
-        map: map,
-        position: place.geometry.location,
-        icon: {
-          url: place.icon, // url
-          scaledSize: new google.maps.Size(30, 30), // scaled size
-          origin: new google.maps.Point(0, 0), // origin
-          anchor: new google.maps.Point(0, 0) // anchor
-        }
-      })
-      markers.push(marker)
-
-      google.maps.event.addListener(marker, 'click', function() {
-        if (place.photos) {
-          var img = `<img src=${place.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150})}>`
-        } else {
-          img = ''
-        }
-        infowindow.setContent(`${img}<div class="infoWindowText">${place.name} @ ${place.formatted_address}</div><br><br><button class="addPlace">Add to Trip</button><br>`)
-        infowindow.open(map, this)
-        console.log(place)
-        $('.addPlace').on('click', function() {
-          console.log('button is clicked')
-          console.log(place.place_id, place.name, place.formatted_address)
-          if ($('#selectedTrip').serializeArray().length === 0) return alert('Please select a trip!')
-          if ($('#selectedDate').serializeArray().length === 0) return alert('Please select a date!')
-          var selectedTripID = $('#selectedTrip').serializeArray()[0].value
-          var selectedDate = $('#selectedDate').serializeArray()[0].value
-          var newPlace = {
-            place_id: place.place_id,
-            name: place.name,
-            address: place.formatted_address,
-            id: selectedTripID,
-            date: selectedDate
-          }
-          $.post('/places', newPlace).done(function (data) {
-              alert(data)
-          })
-        })
-      })
+  function callbackId(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      createMarker(results)
+      map.panTo(results.geometry.location)
+      map.setZoom(16)
     }
   }
+
+  function callbackViewPlaces(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      createMarker(results)
+      map.panTo(results.geometry.location)
+      map.setZoom(13)
+    }
+  }
+
+  function callback(results, status, pagination) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      for (var i = 0; i < results.length; i++) {
+        createMarker(results[i]);
+      }
+      if (pagination.hasNextPage) pagination.nextPage()
+      console.log(results)
+      if (!pagination.hasNextPage) {
+        map.panTo(results[0].geometry.location)
+        map.setZoom(13)
+      }
+    }
+  }
+
+  function createMarker(place) {
+    var placeLoc = place.geometry.location;
+    var marker = new google.maps.Marker({
+      map: map,
+      position: place.geometry.location,
+      icon: {
+        url: place.icon, // url
+        scaledSize: new google.maps.Size(30, 30), // scaled size
+        origin: new google.maps.Point(0, 0), // origin
+        anchor: new google.maps.Point(0, 0) // anchor
+      }
+    })
+    markers.push(marker)
+
+    google.maps.event.addListener(marker, 'click', function() {
+      if (place.photos) {
+        var img = `<img src=${place.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150})}>`
+      } else {
+        img = ''
+      }
+      infowindow.setContent(`${img}<div class="infoWindowText">${place.name} @ ${place.formatted_address}</div><br><br><button class="addPlace">Add to Trip</button><br>`)
+      infowindow.open(map, this)
+      console.log(place)
+      $('.addPlace').on('click', function() {
+        console.log('button is clicked')
+        console.log(place.place_id, place.name, place.formatted_address)
+        if ($('#selectedTrip').serializeArray().length === 0) return alert('Please select a trip!')
+        if ($('#selectedDate').serializeArray().length === 0) return alert('Please select a date!')
+        var selectedTripID = $('#selectedTrip').serializeArray()[0].value
+        var selectedDate = $('#selectedDate').serializeArray()[0].value
+        var newPlace = {
+          place_id: place.place_id,
+          name: place.name,
+          address: place.formatted_address,
+          id: selectedTripID,
+          date: selectedDate
+        }
+        $.post('/places', newPlace).done(function (data) {
+            alert(data)
+        })
+      })
+    })
+  }
+
   $('#selectedTrip').change(function() {
     var selectedTripID = $('#selectedTrip').serializeArray()[0].value
     $('.dateOption').remove()
