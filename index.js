@@ -2,20 +2,26 @@ const exphbs = require('express-handlebars')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const passport = require('./config/passport')
+const url = process.env.MLAB_URI || 'mongodb://localhost/project-2'
 var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose')
 
-// if (process.env.NODE_ENV === 'test') {
-  mongoose.connect('mongodb://localhost/project-2')
-// } else {
-//   mongoose.connect('mongodb://localhost/express-authentication')
-// }
+mongoose.connect(url, {
+  useMongoClient: true
+}).then(
+  function () {
+    console.log('connected successfully')
+  },
+  function (err) {
+    console.log(err)
+  }
+)
 
 app.use(session({
   store: new MongoStore({
-    url: 'mongodb://localhost/project-2'
+    url: url
   }),
   secret: 'foo',
   resave: false,
