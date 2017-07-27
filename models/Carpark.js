@@ -3,11 +3,7 @@ const Schema = mongoose.Schema
 
 const carparkSchema = new Schema({
   name: String,
-  address: String,
-  users: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  }
+  address: String
 })
 
 const Carpark = mongoose.model('Carpark', carparkSchema)
