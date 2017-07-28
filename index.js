@@ -35,7 +35,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  // secret: process.env.SESSION_SECRET,
+  secret: hello,
   resave: false,
   saveUninitialized: true,
   store: new MongoStore({
