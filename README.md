@@ -26,6 +26,7 @@ Pre-Development Phase
 * **Entity Relationship Diagram:**
 
   ![](public/img/erd.jpg)
+
   A user can peg many events.
 
 <br>
@@ -354,10 +355,11 @@ Built With
 * **HTML5** - Web Page Structure
 
 ---
-
 ### Acknowledgements
+---
 
 ** Videos **
+
 
 * Rea Burla
 * Luke Shepard
