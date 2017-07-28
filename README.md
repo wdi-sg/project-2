@@ -8,7 +8,7 @@ Read Me Contents
 #### Your Events Bookmarking Manager
 
 
-**[View It Here](http://serene-badlands-64761.herokuapp.com/)**
+**[View It Here](https://eventorysg.herokuapp.com/)**
 
 ---
 ### Overview
