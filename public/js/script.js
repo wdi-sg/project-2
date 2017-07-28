@@ -66,6 +66,7 @@ $(function () {
 
     var keywordObj = $(this).serializeArray()
     var keyword = keywordObj[0].value
+    //var qString = `query=${keyword}`
     var qString = `q=${keyword}`
     var sort = `&sort_by=date&location.address=singapore`
 

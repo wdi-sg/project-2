@@ -42,10 +42,21 @@ function login (req, res) {
   })(req, res)
 }
 
+function destroy (id) {
+  User.findOneAndRemove({_id: req.user.id}, function (err, User){
+    if (err) res.send(err)
+
+    res.render('profile', {
+      user: user,
+      flash: req.flash('message')
+    })
+  })
+}
 
 
 module.exports = {
   create,
   login,
-  list
+  list,
+  destroy
 }

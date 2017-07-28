@@ -8,7 +8,7 @@ const notLoggedIn = require('../middleware/notLoggedIn')
 router.get('/profile', notLoggedIn, usersController.list)
 
 router.get('/new', function (req, res) {
-  res.render('users/new', {
+  res.render('users/new' , {
     user: req.user
   })
 })
