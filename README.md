@@ -17,8 +17,6 @@ What did you use to build it, list the technologies, plugins, gems, packages etc
 
 ## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
-
 **Wireframes**
 
 Based on a one-week project timeline, I devised at the start the following wireframes as a visual reference to the scope of the project. 
@@ -41,11 +39,6 @@ Instrument (i.e. an Exchange Traded Fund) is defined separately from Position. T
 
 ![](documentation/ERD_Model_ETF_Allocator_v0.1.1.png)
 
-## Architecture
-
-adfsd
-
-**ssss**
 
 ## Acknowledgments
 
