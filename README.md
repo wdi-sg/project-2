@@ -27,7 +27,7 @@ Pre-Development Phase
 
   ![](public/img/erd.jpg)
 
-  A user can peg many events.
+      A user can peg many events.
 
 <br>
 
@@ -35,7 +35,7 @@ Pre-Development Phase
 
   ![](public/img/webflow.jpg)
 
-  Schematic overview of website and functionalities.
+      Schematic overview of website and functionalities.
 
 
 
@@ -45,7 +45,7 @@ Development Phase
 * **Accessing Eventbrite API:**
 ![](public/img/api.png)
 
-  Highlighted are the core values to be targetted.
+    Highlighted are the core values to be targetted.
 
 <br>
 
@@ -358,7 +358,7 @@ Built With
 ### Acknowledgements
 ---
 
-** Videos **
+**Videos**
 
 
 * Rea Burla
