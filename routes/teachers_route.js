@@ -28,6 +28,8 @@ router.post('/updateQualification', teachersController.updateQualification);
 router.post('/updateDescription', teachersController.updateDescription);
 router.post('/updateFee', teachersController.updateFee);
 
+router.get('/test', teachersController.test)
+
 router.post('/login',
  passport.authenticate('local-teacher', {
    successRedirect: '/teachers/teacherLoginView',

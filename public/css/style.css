@@ -26,3 +26,8 @@ input {
 #teachSync {
   font-size: 40px;
 }
+
+#userMap {
+  width: 500px;
+  height:500px;
+}

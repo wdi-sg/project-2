@@ -120,7 +120,9 @@ Gender: {{student.gender}}<br>
 <button name="id" value={{student.id}}>Delete</button>
 </form>```
 
+
 ###### function Delete
+
 ```
 function remove (req,res) {
 
@@ -132,4 +134,5 @@ teacher.save()
 res.redirect('/teachers/teacherLoginView')
 })
 }
+
 ```

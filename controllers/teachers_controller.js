@@ -1,4 +1,6 @@
 const Teacher = require('../models/teacher.js');
+const Student = require('../models/student.js');
+
 
 function create (req,res) {
 
@@ -150,6 +152,23 @@ function updateFee (req,res) {
       })
 res.redirect('/teachers/updateProfile')
 }
+
+function test (req, res, next) {
+  var studentsId = req.user.students
+  var studentArr = []
+  studentsId.forEach(function(studentId) {
+    Student.findById(studentId, function(err, student){
+      if (err) res.send(err)
+      studentArr.push(student)
+      if(studentArr.length === studentsId.length) {
+       res.render('test/index', {
+         student: studentArr
+       })
+     }
+    })
+  })
+}
+
 module.exports = {
   create,
   login,
@@ -163,4 +182,5 @@ module.exports = {
   updateQualification,
   updateDescription,
   updateFee,
+  test
 }
