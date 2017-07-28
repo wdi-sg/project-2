@@ -22,6 +22,7 @@ Do contribute to the community by upvoting your recommended month.
 * Express
 * NodeJS
 * Google Static Maps API
+* [Background Image](http://www.dimitri.co.uk/concepts/concepts-images/storm-coming-clouds-ocean.jpg)
 
 ## Potential upgrades
 
