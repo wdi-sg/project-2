@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="/css/alt.css">
+
+<h1>Welcome Back! What Would You Like To Do?</h1>
+
+<div id="flash" style="color: red">
+  {{#if sessionFlash.message}}
+    <div class="{{ sessionFlash.type }}">
+        <strong>INVALID!</strong> {{ sessionFlash.message }}
+    </div>
+{{/if}}
+</div>
+
+
+<a href="/events" class="pure-menu-link">Search For Events</a>
+<a class="pure-menu-link" onclick="toggle()">View Your Eventory</a>
+
+<div id="split">
+  <div class="posts" id="toggle">
+    {{#each user.events as |event|}}
+    <section class="post" name="event[id]">
+      <header class="post-header">
+        <h2 class="content-subhead" value="{{ event.id }}">{{event.name}}</h2>
+        <p class="post-meta" value="{{ event.id }}">{{event.dateTime}}</p>
+        <p class="post-images" value="{{ event.id }}">
+          <a value="{{ event.id }}" href="{{event.eventUrl}}"><img id="imglink" src="{{event.imgUrl}}"></a>
+        </p>
+
+      </header>
+    </section>
+    {{/each}}
+  </div>
+</div>
+
+
+<script>
+function toggle() {
+    var x = document.getElementById('toggle');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+</script>

@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/css/alt.css">
+
+<h1>Sign Up here</h1>
+
+<div id="flash" style="color: red">
+  {{#if sessionFlash.message}}
+    <div class="{{ sessionFlash.type }}">
+        <strong>INVALID!</strong> {{ sessionFlash.message }}
+    </div>
+{{/if}}
+</div>
+
+<div class="l-box-lrg">
+<form class="pure-form pure-form-stacked" action="/users/login" method="post">
+  <label>Name:</label>
+  <input type="text" name="user[name]" placeholder="Submit your name">
+    <br />
+  <label>Email:</label>
+  <input type="text" name="user[email]" placeholder="e.g. jane@gmail.com">
+    <br />
+  <label>Password:</label>
+  <input type="password" name="user[password]" placeholder="password min. 8">
+    <br />
+  <button class="pure-button2">Submit</button>
+</form>
+</div>

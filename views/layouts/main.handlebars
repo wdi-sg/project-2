@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Keep tabs of your upcoming events so you won't miss them again!">
+    <title>Eventory | Your Events Bookmarking Manager</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/pure.css">
+    <link rel="stylesheet" href="/css/grids-responsive.css">
+
+
+</head>
+<body>
+<div class="pure-menu pure-menu-horizontal">
+    <a href="/" class="pure-menu-heading" id="logo">Eventory</a>
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item pure-menu-selected">
+        {{#if user}}
+            <a href="/users/profile" class="pure-menu-link" name="logout">
+            Profile
+            </a>
+          {{else}}
+            <a href="/events" class="pure-menu-link" name="login">
+            Events
+            </a>
+        {{/if}}
+        </li>
+        <li class="pure-menu-item">
+        {{#if user}}
+            <a href="/logout" class="pure-menu-link" name="logout">
+            Logout
+            </a>
+          {{else}}
+            <a href="/users/login" class="pure-menu-link" name="login">
+            Login
+            </a>
+        {{/if}}
+        </li>
+        <li class="pure-menu-item"><a href="/users/new" class="pure-menu-link">Signup</a></li>
+        <li class="pure-menu-item"><a href="/contact" class="pure-menu-link">Contact</a></li>
+    </ul>
+
+</div>
+
+<div class="banner">
+    <h1 class="banner-head">
+        With <a style="color: #ff7b01">Eventory</a> You'll Never Forget<br>
+        Your Favourite Activities!
+    </h1>
+</div>
+
+{{{ body }}}
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">var EVENTBRITE_API_KEY = '{{ EVENTBRITE_API_KEY }}'</script>
+<script src="/js/script.js" charset="utf-8"></script>
+</body></html>
