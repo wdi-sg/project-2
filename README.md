@@ -29,6 +29,7 @@ Pre-Development Phase
   A user can peg many events.
 
 <br>
+
 * **Web Flow Diagram:**
 
   ![](public/img/webflow.jpg)
@@ -45,6 +46,7 @@ Development Phase
 
   Highlighted are the core values to be targetted.
 
+<br>
 
 * **Defining the Models:**
 
@@ -87,6 +89,8 @@ Development Phase
     }
   })
   ```
+<br>
+
 
 * **Searching for Events and listing them:**
 
