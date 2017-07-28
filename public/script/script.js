@@ -90,6 +90,22 @@ $(document).ready(function () {
 
   $instrumentsMenu.change(function (event) {
     event.preventDefault()
+
+    /////////////
+    //test graph
+    ///////////////
+
+    // MG.data_graphic({
+    //   title: 'Downloads',
+    //   description: 'xxx',
+    //   data: [{date: "2014-01-08", value: 500},{date: "2014-01-09", value: 600},{date: "2014-01-10", value: 700}], // an array of objects, such as [{value:100,date:...},...]
+    //   width: 600,
+    //   height: 250,
+    //   target: '#graph', // the html element that the graphic is inserted in
+    //   x_accessor: 'date',  // the key that accesses the x value
+    //   y_accessor: 'value' // the key that accesses the y value
+    // })
+
     var id = $('#instrumentsMenu option:selected').val()
 
     $('#eodMktPricing').html('') // clears listing while waiting for res

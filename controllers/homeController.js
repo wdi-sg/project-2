@@ -242,6 +242,13 @@ function getEODMarketPrice (req, res) {
 	})
 }
 
+
+// function displayChart () {
+	
+// }
+
+
+
 module.exports = {
 	marketValue,
 	buildPage,
