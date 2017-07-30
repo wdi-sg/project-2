@@ -3,18 +3,26 @@ const router = express.Router()
 
 const tripsController = require('../controllers/trips_controller')
 
-router.get('/', tripsController.showMain)
+function authenticatedUser (req, res, next) {
+  if (req.isAuthenticated()) return next()
+  req.flash('message', 'Please login to access!')
+  return req.session.save(function () {
+    res.redirect('/users/login')
+  })
+}
 
-router.get('/place', tripsController.checkIfPlaceAlreadyAdded)
+router.get('/', authenticatedUser, tripsController.showMain)
 
-router.get('/create', function (req, res) {
+// router.get('/place', tripsController.checkIfPlaceAlreadyAdded)
+
+router.get('/create', authenticatedUser, function (req, res) {
   res.render('trips/create', {
     user: req.user,
     flash: req.flash('message')
   })
 })
 
-router.get('/:id', tripsController.showSelected)
+router.get('/:id', authenticatedUser, tripsController.showSelected)
 
 router.post('/', tripsController.create)
 

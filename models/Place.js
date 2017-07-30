@@ -15,7 +15,11 @@ var placeSchema = new Schema({
   users: [{
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }]
+  }],
+  timesAdded: {
+    type: Number,
+    default: 0
+  }
 })
 
 placeSchema.index({

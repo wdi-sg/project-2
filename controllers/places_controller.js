@@ -22,7 +22,7 @@ function showTopPlaces (req, res) {
   // console.log(req.query.city)
   if (!req.query.city) {
     Place.find({})
-    .sort('-trips')
+    .sort('-timesAdded')
     .limit(10)
     .exec(function (err, foundPlaces) {
       if (err) return res.send(err)
@@ -38,7 +38,7 @@ function showTopPlaces (req, res) {
         $search: req.query.city
       }
     })
-    .sort('-trips')
+    .sort('timesAdded')
     .limit(10)
     .exec(function (err, foundPlaces) {
       if (err) return res.send(err)
@@ -78,6 +78,7 @@ function createOrUpdate(req, res) {
             return id == foundTrip.id
           }) === -1) {
             newPlace.trips.push(foundTrip.id)
+            newPlace.timesAdded += 1
             newPlace.save()
           }
         })
@@ -106,6 +107,7 @@ function createOrUpdate(req, res) {
                   return id == foundTrip.id
                 }) === -1) {
                   foundPlace.trips.push(foundTrip.id)
+                  foundPlace.timesAdded += 1
                   foundPlace.save()
                 }
                 return res.send(`Added ${foundPlace.name}!`)

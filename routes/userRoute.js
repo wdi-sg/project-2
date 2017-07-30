@@ -18,7 +18,9 @@ router.get('/register', function (req, res) {
 
 router.get('/logout', function (req, res) {
   req.logout()
-  res.redirect('/')
+  return req.session.save(function () {
+    res.redirect('/')
+  })
 })
 
 router.post('/', usersController.register)

@@ -14,7 +14,7 @@
     {{#each places as |place|}}
     <tr>
       <td class="topPlacesName">{{place.name}}</td>
-      <td class="timesAdded">{{place.trips.length}}</td>
+      <td class="timesAdded">{{place.timesAdded}}</td>
       <td class="viewOnMapLink"><a href="/places/{{place.place_id}}">View on Google Maps</a></td>
     </tr>
     {{/each}}

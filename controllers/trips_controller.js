@@ -84,16 +84,8 @@ function deleteSelected(req, res) {
     _id: req.user.id
   }, function (err, user) {
     if(err) return res.send(err)
-    // console.log(user)
-    // console.log(req.params.id);
-    var index = user.trips.findIndex(function(trip) {
-      return trip == req.params.id
-    })
-    // console.log(index);
-    if (index !== -1) {
-      user.trips.splice(index, 1)
-      user.save()
-    }
+    user.trips.pull(req.params.id)
+    user.save()
   })
   Trip.findOneAndRemove({
     _id: req.params.id
@@ -105,16 +97,9 @@ function deleteSelected(req, res) {
           _id: deletedTrip.dates[i].places[j]
         }, function (err, foundPlace) {
           if (err) res.send(err)
-          // console.log(deletedTrip);
-          // console.log(foundPlace);
-          var index = foundPlace.trips.findIndex(function (id) {
-            return id == deletedTrip.id
-          })
-          // console.log(index);
-          if (index !== -1) {
-            foundPlace.trips.splice(index, 1)
-            foundPlace.save()
-          }
+          foundPlace.trips.pull(req.params.id)
+          foundPlace.timesAdded -= 1
+          foundPlace.save()
         })
       }
     }
@@ -129,15 +114,10 @@ function removePlaceFromTrip(req, res) {
     if (err) return res.send(err)
     foundTrip.dates.forEach(function(date) {
       if (date.date === req.body.date) {
-        var index = date.places.findIndex(function (placeID) {
-          return placeID == req.body.placeID
-        })
-        if (index !== -1) {
-          date.places.splice(index, 1)
-        }
+          date.places.pull(req.body.placeID)
+          foundTrip.save()
       }
     })
-    foundTrip.save()
     var ifPlaceExist = foundTrip.dates.map(function (date) {
       var index = date.places.findIndex(function (placeID) {
         return placeID == req.body.placeID
@@ -152,13 +132,9 @@ function removePlaceFromTrip(req, res) {
         _id: req.body.placeID
       }, function (err, foundPlace) {
         if (err) return res.send(err)
-        var index = foundPlace.trips.findIndex(function (trip) {
-          return trip == req.body.tripID
-        })
-        if (index !== -1) {
-          foundPlace.trips.splice(index, 1)
+          foundPlace.trips.pull(req.body.tripID)
+          foundPlace.timesAdded -= 1
           foundPlace.save()
-        }
         return res.send('Successfully deleted!')
       })
     }
