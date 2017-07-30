@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <header>
+      <div id="homeTitle">
+        <h1>Tripanzee</h1>
+      </div>
+      <div id="userName">
+        {{#if user}}
+          <p>Currently logged in as {{user.name}}</p>
+        {{/if}}
+      </div>
+      <div id="headerButtons">
+        <ul>
+          {{#if user}}
+          <li class="headerLi"><a href="/">Home</a></li>
+          <li class="headerLi"><a href="/users/logout">Logout</a></li>
+          {{/if}}
+          {{#unless user}}
+          <li class="headerLi"><a href="/users/register">Signup</a></li>
+          <li class="headerLi"><a href="/users/login">Login</a></li>
+          {{/unless}}
+        </ul>
+      </div>
+    </header>
+    <div class="container">
+      {{#if user}}
+      <ul class="nav">
+        <li class="tabs"><a href="/trips">Manage Trips</a></li>
+        <li class="tabs"><a href="/places/map">Add/View Places</a></li>
+        <li class="tabs"><a href="/places/top">Show Top Places</a></li>
+        <li class="tabs">Favorites (Coming Soon!)</li>
+      </ul>
+      {{/if}}
+      {{{body}}}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="/js/script.js" charset="utf-8"></script>
+  </body>
+</html>

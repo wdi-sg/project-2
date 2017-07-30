@@ -1,0 +1,145 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  height: 80%;
+  width: 80%;
+  margin: 0 auto;
+}
+#map {
+  height: 100%;
+  width: 100%;
+}
+header {
+  background-color: rgb(179, 236, 255);
+  position: relative;
+}
+#homeTitle {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+}
+#headerButtons {
+  width: 25%;
+  float: right;
+  position: absolute;
+  bottom: 0;
+  right: 0px;
+  display: inline-block;
+  text-align: right;
+}
+#userName {
+  width: 25%;
+  float: right;
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  display: inline-block;
+  text-align: right;
+}
+.nav {
+  text-align: center;
+}
+.headerLi, .tabs {
+  list-style-type: none;
+  display: inline-block;
+  padding-right: 10px;
+}
+ul {
+  padding: 0;
+}
+.signupForm, .loginForm, .tripCreateForm {
+  width: 30%;
+  margin: 15px auto;
+  display: block;
+  text-align: center;
+}
+.infoWindowText {
+  float: right;
+  max-width: 100px;
+  margin-left: 10px;
+}
+#textSearchInput {
+  width: 300px;
+}
+#textSearchForm {
+  margin-top: 10px;
+  display: none;
+}
+.loginButtonsContainer {
+  width: 680px;
+  margin: 0 auto;
+}
+.loginButtons {
+  width: 300px;
+  font-size: 40pt;
+  margin: 0 10px;
+}
+a {
+  text-decoration: none;
+}
+.buttonLinks {
+  color: black;
+}
+.buttonLinks:hover {
+  text-decoration: none;
+  cursor: default;
+}
+a:hover {
+  text-decoration: underline;
+}
+.tripButtons {
+  margin-left: 20px;
+}
+#selectedTrip {
+  width: 200px;
+}
+.tripContent {
+  font-size: 30pt;
+  text-align: center;
+}
+.placeContent {
+  font-size: 20pt;
+  text-align: justify;
+  width: 60%;
+  float: left;
+}
+.form{
+  display: inline;
+}
+
+.placeContentButtons {
+  width: 35%;
+  float: right;
+}
+.placeContentButton {
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.topPlacesListContainer {
+  width: 50%;
+  margin: 0 auto;
+  position: relative;
+}
+.topPlacesFilter {
+  text-align: center;
+}
+.topPlacesTable{
+  width: 100%;
+}
+.topPlacesName {
+  width: 50%;
+}
+.timesAdded {
+  text-align: center;
+  width: 20%;
+}
+.viewOnMapLink {
+  width: 30%;
+}
+.topPlacesHeader {
+  font-weight: bold;
+}

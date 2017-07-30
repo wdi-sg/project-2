@@ -1,0 +1,48 @@
+<div class="topPlacesListContainer">
+  <form class="topPlacesFilter" action="/places/top" method="GET">
+    <h1>Top 10 Added Places</h1>
+    <label for="city">Filter by Location:</label>
+    <input type="text" name="city">
+    <button>Filter</button>
+  </form><br>
+  <table class="topPlacesTable">
+    <tr>
+      <td class="topPlacesName topPlacesHeader">Name</td>
+      <td class="timesAdded topPlacesHeader">Times Added</td>
+      <td class="viewOnMapLink"></td>
+    </tr>
+    {{#each places as |place|}}
+    <tr>
+      <td class="topPlacesName">{{place.name}}</td>
+      <td class="timesAdded">{{place.timesAdded}}</td>
+      <td class="viewOnMapLink"><a href="/places/{{place.place_id}}">View on Google Maps</a></td>
+    </tr>
+    {{/each}}
+  </table>
+    {{!-- <ul>
+      {{#each places as |place|}}
+      <li class="topPlacesLi">
+        {{place.name}}
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+  <div class="timesAddedList">
+    <h4 style="text-align:center">Times Added</h4>
+    <ul>
+      {{#each places as |place|}}
+      <li class="timesAddedLi">
+        {{place.trips.length}}
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+  <div class="viewOnMapList">
+    <ul>
+      {{#each places as |place|}}
+      <li class="viewOnMapLi">
+          <a href="/places/{{place.place_id}}">View on Google Maps</a>
+      </li>
+      {{/each}}
+    </ul>
+  </div> --}}

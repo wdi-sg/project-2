@@ -1,0 +1,8 @@
+{{#if user}}
+<h2>
+  Welcome to Tripanzee, {{user.name}}. Please click on manage trips to get started.
+</h2>
+{{/if}}
+{{#unless user}}
+  <h2>Welcome to Tripanzee! Please signup or login to get started.</h2>
+{{/unless}}

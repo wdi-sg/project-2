@@ -1,0 +1,27 @@
+<h1>Add/View Places</h1>
+<form id="textSearchForm" action="#" method="post">
+  <input id="textSearchInput" type="text" name="keyword" placeholder="insert query here">
+  <button>submit</button>
+</form>
+{{!-- <button id="test">test</button> --}}
+<select id="selectedTrip" name="trips">
+    <option value="" disabled selected>Select a Trip</option>
+    {{#each theUser.trips as |trip|}}
+      <option value="{{trip.id}}">{{trip.name}}</option>
+    {{/each}}
+  </select>
+<select id="selectedDate" name="date">
+    <option value="" disabled selected>Select a Date</option>
+</select>
+<button id="viewPlaces">View places from selected date</button>
+<br><br>
+<div id="map">
+</div>
+<script src={{GOOGLE_MAPS_URL}}>
+</script>
+<script type="text/javascript">
+  var placeID = 0
+  {{#if placeID}}
+    placeID = '{{placeID}}'
+  {{/if}}
+</script>
