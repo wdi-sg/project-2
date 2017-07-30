@@ -148,12 +148,12 @@ a.pure-button-primary {
 
 /* This is the main heading that appears on the blue section */
 .splash-head {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     color: black;
     font-weight: 100;
     border-radius: 5px;
-    line-height: 1em;
+    line-height: 0.6em;
 }
 
 /* This is the subheading that appears on the blue section */
