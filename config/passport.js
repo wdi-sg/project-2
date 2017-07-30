@@ -13,36 +13,29 @@ passport.deserializeUser(function (id, next) {
 })
 
 // local strategy
-passport.use(
-  new LocalStrategy(
-    {
-      usernameField: 'user[email]',
-      passwordField: 'user[password]',
-      passReqToCallback: true
-    },
-    localVerify
-  )
-)
-
-// verify callback for local strategy
-function localVerify (req, passportEmail, passportPassword, next) {
-  User
-  .findOne({
-    email: passportEmail
-  })
-  .exec(function (err, foundUser) {
+passport.use(new LocalStrategy({
+  usernameField: 'user[email]',
+  passwordField: 'user[password]'
+}, function (email, password, done) {
+  User.findOne({
+    email: email
+  }, function (err, user) {
     if (err) {
-      console.log('err', err)
-      return next(err) // go to failureRedirect
+      return done(err)
     }
-
-    if (foundUser && foundUser.validPassword(passportPassword)) {
-      // console.log('success, redirect to /profile')
-      next(null, foundUser) // go to successRedirect
-    } else {
-      next()
+    if (!user) {
+      return done(null, false, {
+        message: 'Incorrect email'
+      })
     }
+    if (!user.validPassword(password)) {
+      return done(null, false, {
+        message: 'Incorrect password'
+      })
+    }
+    return done(null, user)
   })
 }
+))
 
 module.exports = passport

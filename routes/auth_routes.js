@@ -8,6 +8,8 @@ router.get('/register', function (req, res) {
   res.render('auth/signup')
 })
 
+router.post('/register', authController.register)
+
 router.get('/login', function (req, res) {
   res.render('auth/login')
 })
@@ -15,13 +17,14 @@ router.get('/login', function (req, res) {
 router.post('/login',
  passport.authenticate('local', {
    successRedirect: '/',
-   failureRedirect: '/login'
+   failureRedirect: '/login',
+   failureFlash: true,
+   successFlash: true
  }))
-
-router.post('/register', authController.register)
 
 router.get('/logout', function (req, res) {
   req.logout()
+  req.flash('success', 'You have logged out')
   res.redirect('/')
 })
 

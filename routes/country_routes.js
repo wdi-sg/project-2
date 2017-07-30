@@ -2,8 +2,14 @@ const express = require('express')
 const router = express.Router()
 const countryController = require('../controllers/country_controllers')
 
-router.post('/', countryController.search)
+function authenticatedUser (req, res, next) {
+  if (req.isAuthenticated()) return next()
+  req.flash('message', 'Login to access!')
+  res.redirect('/login')
+}
 
-router.put('/', countryController.update)
+router.post('/', authenticatedUser, countryController.search)
+
+router.put('/', authenticatedUser, countryController.update)
 
 module.exports = router

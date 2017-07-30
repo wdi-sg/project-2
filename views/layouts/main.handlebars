@@ -15,12 +15,8 @@
           <a class="pure-menu-heading" href="/">VACAY</a>
           <ul class="pure-menu-list">
             <li class="pure-menu-item"><a href="/register" class="pure-menu-link">Sign up</a></li>
-            {{#if user}}
             <li class="pure-menu-item"><a href="/logout" class="pure-menu-link">Log out</a></li>
-            {{/if}}
-            {{#unless user}}
             <li class="pure-menu-item"><a href="/login" class="pure-menu-link">Log in</a></li>
-            {{/unless}}
           </ul>
         </div>
       </div>

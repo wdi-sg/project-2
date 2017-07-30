@@ -1,13 +1,14 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
-const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
 
 const userSchema = new Schema({
   name: String,
   email: {
     type: String,
     required: true,
+    unique: true,
     match: regex
   },
   password: {
@@ -32,8 +33,15 @@ userSchema.pre('save', function (next) {
 
 userSchema.methods.validPassword = function (givenPassword) {
   // t/f based on the user.hashed compared with form.password
-
   return bcrypt.compareSync(givenPassword, this.password)
+}
+
+userSchema.options.toJSON = {
+  transform: function (doc, ret, options) {
+    // delete the password from the JSON data, and return
+    delete ret.password
+    return ret
+  }
 }
 
 const User = mongoose.model('User', userSchema)

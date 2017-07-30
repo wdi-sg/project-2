@@ -55,8 +55,8 @@ app.get('/', function (req, res) {
   res.render('index')
 })
 
-app.use('/', function (req, res, next) {
-  app.locals.user = req.user
+app.use(function (req, res, next) {
+  res.locals.currentUser = req.user
   next()
 })
 

@@ -1,4 +1,6 @@
 const User = require('../models/User')
+const passport =
+require('../config/passport')
 
 function register (req, res) {
   var newUser = new User({
@@ -6,13 +8,21 @@ function register (req, res) {
     email: req.body.user.email,
     password: req.body.user.password
   })
-
   newUser.save(function (err, createdUser) {
     if (err) {
-      return res.send(err)
+      return res.redirect('/register')
+    } else {
+      passport.authenticate('local', {
+        successRedirect: '/',
+        successFlash: 'Account created and logged in'
+      })(req, res)
     }
-    res.redirect('/')
   })
+}
+
+function authenticateUser (req, res, next) {
+  if (!req.isAuthenticated()) return next()
+  else res.redirect('/')
 }
 
 function login (req, res) {
@@ -36,5 +46,6 @@ function login (req, res) {
 
 module.exports = {
   register,
+  authenticateUser,
   login
 }
