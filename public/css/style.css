@@ -283,5 +283,7 @@ a.pure-button-primary {
   float: right
 }
 .red {
-  color: red
+  color: red;
+  padding: 0.5em 2em;
+  margin: none
 }

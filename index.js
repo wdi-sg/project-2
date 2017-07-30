@@ -56,7 +56,8 @@ app.get('/', function (req, res) {
 })
 
 app.use(function (req, res, next) {
-  res.locals.currentUser = req.user
+  app.locals.flash = req.flash('message')
+  app.locals.user = req.user
   next()
 })
 

@@ -20,11 +20,6 @@ function register (req, res) {
   })
 }
 
-function authenticateUser (req, res, next) {
-  if (!req.isAuthenticated()) return next()
-  else res.redirect('/')
-}
-
 function login (req, res) {
   // find the user by email
   User
@@ -46,6 +41,5 @@ function login (req, res) {
 
 module.exports = {
   register,
-  authenticateUser,
   login
 }
