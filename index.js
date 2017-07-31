@@ -65,7 +65,7 @@ app.use(function (req, res, next) {
 const authRoutes = require('./routes/auth_routes')
 app.use('/', authRoutes)
 const countryRoutes = require('./routes/country_routes')
-app.use('/country', countryRoutes)
+app.use('/countries', countryRoutes)
 
 const port = process.env.PORT || 3000
 app.listen(port, function () {

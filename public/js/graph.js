@@ -33,8 +33,8 @@ $(document).ready(function() {
     e.preventDefault()
 
     $.ajax({
-      method: 'PUT',
-      url: '/country',
+      method: 'POST',
+      url: '/countries',
       data: {}
     }).done(function (data) {
       // get data returned from the PUT route

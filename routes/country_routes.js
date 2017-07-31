@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const countryController = require('../controllers/country_controllers')
+const voteController = require('../controllers/vote_controllers')
 
 function authenticatedUser (req, res, next) {
   if (req.isAuthenticated()) return next()
@@ -8,8 +8,10 @@ function authenticatedUser (req, res, next) {
   res.redirect('/login')
 }
 
-router.post('/', authenticatedUser, countryController.search)
+router.post('/', authenticatedUser, voteController.search)
 
-router.put('/', authenticatedUser, countryController.update)
+router.get('/:id', authenticatedUser, voteController.show)
+
+router.post('/', authenticatedUser, voteController.add)
 
 module.exports = router
