@@ -38,6 +38,7 @@ var studentSchema = new Schema ({
     type: String,
     required: [true, 'Email is required']
   },
+  category: String,
   password: {
     type: String,
     required: [true, 'Password is required']

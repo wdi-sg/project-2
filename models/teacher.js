@@ -40,6 +40,7 @@ var teacherSchema = new Schema ({
     type: Number,
     required: [true, 'Expected fee is required']
   },
+  category: String,
   password: {
     type: String,
     required: [true, 'Password is required']

@@ -5,14 +5,14 @@ const passport =
 require('../config/passport')
 const Teacher = require('../models/teacher')
 
-router.get('/new', function (req, res) {
+router.get('/new', notAuthenticated, function (req, res) {
   res.render('students/index');
 });
 
-router.get('/studentLoginView', studentsController.showAllTeachers);
+router.get('/studentLoginView', isAuthenticated, studentsController.showAllTeachers);
 
 
-router.get('/studentRequestView', studentsController.showRequests)
+router.get('/studentRequestView', isAuthenticated, studentsController.showRequests)
 
 router.post('/', studentsController.create);
 
@@ -28,5 +28,33 @@ router.post('/login',
  }))
 
  router.post('/searchTeacher', studentsController.searchTeacher)
+
+ function isAuthenticated (req, res,next) {
+   if (!req.user) {
+     res.redirect('/')
+   } else if(req.user.category === "student") {
+     if(req.isAuthenticated()) {
+       next()
+     }
+   } else if (req.user.category === "teacher") {
+     res.redirect('/teachers/teacherLoginView')
+   }
+ }
+
+ // function isAuthenticated (req,res,next) {
+ //   if(req.isAuthenticated()) {
+ //     next()
+ //   } else {
+ //     res.redirect('/')
+ //   }
+ // }
+
+ function notAuthenticated (req, res,next) {
+   if(!req.isAuthenticated()) {
+     next()
+   } else {
+     res.redirect('/students/studentLoginView')
+   }
+ }
 
 module.exports = router;

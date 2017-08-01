@@ -4,15 +4,15 @@ const teachersController = require('../controllers/teachers_controller')
 const passport =
 require('../config/passport')
 
-router.get('/new', function (req, res) {
+router.get('/new', notAuthenticated, function (req, res) {
   res.render('teachers/index');
 });
 
 router.post('/', teachersController.create);
 
-router.get('/teacherLoginView', teachersController.showAllRequests);
+router.get('/teacherLoginView', isAuthenticated, teachersController.showAllRequests);
 
-router.get('/updateProfile', function (req,res) {
+router.get('/updateProfile', isAuthenticated, function (req,res) {
   res.render('teacherProfile/index')
 });
 
@@ -35,5 +35,25 @@ router.post('/login',
    successRedirect: '/teachers/teacherLoginView',
    failureRedirect: '/teachers/new'
  }))
+
+ function isAuthenticated (req, res,next) {
+   if (!req.user) {
+     res.redirect('/')
+   } else if(req.user.category === "teacher") {
+     if(req.isAuthenticated()) {
+       next()
+     }
+   } else if (req.user.category === "student") {
+     res.redirect('/students/studentLoginView')
+   }
+ }
+
+ function notAuthenticated (req, res,next) {
+   if(!req.isAuthenticated()) {
+     next()
+   } else {
+     res.redirect('/teachers/teacherLoginView')
+   }
+ }
 
 module.exports = router;

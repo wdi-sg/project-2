@@ -13,6 +13,7 @@ function create (req,res) {
     education: req.body.teacher.education,
     description: req.body.teacher.description,
     fee: req.body.teacher.fee,
+    category: "teacher",
     email: req.body.teacher.email,
     password: req.body.teacher.password,
   })

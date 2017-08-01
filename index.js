@@ -32,6 +32,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+
 app.use(flash());
 
 
@@ -81,7 +82,7 @@ app.get('/logout', function (req, res) {
   res.redirect('/')
 })
 
-const port = process.env.PORT || 2000
+const port = 2000  //process.env.PORT ||   IMPORTANT! DONT FORGET TO UNCOMMENT AND MOVE TO THE FRONT
 app.listen(port, function () {
   console.log(`express is running on ${port}`);
 })

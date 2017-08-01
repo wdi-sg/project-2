@@ -21,6 +21,7 @@ var lng =''
     subject: req.body.student.subject,
     level: req.body.student.level,
     stream: req.body.student.stream,
+    category: "student",
     email: req.body.student.email,
     password: req.body.student.password,
   })
