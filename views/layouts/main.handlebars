@@ -14,7 +14,7 @@
         <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
           <a class="pure-menu-heading" href="/">VACAY</a>
           <ul class="pure-menu-list">
-            <li class="pure-menu-item"><a href="/register" class="pure-menu-link">Sign up</a></li>
+            <li class="pure-menu-item"><a href="/register" class="pure-menu-link">Sign down</a></li>
             <li class="pure-menu-item"><a href="/login" class="pure-menu-link">Log in</a></li>
             <li class="pure-menu-item"><a href="/logout" class="pure-menu-link">Log out</a></li>
           </ul>
@@ -22,7 +22,33 @@
       </div>
     </header>
     <script>
-      var countryName = '{{{countryData.name}}}'
+      var total = {{{voteData}}}
+      for (var i =0; i < total.length; i++) {
+        if (total[i]._id.month === 1 && total[i]._id.points === 1) var upJan = total[i].count
+        if (total[i]._id.month === 2 && total[i]._id.points === 1) var upFeb = total[i].count
+        if (total[i]._id.month === 3 && total[i]._id.points === 1) var upMar = total[i].count
+        if (total[i]._id.month === 4 && total[i]._id.points === 1) var upApr = total[i].count
+        if (total[i]._id.month === 5 && total[i]._id.points === 1) var upMay = total[i].count
+        if (total[i]._id.month === 6 && total[i]._id.points === 1) var upJun = total[i].count
+        if (total[i]._id.month === 7 && total[i]._id.points === 1) var upJul = total[i].count
+        if (total[i]._id.month === 8 && total[i]._id.points === 1) var upAug = total[i].count
+        if (total[i]._id.month === 9 && total[i]._id.points === 1) var upSep = total[i].count
+        if (total[i]._id.month === 10 && total[i]._id.points === 1) var upOct = total[i].count
+        if (total[i]._id.month === 11 && total[i]._id.points === 1) var upNov = total[i].count
+        if (total[i]._id.month === 12 && total[i]._id.points === 1) var upDec = total[i].count
+        if (total[i]._id.month === 1 && total[i]._id.points === -1) var downJan = total[i].count
+        if (total[i]._id.month === 2 && total[i]._id.points === -1) var downFeb = total[i].count
+        if (total[i]._id.month === 3 && total[i]._id.points === -1) var downMar = total[i].count
+        if (total[i]._id.month === 4 && total[i]._id.points === -1) var downApr = total[i].count
+        if (total[i]._id.month === 5 && total[i]._id.points === -1) var downMay = total[i].count
+        if (total[i]._id.month === 6 && total[i]._id.points === -1) var downJun = total[i].count
+        if (total[i]._id.month === 7 && total[i]._id.points === -1) var downJul = total[i].count
+        if (total[i]._id.month === 8 && total[i]._id.points === -1) var downAug = total[i].count
+        if (total[i]._id.month === 9 && total[i]._id.points === -1) var downSep = total[i].count
+        if (total[i]._id.month === 10 && total[i]._id.points === -1) var downOct = total[i].count
+        if (total[i]._id.month === 11 && total[i]._id.points === -1) var downNov = total[i].count
+        if (total[i]._id.month === 12 && total[i]._id.points === -1) var downDec = total[i].count
+      }
     </script>
 
             {{{ body }}}

@@ -18,26 +18,21 @@ function show (req, res) {
 
     Vote
     .aggregate(
+      [{ $match: { country: req.params.id } },
       {
         $group: {
-          _id: {
-            'month': '$month',
-            'country': '$country'
-          },
-          totalVotes: {
-            $sum: '$points'
-          }
+          _id: { 'month': '$month', 'points': '$points' },
+          count: { $sum: '$points' }
         }
-      },
-      function (err, voteData) {
+      }],
+      function (err, voteDataz) {
         if (err) res.send(err)
 
-        res.send(voteData)
-
-        // res.render('countries/show', {
-        //   countryData,
-        //   voteData
-        // })
+        var voteData = JSON.stringify(voteDataz)
+        res.render('countries/show', {
+          countryData,
+          voteData
+        })
       })
   })
 }
