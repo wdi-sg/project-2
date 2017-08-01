@@ -19,8 +19,20 @@ function create (req,res) {
   })
 
   newTeacher.save(function (err, newTeacher) {
-    if (err) res.send(err)
-
+    if (err) {
+      if (err.errors.name) req.flash('msg', err.errors.name.message)
+      if (err.errors.gender) req.flash('msg', err.errors.gender.message)
+      if (err.errors.address) req.flash('msg', err.errors.address.message)
+      if (err.errors.postalCode) req.flash('msg', err.errors.postalCode.message)
+      if (err.errors.subject) req.flash('msg', err.errors.subject.message)
+      if (err.errors.education) req.flash('msg', err.errors.education.message)
+      if (err.errors.description) req.flash('msg', err.errors.description.message)
+      if (err.errors.fee) req.flash('msg', err.errors.fee.message)
+      if (err.errors.email) req.flash('msg', err.errors.email.message)
+      if (err.errors.password) req.flash('msg', err.errors.password.message)
+      return res.redirect('/teachers/new');
+    }
+    req.flash('msg', 'New teacher account successfully created! Login as a teacher to conitnue')
     res.redirect('/')
   })
 }

@@ -28,10 +28,17 @@ var lng =''
 
   newStudent.save(function (err, newStudent) {
     if (err) {
-      req.flash('error', 'Could not create user account');
+      if (err.errors.name) req.flash('msg', err.errors.name.message)
+      if (err.errors.gender) req.flash('msg', err.errors.gender.message)
+      if (err.errors.address) req.flash('msg', err.errors.address.message)
+      if (err.errors.postalCode) req.flash('msg', err.errors.postalCode.message)
+      if (err.errors.subject) req.flash('msg', err.errors.subject.message)
+      if (err.errors.stream) req.flash('msg', err.errors.stream.message)
+      if (err.errors.email) req.flash('msg', err.errors.email.message)
+      if (err.errors.password) req.flash('msg', err.errors.password.message)
       return res.redirect('/students/new');
     }
-
+    req.flash('msg', 'New student account successfully created! Login as a student to conitnue')
     res.redirect('/')
   })
 });

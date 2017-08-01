@@ -54,26 +54,22 @@ app.use(bodyParser.urlencoded({extended: true}));
 const studentsRoute = require('./routes/students_route')
 const teachersRoute = require('./routes/teachers_route')
 
-app.use('/', function (req,res,next) {
-  app.locals.user = req.user
-  next()
-})
+// app.use('/', function (req,res,next) {
+//   app.locals.user = req.user
+//   next()
+// })
 
 app.use(function(req, res, next) {
   // before every route, attach the flash messages and current user to res.locals
-  res.locals.alerts = req.flash('error');
+  app.locals.user = req.user
+  app.locals.flash = req.flash('msg');
   next();
 })
 
 app.get('/', function (req, res) {
-  if (req.user) {
-    res.render('home/index', {
-      user: req.user
-    })
-  } else {
     res.render('home/index')
-  }
-});
+  })
+
 app.use('/students', studentsRoute);
 app.use('/teachers', teachersRoute);
 
@@ -82,7 +78,7 @@ app.get('/logout', function (req, res) {
   res.redirect('/')
 })
 
-const port = process.env.PORT || 2000  //   IMPORTANT! DONT FORGET TO UNCOMMENT AND MOVE TO THE FRONT
+const port =  2000  //  process.env.PORT || IMPORTANT! DONT FORGET TO UNCOMMENT AND MOVE TO THE FRONT
 app.listen(port, function () {
   console.log(`express is running on ${port}`);
 })
