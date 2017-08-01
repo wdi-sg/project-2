@@ -1,9 +1,9 @@
 <br><br><br>
 <h1>{{countryData.name}}</h1>
 
-<img id='map' src='https://maps.googleapis.com/maps/api/staticmap?center={{countryData.name}}&zoom={{countryData.zoom}}&size=600x350&key=AIzaSyDJSyfAjBCiwCtwd27p7oIrMeV8ggpj5IE'></img>
+<img id='map' src='https://maps.googleapis.com/maps/api/staticmap?center={{countryData.name}}&zoom={{countryData.zoom}}&size=400x250&key=AIzaSyDJSyfAjBCiwCtwd27p7oIrMeV8ggpj5IE'></img>
 
 <div class="chart-container" style="position: relative; height:70vh; width:50vw">
   <canvas id="myChart"></canvas>
-  <img id="Up1" src="/images/Up.png" height="42" width="42">
+  <img id="Up1" data-country="{{ countryData.id }}" src="/images/Up.png" height="40" width="40">
 </div>

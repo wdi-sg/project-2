@@ -5,14 +5,14 @@ var voteSchema = new Schema({
   points: Number,
   month: Number,
   comment: String,
-  country: [{
+  country: {
     type: Schema.Types.ObjectId,
     ref: 'Country'
-  }],
-  user: [{
+  },
+  user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }]
+  }
 })
 
 const Vote = mongoose.model('Vote', voteSchema)

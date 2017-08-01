@@ -66,6 +66,8 @@ const authRoutes = require('./routes/auth_routes')
 app.use('/', authRoutes)
 const countryRoutes = require('./routes/country_routes')
 app.use('/countries', countryRoutes)
+const voteRoutes = require('./routes/vote_routes')
+app.use('/votes', voteRoutes)
 
 const port = process.env.PORT || 3000
 app.listen(port, function () {
