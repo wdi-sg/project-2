@@ -12,15 +12,23 @@ function search (req, res) {
 }
 
 function show (req, res) {
-  Vote.find({
-    country: { $in: [req.params.id] } })
-  .exec(function (err, theVote) {
+  Country
+  .findById(req.params.id)
+  .exec(function (err, countryData) {
     if (err) res.send(err)
 
-    console.log(theVote)
+    Vote
+    .find({
+      country: countryData.id
+    })
+    .populate('Country')
+    .exec(function (err, voteData) {
+      if (err) res.send(err)
 
-    res.render('countries/show', {
-      vote: theVote
+      res.render('countries/show', {
+        countryData,
+        voteData
+      })
     })
   })
 }
