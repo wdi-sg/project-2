@@ -78,7 +78,7 @@ app.get('/logout', function (req, res) {
   res.redirect('/')
 })
 
-const port =  2000  //  process.env.PORT || IMPORTANT! DONT FORGET TO UNCOMMENT AND MOVE TO THE FRONT
+const port = process.env.PORT || 2000  //  IMPORTANT! DONT FORGET TO UNCOMMENT AND MOVE TO THE FRONT
 app.listen(port, function () {
   console.log(`express is running on ${port}`);
 })
