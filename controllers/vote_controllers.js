@@ -2,11 +2,11 @@ const Country = require('../models/Country')
 const Vote = require('../models/Vote')
 
 function add (req, res) {
-  console.log(req.params)
+
   var newVote = new Vote({
     points: 1,
     month: 1,
-    country: req.params.id,
+    country: req.body.country,
     user: req.user.id
   })
   newVote.save(function (err, createdVote) {

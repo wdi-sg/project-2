@@ -36,8 +36,8 @@ var myChart = new Chart(ctx, {
       data: {
         country: $(this).data('country')
       }
-    }).done(function (data) {
-      // get data returned from the PUT route
+    }).done(function(data) {
+
       location.reload()
     })
   })

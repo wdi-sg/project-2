@@ -1,5 +1,6 @@
 const Country = require('../models/Country')
 const Vote = require('../models/Vote')
+const ObjectId = require('mongoose').Types.ObjectId
 
 function search (req, res) {
   Country.findOne({
@@ -18,7 +19,7 @@ function show (req, res) {
 
     Vote
     .aggregate(
-      [{ $match: { country: req.params.id } },
+      [{$match: { country: new ObjectId(req.params.id) }},
       {
         $group: {
           _id: { 'month': '$month', 'points': '$points' },
@@ -27,7 +28,7 @@ function show (req, res) {
       }],
       function (err, voteDataz) {
         if (err) res.send(err)
-
+        
         var voteData = JSON.stringify(voteDataz)
         res.render('countries/show', {
           countryData,
