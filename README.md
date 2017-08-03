@@ -16,9 +16,9 @@ Do contribute to the community by upvoting your recommended month.
 ## Workflow
 
 ![Wireframe](http://i.imgur.com/IgqthtVl.jpg?1)
-![ERD](http://imgur.com/96Fgj3g)
-![FrontToBack](http://imgur.com/WryPDo0)
-![BackToFront](http://imgur.com/xkzaQC1)
+![ERD](http://imgur.com/96Fgj3g.png)
+![FrontToBack](http://imgur.com/WryPDo0.png)
+![BackToFront](http://imgur.com/xkzaQC1.png)
 
 ## Built With
 
