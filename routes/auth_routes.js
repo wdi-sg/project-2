@@ -17,14 +17,11 @@ router.get('/login', function (req, res) {
 router.post('/login',
  passport.authenticate('local', {
    successRedirect: '/',
-   failureRedirect: '/login',
-   failureFlash: true,
-   successFlash: true
+   failureRedirect: '/login'
  }))
 
 router.get('/logout', function (req, res) {
   req.logout()
-  req.flash('message', 'You have logged out')
   res.redirect('/')
 })
 

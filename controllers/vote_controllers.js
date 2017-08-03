@@ -4,8 +4,8 @@ const Vote = require('../models/Vote')
 function add (req, res) {
 
   var newVote = new Vote({
-    points: 1,
-    month: 1,
+    points: req.body.points,
+    month: req.body.month,
     country: req.body.country,
     user: req.user.id
   })

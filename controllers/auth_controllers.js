@@ -13,8 +13,7 @@ function register (req, res) {
       return res.redirect('/register')
     } else {
       passport.authenticate('local', {
-        successRedirect: '/',
-        successFlash: 'Account created and logged in'
+        successRedirect: '/'
       })(req, res)
     }
   })

@@ -275,13 +275,60 @@ a.pure-button-primary {
     }
 }
 /*My own css*/
+#countryBody {
+  display: inline-block;
+}
+
 #map {
   float: left
 }
 
 .chart-container {
-  float: right
+  float: left;
+  margin: 0px 0px 0px 50px;
+  height: 200px;
+  width: 500px;
+  position: relative;
 }
+
+.jan {
+  position: relative;
+  top: 40px;
+  left: 40px
+}
+
+#Up1 {
+  position: absolute;
+  bottom: 0;
+  left: 0
+}
+
+#Down1 {
+  position: absolute;
+  margin: 5px 0px;
+  top: 0;
+  left: 0
+}
+
+.dec {
+  position: relative;
+  top: 40px;
+  left: 660px
+}
+
+#Up12 {
+  position: absolute;
+  bottom: 0;
+  left: 0
+}
+
+#Down12 {
+  position: absolute;
+  margin: 5px 0px;
+  top: 0;
+  left: 0
+}
+
 .red {
   color: red;
   padding: 0.5em 2em;
