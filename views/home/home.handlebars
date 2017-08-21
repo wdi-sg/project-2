@@ -1,12 +1,23 @@
-<!--  <head>
- <link href='../dist/metricsgraphics.css' rel='stylesheet' type='text/css'>
- <script src='../dist/metricsgraphics.min.js'></script>
- <script src="https://d3js.org/d3.v4.min.js"></script>
- </head> -->
 
-<body>
+<!-- <head>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Slabo+13px|Slabo+27px" rel="stylesheet">
+	<link href='../dist/metricsgraphics.css' rel='stylesheet' type='text/css'>
+	<script src='../dist/metricsgraphics.min.js'></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+
+</head> -->
+
+<!-- <body> -->
 <br>
-<b>Portfolio Overview - Private Page</b> 
+
+{{#if userDisplayName}}
+	<a href="/home"><b>PORTFOLIO OVERVIEW</b></a>
+{{/if}}
+
 
 <!-- (home.handlebars) -->
 
@@ -16,11 +27,11 @@
 
 <br>
 
-<div class="graph"></div>
+
 
 <!-- <br> -->
 
-<b>Transact</b>
+<b>Invest</b>
 
 <br>
 <br>
@@ -37,19 +48,43 @@
 
 <p id="eodMktPricing"></p> 
 
+<div id="graph"></div>
+
 <br>
 
 <b>Positions</b>
 <br>
-<ul id='positionUl'>
+<br>
+<table id="positionsTable" class="display compact"> <!-- display class="compact" width="75%"-->
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Quantity</th>
+			<th>Unit Cost</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody id="tableBody">
+		{{#each portHolding as |position|}}
+			<tr id="{{ position.id }}"> 
+				<td>{{position.instrument.name}}</td>
+				<td>{{position.quantity}}</td>
+				<td>{{position.unitCost}}</td>
+				<td><a id="sellPosition:{{ position.id }}" href="">Sell</a></td>
+			</tr>
+		{{/each}}		
+	</tbody>
+</table>
+
+<!-- <ul id='positionUl'>
 	{{#each portHolding as |position|}}
 		<li id="{{ position.id }}"> {{position.instrument.name}} <a id="sellPosition:{{ position.id }}" href="">Sell</a></li>
 	{{/each}}
 </ul>
-
+ -->
 <!-- <b>Name:</b> <b>Qty:</b> {{position.quantity}} <b>Unit Cost:</b> {{position.unitCost}}-->
 
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 <script src="script/script.js"></script>
-</body>
+<!-- </body> -->

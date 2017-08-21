@@ -109,6 +109,40 @@ function addPosition (req, res) {
 
 	//console.log('fn:addPosition: user ID: ', req.user.id)
 
+	//getEODMarketPrice
+	// console.log('XXXXXXXXXX ', req.body.instrumentID, ' YYYYYYYYYY')
+	// console.log (getEODMarketPrice(req, res)) 
+	// console.log (' ZZZZZZZZZZZZZZz ')
+
+	//getEODMarketPrice for buy transaction 
+	Instrument
+	.findOne({_id: req.body.instrumentID})
+	.exec(function (err, foundInstrument) {
+
+		var url = process.env.QUANDL_URL + foundInstrument.databaseCode + '/' + foundInstrument.ticker + '/data.json?api_key=' + process.env.QUANDL_API_KEY
+
+		//console.log(url)
+
+		request(url, function (err, apiRes, data) {
+	  		console.log('error:', err); // Print the error if one occurred
+	  		console.log('statusCode:', apiRes && apiRes.statusCode); // Print the response status code if a response was received
+
+
+
+
+	  		//res.send(data)
+
+
+          var parseRes = JSON.parse(res)
+
+          // consider streamlining res data at server side before sending over
+
+          var eodMktPrice = parseRes.dataset_data.data[0][4]
+		})
+	})
+
+
+
 
 	User
 	.findOne({_id: req.user.id})
@@ -226,17 +260,10 @@ function getEODMarketPrice (req, res) {
 		request(url, function (err, apiRes, data) {
 	  		console.log('error:', err); // Print the error if one occurred
 	  		console.log('statusCode:', apiRes && apiRes.statusCode); // Print the response status code if a response was received
+
 	  		//console.log('body:', JSON.stringify(data, undefined, '\t')); 
 
-
 	  		res.send(data)
-
-
-
-
-
-
-
 
 		})
 	})

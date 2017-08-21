@@ -1,0 +1,99 @@
+html {
+	font-family: 'Slabo 13px', serif;
+}
+
+#banner {
+	font-family: 'Reem Kufi', sans-serif;
+	font-size: 50px;
+	line-height: 80%;
+	/*color: blue;*/
+	/*float: left;*/
+
+}
+
+#logo {
+	width:60px;
+	height:60px;
+	/*vertical-align: top;*/
+}
+
+/*h1 {
+	font-family: 'Slabo 27px', serif;
+	letter-spacing: 2px;
+}*/
+
+
+
+.gridContainer {
+	display: grid;
+	grid-template-columns: 70% 30%;
+  	/*background-color: blue;*/
+  	/*color: #444;*/
+} 
+
+.bannerContainer {
+	/*background-color: green;*/
+	grid-column: 1;
+	align-items: flex-end;
+	display:flex; 
+	
+}
+
+.navContainer {
+	grid-column: 2;
+	display:flex;
+	flex-direction: column;
+	justify-content: space-between; 
+}
+
+#navBar {
+	/*background-color: red;*/
+	/*grid-column: 2;*/
+	/*height: 100%;*/
+	text-align: right;
+	display:flex;
+	/*align-items: flex-end;*/
+	justify-content: space-between; 
+	/*flex-end*/
+	/*align-content: stretch;*/
+}
+
+.bodyContainer {
+	/*background-color: yellow;*/
+	grid-column-start: 1;
+  	grid-column-end:   3;
+}
+
+#positionsTable {
+	width: 650px;
+	margin-right: auto; 
+    margin-left: 0px;
+}
+
+thead {
+	text-align: left;
+}
+
+
+.WelcomePageContainer {
+	display: grid;
+	min-height: 500px;
+	/*flex-direction: column;*/
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+}
+
+#image {
+		text-align: center;
+}
+
+img {
+	width:206px;
+	height:206px;
+}
+
+#tagline {
+	font-family: 'Reem Kufi', sans-serif;
+	font-size: 50px;
+}
