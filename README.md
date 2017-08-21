@@ -14,6 +14,8 @@ What did you use to build it, list the technologies, plugins, gems, packages etc
 * [Express](https://expressjs.com/) 
 * [Mongoose](http://mongoosejs.com/)
 * [Passport](http://passportjs.org/)
+* [DataTables](https://datatables.net/)
+* [MetricsGraphics.js](https://www.metricsgraphicsjs.org/)
 
 ## Workflow
 
@@ -27,7 +29,7 @@ Based on a one-week project timeline, I devised at the start the following wiref
 
 <br/>
 
-Without signing in, a user enters the Welcome page when accessing etfallocator.com. After sign in, the user is directed to etfallocator.com/home and can view a list of her portfolio positions and the portfolio's total market value. She can then buy or sell each position. The latest end-of-day market price of each instrument will be displayed prior to transaction.
+Without signing in, a user enters the Welcome page when accessing etfallocator.com. After sign in, the user is directed to etfallocator.com/home and can view a list of her portfolio positions. She can then buy or sell each position. The latest end-of-day market price of each instrument will be displayed prior to transaction.
 
 **Entity Relationship Diagram (Crow's Foot with Field Types)**
 

@@ -8,8 +8,6 @@ function signUp (req, res) {
     name: 'My Portfolio'
   })
 
-  console.log('aaa ', newPortfolio)
-
   newPortfolio.save(function (err, createdPortfolio) {
 
     console.log('bbb ', createdPortfolio)
@@ -21,12 +19,9 @@ function signUp (req, res) {
       portfolio: [createdPortfolio.id]
     })
 
-    console.log(newUser)
-
     newUser.save(function (err, createdUser) {
-      //console.log('a')
+
       if (err) {
-        //console.log('b')
         return res.send(err)
       }
       req.login(createdUser, function(err) {
@@ -42,7 +37,5 @@ function signUp (req, res) {
 
 module.exports = {
   signUp
-  //,
-  //signIn
 }
 

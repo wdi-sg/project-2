@@ -1,39 +1,21 @@
 $(document).ready(function () {
   var $form = $('#transact')
   var $buyInstrument = $('#buyInstrument')
-  var $positionUl = $('#positionUl') // set at level of positionUl ensures newly ajax-added positions can be selected 
+  var $tableBody = $('#tableBody') // set at level of positionUl ensures newly ajax-added positions can be selected 
   var $instrumentsMenu = $('#instrumentsMenu')
   $('#positionsTable').DataTable({
         searching: false,
         ordering: false,
         select: false,
-        paging: false
+        paging: false,
+        info: false
       })
 
-//   //var $tbody = $('tbody')
-//   var $selectETF = $('#selectETF')
-      //console.log($buyInstrument)
-
-      //console.log($instrumentsMenu.val())
-      //console.log($instrumentsMenu.text())
-
+  // handler for buying position
   $buyInstrument.on('click', function(event) { //'#buyInstrument'
       event.preventDefault() // prevents refresh of page
-      
-      //console.log($('#instrumentsMenu option:selected').val())
-
-      // var instrumentID = {
-      //   instrumentID: $('#instrumentsMenu option:selected').val()
-      // }
 
       var id = $('#instrumentsMenu option:selected').val()
-      
-      //console.log($instrumentsMenu.children("option").filter(":selected").val‌​())
-      //console.log($form)
-      
-      //var $formData = $form["0"]["0"].value
-      //.serializeArray()
-      //console.log('aaaa', typeof($formData))
 
       if (id !== '') { // only make ajax req is id not null
 
@@ -48,10 +30,6 @@ $(document).ready(function () {
           console.log('success submitting buy selection')
           console.log('xx', res.savedPosition)
           var newPosition = res.savedPosition
-          // console.log(newPosition._id)
-          // console.log(newPosition.instrument.name)
-          // console.log(newPosition.quantity)
-          // console.log(newPosition.unitCost)
 
           $('#tableBody').append(`<tr id="${newPosition.id}">
                                     <td>${newPosition.name}</td> 
@@ -60,21 +38,14 @@ $(document).ready(function () {
                                     <td><a id="sellPosition:${newPosition.id}" href="">Sell</a><td>
                                   </tr>`)
 
-
-          // $('#positionUl').append(`<li id="${newPosition._id}">${newPosition.instrument.name} <a id="sellPosition:${newPosition._id}" href="">Sell</a></li>`)
-          // <b>Name:</b> <b>Qty:</b> ${newPosition.quantity}, <b>Unit Cost:</b> ${newPosition.unitCost}
-
         }).fail(function (res) {
           console.log('error submitting buy selection')
         })
-      }
-        
+      }      
   })
 
-
-  $positionUl.on('click', `a[id*='sellPosition']` , function(event) {
-        // console.log('click click')
-        // window.setTimeout(function(){console.log('clearing...')}, 5000)
+  // handler for selling position
+  $tableBody.on('click', `a[id*='sellPosition']` , function(event) {
         event.preventDefault()
 
         var positionID = {positionID: event.target.id.substring(13)}
@@ -112,9 +83,6 @@ $(document).ready(function () {
 
       var instrumentID = {instrumentID: id}
       
-      // Ajax API call turned off 
-      // # Ajax API call turned on
-      
       $.ajax({
           url: '/home/eodMktPricing',
           type: 'POST',
@@ -122,9 +90,6 @@ $(document).ready(function () {
         }).done(function (res) {
           console.log('success getting market price thru backend')
           var parseRes = JSON.parse(res)
-
-          // consider streamlining res data at server side before sending over
-
           var eodMktPrice = parseRes.dataset_data.data[0][4]
           var eodMktPriceDate = parseRes.dataset_data.data[0][0]
           console.log('price: ', eodMktPrice)
@@ -156,15 +121,12 @@ $(document).ready(function () {
             x_accessor: 'date',
             y_accessor: 'price',
             y_extended_ticks: true,
-            min_y_from_data: true,
-            //markers: [{'year': 1964, 'label': '"The Creeping Terror" released'}]
+            min_y_from_data: true
           })
 
         }).fail(function (res) {
           console.log('error getting market price thru backend')
-        })
-
-          
+        })         
     }
   })
 })
