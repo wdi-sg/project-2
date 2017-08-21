@@ -67,7 +67,7 @@
 	<tbody id="tableBody">
 		{{#each portHolding as |position|}}
 			<tr id="{{ position.id }}"> 
-				<td>{{position.instrument.name}}</td>
+				<td>{{position.name}}</td>
 				<td>{{position.quantity}}</td>
 				<td>{{position.unitCost}}</td>
 				<td><a id="sellPosition:{{ position.id }}" href="">Sell</a></td>

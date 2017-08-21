@@ -60,11 +60,61 @@ function buildPage (req, res) {
 
 							//populatedInstruments[].instrument.name
 			
+
+							//format price: 2 decimal places
+							var formattedArr = []
+							for (var i = 0; i < populatedInstruments.length; i++) {
+								
+								var formattedObj = {
+									id : populatedInstruments[i]._id,
+									name : populatedInstruments[i].instrument.name,
+									quantity : populatedInstruments[i].quantity,
+									unitCost : 0
+								}
+								var formattedPrice = '$' + populatedInstruments[i].unitCost.toFixed(2)
+								formattedObj.unitCost = formattedPrice
+								//console.log('aaaaaaaaa ', formattedObj)
+								formattedArr.push(formattedObj)
+							}
+
+							//var formattedArr = []
+
+							// populatedInstruments.forEach(function (instrument, index) {
+								
+							// 	var formattedInstrument = instrument
+							// 	var formattedPrice = '$' + instrument.unitCost.toFixed(2)
+							// 	console.log('aaaaaaaa ', formattedInstrument.unitCost)
+							// 	formattedInstrument.unitCost = formattedPrice
+							// 	console.log('bbbbbbbbb ', formattedInstrument.unitCost)
+							// 	formattedArr.push(formattedInstrument)
+							// 	// = '$' + instrument.unitCost.toFixed(2)
+							// 	// console.log('formatted: ', formatted)
+							// 	// console.log(typeof(instrument.unitCost))
+
+
+							// 	// instrument.unitCost = formatted
+
+							// 	//console.log('aaaaaaaa ', populatedInstruments[index])
+							// 	//console.log('xxxxxxxxxxxxx ', instrument.unitCost.toFixed(2))
+							// 	//populatedInstruments[index].unitCost = '$' + instrument.unitCost.toFixed(2)
+
+							// 	//console.log('yyyyyyyyyyyyy ', populatedInstruments[index].unitCost)
+							// 	//console.log('zzzzzzzzzzzzz ', typeof(array[index].unitCosts))
+							// })
+
+							// formattedArr.forEach(function (instrument) {
+							// 	console.log('xxxxxxxxxxxxx ', instrument.unitCost)
+							// })
+							
+							// formattedArr.forEach(function (instrument) {
+							// 	console.log('xxxxxxxxxxxxx ', instrument.unitCost)
+							// })
+
 							res.render('home/home', {
 					  			userDisplayName: req.user.name, 
-					  			portMktVal: 6, //marketValue(req, res),
+					  			portMktVal: 6, //dummmy value; marketValue(req, res),
 					  			instrumentsList: instrumentsList,
-					  			portHolding: populatedInstruments				  		
+					  			portHolding: formattedArr // populatedInstruments 				  		
 				  			})
 				  			console.log('buildpage rendering is done...',Date())
 						})
@@ -121,73 +171,73 @@ function addPosition (req, res) {
 
 		var url = process.env.QUANDL_URL + foundInstrument.databaseCode + '/' + foundInstrument.ticker + '/data.json?api_key=' + process.env.QUANDL_API_KEY
 
-		//console.log(url)
-
 		request(url, function (err, apiRes, data) {
 	  		console.log('error:', err); // Print the error if one occurred
 	  		console.log('statusCode:', apiRes && apiRes.statusCode); // Print the response status code if a response was received
+          	
+          	var parseData = JSON.parse(data)
+          	var eodMktPrice = parseData.dataset_data.data[0][4]
+          	
+          	//console.log('XXXXXXXXXX ', typeof(eodMktPrice), ' YYYYYYYYYYYYY')
+		
+          	User
+			.findOne({_id: req.user.id})
+			.exec(function (err, foundUser) {
 
+				//console.log('portfolio ID: ', foundUser.portfolio[0])
 
+				// simulate spot prices at time of 'buy', +/- 2% fluctuation from previous eod price
+				var max = 1.02 * eodMktPrice
+				var min = .98 * eodMktPrice
+				transactionPrice = (Math.random() * (max - min) + min).toFixed(2)
+				//console.log('XXXXXXXXXX ', transactionPrice, ' YYYYYYYYYYYYY')
 
+				Portfolio
+				.findOne({_id: foundUser.portfolio[0]})
+				.exec(function (err, foundPortfolio) {
 
-	  		//res.send(data)
+					//console.log('portfolio name: ', foundPortfolio)
 
+					var newPosition = new Position ({
+					  date: new Date().toISOString(),
+					  quantity: 1, // current default
+					  unitCost: transactionPrice,
+					  instrument: req.body.instrumentID // only one instance of instrument to one position
+					})
 
-          var parseRes = JSON.parse(res)
+					//console.log('fn:addPosition: new position: ', newPosition)
 
-          // consider streamlining res data at server side before sending over
+					newPosition.save(function (err, savedPosition) {
+						if (err) res.send(err)
+							console.log('newposition.save, save position ID: ', savedPosition._id)
+		      			foundPortfolio.positions.push(savedPosition._id)
+						foundPortfolio.save(function (err, savePortfolio) {
+							console.log('save is done...',Date())
+							//buildPage(req,res)					
 
-          var eodMktPrice = parseRes.dataset_data.data[0][4]
-		})
-	})
+							//console.log('xxxxyyyy ', savedPosition)
 
-
-
-
-	User
-	.findOne({_id: req.user.id})
-	.exec(function (err, foundUser) {
-
-		//console.log('portfolio ID: ', foundUser.portfolio[0])
-
-		Portfolio
-		.findOne({_id: foundUser.portfolio[0]})
-		.exec(function (err, foundPortfolio) {
-
-			//console.log('portfolio name: ', foundPortfolio)
-
-			var newPosition = new Position ({
-			  date: new Date().toISOString(),
-			  quantity: 1, // current default
-			  unitCost: 23.00,
-			  instrument: req.body.instrumentID // only one instance of instrument to one position
-			})
-
-			//console.log('fn:addPosition: new position: ', newPosition)
-
-			newPosition.save(function (err, savedPosition) {
-				if (err) res.send(err)
-					console.log('newposition.save, save position ID: ', savedPosition._id)
-      			foundPortfolio.positions.push(savedPosition._id)
-				foundPortfolio.save(function (err, savePortfolio) {
-					console.log('save is done...',Date())
-					//buildPage(req,res)					
-
-					//console.log('xxxxyyyy ', savedPosition)
-
-					savedPosition
-					.populate('instrument', function (err, populatedPosition) {
-						console.log('in newpos.save: ', populatedPosition)
-						res.send({
-							savedPosition: populatedPosition
+							savedPosition
+							.populate('instrument', function (err, populatedPosition) {
+								console.log('in newpos.save: ', populatedPosition)
+								var formattedObj = {
+									id : populatedPosition._id,
+									name : populatedPosition.instrument.name,
+									quantity : populatedPosition.quantity,
+									unitCost : 0
+								}
+								var formattedPrice = '$' + populatedPosition.unitCost.toFixed(2)
+								formattedObj.unitCost = formattedPrice
+								res.send({
+									savedPosition: formattedObj //populatedPosition
+								})
+							})
 						})
 					})
-				})
-
-
+				}) 
 			})
-		}) 
-	})
+		})  // request(url, function (err, apiRes, data)
+	}) // Instrument.findOne().exec(function (err, foundInstrument) {	
 }
 
 // sell ETF
