@@ -1,0 +1,33 @@
+#map {
+  height: 350px;
+  width: 800px;
+}
+
+#teacherDescription{
+  /*width: 350px;*/
+  height: 130px;
+  border: 1px solid
+}
+
+#navBar {
+  display:flex;
+  justify-content: center;
+}
+
+#register {
+  display:flex;
+  justify-content: center;
+}
+
+input {
+  width: 40px
+}
+
+#teachSync {
+  font-size: 40px;
+}
+
+#userMap {
+  width: 500px;
+  height:500px;
+}
