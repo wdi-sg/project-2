@@ -75,6 +75,7 @@ app.use('/teachers', teachersRoute);
 
 app.get('/logout', function (req, res) {
   req.logout()
+  req.flash('msg', 'Logged out successfully')
   res.redirect('/')
 })
 

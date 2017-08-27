@@ -5,14 +5,14 @@ const passport =
 require('../config/passport')
 const Teacher = require('../models/teacher')
 
-router.get('/new', notAuthenticated, function (req, res) {
+  router.get('/new', notAuthenticated, function (req, res) {
   res.render('students/index');
 });
 
-router.get('/studentLoginView', isAuthenticated, studentsController.showAllTeachers);
+  router.get('/studentLoginView', isAuthenticated, studentsController.showAllTeachers);
 
 
-router.get('/studentRequestView', isAuthenticated, studentsController.showRequests)
+  router.get('/studentRequestView', isAuthenticated, studentsController.showRequests)
 
 router.post('/', studentsController.create);
 

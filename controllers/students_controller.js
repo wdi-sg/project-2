@@ -4,44 +4,55 @@ const geocoder = require('geocoder')
 
 
 function create (req,res) {
-var lat =''
-var lng =''
 
-  geocoder.geocode(`${req.body.student.postalCode}, singapore`, function(err, data) {
-    lat = data.results[0].geometry.location.lat;
-    lng = data.results[0].geometry.location.lng;
 
-  var newStudent = new Student ({
-    name: req.body.student.name,
-    gender: req.body.student.gender,
-    address: req.body.student.address,
-    postalCode: req.body.student.postalCode,
-    latitude: lat,
-    longitude: lng,
-    subject: req.body.student.subject,
-    level: req.body.student.level,
-    stream: req.body.student.stream,
-    category: "student",
-    email: req.body.student.email,
-    password: req.body.student.password,
-  })
+Student.findOne({email: req.body.student.email}, function (err, student) {
+  if (err) return res.send(err)
+  if (student) {
+    req.flash('msg', 'The email has already been used to register!')
+    res.redirect('/students/new')
+  } else {
+    var lat =''
+    var lng =''
 
-  newStudent.save(function (err, newStudent) {
-    if (err) {
-      if (err.errors.name) req.flash('msg', err.errors.name.message)
-      if (err.errors.gender) req.flash('msg', err.errors.gender.message)
-      if (err.errors.address) req.flash('msg', err.errors.address.message)
-      if (err.errors.postalCode) req.flash('msg', err.errors.postalCode.message)
-      if (err.errors.subject) req.flash('msg', err.errors.subject.message)
-      if (err.errors.stream) req.flash('msg', err.errors.stream.message)
-      if (err.errors.email) req.flash('msg', err.errors.email.message)
-      if (err.errors.password) req.flash('msg', err.errors.password.message)
-      return res.redirect('/students/new');
-    }
-    req.flash('msg', 'New student account successfully created! Login as a student to conitnue')
-    res.redirect('/')
-  })
-});
+      geocoder.geocode(`${req.body.student.postalCode}, singapore`, function(err, data) {
+        lat = data.results[0].geometry.location.lat;
+        lng = data.results[0].geometry.location.lng;
+
+      var newStudent = new Student ({
+        name: req.body.student.name,
+        gender: req.body.student.gender,
+        address: req.body.student.address,
+        postalCode: req.body.student.postalCode,
+        latitude: lat,
+        longitude: lng,
+        subject: req.body.student.subject,
+        level: req.body.student.level,
+        stream: req.body.student.stream,
+        category: "student",
+        email: req.body.student.email,
+        password: req.body.student.password,
+      })
+
+      newStudent.save(function (err, newStudent) {
+        if (err) {
+          if (err.errors.name) req.flash('msg', err.errors.name.message)
+          if (err.errors.gender) req.flash('msg', err.errors.gender.message)
+          if (err.errors.address) req.flash('msg', err.errors.address.message)
+          if (err.errors.postalCode) req.flash('msg', err.errors.postalCode.message)
+          if (err.errors.subject) req.flash('msg', err.errors.subject.message)
+          if (err.errors.stream) req.flash('msg', err.errors.stream.message)
+          if (err.errors.email) req.flash('msg', err.errors.email.message)
+          if (err.errors.password) req.flash('msg', err.errors.password.message)
+          return res.redirect('/students/new');
+        }
+        req.flash('msg', 'New student account successfully created! Login as a student to conitnue')
+        res.redirect('/')
+      })
+    });
+  }
+})
+
 }
 
 function login (req, res) {
