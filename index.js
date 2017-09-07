@@ -32,7 +32,6 @@ app.use(session({
     url:process.env.MONGODB_URI
   })
 }))
-//app.use(flash)
 
 app.use(passport.initialize())
 app.use(passport.session())
@@ -60,6 +59,7 @@ app.get('/about', function (req, res) {
     res.render('about')   
   }
 })
+
 app.get('/contact', function (req, res) {
   if (req.user) {
     res.render('contact', {userDisplayName: req.user.name})   
