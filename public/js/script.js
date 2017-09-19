@@ -5,6 +5,26 @@ $(function () {
     ajaxStart: function () { $body.addClass('loading') },
     ajaxStop: function () { $body.removeClass('loading') }
   })
+  // for mobile responsiveness
+  var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0)
+
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
+    // Add a click event on each of them
+    $navbarBurgers.forEach(function ($el) {
+      $el.addEventListener('click', function () {
+        // Get the target from the "data-target" attribute
+        var target = $el.dataset.target
+        var $target = document.getElementById(target)
+
+        // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+        $el.classList.toggle('is-active')
+        $target.classList.toggle('is-active')
+      })
+    })
+  }
+
+  // for google maps markers
   const $carparkSearch = $('#carparkSearch')
 
   if (document.getElementById('map')) {
@@ -60,7 +80,7 @@ $(function () {
       // info to display and button
       google.maps.event.addListener(marker, 'click', function () {
       // content of the clicked marker
-        infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+        infowindow.setContent(`<div id='markerinfo'><strong>` + place.name + '</strong><br>' +
                 place.formatted_address + '<br>' +
                 (`<button class='addBtn' data-name="${place.name}" data-address="${place.formatted_address}">add</button>`) + '</div>')
         infowindow.open(map, this)
