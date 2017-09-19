@@ -1,0 +1,41 @@
+<div id='countryBody'>
+  <br><br><br>
+  <h1>{{countryData.name}}</h1>
+
+  <img id='map' src='https://maps.googleapis.com/maps/api/staticmap?center={{countryData.name}}&zoom={{countryData.zoom}}&size=400x250&key=AIzaSyDJSyfAjBCiwCtwd27p7oIrMeV8ggpj5IE'></img>
+
+  <div class="chart-container">
+    <canvas id="myChart"></canvas>
+
+    <div class="content">
+      <img id="Up1" data-country="{{ countryData.id }}" src="/images/Up.png">
+      <img id="Up2" data-country="{{ countryData.id }}" src="/images/Up.png">
+      <img id="Up3" data-country="{{ countryData.id }}" src="/images/Up.png">
+      <img id="Up4" data-country="{{ countryData.id }}" src="/images/Up.png">
+      <img id="Up5" data-country="{{ countryData.id }}" src="/images/Up.png">
+      <img id="Up6" data-country="{{ countryData.id }}" src="/images/Up.png">
+      <img id="Up7" data-country="{{ countryData.id }}" src="/images/Up.png">
+      <img id="Up8" data-country="{{ countryData.id }}" src="/images/Up.png">
+      <img id="Up9" data-country="{{ countryData.id }}" src="/images/Up.png">
+      <img id="Up10" data-country="{{ countryData.id }}" src="/images/Up.png">
+      <img id="Up11" data-country="{{ countryData.id }}" src="/images/Up.png">
+      <img id="Up12" data-country="{{ countryData.id }}" src="/images/Up.png">
+    </div>
+
+    <div class="content">
+      <img id="Down1" data-country="{{ countryData.id }}" src="/images/Down.png">
+      <img id="Down2" data-country="{{ countryData.id }}" src="/images/Down.png">
+      <img id="Down3" data-country="{{ countryData.id }}" src="/images/Down.png">
+      <img id="Down4" data-country="{{ countryData.id }}" src="/images/Down.png">
+      <img id="Down5" data-country="{{ countryData.id }}" src="/images/Down.png">
+      <img id="Down6" data-country="{{ countryData.id }}" src="/images/Down.png">
+      <img id="Down7" data-country="{{ countryData.id }}" src="/images/Down.png">
+      <img id="Down8" data-country="{{ countryData.id }}" src="/images/Down.png">
+      <img id="Down9" data-country="{{ countryData.id }}" src="/images/Down.png">
+      <img id="Down10" data-country="{{ countryData.id }}" src="/images/Down.png">
+      <img id="Down11" data-country="{{ countryData.id }}" src="/images/Down.png">
+      <img id="Down12" data-country="{{ countryData.id }}" src="/images/Down.png">
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class='auth'>
+  <h3 class = 'red'>{{message}}</h3>
+  <h3 class = 'red'>{{flash}}</h3>
+
+  <form action="/login" method="POST">
+    <label for="authEmail">Email</label><br>
+    <input id="authEmail" type="email" name="user[email]"><br>
+
+    <label for="authPassword">Password</label><br>
+    <input id="authPassword" type="text" name="user[password]"><br>
+
+    <button type="submit">Log in</button>
+  </form>
+</div>

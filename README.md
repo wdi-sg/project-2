@@ -1,65 +1,34 @@
-# Your Project Name
+# Vacays
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+https://vacays.herokuapp.com/
+
+You might have a destination on your bucket list and wondered when is the best time to go, or got a set block leave and wanted to go to a great place. It would  be great if you can maximize your trip by avoiding bad weather or shifting the dates around to coincide with that exciting F1 night race.
 
 ## Getting Started
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
-
-### Prerequisites
-
-What is needed to install and run the project, how do we install them
-
-```
-Code example
-```
-
-### How to Use
-
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
-
-
-```
-Code example
-```
-
-More steps...
-
-```
-until finished
-```
-
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
-
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
-
-## Built With
-
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+* Yarn install dependencies
+* [Get your Google static maps API key](https://developers.google.com/maps/documentation/static-maps/get-api-key)
+* Put your API key in the .env file
+Search for your country of choice in the search bar. For the moment it is limited to those in the dropdown.
+You will be directed to the country's page with information to aid you in your search.
+Do contribute to the community by upvoting your recommended month.
 
 ## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+![Wireframe](http://i.imgur.com/IgqthtVl.jpg?1)
+![ERD](http://imgur.com/96Fgj3g.png)
 
-## Authors
+## Built With
 
-Did you collaborate with others on this project, list them here
+* [jQuery](http://jquery.com/)
+* [chartJS](http://chartjs.org)
+* Express
+* NodeJS
+* Google Static Maps API
 
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+## Potential upgrades
 
-## Acknowledgments
-
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+* Restrict up-down votes to once only
+* User adding comments about their recommendation and experience
+* Adding events API to show all the public/school holidays etc for the rest of the year
+* Adding climate API to show weather trend over an average year

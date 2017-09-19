@@ -1,0 +1,144 @@
+html, body {
+  margin: 0;
+  height:100%;
+}
+
+/*navigation bar fixed at the top*/
+
+.nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.nav li {
+    float: right;
+}
+
+.nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 18px 16px;
+    text-decoration: none;
+    font-family: 'Bitter', serif;
+}
+
+.nav li a:hover {
+    background-color: #111;
+}
+
+/*Homepage styling*/
+
+.home {
+  background: url('../images/cover.jpeg') no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+}
+
+.center {
+  position: relative;
+  text-align: center;
+  top: 40%
+}
+
+.center p {
+  font-size: 24px;
+  position: relative;
+  font-family: 'Bitter', serif;
+}
+
+.center #searchInput, .auth input {
+  height: 35px;
+  width: 30%
+}
+
+.center input[type="text"], .auth input[type="text"], .auth input[type="email"] {
+  font-size:22px;
+  padding: 3px;
+  font-family: 'Bitter', serif;
+}
+
+.center button, .auth button {
+  height: 45px;
+  vertical-align: top;
+  font-family: 'Bitter', serif;
+  font-size: 18px;
+  background-color: #333;
+  color: white;
+  border: none
+}
+
+.center button:hover, .auth button:hover {
+  background-color: #111;
+}
+
+.auth {
+  padding: 5%
+}
+
+.auth label, .auth button {
+  display: inline-block;
+  font-family: 'Bitter', serif;
+  font-size:20px;
+  margin: 10px 0px
+}
+
+/*Country page styling*/
+
+#countryBody h1 {
+  margin: 2% 90% 1% 10%
+}
+
+#countryBody h1:first-letter {
+    text-transform:capitalize;
+}
+
+#map {
+  float: left;
+  width: 30%;
+  margin: 2%
+}
+
+.chart-container {
+  float: left;
+  margin: 0px 0px 0px 50px;
+  height: 300px;
+  width: 50%;
+  position: relative;
+}
+
+.content {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    top: 5px;
+    max-width: 100%;
+    overflow-y: hidden;
+    overflow-x:auto;
+    word-wrap:normal;
+    white-space:nowrap;
+}
+
+.content img {
+    display: inline;
+    margin: 0 1.3% 0.8% 1%;
+    padding: 0px;
+    /*vertical-align:middle;*/
+    width:5%
+}
+
+.content #Up1, .content #Down1 {
+    margin: 0 1.3% 0.8% 6%;
+}
+.content #Up12, .content #Down12 {
+    margin: 0 5% 0.8% 0;
+}

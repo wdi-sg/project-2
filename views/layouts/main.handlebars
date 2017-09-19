@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Vacay</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="nav">
+        <ul>
+          <li style='float: left'><a href='/'>VACAY</a></li>
+          {{#unless user}}
+          <li><a href="/register">Sign up</a></li>
+          <li><a href="/login">Log in</a></li>
+          {{else}}
+          <li><a href="/logout">Log out</a></li>
+          {{/unless}}
+        </ul>
+      </div>
+    </header>
+    <script>
+      var total = {{{voteData}}}
+      for (var i =0; i < total.length; i++) {
+        if (total[i]._id.month === 1 && total[i]._id.points === 1) var upJan = total[i].count
+        if (total[i]._id.month === 2 && total[i]._id.points === 1) var upFeb = total[i].count
+        if (total[i]._id.month === 3 && total[i]._id.points === 1) var upMar = total[i].count
+        if (total[i]._id.month === 4 && total[i]._id.points === 1) var upApr = total[i].count
+        if (total[i]._id.month === 5 && total[i]._id.points === 1) var upMay = total[i].count
+        if (total[i]._id.month === 6 && total[i]._id.points === 1) var upJun = total[i].count
+        if (total[i]._id.month === 7 && total[i]._id.points === 1) var upJul = total[i].count
+        if (total[i]._id.month === 8 && total[i]._id.points === 1) var upAug = total[i].count
+        if (total[i]._id.month === 9 && total[i]._id.points === 1) var upSep = total[i].count
+        if (total[i]._id.month === 10 && total[i]._id.points === 1) var upOct = total[i].count
+        if (total[i]._id.month === 11 && total[i]._id.points === 1) var upNov = total[i].count
+        if (total[i]._id.month === 12 && total[i]._id.points === 1) var upDec = total[i].count
+        if (total[i]._id.month === 1 && total[i]._id.points === -1) var downJan = total[i].count
+        if (total[i]._id.month === 2 && total[i]._id.points === -1) var downFeb = total[i].count
+        if (total[i]._id.month === 3 && total[i]._id.points === -1) var downMar = total[i].count
+        if (total[i]._id.month === 4 && total[i]._id.points === -1) var downApr = total[i].count
+        if (total[i]._id.month === 5 && total[i]._id.points === -1) var downMay = total[i].count
+        if (total[i]._id.month === 6 && total[i]._id.points === -1) var downJun = total[i].count
+        if (total[i]._id.month === 7 && total[i]._id.points === -1) var downJul = total[i].count
+        if (total[i]._id.month === 8 && total[i]._id.points === -1) var downAug = total[i].count
+        if (total[i]._id.month === 9 && total[i]._id.points === -1) var downSep = total[i].count
+        if (total[i]._id.month === 10 && total[i]._id.points === -1) var downOct = total[i].count
+        if (total[i]._id.month === 11 && total[i]._id.points === -1) var downNov = total[i].count
+        if (total[i]._id.month === 12 && total[i]._id.points === -1) var downDec = total[i].count
+      }
+    </script>
+
+            {{{ body }}}
+
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="/js/graph.js"></script>
+  </body>
+</html>
