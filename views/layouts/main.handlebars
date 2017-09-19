@@ -13,9 +13,12 @@
       <div class="nav">
         <ul>
           <li style='float: left'><a href='/'>VACAY</a></li>
+          {{#unless user}}
           <li><a href="/register">Sign up</a></li>
           <li><a href="/login">Log in</a></li>
+          {{else}}
           <li><a href="/logout">Log out</a></li>
+          {{/unless}}
         </ul>
       </div>
     </header>
