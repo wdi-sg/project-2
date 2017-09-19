@@ -1,6 +1,6 @@
 # Vacays
 
-https://secure-sea-88829.herokuapp.com/
+https://vacays.herokuapp.com/
 
 You might have a destination on your bucket list and wondered when is the best time to go, or got a set block leave and wanted to go to a great place. It would  be great if you can maximize your trip by avoiding bad weather or shifting the dates around to coincide with that exciting F1 night race.
 

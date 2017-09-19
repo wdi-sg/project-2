@@ -1,13 +1,22 @@
-<div class="splash-container">
-  <div class="splash">
+<div class="home">
+  <div class="center">
     <h3 class = 'red'>{{message}}</h3>
     <h3 class = 'red'>{{flash}}</h3>
-    <p class="splash-subhead">
+    <p>
       When is the best time to go to this country?
     </p>
     <form action='/countries' method='post'>
-      <input type="text" name="searchInput" id="searchInput" class="splash-head">
-      <button class="pure-button pure-button-primary">Search</button>
+      <input required type="text" name="searchInput" id="searchInput" list="suggestions">
+      <datalist id="suggestions">
+        <option value="austria">
+        <option value="germany">
+        <option value="greece">
+        <option value="iceland">
+        <option value="indonesia">
+        <option value="israel">
+        <option value="singapore">
+      </datalist>
+      <button class="">Search</button>
     </form>
   </div>
 </div>
