@@ -7,7 +7,7 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background: rgba( 255, 255, 255, .8) url('http://i.stack.imgur.com/FhHRx.gif') 50% 50% no-repeat;
+  background: rgba( 255, 255, 255, .8) url('https://info.parkering.cph.dk/hs-fs/hub/461195/file-2365355877-gif/images/icons/loadingCPHpark.gif?t=1505424585885&width=90&name=loadingCPHpark.gif') 50% 50% no-repeat;
 }
 
 body.loading {
@@ -58,7 +58,7 @@ body.loading .modal {
    text-align: center;
 }
 
-@media screen and (min-width: 997px) and (max-width: 1440px) {
+@media screen and (min-width: 997px) and (max-width: 1600px) {
   .container {
     max-width: 1440px;
   }
