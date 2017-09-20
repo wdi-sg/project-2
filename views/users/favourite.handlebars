@@ -1,0 +1,40 @@
+<section class="section" id='favourites'>
+  <div class="container">
+    <h1 class="title">
+        {{#if user}}
+        Username: {{ user.username }}
+      </h1>
+    <h2 class="subtitle">
+        Favourite Carparks
+        {{/if}}
+        {{#unless user}}
+        No such user
+      </h1>
+      <h2 class="subtitle">
+        Please login/ sign up with us.
+        {{/unless}}
+      </h2>
+  </div>
+</section>
+
+{{#if user }}
+  <div id='carparkList'>
+    {{#each user.carparks as |carpark|}}
+      <article class="message is-dark">
+        <div class="message-header">
+          {{carpark.name}}
+          <form action="/users/{{carpark.id}}?_method=delete" method="post">
+            <button class="delete"></button>
+          </form>
+        </div>
+        <div class="message-body">
+          Address: {{carpark.address}}
+        </div>
+      </article>
+{{else}}
+  <div class="notification is-dark">
+    No favourites yet.
+  </div>
+    {{/each}}
+  </div>
+{{/if}}

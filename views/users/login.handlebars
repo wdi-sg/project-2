@@ -1,0 +1,37 @@
+<section class="section" id='register'>
+  <div class="container">
+    <h1 class="title">Login</h1>
+    <h2 class="subtitle">
+        Welcome back kawan!
+      </h2>
+  </div>
+</section>
+
+
+
+<form action="/users/login" method="post" id='loginForm'>
+  <h3> {{flash}} </h3>
+  <div class="field">
+    <p class="control has-icons-left">
+      <input class="input" type="text" name="user[username]" placeholder="Username">
+      <span class="icon is-small is-left">
+        <i class="fa fa-user"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control has-icons-left">
+      <input class="input" type="password" name="user[password]" placeholder="Password">
+      <span class="icon is-small is-left">
+        <i class="fa fa-lock"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control">
+      <button class="button is-dark">
+        Login
+      </button>
+    </p>
+  </div>
+</form>

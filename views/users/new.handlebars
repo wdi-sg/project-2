@@ -1,0 +1,46 @@
+<section class="section" id='register'>
+  <div class="container">
+    <h1 class="title">Sign Up</h1>
+    <h2 class="subtitle">
+        Good choice!
+      </h2>
+  </div>
+</section>
+
+
+
+<form action="/users/register" method="post" id='newUserForm'>
+  <h3> {{flash}} </h3>
+  <p><em>All inputs are compulsory</em></p>
+  <div class="field">
+    <p class="control has-icons-left has-icons-right">
+      <input class="input" type="text" name="user[username]" placeholder="Username">
+      <span class="icon is-small is-left">
+        <i class="fa fa-user"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control has-icons-left">
+      <input class="input" type="password" name="user[password]" placeholder="Password: Minimum 6 characters">
+      <span class="icon is-small is-left">
+        <i class="fa fa-lock"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control has-icons-left has-icons-right">
+      <input class="input" type="email" name="user[email]" placeholder="Email">
+      <span class="icon is-small is-left">
+        <i class="fa fa-user"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control">
+      <button class="button is-dark">
+        Create User
+      </button>
+    </p>
+  </div>
+</form>

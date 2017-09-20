@@ -1,0 +1,98 @@
+/*for the loading circle*/
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba( 255, 255, 255, .8) url('https://info.parkering.cph.dk/hs-fs/hub/461195/file-2365355877-gif/images/icons/loadingCPHpark.gif?t=1505424585885&width=90&name=loadingCPHpark.gif') 50% 50% no-repeat;
+}
+
+body.loading {
+  overflow: hidden;
+}
+
+body.loading .modal {
+  display: block;
+}
+/*for google map*/
+#map {
+  height: 400px;
+  width: 70%;
+  margin: auto auto 20px auto;
+}
+#searchbar .container, #favourites .container, #carparkList, #register, #newUserForm, #loginForm {
+  width: 70%;
+  margin: 0 auto;
+}
+#loginForm, #newUserForm {
+  margin-bottom: 20px;
+}
+#carparkList {
+  margin-bottom: 20px;
+}
+.navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+.hero {
+  margin-top:52px;
+}
+.navbar-item{
+  width: 144;
+}
+.imagesandwords {
+   position: relative;
+   width: 100%; /* for IE 6 */
+}
+
+.words {
+   position: absolute;
+   top: 200px;
+   left: 0;
+   width: 150%;
+   background: rgba(255, 255, 255, 0.7);
+   text-align: center;
+}
+
+@media screen and (min-width: 997px) and (max-width: 1600px) {
+  .container {
+    max-width: 1440px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 1168px){
+  .container {
+    width: 100%;
+  }
+  #homepageintro h1 {
+    font-size: 60px;
+  }
+  #homepageintro h2 {
+    font-size: 50px;
+  }
+  #homepagepic h1, #searchbar .container h1, #favourites .container .title, #register .container .title {
+    font-size: 50px;
+  }
+  #homepagepic h2, #searchbar .container label, #favourites .container .subtitle, #carparkList article, #register .container .subtitle  {
+    font-size: 30px;
+  }
+  #footer {
+    font-size: 25px;
+  }
+  #navMenuExample a, #newUserForm{
+    font-size: 30px;
+  }
+  #searchbar .container, #map {
+    width: 90%;
+  }
+  #searchbar input, #searchbar i, #searchbar button {
+    font-size: 30px;
+  }
+  #markerinfo, .addBtn {
+    font-size: 30px;
+  }
+}
