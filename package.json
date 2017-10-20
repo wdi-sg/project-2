@@ -4,5 +4,12 @@
   "main": "index.js",
   "repository": "https://github.com/wdi-sg/project-2.git",
   "author": "Prima Aulia Gusta <primaulia@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2",
+    "nodemon": "^1.12.1"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
 }
