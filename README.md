@@ -1,22 +1,29 @@
-# Your Project Name
+# ViscuSS
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+A virtual discussion platform for students from local polytechnics. Students/lecturers can contribute to the page by adding their own answers or questions, users can then vote to decide on the most favourable answers/questions.
+
+Questions and answers can be accessed via the user profile page.
+
+## Live Version
+
+[To be added](www.test.com)
+### ERD
+
+![](/assets/images/ERD.png)
 
 ## Getting Started
 
 Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
 
 
-### ERD
 
-![](/assets/images/ERD.png)
 
 ### Prerequisites
 
 What is needed to install and run the project, how do we install them
 
 ```
-Code example
+npm install
 ```
 
 ### How to Use
@@ -44,15 +51,14 @@ Did you write automated tests? If so, how do we run them.
 Code example
 ```
 
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
 
 ## Built With
 
 What did you use to build it, list the technologies, plugins, gems, packages etc.
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+* [jQuery](http://jquery.com/)
+* [Mongoose](http://mongoosejs.com/)
+* [MongoDB](https://www.mongodb.com/)
 
 ## Workflow
 
