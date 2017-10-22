@@ -64,6 +64,32 @@ What did you use to build it, list the technologies, plugins, gems, packages etc
 
 ## Workflow
 
+#### Wireframes
+
+**Home Page**
+
+![](/assets/images/homepage.png)
+
+**Instructions**
+
+![](/assets/images/instructions.png)
+
+**Login and Registration Page**
+
+![](/assets/images/landingpage.png)
+
+**Adding new Questions**
+
+![](/assets/images/newquestion.png)
+
+**Sample Question Page**
+
+![](/assets/images/singlethread.png)
+
+**Sample Course Thread Page**
+
+![](/assets/images/coursethread.png)
+
 Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
 
 ## Authors
