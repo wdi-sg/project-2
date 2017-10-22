@@ -14,6 +14,26 @@ Usually this is done with spreadsheets. The problem is spreadsheets do not cut i
 
 This application aims to address the problems detailed above.
 
+### User Stories
+
+#### User
+The user will be able to create a cost item and specify details such as cost of the item.
+
+They should only have read and write access to cost items which they are the owner.
+
+They can update details of cost items at any time.
+
+The user can view a summary report of all items for which they are the owner and the total cost of these items.
+
+Good to have feature: User cannot view 'price' or specify 'margin'
+
+#### Admin
+The admin has read and write access to all cost items.
+
+'Margin' is a variable which can be specified by the Admin for each type of cost item and the the price will be calculated based on this.
+
+The Admin can view a summary report of all items with the total cost, price and margin.
+
 ### ERD
 
 ![ERD](/public/img/ERD.png)
