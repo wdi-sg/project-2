@@ -1,6 +1,8 @@
 # ViscuSS
 
-A virtual discussion platform for students from local polytechnics. Students/lecturers can contribute to the page by adding their own answers or questions, users can then vote to decide on the most favourable answers/questions.
+A virtual discussion platform for students from local polytechnics. Each course will have their own page, this allows a more accurate and specific location for students to ask and obtain relevant answers.
+
+Students/lecturers can contribute to the page by adding their own answers or questions, users can then vote to decide on the most favourable answers/questions.
 
 Questions and answers can be accessed via the user profile page.
 
