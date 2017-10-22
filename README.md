@@ -1,8 +1,24 @@
-# Your Project Name
+# Cost consolidation and pricing application
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+This purpose of this application is to assist businesses with cost consolidation and pricing of their offerings. It is especially useful for projects which require input from multiple parties.
 
-## Getting Started
+## Workflow
+<!-- Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here. -->
+
+### The problem
+
+Cost consolidation and subsequent pricing of complex, one-off projects such as those in construction and IT systems require input and collaboration among multiple parties.
+
+Usually this is done with spreadsheets. The problem is spreadsheets do not cut it. They cannot be worked on concurrently and having multiple spreadsheets with multiple owners create chaos and there is a need to compile all the data. As there is a lot of human involvement in this kind of workflow, it can lead to human error which can be extremely costly to the business.
+
+
+This application aims to address the problems detailed above.
+
+### ERD
+
+![ERD](/public/img/ERD.png)
+
+<!-- ## Getting Started
 
 Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
 
@@ -37,29 +53,31 @@ Did you write automated tests? If so, how do we run them.
 
 ```
 Code example
-```
+``` -->
 
 ## Live Version
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
+* bcrypt: ^1.0.3
+* body-parser: ^1.18.2
+* express: ^4.16.2
+* express-handlebars: ^3.0.0
+* method-override: ^2.3.10
+* mongoose: ^4.12.3
+* nodemon: ^1.12.1
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
 
-## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+## Author
 
-## Authors
+**Ray Tham**
 
-Did you collaborate with others on this project, list them here
+Copyright © 2017
 
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
 
-## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+<!-- ## Acknowledgments
 
+* -->
