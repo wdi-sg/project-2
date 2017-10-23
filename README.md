@@ -95,6 +95,9 @@ Did you write user stories, draw wireframes, use task tracking, produce ERDs? Di
 
 ## To Be added
 * Email notification API
+* QR code for mobile continuation
+* Bus timing alert
+
 
 ## Authors
 
