@@ -22,8 +22,8 @@ GET '/:slug' - user profile name
 POST '/:slug' - add to user profile page (only for that user)
 
 * ===== User Features: CRUD Gigs ===== *
-GET '/new-gig' - only registered users can post new gig, non-users go to '/sorrysignupla'
-POST '/new-gig' - only registered users can post new gig
+GET '/gigs/new-gig' - only registered users can post new gig, non-users go to '/sorrysignupla'
+POST '/gigs/new-gig' - only registered users can post new gig
 
 GET '/gigs/:id' - each gig card, viewable by non-registered users also.
 POST '/gigs/:id' - :raisehand: :heart: or comment? , non-users go to '/sorrysignupla'

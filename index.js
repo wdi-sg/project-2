@@ -2,10 +2,12 @@ require('dotenv').config({silent: true})
 
 // ======= Setup of Dependencies ======= //
 const express = require('express')
+const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 
+const dbUrl = 'mongodb://localhost/MakeGood'
 const port = process.env.PORT || 3000
 const app = express()
 
@@ -15,6 +17,15 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use(methodOverride('_method'))
+
+mongoose.Promise = global.Promise
+mongoose.connect(dbUrl, {
+  useMongoClient: true
+})
+.then(
+  () => { console.log('db is connected') },
+  (err) => { console.log(err) }
+)
 
 // ======= Setup of Routes ======= //
 const signupRoutes = require('./routes/signup_routes')
