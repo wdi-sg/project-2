@@ -3,6 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/wdi-sg/project-2.git",
-  "author": "Prima Aulia Gusta <primaulia@gmail.com>",
-  "license": "MIT"
+  "author": "Peh Hui Shi <pehhuishi06@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^2.3.10",
+    "mongoose": "^4.12.3",
+    "nodemon": "^1.12.1"
+  }
 }

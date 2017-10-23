@@ -1,6 +1,11 @@
-# Your Project Name
+# Greenie GoGo!
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+Problem :
+- Some supplier may reject their request if order minimum quantity does not met
+- No idea where to get reasonable price vegetables
+- Time consuming to look for suppliers
+- Limited storage space and  vegetables no longer fresh
+- Minimise wastage of vegetables & saving capital at the same time
 
 ## Getting Started
 
@@ -62,4 +67,3 @@ Did you collaborate with others on this project, list them here
 ## Acknowledgments
 
 * Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
