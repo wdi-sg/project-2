@@ -3,10 +3,10 @@ const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
 
 const userSchema = new Schema({
-  email: String,
-  password: String,
-  name: String,
-  slug: String
+  email: { type: String },
+  password: { type: String },
+  name: { type: String },
+  slug: { type: String }
 })
 
 userSchema.pre('save', function (next) {
@@ -20,8 +20,8 @@ userSchema.pre('save', function (next) {
   })
 })
 
-userSchema.methods.validPassword = function(plainPassword, callback) {
-  bcrypt.compare(plainPassword)
+userSchema.methods.validPassword = function (plainPassword, callback) {
+  bcrypt.compare(plainPassword, this.password, callback)
 }
 const User = mongoose.model('User', userSchema)
 
