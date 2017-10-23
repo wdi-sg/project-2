@@ -1,6 +1,6 @@
 # Crane (working title)
 
-Ever stumped upon a pattern/ template of a craft project that you really want to attempt but unsure how long it will take or need inspiration for the choice of different material.
+Ever stumbled upon a pattern/ template of a craft project that you really want to attempt but unsure how long it will take or need inspiration for the choice of different material.
 
 Crane is here to help.
 
