@@ -1,4 +1,4 @@
-# Cost consolidation and pricing application
+# Conso - Cost consolidation and pricing application
 
 This purpose of this application is to assist businesses with cost consolidation and pricing of their offerings. It is especially useful for projects which require input from multiple parties.
 
