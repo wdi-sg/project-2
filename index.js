@@ -15,6 +15,13 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const passport = require('./config/ppConfig')
 
+// models
+const User = require('./models/user')
+
+// requiring routes
+const register_routes = require('./routes/register_routes')
+const login_routes = require('./routes/login_routes')
+
 // initiating express
 const app = express()
 
@@ -55,6 +62,10 @@ app.use(passport.session())
 app.get('/', (req, res) => {
   res.render('home')
 })
+
+// routes
+app.use('/register', register_routes)
+app.use('/login', login_routes)
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`)
