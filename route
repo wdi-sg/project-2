@@ -1,7 +1,7 @@
 ROUTES for the entire website
 
 * ===== Main Pages ===== *
-GET '/' - redirect to
+GET '/' - redirect to main search page
 GET '/about' - to abt page
 
 * ===== Search Pages (available to non-registered users also)===== *

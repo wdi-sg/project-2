@@ -13,7 +13,15 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 
 app.get('/', (req, res) => {
-  res.render('home')
+  res.render('gigs-search')
+})
+
+app.get('/about', (req, res) => {
+  res.render('about')
+})
+
+app.get('/gigs', (req, res) => {
+  res.redirect('/')
 })
 
 // ======= END: Local port Listen ======= //
