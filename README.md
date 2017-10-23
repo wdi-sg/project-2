@@ -92,6 +92,10 @@ What did you use to build it, list the technologies, plugins, gems, packages etc
 
 Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
 
+
+## To Be added
+* Email notification API
+
 ## Authors
 
 Did you collaborate with others on this project, list them here
