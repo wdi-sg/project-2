@@ -1,8 +1,10 @@
 # Your Project Name
 
-https://makerproject.herokuapp.com/
+https://makegood.herokuapp.com/
 
-The Maker Project
+The MakeGood Project
+
+Anyone can do a gig and anyone can post a gig. 
 
 ## Getting Started
 
