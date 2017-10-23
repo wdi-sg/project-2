@@ -1,23 +1,31 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 7000
-const dbUrl = 'mongodb://localhost/project-2'
+const dbUrl = process.env.NODE_ENV === 'production' ? process.env.MONGODB_URL : 'mongodb://localhost/project-2'
 
+require('dotenv').config({ silent: true })
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const path = require('path')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
-// const session = require('express-session')
-// require('dotenv').config({ silent: true })
+
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
+const passport = require('./config/ppConfig')
 
 const home_router = require('./routes/home_router')
 const user_login_router = require('./routes/user_login')
 const user_register_router = require('./routes/user_register')
+const quotes_router = require('./routes/quotes')
+
 
 // Setting up handlebars engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
+
+// Middlewares here
+
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(function (req, res, next) {
@@ -29,24 +37,26 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
-// app.use(session({
-//   secret: process.env.SESSION_SECRET,
-//   resave: false,
-//   saveUninitialized: true
-// }))
-
 mongoose.Promise = global.Promise
 mongoose.connect(dbUrl, { useMongoClient: true })
 .then(() => { console.log('db is connected') },
 err => console.log(err))
 
-// const passport = require('./config/ppConfig')
-// app.use(passport.initialize())
-// app.use(passport.session())
+app.use(session({  // activating the sessions
+  secret: process.env.SESSION_SECRET, // to hash ur session data
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+  // store this to our db too
+}))
+
+app.use(passport.initialize()) // activating
+app.use(passport.session()) // use the session
 
 app.use('/', home_router)
 app.use('/register', user_register_router)
 app.use('/login', user_login_router)
+app.use('/quotes', quotes_router)
 
 
 
@@ -55,11 +65,3 @@ app.use('/login', user_login_router)
 app.listen(port, () => {
   console.log('connected to port 7000 successfully')
 })
-
-
-// git status - make sure nothing to commit 
-// heroic create
-// change the port to process.env.PORT
-// heroic add-on lab // check gitbook for exact command
-// change dbURL to process.env.MONGODB_URL
-// git push heroic master

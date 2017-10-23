@@ -1,0 +1,11 @@
+<h2>Quote Collections</h2>
+
+
+<ul>
+  {{#each quotes as |quote|}}
+    <li>
+      {{ quote.quote }}
+         {{ quote.author }}
+    </li>
+  {{/each}}
+</ul>
