@@ -11,7 +11,7 @@ Questions and answers can be accessed via the user profile page.
 [To be added](www.test.com)
 ### ERD
 
-![](/assets/images/ERD.png)
+![](/public/assets/images/ERD.png)
 
 ## Getting Started
 
@@ -68,11 +68,11 @@ What did you use to build it, list the technologies, plugins, gems, packages etc
 
 **Home Page**
 
-![](/assets/images/homepage.png)
+![](/public/assets/images/homepage.png)
 
 **Instructions**
 
-![](/assets/images/instructions.png)
+![](/public/assets/images/instructions.png)
 
 **Login and Registration Page**
 
@@ -80,15 +80,15 @@ What did you use to build it, list the technologies, plugins, gems, packages etc
 
 **Adding new Questions**
 
-![](/assets/images/newquestion.png)
+![](/public/assets/images/newquestion.png)
 
 **Sample Question Page**
 
-![](/assets/images/singlethread.png)
+![](/public/assets/images/singlethread.png)
 
 **Sample Course Thread Page**
 
-![](/assets/images/coursethread.png)
+![](/public/assets/images/coursethread.png)
 
 Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
 
