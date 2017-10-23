@@ -15,8 +15,9 @@ router.get('/', (req, res) => {
 
 router.get('/profile', (req, res) => {
   const user = req.user
-  console.log(req.user)
-  res.render('users/profile', user)
+  const quote = Quote.find()
+  console.log(user)
+  res.render('users/profile', {user, quote})
 })
 
 module.exports = router

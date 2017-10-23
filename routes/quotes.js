@@ -5,8 +5,8 @@ const Quote = require('../models/quote')
 router.get('/', (req, res) => {
   Quote.find()
   .then(quotes => {
-    console.log(quotes)
-    res.render('quotes/quote', quotes)
+    // console.log(quotes)
+    res.render('quotes/quote', { quotes })
   })
 })
 
