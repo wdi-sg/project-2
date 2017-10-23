@@ -1,0 +1,20 @@
+<h2> Less hassle, more rest </h2>
+<h3> New user </h3>
+<form action="/users/register" method="post">
+  <label for="name">Name</label>
+  <input type="text" name="name" placeholder="How we address you">
+
+  <label for="email">Email</label>
+  {{!-- NOTICE on the attribute type below  --}}
+  <input type="email" name="email" placeholder="email@domain.com">
+
+  <label for="password">Password</label>
+  {{!-- NOTICE on the attribute type below  --}}
+  <input type="password" name="password" placeholder="min. 8 characters">
+
+  {{!-- <label for="mobile">Mobile (+65)</label> --}}
+  {{!-- NOTICE on the attribute type below  --}}
+  {{!-- <input type="text" name="mobile" placeholder="Let's get in touch"> --}}
+
+  <button type="submit" name="button">Register</button>
+</form>
