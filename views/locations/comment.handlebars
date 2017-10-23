@@ -1,0 +1,20 @@
+<h2>{{ location.name }} <small>({{ location.country }})</small></h2>
+<h3>{{ location.type }}</h3><br>
+<h2>{{ location.title }}</h2>
+<p>{{ location.description }}</p><br>
+
+
+<h3>Add Comment</h3>
+<form action="/comments" method="post">
+  {{!-- NOTICE!!! --}}
+  {{!-- attribute `for` here relates to the `id` of the field --}}
+  <label for="title">Title</label>
+  <input type="text" id="title" name="title" placeholder="e.g. Llao llao FTW">
+  <br>
+
+  <label for="description">Description</label>
+  <textarea id="description" name="description" rows="8" cols="80"></textarea>
+  <br>
+
+  <button type="submit" name="button">Submit</button>
+</form>

@@ -43,6 +43,7 @@ router.put('/:id', (req, res) => {
     name: formData.name,
     country: formData.country,
     type: formData.type,
+    title: formData.title,
     description: formData.description
   })
   .then(() => res.redirect(`/locations/${req.params.id}`))
@@ -62,6 +63,7 @@ router.post('/', (req, res) => {
   newLocation.name = formData.name
   newLocation.country = formData.country
   newLocation.type = formData.type
+  newLocation.title = formData.title
   newLocation.description = formData.description
 
   // newLocation.owner = '59e81ae9c90d27819c166d67'

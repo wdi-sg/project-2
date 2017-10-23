@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
 
   newUser.save()
   .then(
-    user => res.redirect(`/profile/${user.slug}`),    
+    user => res.redirect(`/profile`),    
     err => res.send(err)
   )
 })

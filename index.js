@@ -1,5 +1,6 @@
-const dbUrl = process.env.MONGODB_URI || 'mongodb://localhost/project-2'
+const dbUrl = process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/project-2'
 const port = process.env.PORT || 8000
+require('dotenv').config({ silent: true })  // for accessing .env files
 
 // installing all modules
 const express = require('express')
@@ -8,6 +9,14 @@ const mongoose = require('mongoose') // for DB
 const exphbs = require('express-handlebars') // for Handlebars
 const bodyParser = require('body-parser') // for accessing POST request
 const methodOverride = require('method-override') // for accessing PUT / DELETE
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
+const passport = require('./config/ppConfig')
+
+// for image upload
+const multer = require('multer')
+const upload = multer({ dest: './uploads/' });
+const cloudinary = require('cloudinary')
 
 
 const User = require('./models/user')
@@ -18,6 +27,7 @@ const Location = require('./models/location')
 const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
 const location_routes = require('./routes/location_routes')
+const comment_routes = require('./routes/comment_routes')
 
 // initiating express, by calling express variable
 const app = express()
@@ -27,6 +37,7 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 
 // MIDDLEWARES
+// setup path
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(function (req, res, next) {
   console.log('Method: ' + req.method + ' Path: ' + req.url)
@@ -54,6 +65,27 @@ mongoose.connect(dbUrl, {
   (err) => { console.log(err) }
 )
 
+// setup session
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  // store this to our db too
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}))
+
+// setup passport
+app.use(passport.initialize())
+app.use(passport.session())
+
+// why we use. `app.use`, because we want to apply this local data for EVERY routes
+// `app.use` => GET, POST, PUT, DELETE request for ALL routes
+app.use((req, res, next) => {
+  app.locals.user = req.user // we'll only `req.user` if we managed to log in
+  next()
+})
+
+
 // Homepage
 app.get('/', (req, res) => {
   Location.find().limit(10)
@@ -68,22 +100,37 @@ app.get('/', (req, res) => {
   })
 })
 
-app.get('/profile/:slug', (req, res) => {
-  User.findOne({
-    slug: req.params.slug
-  })
-  .then((user) => {
-    res.render('users/show', {
-      user
-    })
-  })
+// Route to profile
+app.get('/profile', (req, res) => {
+  res.send(req.user)
+  // User.findOne({
+  //   slug: req.params.slug
+  // })
+  // .then((user) => {
+  //   res.render('users/show', {
+  //     user
+  //   })
+  // })
+})
+
+//  Route to logout
+app.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/')
 })
 
 // setup routes
 app.use('/register', register_routes)
 app.use('/login', login_routes)
 app.use('/locations', location_routes)
+app.use('/comments', comment_routes)
 
+//post route
+app.post('/', upload.single('myFile'), function(req, res) {
+  cloudinary.uploader.upload(req.file.path, function(result) {
+    res.send(result);
+  });
+});
 
 // opening the port for express
 app.listen(port, () => {

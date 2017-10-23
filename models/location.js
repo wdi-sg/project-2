@@ -5,8 +5,10 @@ const locationSchema = new Schema({
   name: String,
   country: String,
   type: String,
+  title: String,
   description: String,
   location_id: String,
+  imageUrl: String,
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User'

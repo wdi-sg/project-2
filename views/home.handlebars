@@ -1,1 +1,35 @@
+<div class="row">
+  {{#each locations }}
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{ this.name }} <small>({{ this.country }})</small></h4>
+        <img src='{{ this.image }}'>
+        <img src='http://res.cloudinary.com/dnqgbyfhs/image/upload/v1508772812/k3umuaohoyr2ajqamryz.jpg' height='150' width='200' alt='Eiffel Tower'/>
+        <p class="card-text">
+          {{ this.title }}
+        </p><br>
+        <p class="card-text">
+          {{ this.description }}
+        </p><br>
+        <form
+          class="form-inline"
+          action="/locations/{{ this.id }}?_method=DELETE"
+          method="post"
+        >
+          <a href="/locations/{{ this.id }}" class="btn btn-primary">View More</a>
 
+          {{!-- &nbsp;
+          <button class="btn btn-danger" type="submit" name="button">Delete</button> --}}
+        </form>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
+
+<br>
+<form enctype="multipart/form-data" action="/" method="POST">
+  <input type="file" name="myFile">
+  <input type="submit" class="btn btn-primary">
+</form>
