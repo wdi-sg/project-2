@@ -1,4 +1,4 @@
-const port = 3000 || process.env.PORT
+const port = process.env.PORT || 3000 
 const dbUrl = process.env.NODE_ENV === 'production' ?
   process.env.MONGODB_URI : 'mongodb://localhost/project2'
 
