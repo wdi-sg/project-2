@@ -4,7 +4,7 @@ require('dotenv').config({silent: true})
 const express = require('express')
 const exphbs = require('express-handlebars')
 
-const port = 3000
+const port = process.env.PORT || 3000
 const app = express()
 
 // ======= Setup of main GET reqs ======= //
