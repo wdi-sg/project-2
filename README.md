@@ -76,7 +76,7 @@ What did you use to build it, list the technologies, plugins, gems, packages etc
 
 **Login and Registration Page**
 
-![](assets/images/landingpage.png)
+![](/public/assets/images/landingpage.png)
 
 **Adding new Questions**
 
