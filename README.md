@@ -1,65 +1,80 @@
-# Your Project Name
+# Crane (working title)
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+Ever stumped upon a pattern/ template of a craft project that you really want to attempt but unsure how long it will take or need inspiration for the choice of different material.
 
-## Getting Started
+Crane is here to help.
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+Crane will:
+1) Allow user to upload their variation to the pattern/ template that they based on
+2) Allow user to state the amount of time they took and calculate the average amount of time user took for the pattern/ template.
+3) Inspire and encourage user to make more craft.
 
-### Prerequisites
+----------
 
-What is needed to install and run the project, how do we install them
+# ERD Diagram
 
-```
-Code example
-```
+# ![](/Readmeassets/ERD.jpg)
 
-### How to Use
+-----------
+# Wireframes
 
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+# ![](/Readmeassets/home.png)
+Home Page will have recommended patterns or projects for user to attempt. If the user has logged in, it should display recommended as what was set in user's preferences instead.(ie. if preferences is woodcraft, it will display projects or pattern under woodcraft category.)
+
+# ![](/Readmeassets/profile.png)
+# ![](/Readmeassets/profilev2.png)
+A simple profile page. As each user are able to have to-challenge-projects, projects (completed) and pattern, the layout of the profile is yet to confirm.
+
+# ![](/Readmeassets/category.png)
+A simple layout of all projects under same category.
+
+# ![](/Readmeassets/pattern_a.png)
+For each pattern, it will first show the variation.
+
+# ![](/Readmeassets/pattern_b.png)
+When user click on the instructions, it will display the material and instructions
+
+# ![](/Readmeassets/variationorproject.png)
+For each variation/ project that the user create, it will have their own individual page to display.
 
 
-```
-Code example
-```
+----------
+# Flow Chart
 
-More steps...
-
-```
-until finished
-```
+# ![](/Readmeassets/flowchart.jpg)
 
 
-## Tests
+------------
 
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
-
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+# Key Features to build
+* User: user register page, login page, profile page
+* pattern: upload pattern, pattern details page, linking to variation.
+* Variation/ project: linking to pattern, project details page, uploading project.
+* search function, home page
+* Features to build only after above is completed: Calculation of average time spent, analysis of user's project (ie. breakdown of how many project done in each category or each level. )
+-----------
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
+HTML
+CSS
+Javascript
+Node
+Express
+-----------
+version 0.1.0 Day 1 (24 Oct):
+* added Erd Diagram, wireframes, flowchart.  
+* install relevant dependencies
+* connect to heroku
+* building 3 models
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
-
-## Workflow
-
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
-
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+To be added:
+* finalise 3 models
+* create the handlebars for the routes
+* create the routes: register, login, pattern, project, profile, home
+* include external frameworks
+* bonus features
+------------
 
 ## Acknowledgments
-
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+(to be fill up later)
