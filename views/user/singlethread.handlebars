@@ -1,0 +1,26 @@
+<table>
+  <tr>
+    <td><div class="buttons">
+    <button class="up" data={{data._id}} upvotes = {{data.upVotes}} >Upvote</button>
+    <p id={{data._id}}  >{{data.totalVotes}}</p>
+    <button class="down" data={{data._id}} downvotes = {{data.downVotes}} >Downvote</button>
+    </div></td>
+    <td><p>{{data.question}}</p>
+    <p>{{data.description}}</p></td>
+    <td>Asked By: {{author}}</td>
+  </tr>
+  <tr>
+    <td>.</td>
+    <td>ANSWERS COME HERE</td>
+  </tr>
+</table>
+
+<form method="POST" action="/addAnswer">
+  <label for="animalType">Title</label>
+  <input type="hidden" name="id"  value= {{data._id}}>
+  <input type="text" name="type">
+  <br><br>
+  <textarea name="userinput" rows="4" cols="50"></textarea>
+
+  <input id="animalType" type="submit">
+</form>

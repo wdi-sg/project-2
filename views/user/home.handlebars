@@ -1,1 +1,13 @@
-<p>TESTING THIS WEBSITE ON LOCALHOST</p>
+{{#each threads}}
+<table>
+  <tr>
+    <td><div class="buttons">
+    <button class="up" data={{this._id}} upvotes = {{this.upVotes}}>Upvote</button>
+    <p id={{this._id}} >{{this.totalVotes}}</p>
+    <button class="down" data={{this._id}} downvotes = {{this.downVotes}}>Downvote</button>
+    </div></td>
+    <td><a href="/thread/{{this.id}}">{{this.question}}</a></td>
+  </tr>
+</table>
+<div>==============================================================================</div>
+{{/each}}

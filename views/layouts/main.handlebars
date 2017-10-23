@@ -7,11 +7,19 @@
   <body>
     <nav>
       <a href="/">Home</a>
-  <a href="/addquestions">Add a question</a>
-  <a href="/landingPage">Login/Register</a>
+      <a href="/newquestion">Add a question</a>
+      {{#if currentUser}}
+      <a href="/profile">Profile</a>
+      <a href="/logout">Logout</a>
+      {{else}}
+      <a href="/landingpage">Login/Register</a>
+      {{/if}}
+      <a href="/search">Search</a>
+      <a href="">{{currentUser.id}}</a>
     </nav>
 
     <h1>{{title}}</h1>
+    ======================================================
     {{{body}}}
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
