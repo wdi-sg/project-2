@@ -9,8 +9,6 @@ const courseSchema = new Schema({
     street: String,
     zipcode: String
   },
-  borough: String,
-  cuisine: String,
   grades: [{
     date: Date,
     grade: String,

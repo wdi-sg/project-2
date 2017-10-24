@@ -4,13 +4,24 @@
     <meta charset="utf-8">
     <title>Courses</title>
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   </head>
   <body>
-    {{{body}}}
+    <nav>
+        <div class="nav-wrapper #304ffe indigo accent-4">
+          <a href="/" class="brand-logo">Home</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/register">Register</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/pending">Pending</a></li>
+          </ul>
+        </div>
+      </nav>
 
 
 
-
+      {{{body}}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
     <script src="/assets/js/frontend.js" charset="utf-8"></script>
   </body>
