@@ -8,7 +8,11 @@ const quoteSchema = new Schema({
   },
   author: String,
   quote: String, // text
-  timeEvent: String // morning / afternoon /evening
+  timeEvent: String // TODO: change to Number
+  // hasShown: {
+  //   type: Boolean,
+  //   default: false
+  // }
 })
 
 const Quote = mongoose.model('Quote', quoteSchema)

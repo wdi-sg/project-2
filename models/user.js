@@ -3,16 +3,13 @@ const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
 
 const userSchema = new Schema({
-  // quoteWhatICreate: []//
   email: { type: String },
   password: { type: String },
   name: { type: String },
-  slug: { type: String }
-  // quotes:
-
-  // morning: { quote_id ref quote}
-  // afternoon: []
-  // evening: []
+  slug: { type: String },
+  addedQuotes: [
+      // quote ID
+  ]
 })
 
 userSchema.pre('save', function (next) {

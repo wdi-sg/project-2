@@ -1,1 +1,6 @@
 <h3>{{ quote.quote }} - {{ quote.author }}</h3>
+
+<form action="/addcollection" method="post">
+  <input type="text" name="quoteId" value="{{ quote.id }}">
+  <button type="submit" name="button">Add to Collection</button>
+</form>
