@@ -7,17 +7,6 @@ const User = require("./models/user")
 
 const port = 3000
 
-const MongoClient = require("mongodb").MongoClient
-// MongoClient test
-MongoClient.connect("mongodb://127.0.0.1:27017/test", function(err, db) {
-  if (err) {
-    throw err
-  } else {
-    console.log("successfully connected to the database")
-  }
-  db.close()
-})
-
 // initialize mongoose and mongodb
 const mongoose = require("mongoose")
 mongoose.connect("mongodb://127.0.0.1:27017/project-2", {
