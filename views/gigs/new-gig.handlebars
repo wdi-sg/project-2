@@ -1,11 +1,27 @@
 <h3>New Gig</h3>
 
-<form action="/new-gig" method="post">
+<form action="/gigs/new-gig" method="post">
+
   <label for="gigName">Name</label>
   <input type="text" name="name" placeholder="Prototype a Thingy">
 
-  <label for="gigDescription">Cuisine</label>
-  <input type="text" name="description" placeholder="e.g. Artisanal Teh Peng">
+  <label for="date">Date/Deadline</label>
+  <input type="text" name="deadline" placeholder="date">
+
+  <label for="specs">Specs</label>
+  <input type="text" name="specs" placeholder="gig specs in just 2 lines">
+
+  <label for="wage">Wage</label>
+  <input type="text" name="wage" placeholder="$10 per hour">
+
+  <label for="description">Description</label>
+  <input type="text" name="description" placeholder="do share with us more details of the work!">
+
+  {{!-- <label for="wage">Wage</label>
+  <input type="text" name="wage" placeholder="$10 per hour"> --}}
+
+  {{!-- <label for="skills">Skills</label>
+  <input type="text" name="skills" placeholder="C++, woodworking"> --}}
 
   <button type="submit" name="button">Submit</button>
 </form>
