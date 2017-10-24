@@ -6,7 +6,7 @@ const session = require("express-session")
 const MongoStore = require("connect-mongo")(session)
 const passport = require("./config/ppConfig")
 const methodOverride = require('method-override')
-
+const { hasLoggedOut, isLoggedIn } = require('./helpers')
 
 const dbUrl =
 process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/proj2local'
@@ -76,48 +76,47 @@ app.get("/newquestion",(req,res)=>{
 
 
 
-app.get('/logout', (req, res) => {
+app.get('/logout',hasLoggedOut, (req, res) => {
   req.logout()
   res.redirect('/')
 })
 
-app.get("/profile", (req,res)=>{
+app.get("/profile",hasLoggedOut, (req,res)=>{
   if(! req.user) res.redirect("/")
   else res.send(req.user)
 })
 
-app.get("/landingpage",(req,res)=>{
+app.get("/landingpage",isLoggedIn,(req,res)=>{
   res.render("user/landingpage",{
     title: "User Login"
   })
 })
-app.get(`/thread/:id`, (req, res) => {
-  Thread.findById({_id: req.params.id}, function (err, thread) {
-    if (err) {
-      console.log(err)
-      return
-    }
-    var creator = findAuthor(thread.creator)
-    console.log("creator",findAuthor(thread.creator));
-    res.render('user/singlethread', {
-      data: thread,
-      author: creator
 
-    })
+app.get(`/thread/:id`, (req, res) => {
+  Thread.findById({_id: req.params.id})
+  .then(thread=>{
+    if(thread.creator==="anonymous"){
+      res.render('user/singlethread', {
+        data: thread,
+        author: "anonymous"
+
+      })
+    }else{
+      User.findById({_id: thread.creator})
+      .then(creator=>{
+
+        res.render('user/singlethread', {
+          data: thread,
+          author: creator.name
+
+        })
+
+      })
+    }
+
   })
 })
 
-function findAuthor(idsearch){
-  var result = ""
-  console.log("ID that was searched",idsearch);
-  User.findById({_id: idsearch})
-  .then(res=>{
-    console.log(res);
-    if (res === undefined)  return "anonymous"
-    return res.name
-  })
-
-}
 
 app.post('/addquestions', function (req, res) {
   var creator = ""
@@ -159,6 +158,7 @@ app.post("/landingpage/login", passport.authenticate("local",{
 }))
 
 
+///////// TESTING AREA ///////////
 
 
 //Run port access
