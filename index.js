@@ -1,7 +1,7 @@
 require('dotenv').config({silent: true})
 
-const dbUrl = process.env.MONGODB_URI || 'mongodb://localhost/test'
-const port = process.env.PORT || 9000 // this is for our express server
+const url = process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/test'
+const port = process.env.PORT || 9000
 
 // installing all modules
 const bodyParser = require('body-parser') // for accessing POST request
@@ -10,13 +10,15 @@ const exphbs = require('express-handlebars')
 const methodOverride = require('method-override') // for accessing PUT / DELETE
 const mongoose = require('mongoose') // for DB
 const path = require('path') // for Public files
+const passport = require('./config/ppConfig') // to register passport strategies
+const session = require('express-session') // to create session and cookies
+const MongoStore = require('connect-mongo')(session) // to store session into db
 
 // require all model files
 const User = require('./models/user')
 const creditCard = require('./models/credit-card')
 const savingsAccount = require('./models/savings-account')
 const fixedDeposit = require('./models/fixed-deposit')
-const news = require('./models/news')
 
 // require all my route files
 
