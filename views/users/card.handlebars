@@ -1,12 +1,15 @@
 <h3>My Profile</h3></h3>
 
-<h1>{{user}}</h1>
+{{!-- <h1>{{user}}</h1> --}}
 
 <h1>Hi my name is {{user.name}}</h1>
 
 
-<h1>Hi my name is {{user.profile.nickname}}</h1>
-<h1>Hi my name is {{user.profile.about}}</h1>
+<h1>Hi my name is {{user.profile.0.nickname}}</h1>
+<h1>Hi my name is {{user.profile.0.about}}</h1>
+<h1>Hi my name is {{user.profile.0.skills}}</h1>
+<h1>Hi my name is {{user.profile.0.projs}}</h1>
+<h1>Hi my name is {{user.profile.0.contact}}</h1>
 
 
 
