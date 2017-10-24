@@ -1,3 +1,8 @@
+require('dotenv').config({silent: true})
+
+const dbUrl = process.env.MONGODB_URI || 'mongodb://localhost/test'
+const port = process.env.PORT || 9000 // this is for our express server
+
 // installing all modules
 const bodyParser = require('body-parser') // for accessing POST request
 const express = require('express')
@@ -17,9 +22,6 @@ const news = require('./models/news')
 
 // initiating express, by calling express variable
 const app = express()
-
-const url = 'mongodb://localhost:27017/test'
-const port = process.env.PORT || 3000 // this is for our express server
 
 // VIEW ENGINES aka handlebars setup
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
