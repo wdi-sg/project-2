@@ -28,26 +28,35 @@ router.get('/', (req, res) => {
 })
 
 router.post('/addcollection', (req, res) => {
-  // check you're in this route or not
   var quoteId = req.body.quoteId
   var user = req.user
+  var slug = req.user.slug
+  // check if quotes are alr added by user
+  var quotesArr = user.addedQuotes
+  if (quotesArr.indexOf(quoteId) !== -1) return res.redirect('/quotes/collection')
+
   User.findByIdAndUpdate(user.id, {
     $push: {
       addedQuotes: quoteId
     }
   })
-  .then(() => res.redirect('/profile'))
+  .then(() => res.redirect(`/profile/${slug}`))
 })
 
-router.get('/profile', (req, res) => {
+router.get('/profile/:slug', (req, res) => {
   const user = req.user
-  if (!user) return res.render('home')
+  console.log(!user)
+  // why did this not work
+  if (!user) {
+    console.log('user has not logged in')
+    return res.render('home')
+  }
   const addedQuotes = user.addedQuotes
   Quote.find({
     '_id': { $in: addedQuotes }
   })
   .then(addedQuotes =>
-    res.render('users/profile', { addedQuotes }))
+    res.render('users/myCollection', { addedQuotes, user }))
   .catch(err => console.log(err))
 })
 

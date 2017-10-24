@@ -6,6 +6,9 @@
     <li>
       {{this.quote}}
         - {{this.author}}
+        <form action="/quotes/{{this._id}}?_method=DELETE" method="post">
+          <button type="submit" name="button">Delete</button>
+        </form>
     </li>
   {{/each}}
 </ul>

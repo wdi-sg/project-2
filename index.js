@@ -59,9 +59,6 @@ app.use('/login', user_login_router)
 app.use('/quotes', quotes_router)
 
 
-
-// ///// CODES BEGIN HEREEEEE /////// ///////
-
 app.listen(port, () => {
   console.log('connected to port 7000 successfully')
 })
