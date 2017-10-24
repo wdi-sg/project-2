@@ -5556,7 +5556,8 @@ a.bg-light:hover {
 }
 
 .bg-dark {
-    background-color: #343a40!important
+    background-color: black!important;
+    opacity: 0.8;
 }
 
 a.bg-dark:focus,

@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- CSS Files -->
-    <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="./assets/css/now-ui-kit.css?v=1.1.0" rel="stylesheet" />
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/assets/css/now-ui-kit.css?v=1.1.0" rel="stylesheet" />
   </head>
 
   <body>
     <div class="container">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top bg-primary " style="position: absolute;">
+    <nav class="navbar navbar-expand-lg fixed-top bg-dark text-white ">
         <div class="container">
             <div class="navbar-translate">
                 <a class="navbar-brand" href="/" rel="tooltip" title="Itinerary | The only solution of itinerary planning" data-placement="bottom" style="font-size: 1.8571em;">
@@ -30,6 +30,11 @@
                 <ul class="navbar-nav" style="font-size: 20px;">
 
                   {{#if user}}
+                  <li class="nav-item">
+                    <a class="nav-link" href="/new-routes">
+                      <p>Add Itinerary</p>&nbsp;<i class="ion-plus-round"></i>
+                    </a>
+                  </li>
                   <li class="nav-item">
                       <a class="nav-link" href="/profile">
                           <p>Welcome, {{ user.name }}</p>
@@ -66,7 +71,10 @@
     {{{ body }}}
 
   <!--   Core JS Files   -->
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
-  <script src="./assets/js/now-ui-kit.js?v=1.1.0" type="text/javascript"></script>
+  {{!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script> --}}
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <script src="/assets/js/now-ui-kit.js?v=1.1.0" type="text/javascript"></script>
   </body>
 </html>

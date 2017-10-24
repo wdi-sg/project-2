@@ -25,6 +25,7 @@ const User = require('./models/user')
 // require all my route files
 const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
+const travelplan_routes = require('./routes/travelplan_routes')
 
 const app = express()
 
@@ -87,6 +88,7 @@ app.get('/logout', hasLoggedOut, (req, res) => {
 })
 
 // NEW ROUTE - REGISTER
+app.use('/', travelplan_routes)
 app.use('/register', isLoggedIn, register_routes)
 app.use('/login', isLoggedIn, login_routes)
 
@@ -94,6 +96,7 @@ app.use('/login', isLoggedIn, login_routes)
 app.get('/profile', hasLoggedOut, (req, res) => {
   res.send(req.user)
 })
+
 
 
 // opening the port for express
