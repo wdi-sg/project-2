@@ -1,18 +1,25 @@
+require("dotenv").config({ silent: true })
+
+// installing all modules
 const express = require("express")
-const app = express()
+const path = require("path")
+const mongoose = require("mongoose")
 const exphbs = require("express-handlebars")
 const bodyParser = require("body-parser")
-const path = require("path")
+const methodOverride = require("method-override")
+const session = require("express-session")
+const MongoStore = require("connect-mongo")(session)
+const passport = require("./config/ppConfig")
+
+const { hasLoggedOut, isLoggedIn } = require("./helpers")
+
 const User = require("./models/user")
-
+const dbUrl = "mongodb://127.0.0.1:27017/project-2"
 const port = 3000
+const app = express()
 
-// initialize mongoose and mongodb
-const mongoose = require("mongoose")
-mongoose.connect("mongodb://127.0.0.1:27017/project-2", {
-  useMongoClient: true
-})
-mongoose.Promise = global.Promise
+const register_routes = require("./routes/register_routes")
+const login_routes = require("./routes/login_routes")
 
 //middlewares
 app.engine("handlebars", exphbs({ defaultLayout: "main" }))
@@ -25,21 +32,63 @@ app.use(
   })
 )
 
-//express path for views
-app.use(express.static(path.join(__dirname, "views")))
+app.use(express.static(path.join(__dirname, "public")))
+app.use(function(req, res, next) {
+  console.log("Method: " + req.method + " Path: " + req.url)
+  next()
+})
 
+app.use(methodOverride("_method"))
+
+// initialize mongoose and mongodb
+mongoose.connect(dbUrl, {
+  useMongoClient: true
+})
+mongoose.Promise = global.Promise
+
+//sessions
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+  })
+)
+
+//passport initialize
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.use((req, res, next) => {
+  app.locals.user = req.user
+  next()
+})
+
+//routes
 app.get("/", (req, res) => {
-  res.render("index")
+  User.find()
+    .then(users => {
+      res.render("index", {
+        users
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
 })
 
-app.get("/login", (req, res) => {
-  res.render("login")
+app.get("/logout", hasLoggedOut, (req, res) => {
+  req.logout()
+  res.redirect("/")
 })
 
-app.post("/login", (req, res) => {
-  let newUser = new User(req.body)
-  newUser.save()
+app.get("/profile", hasLoggedOut, (req, res) => {
+  res.send(req.user)
 })
+
+app.use("/register", isLoggedIn, register_routes)
+app.use("/login", isLoggedIn, login_routes)
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`)

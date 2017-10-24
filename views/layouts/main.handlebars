@@ -7,11 +7,26 @@
   <body>
     <nav>
       <a href="/">Home</a>
-      <a href="/login">Login/Register</a>
+
+      {{#if user}}
+        <li class="nav-item">
+          <a class="nav-link" href="/profile">{{ user.name }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+      {{else}}
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+      {{/if}}
     </nav>
     {{{ body }}}
 
-    <!-- add jquery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
     <!-- add scripts -->
   </body>
 </html>

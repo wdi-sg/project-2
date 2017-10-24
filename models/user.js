@@ -1,8 +1,8 @@
 const mongoose = require("mongoose")
+// const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
 const bcrypt = require("bcrypt")
-const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
 
-const UserSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     minlength: [3, "Name must be between 3 and 99 characters"],
@@ -12,34 +12,37 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    lowercase: true,
-    match: emailRegex
+    lowercase: true
+    // match: emailRegex
   },
   password: {
     type: String,
     required: true,
     minlength: [6, "Password must be between 6 and 99 characters"],
     maxlength: [99, "Password must be between 6 and 99 characters"]
-  }
+  },
+  slug: String
 })
 
-// UserSchema.pre("save", function(next) {
-//   let user = this
-//   if (!user.isModified("password")) return next()
-//   let hash = bcrypt.hashSync(user.password, 10)
-//   user.password = hash
-//   next()
-// })
-//
-// UserSchema.methods.validPassword = function(password) {
-//   return bcrypt.compareSync(password, this.password)
-// }
-//
-// UserSchema.options.toJSON = {
-//   transform: function(doc, ret, options) {
-//     delete ret.password
-//     return ret
-//   }
-// }
+userSchema.pre("save", function(next) {
+  let user = this
 
-module.exports = mongoose.model("User", UserSchema)
+  user.slug = user.name
+    .toLowerCase()
+    .split(" ")
+    .join("-")
+
+  bcrypt.hash(user.password, 10).then(hash => {
+    user.password = hash
+    console.log("pre save flow", user)
+    next()
+  })
+})
+
+userSchema.methods.validPassword = function(plainPassword, callback) {
+  return bcrypt.compare(plainPassword, this.password, callback)
+}
+
+const User = mongoose.model("User", userSchema)
+
+module.exports = User

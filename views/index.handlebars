@@ -1,5 +1,7 @@
 <h1>Index Page</h1>
 
-<h2>Landing page</h2>
 
-<p>Hello world.</p>
+<h3>List of users</h3>
+{{#each users as |users|}}
+<p>{{users.name}}</p>
+{{/each}}
