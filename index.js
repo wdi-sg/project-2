@@ -4,8 +4,7 @@ const dbUrl =
 process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/conso_test'
 const port = process.env.PORT || 4000 // Express server port
 
-const quoteApiKey = process.env.QUOTEAPI
-console.log(`my api key is ${quoteApiKey}`)
+// const quoteApiKey = process.env.QUOTEAPI
 
 // installing all modules
 const express = require('express')
@@ -23,11 +22,12 @@ const { hasLoggedOut, isLoggedIn } = require('./helpers')
 
 // MODELS
 const User = require('./models/user')
+const Component = require('./models/component')
 
 // ROUTERS
 const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
-
+const component_routes = require('./routes/component_routes')
 // initiating express, by calling express variable
 const app = express()
 
@@ -77,9 +77,9 @@ app.use((req, res, next) => {
   next()
 })
 
-
 app.use('/register', isLoggedIn, register_routes)
 app.use('/login', isLoggedIn, login_routes)
+app.use('/components', component_routes)
 
 app.get('/logout', hasLoggedOut, (req, res) => {
   req.logout()

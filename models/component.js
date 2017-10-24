@@ -7,7 +7,10 @@ const componentSchema = new Schema({
   vendor: String,
   unit_cost: Number,
   quantity: Number,
-  
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }
 })
 
 // Use 'components' collection

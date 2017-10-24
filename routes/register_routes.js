@@ -12,8 +12,6 @@ router.post('/', (req, res) => {
 
   var newUser = new User({
     name: formData.name,
-    // this name => slug => alex-min
-    // hence, /profile/alex-min
     email: formData.email,
     password: formData.password
   })
