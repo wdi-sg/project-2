@@ -9,19 +9,14 @@
       <a href="/">Home</a>
 
       {{#if user}}
-        <li class="nav-item">
-          <a class="nav-link" href="/profile">{{ user.name }}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/logout">Logout</a>
-        </li>
+      <a href="/board">Board</a>
+      <a href="/manageTasks">Manage Tasks</a>
+      <a href="/manageProject">Manage Project</a>
+      <a class="nav-link" href="/profile">{{ user.name }}</a>
+      <a class="nav-link" href="/logout">Logout</a>
       {{else}}
-          <li class="nav-item">
-            <a class="nav-link" href="/register">Register</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
-          </li>
+      <a class="nav-link" href="/register">Register</a>
+      <a class="nav-link" href="/login">Login</a>
       {{/if}}
     </nav>
     {{{ body }}}

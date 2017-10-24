@@ -1,5 +1,4 @@
 const mongoose = require("mongoose")
-// const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
 const bcrypt = require("bcrypt")
 
 const userSchema = new mongoose.Schema({
@@ -13,15 +12,17 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
     lowercase: true
-    // match: emailRegex
   },
   password: {
     type: String,
     required: true,
-    minlength: [6, "Password must be between 6 and 99 characters"],
-    maxlength: [99, "Password must be between 6 and 99 characters"]
+    minlength: [3, "Password must be between 3 and 99 characters"],
+    maxlength: [99, "Password must be between 3 and 99 characters"]
   },
-  slug: String
+  slug: String,
+  project: { type: String, default: "" },
+  task: [],
+  status: { type: String, default: 0 } //0 for on schedule, 1 for late, 2 for not around
 })
 
 userSchema.pre("save", function(next) {

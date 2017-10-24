@@ -1,4 +1,6 @@
 require("dotenv").config({ silent: true })
+const port = 3000
+const dbUrl = "mongodb://127.0.0.1:27017/project-2"
 
 // installing all modules
 const express = require("express")
@@ -10,16 +12,18 @@ const methodOverride = require("method-override")
 const session = require("express-session")
 const MongoStore = require("connect-mongo")(session)
 const passport = require("./config/ppConfig")
+const app = express()
 
+//helpers
 const { hasLoggedOut, isLoggedIn } = require("./helpers")
 
+//models
 const User = require("./models/user")
-const dbUrl = "mongodb://127.0.0.1:27017/project-2"
-const port = 3000
-const app = express()
+const Project = require("./models/project")
 
 const register_routes = require("./routes/register_routes")
 const login_routes = require("./routes/login_routes")
+const manageProject_routes = require("./routes/manageProject_routes")
 
 //middlewares
 app.engine("handlebars", exphbs({ defaultLayout: "main" }))
@@ -84,8 +88,10 @@ app.get("/logout", hasLoggedOut, (req, res) => {
 })
 
 app.get("/profile", hasLoggedOut, (req, res) => {
-  res.send(req.user)
+  res.render("users/profile")
 })
+
+app.use("/manageProject", hasLoggedOut, manageProject_routes)
 
 app.use("/register", isLoggedIn, register_routes)
 app.use("/login", isLoggedIn, login_routes)

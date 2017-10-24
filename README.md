@@ -18,6 +18,14 @@ Code example
 
 A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
 
+restart pm2
+```
+pm2 restart <project-name>
+```
+restart nginx
+```
+sudo systemctl restart nginx
+```
 
 ```
 Code example
@@ -62,4 +70,3 @@ Did you collaborate with others on this project, list them here
 ## Acknowledgments
 
 * Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
