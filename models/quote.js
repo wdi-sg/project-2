@@ -8,7 +8,8 @@ const quoteSchema = new Schema({
   },
   author: String,
   quote: String, // text
-  timeEvent: String // TODO: change to Number
+  timeEvent: Number, // TODO: change to Number
+  publishedAt: Date
   // hasShown: {
   //   type: Boolean,
   //   default: false

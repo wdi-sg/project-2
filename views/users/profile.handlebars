@@ -1,2 +1,11 @@
 <h3>Greetings {{user.name}}!</h3>
 <h3>Here is a list of your favourite quotes!</h3>
+
+<ul>
+  {{#each addedQuotes}}
+    <li>
+      {{this.quote}}
+        - {{this.author}}
+    </li>
+  {{/each}}
+</ul>
