@@ -1,0 +1,25 @@
+
+
+<div class="profile">
+  <img src="https://www.centraltest.fr/sites/all/files/styles/image_title/public/ct-images-produits/profil-competence.png?itok=iw_cNNUh" alt=""><p>
+  <label>Name: {{profile.name}}</label><p>
+  <label>Email: {{profile.email}}</label>
+  <p><h3>Answers</h3>
+  {{#each answers}}
+  <li><a href="/thread/{{this.parent}}">{{this.description}}</a>
+    <form action="/addAnswer/{{ this.id }}?_method=DELETE" method="post">
+  <button type="submit" name="button">Delete</button>
+</form>
+</li>
+  {{!-- <p>=>{{this.description}}</p> --}}
+  {{/each}}
+  </p>
+  <p><h3>Threads Started By User</h3>
+  {{#each questions}}
+  <li><a href="/thread/{{this.id}}">{{this.question}}</a><form action="/thread/{{ this.id }}?_method=DELETE" method="post">
+<button type="submit" name="button">Delete</button>
+</form></li>
+  {{!-- <p>=>{{this.description}}</p> --}}
+  {{/each}}
+  </p>
+</div>

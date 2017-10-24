@@ -9,13 +9,12 @@
       <a href="/">Home</a>
       <a href="/newquestion">Add a question</a>
       {{#if currentUser}}
-      <a href="/profile">Profile</a>
+      <a href="/profile">{{currentUser.name}}</a>
       <a href="/logout">Logout</a>
       {{else}}
       <a href="/landingpage">Login/Register</a>
       {{/if}}
       <a href="/search">Search</a>
-      <a href="">{{currentUser.name}}</a>
     </nav>
 
     <h1>{{title}}</h1>

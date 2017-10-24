@@ -5,22 +5,32 @@
     <p id={{data._id}}  >{{data.totalVotes}}</p>
     <button class="down" data={{data._id}} downvotes = {{data.downVotes}} >Downvote</button>
     </div></td>
-    <td><p>{{data.question}}</p>
+    <td>
     <p>{{data.description}}</p></td>
     <td>Asked By: {{author}}</td>
+
   </tr>
+</table>
+<table>
+  <h1>ANSWERS:</h1>
+  {{#each answer}}
   <tr>
-    <td>.</td>
-    <td>ANSWERS COME HERE</td>
-  </tr>
+
+    <td><div class="buttons">
+  <button class="ansup" data={{this._id}} upvotes = {{this.upVotes}} >Upvote</button>
+  <p id={{this._id}}  >{{this.totalVotes}}</p>
+  <button class="ansdown" data={{this._id}} downvotes = {{this.downVotes}} >Downvote</button>
+  </div></td>
+  <td><p>{{this.description}}</p></td>
+
+</tr>
+  {{/each}}
 </table>
 
 <form method="POST" action="/addAnswer">
-  <label for="animalType">Title</label>
-  <input type="hidden" name="id"  value= {{data._id}}>
-  <input type="text" name="type">
+  <input type="hidden" name="id"  value={{data._id}}>
   <br><br>
-  <textarea name="userinput" rows="4" cols="50"></textarea>
+  <textarea name="userinput" rows="4" cols="50" placeholder="Enter your answer here"></textarea>
 
   <input id="animalType" type="submit">
 </form>

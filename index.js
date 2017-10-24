@@ -27,6 +27,8 @@ app.use(session({
   saveUninitialized: true, //saves session and stores it in DB
   store: new MongoStore({ mongooseConnection: mongoose.connection }) // store it in MongoDB, this requires mongo-connect to work
 }))
+// setup methodOverride
+app.use(methodOverride('_method'))
 //=== Setup passport
 app.use(passport.initialize())
 app.use(passport.session())
@@ -48,11 +50,14 @@ app.use((req,res,next)=>{
 // ===== Require models ===== //
 const User = require("./models/user")
 const Thread = require("./models/threads")
+const Answer = require("./models/answers")
 // ===== Require Routes ====== //
 const vote_routes = require("./routes/vote_routes")
+const answer_routes = require("./routes/answer_routes")
 
 // ===== ROUTE ACCESS ===== //
 app.use("/vote", vote_routes)
+app.use("/addAnswer", answer_routes)
 
 app.get('/', (req, res) => {
   Thread.find({}, function (err, data) {
@@ -82,8 +87,23 @@ app.get('/logout',hasLoggedOut, (req, res) => {
 })
 
 app.get("/profile",hasLoggedOut, (req,res)=>{
-  if(! req.user) res.redirect("/")
-  else res.send(req.user)
+  User.findById(req.user.id)
+  .then(user=>{
+    Thread.find({creator:req.user.id})
+    .then(thread=>{
+    Answer.find({creator:req.user.id})
+    .then(ans=>{
+      res.render("user/profile_page",{
+        profile: user,
+        title: `${req.user.name}'s Profile`,
+        answers:ans,
+        questions:thread
+      })
+    })
+  })
+
+  })
+
 })
 
 app.get("/landingpage",isLoggedIn,(req,res)=>{
@@ -91,31 +111,47 @@ app.get("/landingpage",isLoggedIn,(req,res)=>{
     title: "User Login"
   })
 })
+app.delete("/thread/:id", (req,res)=>{
+  Thread.findByIdAndRemove(req.params.id)
+  .then(() => res.redirect(`/profile`))
+  .catch(err => console.log(err))
+})
 
 app.get(`/thread/:id`, (req, res) => {
   Thread.findById({_id: req.params.id})
   .then(thread=>{
-    if(thread.creator==="anonymous"){
-      res.render('user/singlethread', {
-        data: thread,
-        author: "anonymous"
-
-      })
-    }else{
-      User.findById({_id: thread.creator})
-      .then(creator=>{
+    Answer.find({parent: req.params.id})
+    .then(result=>{
+      if(thread.creator==="anonymous"){
 
         res.render('user/singlethread', {
           data: thread,
-          author: creator.name
+          author: "anonymous",
+          answer: result,
+          title: thread.question
 
         })
+      }else{
+        User.findById({_id: thread.creator})
+        .then(creator=>{
 
-      })
-    }
+          res.render('user/singlethread', {
+            data: thread,
+            author: creator.name,
+            answer: result,
+            title: thread.question
+
+          })
+
+        })
+      }
+    })
+
 
   })
 })
+
+
 
 
 app.post('/addquestions', function (req, res) {
