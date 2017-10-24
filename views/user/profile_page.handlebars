@@ -1,9 +1,21 @@
 
 
 <div class="profile">
-  <img src="https://www.centraltest.fr/sites/all/files/styles/image_title/public/ct-images-produits/profil-competence.png?itok=iw_cNNUh" alt=""><p>
+  <img src={{profile.pic}} alt="Profile Picture"><p>
   <label>Name: {{profile.name}}</label><p>
   <label>Email: {{profile.email}}</label>
+
+  {{!-- <form enctype="multipart/form-data" action="/uploadImage" method="POST">
+  <input type="file" name="myFile">
+  <input type="submit" class="btn btn-primary">
+</form> --}}
+<h3>Update Profile Picture</h3>
+<form class="" action="/image" method="post">
+  <input type="hidden" role="uploadcare-uploader" name="upload"
+       data-crop="250x300"
+       data-images-only="true" />
+       <input type="submit" value="Update">
+</form>
   <p><h3>Answers</h3>
   {{#each answers}}
   <li><a href="/thread/{{this.parent}}">{{this.description}}</a>

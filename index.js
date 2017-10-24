@@ -6,7 +6,10 @@ const session = require("express-session")
 const MongoStore = require("connect-mongo")(session)
 const passport = require("./config/ppConfig")
 const methodOverride = require('method-override')
+const cloudinary = require('cloudinary')
+const unirest = require("unirest")
 const { hasLoggedOut, isLoggedIn } = require('./helpers')
+
 
 const dbUrl =
 process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/proj2local'
@@ -14,6 +17,9 @@ const port = process.env.PORT || 3500
 const app = express()
 require("dotenv").config({silent: true})
 
+// ======= Set up multer ==========
+const multer = require('multer');
+const upload = multer({ dest: './uploads/' });
 //======= initialize mongoose connection
 const mongoose = require('mongoose')
 mongoose.connect(dbUrl , {
@@ -27,6 +33,12 @@ app.use(session({
   saveUninitialized: true, //saves session and stores it in DB
   store: new MongoStore({ mongooseConnection: mongoose.connection }) // store it in MongoDB, this requires mongo-connect to work
 }))
+
+cloudinary.config({
+  cloud_name: 'josephpung',
+  api_key: '224536719142566',
+  api_secret: 'yu7dYqNAHQOOhagpU3Ykq57w-_A'
+})
 // setup methodOverride
 app.use(methodOverride('_method'))
 //=== Setup passport
@@ -58,6 +70,24 @@ const answer_routes = require("./routes/answer_routes")
 // ===== ROUTE ACCESS ===== //
 app.use("/vote", vote_routes)
 app.use("/addAnswer", answer_routes)
+
+app.post("/testing",(req,res)=>{
+
+  unirest.post("https://neutrinoapi-html-to-pdf.p.mashape.com/html-to-pdf")
+  .header("X-Mashape-Key", "SPJC93KUGAmshJA6zzRMzYDjXoKRp1j1dRwjsnL0wdwfZyjVKb")
+  .header("Content-Type", "application/x-www-form-urlencoded")
+  .send("content=https://viscuss.herokuapp.com/")
+  .send("html-width=1024")
+  .send("margin=10")
+  .send("title=My Title")
+  .end(function (result) {
+    res.send(result.body)
+    // console.log(result.status, result.headers, result.body);
+  })
+})
+
+
+
 
 app.get('/', (req, res) => {
   Thread.find({}, function (err, data) {
@@ -146,12 +176,22 @@ app.get(`/thread/:id`, (req, res) => {
         })
       }
     })
-
-
   })
+})
+app.post("/image", (req,res)=>{
+  User.findByIdAndUpdate(req.user.id, {pic: req.body.upload})
+  .then(user=>{
+res.redirect("/profile")
+  })
+
 })
 
 
+app.post('/uploadImage', upload.single('myFile'), function(req, res) {
+  cloudinary.uploader.upload(req.file.path, function(result) {
+    res.send(result);
+  })
+})
 
 
 app.post('/addquestions', function (req, res) {
@@ -184,7 +224,7 @@ app.post("/landingpage/register", (req,res)=>{
 
   newUser.save()
   .then(user=>{
-    res.redirect(`/profile/${user.slug}`)
+    res.redirect(`/profile`)
   })
 })
 
