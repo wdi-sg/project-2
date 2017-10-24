@@ -1,13 +1,20 @@
 
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-
 const bcrypt = require('bcrypt')
+
+const profileSchema = new Schema({
+  nickname: String,
+  about: String,
+  skills: String, // change to Array(?) later
+  contact: String // change to Num(?) or another obj later
+})
 
 const userSchema = new Schema({
   name: String,
   email: String,
   password: String,
+  profile: [profileSchema],
   slug: String
 })
 
