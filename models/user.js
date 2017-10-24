@@ -13,15 +13,19 @@ const userSchema = new Schema ({
 // hash password with bcrypt
 userSchema.pre("save", function(next) {
 	var user = this
-	// create user slug
-	user.slug = user.name.toLowerCase().split(" ").join("_")
 
 	bcrypt.hash(user.password, 10)
 		.then(hash => {
 			user.password = hash
+			// console.log("pre save flow", user)
 			next()
 		})
 })
+
+userSchema.methods.validPassword = function(plainPassword, callback) {
+	bcrypt.compare(plainPassword, this.password, callback)
+}
+
 
 const User = mongoose.model("User", userSchema)
 
