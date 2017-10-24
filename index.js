@@ -5,9 +5,11 @@ const bodyParser = require("body-parser")
 const path = require("path")
 const User = require("./models/user")
 
+const port = 3000
+
 // initialize mongoose and mongodb
 const mongoose = require("mongoose")
-mongoose.connect("mongodb://localhost:27017/project-2", {
+mongoose.connect("mongodb://127.0.0.1:27017/project-2", {
   useMongoClient: true
 })
 mongoose.Promise = global.Promise
@@ -39,6 +41,6 @@ app.post("/login", (req, res) => {
   newUser.save()
 })
 
-app.listen(3000, () => {
-  console.log(`Server is running on port 3000`)
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`)
 })
