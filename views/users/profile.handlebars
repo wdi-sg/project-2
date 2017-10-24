@@ -1,6 +1,8 @@
 <h3>My Profile</h3></h3>
 
-<form action="/profile/settings" method="post">
+<h1>Hi my name is {{user.name}}</h1>
+
+<form action="/profile/:slug/settings" method="post">
 
   {{!-- Need to print out the person's name using {{user.name}} or {{this.name}}?--}}
   <label for="nickname">Nickname</label>
