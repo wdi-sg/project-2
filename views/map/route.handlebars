@@ -1,0 +1,30 @@
+<h3> Find your way </h3>
+
+<div id="map"></div>
+<div id="floating-panel">
+<b>Start: </b>
+<select id="start">
+  <option value="general assembly singapore, sg">GA</option>
+  <option value="yishun">Yishun</option>
+  <option value="760271">Home</option>
+</select>
+<b>End: </b>
+<select id="end">
+  <option value="ang mo kio, sg">AMK</option>
+  <option value="Capital Square, sg">Capital Square</option>
+</select>
+<form action="/route" method="post">
+  <label for="start location">Start</label>
+  <input type="text" name="start" id="field1" placeholder="Address/Postal Code">
+  <label for="end location">Start</label>
+  <input type="text" name="end" placeholder="Address/Postal Code">
+</form>
+{{!-- <div id="infowindow-content">
+  <img src="" width="16" height="16" id="place-icon">
+  <span id="place-name"  class="title"></span><br>
+  <span id="place-address"></span>
+</div> --}}
+</div>
+<script src="/assets/js/mapscript.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBGZHiiqZ9lmXUvxe5h-v-gCHC1lnZl5c&callback=initMap&language=en&region=SG&libraries=places"
+  async defer></script>

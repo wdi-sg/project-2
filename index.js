@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const User = require('./models/user')
 const bodyParser = require('body-parser')
+const path = require('path')
 
 const dbUrl = process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/project2'
 const port = process.env.PORT || 3000
@@ -20,6 +21,7 @@ mongoose.Promise = global.Promise
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: true
@@ -31,6 +33,10 @@ app.get('/', (req, res) => {
 
 app.get('/users/register', (req, res) => {
   res.render('users/register')
+})
+
+app.get('/route', (req, res) => {
+  res.render('map/route')
 })
 
 app.post('/users/register', (req, res) => {
