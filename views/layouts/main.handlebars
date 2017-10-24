@@ -6,8 +6,16 @@
   </head>
   <body>
     <a href="/"><h1>Homepage</h1></a>
+    <a href="/profile">Profile</a>
     <a href="/register">Register</a>
     <a href="/login">Login</a>
+    <a href="/logout">Logout</a>
+
+    {{#if user.name}}
+        <p>Logged in: {{ user.name }}</p>
+    {{else}}
+        <p>Logged in: none</p>
+    {{/if}}
 
     {{{ body }}}
   </body>

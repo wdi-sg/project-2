@@ -16,7 +16,6 @@ userSchema.pre('save', function(next) {
   bcrypt.hash(user.password, 10)
   .then(hash => {
     user.password = hash
-    console.log('pre save flow', user)
     next() // next() is calling the save()
   })
 })

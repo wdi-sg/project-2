@@ -7,9 +7,11 @@ router.get('/', (req, res) => {
   res.render('login')
 })
 
-// router.post('/', passport.authenticate('local', {
-//   successRedirect: '/',
-//   failureRedirect: '/failure'
-// }))
+router.post('/',
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+  })
+)
 
 module.exports = router

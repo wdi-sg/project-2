@@ -18,9 +18,13 @@ const passport = require('./config/ppConfig')
 // models
 const User = require('./models/user')
 
+// check login status
+const { hasLoggedOut, isLoggedIn } = require('./helpers')
+
 // requiring routes
 const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
+const profile_routes = require('./routes/profile_routes')
 
 // initiating express
 const app = express()
@@ -59,13 +63,27 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.use((req, res, next) => {
+  app.locals.user = req.user
+  next()
+})
+
 app.get('/', (req, res) => {
-  res.render('home')
+  var context = {
+    user: req.user
+  }
+  res.render('home', context)
+})
+
+app.get('/logout', hasLoggedOut, (req, res) => {
+  req.logout()
+  res.redirect('/')
 })
 
 // routes
-app.use('/register', register_routes)
-app.use('/login', login_routes)
+app.use('/register', isLoggedIn, register_routes)
+app.use('/login', isLoggedIn, login_routes)
+app.use('/profile', profile_routes)
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`)

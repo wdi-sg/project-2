@@ -1,32 +1,32 @@
+
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const User = require('../models/user')
 
-passport.serializeUser(function(user,done){
-  console.log('serializeUser')
-  done(null, user.id) // this user with specific id. has logged in before
+passport.serializeUser((user, next) => {
+  next(null, user.id) // this user with specific id. has logged in before
 })
 
-passport.deserializeUser(function(id, done){
-  User.findById(id, function(err, user){
-    done(err, user)
+passport.deserializeUser((id, next) => {
+  User.findById(id, function (err, user) {
+    next(err, user)
   })
 })
 
 passport.use(new LocalStrategy({
-  usernameField: 'user[email]',
-  passwordField: 'user[password]'
-}, function(email, password, done){
-  User.findOne({email: email}, function(err, user){
-    if(err) return done(err)
-    if (!user) return done(null, false)
+  usernameField: 'user[email]', // this is from <input name="user[email]">
+  passwordField: 'user[password]' // this is from <input name="user[password]">
+}, (email, password, next) => {
+  User.findOne({email: email})
+  .then(user => {
+    if (!user) return next(null, false)
     user.validPassword(password, (err, isMatch) => {
-      if (err) return done(err)
-      if (isMatch) return done(null, user)
-      return done(null, false, { message: 'mismatched'})
+      if (err) return next(err)
+      if (isMatch) return next(null, user)
+      return next(null, false, { message: 'mismatched'})
     })
-
   })
+  .catch(err => next(err))
 }))
 
 module.exports = passport

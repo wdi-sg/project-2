@@ -1,9 +1,9 @@
 <h3>Login</h3>
 
-<form action="/login">
+<form action="/login" method="post">
   <label>Email</label>
-  <input type="email" name="email">
+  <input type="email" name="user[email]" placeholder="Email">
   <label>Password</label>
-  <input type="password" name="password">
+  <input type="password" name="user[password]" placeholder="Password">
   <input type="submit" value="Submit">
 </form>
