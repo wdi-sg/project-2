@@ -1,5 +1,6 @@
 {{#each threads}}
-<table>
+{{!-- <div class="card-panel hoverable"> --}}
+<table class="highlight">
   <tr>
     <td><div class="buttons">
     <button class="up" data={{this._id}} upvotes = {{this.upVotes}}>Upvote</button>
@@ -10,4 +11,5 @@
   </tr>
 </table>
 <div>=======================================================================================</div>
+{{!-- </div> --}}
 {{/each}}
