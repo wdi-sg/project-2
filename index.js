@@ -3,6 +3,7 @@ require('dotenv').config({ silent: true })
 // Heroku check
 const dbUrl =
 process.env.NODE_ENV === 'production' ? process.env.MLAB_URI : 'mongodb://localhost/itinerary'
+const port = process.env.PORT || 7000 // this is for our express server
 
 // installing all modules
 const express = require('express')
@@ -15,14 +16,15 @@ const methodOverride = require('method-override') // for accessing PUT / DELETE
 // UPDATE 23 Oct
 const session = require('express-session') // to create session and cookies
 const MongoStore = require('connect-mongo')(session) // to store session into db
-// const passport = require('./config/ppConfig') // to register passport strategies
+const passport = require('./config/ppConfig') // to register passport strategies
+const { hasLoggedOut, isLoggedIn } = require('./helpers')
 
-// but we're keeping `Restaurant` and `User` models here
-// cos `/` and `/profile/:slug` need those models
+// Models
 const User = require('./models/user')
 
 // require all my route files
 const register_routes = require('./routes/register_routes')
+const login_routes = require('./routes/login_routes')
 
 const app = express()
 
@@ -55,16 +57,46 @@ mongoose.connect(dbUrl, {
   (err) => { console.log(err) }
 )
 
+// MUST BE AFTER YOUR `mongoose.connect`
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  // store this to our db too
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}))
+
+// PASSPORT ACTIVATED
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.use((req, res, next) => {
+  app.locals.user = req.user // we'll only `req.user` if we managed to log in
+  next()
+})
+
 // NEW ROUTE - HOMEPAGE
 app.get('/', (req, res) => {
   res.render('home')
 })
 
+// NEW ROUTE - LOGOUT
+app.get('/logout', hasLoggedOut, (req, res) => {
+  req.logout()
+  res.redirect('/')
+})
+
 // NEW ROUTE - REGISTER
-app.use('/register', register_routes)
+app.use('/register', isLoggedIn, register_routes)
+app.use('/login', isLoggedIn, login_routes)
+
+// NEW ROUTE - PROFILE - to show the user profile page
+app.get('/profile', hasLoggedOut, (req, res) => {
+  res.send(req.user)
+})
+
 
 // opening the port for express
-const port = process.env.PORT || 5000 // this is for our express server
 app.listen(port, () => {
   console.log(`Server is running on ${port}`)
 })
