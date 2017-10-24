@@ -1,0 +1,26 @@
+
+<h3>Add new pattern</h3>
+
+<form action="/new/pattern" method="post">
+  <div class="">
+    <label for="title">Title</label>
+    <input type="text" name="pattern[title]" placeholder="Basic Drawstring bag">
+    <select name="pattern[category]">
+      <option value="woodcraft">Woodcraft</option>
+      <option value="papercraft">Papercraft</option>
+      <option value="Sewing">Sewing</option>
+      <option value="Knitting">Knitting</option>
+    </select>
+  </div>
+  <div class="">
+    <label for="material">Material</label>
+    <textarea name="pattern[material]" rows="10" cols="20"></textarea>
+    <label for="steps">Steps</label>
+    <textarea name="pattern[steps]" rows="10" cols="40"></textarea>
+  </div>
+
+
+
+
+  <button type="submit" name="button">Submit</button>
+</form>

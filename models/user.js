@@ -7,7 +7,17 @@ const userSchema = new Schema({
   name : String,
   email : String,
   password : String,
-  slug : String
+  slug : String,
+  //preferences : [],
+  //level : String,
+  // bookmarkPattern : [],
+  // projects : [],
+  pattern : {
+    type : [],
+    default: []
+  },
+  images : String,
+
 })
 
 userSchema.pre('save', function(next) {
