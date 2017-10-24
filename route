@@ -15,8 +15,8 @@ POST '/signup'
 GET '/login'
 POST '/login' - redirect to [ /gigs : /login ]
 
-GET '/settings/profile'
-POST '/settings/profile' - update user
+GET '/profile/settings'
+POST '/profile/settings' - update user
 
 GET '/:slug' - user profile name
 POST '/:slug' - add to user profile page (only for that user)

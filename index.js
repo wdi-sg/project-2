@@ -18,11 +18,13 @@ const passport = require('./config/ppConfig')
 const signupRoutes = require('./routes/signup_routes')
 const gigsRoutes = require('./routes/gigs_routes')
 const loginRoutes = require('./routes/login_routes')
+const profileRoutes = require('./routes/profile_routes')
 
 const User = require('./models/user')
 
 const app = express()
 
+// ======= Use Middlewares ====== //
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(function (req, res, next) {
   console.log('Method: ' + req.method + ' Path: ' + req.url)
@@ -39,7 +41,7 @@ app.use(session({
 }))
 
 app.use((req, res, next) => {
-  app.locals.user = req.user // we'll only `req.user` if we managed to log in
+  app.locals.user = req.user
   next()
 })
 
@@ -79,6 +81,7 @@ app.get('/peeps', (req, res) => {
 app.use('/signup', signupRoutes)
 app.use('/gigs', gigsRoutes)
 app.use('/login', loginRoutes)
+app.use('/profile', profileRoutes)
 
 // ======= END: Local port Listen ======= //
 app.listen(port, () => {
