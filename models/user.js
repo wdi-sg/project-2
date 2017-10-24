@@ -1,12 +1,8 @@
-// requiring mongoose again
 const mongoose = require('mongoose')
-const Schema = mongoose.Schema // constructor for all schema
+const Schema = mongoose.Schema
 
-// UPDATE 20 Oct
-// requiring bcrypt
-const bcrypt = require('bcrypt') // for login and register
+const bcrypt = require('bcrypt')
 
-// setting the blueprint of User object
 const userSchema = new Schema({
   name: String,
   email: String,
@@ -30,11 +26,7 @@ userSchema.methods.validPassword = function (plainPassword, callback) {
   bcrypt.compare(plainPassword, this.password, callback)
 }
 
-// active the blueprint
-// registering the name of the database that we're connecting to
+// Use 'users' collection
 const User = mongoose.model('User', userSchema)
-// look for users collection in mDb
-// we can name the object differently as to the DB registry
 
-// need to export this
 module.exports = User

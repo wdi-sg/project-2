@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/wdi-sg/project-2.git",
-  "author": "Prima Aulia Gusta <primaulia@gmail.com>",
+  "author": "Ray Tham <raywtham@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "nodemon"
