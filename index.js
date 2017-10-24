@@ -2,7 +2,7 @@ require('dotenv').config({ silent: true })
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 7000
-const dbUrl = process.env.NODE_ENV === 'production' ? process.env.MONGODB_URL : 'mongodb://localhost/project-2'
+const dbUrl = process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/project-2'
 
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
