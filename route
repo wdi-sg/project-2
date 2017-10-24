@@ -1,0 +1,13 @@
+route Plans
+
+GET /
+
+app.use('register')
+  GET /
+  POST /
+
+app.use('/login')
+  GET /
+  POST /
+
+  
