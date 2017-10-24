@@ -3,10 +3,19 @@ const Schema = mongoose.Schema
 const bcrypt = require('bcrypt') // for login and register
 
 const userSchema = new Schema({
-  name: String,
-  email: String,
-  password: String,
-  slug: String // new field for vanity url
+  name: {
+   type: String,
+   required: [true, 'Name is required']
+ },
+ email: {
+   type: String,
+   required: [true, 'Email is required.']
+ },
+ password: {
+   type: String,
+   required: [true, 'Password is required.']
+ },
+  slug: String 
 })
 
 // and save the hash instead

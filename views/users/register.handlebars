@@ -1,22 +1,44 @@
-
-<br/><br/><br/>
-
+<div class="page-header" filter-color="orange">
+<div class="page-header-image" style="background-image:url()"></div>
 <div class="container">
-<h3>Registration</h3>
+  <div class="col-md-4 content-center">
+      <div class="card card-login card-plain">
 
 {{!-- FORM TO CREATE NEW USER --}}
 <form action="/register" method="post">
-  <label for="name">Name</label>
-  <input type="text" name="user[name]" placeholder="e.g. John Doe">
 
-  <label for="email">Email</label>
-  {{!-- NOTICE on the attribute type below  --}}
-  <input type="email" name="user[email]" placeholder="e.g. domain@email.com">
+  <div class="header header-primary text-center">
+    <h3>Registration</h3>
+  </div>
 
-  <label for="password">Password</label>
-  {{!-- NOTICE on the attribute type below  --}}
-  <input type="password" name="user[password]" placeholder="min. 8 characters">
+  <div class="input-group form-group-no-border input-lg">
+      <span class="input-group-addon">
+        <i class="ion-android-contact"></i>
+      </span>
+  <input type="text" class="form-control" name="user[name]" placeholder="Name...">
+ </div>
 
-  <button type="submit" name="button">Submit</button>
+ <div class="input-group form-group-no-border input-lg">
+     <span class="input-group-addon">
+       <i class="ion-android-send"></i>
+     </span>
+  <input type="email" class="form-control" name="user[email]" placeholder="Email Address...">
+ </div>
+
+ <div class="input-group form-group-no-border input-lg">
+     <span class="input-group-addon">
+       <i class="ion-android-lock"></i>
+     </span>
+  <input type="password" class="form-control" name="user[password]" placeholder="Password...">
+</div>
+
+<div class="footer text-center">
+  <button type="submit" name="button" class="btn btn-primary btn-round btn-lg btn-block">Submit</button>
+</div>
+
 </form>
-<div class="container">
+
+    </div>
+  </div>
+</div>
+</div>
