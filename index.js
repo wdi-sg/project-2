@@ -74,7 +74,29 @@ app.get('/about', (req, res) => {
 })
 
 app.get('/peeps', (req, res) => {
-  res.render('peeps-search')
+  User.find()
+  // User.find().limit(10)
+.then(user => {
+  res.render('peeps-search', {
+    user
+  })
+})
+.catch(err => {
+  console.log(err)
+})
+})
+
+app.post('/peeps', (req, res) => {
+  const keyword = req.body.keyword
+  const regex = new RegExp(keyword, 'i')
+
+  User.find({
+    name: regex
+  })
+  // .limit(9)
+
+  .then(user => res.send(user))
+  .catch(err => res.send(err)) // in case we have an error
 })
 
 // ======= Use Routes ======= //

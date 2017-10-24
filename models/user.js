@@ -6,7 +6,8 @@ const bcrypt = require('bcrypt')
 const profileSchema = new Schema({
   nickname: String,
   about: String,
-  skills: String, // change to Array(?) later
+  skills: String,
+  projs: String,
   contact: String // change to Num(?) or another obj later
 })
 
