@@ -69,10 +69,7 @@ app.use((req, res, next) => {
 })
 
 app.get('/', (req, res) => {
-  var context = {
-    user: req.user
-  }
-  res.render('home', context)
+  res.render('home')
 })
 
 app.get('/logout', hasLoggedOut, (req, res) => {
@@ -83,7 +80,7 @@ app.get('/logout', hasLoggedOut, (req, res) => {
 // routes
 app.use('/register', isLoggedIn, register_routes)
 app.use('/login', isLoggedIn, login_routes)
-app.use('/profile', profile_routes)
+app.use('/profile', hasLoggedOut, profile_routes)
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`)
