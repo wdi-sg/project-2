@@ -1,10 +1,11 @@
-const port = process.env.PORT || 3000 
+const port = process.env.PORT || 3000
 const dbUrl = process.env.NODE_ENV === 'production' ?
   process.env.MONGODB_URI : 'mongodb://localhost/project2'
-
+const request = require('request-promise-native')
 const express = require('express')
 const mongoose = require('mongoose') // for DB
 const User = require('./models/user')
+const Stop = require('./models/stop') //to chnage to route later
 const path = require('path') // for Public files
 const exphbs = require('express-handlebars') // for Handlebars
 const bodyParser = require('body-parser') // for accessing POST request
@@ -16,7 +17,6 @@ const passport = require('./config/ppConfig');
 require('dotenv').config({
   silent: true
 })
-
 
 const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
@@ -53,7 +53,7 @@ mongoose.connect(dbUrl, {
   )
 
 //session
-  app.use(session({
+app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
@@ -64,6 +64,58 @@ mongoose.connect(dbUrl, {
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get('/bus', (req, res) => {
+  var options = {
+    url: 'http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=83139',
+    headers: {
+      'AccountKey': 'BF/zvVwHSeWjAnJVwSw0nQ==',
+      'Content-Type': 'application/json'
+    }
+  }
+  request(options)
+    .then(json => {
+      var data = JSON.parse(json)
+      res.send(data)
+    })
+})
+app.get('/loadStopstoDB', (req, res) => {
+  var options = {
+    url: 'http://datamall2.mytransport.sg/ltaodataservice/BusStops',
+    headers: {
+      'AccountKey': 'BF/zvVwHSeWjAnJVwSw0nQ==',
+      'Content-Type': 'application/json'
+    }
+  }
+  request(options)
+    .then(json => {
+      var data = JSON.parse(json)
+      var count = 0
+      // res.send(data.value) //pass to loadStops_routes for populating in form.
+      data.value.forEach(function(stop) {
+        count++
+        // console.log(stop.Latitude,stop.Longitude )
+        console.log(count);
+        var newStop = new Stop({
+          stopCode: stop.BusStopCode,
+          road: stop.RoadName,
+          description: stop.Description,
+          longitude: stop.Longitude,
+          latitude: stop.Latitude
+        })
+        newStop.save()
+          .then(
+            console.log('done'),
+            err => res.send(err)
+          )
+      }) //end foreeach - how to populate data.
+    })
+})
+
+app.use((req, res, next) => {
+  app.locals.user = req.user // we'll only `req.user` if we managed to log in
+  next() //make sure other requests continue!
+})
+
 app.get('/', (req, res) => {
   res.render('home')
 })
@@ -73,7 +125,7 @@ app.get('/', (req, res) => {
 // })
 
 app.get('/profile/:slug', (req, res) => {
-    User.findOne({
+  User.findOne({
       slug: req.params.slug
     })
     .then((user) => {

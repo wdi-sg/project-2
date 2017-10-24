@@ -4,7 +4,7 @@ This web app is used to lookup bus arrival times for the usual buses and stops t
 
 ##Flowchart
 <!-- ![Project Flowchart]('./P2-flowchart.jpg') -->
-![project-2]( P2-flowchart.jpg "Project 2")
+![project-2]( ./readmedocs/P2-flowchart.jpg "Project 2")
 ![project-2]( P2-flowchart.jpg "Project 2")
 
 <!-- ## Getting Started
