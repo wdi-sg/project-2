@@ -9,7 +9,7 @@ var stopSchema = new Schema({
   longitude: Number,
   services:{
     type: [Number]
-  }//need direction?
+  }//need direction of bus?
 });
 
 const Stop = mongoose.model('Stop', stopSchema)

@@ -4,6 +4,7 @@ const dbUrl = process.env.NODE_ENV === 'production' ?
 const request = require('request-promise-native')
 const express = require('express')
 const mongoose = require('mongoose') // for DB
+const { hasLoggedOut, isLoggedIn } = require('./helpers')
 const User = require('./models/user')
 const Stop = require('./models/stop') //to chnage to route later
 const path = require('path') // for Public files
@@ -17,7 +18,7 @@ const passport = require('./config/ppConfig');
 require('dotenv').config({
   silent: true
 })
-
+const home_routes = require('./routes/home_routes')
 const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
 
@@ -116,27 +117,35 @@ app.use((req, res, next) => {
   next() //make sure other requests continue!
 })
 
-app.get('/', (req, res) => {
-  res.render('home')
-})
-// app.post('/geo', (req, res) => {
-//   var crd = navigator.geolocation.getCurrentPosition(success, error, options);
-//   res.render('home', crd)
+// app.get('/', (req, res) => {
+//   res.render('home')
+// })
+// app.post('/', (req, res) => {
+//   console.log('entered')
+//   console.log(req.body)
+//   // put logic here...
+//   //show neearby stops. //route elsehwere to find, and get data, then render home to display
+//   res.send(`find the nearest bus stops at ${req.body.latitude} & ${req.body.longitude}`)
 // })
 
-app.get('/profile/:slug', (req, res) => {
-  User.findOne({
-      slug: req.params.slug
-    })
-    .then((user) => {
-      res.render('users/show', {
-        user
-      })
-    })
+app.get('/profile', (req, res) => {
+  // User.findOne({
+  //     slug: req.params.slug
+  //   })
+  //   .then((user) => {
+  //     res.render('users/show', {
+  //       user
+  //     })
+  //   })
+  res.send(req.user)
 })
-
+app.use('/', home_routes)
 app.use('/register', register_routes)
-app.use('/login', login_routes)
+app.use('/login', isLoggedIn, login_routes)
+app.get('/logout', hasLoggedOut, (req, res) => {
+  req.logout()
+  res.redirect('/')
+})
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`)
