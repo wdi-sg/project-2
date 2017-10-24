@@ -8,3 +8,25 @@ numeral.defaultFormat('$0,0.00')
 http://numeraljs.com/
 
 // =====  =====//
+Profile
+--> ROUTE
+app.get('/profile', (req, res) => {
+  // 1. get the collection(Skills)
+  // 2. find() e.g. Skills.find()
+  // 3. pass the value to view
+
+  const listOfSkill = Skills.find();
+  const contextToView = {
+    skills: listOfSkill,
+    title: 'profile'
+  }
+  res.render('profile', contextToView)
+  })
+
+--> VIEW
+<h2>{{title}}</h2>
+<select name="">
+  {{#each skills as |skills|}}
+  <option value="{{skills.name}}">{{skills.name}}</option>
+  {{/each}}
+</select>

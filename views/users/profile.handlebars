@@ -1,9 +1,11 @@
 <h3>New Gig</h3>
 
-<form action="/gigs/new-gig" method="post">
+<form action="/profile/:slug" method="post">
 
-  <label for="gigName">Name</label>
-  <input type="text" name="name" placeholder="Prototype a Thingy">
+  {{!-- Need to print out the person's name --}}
+
+  <label for="about">About</label>
+  <input type="text" name="about" placeholder="Tell us a little bit about yourself!">
 
   <label for="date">Date/Deadline</label>
   <input type="text" name="deadline" placeholder="date">

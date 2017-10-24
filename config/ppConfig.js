@@ -13,19 +13,17 @@ passport.deserializeUser(function (id, done) {
 })
 
 passport.use(new LocalStrategy({
-  usernameField: 'user[email]',
-  passwordField: 'user[password]'
+  usernameField: 'email',
+  passwordField: 'password'
 }, function (email, password, done) {
-  User.findOne({ email: email }, function (err, user) {
+  User.findOne({email: email}, function (err, user) {
     if (err) return done(err)
-
-    // If no user is found
     if (!user) return done(null, false)
-
-    // Check if the password is correct
-    if (!user.validPassword(password)) return done(null, false)
-
-    return done(null, user)
+    user.validPassword(password, (err, isMatch) => {
+      if (err) return done(null, false)
+      if (isMatch) return done(null, user)
+      return done(null, false, {message: 'passwords mismatch'})
+    })
   })
 }))
 

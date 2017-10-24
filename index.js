@@ -8,11 +8,18 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const path = require('path')
 const session = require('express-session')
-const MongoStore = require('connect-mongo')
+const MongoStore = require('connect-mongo')(session)
 
 const dbUrl = 'mongodb://localhost/MakeGood'
 const port = process.env.PORT || 3000
 const passport = require('./config/ppConfig')
+
+// ======= Setup of Routes ======= //
+const signupRoutes = require('./routes/signup_routes')
+const gigsRoutes = require('./routes/gigs_routes')
+const loginRoutes = require('./routes/login_routes')
+
+const User = require('./models/user')
 
 const app = express()
 
@@ -22,11 +29,24 @@ app.use(function (req, res, next) {
   next()
 })
 
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(session({
+  secret: 'secret test',
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}))
+
+app.use((req, res, next) => {
+  app.locals.user = req.user // we'll only `req.user` if we managed to log in
+  next()
+})
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: true
 }))
-
 app.use(methodOverride('_method'))
 
 mongoose.Promise = global.Promise
@@ -37,21 +57,6 @@ mongoose.connect(dbUrl, {
   () => { console.log('db is connected') },
   (err) => { console.log(err) }
 )
-
-app.use(passport.initialize())
-app.use(passport.session())
-
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
-}))
-
-// ======= Setup of Routes ======= //
-const signupRoutes = require('./routes/signup_routes')
-const gigsRoutes = require('./routes/gigs_routes')
-const loginRoutes = require('./routes/login_routes')
 
 // ======= Setup of main GET reqs ======= //
 /* Using handlebars template engine */
