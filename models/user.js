@@ -4,10 +4,20 @@ const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
 
 const userSchema = new Schema({
-  name: String,
-  email: String,
+  name: {
+    type: String,
+    required: [true, 'name']
+  },
+  email: {
+    type: String,
+    required: [true, 'email']
+  },
   password: String,
-  slug: String // new field for vanity url
+  slug: String, // new field for vanity url
+  portfolio: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Portfolio'
+  }]
 })
 
 userSchema.pre('save', function(next) {

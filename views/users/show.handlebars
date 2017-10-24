@@ -2,3 +2,22 @@
 <ul>
   <li>email: {{ user.email }}</li>
 </ul>
+
+<h3>Update</h3>
+<form action="/users/{{ user.id }}?_method=PUT" method="post">
+  <label for="name">Name</label>
+  <input type="text" name="name" value="{{ user.name }}">
+  {{!-- we put the {{}} inside value cos we want to show the existing name --}}
+
+  <label for="email">Email</label>
+  <input type="text" name="email" value="{{ user.email }}">
+
+  <button type="submit" name="button">Update</button>
+</form>
+
+<h3>Delete</h3>
+{{!-- Same thing, different request type --}}
+<form action="/users/{{ user.id }}?_method=DELETE" method="post">
+  <button type="submit" name="button">Delete</button>
+  {{!-- don't need input fields here, cos we're not updating anything --}}
+</form>

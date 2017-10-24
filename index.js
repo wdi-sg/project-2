@@ -1,7 +1,7 @@
 require('dotenv').config({silent: true})
 
 const dbUrl =
-process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/test'
+process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/myportfoliomanager_test'
 const port = process.env.PORT || 8000 // this is for our express server
 const quoteApiKey =process.env.QUOTEAPI
 
@@ -15,10 +15,12 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const passport = require('./config/ppConfig')
 
+
 const User = require('./models/user')
 
 const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
+const profile_routes=require('./routes/profile_routes')
 
 const app = express()
 
@@ -75,6 +77,22 @@ app.get('/logout', (req, res) => {
 app.use('/register', register_routes)
 
 app.use('/login', login_routes)
+
+
+app.get('/profile/:slug', (req, res) => {
+  // res.send(`this is the profile page for ${req.params.slug}`)
+  // findOne method is from mongoose. google it up
+  User.findOne({
+    slug: req.params.slug
+  })
+  .then((user) => {
+    // UPDATE BEFORE CLASS 20 Oct
+    // render a new page with the user data found from the db
+    res.render('users/show', {
+      user
+    })
+  }) // if i found the user
+})
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`)

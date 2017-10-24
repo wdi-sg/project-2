@@ -10,9 +10,21 @@ router.get('/', (req, res) => {
   res.render('users/login')
 })
 
-router.post('/', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/failure'
-}))
+router.post('/', (req, res, next) => {
+  passport.authenticate('local', (err, user) => {
+    if (user) return res.redirect(`/profile/${user.slug}`)
+    res.redirect('/login')
+  })(req, res, next)
+})
+
+// router.post('/', passport.authenticate('local', {
+//   successRedirect: `/profile/${req.user.slug}`,
+//   failureRedirect: '/login'
+// }))
+
+// router.put(`/profile/${user.slug}`, (req,res) => {
+//   var formData= req.body
+//   User.findByIdAndUpdate
+// })
 
 module.exports = router
