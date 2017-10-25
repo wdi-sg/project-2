@@ -1,5 +1,11 @@
 .whiteboard {
   border: 2px solid black;
+  display: inline-block;
   height: 100%;
-  width: 100%;
+  width: 70%;
+}
+
+.chat {
+  display: inline-block;
+  width: 28%;
 }
