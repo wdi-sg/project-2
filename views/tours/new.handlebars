@@ -1,0 +1,25 @@
+<h2>Add New Tours</h2>
+
+<form action="/addtours" method="post">
+
+  {{!-- <label for="showname">Name of Show</label>
+  <input type="text" name="showname" placeholder="e.g. Game of Thrones"> --}}
+
+  <label for="name">Name of Tour</label>
+  <input type="text" name="name" placeholder="e.g. Malta Adventure">
+  <br>
+
+  <label for="overview">Overview</label>
+  <textarea type="text" name="overview" placeholder="e.g. overview" rows="8" cols="80"></textarea>
+  <br>
+
+  <label for="highlights">Highlights</label>
+  <textarea type="text" name="highlights" placeholder="e.g. fun activites" rows="8" cols="80"></textarea>
+  <br>
+
+  <label for="dates">Available Dates</label>
+  <textarea type="text" name="dates" placeholder="e.g. 21 December 2017" rows="8" cols="80"></textarea>
+  <br>
+
+  <button type="submit" name="button">Submit</button>
+</form>

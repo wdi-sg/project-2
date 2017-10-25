@@ -6,9 +6,15 @@
   </head>
   <body>
     <a href='/'><h1>TV Show Tours</h1></a>
-    <a href='/login'>login</a>
-    <a href='/register'>register</a>
-    <a href='/addnewshows'>Add Shows</a>
+    {{#if user}}
+      <a href='/addtvshows'>Add TV Shows</a>
+      <a href='/addtours'>Add Tours</a>
+      <a href='/logout'>Logout</a>
+      <h3>Logged in as {{ user.name }}</h3>
+    {{else}}
+      <a href='/login'>login</a>
+      <a href='/register'>register</a>
+    {{/if}}
 
     {{{ body }}}
 

@@ -4,8 +4,6 @@ const dbUrl =
 process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/project2'
 const port = process.env.PORT || 4000  // this is for our express server
 
-const quoteApiKey = process.env.QUOTEAPI
-// installing all modules
 const express = require('express')
 const path = require('path') // for Public files
 const mongoose = require('mongoose') // for DB
@@ -17,17 +15,16 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const passport = require('./config/ppConfig')
 
+const { hasLoggedOut, isLoggedIn } = require('./helpers')
 const User = require('./models/user')
-// const Restaurant = require('./models/restaurant')
 
-// require all my route files
-// const register_routes = require('./routes/register_routes')
-// const login_routes = require('./routes/login_routes')
+const register_routes = require('./routes/register_routes')
+const tvshow_routes = require('./routes/tvshow_routes')
+const login_routes = require('./routes/login_routes')
+const tour_routes = require('./routes/tour_routes')
 
-// initiating express, by calling express variable
 const app = express()
 
-// VIEW ENGINES aka handlebars setup
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 
@@ -38,82 +35,57 @@ app.use(function (req, res, next) {
   console.log('Method: ' + req.method + ' Path: ' + req.url)
   next()
 })
-// setup bodyParser
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: true
 }))
-// setup methodOverride
+
 app.use(methodOverride('_method'))
 
-// connecting to mongodb before we starting the server
-// via mongoose
-mongoose.Promise = global.Promise // the formidable Promise, so we can use .then()
+mongoose.Promise = global.Promise
 mongoose.connect(dbUrl, {
-  // this means that technically mongoose use the same technique
-  // like MongoClient.connect
   useMongoClient: true
-}) // http://mongoosejs.com/docs/connections.html
+})
 .then(
   () => { console.log('db is connected') },
   (err) => { console.log(err) }
 )
 
-// app.use(session({
-//   secret: process.env.SESSION_SECRET,
-//   resave: false,
-//   saveUninitialized: true,
-//   // store this to our db too
-//   store: new MongoStore({ mongooseConnection: mongoose.connection })
-// }))
-//
-// app.use(passport.initialize())
-// app.use(passport.session())
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+///----------------------------------------
+app.use((req, res, next) => {
+  app.locals.user = req.user // we'll only `req.user` if we managed to log in
+  next()
+})
 
 // HOMEPAGE
 app.get('/', (req, res) => {
   res.render('home')
 })
 
-app.get('/login', (req, res) => {
-  res.render('login')
+app.use('/login', login_routes)
+app.use('/register', register_routes)
+app.use('/addtvshows', tvshow_routes)
+app.use('/addtours', tour_routes)
+
+app.get('/profile', hasLoggedOut, (req, res) => {
+  res.send(req.user)
 })
 
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/auth/login'
-}))
-
-app.get('/register', (req, res) => {
-  res.render('register')
+app.get('/logout', hasLoggedOut, (req, res) => {
+  req.logout()
+  res.redirect('/')
 })
-
-app.post('/register', (req, res) => {
-  // UPDATE BEFORE CLASS 20 Oct
-  var formData = req.body
-  var newUser = new User({
-    name: formData.name,
-    // this name => slug => alex-min
-    // hence, /profile/alex-min
-    email: formData.email,
-    password: formData.password // NOTICE, we're going to update this
-  })
-
-  // // PITSTOP: UPDATE UPDATE
-  // // no .catch() for save
-  // // this is very similar to how mongoose.connect
-  newUser.save() // save the object that was created
-  .then(
-    user => res.redirect(`/profile`),
-    // success flow, redirect to profile page
-    err => res.send(err) // error flow
-  )
-})
-
-
-// NEW ROUTES
-// app.use('/register', register_routes)
-// app.use('/login', login_routes)
 
 // opening the port for express
 app.listen(port, () => {

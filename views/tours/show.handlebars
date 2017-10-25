@@ -1,0 +1,43 @@
+{{!-- <h2>Name of Show: {{ show.name }}</h2> --}}
+<h2>Name of Tour: {{ tour.name }}</h2>
+
+<h3>Update</h3>
+<form action="/addtours/{{ tour.id }}?_method=PUT" method="post">
+
+  <label for="name">Name of Tour</label>
+  <input type="text" name="name" placeholder="e.g. Malta Adventure">
+  <br>
+  
+  <label for="overview">Overview</label>
+  <textarea type="text" name="overview" placeholder="e.g. overview" rows="8" cols="80"></textarea>
+  <br>
+
+  <label for="highlights">Highlights</label>
+  <textarea type="text" name="highlights" placeholder="e.g. fun activites" rows="8" cols="80"></textarea>
+  <br>
+
+  <label for="dates">Available Dates</label>
+  <textarea type="text" name="dates" placeholder="e.g. 21 December 2017" rows="8" cols="80"></textarea>
+  <br>
+
+  <button type="submit" name="button">Submit</button>
+</form>
+
+<h3>Delete</h3>
+<form action="/addtours/{{ tour.id }}?_method=DELETE" method="post">
+  <button type="submit" name="button">Delete</button>
+</form>
+
+<h3>Reviews</h3>
+<form action="/addtours/reviews" method="post">
+
+  <label for="title">Title of you review</label>
+  <input type="text" id="title" name="title" placeholder="e.g. Best Trip Ever">
+  <br>
+
+  <label for="description">Your Review</label>
+  <textarea id="description" name="description" rows="8" cols="80"></textarea>
+  <br>
+
+  <button type="submit" name="button">Submit</button>
+</form>
