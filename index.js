@@ -60,6 +60,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 //======== set Local user variable
 app.use((req,res,next)=>{
   app.locals.currentUser = req.user ? req.user : null
+  app.locals.alerts = req.flash()
   next()
 })
 // ===== Require models ===== //

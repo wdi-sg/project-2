@@ -11,7 +11,10 @@ router.delete("/:id", (req,res)=>{
   Thread.findByIdAndRemove(req.params.id)
   .then(()=>{
     Answer.remove({parent: req.params.id})
-    .then(() => res.redirect(`/profile`))
+    .then((thread) => {
+      req.flash('info',  `Deleted thread id: ${req.params.id}`)
+      res.redirect(`/profile`)
+    })
     .catch(err => console.log(err))
   })
   })

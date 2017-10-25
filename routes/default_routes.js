@@ -17,8 +17,7 @@ router.get('/', (req, res) => {
     // console.log(req.flash());
     res.render('user/home', {
       title: 'Questions In DB',
-      threads: data,
-      alerts: req.flash()
+      threads: data
     })
   }).sort({totalVotes: -1})
 })
