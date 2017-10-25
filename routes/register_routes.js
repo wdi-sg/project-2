@@ -10,9 +10,9 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   var formData = req.body
   var newUser = new User({
-    name: formData.name,
-    email: formData.email,
-    password: formData.password
+    name: formData.user.name,
+    email: formData.user.email,
+    password: formData.user.password
   })
 
   newUser.save()

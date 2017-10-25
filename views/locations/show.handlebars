@@ -32,16 +32,24 @@
   <button type="submit" name="button">Delete</button>
 </form><br>
 
+{{!-- Hide the part below if not logged in  --}}
+{{#if user}}
+  <h3>Add Comment</h3>
+  <form action="/comments" method="post">
+    {{!-- <label for="title">Title :</label>
+    <input type="text" id="title" name="title" placeholder="e.g. Great Guide!">
+    <br> --}}
 
-<h3>Add Comment</h3>
-<form action="/comments" method="post">
-  {{!-- <label for="title">Title :</label>
-  <input type="text" id="title" name="title" placeholder="e.g. Great Guide!">
-  <br> --}}
+    <label for="description">Comment :</label><br>
+    <textarea id="description" name="description" rows="8" cols="80"></textarea>
+    <br>
 
-  <label for="description">Comment :</label><br>
-  <textarea id="description" name="description" rows="8" cols="80"></textarea>
-  <br>
+    <button type="submit" name="button">Submit</button>
+  </form>
+{{/if}}
 
-  <button type="submit" name="button">Submit</button>
-</form>
+<ul>
+  {{#each comments as |comment|}}
+    <li>{{ comment.description }}</li>
+  {{/each}}
+</ul>

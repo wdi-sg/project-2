@@ -16,7 +16,7 @@ const passport = require('./config/ppConfig')
 
 // for image upload
 const multer = require('multer')
-const upload = multer({ dest: './uploads/' });
+const upload = multer({ dest: './uploads/' })
 const cloudinary = require('cloudinary')
 
 // for helpers
@@ -26,14 +26,12 @@ const User = require('./models/user')
 const Location = require('./models/location')
 const Admin = require('./models/admin')
 
-
 // require route files
 const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
 const location_routes = require('./routes/location_routes')
 const comment_routes = require('./routes/comment_routes')
 const admin_routes = require('./routes/admin_routes')
-
 
 // initiating express, by calling express variable
 const app = express()
@@ -91,12 +89,10 @@ app.use((req, res, next) => {
   next()
 })
 
-
 // Homepage
 app.get('/', (req, res) => {
   Location.find().limit(10)
   .then(locations => {
-
     res.render('home', {
       locations
     })
@@ -108,9 +104,19 @@ app.get('/', (req, res) => {
 
 // Route to profile
 app.get('/profile', hasLoggedOut, (req, res) => {
-  res.send(req.user)
-})
+  Location.find({
+    owner: req.user.id
+  })
+  .then(locations => {
+    res.send({
+      locations,
+      user: req.user
+    })
+  })
 
+
+  // res.send(req.user)
+})
 
 //  Route to logout
 app.get('/logout', hasLoggedOut, (req, res) => {
@@ -124,7 +130,6 @@ app.use('/login', isLoggedIn, login_routes)
 app.use('/locations', location_routes)
 app.use('/comments', comment_routes)
 app.use('/admin', admin_routes)
-
 
 // opening the port for express
 app.listen(port, () => {

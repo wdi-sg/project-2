@@ -1,7 +1,7 @@
 const Location = require('../models/location')
+const Comment = require('../models/comment')
 const express = require('express')
 const router = express.Router()
-// const fs = require('fs')
 const multer = require('multer')
 const upload = multer({ dest: './uploads/' })
 const cloudinary = require('cloudinary')
@@ -11,7 +11,10 @@ router.get('/new', (req, res) => {
 })
 
 router.get('/:slug', (req, res, next) => {
+  // return res.send(req.user)
   var slug = req.params.slug
+  var user = req.user
+
   if (slug.length === 24) {
     next()
   } else {
@@ -21,7 +24,8 @@ router.get('/:slug', (req, res, next) => {
     .populate('owner')
     .then(location => {
       res.render('locations/show', {
-        location
+        location,
+        user
       })
     })
   }
@@ -32,9 +36,19 @@ router.get('/:id', (req, res) => {
   .findById(req.params.id)
   .populate('owner')
   .then(location => {
-    res.render('locations/show', {
-      location
+    Comment.find({
+      location: location.id
     })
+    .then(comments =>
+      res.render('locations/show', {
+        location,
+        comments
+      })
+    )
+
+
+    // res.send(location)
+
   })
   .catch(err => {
     console.log(err)
