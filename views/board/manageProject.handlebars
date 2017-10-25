@@ -1,13 +1,16 @@
-<h3>Your Project: {{user.project}}</h3>
 
 
 {{#if user.project}}
-<p>Your project: {{user.project}}</p>
+<h3>Project: {{user.project}}</h3>
 
-<p>Delete Project</p>
+<h4>Your Tasks</h4>
+{{user.task}}
+
+<h4>Leave Project</h4>
 <form action="/manageProject/?_method=DELETE" method="post">
 <button type="submit" name="button">Delete</button>
 </form>
+
 
 {{else}}
 <p>You don't have a project.</p>
