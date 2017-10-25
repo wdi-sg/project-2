@@ -10,4 +10,6 @@ app.use('/login')
   GET /
   POST /
 
-  
+app.use('/profile')
+  GET /
+  POST /

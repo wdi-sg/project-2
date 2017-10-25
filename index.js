@@ -62,6 +62,15 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+// before setting routes we want to apply this local data for every routes
+// app.use => GET, POST, PUT, DELETE request for ALL routes
+app.use((req, res, next) => {
+	// app.local.title = 'Prima'
+	app.locals.user = req.user // we'll only req.user if we managed to log in
+	// return res.send(req.user)
+	next()
+})
+
 app.get("/", (req, res) => {
 	res.render("home")
 })
