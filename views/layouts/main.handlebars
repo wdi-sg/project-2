@@ -1,109 +1,104 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Bus When</title>
-    {{!-- UPDATE 22 Oct --}}
-    <!-- For responsive layout, http://getbootstrap.com/docs/4.0/getting-started/introduction/#responsive-meta-tag -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-    {{!-- <link rel="stylesheet" href="/assets/css/style.css"> --}}
-  </head>
-  <body>
-    {{!-- UPDATE 22 Oct, layout base from BOOTSTRAP 4 --}}
-      {{!-- UPDATES BEFORE CLASS 20 OCT --}}
-      {{!--
+<head>
+  <meta charset="utf-8">
+  <title>Bus When</title>
+  {{!-- UPDATE 22 Oct --}}
+  <!-- For responsive layout, http://getbootstrap.com/docs/4.0/getting-started/introduction/#responsive-meta-tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">{{!-- <link rel="stylesheet" href="/assets/css/style.css"> --}}
+</head>
+
+<body>
+  {{!-- UPDATE 22 Oct, layout base from BOOTSTRAP 4 --}}
+  {{!-- UPDATES BEFORE CLASS 20 OCT --}}
+  {{!--
         UPDATES 22 OCT:
         NAVBAR http://getbootstrap.com/docs/4.0/components/navbar/
 
         How to split navbar:
         https://stackoverflow.com/questions/41513463/bootstrap-4-align-navbar-item-to-the-right
       --}}
-      <nav
-        class="navbar navbar-expand-lg navbar-light justify-content-between"
-        style="background-color: #e3f2fd;"
-      >
-        {{!-- Remember that anything written here, will be displayed for all pages --}}
-        <a class="navbar-brand mb-0 h1" href="/">Bus When</a>
-
-        {{!-- Navbar hamburger icon for responsive reasons --}}
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-lg navbar-light justify-content-between" style="background-color: #e3f2fd;">
+    {{!-- Remember that anything written here, will be displayed for all pages --}}
+    <a class="navbar-brand mb-0 h1" href="/">Bus When</a>{{!-- Navbar hamburger icon for responsive reasons --}}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button>
-
-        {{!-- The actual navbar items --}}
-        <div class="collapse navbar-collapse " id="navbarNav">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            {{!-- <li class="nav-item">
+        </button>{{!-- The actual navbar items --}}
+    <div class="collapse navbar-collapse " id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        {{!-- <li class="nav-item">
               <a class="nav-link" href="/faves">Buses</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/restaurants/new">New Restaurant</a>
             </li> --}}
 
-            {{!-- Remove this, cos it doesn't make sense to put this instead --}}
-            {{!-- <li class="nav-item">
+        {{!-- Remove this, cos it doesn't make sense to put this instead --}}
+        {{!-- <li class="nav-item">
               <a class="nav-link" href="/profile">Profile</a>
             </li> --}}
 
-            {{!-- UPDATE AFTER 20 OCT --}}
-            {{!-- <li class="nav-item">
+        {{!-- UPDATE AFTER 20 OCT --}}
+        {{!-- <li class="nav-item">
               <a class="nav-link" href="/search">Search Restaurant</a>
             </li>
           </ul> --}}
 
-          <ul class="navbar-nav">
+        <ul class="navbar-nav">
           {{!-- Split with index.js line 177, so you know what `user` is --}}
-          {{#if user}}
+      {{#if user}}
             {{!-- if user has logged in  --}}
             <li class="nav-item">
               {{!-- <a class="nav-link" href="/profile">{{ user.name }}</a> --}}
-              <a class="nav-link" >Hi {{ user.name }}</a>
+              <a class="nav-link">Hi {{ user.name }}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
             </li>
           {{else}}
             {{!-- if user has not logged in --}}
-              {{!-- TODO: Show this <li class="nav-item">
+            {{!-- TODO: Show this <li class="nav-item">
               if user has NOT logged in --}}
-              {{!-- UPDATE 20 Oct, adding link to register page  --}}
-              <li class="nav-item">
-                <a class="nav-link" href="/register">Register</a>
-              </li>
-              {{!-- UPDATE AFTER 20 Oct, adding link to login page for `user` --}}
-              <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-              </li>
+            {{!-- UPDATE 20 Oct, adding link to register page  --}}
+            <li class="nav-item">
+              <a class="nav-link" href="/register">Register</a>
+            </li>
+            {{!-- UPDATE AFTER 20 Oct, adding link to login page for `user` --}}
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
 
-              {{!-- TODO: Show this <li class="nav-item">
+            {{!-- TODO: Show this <li class="nav-item">
               if admin has NOT logged in  --}}
-              {{!-- <li class="nav-item">
+            {{!-- <li class="nav-item">
                 <a class="nav-link" href="/admin/register">Admin Register</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/admin/login">Admin Login</a>
               </li> --}}
           {{/if}}
-          </ul>
-        </div>
-      </nav>
-      <div class="container-fluid">
-        {{{ body }}}
-      </div>
-      <footer class="bd-footer text-muted">
-        <div class="container-fluid p-3 p-md-5">
-          <p class="text-center">Carefully crafted for you by <a href="https://github.com/nikitas89" target="_blank" rel="noopener">@nikitas89</a>, and <a href="http://getbootstrap.com/" target="_blank">Bootstrap 4</a> 🚀</p>
-        </div>
-      </footer>
+        </ul>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    {{{ body }}}
+  </div>
+  <footer class="bd-footer text-muted">
+    <div class="container-fluid p-3 p-md-5">
+      <p class="text-center">Carefully crafted for you by <a href="https://github.com/nikitas89" target="_blank" rel="noopener">@nikitas89</a>, and <a href="http://getbootstrap.com/" target="_blank">Bootstrap 4</a> 🚀</p>
+    </div>
+  </footer>
 
-    {{!-- UPDATE 20 Oct, embedding `jQuery` and `frontend.js` --}}
-    {{!-- NOTICE THE LINK TO `frontend.js` --}}
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
-    <script src="/assets/js/frontend.js" charset="utf-8"></script>
-  </body>
+  {{!-- UPDATE 20 Oct, embedding `jQuery` and `frontend.js` --}}
+  {{!-- NOTICE THE LINK TO `frontend.js` --}}
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
+  <script src="/assets/js/frontend.js" charset="utf-8"></script>
+</body>
+
 </html>

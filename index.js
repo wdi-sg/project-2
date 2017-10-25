@@ -25,6 +25,8 @@ require('dotenv').config({
 const home_routes = require('./routes/home_routes')
 const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
+const load_routes = require('./routes/load_routes')
+const stop_routes = require('./routes/stop_routes')
 
 const app = express()
 // VIEW ENGINES aka handlebars setup
@@ -68,115 +70,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/busArrival', (req, res) => {
-  var options = {
-    url: 'http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=83139',
-    headers: {
-      'AccountKey': 'BF/zvVwHSeWjAnJVwSw0nQ==',
-      'Content-Type': 'application/json'
-    }
-  }
-  request(options)
-    .then(json => {
-      var data = JSON.parse(json)
-      res.send(data)
-    })
-})
-//load stops in the db, each as new Stop
-app.get('/loadStopstoDB', (req, res) => {
-  var options = {
-    url: 'http://datamall2.mytransport.sg/ltaodataservice/BusStops',
-    headers: {
-      'AccountKey': 'BF/zvVwHSeWjAnJVwSw0nQ==',
-      'Content-Type': 'application/json'
-    }
-  }
-  //make a request, with the aobe url and jsn format
-  request(options)
-    .then(json => {
-      var data = JSON.parse(json)
-      var count = 0
-      // res.send(data.value) //pass to loadStops_routes for populating in form.
-      data.value.forEach(function(stop) {
-        count++
-        // console.log(stop.Latitude,stop.Longitude )
-        console.log(count);
-        var newStop = new Stop({
-          stopCode: stop.BusStopCode,
-          road: stop.RoadName,
-          description: stop.Description,
-          longitude: stop.Longitude,
-          latitude: stop.Latitude
-        })
-        newStop.save()
-          .then(
-            console.log('done'),
-            err => res.send(err)
-          )
-      }) //end foreeach - how to populate data.
-    })
-})
-//
-// app.get('/loadServiceFromRoutes', (req, res) => {
-//   var options = {
-//     url: 'http://datamall2.mytransport.sg/ltaodataservice/BusRoutes',
-//     headers: {
-//       'AccountKey': 'BF/zvVwHSeWjAnJVwSw0nQ==',
-//       'Content-Type': 'application/json'
-//     }
-//   }
-//   //make a request, with the aobe url and jsn format
-//   // request(options)
-//   //   .then(json => {
-//   //     var data = JSON.parse(json)
-//   //     res.send(data)
-//   //   })
-//   request(options)
-//     .then(json => {
-//       var data = JSON.parse(json)
-//       // var count = 0
-//       // copy relevant data from json - sevice # and stop. service will be repeated
-//       var refArray = []
-//       data.value.forEach(route =>
-//         refArray.push([route.ServiceNo, route.BusStopCode])
-//
-//       )
-//       console.log(refArray);
-//       // data.value.forEach(function(routes) {
-//       //   count++
-//       //   //gather bus and stops for each.
-//       //   console.log(count);
-//       //   var newService = new BusService({
-//       //     // busService: <add service here>   ,
-//       //     // stops: <add stops array here>
-//       //   })
-//       //   newService.save()
-//       //     .then(
-//       //       console.log('done'),
-//       //       err => res.send(err)
-//       //     )
-//       // }) //end foreeach - how to populate data.
-//     })
-// })
-
-
-
-
 app.use((req, res, next) => {
   app.locals.user = req.user // we'll only `req.user` if we managed to log in
   next() //make sure other requests continue!
 })
-
-// app.get('/', (req, res) => {
-//   res.render('home')
-// })
-// app.post('/', (req, res) => {
-//   console.log('entered')
-//   console.log(req.body)
-//   // put logic here...
-//   //show neearby stops. //route elsehwere to find, and get data, then render home to display
-//   res.send(`find the nearest bus stops at ${req.body.latitude} & ${req.body.longitude}`)
-// })
 
 
 app.get('/profile', (req, res) => {
@@ -191,6 +88,8 @@ app.get('/profile', (req, res) => {
   res.send(req.user)
 })
 app.use('/', home_routes)
+app.use('/stop', stop_routes)
+app.use('/load', load_routes)
 app.use('/register', register_routes)
 app.use('/login', isLoggedIn, login_routes)
 app.get('/logout', hasLoggedOut, (req, res) => {
