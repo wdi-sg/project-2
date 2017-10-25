@@ -1,11 +1,40 @@
-.whiteboard {
+/*.whiteboard {
   border: 2px solid black;
   display: inline-block;
   height: 100%;
   width: 70%;
+}*/
+html,
+body {
+  height: 100%;
 }
 
 .chat {
   display: inline-block;
+  border: 1px solid blue;
   width: 28%;
+}
+
+.mainboard {
+  height: 4000px;
+}
+
+.boardElement {
+  border: 2px solid black;
+  margin: 0 -4px;
+  display: inline-block;
+}
+
+#create,
+#review {
+  width: 50%;
+}
+
+#return {
+  width: 100%;
+}
+
+.left {
+  display: inline-block;
+  width: 70%;
 }

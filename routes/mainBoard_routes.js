@@ -7,4 +7,11 @@ router.get("/", (req, res) => {
   res.render("board/mainBoard")
 })
 
+// router.post("/", (req, res) => {
+//   let formData = req.body
+//   console.log("clicked")
+//   console.log(formData)
+//   // res.send(req.body)
+// })
+
 module.exports = router

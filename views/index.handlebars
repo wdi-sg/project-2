@@ -3,5 +3,7 @@
 
 <h3>List of users</h3>
 {{#each users as |users|}}
-<p>{{users.name}}</p>
+<p>User: <strong>{{users.name}}</strong></p>
+<p>Project Name: <strong>{{users.project}}</strong></p>
+<br>
 {{/each}}

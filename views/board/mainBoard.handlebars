@@ -1,13 +1,42 @@
 <h3>Project: {{user.project}}</h3>
 
-<canvas class="whiteboard">
+<!-- <canvas class="whiteboard"></canvas> -->
+<div class="mainBoard">
 
-</canvas>
+<div class="left">
+  <div id="create" class="boardElement">
+    <p>Create:</p>
 
-<div class="chat">
-  <ul id="messages"></ul>
-  <form action="" id="message">
-    <input type="hidden" id="userName" value="{{user.name}}">
-    <input id="m" autocomplete="off" /><button>Send</button>
-  </form>
+    <p>Create a new task</p>
+    <form action="/board" id="createTask">
+      <input type="hidden" name="user" value="{{user.name}}">
+      <input type="hidden" name="project" value="{{user.name}}">
+      <input type="text" name="task[name]">
+      <input type="date" name="task[startDate]" value="{{Date.now}}">
+      <input type="date" name="endDate" value="task[startDate]">
+      <input type="text" name="status" value="">
+      <button type="submit" name="button">Send</button>
+      <button>Send</button>
+    </form>
+
+
+  </div>
+
+  <div id="review" class="boardElement">
+    <p>Review/Test:</p>
+  </div>
+
+  <div id="return" class="boardElement">
+    <p>Return/Bugs:</p>
+  </div>
+</div>
+<p>Chat</p>
+  <div class="chat">
+    <ul id="messages"></ul>
+    <form action="/board" id="message">
+      <input type="hidden" id="userName" value="{{user.name}}">
+      <input id="m" autocomplete="off" type="text" name="message[name]">
+      <button type="submit" name="button">Send</button>
+    </form>
+  </div>
 </div>

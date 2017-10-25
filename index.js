@@ -87,23 +87,6 @@ app.get("/", (req, res) => {
     })
 })
 
-// io.on("connection", function(socket) {
-//   console.log("a user connected")
-//   socket.on("disconnect", function() {
-//     console.log("user disconnected")
-//   })
-//   socket.on("chat message", function(msg) {
-//     console.log("message: " + msg)
-//   })
-// })
-
-io.on("connection", function(socket) {
-  socket.on("chat message", function(msg) {
-    console.log("message: " + msg)
-    io.emit("chat message", msg)
-  })
-})
-
 app.get("/logout", hasLoggedOut, (req, res) => {
   req.logout()
   res.redirect("/")
@@ -118,6 +101,16 @@ app.use("/board", hasLoggedOut, mainBoard_routes)
 
 app.use("/register", isLoggedIn, register_routes)
 app.use("/login", isLoggedIn, login_routes)
+
+//socket connetion
+io.on("connection", function(socket) {
+  //listen and emit to certain IDs
+  socket.on("chat message", msg => {
+    console.log(msg.user + ": " + msg.message)
+    io.emit("chat message", msg.message)
+    console.log(msg)
+  })
+})
 
 http.listen(port, () => {
   console.log(`Server is running on port ${port}`)

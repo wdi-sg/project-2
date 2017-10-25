@@ -1,5 +1,4 @@
 const mongoose = require("mongoose")
-const bcrypt = require("bcrypt")
 
 const projectSchema = new mongoose.Schema({
   name: {
@@ -7,8 +6,8 @@ const projectSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  start: Date,
-  end: Date,
+  startDate: Date,
+  endDate: Date,
   lead: String,
   members: [],
   tasks: [],
@@ -22,6 +21,7 @@ projectSchema.pre("save", function(next) {
     .toLowerCase()
     .split(" ")
     .join("-")
+  next()
 })
 
 const Project = mongoose.model("Project", projectSchema)

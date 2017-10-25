@@ -1,14 +1,21 @@
-
-
 {{#if user.project}}
 <h3>Project: {{user.project}}</h3>
+<h4>Members:</h4>
+{{#each users as |users|}}
+<p>{{users.name}}</p>
+{{/each}}
 
-<h4>Your Tasks</h4>
-{{user.task}}
+<h4>Add Members:</h4>
+<form action="/manageProject/add?_method=PUT" method="post">
+  <input type="hidden" name="member[projectName]" value="{{user.project}}">
+  <label for="name">Member Name:</label>
+  <input type="text" name="member[name]" placeholder="add a member">
+  <button type="submit" name="button">Add member</button>
+</form>
 
 <h4>Leave Project</h4>
 <form action="/manageProject/?_method=DELETE" method="post">
-<button type="submit" name="button">Delete</button>
+  <button type="submit" name="button">Delete</button>
 </form>
 
 
@@ -16,16 +23,23 @@
 <p>You don't have a project.</p>
 <h2>Join an existing project</h2>
 <form action="/manageProject/?_method=PUT" method="post">
-<label for="name">Project Name:</label>
-<input type="text" name="project[name]" placeholder="enter project name to join">
-<button type="submit" name="button">Join Project</button>
+  <label for="name">Project Name:</label>
+  <input type="text" name="project[name]" placeholder="join an existing project">
+  <button type="submit" name="button">Join Project</button>
 </form>
 
 <h2>Create a new project</h2>
 <form action="/manageProject" method="post">
-<label for="name">Project Name:</label>
-<input type="text" name="project[name]" placeholder="enter project name to join">
-<button type="submit" name="button">Create Project</button>
+  <label for="name">Project Name:</label>
+  <input type="text" name="project[name]" placeholder="project name">
+  <br>
+  <label for="startDate">Project Start Date:</label>
+  <input type="date" name="project[startDate]" value="">
+  <br>
+  <label for="endDate">Project End Date:</label>
+  <input type="date" name="project[endDate]" value="">
+  <br>
+  <button type="submit" name="button">Create Project</button>
 </form>
 
 {{/if}}
