@@ -9,10 +9,10 @@
   <% }); %>
 <% } %> --}}
 
-<h2>Alerts</h2>
 
 {{#if alerts }}
-  {{ alerts.success }}
-  {{ alerts.error }}
-  {{ alerts.info }} 
+<p class="light-green-text text-accent-3">{{ alerts.success }}</p>
+<p class="red-text text-accent-4">  {{ alerts.error }}</p>
+<p class="orange-text text-darken-4">  {{ alerts.info }}</p>
+
 {{/if}}

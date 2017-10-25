@@ -15,47 +15,44 @@
       </div>
     </form>
   </div>
-{{!-- <form method="POST" action="/landingPage/login">
-  <label for="emailText">Email</label>
-  <input id="emailText" type="text" name="email" class="validate">
-
-  <label for="passwordText">Password</label>
-  <input id="passwordText" type="password" name="password">
-
-  <input type="submit">
-</form> --}}
 
 
-<h2>No account? Sign up below!</h2>
+<ul class="collapsible" data-collapsible="accordion">
+   <li>
+     <div class="collapsible-header"><i class="material-icons">filter_drama</i>No account? Sign up here!</div>
+     <div class="collapsible-body">
+       <div class="row">
+           <form class="col s12" method="POST" action="/landingPage/register">
+             <div class="row">
+               <div class="input-field col s6">
+                 <i class="material-icons prefix">accessibility</i>
+                 <input  id="first_name" type="text" name="name" class="validate">
+                 <label for="first_name">Name</label>
+               </div>
+             <div class="row">
+               <div class="input-field col s6">
+                 <i class="material-icons prefix">enhanced_encryption</i>
+                 <input id="password" type="password" name="password" class="validate">
+                 <label for="password">Password (Min 8 Characters)</label>
+               </div>
+             </div>
+             <div class="row">
+               <div class="input-field col s12">
+                 <i class="material-icons prefix">account_circle</i>
+                 <input id="email" type="email" name="email" class="validate">
+                 <label for="email">Email</label>
+               </div>
+             </div>
+             <div class="row">
+               <input class="btn" type="submit" value="Sign Up">
+             </div>
+           </form>
+         </div>
+     </div>
+   </li>
+ </ul>
 
 
-<div class="row">
-    <form class="col s12" method="POST" action="/landingPage/register">
-      <div class="row">
-        <div class="input-field col s6">
-          <i class="material-icons prefix">accessibility</i>
-          <input  id="first_name" type="text" name="name" class="validate">
-          <label for="first_name">Name</label>
-        </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <i class="material-icons prefix">enhanced_encryption</i>
-          <input id="password" type="password" name="password" class="validate">
-          <label for="password">Password</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">account_circle</i>
-          <input id="email" type="email" name="email" class="validate">
-          <label for="email">Email</label>
-        </div>
-      </div>
-      <div class="row">
-        <input class="btn" type="submit" value="Sign Up">
-      </div>
-    </form>
-  </div>
 
 {{!-- <form method="POST" action="/landingPage/register">
   <label for="nameText">Full Name</label>

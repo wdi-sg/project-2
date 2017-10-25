@@ -28,7 +28,9 @@ router.post('/', function (req, res) {
 router.delete("/:id", (req,res)=>{
   console.log(req);
   Answer.findByIdAndRemove(req.params.id)
-  .then(() => res.redirect(`/profile`))
+  .then(() => {
+    req.flash('info',  `Deleted answer (id: ${req.params.id})`)
+    res.redirect(`/profile`)})
   .catch(err => console.log(err))
 })
 

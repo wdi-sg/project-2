@@ -4,10 +4,10 @@
 <table>
 
   <tr>
-    <td><div class="buttons">
-    <button class="up" data={{data._id}} upvotes = {{data.upVotes}} >Upvote</button>
+    <td><div class="buttons" align="center">
+    <button class="up waves-effect waves-teal btn-flat" data={{data._id}} upvotes = {{data.upVotes}} ><i class="material-icons">expand_less</i></button>
     <p id={{data._id}}  >{{data.totalVotes}}</p>
-    <button class="down" data={{data._id}} downvotes = {{data.downVotes}} >Downvote</button>
+    <button class="down waves-effect waves-teal btn-flat" data={{data._id}} downvotes = {{data.downVotes}} ><i class="material-icons">expand_more</i></button>
     </div></td>
     <td>
     <p>{{data.description}}</p></td>
@@ -20,10 +20,10 @@
   {{#each answer}}
   <tr>
 
-    <td><div class="buttons">
-  <button class="ansup" data={{this._id}} upvotes = {{this.upVotes}} >Upvote</button>
+    <td><div class="buttons" align="center">
+  <button class="ansup waves-effect waves-teal btn-flat" data={{this._id}} upvotes = {{this.upVotes}} ><i class="material-icons">expand_less</i></button>
   <p id={{this._id}}  >{{this.totalVotes}}</p>
-  <button class="ansdown" data={{this._id}} downvotes = {{this.downVotes}} >Downvote</button>
+  <button class="ansdown waves-effect waves-teal btn-flat" data={{this._id}} downvotes = {{this.downVotes}} ><i class="material-icons">expand_more</i></button>
   </div></td>
   <td><p>{{this.description}}</p></td>
   <td>Answered By: {{this.creatorName}}</td>
@@ -35,7 +35,6 @@
 <form method="POST" action="/addAnswer">
   <input type="hidden" name="id"  value={{data._id}}>
   <br><br>
-  <textarea name="userinput" rows="4" cols="50" placeholder="Enter your answer here"></textarea>
-
+  <textarea class="materialize-textarea" name="userinput" rows="4" cols="50" placeholder="Enter your answer here"></textarea>
   <input id="animalType" type="submit">
 </form>

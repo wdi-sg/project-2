@@ -35,6 +35,7 @@ router.get("/newquestion",(req,res)=>{
 
 router.get('/logout',hasLoggedOut, (req, res) => {
   req.logout()
+  req.flash("success","successfully logged out")
   res.redirect('/')
 })
 
@@ -85,10 +86,9 @@ router.post('/addquestions', function (req, res) {
 
   newQues.save()
   .then(output => {
-    displayResults(output.ops)
   })
   // debug code (output request body)
-  res.redirect("/")
+  res.redirect(`/thread/${newQues.id}`)
 })
 
 router.post("/image", (req,res)=>{

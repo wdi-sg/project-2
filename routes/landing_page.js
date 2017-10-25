@@ -28,8 +28,8 @@ router.post("/register", (req,res)=>{
 router.post("/login", passport.authenticate("local",{
   successRedirect: "/",
   failureRedirect: "/landingPage",
-  failureFlash: 'FAIL WHALE BRUH',
-  successFlash: 'You have logged in'
+  failureFlash: 'Invalid Username/Password',
+  successFlash: 'Succesfully Logged In'
 }))
 
 

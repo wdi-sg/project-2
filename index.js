@@ -72,6 +72,7 @@ const answer_routes = require("./routes/answer_routes")
 const default_routes = require("./routes/default_routes")
 const landing_page = require("./routes/landing_page")
 const thread_routes = require("./routes/thread_routes")
+const admin_routes = require("./routes/admin_routes")
 
 // ===== ROUTE ACCESS ===== //
 app.use("/vote", vote_routes)
@@ -79,111 +80,10 @@ app.use("/addAnswer", answer_routes)
 app.use("/", default_routes)
 app.use("/thread", thread_routes)
 app.use("/landingPage", landing_page)
+app.use("/admin", admin_routes)
 
 
 
-
-
-// app.get('/', (req, res) => {
-//   Thread.find({}, function (err, data) {
-//     if (err) {
-//       console.log(err)
-//       return
-//     }
-//     res.render('user/home', {
-//       title: 'Questions In DB',
-//       threads: data
-//
-//     })
-//   }).sort({totalVotes: -1})
-// })
-
-// app.get("/newquestion",(req,res)=>{
-//   res.render("user/newquestion",{
-//     title: "Ask a question!"
-//   })
-// })
-
-
-
-// app.get('/logout',hasLoggedOut, (req, res) => {
-//   req.logout()
-//   res.redirect('/')
-// })
-
-// app.get("/profile",hasLoggedOut, (req,res)=>{
-//   User.findById(req.user.id)
-//   .then(user=>{
-//     Thread.find({creator:req.user.id})
-//     .then(thread=>{
-//     Answer.find({creator:req.user.id})
-//     .then(ans=>{
-//       res.render("user/profile_page",{
-//         profile: user,
-//         title: `${req.user.name}'s Profile`,
-//         answers:ans,
-//         questions:thread
-//       })
-//     })
-//   })
-//
-//   })
-//
-// })
-
-// app.get("/landingpage",isLoggedIn,(req,res)=>{
-//   res.render("user/landingpage",{
-//     title: "User Login"
-//   })
-// })
-// app.delete("/thread/:id", (req,res)=>{
-//   Thread.findByIdAndRemove(req.params.id)
-//   .then(()=>{
-//     Answer.remove({parent: req.params.id})
-//     .then(() => res.redirect(`/profile`))
-//     .catch(err => console.log(err))
-//   })
-//   })
-
-
-// app.get(`/thread/:id`, (req, res) => {
-//   Thread.findById({_id: req.params.id})
-//   .then(thread=>{
-//     Answer.find({parent: req.params.id})
-//     .then(result=>{
-//       if(thread.creator==="anonymous"){
-//
-//         res.render('user/singlethread', {
-//           data: thread,
-//           author: "anonymous",
-//           answer: result,
-//           title: thread.question
-//
-//         })
-//       }else{
-//         User.findById({_id: thread.creator})
-//         .then(creator=>{
-//
-//           res.render('user/singlethread', {
-//             data: thread,
-//             author: creator.name,
-//             answer: result,
-//             title: thread.question
-//
-//           })
-//
-//         })
-//       }
-//     })
-//   })
-// })
-// app.post("/image", (req,res)=>{
-//   User.findByIdAndUpdate(req.user.id, {pic: req.body.upload})
-//   .then(user=>{
-// res.redirect("/profile")
-//   })
-//
-// })
 
 
 app.post('/uploadImage', upload.single('myFile'), function(req, res) {

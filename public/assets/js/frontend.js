@@ -2,7 +2,8 @@ $(function () {
 
   // Parallax initialization
   $('.parallax').parallax()
-  
+  $('select').material_select();
+
   $('.up').click(function () {
     var id = $(this).attr('data')
     var currentUp = $(this).attr('upvotes')

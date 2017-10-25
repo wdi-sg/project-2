@@ -1,10 +1,22 @@
 
 <form method="POST" action="/addquestions">
+  <i class="material-icons prefix">subject</i>
   <label for="questionText">Question</label>
   <input id="questionText" type="text" name="question">
 
-  <label for="passwordText">Description</label>
-  <input id="passwordText" type="text" name="description">
+  <i class="material-icons prefix">mode_edit</i>
+  <label for="textarea1">More Details</label>
+  <textarea id="textarea1" class="materialize-textarea" name="description"></textarea>
+
+  <div class="input-field col s12">
+      <select disabled name="dropdown">
+        <option value="" disabled selected>Choose your course</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+      <label>Course Preference (Not Released)</label>
+    </div>
 
   <input type="submit">
 </form>

@@ -7,7 +7,8 @@ const adminSchema = new Schema({
   name: {type: String, required: true},
   email: { type: String, required: true, unique: true },
   password: {type: String},
-  adminCode: {type: String}
+  pic: String,
+  adminCode: {type: String, required: true},
 })
 
 
@@ -24,9 +25,6 @@ adminSchema.pre("save", function(next){
     admin.password = hash
       next();
   })
-
-  // Override the cleartext password with the hashed one
-  console.log("Pre save flow", admin);
 
 })
 
