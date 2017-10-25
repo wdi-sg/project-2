@@ -12,9 +12,10 @@
   <body>
     <div class="container left-align">
     <nav>
-      <div class="nav-wrapper">
+      <div class="nav-wrapper teal darken-1">
       <ul class="left hide-on-med-and-down">
-      <li><a href="/">Home</a></li>
+        <a href="/" class="brand-logo center">ViscuSS</a>
+      {{!-- <li><a href="/">Home</a></li> --}}
       <li><a href="/newquestion">Add a question</a></li>
       {{#if currentUser}}
       <li><a href="/profile">{{currentUser.name}}</a></li>
