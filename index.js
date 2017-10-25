@@ -14,6 +14,10 @@ const MongoStore = require("connect-mongo")(session)
 const passport = require("./config/ppConfig")
 const app = express()
 
+//socket.io
+const http = require("http").Server(app) //what is this?
+const io = require("socket.io")(http)
+
 //helpers
 const { hasLoggedOut, isLoggedIn } = require("./helpers")
 
@@ -24,6 +28,7 @@ const Project = require("./models/project")
 const register_routes = require("./routes/register_routes")
 const login_routes = require("./routes/login_routes")
 const manageProject_routes = require("./routes/manageProject_routes")
+const mainBoard_routes = require("./routes/mainBoard_routes")
 
 //middlewares
 app.engine("handlebars", exphbs({ defaultLayout: "main" }))
@@ -82,6 +87,23 @@ app.get("/", (req, res) => {
     })
 })
 
+// io.on("connection", function(socket) {
+//   console.log("a user connected")
+//   socket.on("disconnect", function() {
+//     console.log("user disconnected")
+//   })
+//   socket.on("chat message", function(msg) {
+//     console.log("message: " + msg)
+//   })
+// })
+
+io.on("connection", function(socket) {
+  socket.on("chat message", function(msg) {
+    console.log("message: " + msg)
+    io.emit("chat message", msg)
+  })
+})
+
 app.get("/logout", hasLoggedOut, (req, res) => {
   req.logout()
   res.redirect("/")
@@ -92,10 +114,11 @@ app.get("/profile", hasLoggedOut, (req, res) => {
 })
 
 app.use("/manageProject", hasLoggedOut, manageProject_routes)
+app.use("/board", hasLoggedOut, mainBoard_routes)
 
 app.use("/register", isLoggedIn, register_routes)
 app.use("/login", isLoggedIn, login_routes)
 
-app.listen(port, () => {
+http.listen(port, () => {
   console.log(`Server is running on port ${port}`)
 })

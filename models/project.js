@@ -7,8 +7,8 @@ const projectSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  start: String,
-  end: String,
+  start: Date,
+  end: Date,
   lead: String,
   members: [],
   tasks: [],
