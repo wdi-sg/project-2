@@ -12,11 +12,12 @@ const Quote = require('../models/quote')
 
 router.get('/collection', (req, res) => {
   var startDate = new Date()  // Current date
+  var currentDate = new Date()
   startDate.setDate(startDate.getDate() - 7)
   startDate.setHours(0)
   startDate.setMinutes(0)
   startDate.setSeconds(0)
-  Quote.find({publishedAt: { $gte: startDate }})
+  Quote.find({publishedAt: { $gte: startDate }, publishedAt: { $lte: currentDate }})
   .then(quotes => {
     res.render('quotes/exploreCollection', { quotes })
   })

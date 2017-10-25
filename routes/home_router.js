@@ -49,7 +49,7 @@ router.get('/profile/:slug', (req, res) => {
   // why did this not work
   if (!user) {
     console.log('user has not logged in')
-    return res.render('home')
+    return res.redirect('/')
   }
   const addedQuotes = user.addedQuotes
   Quote.find({
