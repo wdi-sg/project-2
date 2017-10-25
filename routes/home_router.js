@@ -8,11 +8,16 @@ router.get('/', (req, res) => {
   var currentHour = currentDate.getHours()
   var period = {}
   period.publishedAt = currentDate
+  console.log(period.publishedAt)
 
   if (currentHour >= 3 && currentHour <= 12) period.timeEvent = 1
   if (currentHour >= 12 && currentHour <= 18) period.timeEvent = 2
   if (currentHour >= 18 && currentHour <= 24) period.timeEvent = 3
 
+  // Quote.find({ timeEvent: period.timeEvent })
+  //   .then(quotes => {
+  //     res.send(quotes)
+  //   })
   var qObj = {
     timeEvent: period.timeEvent,
     publishedAt: {
@@ -28,11 +33,13 @@ router.get('/', (req, res) => {
 })
 
 router.post('/addcollection', (req, res) => {
-  var quoteId = req.body.quoteId
   var user = req.user
+  if (!user) return res.redirect('/login')
   var slug = req.user.slug
-  // check if quotes are alr added by user
+
+  var quoteId = req.body.quoteId
   var quotesArr = user.addedQuotes
+  // check if quotes are alr added by user
   if (quotesArr.indexOf(quoteId) !== -1) return res.redirect('/quotes/collection')
 
   User.findByIdAndUpdate(user.id, {
@@ -41,6 +48,24 @@ router.post('/addcollection', (req, res) => {
     }
   })
   .then(() => res.redirect(`/profile/${slug}`))
+})
+
+router.post('/addToCollection', (req, res) => {
+  var user = req.user
+  if (!user) return res.redirect('/login')
+  var slug = req.user.slug
+
+  var quoteId = req.body.quoteId
+  var quotesArr = user.addedQuotes
+  // check if quotes are alr added by user
+  if (quotesArr.indexOf(quoteId) !== -1) return res.redirect('/quotes/collection')
+
+  User.findByIdAndUpdate(user.id, {
+    $push: {
+      addedQuotes: quoteId
+    }
+  })
+  .then(() => res.redirect(`/quotes/collection`))
 })
 
 router.get('/profile/:slug', (req, res) => {

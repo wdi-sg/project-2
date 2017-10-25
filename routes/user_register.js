@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
-
+const passport = require('../config/ppConfig')
 
 // router.post('/login', passport.authenticate('local', {
 //   successRedirect: '/',
@@ -21,9 +21,9 @@ router.post('/', (req, res) => {
   })
   newUser.save()
   .then(() => {
-    res.redirect('/')
-    // passport.authenticate('local', {
-      // successRedirect: '/' })(req, res)
+    passport.authenticate('local', {
+      successRedirect: '/'
+    })(req, res)
   },
   err => {
     console.log('err')

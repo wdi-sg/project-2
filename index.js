@@ -13,6 +13,7 @@ const methodOverride = require('method-override')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const passport = require('./config/ppConfig')
+const { hasLoggedOut, isLoggedIn } = require('./helpers')
 
 const home_router = require('./routes/home_router')
 const user_login_router = require('./routes/user_login')
@@ -42,6 +43,7 @@ mongoose.connect(dbUrl, { useMongoClient: true })
 .then(() => { console.log('db is connected') },
 err => console.log(err))
 
+
 app.use(session({  // activating the sessions
   secret: process.env.SESSION_SECRET, // to hash ur session data
   resave: false,
@@ -53,11 +55,21 @@ app.use(session({  // activating the sessions
 app.use(passport.initialize()) // activating
 app.use(passport.session()) // use the session
 
+app.use((req, res, next) => {
+  app.locals.user = req.user
+  next()
+})
+
 app.use('/', home_router)
-app.use('/register', user_register_router)
-app.use('/login', user_login_router)
+app.use('/register', isLoggedIn, user_register_router)
+app.use('/login', isLoggedIn, user_login_router)
 app.use('/quotes', quotes_router)
 
+
+app.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/')
+})
 
 app.listen(port, () => {
   console.log('connected to port 7000 successfully')
