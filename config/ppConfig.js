@@ -6,26 +6,29 @@ passport.serializeUser(function (user, done) {
   done(null, user.id)
 })
 
-passport.deserializeUser(function (id, done) {
+passport.deserializeUser(function (id, next) {
   User.findById(id, function (err, user) {
-    done(err, user)
+    next(err, user)
   })
 })
 
 passport.use(new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password'
-}, function (email, password, done) {
+}, function (email, password, next) {
+  console.log(email)
+  console.log(password)
   User.findOne({email: email}, function (err, user) {
-    if (err) return done(err)
-    if (!user) return done(null, false)
+    console.log(user)
+    if (err) return next(err)
+    if (!user) return next(null, false)
     user.validPassword(password, (err, isMatch) => {
-      if (err) return done(null, false)
-      if (isMatch) return done(null, user)
-      return done(null, false, {message: 'passwords mismatch'})
+      if (err) return next(err)
+      if (isMatch) return next(null, user)
+      return next(null, false)
     })
   })
+  .catch(err => next(err))
 }))
 
-// export the Passport configuration from this module
 module.exports = passport

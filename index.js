@@ -14,6 +14,8 @@ const dbUrl = 'mongodb://localhost/MakeGood'
 const port = process.env.PORT || 3000
 const passport = require('./config/ppConfig')
 
+const { hasLoggedOut, isLoggedIn } = require('./helpers')
+
 // ======= Setup of Routes ======= //
 const signupRoutes = require('./routes/signup_routes')
 const gigsRoutes = require('./routes/gigs_routes')
@@ -21,8 +23,18 @@ const loginRoutes = require('./routes/login_routes')
 const profileRoutes = require('./routes/profile_routes')
 
 const User = require('./models/user')
+const Gig = require('./models/gigs')
 
 const app = express()
+
+mongoose.Promise = global.Promise
+mongoose.connect(dbUrl, {
+  useMongoClient: true
+})
+.then(
+  () => { console.log('db is connected') },
+  (err) => { console.log(err) }
+)
 
 // ======= Use Middlewares ====== //
 app.use(express.static(path.join(__dirname, 'public')))
@@ -31,14 +43,14 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.use(passport.initialize())
-app.use(passport.session())
 app.use(session({
   secret: 'secret test',
   resave: false,
   saveUninitialized: true,
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }))
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use((req, res, next) => {
   app.locals.user = req.user
@@ -51,22 +63,33 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(methodOverride('_method'))
 
-mongoose.Promise = global.Promise
-mongoose.connect(dbUrl, {
-  useMongoClient: true
-})
-.then(
-  () => { console.log('db is connected') },
-  (err) => { console.log(err) }
-)
-
 // ======= Setup of main GET reqs ======= //
 /* Using handlebars template engine */
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 
 app.get('/', (req, res) => {
-  res.render('gigs-search')
+  Gig.find()
+.then(gig => {
+  res.render('gigs-search', {
+    gig
+  })
+})
+.catch(err => {
+  console.log(err)
+})
+})
+
+app.post('/', isLoggedIn, (req, res) => {
+  const keyword = req.body.keyword
+  const regex = new RegExp(keyword, 'i')
+
+  Gig.find({
+    name: regex
+  })
+  .limit(9)
+  .then(gig => res.send(gig))
+  .catch(err => res.send(err))
 })
 
 app.get('/about', (req, res) => {
@@ -93,16 +116,20 @@ app.post('/peeps', (req, res) => {
   User.find({
     name: regex
   })
-  // .limit(9)
-
+  .limit(9)
   .then(user => res.send(user))
   .catch(err => res.send(err)) // in case we have an error
 })
 
+app.get('/logout', hasLoggedOut, (req, res) => {
+  req.logout()
+  res.redirect('/')
+})
+
 // ======= Use Routes ======= //
-app.use('/signup', signupRoutes)
+app.use('/signup', isLoggedIn, signupRoutes)
 app.use('/gigs', gigsRoutes)
-app.use('/login', loginRoutes)
+app.use('/login', isLoggedIn, loginRoutes)
 app.use('/profile', profileRoutes)
 
 // ======= END: Local port Listen ======= //

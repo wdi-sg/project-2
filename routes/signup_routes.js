@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
+const passport = require('../config/ppConfig')
 
 router.get('/', (req, res) => {
   res.render('users/signup')
@@ -15,7 +16,11 @@ router.post('/', (req, res) => {
   })
   newUser.save()
   .then(
-    user => res.redirect(`/profile/${user.slug}/settings`),
+    user => {
+      passport.authenticate('local', {
+        successRedirect: `/profile/${user.slug}/settings`
+      })(req, res)
+    },
     err => res.send(err)
   )
 })

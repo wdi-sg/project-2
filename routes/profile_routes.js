@@ -13,7 +13,6 @@ router.get('/:slug', (req, res) => {
   })
 })
 
- /* Need to fix this flow. */
 router.get('/:slug/settings', (req, res) => {
   User.findOne({
     slug: req.params.slug
@@ -25,19 +24,27 @@ router.get('/:slug/settings', (req, res) => {
   })
 })
 
-router.post('/:slug/settings', (req, res) => {
+router.put('/:slug/settings', (req, res) => {
   var profileData = req.body
   User.findOne({
     slug: req.params.slug
   })
   .then((user) => {
-    user.profile.push({
-      nickname: profileData.nickname,
-      about: profileData.about,
-      skills: profileData.skills,
-      projs: profileData.projs,
-      contact: profileData.contact
-    })
+    if (!user.profile.length) {
+      user.profile.push({
+        nickname: profileData.nickname,
+        about: profileData.about,
+        skills: profileData.skills,
+        projs: profileData.projs,
+        contact: profileData.contact
+      })
+    } else {
+      user.profile[0].nickname = profileData.nickname
+      user.profile[0].about = profileData.about
+      user.profile[0].skills = profileData.skills
+      user.profile[0].projs = profileData.projs
+      user.profile[0].contact = profileData.contact
+    }
     user.save()
     .then(
       user => res.redirect(`/profile/${user.slug}`),

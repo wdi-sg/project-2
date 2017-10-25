@@ -16,7 +16,8 @@ const userSchema = new Schema({
   email: String,
   password: String,
   profile: [profileSchema],
-  slug: String
+  slug: String,
+  gigs: [{}, {}, {}]
 })
 
 userSchema.pre('save', function (next) {

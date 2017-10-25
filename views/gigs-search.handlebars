@@ -1,3 +1,27 @@
 <h1>Get Gigs, Make Good!</h1>
 
 <h2>Search Gigs</h2>
+<label for="searchInput">Search: </label>
+<input id="searchGigs" type="text">
+
+<h3>Search Results</h3>
+<div class="row" id="searchGigsResults">
+
+</div>
+
+<div class="row">
+
+  {{#each gig}}
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{{this.name}}}</h4>
+        <p class="card-text">
+          {{this.wage}} {{this.author}}
+          <a href="/profile/{{this.slug}}">Click!</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>

@@ -7,8 +7,8 @@ const gigSchema = new Schema({
   specs: String,
   wage: String,
   description: String,
-  skills: Array
-//  author:
+  skills: Array,
+  author: Array
 })
 
 const Gig = mongoose.model('Gig', gigSchema)
