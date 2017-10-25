@@ -24,8 +24,7 @@
     "nodemon": "^1.12.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "simplemde": "^1.11.2",
-    "unirest": "^0.5.1"
+    "simplemde": "^1.11.2"
   },
   "scripts": {
     "start": "nodemon index"

@@ -7,7 +7,6 @@ const MongoStore = require("connect-mongo")(session)
 const passport = require("./config/ppConfig")
 const methodOverride = require('method-override')
 const cloudinary = require('cloudinary')
-const unirest = require("unirest")
 const flash = require("connect-flash")
 
 const { hasLoggedOut, isLoggedIn } = require('./helpers')
@@ -81,22 +80,6 @@ app.use("/", default_routes)
 app.use("/thread", thread_routes)
 app.use("/landingPage", landing_page)
 
-
-
-app.post("/testing",(req,res)=>{
-
-  unirest.post("https://neutrinoapi-html-to-pdf.p.mashape.com/html-to-pdf")
-  .header("X-Mashape-Key", "SPJC93KUGAmshJA6zzRMzYDjXoKRp1j1dRwjsnL0wdwfZyjVKb")
-  .header("Content-Type", "application/x-www-form-urlencoded")
-  .send("content=https://google.com/")
-  .send("html-width=1024")
-  .send("margin=10")
-  .send("title=My Title")
-  .end(function (result) {
-    res.contentType('application/pdf').send(result.body)
-    // console.log(result.status, result.headers, result.body);
-  })
-})
 
 
 
