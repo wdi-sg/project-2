@@ -9,17 +9,16 @@
 
     <p>Create a new task</p>
     <form action="/board" id="createTask">
-      <input type="hidden" name="user" value="{{user.name}}">
-      <input type="hidden" name="project" value="{{user.name}}">
+      <input type="hidden" name="task[user]" value="{{user.name}}">
+      <input type="hidden" name="task[project]" value="{{user.project}}">
+      <label for="name">Task Name:</label>
       <input type="text" name="task[name]">
-      <input type="date" name="task[startDate]" value="{{Date.now}}">
-      <input type="date" name="endDate" value="task[startDate]">
-      <input type="text" name="status" value="">
+      <label for="startDate">Start Date:</label>
+      <input type="date" name="task[startDate]" value="">
+      <label for="endDate">End Date:</label>
+      <input type="date" name="endDate" value="">
       <button type="submit" name="button">Send</button>
-      <button>Send</button>
     </form>
-
-
   </div>
 
   <div id="review" class="boardElement">
@@ -35,6 +34,7 @@
     <ul id="messages"></ul>
     <form action="/board" id="message">
       <input type="hidden" id="userName" value="{{user.name}}">
+      <input type="hidden" id="userProject" value="{{user.project}}">
       <input id="m" autocomplete="off" type="text" name="message[name]">
       <button type="submit" name="button">Send</button>
     </form>

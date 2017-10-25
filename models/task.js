@@ -8,7 +8,7 @@ const taskSchema = new mongoose.Schema({
   },
   project: String,
   currentUser: String,
-  start: { type: Date, default: Date.now },
+  start: Date,
   end: Date,
   projectedEnd: Date,
   status: { type: String, default: "0" } //create, review, return

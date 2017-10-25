@@ -102,13 +102,32 @@ app.use("/board", hasLoggedOut, mainBoard_routes)
 app.use("/register", isLoggedIn, register_routes)
 app.use("/login", isLoggedIn, login_routes)
 
-//socket connetion
+// socket connetion
+// if (app.locals.user) {
+//   console.log(app.locals.user)
+//   let nsp = io.of(`/${app.locals.user.project}`)
+//   nsp.on("connection", function(socket) {
+//     console.log("someone connected to my project")
+//     socket.on("chat message", msg => {
+//       //     console.log(msg.user + ": " + msg.message)
+//       //     console.log(msg.project)
+//       //     io.emit("chat message", msg.message)
+//       //     console.log(msg)
+//       nsp.emit("chat message", msg.message)
+//     })
+//   })
+// }
+
 io.on("connection", function(socket) {
-  //listen and emit to certain IDs
+  console.log("someone connected")
   socket.on("chat message", msg => {
-    console.log(msg.user + ": " + msg.message)
-    io.emit("chat message", msg.message)
-    console.log(msg)
+    // console.log(msg.user + ": " + msg.message)
+    let nsp = io.of(`/${msg.project}`)
+    nsp.emit("chat message", {
+      user: msg.user,
+      message: msg.message
+    })
+    // console.log(msg)
   })
 })
 
