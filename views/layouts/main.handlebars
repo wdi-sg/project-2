@@ -9,6 +9,7 @@
     <ul>
       <li><a href="/quotes/collection">Explore Collection</a></li>
       {{#if user}}
+      <li><a href="/quotes/addQuote">Add Quote</a></li>
       <li><a href="/profile/{{user.slug}}">{{ user.name }}</a></li>
       <li><a href="/logout">Logout</a></li>
       {{else}}

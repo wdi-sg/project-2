@@ -1,0 +1,16 @@
+<h2>Update Quote</h2>
+
+<h3>Author: {{quote.author}}</h3>
+<h3>Quote: {{quote.quote}}</h3>
+
+
+<form action="/quotes/{{ quote.id }}?_method=PUT" method="post">
+  <label for="Author">Author</label>
+  <input type="text" name="author" value="{{ quote.author }}">
+  {{!-- we put the {{}} inside value cos we want to show the existing name --}}
+
+  <label for="Quote">Quote</label>
+  <input type="text" name="quote" value="{{ quote.quote }}">
+
+  <button type="submit" name="button">Update</button>
+</form>

@@ -5,7 +5,7 @@
     <li>
       {{ this.quote }}
       -   {{ this.author }}
-      <form action="/addToCollection" method="post">
+      <form action="/addcollection" method="post">
         <input type="hidden" name="quoteId" value="{{this._id}}">
         <button type="submit" name="button">Add</button>
       </form>

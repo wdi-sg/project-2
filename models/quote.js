@@ -2,14 +2,15 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const quoteSchema = new Schema({
-  creator: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  },
+  // creator: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'User'
+  // },
   author: String,
   quote: String, // text
   timeEvent: Number, // TODO: change to Number
-  publishedAt: Date
+  publishedAt: Date,
+  creatorId: String
   // hasShown: {
   //   type: Boolean,
   //   default: false

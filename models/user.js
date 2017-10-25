@@ -7,14 +7,18 @@ const userSchema = new Schema({
   password: { type: String },
   name: { type: String },
   slug: { type: String },
-  addedQuotes: [
-      // quote ID
-  ]
+  addedQuotes: [] // quote ID
 })
+
+
 
 userSchema.pre('save', function (next) {
   var user = this
   user.slug = user.name.toLowerCase().split(' ').join('-')
+
+  // skip if user password is not changed
+  if (!user.isModified('password')) return next()
+
   bcrypt.hash(user.password, 10)
   .then(hash => {
     user.password = hash

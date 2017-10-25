@@ -2,13 +2,28 @@
 <h3>Here is a list of your favourite quotes!</h3>
 
 <ul>
-  {{#each addedQuotes}}
+  {{#each addedQuotes as |quote|}}
+    <li>
+      {{quote.quote}}
+        - {{quote.author}}
+        <form action="/quotes/{{quote._id}}?_method=DELETE" method="post">
+          <button type="submit" name="button">Delete</button>
+        </form>
+    </li>
+  {{/each}}
+</ul>
+
+<h3>My Personal Quotes</h3>
+<ul>
+  {{#each personalQuotes}}
     <li>
       {{this.quote}}
         - {{this.author}}
-        <form action="/quotes/{{this._id}}?_method=DELETE" method="post">
+        <button onclick="window.location.href='/quotes/{{this._id}}'">Update</button>
+        <form action="/{{this._id}}?_method=DELETE" method="post">
           <button type="submit" name="button">Delete</button>
         </form>
+
     </li>
   {{/each}}
 </ul>
