@@ -1,16 +1,33 @@
 <h2>{{ location.name }} <small>({{ location.country }})</small></h2>
-<img src="{{location.image}}" alt="Image">
-<h3>{{ location.type }}</h3><br>
-<h2>{{ location.title }}</h2>
+<small>{{ location.type }}</small><br>
+<img src="{{location.image}}" width=500 alt="Image">
+<h2>{{ location.title }}</h2><br>
 <p>{{ location.description }}</p><br>
 
-
+{{#if user}}
 <h3>Add Comment</h3>
-<form action="locations/comment" method="post">
+<form action="/comments" method="post">
 
-  <label for="description">Comment :</label>
-  <textarea id="description" name="description" rows="8" cols="80"></textarea>
+  <label for="description">Comment :</label><br>
+  <textarea id="description" name="description" rows="2" cols="100"></textarea>
   <br>
 
   <button type="submit" name="button">Submit</button>
 </form>
+
+<ul>
+{{#each comments as |comment|}}
+  <li>{{ comment.description }}</li>
+{{/each}}
+</ul>
+
+{{else}}
+<h2>Please Log-In to Add Comments</h2>
+
+<ul>
+{{#each comments as |comment|}}
+  <li>{{ comment.description }}</li>
+{{/each}}
+</ul>
+
+{{/if}}

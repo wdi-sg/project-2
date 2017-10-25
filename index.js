@@ -25,6 +25,7 @@ const { hasLoggedOut, isLoggedIn } = require('./helpers')
 const User = require('./models/user')
 const Location = require('./models/location')
 const Admin = require('./models/admin')
+const Comment = require('./models/comment')
 
 // require route files
 const register_routes = require('./routes/register_routes')
@@ -102,21 +103,25 @@ app.get('/', (req, res) => {
   })
 })
 
+// search posts
+app.get('/search', (req, res) => {
+  res.render('search')
+})
+
 // Route to profile
 app.get('/profile', hasLoggedOut, (req, res) => {
   Location.find({
     owner: req.user.id
   })
   .then(locations => {
-    res.send({
+    res.render('profile', {
       locations,
       user: req.user
     })
   })
-
-
   // res.send(req.user)
 })
+
 
 //  Route to logout
 app.get('/logout', hasLoggedOut, (req, res) => {

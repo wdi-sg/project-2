@@ -1,0 +1,37 @@
+<h3>{{ user.name }}</h3>
+<ul>
+  <li>email: {{ user.email }}</li>
+</ul>
+
+<br>
+
+<ul>
+  <div class="columns is-multiline">
+    {{#each locations}}
+    <div class="tile is-vertical is-4">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          <article class="tile is-child notification is-primary">
+            <p class="title">{{this.name}} <small>({{this.country}})</small></p>
+            <img src="{{ this.image }}">
+            <p class="subtitle">{{this.type}}</p>
+            <p class="subtitle">{{this.title}}</p>
+            <p class="subtitle">{{this.description}}</p>
+              <form
+                class="form-inline"
+                action="/locations/{{ this.id }}?_method=DELETE"
+                method="post"
+                >
+                <a href="/locations/{{ this.id }}" class="btn btn-primary">Update</a>
+                &nbsp;
+                <a href="/locations/{{ this.id }}/comment" class="btn btn-primary">View Comments</a> <br>
+                &nbsp;
+                <button class="btn btn-danger" type="submit" name="button">Delete</button>
+              </form>
+            </article>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </ul>

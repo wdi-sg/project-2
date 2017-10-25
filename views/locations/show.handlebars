@@ -1,8 +1,12 @@
 <h2>{{ location.name }} <small>({{ location.country }})</small></h2>
-<img src="{{location.image}}" alt="Image">
-<h3>{{ location.type }}</h3><br>
-<h2>{{ location.title }}</h2>
+<small>{{ location.type }}</small><br>
+<img src="{{location.image}}" width=500 alt="Image">
+<h2>{{ location.title }}</h2><br>
 <p>{{ location.description }}</p><br>
+
+
+{{!-- Hide the part below if not logged in  --}}
+{{#if user}}
 
 <h3>Update</h3>
 <form enctype="multipart/form-data" action="/locations/{{ location.id }}?_method=PUT" method="post">
@@ -32,13 +36,11 @@
   <button type="submit" name="button">Delete</button>
 </form><br>
 
-{{!-- Hide the part below if not logged in  --}}
-{{#if user}}
-  <h3>Add Comment</h3>
+{{else}}
+<h2>Please Log-In to Update Post</h2>
+
+  {{!-- <h3>Add Comment</h3>
   <form action="/comments" method="post">
-    {{!-- <label for="title">Title :</label>
-    <input type="text" id="title" name="title" placeholder="e.g. Great Guide!">
-    <br> --}}
 
     <label for="description">Comment :</label><br>
     <textarea id="description" name="description" rows="8" cols="80"></textarea>
@@ -46,10 +48,14 @@
 
     <button type="submit" name="button">Submit</button>
   </form>
-{{/if}}
 
 <ul>
   {{#each comments as |comment|}}
     <li>{{ comment.description }}</li>
   {{/each}}
 </ul>
+
+{{else}}
+<h2>Please Log-In to Add Comments</h2> --}}
+
+{{/if}}

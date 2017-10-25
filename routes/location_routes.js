@@ -10,27 +10,7 @@ router.get('/new', (req, res) => {
   res.render('locations/new')
 })
 
-router.get('/:slug', (req, res, next) => {
-  // return res.send(req.user)
-  var slug = req.params.slug
-  var user = req.user
-
-  if (slug.length === 24) {
-    next()
-  } else {
-    Location.findOne({
-      slug
-    })
-    .populate('owner')
-    .then(location => {
-      res.render('locations/show', {
-        location,
-        user
-      })
-    })
-  }
-})
-
+// to view update/delete
 router.get('/:id', (req, res) => {
   Location
   .findById(req.params.id)
@@ -45,15 +25,35 @@ router.get('/:id', (req, res) => {
         comments
       })
     )
-
-
     // res.send(location)
-
   })
   .catch(err => {
     console.log(err)
   })
 })
+
+// to view add comment
+router.get('/:id/comment', (req, res) => {
+  Location
+  .findById(req.params.id)
+  .populate('owner')
+  .then(location => {
+    Comment.find({
+      location: location.id
+    })
+    .then(comments =>
+      res.render('locations/comment', {
+        location,
+        comments
+      })
+    )
+    // res.send(location)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+})
+
 
 router.put('/:id', upload.single('image'), (req, res) => {
   var file = req.file
