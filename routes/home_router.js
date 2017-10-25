@@ -8,10 +8,11 @@ const moment = require('moment')
 // Show quote on homepage. Depends on either morning, afternoon, evening
 router.get('/', (req, res) => {
   var startOfToday = moment().startOf('day')
+  // console.log(startOfToday)
   var currentHour = moment().hour()
   var timeEvent
 
-  if (currentHour >= 3 && currentHour <= 12) timeEvent = 1
+  if (currentHour >= 0 && currentHour <= 12) timeEvent = 1
   if (currentHour >= 12 && currentHour <= 18) timeEvent = 2
   if (currentHour >= 18 && currentHour <= 24) timeEvent = 3
 
@@ -65,6 +66,7 @@ router.get('/profile/:slug', (req, res) => {
     return res.redirect('/')
   }
   const addedQuotes = user.addedQuotes
+  // console.log(addedQuotes)
   Quote.find({
     '_id': { $in: addedQuotes }
   })
