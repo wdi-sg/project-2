@@ -1,6 +1,7 @@
+require('dotenv').config({ silent: true })  // for accessing .env files
+
 const dbUrl = process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/project-2'
 const port = process.env.PORT || 8000
-require('dotenv').config({ silent: true })  // for accessing .env files
 
 // installing all modules
 const express = require('express')
@@ -18,9 +19,12 @@ const multer = require('multer')
 const upload = multer({ dest: './uploads/' });
 const cloudinary = require('cloudinary')
 
+// for helpers
+const { hasLoggedOut, isLoggedIn } = require('./helpers')
 
 const User = require('./models/user')
 const Location = require('./models/location')
+const Admin = require('./models/admin')
 
 
 // require route files
@@ -28,6 +32,8 @@ const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
 const location_routes = require('./routes/location_routes')
 const comment_routes = require('./routes/comment_routes')
+const admin_routes = require('./routes/admin_routes')
+
 
 // initiating express, by calling express variable
 const app = express()
@@ -101,36 +107,24 @@ app.get('/', (req, res) => {
 })
 
 // Route to profile
-app.get('/profile', (req, res) => {
+app.get('/profile', hasLoggedOut, (req, res) => {
   res.send(req.user)
-  // User.findOne({
-  //   slug: req.params.slug
-  // })
-  // .then((user) => {
-  //   res.render('users/show', {
-  //     user
-  //   })
-  // })
 })
 
+
 //  Route to logout
-app.get('/logout', (req, res) => {
+app.get('/logout', hasLoggedOut, (req, res) => {
   req.logout()
   res.redirect('/')
 })
 
 // setup routes
-app.use('/register', register_routes)
-app.use('/login', login_routes)
+app.use('/register', isLoggedIn, register_routes)
+app.use('/login', isLoggedIn, login_routes)
 app.use('/locations', location_routes)
 app.use('/comments', comment_routes)
+app.use('/admin', admin_routes)
 
-//post route
-app.post('/', upload.single('myFile'), function(req, res) {
-  cloudinary.uploader.upload(req.file.path, function(result) {
-    res.send(result);
-  });
-});
 
 // opening the port for express
 app.listen(port, () => {

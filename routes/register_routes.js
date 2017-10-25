@@ -1,3 +1,4 @@
+const passport = require('../config/ppConfig')
 const User = require('../models/user')
 const express = require('express')
 const router = express.Router()
@@ -16,9 +17,15 @@ router.post('/', (req, res) => {
 
   newUser.save()
   .then(
-    user => res.redirect(`/profile`),    
+    user => {
+      passport.authenticate('local', {
+        successRedirect: '/'
+      })(req, res);
+    },
     err => res.send(err)
   )
 })
+
+
 
 module.exports = router

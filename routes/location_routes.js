@@ -1,6 +1,10 @@
 const Location = require('../models/location')
 const express = require('express')
 const router = express.Router()
+// const fs = require('fs')
+const multer = require('multer')
+const upload = multer({ dest: './uploads/' })
+const cloudinary = require('cloudinary')
 
 router.get('/new', (req, res) => {
   res.render('locations/new')
@@ -37,17 +41,21 @@ router.get('/:id', (req, res) => {
   })
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', upload.single('image'), (req, res) => {
+  var file = req.file
+  cloudinary.uploader.upload(file.path, (result) => {
   var formData = req.body
   Location.findByIdAndUpdate(req.params.id, {
     name: formData.name,
     country: formData.country,
     type: formData.type,
     title: formData.title,
-    description: formData.description
+    description: formData.description,
+    image: result.secure_url
   })
   .then(() => res.redirect(`/locations/${req.params.id}`))
   .catch(err => console.log(err))
+  })
 })
 
 router.delete('/:id', (req, res) => {
@@ -56,23 +64,25 @@ router.delete('/:id', (req, res) => {
   .catch(err => console.log(err))
 })
 
-router.post('/', (req, res) => {
-  var formData = req.body
+router.post('/', upload.single('image'), (req, res) => {
+  cloudinary.uploader.upload(req.file.path, (result) => {
+    var formData = req.body
 
-  var newLocation = new Location()
-  newLocation.name = formData.name
-  newLocation.country = formData.country
-  newLocation.type = formData.type
-  newLocation.title = formData.title
-  newLocation.description = formData.description
+    var newLocation = new Location()
+    newLocation.name = formData.name
+    newLocation.country = formData.country
+    newLocation.type = formData.type
+    newLocation.title = formData.title
+    newLocation.description = formData.description
+    newLocation.image = result.secure_url
+    newLocation.owner = req.user._id
 
-  // newLocation.owner = '59e81ae9c90d27819c166d67'
-
-  newLocation.save()
-  .then(
-    () => res.redirect(`/locations/${newLocation.id}`),
-    err => res.send(err)
-  )
+    newLocation.save()
+    .then(
+      () => res.redirect(`/locations/${newLocation.id}`),
+      err => res.send(err)
+    )
+  })
 })
 
 module.exports = router

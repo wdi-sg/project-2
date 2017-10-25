@@ -7,7 +7,7 @@ const userSchema = new Schema({
   name: String,
   email: String,
   password: String,
-  slug: String // new field for vanity url
+  slug: String
 })
 
 userSchema.pre('save', function(next) {

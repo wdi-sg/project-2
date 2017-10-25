@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
 
   var newComment = new Comment({
     description: formData.description,
-    author: "59edf139a9500b057fac6b73"
+    author: req.user._id
   })
 
   newComment.save()
