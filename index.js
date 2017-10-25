@@ -70,6 +70,7 @@ app.set('view engine', 'handlebars')
 
 app.get('/', (req, res) => {
   Gig.find()
+  .populate('author')
 .then(gig => {
   res.render('gigs-search', {
     gig
@@ -98,10 +99,10 @@ app.get('/about', (req, res) => {
 
 app.get('/peeps', (req, res) => {
   User.find()
-  // User.find().limit(10)
-.then(user => {
+  // .limit(10)
+.then(peep => {
   res.render('peeps-search', {
-    user
+    peep
   })
 })
 .catch(err => {
