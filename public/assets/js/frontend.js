@@ -1,4 +1,8 @@
 $(function () {
+
+  // Parallax initialization
+  $('.parallax').parallax()
+  
   $('.up').click(function () {
     var id = $(this).attr('data')
     var currentUp = $(this).attr('upvotes')
@@ -40,7 +44,7 @@ $(function () {
   })
 
   const $searchField = $('#searchField')
-  const $searchResults = $('#searchResults')
+  const $resultDiv = $(".searchResults")
   // - Upon typing, send request to server to search for data, name simillar to keyword
   $searchField.on('keyup', e => {
     var json = JSON.stringify({
@@ -57,13 +61,24 @@ $(function () {
     .then(response => {
       return response.json()
     })
-    .then(result => {
-      console.log(result);
-    })
-
-
-
-
+    .then(showResults)
+    .catch(err=> console.log(err))
 })
+
+function showResults(data){
+  let allResults = data.map(thread=>{
+
+    const $newList = $("<ul class='test'>")
+    const $newItem = $("<li>").text(thread.question)
+    const $newLink = $(`<a href="/thread/${thread._id}">`).text("View")
+    $newItem.append($newLink)
+    $newList.append($newItem)
+    return $newList
+  })
+  $resultDiv.html('')
+  $resultDiv.append(allResults)
+
+}
+
 
 })

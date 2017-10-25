@@ -14,14 +14,20 @@ router.get('/', (req, res) => {
       console.log(err)
       return
     }
+    // console.log(req.flash());
     res.render('user/home', {
       title: 'Questions In DB',
-      threads: data
-
+      threads: data,
+      alerts: req.flash()
     })
   }).sort({totalVotes: -1})
 })
 
+router.get("/search",(req,res)=>{
+  res.render("user/search",{
+    title: "Search for a thread"
+  })
+})
 router.get("/newquestion",(req,res)=>{
   res.render("user/newquestion",{
     title: "Ask a question!"
@@ -54,6 +60,18 @@ router.get("/profile",hasLoggedOut, (req,res)=>{
 })
 
 
+router.post("/search", (req, res)=>{
+  // res.send(req.body.keyword)
+
+  const keyword = req.body.keyword
+
+  Thread.find({
+    question: new RegExp(keyword, "i")
+  })
+  .then(results=>{
+    res.send(results)
+  })
+})
 router.post('/addquestions', function (req, res) {
   var creator = ""
   if(!req.user) creator = "anonymous"

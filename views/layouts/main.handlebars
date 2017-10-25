@@ -10,7 +10,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
-    <div class="container left-align">
+    <div class=" left-align">
     <nav>
       <div class="nav-wrapper teal darken-1">
       <ul class="left hide-on-med-and-down">
@@ -27,10 +27,21 @@
     </ul>
     </div>
     </nav>
+    <div class="parallax-container">
+    <div class="parallax"><img src="/assets/images/background1.jpg"></div>
+  </div>
+  <div class="section-white">
+    <div class="row container">
 
-    <h1>{{title}}</h1>
-    {{{body}}}
+      {{> alerts }}
 
+      <h1>{{title}}</h1>
+      {{{body}}}
+    </div>
+  </div>
+  <div class="parallax-container">
+  <div class="parallax"><img src="/assets/images/background1.jpg"></div>
+</div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/assets/js/materialize.min.js"></script>
     <script src="/assets/js/frontend.js"></script>

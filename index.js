@@ -92,7 +92,7 @@ app.post("/testing",(req,res)=>{
   .send("margin=10")
   .send("title=My Title")
   .end(function (result) {
-    res.send(result.body)
+    res.contentType('application/pdf').download(result.body)
     // console.log(result.status, result.headers, result.body);
   })
 })

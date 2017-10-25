@@ -1,4 +1,4 @@
-<% if (alerts.error) { %>
+{{!-- <% if (alerts.error) { %>
   <% alerts.error.forEach(function(msg) { %>
     <div class="alert alert-danger"><%= msg %></div>
   <% }); %>
@@ -7,4 +7,11 @@
   <% alerts.success.forEach(function(msg) { %>
     <div class="alert alert-success"><%= msg %></div>
   <% }); %>
-<% } %>
+<% } %> --}}
+
+<h2>Alerts</h2>
+
+{{#if alerts }}
+  {{ alerts.success }}
+  {{ alerts.error }} 
+{{/if}}

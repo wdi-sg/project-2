@@ -1,7 +1,6 @@
 const express = require("express")
 const router = express.Router()
 const passport = require("../config/ppConfig")
-const flash = require("connect-flash")
 
 const User = require("../models/user")
 const { hasLoggedOut, isLoggedIn } = require('../helpers')
@@ -29,7 +28,7 @@ router.post("/register", (req,res)=>{
 router.post("/login", passport.authenticate("local",{
   successRedirect: "/",
   failureRedirect: "/landingPage",
-  failureFlash: true,
+  failureFlash: 'FAIL WHALE BRUH',
   successFlash: 'You have logged in'
 }))
 
