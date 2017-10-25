@@ -4,9 +4,13 @@ const dbUrl = process.env.NODE_ENV === 'production' ?
 const request = require('request-promise-native')
 const express = require('express')
 const mongoose = require('mongoose') // for DB
-const { hasLoggedOut, isLoggedIn } = require('./helpers')
+const {
+  hasLoggedOut,
+  isLoggedIn
+} = require('./helpers')
 const User = require('./models/user')
 const Stop = require('./models/stop') //to chnage to route later
+const BusService = require('./models/busService')
 const path = require('path') // for Public files
 const exphbs = require('express-handlebars') // for Handlebars
 const bodyParser = require('body-parser') // for accessing POST request
@@ -52,7 +56,6 @@ mongoose.connect(dbUrl, {
       console.log(err)
     }
   )
-
 //session
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -65,7 +68,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/bus', (req, res) => {
+app.get('/busArrival', (req, res) => {
   var options = {
     url: 'http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=83139',
     headers: {
@@ -79,6 +82,7 @@ app.get('/bus', (req, res) => {
       res.send(data)
     })
 })
+//load stops in the db, each as new Stop
 app.get('/loadStopstoDB', (req, res) => {
   var options = {
     url: 'http://datamall2.mytransport.sg/ltaodataservice/BusStops',
@@ -87,6 +91,7 @@ app.get('/loadStopstoDB', (req, res) => {
       'Content-Type': 'application/json'
     }
   }
+  //make a request, with the aobe url and jsn format
   request(options)
     .then(json => {
       var data = JSON.parse(json)
@@ -111,6 +116,51 @@ app.get('/loadStopstoDB', (req, res) => {
       }) //end foreeach - how to populate data.
     })
 })
+//
+// app.get('/loadServiceFromRoutes', (req, res) => {
+//   var options = {
+//     url: 'http://datamall2.mytransport.sg/ltaodataservice/BusRoutes',
+//     headers: {
+//       'AccountKey': 'BF/zvVwHSeWjAnJVwSw0nQ==',
+//       'Content-Type': 'application/json'
+//     }
+//   }
+//   //make a request, with the aobe url and jsn format
+//   // request(options)
+//   //   .then(json => {
+//   //     var data = JSON.parse(json)
+//   //     res.send(data)
+//   //   })
+//   request(options)
+//     .then(json => {
+//       var data = JSON.parse(json)
+//       // var count = 0
+//       // copy relevant data from json - sevice # and stop. service will be repeated
+//       var refArray = []
+//       data.value.forEach(route =>
+//         refArray.push([route.ServiceNo, route.BusStopCode])
+//
+//       )
+//       console.log(refArray);
+//       // data.value.forEach(function(routes) {
+//       //   count++
+//       //   //gather bus and stops for each.
+//       //   console.log(count);
+//       //   var newService = new BusService({
+//       //     // busService: <add service here>   ,
+//       //     // stops: <add stops array here>
+//       //   })
+//       //   newService.save()
+//       //     .then(
+//       //       console.log('done'),
+//       //       err => res.send(err)
+//       //     )
+//       // }) //end foreeach - how to populate data.
+//     })
+// })
+
+
+
 
 app.use((req, res, next) => {
   app.locals.user = req.user // we'll only `req.user` if we managed to log in
@@ -127,6 +177,7 @@ app.use((req, res, next) => {
 //   //show neearby stops. //route elsehwere to find, and get data, then render home to display
 //   res.send(`find the nearest bus stops at ${req.body.latitude} & ${req.body.longitude}`)
 // })
+
 
 app.get('/profile', (req, res) => {
   // User.findOne({
@@ -150,3 +201,5 @@ app.get('/logout', hasLoggedOut, (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on ${port}`)
 })
+
+module.exports = app

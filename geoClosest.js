@@ -26,7 +26,7 @@ function distance(position1,position2){
     // console.log(c);
 
     var d = R * c;
-    console.log(d);
+    // console.log(d);
     return d;
 }
 module.exports = distance
