@@ -10,13 +10,13 @@ const travelplanSchema = new Schema({
     type: String,
     required: [true, 'Address not found.']
   },
-  catergory: {
+  category: {
     type: String,
     required: [true, 'type in the country.']
   },
   dateCreated: {
-    type: Date,
-    default: Date.now
+    type: Date
+    // default: Date.now
   },
   postby: {
     type: Schema.Types.ObjectId,

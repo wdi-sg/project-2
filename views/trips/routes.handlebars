@@ -1,0 +1,36 @@
+<br/><br/><br/>
+
+<div class="row">
+  {{!-- Loop --}}
+  {{#each travelplans as | route |}}
+  <div class="col-4">
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{ route.dateCreated}}</h4>
+        <p class="card-text">
+          {{!-- 22 Oct: show resto address here instead of just link  --}}
+          {{ route.address }}, {{ route.category }}<br>
+          {{ route.description}}
+        </p>
+
+
+        <form
+          class="form-inline"
+          action="/routes/{{ route.id }}?_method=DELETE"
+          method="post"
+        >
+          <a href="/routes/{{ route.id }}" class="btn btn-primary">View</a>
+
+          &nbsp;
+
+          <button class="btn btn-danger" type="submit" name="button">Delete</button>
+          {{!-- don't need input fields here, cos we're not updating anything --}}
+        </form>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+
+
+</div>

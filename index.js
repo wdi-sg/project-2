@@ -21,6 +21,7 @@ const { hasLoggedOut, isLoggedIn } = require('./helpers')
 
 // Models
 const User = require('./models/user')
+const Travelplan = require('./models/travel')
 
 // require all my route files
 const register_routes = require('./routes/register_routes')
@@ -87,8 +88,22 @@ app.get('/logout', hasLoggedOut, (req, res) => {
   res.redirect('/')
 })
 
+app.get('/routes', (req, res) => {
+  // the return of then
+  Travelplan.find().limit(9).sort({dateCreated: -1})
+  .then(travelplans => {
+    // at this point we got our data so we can render our page
+    res.render('trips/routes', {
+      travelplans
+    })
+  })
+  .catch(err => {
+    console.log(err)
+  })
+})
+
 // NEW ROUTE - REGISTER
-app.use('/', travelplan_routes)
+app.use('/routes', hasLoggedOut, travelplan_routes)
 app.use('/register', isLoggedIn, register_routes)
 app.use('/login', isLoggedIn, login_routes)
 
@@ -96,8 +111,6 @@ app.use('/login', isLoggedIn, login_routes)
 app.get('/profile', hasLoggedOut, (req, res) => {
   res.send(req.user)
 })
-
-
 
 // opening the port for express
 app.listen(port, () => {
