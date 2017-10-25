@@ -6,6 +6,20 @@ router.get('/new', (req, res) => {
   res.render('components/new')
 })
 
+router.get('/showall', (req, res) => {
+  Component
+  .find()
+  .then(components => {
+    res.render('components/showall', {
+      components
+    })
+  })
+  .catch(err => {
+    console.log(err)
+  })
+})
+
+
 router.get('/:id', (req, res) => {
   // instead of find all, we can `findById`
   Component
@@ -24,7 +38,6 @@ router.get('/:id', (req, res) => {
 
 // CREATE NEW COMPONENT
 router.post('/', (req, res) => {
-
   var formData = req.body
 
   var newComponent = new Component({
@@ -36,13 +49,15 @@ router.post('/', (req, res) => {
     owner: req.user.id
   })
 
-
   newComponent.save() // save the object that was created
   .then(
     // success flow, for now is to redirect to all reviews route
-    () => res.redirect('/'),
+    () => res.redirect('components/showall'),
     err => res.send('error happened')
   )
 })
+
+
+
 
 module.exports = router

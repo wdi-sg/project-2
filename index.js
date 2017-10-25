@@ -2,7 +2,7 @@ require('dotenv').config({ silent: true })
 
 const dbUrl =
 process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/conso_test'
-const port = process.env.PORT || 4000 // Express server port
+const port = process.env.PORT || 5000 // Express server port
 
 // const quoteApiKey = process.env.QUOTEAPI
 
