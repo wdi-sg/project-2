@@ -16,7 +16,6 @@ router.post('/', (req, res) => {
   // var myLoc=  req.body
   // res.render('home', myLoc)
   Stop.find()
-    .limit(499)
     .then(stops => (findNearest(stops, req.body)))
     .then(nearest => {
       res.send({
@@ -43,20 +42,60 @@ router.post('/', (req, res) => {
 module.exports = router
 
 var findNearest = (stops, loc) => {
+//set up initial sorted distance array of 3. //refactor with object/loop
   // var closest_distance = 100000
   // var closestStop = stops[0]
-  var closestArr = [stops[0], stops[1], stops[2]]
-  // console.log(`close stop before loop ${closestStop}`);
+  var closestArr = []
+  if(distance(loc, stops[0])<distance(loc, stops[1])&&distance(loc, stops[0])<distance(loc, stops[2])){
+    closestArr.push(stops[0])
+    if(distance(loc,stops[1])<distance(loc,stops[2])){
+      closestArr.push(stops[1])
+      closestArr.push(stops[2])
+    }else
+    closestArr.push(stops[2])
+    closestArr.push(stops[1])
+  }else if (distance(loc,stops[0])>distance(loc,stops[1])&&distance(loc,stops[0])<distance(loc,stops[2])) {
+    closestArr.push(stops[1])
+    closestArr.push(stops[0])
+    closestArr.push(stops[2])
+  }else if(distance(loc,stops[0])>distance(loc,stops[1])&&distance(loc,stops[0])>distance(loc,stops[2])){
+    if(distance(loc,stops[1])>distance(loc,stops[2])){
+      closestArr.push(stops[2])
+      closestArr.push(stops[1])
+      closestArr.push(stops[0])
+    }else{
+      closestArr.push(stops[1])
+      closestArr.push(stops[2])
+      closestArr.push(stops[0])
+    }
+  }else{
+    closestArr.push(stops[2])
+    closestArr.push(stops[0])
+    closestArr.push(stops[1])
+  }
+
+//this is not totally accurate. needs to be sorted by dist.
+  // var closestArr = [stops[0], stops[1], stops[2]] //sort these by dist.
+
+// closestArr.forEach(stop=>{
+//   console.log(distance(loc, stop), "m");
+//   console.log(stop );
+//   console.log(" " );
+// })
+  // console.log(`close stop before loop ${closestArr}`);
 
   stops.forEach(stop => {
     var tempDist = distance(loc, stop)
+    // if(closestArr[0])
     if (tempDist < distance(loc, closestArr[0])) {
       // closest_distance = distance(loc, stop);
       // closestStop = stop;
       closestArr[0] = stop
+      // console.log(`closest stop inside loop ${closestArr[0]}`);
       // console.log(`closest stop inside loop ${closestStop}`);
     } else if (tempDist < distance(loc, closestArr[1])) {
       closestArr[1] = stop
+      // console.log(`closest stop inside loop ${closestArr[0]}`);
     } else if (tempDist < distance(loc, closestArr[2])) {
       closestArr[2] = stop
     } else {}
