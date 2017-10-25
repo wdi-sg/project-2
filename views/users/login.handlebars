@@ -2,17 +2,17 @@
 
 <h1>User Login</h1>
 
-<div class="row" action="/login" method="post">
-    <form class="col s12">
+<div class="row">
+    <form class="col s12" action="/login" method="post">
       <div class="row">
         <div class="input-field col s12">
-          <input placeholder="Username" id="first_name" type="text" class="validate">
-          <label for="first_name"></label>
+          <input placeholder="email" name="user[email]" id="name" type="text" class="validate">
+          <label for="name"></label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input placeholder="Password" id="password" type="password" class="validate">
+          <input placeholder="Password" id="password" name="user[password]" type="password" class="validate">
           <label for="password"></label>
         </div>
       </div>

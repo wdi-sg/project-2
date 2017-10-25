@@ -9,9 +9,6 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   var formData = req.body.user
-  console.log('--------------------------------------');
-  console.log(formData);
-  console.log('--------------------------------------');
   var newUser = new User({
     name: formData.name,
     email: formData.email,

@@ -11,13 +11,18 @@
         <div class="nav-wrapper #304ffe indigo accent-4">
           <a href="/" class="brand-logo">Home</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="/register">Register</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/pending">Pending</a></li>
+            {{#if user}}
+              <li><a href="/profile">{{user.name}}</a></li>
+              <li><a href="/logout">Logout</a></li>
+              <li><a href="/pending">Pending</a></li>
+            {{else}}
+              <li><a href="/register">Register</a></li>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/pending">Pending</a></li>
+            {{/if}}
           </ul>
         </div>
       </nav>
-
 
 
       {{{body}}}

@@ -1,4 +1,5 @@
 require('dotenv').config({silent: true})
+
 const dbUrl = process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/projecttwo'
 const port = process.env.PORT || 5000 // this is for our express server
 
@@ -49,12 +50,34 @@ mongoose.connect(dbUrl, {
   (err) => { console.log(err) }
 )
 
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  // store this to our db too
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}))
+
 app.use(passport.initialize())
 app.use(passport.session())
+
+app.use((req, res, next) => {
+  app.locals.user = req.user
+  next()
+})
 
 app.get('/', (req, res) => {
   // the return of then
     res.render('courses/home')
+})
+
+app.get('/profile', hasLoggedOut, (req, res) => {
+  res.send(req.user)
+})
+
+app.get('/logout', hasLoggedOut, (req, res) => {
+  req.logout()
+  res.redirect('/')
 })
 
 app.use('/pending', pending_routes)
