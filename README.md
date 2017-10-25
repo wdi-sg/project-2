@@ -62,21 +62,28 @@ Javascript
 Node
 Express
 -----------
-version 0.1.0 Day 1 (24 Oct):
+version 0.1.0 Day 1 (23 Oct):
 * added Erd Diagram, wireframes, flowchart.  
 * install relevant dependencies
 * connect to heroku
 * building 3 models
 
-version 0.3.0 Day 2 (25 Oct):
+version 0.3.0 Day 2 (24 Oct):
 * added working login-routes, register-routes, profile-routes.
 * added pattern-routes: able to create new pattern, new variation under the pattern.
 * able to update the pattern id or project id to the user upon creation.
 
+version 0.4.5 Day 3 (25 Oct):
+* fix: able to see the pattern & project details (title) under profile.
+* fix: update the 3 models schema
+* added working category_routes: able to display 10 pattern and 10 project under the category.
+* added home_route, that will show 6 pattern from the categories.
+
+
 To be added:
 * finalise 3 models
 * create the handlebars for the routes
-* create the routes: project, home
+* create the routes: project
 * include external frameworks
 * bonus features
 ------------

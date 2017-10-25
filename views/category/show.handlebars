@@ -1,0 +1,22 @@
+<h3>{{ patterns.category }}</h3>
+<div class="">
+  <h4>Patterns</h4>
+  {{#each patterns as |pattern|}}
+  <div class="">
+    <h5>{{ pattern.title }}</h5>
+    <a href="/pattern/{{ pattern.id }}" class="">View</a>
+  </div>
+  {{/each}}
+
+</div>
+
+<div class="">
+  <h4>Projects</h4>
+  {{#each projects as |project|}}
+  <div class="">
+    <h5>{{ project.title }}</h5>
+    {{!-- <a href="/pattern/{{ pattern.id }}" class="">View</a> --}}
+  </div>
+  {{/each}}
+
+</div>

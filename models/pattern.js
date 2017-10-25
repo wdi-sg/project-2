@@ -16,10 +16,7 @@ const patternSchema = new Schema ({
   //   intermediate : String,
   //   advance : String
   // },
-  variation : {
-    type : [],
-    default: []
-  },
+  variation : [{ type : Schema.Types.ObjectId, ref: 'Project' }],
   material : String,
   steps : String
 })
@@ -29,6 +26,6 @@ const patternSchema = new Schema ({
 //   pattern.slug = pattern.name.toLowerCase().split(' ').join('-')
 // })
 
-const Pattern = mongoose.model('pattern', patternSchema)
+const Pattern = mongoose.model('Pattern', patternSchema)
 
 module.exports = Pattern

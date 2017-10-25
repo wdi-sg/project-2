@@ -40,6 +40,7 @@ router.get('/:id', (req, res) => {
   const patternId = req.params.id
   Pattern.findById(patternId)
   .populate('creator')
+  .populate('variation')
   .then(pattern => {
     res.render('pattern/details', {
       pattern
@@ -73,10 +74,10 @@ router.post('/:id/variation/new', (req, res) => {
   .findById(patternId)
   .then(pattern => {
     //console.log('found pattern')
-    if (!projectTitle){
-      var lastPartId = userId.substring(20)
-      projectTitle = pattern.title +'v' + lastPartId
-    }
+    // if (!projectTitle){
+    //   var lastPartId = userId.slice(20)
+    //   projectTitle = pattern.title +'v' + lastPartId
+    // }
     const patternVariation = pattern.variation
     const projectCategory = pattern.category
     let newProject = new Project({
@@ -126,8 +127,22 @@ router.post('/:id/bookmark', (req, res) => {
 
     let userBookmark = user.bookmark
     const patternId = req.params.id
-    userBookmark.push(patternId)
+    // console.log(typeof(patternId))
+    // console.log(userBookmark)
+    // console.log(typeof(userBookmark[0]))
+    // const checkingId = toString(req.params.id)
+    // console.log(userBookmark.hasOwnProperty(checkingId))
 
+    // if (userBookmark.includes(checkingId)){
+    //   console.log('userBookmark.includes(checkingId))', userBookmark.includes(checkingId))
+    //   res.redirect(`/pattern/${patternId}`)
+    // }
+    // else {
+
+    // console.log('!userBookmark.includes(checkingId))', userBookmark.includes(checkingId))
+    //
+    userBookmark.push(patternId)
+    // console.log(userBookmark)
     User.findByIdAndUpdate(userId, {
       bookmark : userBookmark
     })
@@ -135,6 +150,10 @@ router.post('/:id/bookmark', (req, res) => {
 
       res.redirect(`/pattern/${patternId}`)
     }, (err) => console.log(err))
+
+    // }
+
+
 
   })
 

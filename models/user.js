@@ -10,19 +10,9 @@ const userSchema = new Schema({
   slug : String,
   //preferences : [],
   //level : String,
-  bookmark : {
-    type : [],
-    default: []
-  },
-  project : {
-    type : [],
-    default: []
-  },
-
-  pattern : {
-    type : [],
-    default: []
-  },
+  bookmark : [{ type : Schema.Types.ObjectId, ref: 'Pattern' }],
+  project : [{ type : Schema.Types.ObjectId, ref: 'Project' }],
+  pattern : [{ type : Schema.Types.ObjectId, ref: 'Pattern' }],
   images : String,
 
 })

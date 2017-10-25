@@ -1,1 +1,34 @@
 <h2>Home</h2>
+
+<div class="">
+  <h4>Woodcraft</h4>
+  <ul>
+    {{#each woodcraftPatterns as |woodcraftPattern|}}
+    <li><a href="/pattern/{{woodcraftPattern.id}}">{{woodcraftPattern.title}}</a> </li>
+    {{/each}}
+
+  </ul>
+
+</div>
+
+<div class="">
+  <h4>Papercraft</h4>
+  <ul>
+    {{#each papercraftPatterns as |papercraftPattern|}}
+    <li><a href="/pattern/{{papercraftPattern.id}}">{{papercraftPattern.title}}</a> </li>
+    {{/each}}
+
+  </ul>
+
+</div>
+
+<div class="">
+  <h4>Sewing</h4>
+  <ul>
+    {{#each sewingPatterns as |sewingPattern|}}
+    <li><a href="/pattern/{{sewingPattern.id}}">{{sewingPattern.title}}</a></li>
+    {{/each}}
+
+  </ul>
+
+</div>

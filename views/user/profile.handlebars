@@ -1,3 +1,4 @@
+
 <h2>{{ user.name }}</h2>
 <div class="">
   <ul>
@@ -11,22 +12,42 @@
 </div>
 <div class="">
   <h3>Pattern</h3>
+  <ul>
+    {{#each user.pattern as |pattern| }}
+    <li>
+      {{ pattern.title }} <a href="/pattern/{{ pattern.id }}" class="">View</a>
+    </li>
+    {{/each}}
 
-  {{!-- <h4>{{user.pattern}}</h4> --}}
+  </ul>
+</div>
 
-  {{!-- {{#with pattern as |pattern|}}
-  {{!-- //{{#each userPattern as |pattern|}} --}}
-  {{!-- <div class="">
-  <h4>{{ pattern.name }}</h4>
-  <h4>{{ pattern.category}}</h4>
-  <h5>{{ pattern.created}} </h5>
-  <p>
-  {{ pattern.material}}
-  {{ pattern.steps}}
-</p>
-</div> --}}
-{{!-- {{/each}} --}}
+<div class="">
+  <h3>Bookmark</h3>
+  {{!-- <h4>{{user.bookmark}}</h4> --}}
+  <ul>
+    {{#each user.bookmark as |bookmark| }}
+    <li>
+      {{ bookmark.title }}
+      <a href="/pattern/{{ bookmark.id }}" class="">View</a>
 
-{{!-- {{/with}} --}}
+    </li>
+    {{/each}}
 
+  </ul>
+</div>
+
+<div class="">
+  <h3>Project</h3>
+  {{!-- <h4>{{user.project}}</h4> --}}
+  <ul>
+    {{#each user.project as |project| }}
+    <li>
+      {{ project.title }}
+      {{!-- <a href="/pattern/{{ project.id }}" class="">View</a> --}}
+
+    </li>
+    {{/each}}
+
+  </ul>
 </div>

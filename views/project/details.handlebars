@@ -1,0 +1,21 @@
+<h3>{{  project.title }}</h3>
+<div class="">
+  <h4>{{  project.creator.name }}</h4>
+  <h4> {{ patttern.created }}</h4>
+  <h4> {{  project.category }}</h4>
+</div>
+<div class="">
+
+
+</div>
+<div class="">
+  <p>{{  project.material }}</p>
+  <p> {{  project.steps }}</p>
+</div>
+
+<div class="">
+  <a href="/ project/{{ project.id}}/variation/new" class="button">I did this</a>
+  <form class="" action="/ project/{{ project.id}}/bookmark" method="post">
+    <button type="submit" name="bookmarkBtn">Add to Bookmark</button>
+  </form>
+</div>

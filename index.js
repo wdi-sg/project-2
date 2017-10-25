@@ -21,14 +21,18 @@ const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
 const profile_routes = require('./routes/profile_routes')
 const pattern_routes = require('./routes/pattern_routes')
-
-
+const category_routes = require('./routes/category_routes')
+const home_routes = require('./routes/home_routes')
 const app = express()
 
 const User = require('./models/user')
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
+// require('./helpers/handlebars')(exphbs)
+
+
+
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(function (req, res, next) {
   // console.log('Method: ' + req.method + ' Path: ' + req.url)
@@ -72,7 +76,7 @@ app.use((req, res, next) => {
 
 
 app.get('/', (req,res) => {
-  res.render('home')
+  res.redirect('/home')
 })
 
 app.use('/login', isLoggedIn, login_routes)
@@ -80,11 +84,12 @@ app.get('/logout', hasLoggedOut, (req, res) => {
   req.logout()
   res.redirect('/')
 })
+app.use('/home', home_routes)
 app.use('/register', isLoggedIn, register_routes)
 app.use('/profile', hasLoggedOut, profile_routes)
-app.use('/pattern', hasLoggedOut, pattern_routes)
+app.use('/pattern', hasLoggedOut, pattern_routes) // check if need hasLoggedOut function
 //app.use('/new', hasLoggedOut, new_routes)
-
+app.use('/category', category_routes)
 
 
 

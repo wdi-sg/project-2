@@ -9,6 +9,8 @@ router.get('/', (req, res) => {
   User
   .findById(req.user.id)
   .populate('pattern')
+  .populate('bookmark')
+  .populate('project')
   .then(user => {
     res.render('user/profile', {
       user
