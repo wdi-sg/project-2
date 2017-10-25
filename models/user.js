@@ -10,8 +10,15 @@ const userSchema = new Schema({
   slug : String,
   //preferences : [],
   //level : String,
-  // bookmarkPattern : [],
-  // projects : [],
+  bookmark : {
+    type : [],
+    default: []
+  },
+  project : {
+    type : [],
+    default: []
+  },
+
   pattern : {
     type : [],
     default: []

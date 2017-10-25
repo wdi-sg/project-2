@@ -1,0 +1,18 @@
+<h3>{{ pattern.title }}</h3>
+<div class="">
+  <h4>{{ pattern.creator.name }}</h4>
+  <h4> {{ patttern.created }}</h4>
+  <h4> {{ pattern.category }}</h4>
+</div>
+<div class="">
+
+
+</div>
+<div class="">
+  <p>{{ pattern.material }}</p>
+  <p> {{ pattern.steps }}</p>
+</div>
+
+<form class="" action="/pattern/{{pattern.id}}/bookmark" method="post">
+  <button type="submit" name="bookmarkBtn">Add to Bookmark</button>
+</form>

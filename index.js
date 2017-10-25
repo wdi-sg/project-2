@@ -20,7 +20,8 @@ const { hasLoggedOut, isLoggedIn } = require('./helpers')
 const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
 const profile_routes = require('./routes/profile_routes')
-const new_routes = require('./routes/new_routes')
+const pattern_routes = require('./routes/pattern_routes')
+
 
 const app = express()
 
@@ -81,7 +82,8 @@ app.get('/logout', hasLoggedOut, (req, res) => {
 })
 app.use('/register', isLoggedIn, register_routes)
 app.use('/profile', hasLoggedOut, profile_routes)
-app.use('/new', hasLoggedOut, new_routes)
+app.use('/pattern', hasLoggedOut, pattern_routes)
+//app.use('/new', hasLoggedOut, new_routes)
 
 
 

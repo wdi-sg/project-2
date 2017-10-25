@@ -68,10 +68,15 @@ version 0.1.0 Day 1 (24 Oct):
 * connect to heroku
 * building 3 models
 
+version 0.3.0 Day 2 (25 Oct):
+* added working login-routes, register-routes, profile-routes.
+* added pattern-routes: able to create new pattern, new variation under the pattern.
+* able to update the pattern id or project id to the user upon creation.
+
 To be added:
 * finalise 3 models
 * create the handlebars for the routes
-* create the routes: register, login, pattern, project, profile, home
+* create the routes: project, home
 * include external frameworks
 * bonus features
 ------------

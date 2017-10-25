@@ -16,7 +16,10 @@ const patternSchema = new Schema ({
   //   intermediate : String,
   //   advance : String
   // },
-  variation : [],
+  variation : {
+    type : [],
+    default: []
+  },
   material : String,
   steps : String
 })

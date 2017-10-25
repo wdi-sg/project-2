@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
   // res.redirect(`/profile/${currentUserId}`)
   User
   .findById(req.user.id)
-  // .populate('projects', 'bookmarkPattern', 'pattern')
+  .populate('pattern')
   .then(user => {
     res.render('user/profile', {
       user
@@ -28,7 +28,7 @@ router.put('/', (req,res) => {
   }
   User.findByIdAndUpdate(req.user.id, {
     name : updateData.name,
-    //password : updateData.password, // need to rehash it 
+    //password : updateData.password, // need to rehash it
     slug : newSlug
   })
 })
