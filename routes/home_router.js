@@ -45,8 +45,6 @@ router.post('/addcollection', (req, res) => {
 
 router.get('/profile/:slug', (req, res) => {
   const user = req.user
-  console.log(!user)
-  // why did this not work
   if (!user) {
     console.log('user has not logged in')
     return res.redirect('/')
