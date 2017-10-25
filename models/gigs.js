@@ -8,7 +8,10 @@ const gigSchema = new Schema({
   wage: String,
   description: String,
   skills: Array,
-  author: Array
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }
 })
 
 const Gig = mongoose.model('Gig', gigSchema)
