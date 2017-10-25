@@ -88,12 +88,12 @@ app.post("/testing",(req,res)=>{
   unirest.post("https://neutrinoapi-html-to-pdf.p.mashape.com/html-to-pdf")
   .header("X-Mashape-Key", "SPJC93KUGAmshJA6zzRMzYDjXoKRp1j1dRwjsnL0wdwfZyjVKb")
   .header("Content-Type", "application/x-www-form-urlencoded")
-  .send("content=https://viscuss.herokuapp.com/")
+  .send("content=https://google.com/")
   .send("html-width=1024")
   .send("margin=10")
   .send("title=My Title")
   .end(function (result) {
-    res.contentType('application/pdf').download(result.body)
+    res.contentType('application/pdf').send(result.body)
     // console.log(result.status, result.headers, result.body);
   })
 })
