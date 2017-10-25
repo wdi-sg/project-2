@@ -5,7 +5,7 @@ const passport = require('../config/ppConfig');
 
 //rendering homepage
 router.get('/', (req,res)=>{
-  res.render('home',{
+  res.render('login',{
     title: "Welcome to Fridge Magnets"
   })
 })

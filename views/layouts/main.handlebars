@@ -13,10 +13,16 @@
         {{#if user}}
         <a href="/profile" class="navbar-brand">Fridge Magnets</a>
         <li class="nav-item">
+          <a href="/fridge/enter">Enter Fridge</a>
+        </li>
+        <li class="nav-item">
           <a href="/logout">Logout</a>
         </li>
         {{else}}
         <a href="/" class="navbar-brand">Fridge Magnets</a>
+        <ul class="navbar-nav justify-content-end">
+          <li><a href="/login">Login</a></li>
+        </ul>
         <ul class="navbar-nav justify-content-end">
           <li><a href="/register">Register</a></li>
         </ul>

@@ -1,7 +1,30 @@
 <h1>{{user.name}}'s Fridge</h1>
 
-<ul>
-</ul>
+<div class="row">
+  {{#each members.fridges as |fridge|}}
+  <div class="col-3">
+    <div class="card">
+      <img style="width: 100px" src="/img/refrigerator_outline.png" alt="fridge Image">
+      <div class="card-body">
+        <h4 class="card-title">{{ fridge.name }}</h4>
+        &nbsp;
+        <button class="btn btn-primary form-inline" type="button" onclick="location.href='/fridge/{{fridge.id}}'">Enter</button>
+        <form
+          class="form-inline"
+          action="/fridge/{{ fridge.id }}?_method=DELETE"
+          method="post">
+          &nbsp;
+          <button class="btn btn-danger" type="submit" name="button">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+
+  {{!-- Update 22 October, remove the li grid system to use grid system instead  --}}
+  {{!-- <ul>
+  </ul> --}}
+</div>
 
 
 <div class="btn dropup">
