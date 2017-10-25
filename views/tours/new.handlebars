@@ -5,20 +5,28 @@
   {{!-- <label for="showname">Name of Show</label>
   <input type="text" name="showname" placeholder="e.g. Game of Thrones"> --}}
 
+  <select name="showname">
+    <option value="gameofthrones" selected>Game of Thrones</option>
+    <option value="thelordoftherings">The Lord of the Rings</option>
+    <option value="downtonabbey">Downton Abbey</option>
+    <option value="harrypotter">Harry Potter</option>
+  </select>
+  <br>
+
   <label for="name">Name of Tour</label>
-  <input type="text" name="name" placeholder="e.g. Malta Adventure">
+  <input type="text" name="name" placeholder="e.g. Malta Adventure" required>
   <br>
 
   <label for="overview">Overview</label>
-  <textarea type="text" name="overview" placeholder="e.g. overview" rows="8" cols="80"></textarea>
+  <textarea type="text" name="overview" placeholder="e.g. overview" rows="8" cols="80" required></textarea>
   <br>
 
   <label for="highlights">Highlights</label>
-  <textarea type="text" name="highlights" placeholder="e.g. fun activites" rows="8" cols="80"></textarea>
+  <textarea type="text" name="highlights" placeholder="e.g. fun activites" rows="8" cols="80" required></textarea>
   <br>
 
   <label for="dates">Available Dates</label>
-  <textarea type="text" name="dates" placeholder="e.g. 21 December 2017" rows="8" cols="80"></textarea>
+  <textarea type="text" name="dates" placeholder="e.g. 21 December 2017" rows="8" cols="80" required></textarea>
   <br>
 
   <button type="submit" name="button">Submit</button>

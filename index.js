@@ -16,12 +16,15 @@ const MongoStore = require('connect-mongo')(session)
 const passport = require('./config/ppConfig')
 
 const { hasLoggedOut, isLoggedIn } = require('./helpers')
+
 const User = require('./models/user')
+const Show = require('./models/show')
 
 const register_routes = require('./routes/register_routes')
 const tvshow_routes = require('./routes/tvshow_routes')
 const login_routes = require('./routes/login_routes')
 const tour_routes = require('./routes/tour_routes')
+const review_routes = require('./routes/review_routes')
 
 const app = express()
 
@@ -70,13 +73,22 @@ app.use((req, res, next) => {
 
 // HOMEPAGE
 app.get('/', (req, res) => {
-  res.render('home')
+  Show.find()
+    .then((data) => {
+      res.render('home', { showlist: data })
+      // res.send(data)
+    })
+})
+
+app.get('/show/:id', (req, res) => {
+  res.render('show/show_tourlist')
 })
 
 app.use('/login', login_routes)
 app.use('/register', register_routes)
 app.use('/addtvshows', tvshow_routes)
 app.use('/addtours', tour_routes)
+app.use('/review', review_routes)
 
 app.get('/profile', hasLoggedOut, (req, res) => {
   res.send(req.user)

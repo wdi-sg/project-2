@@ -7,7 +7,7 @@
   <label for="name">Name of Tour</label>
   <input type="text" name="name" placeholder="e.g. Malta Adventure">
   <br>
-  
+
   <label for="overview">Overview</label>
   <textarea type="text" name="overview" placeholder="e.g. overview" rows="8" cols="80"></textarea>
   <br>
@@ -29,13 +29,13 @@
 </form>
 
 <h3>Reviews</h3>
-<form action="/addtours/reviews" method="post">
+<form action="/addtours/{{ tour.id }}?_method=POST/reviews" method="post">
 
-  <label for="title">Title of you review</label>
+  <label for="title">Title</label>
   <input type="text" id="title" name="title" placeholder="e.g. Best Trip Ever">
   <br>
 
-  <label for="description">Your Review</label>
+  <label for="description">Description</label>
   <textarea id="description" name="description" rows="8" cols="80"></textarea>
   <br>
 

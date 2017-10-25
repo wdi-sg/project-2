@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   var formData = req.body
   var newTvShow = new Show()
+  newTvShow.slug = formData.name.toLowerCase().split(' ').join('')
   newTvShow.name = formData.name
   newTvShow.save()
   .then(
@@ -25,15 +26,15 @@ router.post('/', (req, res) => {
 // READ ONE
 router.get('/:id', (req, res) => {
   Show
-  .findById(req.params.id)
-  .then(show => {
-    res.render('tvshows/show', {
-      show
+    .findById(req.params.id)
+    .then(show => {
+      res.render('tvshows/show', {
+        show
+      })
     })
-  })
-  .catch(err => {
-    console.log(err)
-  })
+    .catch(err => {
+      console.log(err)
+    })
 })
 
 // UPDATE ONE

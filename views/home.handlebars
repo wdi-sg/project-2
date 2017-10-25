@@ -1,5 +1,9 @@
-{{#if user}}
+{{!-- {{#if user}}
 <h2>Homepage with login status</h2>
 {{else}}
 <h2>Homepage not login</h2>
-{{/if}}
+{{/if}} --}}
+
+{{#each showlist as |showlist|}}
+  <a href="/show/{{showlist.slug}}">{{ showlist.name }}</a>
+{{/each}}
