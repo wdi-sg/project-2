@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Medicate</title>
+    <!-- For responsive layout, http://getbootstrap.com/docs/4.0/getting-started/introduction/#responsive-meta-tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+      <nav
+        class="navbar navbar-expand-lg navbar-light justify-content-between"
+        style="background-color: #e3f2fd;"
+      >
+        {{!-- Remember that anything written here, will be displayed for all pages --}}
+        <a class="navbar-brand mb-0 h1" href="/">Medicate</a>
+
+        {{!-- Navbar hamburger icon for responsive reasons --}}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        {{!-- The actual navbar items --}}
+        <div class="collapse navbar-collapse " id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav">
+            {{#if user}}
+              <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+              </li>
+            {{else}}
+              {{!-- TODO: Show this <li class="nav-item">
+              if user has NOT logged in --}}
+              {{!-- UPDATE 20 Oct, adding link to register page  --}}
+              <li class="nav-item">
+                <a class="nav-link" href="/register">Sign Up</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+            {{/if}}
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <iframe width="600" height="400" src="https://data.gov.sg/dataset/listing-of-licensed-pharmacies/resource/16db7800-d81e-4d0d-9d59-936f2c10d668/view/1a13c7da-a4a8-4808-b34b-eca95eef94a4" frameBorder="0"> </iframe>
+        {{{ body }}}
+      </div>
+      <footer class="bd-footer text-muted">
+        <div class="container-fluid p-3 p-md-5">
+          <p class="text-center">&copy by <a href="https://github.com/g174" target="_blank" rel="noopener">@Grace</a>, and <a href="http://getbootstrap.com/" target="_blank">Bootstrap 4</a> 🚀</p>
+        </div>
+      </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
+    <script src="/assets/js/frontend.js" charset="utf-8"></script>
+  </body>
+</html>
