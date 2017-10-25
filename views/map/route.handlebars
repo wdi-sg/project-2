@@ -2,7 +2,7 @@
 
 <div id="map"></div>
 <div id="floating-panel">
-<b>Start: </b>
+{{!-- <b>Start: </b>
 <select id="start">
   <option value="general assembly singapore, sg">GA</option>
   <option value="yishun">Yishun</option>
@@ -12,14 +12,47 @@
 <select id="end">
   <option value="ang mo kio, sg">AMK</option>
   <option value="Capital Square, sg">Capital Square</option>
-</select>
+</select> --}}
 <form action="/route" method="post">
-  <label for="start location">Start</label>
-  <input type="text" name="start" id="field1" placeholder="Address/Postal Code">
-  <label for="end location">Start</label>
-  <input type="text" name="end" placeholder="Address/Postal Code">
+  <label for="start location"><b>Start bldg: </b></label>
+  <input type="text" name="start" id="field1" size="35" placeholder="Building name/Address/Postal code">
+  <br>
+  <label for="end location"><b>End bldg: </b></label>
+  <input type="text" name="end" id="field2" size="35" placeholder="Building name/Address/Postal code">
 </form>
+
 </div>
+<table id="address">
+      <tr>
+        <td class="label">Street address</td>
+        <td class="slimField"><input class="field" id="street_number"
+              disabled="true"></input></td>
+        <td class="wideField" colspan="2"><input class="field" id="route"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">City</td>
+        <!-- Note: Selection of address components in this example is typical.
+             You may need to adjust it for the locations relevant to your app. See
+             https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
+        -->
+        <td class="wideField" colspan="3"><input class="field" id="locality"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">State</td>
+        <td class="slimField"><input class="field"
+              id="administrative_area_level_1" disabled="true"></input></td>
+        <td class="label">Zip code</td>
+        <td class="wideField"><input class="field" id="postal_code"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">Country</td>
+        <td class="wideField" colspan="3"><input class="field"
+              id="country" disabled="true"></input></td>
+      </tr>
+    </table>
 {{!-- <div id="infowindow-content">
   <img src="" width="16" height="16" id="place-icon">
   <span id="place-name"  class="title"></span><br>
