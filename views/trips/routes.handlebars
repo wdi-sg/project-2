@@ -1,19 +1,21 @@
 <br/><br/><br/>
 
+<div class="container">
 <div class="row">
   {{!-- Loop --}}
   {{#each travelplans as | route |}}
   <div class="col-4">
 
     <div class="card">
+      <img class="card-img-top" src="/assets/img/ilya-yakover.jpg" alt="Card image cap">
       <div class="card-body">
-        <h4 class="card-title">{{ route.dateCreated}}</h4>
+        <h6 class="card-title">{{route.title}}</h6>
         <p class="card-text">
-          {{!-- 22 Oct: show resto address here instead of just link  --}}
           {{ route.address }}, {{ route.category }}<br>
-          {{ route.description}}
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ route.description}}</li>
+          </ul>
         </p>
-
 
         <form
           class="form-inline"
@@ -27,10 +29,12 @@
           <button class="btn btn-danger" type="submit" name="button">Delete</button>
           {{!-- don't need input fields here, cos we're not updating anything --}}
         </form>
+
+        <p class="card-text"><small class="text-muted">{{route.dateCreated}}</small></p>
       </div>
     </div>
   </div>
   {{/each}}
 
-
+</div>
 </div>

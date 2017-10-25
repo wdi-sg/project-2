@@ -5,10 +5,10 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
- #map {
-      width: 100%;
-      height: 400px;
-      }
+#map {
+     width: 100%;
+     height: 400px;
+     }
 .controls {
   background-color: #fff;
   border-radius: 2px;

@@ -1,6 +1,6 @@
 <br/><br/><br/>
 
-<h2>{{ travelplans.title }}</h2>
+<h6>{{ travelplans.title }}</h6>
 ({{travelplans.dateCreated}})
 
 <p>
@@ -9,7 +9,7 @@
   {{ travelplans.description }}
 </p>
 
-<h3>Update</h3>
+<h6>Update</h6>
 <form action="/routes/{{ travelplans.id }}?_method=PUT" method="post">
   <label for="title">Date</label>
   <input type="date" class="form-control" name="trips[dateCreated]" value="{{ travelplans.dateCreated }}">

@@ -12,6 +12,9 @@ const path = require('path') // for Public files
 const exphbs = require('express-handlebars') // for Handlebars
 const bodyParser = require('body-parser') // for accessing POST request
 const methodOverride = require('method-override') // for accessing PUT / DELETE
+const multer = require('multer')
+const cloudinary = require('cloudinary')
+const upload = multer({ dest: './uploads/' })
 
 // UPDATE 23 Oct
 const session = require('express-session') // to create session and cookies
@@ -111,6 +114,10 @@ app.use('/login', isLoggedIn, login_routes)
 app.get('/profile', hasLoggedOut, (req, res) => {
   res.send(req.user)
 })
+
+app.locals = {
+  GOOGLE_MAPS_URL: process.env.GOOGLE_MAPS_URL
+}
 
 // opening the port for express
 app.listen(port, () => {

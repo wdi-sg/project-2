@@ -1,8 +1,6 @@
 const Travelplan = require('../models/travel')
 const express = require('express')
 const router = express.Router()
-const moment = require('moment')
-moment().format()
 
 router.get('/new', (req, res) => {
   res.render('trips/new')
@@ -32,7 +30,7 @@ router.put('/:id', (req, res) => {
     title: formData.title,
     address: formData.address,
     category: formData.category,
-    date: moment(formData.dateCreated),
+    date: formData.dateCreated,
     description: formData.description
   })
   .then(() => res.redirect(`/routes/${req.params.id}`))
@@ -52,7 +50,7 @@ router.post('/', (req, res) => {
 
   var newTravelplan = new Travelplan()
   newTravelplan.title = formData.title
-  newTravelplan.dateCreated = moment(formData.dateCreated)
+  newTravelplan.dateCreated = formData.dateCreated
   newTravelplan.category = formData.category
   newTravelplan.address = formData.address
   newTravelplan.description = formData.description
@@ -64,8 +62,5 @@ router.post('/', (req, res) => {
     err => res.send(err)
   ) // why? mongoose save(), doesn't have .catch()
 })
-
-
-
 
 module.exports = router
