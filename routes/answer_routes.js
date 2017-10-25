@@ -5,11 +5,18 @@ const Thread = require('../models/threads')
 const Answer = require("../models/answers")
 
 router.post('/', function (req, res) {
-  console.log(req.body)
+  var author = "anonymous"
+  var authorName = "anonymous"
+  if (req.user) {
+    author = req.user.id
+    authorName = req.user.name
+  }
+  console.log("Added new answer =>",req.body)
   let newAnswer = new Answer({
     description: req.body.userinput,
     parent: req.body.id,
-    creator: req.user.id
+    creator: author,
+    creatorName: authorName
   })
   newAnswer.save()
   .then(()=>{

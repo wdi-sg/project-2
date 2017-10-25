@@ -8,7 +8,8 @@ const answerSchema = new mongoose.Schema({
   downVotes: { type: Number, default: 0 },
   totalVotes: { type: Number, default: 0 },
   parent: Schema.Types.ObjectId,
-  creator: Schema.Types.ObjectId
+  creator: String,
+  creatorName: String
 })
 
 const Answer = mongoose.model('answers', answerSchema)

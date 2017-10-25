@@ -8,6 +8,8 @@ const passport = require("./config/ppConfig")
 const methodOverride = require('method-override')
 const cloudinary = require('cloudinary')
 const unirest = require("unirest")
+const flash = require("connect-flash")
+
 const { hasLoggedOut, isLoggedIn } = require('./helpers')
 
 
@@ -33,7 +35,8 @@ app.use(session({
   saveUninitialized: true, //saves session and stores it in DB
   store: new MongoStore({ mongooseConnection: mongoose.connection }) // store it in MongoDB, this requires mongo-connect to work
 }))
-
+// ====== set up flash ======
+app.use(flash())
 cloudinary.config({
   cloud_name: 'josephpung',
   api_key: '224536719142566',

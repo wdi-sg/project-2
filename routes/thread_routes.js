@@ -21,8 +21,8 @@ router.delete("/:id", (req,res)=>{
     .then(thread=>{
       Answer.find({parent: req.params.id})
       .then(result=>{
-        if(thread.creator==="anonymous"){
 
+        if(thread.creator==="anonymous"){
           res.render('user/singlethread', {
             data: thread,
             author: "anonymous",
