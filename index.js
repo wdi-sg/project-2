@@ -108,6 +108,22 @@ app.get('/search', (req, res) => {
   res.render('search')
 })
 
+app.post('/search', (req, res) => {
+  const keyword = req.body.keyword
+  const regex = new RegExp(keyword, 'i')
+  // make a regex patter out of the keyword
+  // put an 'i' option so it's case INSENSITIVE
+
+  Location.find({
+    name: regex
+  })
+  .limit(9)
+  // so we don't show all
+  // update 22 oct, show 9 for aesthetics
+  .then(locations => res.send(locations))
+  .catch(err => res.send(err)) // in case we have an error
+})
+
 // Route to profile
 app.get('/profile', hasLoggedOut, (req, res) => {
   Location.find({

@@ -23,20 +23,6 @@ const $searchResults = $('#searchResults')
     .catch(err => console.log(err))
   })
 
-  // UPDATE AFTER CLASS 20 OCT
-  // separate the function, so it's less cluttered
-  // PSEUDOCODE
-  // - retrieved the data => expecting an array of 10 restaurants
-  // - clear the search results area
-  // - map them to array of 10 `<li>` object
-  // - append them to the `<ul id="searchResults">`
-
-  // PSEUDOCODE 22 Oct - to follow closely the homepage
-  // - limit to 9 array search results instead
-  // - map them to array of 10 `<div class="col-4">` obj
-  // - append them to a new `<div class="row">`
-
-  // - NOTICE: for easy checking, split this screen side by side with `home.handlebars`
 
   function showResults (data) {
     let allLocations = data.map(location => {
@@ -67,14 +53,6 @@ const $searchResults = $('#searchResults')
       $newCard.append($newCardBody)
       $newCol.append($newCard)
       return $newCol
-
-      // UPDATE 22 Oct, we dont use the structure below anymore
-
-      // // UPDATE AFTER 20 Oct
-      // // add link to the list, so you can click on the restaurant name
-      // var $newA = $('<a>')
-      // $newA.attr('href', `/restaurants/${restaurant._id}`)
-      // $newA.text(restaurant.name)
     })
 
     $searchResults.html('')

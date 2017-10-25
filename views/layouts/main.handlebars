@@ -37,10 +37,10 @@
           <a class="navbar-link  is-active" href="/login">
             Login
           </a>
+          {{/if}}
           <a class="navbar-link  is-active" href="/search">
             Search Posts
           </a>
-          {{/if}}
         </div>
       </div>
     </div>
@@ -65,15 +65,17 @@
         </div> --}}
   </nav>
 
-  {{!-- <section class="hero is-dark">
+  {{!-- <section class="hero is-primary is-bold">
     <div class="hero-body">
-      <div class="container"> //delete this line
-        <h1 class="title">{{ title }}</h1>
+      <div class="container">
+        <h1 class="title">
+          {{ title }}
+        </h1>
       </div>
     </div>
   </section> --}}
-    {{!-- Remember that anything written here, will be displayed for all pages --}}
-    {{!-- <h1><a href="/">Foodiez</a></h1> --}}
+
+
     <div class="container is-fluid">
         <div class="notification">
               {{{ body }}}
