@@ -1,11 +1,31 @@
 
 <h3>Show all</h3>
 
-  {{#each components as |compo|}}
-<div class="">
 
-  {{ compo.name }}, {{ compo.description }}, {{ compo.vendor }},
-  {{ compo.unit_cost }}, {{compo.quantity}}
 
-</div>
-  {{/each}}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Vendor</th>
+        <th scope="col">Unit cost</th>
+        <th scope="col">Quantity</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    {{#each components as |compo|}}
+
+    <tbody>
+      <tr>
+        <td>{{ compo.name }}</td>
+        <td>{{ compo.description }}</td>
+        <td>{{ compo.vendor }}</td>
+        <td>{{ compo.unit_cost }}</td>
+        <td>{{compo.quantity}}</td>
+        <td><a href="/components/{{ compo.id }}" class="btn">Edit</a></td>
+      </tr>
+    </tbody>
+
+{{/each}}
+</table>
