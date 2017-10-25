@@ -8,7 +8,14 @@ const userSchema = new Schema({
   name: String,
   email: String,
   password: String,
-  slug: String
+  day: String,
+  month: String,
+  year: String,
+  slug: String,
+  fd: [{
+    type: Schema.Types.ObjectId,
+    ref: 'fixedDeposit'
+  }]
 })
 
 userSchema.pre('save', function(next) {

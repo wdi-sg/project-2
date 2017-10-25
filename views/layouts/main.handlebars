@@ -4,60 +4,89 @@
     <meta charset="utf-8">
     <title>Fat Pocket</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" rel="stylesheet"/>
   </head>
   <body>
 
-    <nav
-      class="navbar navbar-expand-lg navbar-light justify-content-between"
-      style="background-color: #e3f2fd;"
-    >
-      {{!-- Remember that anything written here, will be displayed for all pages --}}
-      <a class="navbar-brand mb-0 h1" href="/">Foodiez</a>
+{{!-- ---------------------------------------------------------------- --}}
 
-      {{!-- Navbar hamburger icon for responsive reasons --}}
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <nav>
+      {{!-- <div class="navbar-wrapper container active">
+        <a href="#!" class="brand-logo">Fat Pocket</a> --}}
 
-      {{!-- The actual navbar items --}}
-      <div class="collapse navbar-collapse " id="navbarNav">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-          </li>
+        <ul>
           <li class="nav-item">
-            <a class="nav-link" href="/reviews">Reviews</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/restaurants/new">New Restaurant</a>
+            <a class="nav-link" href="/credit-card">Credit Card</a>
           </li>
 
-          {{!-- TODO: Show this <li class="nav-item">
-           if user has logged in --}}
-          <li class="nav-item">
-            <a class="nav-link" href="/profile">Profile</a>
-          </li>
+          <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Bank Account</a>
+            <ul id='dropdown1' class='dropdown-content'>
+              <li><a class="nav-link" href="/fixed-deposit">Fixed Deposit</a></li>
+              <li><a class="nav-link" href="/savings-account">Savings Account</a></li>
+            </ul>
 
-          {{!-- UPDATE AFTER 20 OCT --}}
+          <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Investment (Coming Soon!)</a>
+            <ul id='dropdown1' class='dropdown-content'>
+              <li><a class="nav-link" href="/investment-account">Investment Account</a></li>
+              <li><a class="nav-link" href="/news">News</a></li>
+            </ul>
+
+            {{#if user}}
+            {{!-- <li class="nav-item"> --}}
+              <li class="nav-item"><a class="nav-link" href="/profile/{{user.slug}}">Profile</a></li>
+              <li><a class="nav-link" href="/logout">Logout</a></li>
+              <li class="nav-item">{{user.name}}</li>
+
+            </li>
+            {{else}}
           <li class="nav-item">
-            <a class="nav-link" href="/search">Search Restaurant</a>
+            <a class="nav-link" href="/login">Login</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
+          {{/if}}
         </ul>
+      </div>
+    </nav>
 
-    <div class="container-fluid">
+{{!-- ---------------------------------------------------------------- --}}
+
       {{{ body }}}
-    </div>
-    <footer class="bd-footer text-muted">
-      <div class="container-fluid p-3 p-md-5">
-        <p class="text-center">Designed and built with all the ❤️&nbsp; in the 🌍&nbsp; by <a href="https://github.com/primaulia" target="_blank" rel="noopener">@primaulia</a>, and <a href="http://getbootstrap.com/" target="_blank">Bootstrap 4</a> 🚀</p>
+
+
+{{!-- ---------------------------------------------------------------- --}}
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col xl7 l7 s12">
+            <h5 class="white-text">Footer Content</h5>
+            <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+          </div>
+          <div class="col xl3 l3 offset-l2 s12">
+            <h5 class="white-text">Links</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2017 Fat Cat Lady Pte Ltd. All rights reserved. Use of this site constitutes acceptance of our Terms of Use and Privacy Policy
+        </div>
       </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
-    <script src="/assets/js/frontend.js" charset="utf-8"></script>
-  </body>
+{{!-- ---------------------------------------------------------------- --}}
+
+    <!--Import jQuery before materialize.js-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="/assets/js/frontend.js"></script>
+ </body>
 </html>
