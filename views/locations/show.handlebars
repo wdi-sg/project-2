@@ -4,58 +4,45 @@
 <h2>{{ location.title }}</h2><br>
 <p>{{ location.description }}</p><br>
 
-
-{{!-- Hide the part below if not logged in  --}}
 {{#if user}}
+<h3>Add Comment</h3>
+<form action="/comments" method="post">
+  <input type="hidden" name="parent" value={{location.id}}>
 
-<h3>Update</h3>
-<form enctype="multipart/form-data" action="/locations/{{ location.id }}?_method=PUT" method="post">
-  <label for="name">Name :</label>
-  <input type="text" name="name" value="{{ location.name }}">
-
-  <label for="country">Country :</label>
-  <input type="text" name="country" value="{{ location.country }}">
-
-  <label for="type">Type :</label>
-  <input type="text" name="type" value="{{ location.type }}"><br>
-
-  <label for="title">Title :</label>
-  <textarea type="text" id="title" name="title" rows="1" cols="80" value="{{ location.title }}"></textarea><br>
-
-  <label for="description">Description</label><br>
-  <textarea id="description" name="description" rows="8" cols="80" value="{{ location.description }}"></textarea><br>
-
-  <label for="image">Image :</label>
-    <input type="file" name="image">
+  <label for="description">Comment :</label><br>
+  <textarea id="description" name="description" rows="2" cols="100"></textarea>
+  <br>
 
   <button type="submit" name="button">Submit</button>
 </form><br>
 
-<h3>Delete</h3><br>
-<form action="/locations/{{ location.id }}?_method=DELETE" method="post">
-  <button type="submit" name="button">Delete</button>
-</form><br>
-
-{{else}}
-<h2>Please Log-In to Update Post</h2>
-
-  {{!-- <h3>Add Comment</h3>
-  <form action="/comments" method="post">
-
-    <label for="description">Comment :</label><br>
-    <textarea id="description" name="description" rows="8" cols="80"></textarea>
-    <br>
-
-    <button type="submit" name="button">Submit</button>
-  </form>
-
+<h2>Comments</h2>
 <ul>
-  {{#each comments as |comment|}}
-    <li>{{ comment.description }}</li>
-  {{/each}}
+
+{{#each comments as |comment|}}
+  <li>{{ comment.name }}  - {{ comment.description }}</li>
+
+  {{!-- if user is the one who created the comment, then you can delete it --}}
+  {{#checkComment comment.author ../user }}
+    <form action="/comments/{{ this.id }}?_method=DELETE" method="post">
+      <button type="submit" name="button">Delete</button>
+    </form><br>
+  {{/checkComment }}
+
+{{/each}}
+
 </ul>
 
 {{else}}
-<h2>Please Log-In to Add Comments</h2> --}}
+<h2>Please Log-In to Add Comments</h2><br>
+
+<h2>Comments</h2>
+<ul>
+
+{{#each comments}}
+  <li>{{ this.name }}  -  {{ this.description }}</li>
+{{/each}}
+
+</ul>
 
 {{/if}}

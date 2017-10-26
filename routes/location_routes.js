@@ -19,8 +19,36 @@ router.get('/:id', (req, res) => {
     Comment.find({
       location: location.id
     })
-    .then(comments =>
+    .then(comments => {
+      // var user = req.user
+      // res.send({
+      //   location,
+      //   comments,
+      //   user
+      // })
+
       res.render('locations/show', {
+        location,
+        comments
+      })
+    })
+    // res.send(location)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+})
+
+router.get('/:id/edit', (req, res) => {
+  Location
+  .findById(req.params.id)
+  .populate('owner')
+  .then(location => {
+    Comment.find({
+      location: location.id
+    })
+    .then(comments =>
+      res.render('locations/edit', {
         location,
         comments
       })
@@ -41,11 +69,13 @@ router.get('/:id/comment', (req, res) => {
     Comment.find({
       location: location.id
     })
-    .then(comments =>
-      res.render('locations/comment', {
+    .then(comments => {
+      console.log(comments)
+      res.render('locations/show', {
         location,
         comments
       })
+    }
     )
     // res.send(location)
   })
@@ -54,19 +84,18 @@ router.get('/:id/comment', (req, res) => {
   })
 })
 
-
 router.put('/:id', upload.single('image'), (req, res) => {
   var file = req.file
   cloudinary.uploader.upload(file.path, (result) => {
-  var formData = req.body
-  Location.findByIdAndUpdate(req.params.id, {
-    name: formData.name,
-    country: formData.country,
-    type: formData.type,
-    title: formData.title,
-    description: formData.description,
-    image: result.secure_url
-  })
+    var formData = req.body
+    Location.findByIdAndUpdate(req.params.id, {
+      name: formData.name,
+      country: formData.country,
+      type: formData.type,
+      title: formData.title,
+      description: formData.description,
+      image: result.secure_url
+    })
   .then(() => res.redirect(`/locations/${req.params.id}`))
   .catch(err => console.log(err))
   })

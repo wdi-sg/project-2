@@ -1,0 +1,40 @@
+<h2>{{ location.name }} <small>({{ location.country }})</small></h2>
+<small>{{ location.type }}</small><br>
+<img src="{{location.image}}" width=500 alt="Image">
+<h2>{{ location.title }}</h2><br>
+<p>{{ location.description }}</p><br>
+
+{{#if user}}
+
+<h3>Update</h3>
+<form enctype="multipart/form-data" action="/locations/{{ location.id }}?_method=PUT" method="post">
+  <label for="name">Name :</label>
+  <input type="text" name="name" value="{{ location.name }}">
+
+  <label for="country">Country :</label>
+  <input type="text" name="country" value="{{ location.country }}">
+
+  <label for="type">Type :</label>
+  <input type="text" name="type" value="{{ location.type }}"><br>
+
+  <label for="title">Title :</label>
+  <textarea type="text" id="title" name="title" rows="1" cols="80" value="{{ location.title }}"></textarea><br>
+
+  <label for="description">Description</label><br>
+  <textarea id="description" name="description" rows="8" cols="80" value="{{ location.description }}"></textarea><br>
+
+  <label for="image">Image :</label>
+    <input type="file" name="image">
+
+  <button type="submit" name="button">Submit</button>
+</form><br>
+
+<h3>Delete</h3><br>
+<form action="/locations/{{ location.id }}?_method=DELETE" method="post">
+  <button type="submit" name="button">Delete</button>
+</form><br>
+
+{{else}}
+<h2>Please Log-In to Update Post</h2>
+
+{{/if}}

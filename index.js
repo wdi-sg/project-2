@@ -38,7 +38,21 @@ const admin_routes = require('./routes/admin_routes')
 const app = express()
 
 // VIEW ENGINES aka handlebars setup
-app.engine('handlebars', exphbs({ defaultLayout: 'main'}))
+
+var hbs = exphbs.create({
+    defaultLayout: 'main',
+    helpers      : {
+      checkComment: function(first, second, options) {
+        console.log(String(first), String(second._id))
+
+        if (String(first) === String(second._id)) {
+          return options.fn(this)
+        }
+      }
+    }
+});
+
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars')
 
 // MIDDLEWARES
@@ -138,6 +152,29 @@ app.get('/profile', hasLoggedOut, (req, res) => {
   // res.send(req.user)
 })
 
+// to view the post in homepage
+app.get('/locations/:id/post', (req, res) => {
+  Location
+  .findById(req.params.id)
+  .populate('owner')
+  .then(location => {
+    Comment.find({
+      location: location.id
+    })
+    .then(comments => {
+      console.log(comments)
+      res.render('post', {
+        location,
+        comments
+      })
+    }
+    )
+    // res.send(location)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+})
 
 //  Route to logout
 app.get('/logout', hasLoggedOut, (req, res) => {
