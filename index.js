@@ -14,7 +14,7 @@ const multer = require('multer')
 const cloudinary = require('cloudinary')
 const server = require('http')
 const io = require('socket.io').listen(server)
-var upload = multer({ dest: './uploads/' })
+const upload = multer({ dest: './uploads/' })
 
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
@@ -73,35 +73,43 @@ app.get('/', (req, res) => {
 })
 
 app.get('/profile/:slug', hasLoggedOut, (req, res) => {
-  User.findOne({
-    slug: req.params.slug
-  })
-  .then((user) => {
+  // User.findOne({
+  //   slug: req.params.slug
+  // })
+  // .then((user) => {
+  //   res.render('users/show', {
+  //     user
+  //   })
+  // })
+  Listings
+  .find()
+  .then(listings =>{
     res.render('users/show', {
-      user
+      listings
     })
+  })
+  .catch(err =>{
+    console.log(err);
   })
 })
 
 app.post('/profile/:slug', (req, res) =>{
   Listings.find()
-  .then((listing) => {
-    // if(req.user._id === req.listings.author)
-    res.render('/users/show',{
-      listing
-    })
+  .then((listings) => {
+    // if(req.user._id === listing.author)
+    res.send(listings)
   })
 })
 
-app.get('/logout', hasLoggedOut, (req, res) => {
-  req.logout()
-  res.redirect('/')
-})
 
 app.use('/login', isLoggedIn, login_routes)
 app.use('/register', isLoggedIn, register_routes)
 app.use('/listings', hasLoggedOut, listings_routes)
 
+app.get('/logout', hasLoggedOut, (req, res) => {
+  req.logout()
+  res.redirect('/')
+})
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`)
