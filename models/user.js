@@ -2,6 +2,23 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt');
 
+const courseSchema = new Schema({
+  title: String,
+  
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 // create a schema
 const userSchema = new Schema({
   name: {type: String, required: true},
@@ -9,7 +26,8 @@ const userSchema = new Schema({
   password: {type: String},
   pic: {type: String},
   answer: {type: Array, default : []},
-  questions: {type: Array, default : []}
+  questions: {type: Array, default : []},
+  type: {type: String, default:"user"}
 })
 
 

@@ -15,7 +15,6 @@
       <div class="nav-wrapper teal darken-1">
       <ul class="left hide-on-med-and-down">
         <a href="/" class="brand-logo center">ViscuSS</a>
-      {{!-- <li><a href="/">Home</a></li> --}}
       <li><a href="/newquestion">Add a question</a></li>
       {{#if currentUser}}
       <li><a href="/profile">{{currentUser.name}}</a></li>
@@ -25,6 +24,7 @@
       {{/if}}
       <li><a href="/search">Search</a></li>
     </ul>
+
     <ul class="right">
       <li><a href="/admin">Admin</a></li>
     </ul>
@@ -35,9 +35,6 @@
   </div>
   <div class="section-white">
     <div class="row container">
-
-
-
       <h1>{{title}}</h1>
       {{> alerts }}
       {{{body}}}
@@ -49,6 +46,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/assets/js/materialize.min.js"></script>
     <script src="/assets/js/frontend.js"></script>
+  <!-- set up uploadcare -->
     <script>
   UPLOADCARE_LOCALE = "en";
   UPLOADCARE_TABS = "file url facebook gdrive gphotos dropbox instagram evernote flickr skydrive";

@@ -17,14 +17,38 @@
        data-clearable = "true" />
        <input type="submit" value="Update">
 </form>
-  <p><h3>Answers</h3>
+
+<ul class="collapsible" data-collapsible="accordion">
+   <li>
+     <div class="collapsible-header"><i class="material-icons">chrome_reader_mode</i>Threads by You</div>
+     <div class="collapsible-body">
+       {{#each questions}}
+     <a href="/thread/{{this.id}}">{{this.question}}</a>
+       <form action="/thread/{{ this.id }}?_method=DELETE" method="post">
+         <button type="submit" name="button">Delete</button>
+       </form>
+     {{/each}}
+   </div>
+   </li>
+   <li>
+     <div class="collapsible-header"><i class="material-icons">place</i>Answers by You</div>
+     <div class="collapsible-body">
+       {{#each answers}}
+     <a href="/thread/{{this.parent}}">{{this.description}}</a>
+       <form action="/addAnswer/{{ this.id }}?_method=DELETE" method="post">
+         <button type="submit" name="button">Delete</button>
+       </form>
+     {{/each}}
+   </div>
+   </li>
+ </ul>
+  {{!-- <p><h3>Answers</h3>
   {{#each answers}}
   <li><a href="/thread/{{this.parent}}">{{this.description}}</a>
     <form action="/addAnswer/{{ this.id }}?_method=DELETE" method="post">
   <button type="submit" name="button">Delete</button>
 </form>
 </li>
-  {{!-- <p>=>{{this.description}}</p> --}}
   {{/each}}
   </p>
   <p><h3>Threads Started By User</h3>
@@ -32,7 +56,6 @@
   <li><a href="/thread/{{this.id}}">{{this.question}}</a><form action="/thread/{{ this.id }}?_method=DELETE" method="post">
 <button type="submit" name="button">Delete</button>
 </form></li>
-  {{!-- <p>=>{{this.description}}</p> --}}
   {{/each}}
-  </p>
+  </p> --}}
 </div>

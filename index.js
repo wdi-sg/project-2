@@ -84,49 +84,6 @@ app.use("/admin", admin_routes)
 
 
 
-
-
-app.post('/uploadImage', upload.single('myFile'), function(req, res) {
-  cloudinary.uploader.upload(req.file.path, function(result) {
-    res.send(result);
-  })
-})
-
-
-// app.post('/addquestions', function (req, res) {
-//   var creator = ""
-//   if(!req.user) creator = "anonymous"
-//   else if(req.user.id) creator = req.user.id
-//
-//   let newQues = new Thread({
-//     question: req.body.question,
-//     description: req.body.description,
-//     creator: creator
-//
-//   })
-//
-//   newQues.save()
-//   .then(output => {
-//     displayResults(output.ops)
-//   })
-//   // debug code (output request body)
-//   res.redirect("/")
-// })
-
-// app.post("/landingpage/register", (req,res)=>{
-//   var formData = req.body // if this is modified, change the landingpage fields as well as ppConfig
-//   let newUser = new User({
-//     name: formData.name,
-//     email: formData.email,
-//     password: formData.password
-//   })
-//
-//   newUser.save()
-//   .then(user=>{
-//     res.redirect(`/profile`)
-//   })
-// })
-
 ///////// TESTING AREA ///////////
 
 

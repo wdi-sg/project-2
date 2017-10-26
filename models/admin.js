@@ -9,6 +9,7 @@ const adminSchema = new Schema({
   password: {type: String},
   pic: String,
   adminCode: {type: String, required: true},
+  type: {type: String, default: "admin"}
 })
 
 

@@ -7,6 +7,8 @@ const Thread = require('../models/threads')
 const Admin = require("../models/admin")
 const Answer = require("../models/answers")
 
+const { hasLoggedOut, isLoggedIn, isAdmin } = require('../helpers')
+
 
 router.get("/", (req,res)=>{
 res.render("admin/admin_landingpage",{
@@ -15,14 +17,14 @@ res.render("admin/admin_landingpage",{
 
 })
 
-router.get("/console",(req,res)=>{
+router.get("/console",isAdmin, (req,res)=>{
 
   res.render("admin/admin_console",{
     title: "Admin Console"
   })
 })
 
-router.post("/login", passport.authenticate("local",{
+router.post("/login", passport.authenticate("local_admin",{
   successRedirect: "/admin/console",
   failureRedirect: "/admin",
   failureFlash: 'Invalid Username/Password',
