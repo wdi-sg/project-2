@@ -75,12 +75,12 @@
               <td> <input type="email" name="email" value="{{this.email}}" ></td>
               <td> {{this.id}}</td>
               <td>
-                <input class="btn black"type="submit" name="" value="Update">
+                <button class="btn black" type="submit" name="button"><i class="material-icons">brush</i></button>
               </td>
              </form>
               <td>
               <form class="" action="/user/{{this.id}}?_method=DELETE" method="post">
-                <button class="btn black" type="button" name="button"><i class="material-icons">delete</i></button>
+                <button class="btn black" type="submit" name="button"><i class="material-icons">delete</i></button>
                 </form>
             </td>
             </tr>
