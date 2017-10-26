@@ -24,6 +24,7 @@ const profileRoutes = require('./routes/profile_routes')
 
 const User = require('./models/user')
 const Gig = require('./models/gigs')
+const Skill = require('./models/skills')
 
 const app = express()
 
