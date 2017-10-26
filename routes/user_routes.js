@@ -1,19 +1,24 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
+const Tour = require('../models/tour')
 
+// PRINT TOUR IN CART
 router.get('/cart', (req, res) => {
-  console.log('we are in the cart')
-
   User.findOne({slug: req.user.slug})
-  .populate('cart')
+  .populate('cart.bookedTour')
   .then(user => {
-    console.log(user)
-    var context = user.cart
-    res.render('users/cart', {
-      context
-    })
+    var cart = user.cart
+    res.render('users/cart', { userCart: cart })
   })
+})
+
+// DELETE TOUR IN CART
+router.delete('/cart', (req, res) => {
+  Tour.findByIdAndRemove(this._id)
+  .populate('slug')
+  .then(() => res.render('users/cart'))
+  .catch(err => console.log(err))
 })
 
 module.exports = router

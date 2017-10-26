@@ -1,11 +1,19 @@
 <h3>Your Cart</h3>
 
-
 <ul>
-  {{#each context as |item|}}
-    {{!-- <li>{{ item.name }}</li> --}}
-    <a href="/show/tourdetails/{{item.slug}}">{{ item.name }}</a>
-    <button>Delete Tour</button>
+  {{#each userCart as |tour|}}
+    <div>
+      <a href="/show/tourdetails/{{tour.bookedTour.slug}}">{{ tour.bookedTour.name }}</a>
+      <p>{{ tour.tourDate }}</p>
+    </div>
+    <div class="row">
+      <form action="/{{tour.bookedTour.slug}}/cart?_method=DELETE" method="post">
+        <button class="btn waves-effect waves-light" type="delete" name="button">Delete
+          <i class="material-icons right">delete</i>
+        </button>
+      </form>
+    </div>
+
     <br>
   {{/each}}
 </ul>

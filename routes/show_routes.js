@@ -10,7 +10,7 @@ const Review = require('../models/review')
 router.get('/:name', (req, res) => {
   Tour.find({showname: req.params.name})
   .then(tours => {
-    console.log(tours)
+    // console.log(tours)
     res.render('show/show_tourlist', {
       data: tours
     })
@@ -35,23 +35,25 @@ router.get('/tourdetails/:slug', (req, res) => {
   })
 })
 
-// ADD TO CART
+// SAVE TOUR TO CART
 router.post('/tourdetails/:slug', (req, res) => {
   Tour.findOne({slug: req.params.slug}) // takes :name from previous line and uses it to find the tour obj
   .then(tour => { // the result is named called tour and passed as an argument
     var tourId = tour._id // this is the tour's id
     var userId = req.user.id // this is the current logged in user's id
     var date = req.body.datechosen
-    console.log(date)
-    // User.findById(userId)
-    // .then(user => {
-    //   user.cart.push(tourId)
-    //   user
-    //   user.save()
-    // })
-    // .then(
-    //   () => res.redirect('/')
-    // )
+
+    var selectedTour = {
+      tourDate: date,
+      bookedTour: tourId
+    }
+
+    User.findById(userId)
+    .then(user => {
+      user.cart.push(selectedTour)
+      user.save()
+      .then(() => res.redirect('/'))
+    })
   })
 })
 

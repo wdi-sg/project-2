@@ -13,7 +13,6 @@ const userSchema = new Schema({
   [{
     tourDate: Date,
     bookedTour: tourId
-
   }]
 })
 
