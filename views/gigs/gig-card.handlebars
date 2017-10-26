@@ -8,6 +8,6 @@
 <h1>Here are the skills I'll need from you: {{gig.skills}}</h1>
 <h1>Contact Me! {{gig.author.name}}</h1>
 
-<form action="/gigs/edit" method="Post">
+<form action="/gigs/{{gig.slug}}" method="Post">
     <input type="submit" value="Edit this Gig!" />
 </form>

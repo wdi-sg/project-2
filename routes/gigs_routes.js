@@ -10,10 +10,11 @@ router.post('/new-gig', (req, res) => {
   var formData = req.body
   var newGig = new Gig({
     name: formData.name,
-    deadline: formData.date,
+    dates: formData.deadline,
     specs: formData.specs,
     wage: formData.wage,
     description: formData.description,
+    skills: formData.skills,
     author: formData.userID
   })
   newGig.save()
