@@ -1,5 +1,7 @@
 {{#if user.project}}
 <h3>Project: {{user.project}}</h3>
+<h3>Project ID: {{user.projectId}}</h3>
+<p>Share this ID to let others join your project</p>
 <h4>Members:</h4>
 {{#each users as |users|}}
 <p>{{users.name}}</p>

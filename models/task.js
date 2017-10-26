@@ -6,8 +6,8 @@ const taskSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  project: String,
-  currentUser: String,
+  projectId: mongoose.Schema.Types.ObjectId,
+  currentUser: mongoose.Schema.Types.ObjectId,
   start: Date,
   end: Date,
   projectedEnd: Date,

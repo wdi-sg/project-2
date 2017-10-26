@@ -1,4 +1,5 @@
 const $message = $("#message")
+const $messageList = $("#messages")
 const $task = $("createTask")
 const userName = $("#userName").val()
 const userProject = $("#userProject").val()
@@ -20,7 +21,10 @@ $(function() {
   })
   let nsp = io(`/${userProjectId}`)
   nsp.on("chat message", function(msg) {
-    $("#messages").append($("<li>").text(msg.user + ": " + msg.message))
+    if ($messageList.children().length > 9) {
+      $messageList.find(":first-child").remove()
+    }
+    $messageList.append($("<li>").text(msg.user + ": " + msg.message))
   })
 
   //task creation

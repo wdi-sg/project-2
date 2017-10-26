@@ -3,10 +3,10 @@ const mongoose = require("mongoose")
 const MessageSchema = new mongoose.Schema({
   author: String,
   content: String,
-  project: String,
+  projectId: mongoose.Schema.Types.ObjectId,
   date: Date
 })
 
-const Message = mongoose.model("Task", MessageSchema)
+const Message = mongoose.model("Message", MessageSchema)
 
 module.exports = Message
