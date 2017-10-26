@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const moment = require('moment')
 
 const travelplanSchema = new Schema({
   title: {
@@ -10,6 +11,8 @@ const travelplanSchema = new Schema({
     type: String,
     // required: [true, 'Address not found.']
   },
+  latitude: String,
+  longitude: String,
   category: {
     type: String,
     // required: [true, 'type in the country.']
@@ -33,6 +36,10 @@ const travelplanSchema = new Schema({
   }
 
 })
+
+travelplanSchema.virtual('formattedDate').get(function () {
+  return moment(this.dateCreated).format('MMMM Do YYYY')
+});
 
 const Travelplan = mongoose.model('Travelplan', travelplanSchema)
 module.exports = Travelplan

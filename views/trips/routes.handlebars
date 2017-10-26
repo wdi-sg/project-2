@@ -12,8 +12,9 @@
         <h6 class="card-title">{{route.title}}</h6>
         <p class="card-text">
           {{ route.address }}, {{ route.category }}<br>
+          <a href="https://www.google.com/maps/@{{route.latitude}},{{route.longitude}},15z" target="_blank">MAP YO!</a><br>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{ route.description}}</li>
+            <li class="list-group-item">{{ route.description }}</li>
           </ul>
         </p>
 
@@ -30,7 +31,7 @@
           {{!-- don't need input fields here, cos we're not updating anything --}}
         </form>
 
-        <p class="card-text"><small class="text-muted">{{route.dateCreated}}</small></p>
+        <p class="card-text"><small class="text-muted">{{route.formattedDate}}</small></p>
       </div>
     </div>
   </div>

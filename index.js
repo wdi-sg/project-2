@@ -13,6 +13,7 @@ const exphbs = require('express-handlebars') // for Handlebars
 const bodyParser = require('body-parser') // for accessing POST request
 const methodOverride = require('method-override') // for accessing PUT / DELETE
 
+
 // UPDATE 23 Oct
 const session = require('express-session') // to create session and cookies
 const MongoStore = require('connect-mongo')(session) // to store session into db
@@ -90,6 +91,7 @@ app.get('/logout', hasLoggedOut, (req, res) => {
 
 app.get('/routes', (req, res) => {
   // the return of then
+
   Travelplan.find().limit(9).sort({dateCreated: -1})
   .then(travelplans => {
     // at this point we got our data so we can render our page

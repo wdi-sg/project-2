@@ -49,7 +49,7 @@ function initMap () {
     infowindowContent.children['place-name'].textContent = place.name
     infowindowContent.children['place-id'].textContent = place.place_id
     infowindowContent.children['place-address'].textContent = place.formatted_address
-    infowindowContent.children['place-url'].textContent = place.url
+    // infowindowContent.children['place-url'].textContent = place.url
     infowindow.open(map, marker)
   })
 }

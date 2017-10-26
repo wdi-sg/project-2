@@ -1,6 +1,9 @@
 const Travelplan = require('../models/travel')
 const express = require('express')
 const router = express.Router()
+const request = require('request-promise-native')
+
+const moment = require('moment')
 
 router.get('/new', (req, res) => {
   res.render('trips/new')
@@ -26,11 +29,23 @@ router.get('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
 
   var formData = req.body.trips
+  // return res.send(formData)
+  //
+  // return res.send({
+  //   title: formData.title,
+  //   address: formData.address,
+  //   category: formData.category,
+  //   date: new Date(formData.dateCreated),
+  //   description: formData.description,
+  //   pic: formData.pic
+  // })
+
+
   Travelplan.findByIdAndUpdate(req.params.id, {
     title: formData.title,
     address: formData.address,
     category: formData.category,
-    date: formData.dateCreated,
+    dateCreated: new Date(formData.dateCreated),
     description: formData.description,
     pic: formData.pic
   })
@@ -49,23 +64,36 @@ router.delete('/:id', (req, res) => {
 router.post('/', (req, res) => {
   var formData = req.body.trips
 
-  var newTravelplan = new Travelplan()
-  newTravelplan.title = formData.title
-  newTravelplan.dateCreated = formData.dateCreated
-  newTravelplan.category = formData.category
-  newTravelplan.address = formData.address
-  newTravelplan.picture = formData.picture
-  newTravelplan.description = formData.description
-  newTravelplan.link = formData.link
+  var apiUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${formData.address}&key=${process.env.GOOGLE_API_KEY}`
 
-  newTravelplan.save()
-  // UPDATE. 19 Oct
-  .then(
-    // find current user then save into user.travelplans.push(travelplan.id)
-    // save
-    () => res.redirect(`/routes`),
-    err => res.send(err)
-  ) // why? mongoose save(), doesn't have .catch()
+  request(apiUrl)
+  .then(json => {
+    var data = JSON.parse(json)
+    var latitude = data.results[0].geometry.location.lat
+    var longitude = data.results[0].geometry.location.lng
+
+    var newTravelplan = new Travelplan()
+    newTravelplan.title = formData.title
+    newTravelplan.dateCreated = formData.dateCreated
+    newTravelplan.category = formData.category
+    newTravelplan.address = formData.address
+    newTravelplan.latitude = latitude
+    newTravelplan.longitude = longitude
+    newTravelplan.picture = formData.picture
+    newTravelplan.description = formData.description
+    newTravelplan.link = formData.link
+
+
+    newTravelplan.save()
+    // UPDATE. 19 Oct
+    .then(
+      // find current user then save into user.travelplans.push(travelplan.id)
+      // save
+      () => res.redirect(`/routes`),
+      err => res.send(err)
+    ) // why? mongoose save(), doesn't have .catch()
+  })
+
 })
 
 // router.get("/", (req,res)=>{
