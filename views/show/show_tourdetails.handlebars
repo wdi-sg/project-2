@@ -1,9 +1,45 @@
-{{#each data}}
-<h3>Tour Name: {{ this.name }}</h3>
-<li>Show Name: {{ this.showname }}</li>
-<li>Highlights: {{this.highlights}}</li>
-<li>Overview: {{this.overview}}</li>
-<form action="/show/tourdetails/{{this.name}}/add" method="post">
-  <input type="submit">Add to Cart</input>
-</form>
-{{/each}}
+
+<div class="row">
+  <img src={{data.pictureurl}} alt="tour">
+  {{!--  put more img --}}
+  <h3>Tour Name: {{ data.name }}</h3>
+  <ul>
+    <li>Show Name: {{ data.showname }}</li>
+    <li>Highlights: {{data.highlights}}</li>
+    <li>Overview: {{data.overview}}</li>
+  </ul>
+
+  <form action="/show/tourdetails/{{data.name}}/add" method="post">
+    <input type="submit">Add to Cart</input>
+  </form>
+
+
+  <h3>Add reviews</h3>
+  <form action="/review/add" method="post">
+
+    <input type="hidden" name="tourId" value="{{ data.id }}">
+    <input type="hidden" name="userId" value="{{ user.id }}">
+    <input type="hidden" name="slug" value="{{ data.slug }}">
+
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" placeholder="e.g. Best Trip Ever">
+    <br>
+
+    <label for="description">Description</label>
+    <textarea id="description" name="description" rows="8" cols="80"></textarea>
+    <br>
+
+    <button type="submit" name="button">Submit</button>
+  </form>
+
+
+  <ul>
+    {{#each reviews as |review|}}
+    <li>Author: {{ review.author.name }}</li>
+    <li>Review Title: {{ review.title}}</li>
+    <li>Review Description: {{ review.description}}</li>
+    <br>
+    {{/each}}
+  </ul>
+
+</div>

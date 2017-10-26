@@ -1,4 +1,25 @@
+<div class="">
+  {{#each data}}
+  <div>testing</div>
+    <a href="/show/tourdetails/{{this.slug}}">{{ this.name }}</a>
+  {{/each}}
+</div>
 
-{{#each data}}
-  <a href="/show/tourdetails/{{this.name}}">{{ this.name }}</a>
-{{/each}}
+{{!-- {{#each data}}
+<div class="row">
+        <div class="col s12 m7">
+          <div class="card">
+            <div class="card-image">
+              <img src="images/sample-1.jpg">
+              <span class="card-title"></span>
+            </div>
+            <div class="card-content">
+              <p>have fun.</p>
+            </div>
+            <div class="card-action">
+              <a href="/show/tourdetails/{{this.name}}">{{ this.name }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+{{/each}} --}}

@@ -7,7 +7,8 @@ const reviewSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }
+  },
+  tourSlug: String
 })
 
 const Review = mongoose.model('Review', reviewSchema)

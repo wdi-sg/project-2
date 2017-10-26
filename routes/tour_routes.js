@@ -21,13 +21,14 @@ router.post('/', (req, res) => {
   var newTour = new Tour()
   newTour.showname = formData.showname
   newTour.name = formData.name
+  newTour.slug = formData.name.toLowerCase().split(' ').join('-')
   newTour.overview = formData.overview
   newTour.highlights = formData.highlights
   newTour.dates = formData.dates
+  newTour.pictureurl = formData.pictureurl
   newTour.save()
   .then(
     () => {
-      console.log(`${newTour.id}`)
       res.redirect(`/addtours/${newTour.id}`)
     },
     err => res.send(err)
