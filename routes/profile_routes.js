@@ -3,9 +3,10 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/:username', (req, res) => {
-  var username = req.user.username
+  var username = req.params.username
+  User.findOne({ username:username })
+  .then(currentUser => res.render('profile', { currentUser }))
 
-  res.render('profile')
 })
 
 module.exports = router

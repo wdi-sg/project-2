@@ -10,6 +10,7 @@ const tweetSchema = new Schema({
   author: userId,
   parentTweet: this,
   childrenTweets: [ this ],
+  mentions: [userId],
   favourites: [userId],
   retweets: [userId]
 })

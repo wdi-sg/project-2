@@ -1,3 +1,6 @@
+<h5>Autocomplete List</h5>
+<ul id="autocomplete"></ul>
+
 <h3>Home</h3>
 
 {{#if user}}
@@ -7,13 +10,10 @@
     <button type="submit">Tweet</button>
   </form>
 
+
   <ul id="wall">
     {{#each currentUser.tweets as |tweet|}}
-    <li>
-      <div>
-        <p>{{ tweet.message }}</p>
-        <p></p>
-      </div>
-    </li>
+      <li>{{ tweet.message }}</li>
     {{/each}}
+  </ul>
 {{/if}}

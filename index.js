@@ -73,6 +73,17 @@ app.use((req, res, next) => {
   next()
 })
 
+app.post('/search', (req, res) => {
+  const keyword = req.body.keyword
+  const regex = new RegExp(keyword, 'i')
+  console.log('regex', regex)
+
+  User.find({ username: regex })
+  .limit(10)
+  .then(users => res.send(users))
+  .catch(err => console.log(err))
+})
+
 app.get('/logout', hasLoggedOut, (req, res) => {
   req.logout()
   res.redirect('/')

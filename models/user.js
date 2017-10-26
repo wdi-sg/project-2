@@ -11,6 +11,7 @@ const userSchema = new Schema({
   email: requiredString,
   password: requiredString,
   tweets: [tweetId],
+  mentions: [tweetId],
   followers: [ this ],
   following: [ this ]
 })

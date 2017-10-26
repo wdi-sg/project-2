@@ -1,10 +1,12 @@
 $(document).ready(function () {
+  const $tweet = $('.tweet')
+  const $searchBar = $('#searchBar')
+  const $autocomplete = $('#autocomplete')
+
   // prevent form submission
   // send async post to server and save new tweet to db
   // when server responds with success
   // manipulate dom to update the tweet
-  var $tweet = $('.tweet')
-
   $tweet.on('submit', function(e) {
     e.preventDefault()
 
@@ -33,5 +35,30 @@ $(document).ready(function () {
       }
     )
     .catch(err => console.log(err))
+  })
+
+  $searchBar.on('keyup', e => {
+    var keyword = e.target.value
+    var json = JSON.stringify({ keyword })
+
+    $autocomplete.empty() // empty list first before loading new
+
+    fetch('/search', {
+      method: 'POST',
+      body: json,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json()) // convert the json file into js object
+    .then(users => { // forEach user, create new li, add name, add to ul
+      users.forEach(user => {
+        var $li = $('<li>')
+        $li.text(user.username)
+        $autocomplete.append($li)
+      })
+    })
+    .catch(err => console.log(err))
+
   })
 })

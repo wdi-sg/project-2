@@ -22,6 +22,11 @@
       <p>Not Logged In</p>
     {{/if}}
 
+    <form id="search" action="/profile/:username" method="get">
+      <input id="searchBar" type="text" name="username" placeholder="Search Pirated Twitter">
+      <button type="submit">Search</button>
+    </form>
+
     {{{ body }}}
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
