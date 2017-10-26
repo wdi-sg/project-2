@@ -6,9 +6,9 @@ router.get('/:slug', (req, res) => {
   User.findOne({
     slug: req.params.slug
   })
-  .then((user) => {
+  .then((peep) => {
     res.render('users/card', {
-      user
+      peep
     })
   })
 })
