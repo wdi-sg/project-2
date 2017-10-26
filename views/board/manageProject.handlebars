@@ -5,13 +5,13 @@
 <p>{{users.name}}</p>
 {{/each}}
 
-<h4>Add Members:</h4>
+<!-- <h4>Add Members:</h4>
 <form action="/manageProject/add?_method=PUT" method="post">
   <input type="hidden" name="member[projectName]" value="{{user.project}}">
   <label for="name">Member Name:</label>
   <input type="text" name="member[name]" placeholder="add a member">
   <button type="submit" name="button">Add member</button>
-</form>
+</form> -->
 
 <h4>Leave Project</h4>
 <form action="/manageProject/?_method=DELETE" method="post">
@@ -24,7 +24,7 @@
 <h2>Join an existing project</h2>
 <form action="/manageProject/?_method=PUT" method="post">
   <label for="name">Project Name:</label>
-  <input type="text" name="project[name]" placeholder="join an existing project">
+  <input type="text" name="project[id]" placeholder="enter project Id to join">
   <button type="submit" name="button">Join Project</button>
 </form>
 

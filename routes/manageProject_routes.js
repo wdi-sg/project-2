@@ -2,6 +2,8 @@ const Project = require("../models/project")
 const User = require("../models/user")
 const express = require("express")
 const router = express.Router()
+const mongoose = require("mongoose")
+const Schema = mongoose.Schema
 
 router.get("/", (req, res) => {
   // res.render("board/manageProject")
@@ -19,11 +21,13 @@ router.get("/", (req, res) => {
 //join an existing team
 router.put("/", (req, res) => {
   let project = req.body.project
-  Project.findOne({ name: project.name }).then(projectExist => {
+  console.log(project)
+  Project.findById(project.id).then(projectExist => {
     if (!projectExist) console.log("Project doesn't exist")
     else
       User.findByIdAndUpdate(req.user.id, {
-        project: project.name
+        project: projectExist.name,
+        projectId: projectExist.id
       })
         .then(() => {
           res.redirect("/manageProject")
@@ -42,11 +46,12 @@ router.post("/", (req, res) => {
     lead: req.user.name
   })
 
-  newProject.save().then(
+  newProject.save().then(savedProject => {
     User.findByIdAndUpdate(req.user.id, {
-      project: newProject.name
+      project: savedProject.name,
+      projectId: savedProject._id
     }).then(() => res.redirect("/manageProject"))
-  )
+  })
 })
 
 //add members to your team if the member has no team
@@ -71,7 +76,8 @@ router.put("/add", (req, res) => {
 //leave a team
 router.delete("/", (req, res) => {
   User.findByIdAndUpdate(req.user.id, {
-    project: ""
+    project: "",
+    projectId: null
   }).then(() => {
     res.redirect("/manageProject")
   })

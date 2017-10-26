@@ -3,7 +3,7 @@ module.exports = io => {
     console.log("someone connected")
     socket.on("chat message", msg => {
       // console.log(msg.user + ": " + msg.message)
-      let nsp = io.of(`/${msg.project}`)
+      let nsp = io.of(`/${msg.projectId}`)
       nsp.emit("chat message", {
         user: msg.user,
         message: msg.message
