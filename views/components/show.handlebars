@@ -1,16 +1,29 @@
 <h3>Component</h3>
-
-{{component.name}}
-{{component.unit_cost}}
-{{component.owner.name}}
-
 <h3>Update</h3>
 <form action="/components/{{ component.id }}?_method=PUT" method="post">
   <label for="name">Name</label>
   <input type="text" name="name" value="{{ component.name }}">
 
-  <label for="description">description</label>
+  <label for="description">Description</label>
   <input type="text" name="description" value="{{ component.description }}">
+
+  <label for="vendor">Vendor</label>
+  <input type="text" name="vendor" value="{{ component.vendor }}">
+
+  <label for="type">Type</label>
+    <select name="type">
+      <option selected hidden>{{ component.type }}</option>
+      <option>Software</option>
+      <option>Hardware</option>
+      <option>Professional Services</option>
+      <option>Third party services</option>
+    </select>
+
+    <label for="unit_cost">Unit cost</label>
+    <input type="number" name="unit_cost" value="{{ component.unit_cost }}">
+
+    <label for="quantity">Quantity</label>
+    <input type="number" name="quantity" value="{{ component.quantity }}">
 
   <button type="submit" name="button">Submit</button>
 </form>

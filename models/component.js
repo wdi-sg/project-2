@@ -7,10 +7,18 @@ const componentSchema = new Schema({
   vendor: String,
   unit_cost: Number,
   quantity: Number,
+  type: {
+    type: Schema.Types.String,
+    ref: 'Type'
+  },
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User'
   }
+})
+
+componentSchema.virtual('totalCost').get(function () {
+  return this.quantity * this.unit_cost
 })
 
 // Use 'components' collection

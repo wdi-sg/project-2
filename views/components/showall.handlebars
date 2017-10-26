@@ -1,16 +1,15 @@
 
-<h3>Show all</h3>
-
-
-
+<h3>Components</h3>
   <table class="table">
     <thead>
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Description</th>
         <th scope="col">Vendor</th>
+        <th scope="col">Type</th>
         <th scope="col">Unit cost</th>
         <th scope="col">Quantity</th>
+        <th scope="col">Total Cost</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -21,11 +20,14 @@
         <td>{{ compo.name }}</td>
         <td>{{ compo.description }}</td>
         <td>{{ compo.vendor }}</td>
+        <td>{{ compo.type }}</td>
         <td>{{ compo.unit_cost }}</td>
-        <td>{{compo.quantity}}</td>
+        <td>{{ compo.quantity }}</td>
+        <td>{{ compo.totalCost }}</td>
         <td><a href="/components/{{ compo.id }}" class="btn">Edit</a></td>
       </tr>
     </tbody>
 
 {{/each}}
 </table>
+<a class="btn btn-primary" href="/components/new" role="button">Add new component</a>

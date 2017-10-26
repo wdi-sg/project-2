@@ -9,6 +9,7 @@ router.get('/new', (req, res) => {
 router.get('/showall', (req, res) => {
   Component
   .find()
+  .sort({type: 1})
   .then(components => {
     res.render('components/showall', {
       components
@@ -18,7 +19,6 @@ router.get('/showall', (req, res) => {
     console.log(err)
   })
 })
-
 
 router.get('/:id', (req, res) => {
   // instead of find all, we can `findById`
@@ -46,9 +46,9 @@ router.post('/', (req, res) => {
     vendor: formData.vendor,
     unit_cost: formData.unit_cost,
     quantity: formData.quantity,
+    type: formData.type,
     owner: req.user.id
   })
-
   newComponent.save() // save the object that was created
   .then(
     // success flow, for now is to redirect to all reviews route
@@ -57,7 +57,26 @@ router.post('/', (req, res) => {
   )
 })
 
+// UPDATE
+router.put('/:id', (req, res) => {
+  var formData = req.body
+  Component.findByIdAndUpdate(req.params.id, {
+    name: formData.name,
+    description: formData.description,
+    vendor: formData.vendor,
+    unit_cost: formData.unit_cost,
+    quantity: formData.quantity,
+    type: formData.type
+  })
+  .then(() => res.redirect(`/components/${req.params.id}`))
+  .catch(err => console.log(err))
+})
 
-
+// DELETE
+router.delete('/:id', (req, res) => {
+  Component.findByIdAndRemove(req.params.id)
+  .then(() => res.redirect('/components/showall'))
+  .catch(err => console.log(err))
+})
 
 module.exports = router

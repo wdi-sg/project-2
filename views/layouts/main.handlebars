@@ -8,31 +8,35 @@
   <body>
 
     <ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link active" href="/">Conso</a>
-  </li>
+
+      {{#if user}}
+
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Conso</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/components/showall">View Components</a>
+        </li>
+
+        {{#if user.isAdmin}}
+        <a class="nav-link" href="#">Set variables</a>
+        {{/if}}
+
+        <li class="nav-item">
+          <a class="nav-link disabled" href="/logout">Logout</a>
+        </li>
+        {{/if}}
+
+  {{#unless user}}
   <li class="nav-item">
     <a class="nav-link" href="/register">Register</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="/login">Login</a>
   </li>
+  {{/unless}}
 
-  <li class="nav-item">
-    <a class="nav-link" href="/components/new">Add Component</a>
-  </li>
 
-  <li class="nav-item">
-    <a class="nav-link" href="/components/showall">View Components</a>
-  </li>
-
-  {{!-- <li class="nav-item">
-    <a class="nav-link" href="/components/update">Update Components</a>
-  </li> --}}
-
-  <li class="nav-item">
-    <a class="nav-link disabled" href="/logout">Logout</a>
-  </li>
 </ul>
 <div class="container-fluid">
 

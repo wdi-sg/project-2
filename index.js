@@ -23,6 +23,7 @@ const { hasLoggedOut, isLoggedIn } = require('./helpers')
 // MODELS
 const User = require('./models/user')
 const Component = require('./models/component')
+const Type = require('./models/type')
 
 // ROUTERS
 const register_routes = require('./routes/register_routes')
