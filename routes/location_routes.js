@@ -10,7 +10,7 @@ router.get('/new', (req, res) => {
   res.render('locations/new')
 })
 
-// to view update/delete
+// to view the posts and add comments
 router.get('/:id', (req, res) => {
   Location
   .findById(req.params.id)
@@ -20,25 +20,18 @@ router.get('/:id', (req, res) => {
       location: location.id
     })
     .then(comments => {
-      // var user = req.user
-      // res.send({
-      //   location,
-      //   comments,
-      //   user
-      // })
-
       res.render('locations/show', {
         location,
         comments
       })
     })
-    // res.send(location)
   })
   .catch(err => {
     console.log(err)
   })
 })
 
+// to update and delete posts
 router.get('/:id/edit', (req, res) => {
   Location
   .findById(req.params.id)
@@ -53,37 +46,13 @@ router.get('/:id/edit', (req, res) => {
         comments
       })
     )
-    // res.send(location)
   })
   .catch(err => {
     console.log(err)
   })
 })
 
-// to view add comment
-router.get('/:id/comment', (req, res) => {
-  Location
-  .findById(req.params.id)
-  .populate('owner')
-  .then(location => {
-    Comment.find({
-      location: location.id
-    })
-    .then(comments => {
-      console.log(comments)
-      res.render('locations/show', {
-        location,
-        comments
-      })
-    }
-    )
-    // res.send(location)
-  })
-  .catch(err => {
-    console.log(err)
-  })
-})
-
+// update posts
 router.put('/:id', upload.single('image'), (req, res) => {
   var file = req.file
   cloudinary.uploader.upload(file.path, (result) => {
@@ -101,12 +70,14 @@ router.put('/:id', upload.single('image'), (req, res) => {
   })
 })
 
+// delete posts
 router.delete('/:id', (req, res) => {
   Location.findByIdAndRemove(req.params.id)
   .then(() => res.redirect(`/`))
   .catch(err => console.log(err))
 })
 
+// create posts
 router.post('/', upload.single('image'), (req, res) => {
   cloudinary.uploader.upload(req.file.path, (result) => {
     var formData = req.body

@@ -5,18 +5,9 @@
 <p>{{ location.description }}</p><br>
 
 {{#if user}}
-<h3>Add Comment</h3>
-<form action="/comments" method="post">
-  <input type="hidden" name="parent" value={{location.id}}>
-
-  <label for="description">Comment :</label><br>
-  <textarea id="description" name="description" rows="2" cols="100"></textarea>
-  <br>
-
-  <button type="submit" name="button">Submit</button>
-</form><br>
 
 <h2>Comments</h2>
+
 <ul>
 
 {{#each comments as |comment|}}
@@ -31,18 +22,35 @@
 
 {{/each}}
 
-</ul>
+</ul><br>
+
+<h3>Add Comment</h3>
+<form action="/comments" method="post">
+  <input type="hidden" name="parent" value={{location.id}}>
+
+  <label for="description">Comment :</label><br>
+  <textarea id="description" name="description" rows="2" cols="100"></textarea>
+  <br>
+
+  <button type="submit" name="button">Submit</button>
+</form><br>
 
 {{else}}
-<h2>Please Log-In to Add Comments</h2><br>
 
-<h2>Comments</h2>
+<h2>Comments :</h2>
 <ul>
 
-{{#each comments}}
-  <li>{{ this.name }}  -  {{ this.description }}</li>
+{{#each comments as |comment|}}
+  <li>{{ comment.name }}  -  {{ comment.description }}</li>
 {{/each}}
 
-</ul>
+</ul><br>
+
+<h3>Add Comment</h3>
+
+  <div class="control">
+  <textarea class="textarea" type="text" placeholder="Please Log-In to Add Comments" disabled></textarea>
+  </div>
+
 
 {{/if}}

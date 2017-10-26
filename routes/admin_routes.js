@@ -70,4 +70,10 @@ router.post('/login', (req, res) => {
   )
 })
 
+// Route to Admin profile
+router.get('/profile', (req, res) => {
+    res.render('admin/show')
+})
+
+
 module.exports = router

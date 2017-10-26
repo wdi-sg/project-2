@@ -117,27 +117,6 @@ app.get('/', (req, res) => {
   })
 })
 
-// search posts
-app.get('/search', (req, res) => {
-  res.render('search')
-})
-
-app.post('/search', (req, res) => {
-  const keyword = req.body.keyword
-  const regex = new RegExp(keyword, 'i')
-  // make a regex patter out of the keyword
-  // put an 'i' option so it's case INSENSITIVE
-
-  Location.find({
-    name: regex
-  })
-  .limit(9)
-  // so we don't show all
-  // update 22 oct, show 9 for aesthetics
-  .then(locations => res.send(locations))
-  .catch(err => res.send(err)) // in case we have an error
-})
-
 // Route to profile
 app.get('/profile', hasLoggedOut, (req, res) => {
   Location.find({
@@ -152,29 +131,6 @@ app.get('/profile', hasLoggedOut, (req, res) => {
   // res.send(req.user)
 })
 
-// to view the post in homepage
-app.get('/locations/:id/post', (req, res) => {
-  Location
-  .findById(req.params.id)
-  .populate('owner')
-  .then(location => {
-    Comment.find({
-      location: location.id
-    })
-    .then(comments => {
-      console.log(comments)
-      res.render('post', {
-        location,
-        comments
-      })
-    }
-    )
-    // res.send(location)
-  })
-  .catch(err => {
-    console.log(err)
-  })
-})
 
 //  Route to logout
 app.get('/logout', hasLoggedOut, (req, res) => {
