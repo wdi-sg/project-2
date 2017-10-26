@@ -87,19 +87,14 @@ router.get('/:id/task', (req, res)=>{
   })
 })
 
-router.get('/:taskid', (req,res)=>{
+router.get('/:fridgeid/:taskid', (req,res)=>{
   res.send('hi')
 })
 
 router.delete('/:fridgeid/:taskid', (req, res)=>{
-  Fridge.findById(req.params.fridgeid)
-  .then(()=> {
     Task.findByIdAndRemove(req.params.taskid)
-    .then(()=>{
-      res.redirect(`'/${req.params.fridgeid}`)
-    })
+    .then(()=> res.redirect(`/fridge/${req.params.fridgeid}`))
+    .catch(err => console.log(err))
   })
-  .catch(err => console.log(err))
-})
 
 module.exports = router

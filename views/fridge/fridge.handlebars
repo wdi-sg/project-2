@@ -1,6 +1,6 @@
 <h1>{{fridge.name}} Fridge</h1>
 <h1>Fridge Passcode to Enter: {{fridge.passcode}}</h1>
-<h1 class="hidden blue">{{fridge.id}}</h1>
+<h1 class="hidden-xs-up">{{fridge.id}}</h1>
 
 <div class="row">
   {{#each fridge.task as |task|}}
@@ -10,13 +10,20 @@
       <div class="card-body">
         <h4 class="card-title">{{ task.details }}</h4>
         &nbsp;
-        <button class="btn btn-primary form-inline" type="button" onclick="location.href='/fridge/{{task.id}}'">Edit</button>
+        <button class="btn btn-secondary form-inline" type="button" onclick="location.href='/task/{{task.id}}/edit'">Edit</button>
         <form
           class="form-inline"
-          action="/fridge/{{ fridge.id }}/{{task.id}}?_method=DELETE"
+          action="/fridge/{{ fridge }}/{{task.id}}?_method=DELETE"
           method="post">
           &nbsp;
           <button class="btn btn-danger" type="submit" name="button">Delete</button>
+        </form>
+        <form
+          class="form-inline"
+          action=""
+          method="post">
+          &nbsp;
+          <button class="btn btn-primary" type="submit" name="button">Completed</button>
         </form>
       </div>
     </div>

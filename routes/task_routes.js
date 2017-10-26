@@ -13,6 +13,15 @@ const User = require('../models/user')
 //   })
 // })
 
+router.get('/:id/edit', (req, res)=>{
+  Task.findById(req.params.id)
+  .populate('assign')
+  .then(tasks =>{
+    res.render('task/edit', {tasks})
+  })
+})
+
+
 router.post('/', (req,res)=>{
   var formData = req.body
   User.find({name:formData.assign})
