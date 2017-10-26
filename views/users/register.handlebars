@@ -1,14 +1,19 @@
 <h3>User Registration</h3>
 
 <form action="/register" method="POST">
-  <label for ="Email">E-mail</label>
-  <input type="text" name="user[email]" placeholder="e.g. quotes@gmail.com">
+  <label for="email">E-mail</label>
+  <input id="email" type="text" name="user[email]" placeholder="e.g. quotes@gmail.com">
 
   <label for="name">Name</label>
-  <input type="text" name="user[name]" placeholder="larry">
+  <input id="name" type="text" name="user[name]" placeholder="larry">
 
   <label for="password">Password</label>
-  <input type="password" name="user[password]" placeholder="your password">
+  <input id="password" type="password" name="user[password]" placeholder="your password">
+  <br />
+    <br />
+
+  <label for="subscribe">Receive an email every morning</label>
+  <input id="subscribe" type="checkbox" name="user[subscribeQuote]" value="true">
 
   <button type="submit" name="button">Submit</button>
 </form>

@@ -4,3 +4,10 @@
   <input type="hidden" name="quoteId" value="{{ quote.id }}">
   <button type="submit" name="button">Add to Collection</button>
 </form>
+
+{{#unless user.subscribeQuote }}
+<form action="/subscribe" method="post">
+  <input type="hidden" name="user[subscribeQuote]" value='true'>
+  <button type="submit" name="button">Receive a quote every morning</button>
+</form>
+{{/unless}}

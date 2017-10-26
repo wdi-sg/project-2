@@ -3,29 +3,20 @@ const router = express.Router()
 const Quote = require('../models/quote')
 const User = require('../models/user')
 
-const moment = require('moment')
+// const moment = require('moment')
+const { findCurrentQuote } = require('../helpers')
 
 // Show quote on homepage. Depends on either morning, afternoon, evening
 router.get('/', (req, res) => {
-  var startOfToday = moment().startOf('day')
-  // console.log(startOfToday)
-  var currentHour = moment().hour()
-  var timeEvent
-
-  if (currentHour >= 0 && currentHour <= 12) timeEvent = 1
-  if (currentHour >= 12 && currentHour <= 18) timeEvent = 2
-  if (currentHour >= 18 && currentHour <= 24) timeEvent = 3
-
-  Quote.findOne({
-    timeEvent,
-    publishedAt: {
-      $gte: startOfToday
-    }
-  })
+  findCurrentQuote()
   .then(quote => {
-    res.render('home', { quote })
+    res.render('home', {
+      quote
+    })
   })
-  .catch(err => console.log(err))
+
+  // TODO:findCurrentQuote() should return promise instead
+  // .catch(err => console.log(err))
 })
 
 // add quote into profile collection
@@ -88,6 +79,10 @@ router.delete('/:id', (req, res) => {
   .then(() => res.redirect(`/profile/${user.slug}`))
   .catch(err => console.log(err))
 })
+
+// router.get('/subscribe', (req, res) => {
+//   res.send('hello world')
+// })
 
 
 module.exports = router
