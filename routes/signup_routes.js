@@ -2,9 +2,15 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
 const passport = require('../config/ppConfig')
+const Skill = require('../models/skills')
 
 router.get('/', (req, res) => {
-  res.render('users/signup')
+  Skill.find()
+  .then(skills => {
+    res.render('users/signup', {
+      skills
+    })
+  })
 })
 
 router.post('/', (req, res) => {

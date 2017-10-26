@@ -1,7 +1,3 @@
-import Vue from 'vue'
-import Vuetify from 'vuetify'
-
-Vue.use(Vuetify)
 
 $(function () {
   const $searchInput = $('#searchInput')
@@ -96,4 +92,18 @@ $(function () {
     $searchGigsResults.html('')
     $searchGigsResults.append(allGigs)
   }
+
+  $('select')
+.change(function () {
+  var str = ''
+  $('select option:selected').each(function () {
+    str += $(this).text() + ' '
+  })
+  $('.peepSkills').text(str)
+})
+.trigger('change')
+
+  // ('#listOfSkills').find('option:selected').text()
+
+
 })

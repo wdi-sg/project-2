@@ -1,4 +1,6 @@
-
+<div class= container>
+   
+</div>
     <div class="mx-auto" style="width: 200px;">
       <h2>Search Gigs</h2>
       <label for="searchInput">Search: </label>
@@ -15,6 +17,7 @@
 <div class="row">
 <div class="card-deck">
 {{#each gig}}
+<div class="col-4">
 <div class="card">
   <img class="card-img-top" src="http://lorempixel.com/400/200" alt="Card image cap">
   <div class="card-body">
@@ -22,6 +25,7 @@
     <p class="card-text"> {{this.wage}} {{this.author.name}}</p>
     <a href="/gigs/{{this.slug}}" class="gig-link">See more!</a>
   </div>
+</div>
 </div>
 {{/each}}
 </div>

@@ -5,9 +5,19 @@
 <h1>Hi my name is {{peep.name}}</h1>
 
 
+<select id="listOfSkills" name="test">
+  {{#each skills}}
+  <option value="{{this.name}}">{{this.name}}</option>
+  {{/each}}
+</select>
+
+
 <h1>Nickname: {{peep.profile.0.nickname}}</h1>
 <h1>About me:{{peep.profile.0.about}}</h1>
 <h1>Skills: {{peep.profile.0.skills}}</h1>
+<div class="peepSkills">
+  <h1>hello</h1>
+</div>
 <h1>Past Projects and Gigs: {{peep.profile.0.projs}}</h1>
 <h1>You can find me at: {{peep.profile.0.contact}}</h1>
 

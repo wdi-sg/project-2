@@ -1,14 +1,18 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
+const Skill = require('../models/skills')
 
 router.get('/:slug', (req, res) => {
-  User.findOne({
-    slug: req.params.slug
-  })
-  .then((peep) => {
-    res.render('users/card', {
-      peep
+  Skill.find()
+  .then(skills => {
+    User.findOne({ slug: req.params.slug })
+    .then(people => {
+      var context = {
+        skills: skills,
+        peep: people
+      }
+      res.render('users/card', context)
     })
   })
 })
