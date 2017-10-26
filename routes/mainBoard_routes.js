@@ -4,7 +4,8 @@ const express = require("express")
 const router = express.Router()
 
 router.get("/", (req, res) => {
-  res.render("board/mainBoard")
+  if (!req.user.project) res.redirect("/manageProject")
+  else res.render("board/mainBoard")
 })
 
 module.exports = router
