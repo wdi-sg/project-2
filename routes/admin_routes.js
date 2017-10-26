@@ -9,10 +9,10 @@ const Answer = require("../models/answers")
 const User = require("../models/user")
 
 
-const { hasLoggedOut, isLoggedIn, isAdmin } = require('../helpers')
+const { hasLoggedOut, isLoggedIn, isAdmin, isAdminLoggedIn } = require('../helpers')
 
 
-router.get("/", (req,res)=>{
+router.get("/",isAdminLoggedIn, (req,res)=>{
 res.render("admin/admin_landingpage",{
   title: "Admin Access"
 })

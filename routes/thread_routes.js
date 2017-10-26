@@ -7,6 +7,28 @@ const User = require("../models/user")
 
 
 
+router.put("/:id", (req,res)=>{
+  Thread.findByIdAndUpdate(req.params.id,{
+    question: req.body.titleNew,
+    description: req.body.descriptionNew
+  })
+  .then(()=>{
+    req.flash('info',  `Thread has been updated!`)
+    res.redirect(`/thread/${req.params.id}`)
+  })
+})
+router.delete("/threadpage/:id", (req,res)=>{
+  Thread.findByIdAndRemove(req.params.id)
+  .then(()=>{
+    Answer.remove({parent: req.params.id})
+    .then((thread) => {
+      req.flash('info',  `Deleted thread id: ${req.params.id}`)
+      res.redirect(`/`)
+    })
+    .catch(err => console.log(err))
+  })
+  })
+
 router.delete("/:id", (req,res)=>{
   Thread.findByIdAndRemove(req.params.id)
   .then(()=>{

@@ -25,8 +25,21 @@ const isAdmin = (req, res, next)=>{
 
 }
 
+const isAdminLoggedIn = (req, res, next)=>{
+  if(req.user === undefined){
+    next()
+  }else if(req.user.type === "admin"){
+    req.flash("error","Access Denied: Admin already logged in")
+    res.redirect("/")
+  }
+  else if(req.user.type === "user"){
+    req.flash("error","Please log out of user account before attempting to access admin console")
+  }
+}
+
 module.exports={
   isLoggedIn,
   hasLoggedOut,
-  isAdmin
+  isAdmin,
+  isAdminLoggedIn
 }

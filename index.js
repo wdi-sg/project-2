@@ -58,6 +58,8 @@ var hbs = exphbs.create({
     helpers      : {
 
       checkAdmin: function(first, second, options) {
+        console.log(first, second);
+
         if (String(first) === String(second)) {
           return options.fn(this)
         }

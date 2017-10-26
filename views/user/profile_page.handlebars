@@ -4,19 +4,18 @@
   <img class="materialboxed" src={{profile.pic}} alt="Profile Picture"><p>
   <label>Name: {{profile.name}}</label><p>
   <label>Email: {{profile.email}}</label>
-
-  {{!-- <form enctype="multipart/form-data" action="/uploadImage" method="POST">
-  <input type="file" name="myFile">
-  <input type="submit" class="btn btn-primary">
-</form> --}}
-<h3>Update Profile Picture</h3>
+  <br>
+<h5>Update Profile Picture</h5>
 <form class="" action="/image" method="post">
-  <input type="hidden" role="uploadcare-uploader" name="upload"
-       data-crop="250x300"
-       data-images-only="true"
-       data-clearable = "true" />
-       <input type="submit" value="Update">
+    <input type="hidden" role="uploadcare-uploader" name="upload"
+         data-crop="250x300"
+         data-images-only="true"
+         data-clearable = "true"
+ />
+       <input class="btn brown" type="submit" value="Update">
 </form>
+<h5>Update Profile Details</h5>
+<a class="waves-effect waves-light btn modal-trigger brown" href="#profileModal"><i class="material-icons">content_cut</i></a>
 
 <ul class="collapsible" data-collapsible="accordion">
    <li>
@@ -35,27 +34,30 @@
      <div class="collapsible-body">
        {{#each answers}}
      <a href="/thread/{{this.parent}}">{{this.description}}</a>
-       <form action="/addAnswer/{{ this.id }}?_method=DELETE" method="post">
+       <form action="/addAnswer/profile/{{ this.id }}?_method=DELETE" method="post">
          <button type="submit" name="button">Delete</button>
        </form>
      {{/each}}
    </div>
    </li>
  </ul>
-  {{!-- <p><h3>Answers</h3>
-  {{#each answers}}
-  <li><a href="/thread/{{this.parent}}">{{this.description}}</a>
-    <form action="/addAnswer/{{ this.id }}?_method=DELETE" method="post">
-  <button type="submit" name="button">Delete</button>
+</div>
+
+<!-- Modal Structure -->
+<div id="profileModal" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Update Profile</h4>
+    <form class="" action="/profile/{{profile.id}}?_method=PUT" method="post">
+      <label for="newName">Name</label>
+      <input id="newName" type="text" name="name" value={{profile.name}}>
+      <label for="newEmail">Email</label>
+      <input id="newEmail" type="email" name="email" value={{profile.email}}>
+
+  </div>
+  <div class="modal-footer">
+      <input class="btn" type="submit" value="Update">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+  </div>
+
 </form>
-</li>
-  {{/each}}
-  </p>
-  <p><h3>Threads Started By User</h3>
-  {{#each questions}}
-  <li><a href="/thread/{{this.id}}">{{this.question}}</a><form action="/thread/{{ this.id }}?_method=DELETE" method="post">
-<button type="submit" name="button">Delete</button>
-</form></li>
-  {{/each}}
-  </p> --}}
 </div>

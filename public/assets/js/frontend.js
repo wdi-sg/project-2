@@ -3,6 +3,8 @@ $(function () {
   // Parallax initialization
   $('.parallax').parallax()
   $('select').material_select();
+   $(".button-collapse").sideNav();
+   $('.modal').modal();
 
   $('.up').click(function () {
     var id = $(this).attr('data')

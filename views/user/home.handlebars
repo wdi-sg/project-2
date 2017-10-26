@@ -1,5 +1,5 @@
 {{#each threads}}
-<div class="card-panel hoverable">
+<div class="card-panel brown hoverable">
 <table>
   <tr>
     <td><div class="buttons" align="center">
@@ -7,7 +7,7 @@
     <p id={{this._id}}>{{this.totalVotes}}</p>
     <button class="down waves-effect waves-teal btn-flat" data={{this._id}} downvotes = {{this.downVotes}}><i class="material-icons">expand_more</i></button>
     </div></td>
-    <td><a href="/thread/{{this.id}}">{{this.question}}</a></td>
+    <td><a href="/thread/{{this.id}}" class="black-text">{{this.question}}</a></td>
   </tr>
 </table>
 </div>

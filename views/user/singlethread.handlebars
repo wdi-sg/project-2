@@ -11,8 +11,28 @@
     </div></td>
     <td>
     <p>{{data.description}}</p></td>
-    <td>Asked By: {{author}}</td>
-
+    <td>
+      {{#checkAdmin data.creator currentUser.id}}
+      <a class="waves-effect waves-light btn modal-trigger" href="#threadMod">Modify</a>
+        <br><br>
+        <form class="" action="/thread/threadpage/{{data.id}}?_method=DELETE" method="post">
+          <input class="btn" type="submit" value="Delete">
+          </form>
+      {{/checkAdmin}}
+      {{#checkAdmin currentUser.type "admin"}}
+      <a class="waves-effect waves-light btn modal-trigger" href="#threadMod">Modify</a>
+        <br><br>
+        <form class="" action="/thread/threadpage/{{data.id}}?_method=DELETE" method="post">
+          <input class="btn" type="submit" value="Delete">
+          </form>
+      {{/checkAdmin}}
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Asked By: {{author}}
+    </td>
   </tr>
 </table>
 <table class="bordered">
@@ -26,8 +46,26 @@
   <button class="ansdown waves-effect waves-teal btn-flat" data={{this._id}} downvotes = {{this.downVotes}} ><i class="material-icons">expand_more</i></button>
   </div></td>
   <td><p>{{this.description}}</p></td>
-  <td>Answered By: {{this.creatorName}}</td>
-
+  <td>
+    {{#checkAdmin this.creator ../currentUser.id}}
+      <form action="/addAnswer/threadpage/{{ this.id }}?_method=DELETE" method="post">
+        <input type="hidden" name="threadId" value={{../data._id}}>
+        <input class="btn" type="submit" value="Delete">
+      </form>
+    {{/checkAdmin}}
+    {{#checkAdmin "admin" ../currentUser.type}}
+      <form action="/addAnswer/threadpage/{{ this.id }}?_method=DELETE" method="post">
+        <input type="hidden" name="threadId" value={{../data._id}}>
+        <input class="btn" type="submit" value="Delete">
+      </form>
+    {{/checkAdmin}}
+  </td>
+</tr>
+<tr>
+  <td></td>
+  <td>
+    Answered By: {{this.creatorName}}
+  </td>
 </tr>
   {{/each}}
 </table>
@@ -38,3 +76,20 @@
   <textarea class="materialize-textarea" name="userinput" rows="4" cols="50" placeholder="Enter your answer here"></textarea>
   <input id="animalType" type="submit">
 </form>
+
+<!-- Set up for thread modification Modal -->
+<div id="threadMod" class="modal modal-fixed-footer">
+   <div class="modal-content">
+     <h4>Edit Thread</h4>
+     <form class="" action="/thread/{{data.id}}?_method=PUT" method="post">
+       <label for="threadTitleNew">Edit Title</label>
+       <input id="threadTitleNew"type="text" name="titleNew" value="{{data.question}}"></input>
+       <label for="threadDescriptionNew">Edit Description</label>
+       <textarea class="materialize-textarea" rows="4" cols="50" id="threadDescriptionNew" type="text" name="descriptionNew" >{{data.description}}</textarea>
+   </div>
+   <div class="modal-footer">
+     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+     <input class="btn" type="submit" value="Update">
+   </div>
+   </form>
+ </div>
