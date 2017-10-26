@@ -12,7 +12,6 @@ router.get('/login', (req, res) => {
   res.render('users/login')
 })
 
-
 router.post('/register', (req, res) => {
   var formData = req.body
 

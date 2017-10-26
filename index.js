@@ -47,19 +47,19 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use((req, res, next) => {
-  // app.locals.title = 'Prima'
   app.locals.user = req.user // we'll only `req.user` if we managed to log in
-  // return res.send(req.user)
   next()
 })
 
 app.get('/', (req, res) => {
   res.render('home')
 })
-app.post('/route', (req, res) => {
-  console.log(req.user)
+app.put('/route', (req, res) => {
   console.log(req.body)
-  res.send(req.body)
+  // console.log('test', req.session.passport.user)
+  // console.log(req.user)
+  // res.send(req.body)
+  // User.findOneAndUpdate(user: user)
 })
 
 app.use('/users', isLoggedIn, login_routes)

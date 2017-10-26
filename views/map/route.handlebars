@@ -3,12 +3,14 @@
 <div id="map"></div>
 <div id="floating-panel">
 
-<form action="/route" method="post">
+<form action="/route" method="post" class="checkRoute">
   <label for="start location"><b>Start bldg: </b></label>
   <input type="text" name="start" id="field1" size="35" placeholder="Building name/Address/Postal code">
   <br>
   <label for="end location"><b>End bldg: </b></label>
   <input type="text" name="end" id="field2" size="35" placeholder="Building name/Address/Postal code">
+  <br>
+  <button type="submit" name="button" id="check">Check routes</button>
 </form>
 
 </div>

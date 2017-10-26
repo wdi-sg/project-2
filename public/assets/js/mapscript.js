@@ -10,54 +10,65 @@ function initMap () {
     center: {lat: 1.307820, lng: 103.831830},
     zoom: 19
   })
-  var autocomplete1 = new google.maps.places.Autocomplete(input1[0]) // adds autocomplete feature to Start bldg field
-  var autocomplete2 = new google.maps.places.Autocomplete(input2[0])
-
-  autocomplete1.addListener('place_changed', startPostalCode)
-  autocomplete2.addListener('place_changed', endPostalCode)
-
-  function startPostalCode () {
-         // Get the place details from the autocomplete object.
-    marker1.setAnimation(null)
-    console.log('hey')
-    var place = autocomplete1.getPlace()
-    map.setCenter(place.geometry.location)
-    marker1.setPosition(place.geometry.location)
-    marker1.setAnimation(google.maps.Animation.DROP)
-    var startPostal = place.formatted_address.substr(place.formatted_address.length - 6) // returns postal code from google map
-    // fetch here
-
-    var jsonPostal = JSON.stringify({
-      startPostal
-    })
-
-    fetch('/route', {
-      method: 'POST',
-      body: jsonPostal,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(res => res.json())
-    .then(json => {
-      console.log('add to database')
-    })
-  }
-
-  function endPostalCode () {
-    marker1.setPosition(null)
-    var place = autocomplete2.getPlace()
-    var endPostal = place.formatted_address.substr(place.formatted_address.length - 6)
-  }
-
   directionsDisplay.setMap(map)
 
   var onChangeHandler = function () {
     calculateAndDisplayRoute(directionsService, directionsDisplay)
   }
   $('#field2').on('change', onChangeHandler)
+  autoComplete()
+}
+
+function autoComplete () {
+  var autocomplete1 = new google.maps.places.Autocomplete(input1[0]) // adds autocomplete feature to Start bldg field
+  var autocomplete2 = new google.maps.places.Autocomplete(input2[0])
+
+  autocomplete1.addListener('place_changed', startPostalCode)
+  // autocomplete2.addListener('place_changed', endPostalCode)
+
+  const $checkRoute = $('.checkRoute')
+  $checkRoute.on('submit', function (e) {
+    e.preventDefault()
+
+    var address1 = autocomplete1.getPlace().formatted_address
+    var postal1 = address1.substr(address1.length - 6)
+    var address2 = autocomplete2.getPlace().formatted_address
+    var postal2 = address2.substr(address2.length - 6)
+
+    console.log('Starting from ', postal1, 'Ending at ', postal2)
+    console.log(req.user)
+  })
+  function startPostalCode () {
+    marker1.setAnimation(null)
+    var place1 = autocomplete1.getPlace()
+    map.setCenter(place1.geometry.location)
+    marker1.setPosition(place1.geometry.location)
+    marker1.setAnimation(google.maps.Animation.DROP)
+
+    // fetch here
+
+    // var jsonPostal = JSON.stringify({
+    //   startPostal
+    // })
+    //
+    // fetch('/route', {
+    //   method: 'PUT',
+    //   body: jsonPostal,
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // })
+    // .then(res => res.json())
+    // .then(json => {
+    //   console.log('add to database')
+    // })
+  }
+
+  // function endPostalCode () {
+  // }
 }
 function calculateAndDisplayRoute (directionsService, directionsDisplay) {
+  marker1.setPosition(null)
   directionsService.route({
     origin: $('#field1').val(),
     destination: $('#field2').val(),
@@ -79,11 +90,6 @@ var options = {
 
 function success(pos) {
   var crd = pos.coords
-  //
-  // console.log('Your current position is:')
-  // console.log(`Latitude : ${crd.latitude}`)
-  // console.log(`Longitude: ${crd.longitude}`)
-  // console.log(`More or less ${crd.accuracy} meters.`)
 
   marker1 = new google.maps.Marker({
     position: new google.maps.LatLng(crd.latitude, crd.longitude),
