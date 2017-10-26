@@ -18,10 +18,20 @@ router.post('/new-gig', (req, res) => {
   })
   newGig.save()
   .then(
-    (user) => res.redirect('/'),
-  //   /* later need to add in the redirect to the gig card page itself */
+    (gig) => res.redirect(`/gigs/${gig.slug}`),
     err => res.send(err)
   )
+})
+
+router.get('/:slug', (req, res) => {
+  Gig.findOne({
+    slug: req.params.slug
+  })
+  .then((gig) => {
+    res.render('../views/gigs/gig-card', {
+      gig
+    })
+  })
 })
 
 module.exports = router
