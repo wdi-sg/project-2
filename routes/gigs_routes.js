@@ -40,9 +40,38 @@ router.post('/:slug', (req, res) => {
     slug: req.params.slug
   })
   .then((gig) => {
+    res.redirect(`/gigs/${gig.slug}/edit`)
+  })
+})
+
+router.get('/:slug/edit', (req, res) => {
+  Gig.findOne({
+    slug: req.params.slug
+  })
+  .then((gig) => {
     res.render('../views/gigs/edit', {
       gig
     })
+  })
+})
+
+router.put('/:slug/edit', (req, res) => {
+  var newGigData = req.body
+  Gig.findOne({
+    slug: req.params.slug
+  })
+  .then((gig) => {
+    gig.name = newGigData.name
+    gig.dates = newGigData.dates
+    gig.specs = newGigData.specs
+    gig.wage = newGigData.skills
+    gig.description = newGigData.description
+    gig.skills = newGigData.skills
+    gig.save()
+  .then(
+    (gig) => res.redirect(`/gigs/${gig.slug}`),
+    err => res.send(err)
+  )
   })
 })
 
