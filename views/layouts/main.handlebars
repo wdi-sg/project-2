@@ -8,10 +8,9 @@
   <body>
     <nav>
   <div class="nav-wrapper #ff9800 orange">
-    {{#if user}}
     <a href="#" class="brand-logo">Welcome {{ user.name }}</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-
+      {{#if user}}
       <li><a href="/">Home</a></li>
       <li><a href="/profile">Profile</a></li>
       <li><a href="/logout">Logout</a></li>

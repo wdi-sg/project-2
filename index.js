@@ -2,6 +2,28 @@ require("dotenv").config({
 	silent: true
 })
 
+var PersonalityInsightsV3 = require("watson-developer-cloud/personality-insights/v3")
+console.log(PersonalityInsightsV3)
+
+var personality_insights = new PersonalityInsightsV3({
+	username: "20eebb2e-98f9-4ceb-b6f2-222a079b991a",
+	password: "0XwiS6X3JOu5",
+	version_date: "2016-10-19"
+})
+
+personality_insights.profile({
+	text: "Enter more than 100 unique words here...",
+	consumption_preferences: true
+},
+function (err, response) {
+	if (err)
+		console.log("error:", err)
+	else
+		console.log(JSON.stringify(response, null, 2))
+})
+const auth = require("./auth.js")
+
+// console.log(NaturalLanguageUnderstandingV1)
 const dbUrl = process.env.MONGODB_URI === "production" ? process.env.MONGODB_URI : "mongodb://localhost/project2"
 const port = process.env.PORT || 3000
 
@@ -79,6 +101,11 @@ app.get("/", (req, res) => {
 app.use("/register", register_routes)
 app.use("/login", login_routes)
 app.use("/profile", profile_routes)
+
+app.get("/logout", (req, res) => {
+	req.logout()
+	res.redirect("/")
+})
 
 // set port for express to listen to
 app.listen(port, () => {
