@@ -1,29 +1,32 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const User = require('../models/user')
 
 const courseSchema = new Schema({
-
-  address: {
-    building: String,
-    coord: Array,
-    street: String,
-    zipcode: String
-  },
-  grades: [{
-    date: Date,
-    grade: String,
-    score: Number
-  }],
+  address: String,
   name: String,
-  course_id: String,
-
-  owner: {
-    type: Schema.Types.ObjectId
-  }
+  description: String,
+  currentStudents: [{
+    name: String
+  }],
+  duration: String,
+  date: String,
+  time: String,
+  price: String,
+  teacher: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  status: String,
+  slug: String
 })
 
-const Course = mongoose.model('Course', courseSchema)
+// courseSchema.pre('save', function(next) {
+//   var course = this
+//   course.slug = course.name.toLowerCase().split(' ').join('-')
+// })
 
+const Course = mongoose.model('Course', courseSchema)
 
 
 

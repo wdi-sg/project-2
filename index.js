@@ -21,6 +21,8 @@ const login_routes = require('./routes/login_routes')
 const register_routes = require('./routes/register_routes')
 const classes_routes = require('./routes/classes_routes')
 const pending_routes = require('./routes/pending_routes')
+const show_routes = require('./routes/show_routes')
+const course_routes = require('./routes/course_routes')
 
 const app = express()
 
@@ -63,6 +65,7 @@ app.use(passport.session())
 
 app.use((req, res, next) => {
   app.locals.user = req.user
+  app.locals.course = req.course
   next()
 })
 
@@ -80,8 +83,10 @@ app.get('/logout', hasLoggedOut, (req, res) => {
   res.redirect('/')
 })
 
+app.use('/course', course_routes)
 app.use('/pending', pending_routes)
 app.use('/classes', classes_routes)
+app.use('/show', show_routes)
 app.use('/register', isLoggedIn, register_routes)
 app.use('/login', isLoggedIn, login_routes)
 
