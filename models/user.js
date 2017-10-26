@@ -2,10 +2,27 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
 
+const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
 const userSchema = new Schema({
-  email: { type: String },
-  password: { type: String },
-  name: { type: String },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+    match: emailRegex
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: [6, 'Password must be between 6 and 99 characters'],
+    maxlength: [99, 'Password must be between 8 and 99 characters']
+  },
+  name: {
+    type: String,
+    required: true,
+    minlength: [3, 'Name must be between 3 and 99 characters'],
+    maxlength: [99, 'Name must be between 3 and 99 characters']
+  },
   slug: { type: String },
   addedQuotes: [], // quote ID
   subscribeQuote: {

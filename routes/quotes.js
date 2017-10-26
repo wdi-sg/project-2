@@ -51,6 +51,9 @@ router.post('/addQuote', (req, res) => {
   newQuote.save()
   .then(() => {
     res.redirect('addQuote')
+  }, err => {
+    console.log('Either fields are not filled up')
+    res.redirect('addQuote')
   })
 })
 
