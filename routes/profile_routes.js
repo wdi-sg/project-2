@@ -4,9 +4,6 @@ const router = express.Router()
 const passport = require('../config/ppConfig')
 
 router.delete('/:id', (req, res) => {
-  // (AGAIN) thankfully since we're using mongoose
-  // there's a method in mongoose just for that
-  // `findByIdAndRemove` http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove
 
   User.findByIdAndRemove(req.params.id)
   .then(() => res.redirect(`/`))
@@ -23,16 +20,18 @@ router.delete('/:id', (req, res) => {
 // find restaurant object by id given
 // update with the input from form
 // save to the db
-router.put(`/profile/:slug`, (req, res) => {
-
+router.put('/:id', (req, res) => {
 
   var formData = req.body
 
   User.findByIdAndUpdate(req.params.id, {
     name: formData.name,
-    email: formData.email
-  })
-  .then(() => res.redirect(`/users/${req.params.id}`))
+    email: formData.email,
+    slug: formData.name.toLowerCase().split(' ').join('-')
+  }, {new:true})
+  .then((user) => res.redirect(`/profile/${user.slug}`))
   .catch(err => console.log(err))
-  
+
 })
+
+module.exports = router

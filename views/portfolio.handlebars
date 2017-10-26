@@ -1,0 +1,30 @@
+<h3>Add your transactions</h3>
+
+{{!-- FORM TO CREATE NEW RESTAURANT, NOTICE THERE'S NO ID THERE --}}
+<form action="/portfolio" method="post">
+  <label for="name">Holdings</label>
+  <input type="text" name="instrument[name]" placeholder="company name">
+
+  <label for="ticker">Ticker</label>
+  {{!-- NOTICE on the attribute type below  --}}
+  <input type="text" name="instrument[ticker]" placeholder="ticker">
+
+  <label for="inception date">Inception Date</label>
+  {{!-- NOTICE on the attribute type below  --}}
+  <input type="date" name="instrument[date]" placeholder="">
+
+  <label for="units">units</label>
+  {{!-- NOTICE on the attribute type below  --}}
+  <input type="number" name="instrument[units]" placeholder="">
+
+  <label for="price">price</label>
+  {{!-- NOTICE on the attribute type below  --}}
+  <input type="number" name="instrument[price]" placeholder="USD">
+
+  <label for="closing price">closing price</label>
+  {{!-- NOTICE on the attribute type below  --}}
+  <input type="number" name="instrument[closingPrice]" placeholder="USD">
+
+  <button type="submit"  id = 'bought' name="button">Buy</button>
+  <button type="submit"  id = 'sell' name="button">Sell</button>
+</form>

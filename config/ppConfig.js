@@ -11,6 +11,7 @@ passport.serializeUser((user,next) => {
 //cookie to session. return hashed version of the session.
 passport.deserializeUser((id, next) => {
   User.findById(id, function(err, user){
+    console.log('deserializeUser')
     next(err, user)
   })
 })
@@ -26,7 +27,10 @@ passport.use(new LocalStrategy({
 
     user.validPassword(password, (err, isMatch) => {
       if (err) return next(err)
-      if (isMatch) return next(null, user)
+      if (isMatch) {
+        console.log('matched')
+        return next(null, user)
+      }
       return next(null, false, { message: 'mismatched'})
     })
 

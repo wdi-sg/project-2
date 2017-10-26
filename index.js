@@ -21,8 +21,14 @@ const User = require('./models/user')
 const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
 const profile_routes=require('./routes/profile_routes')
+const portfolio_routes=require('./routes/portfolio_routes')
+
 
 const app = express()
+
+// df = quandl.get("FRED/GDP",returns="pandas")
+// records = json.loads(df.T.to_json()).values()
+// db.myCollection.insert(records)
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
@@ -74,9 +80,17 @@ app.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
+app.get('/portfolio', (req,res) => {
+  res.render('portfolio')
+})
+
 app.use('/register', register_routes)
 
 app.use('/login', login_routes)
+
+app.use('/profile', profile_routes)
+
+//app.use('/portfolio', portfolio_routes)
 
 
 app.get('/profile/:slug', (req, res) => {

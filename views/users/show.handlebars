@@ -3,8 +3,13 @@
   <li>email: {{ user.email }}</li>
 </ul>
 
+{{!-- <a href="/users/{{ user.id }}" class="btn btn-primary">View</a> --}}
+
 <h3>Update</h3>
-<form action="/users/{{ user.id }}?_method=PUT" method="post">
+<form action="/profile/{{ user.id }}?_method=PUT" method="post">
+
+  <input type="hidden" name="slug" value="{{ user.slug }}">
+
   <label for="name">Name</label>
   <input type="text" name="name" value="{{ user.name }}">
   {{!-- we put the {{}} inside value cos we want to show the existing name --}}
@@ -17,7 +22,8 @@
 
 <h3>Delete</h3>
 {{!-- Same thing, different request type --}}
-<form action="/users/{{ user.id }}?_method=DELETE" method="post">
+<form action="/profile/{{ user.id }}?_method=DELETE" method="post">
+  <input type="hidden" name="slug" value="{{ user.slug }}">
   <button type="submit" name="button">Delete</button>
   {{!-- don't need input fields here, cos we're not updating anything --}}
 </form>
