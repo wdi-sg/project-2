@@ -65,9 +65,10 @@ router.get('/serviceFromRoutes', (req, res) => {
 }) //end get
 
 //get bus arrival time
-router.get('/busArrival', (req, res) => {
+router.get('/busArrival/:bus', (req, res) => {
+  var bus = req.params.bus
   var options = {
-    url: 'http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=83139',
+    url: 'http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode='+bus,
     headers: {
       'AccountKey': 'BF/zvVwHSeWjAnJVwSw0nQ==',
       'Content-Type': 'application/json'
@@ -76,6 +77,7 @@ router.get('/busArrival', (req, res) => {
   request(options)
     .then(json => {
       var data = JSON.parse(json)
+      console.log(data);
       res.send(data)
     })
 })
@@ -85,8 +87,8 @@ router.get('/busArrival', (req, res) => {
 router.get('/stops', (req, res) => {
       var countStopAddedToDB = 0
       var loadStopsCount = 0
-      while (loadStopsCount < 4500) {
-        loadStopsCount += 500
+      
+      while (loadStopsCount < 5000) {
         var options = {
           url: 'http://datamall2.mytransport.sg/ltaodataservice/BusStops?$skip=' + loadStopsCount,
           headers: {
@@ -94,6 +96,7 @@ router.get('/stops', (req, res) => {
             'Content-Type': 'application/json'
           }
         }
+        loadStopsCount += 500
         //make a request, with the above url and jsn format
         request(options)
           .then(json => {

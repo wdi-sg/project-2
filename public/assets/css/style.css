@@ -6,3 +6,16 @@ nav {
 .card {
   margin-bottom: 15px;
 }
+
+.saveBtn{
+  width: 30px;
+  height: 30px;
+  background-image: url('../img/save.png');
+  /*background-repeat: none;*/
+  background-size: 100%;
+}
+
+.nearStopUL li{
+display: inline;
+padding-left: 15px;
+}

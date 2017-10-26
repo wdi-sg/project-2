@@ -24,7 +24,7 @@ var userSchema = new Schema({
     maxlength: [99, 'Password must be between 8 and 99 characters'],
   }, slug: String,
   faveStops: {
-    type: [Number]
+    type: [String]
   },
   faveBus:{
     type: [Number]

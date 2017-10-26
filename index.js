@@ -27,6 +27,7 @@ const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
 const load_routes = require('./routes/load_routes')
 const stop_routes = require('./routes/stop_routes')
+const save_routes = require('./routes/save_routes')
 
 const app = express()
 // VIEW ENGINES aka handlebars setup
@@ -72,8 +73,24 @@ app.use(passport.session());
 
 app.use((req, res, next) => {
   app.locals.user = req.user // we'll only `req.user` if we managed to log in
+  // console.log(req.user.id);
   next() //make sure other requests continue!
 })
+
+app.get('/save/stops/:code', (req, res) => {
+//add toggle before. if alraedy exists, add. otherwise remove.
+var busStop = req.params.code
+User.findByIdAndUpdate(req.user.id, {
+    $addToSet: {
+      faveStops: busStop
+    }
+  })
+  // .then(res.send(user))
+  .then(console.log('found user.'))
+  .catch(err => console.log(err))
+})
+// .next(err, user)
+
 
 
 app.get('/profile', (req, res) => {
@@ -89,6 +106,7 @@ app.get('/profile', (req, res) => {
 })
 app.use('/', home_routes)
 app.use('/stop', stop_routes)
+// app.use('/save', save_routes)
 app.use('/load', load_routes)
 app.use('/register', register_routes)
 app.use('/login', isLoggedIn, login_routes)
