@@ -10,9 +10,10 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
+
     <div class=" left-align">
     <nav>
-      <div class="nav-wrapper teal darken-1">
+      <div class="nav-wrapper brown darken-4 z-depth-5">
       <ul class="left hide-on-med-and-down">
         <a href="/" class="brand-logo center">ViscuSS</a>
       <li><a href="/newquestion">Add a question</a></li>
@@ -24,12 +25,21 @@
       {{/if}}
       <li><a href="/search">Search</a></li>
     </ul>
-
     <ul class="right">
       <li><a href="/admin">Admin</a></li>
+      {{#checkAdmin "admin" currentUser.type}}
+      <li><a href="/admin/console">Admin Console</a></li>
+      {{else}}
+
+      {{/checkAdmin}}
+      {{!-- {{#checkAdmin "admin" ../currentUser}}
+      <li><a href="/admin">Logout</a></li>
+      {{/checkAdmin}} --}}
     </ul>
+
     </div>
     </nav>
+
     <div class="parallax-container">
     <div class="parallax"><img src="/assets/images/background1.jpg"></div>
   </div>
@@ -43,6 +53,32 @@
   <div class="parallax-container">
   <div class="parallax"><img src="/assets/images/background2.jpg"></div>
 </div>
+
+<footer class="page-footer brown darken-3 z-depth-5">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">No time to fill this shit up bro, the fucking commands take forever to troubleshoot</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Social</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">LinkedIn</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">About</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Contact Us</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright brown darken-4 z-depth-5">
+            <div class="container">
+            © 2017 Mexican Cartel José
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/assets/js/materialize.min.js"></script>
     <script src="/assets/js/frontend.js"></script>

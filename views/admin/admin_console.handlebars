@@ -1,17 +1,94 @@
-ADMIN CONSOLE HERE
-<div class="row">
-    <div class="col s12">
-      <ul class="tabs">
-        <li class="tab col s3"><a class="active" href="#consolePage">Console</a></li>
-        <li class="tab col s3"><a href="#usersPage">Users</a></li>
-        <li class="tab col s3"><a href="#threadsPage">Threads</a></li>
-        <li class="tab col s3"><a href="#answersPage">Answers</a></li>
-      </ul>
-    </div>
-    <div id="consolePage" class="col s12">
-      Test 1
-    </div>
-    <div id="usersPage" class="col s12">Test 2</div>
-    <div id="threadsPage" class="col s12">Test 3</div>
-    <div id="answersPage" class="col s12">Test 4</div>
+<div class='row'>
+  <div class='col s12'>
+    <ul class='tabs'>
+      <li class='tab col s3'><a class='active' href='#consolePage'>Console</a></li>
+      <li class='tab col s3'><a href='#usersPage'>Users</a></li>
+      <li class='tab col s3'><a href='#threadsPage'>Threads</a></li>
+      <li class='tab col s3'><a href='#answersPage'>Answers</a></li>
+    </ul>
   </div>
+  <div class="">
+    &nbsp;
+    <h5>Welcome back {{currentUser.name}}</h5>
+    <p><b> Admin Code</b> {{currentUser.adminCode}}</p>
+    <p>________________________</p>
+  </div>
+  <div id='consolePage' class='col s12'>
+    <div class=''>
+      <table>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        {{!-- <tr>
+          <th>Data</th>
+          <th>Contact</th>
+          <th>Country</th>
+        </tr> --}}
+        <tr>
+          <td>Users</td>
+          <td>
+            <form class="" action="/deleteAllUsers" method="post">
+                <a class="btn red" onclick="Materialize.toast('All users deleted from database', 2000)">Delete</a>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td>Threads</td>
+          <td>
+            <form class="" action="/deleteAllThreads" method="post">
+                <a class="btn red" onclick="Materialize.toast('All threads deleted from database', 2000)">Delete</a>
+            </form>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Answers</td>
+          <td>
+            <form class="" action="/deleteAllAnswers" method="post">
+                <a class="btn red" onclick="Materialize.toast('All answers deleted from database', 2000)">Delete</a>
+            </form>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <!-- Users tab -->
+  <div id='usersPage' class='col s12'>
+    <ul class="collapsible" data-collapsible="accordion">
+        {{#each users}}
+        <li>
+          <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{this.name}}</div>
+          <div class="collapsible-body">
+            <table>
+            <tr>
+              <th>Full Name</th>
+              <th>Object ID</th>
+              <th>Edit User Details</th>
+              <th>Delete User</th>
+            </tr>
+            <tr>
+              <td>{{this.name}}</td>
+              <td>{{this.id}}</td>
+              <td>
+                <form class="" action="/editUser" method="post">
+                    <a class="btn teal darken-4">Modify</a>
+                </form>
+              </td>
+              <td>
+              <form class="" action="/removeUser" method="post">
+                  <a class="btn red" onclick="Materialize.toast('{{this.name}} deleted from database', 2000)">Remove</a>
+              </form>
+            </td>
+            </tr>
+          </table>
+        </div>
+        </li>
+          {{/each}}
+      </ul>
+  </div>
+  <div id='threadsPage' class='col s12'>Test 3</div>
+  <div id='answersPage' class='col s12'>Test 4</div>
+</div>
+<!-- TESTING AREA DO NOT PUT ANY WORKING CODE BELOW -->

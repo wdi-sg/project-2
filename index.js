@@ -51,8 +51,22 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: true
 }))
+
+// ===== Set up helpers for HBS ====== //
+var hbs = exphbs.create({
+    defaultLayout: 'main',
+    helpers      : {
+
+      checkAdmin: function(first, second, options) {
+        if (String(first) === String(second)) {
+          return options.fn(this)
+        }
+      }
+    }
+})
 //======= Set up handlebars
-app.engine('handlebars', exphbs({defaultLayout:'main'}))
+// app.engine('handlebars', exphbs({defaultLayout:'main'}))
+app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
 // ====== Set up path
 app.use(express.static(path.join(__dirname, 'public')))

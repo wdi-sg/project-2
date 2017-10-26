@@ -6,6 +6,8 @@ const adminCC = process.env.ADMIN_CODE
 const Thread = require('../models/threads')
 const Admin = require("../models/admin")
 const Answer = require("../models/answers")
+const User = require("../models/user")
+
 
 const { hasLoggedOut, isLoggedIn, isAdmin } = require('../helpers')
 
@@ -18,10 +20,14 @@ res.render("admin/admin_landingpage",{
 })
 
 router.get("/console",isAdmin, (req,res)=>{
-
-  res.render("admin/admin_console",{
-    title: "Admin Console"
+  User.find()
+  .then(usersFound=>{
+    res.render("admin/admin_console",{
+      title: "Admin Console",
+      users: usersFound
+    })
   })
+
 })
 
 router.post("/login", passport.authenticate("local_admin",{
