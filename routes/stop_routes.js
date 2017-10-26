@@ -4,6 +4,7 @@ const Stop = require('../models/stop')
 const BusService = require('../models/busService')
 const request = require('request-promise-native')
 const moment = require('moment');
+
 router.get('/:code', (req, res) => {
   var busStop = req.params.code
   var options = {

@@ -27,7 +27,7 @@ const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
 const load_routes = require('./routes/load_routes')
 const stop_routes = require('./routes/stop_routes')
-const save_routes = require('./routes/save_routes')
+// const save_routes = require('./routes/save_routes')
 
 const app = express()
 // VIEW ENGINES aka handlebars setup
@@ -78,7 +78,7 @@ app.use((req, res, next) => {
 })
 
 app.get('/save/stops/:code', (req, res) => {
-//add toggle before. if alraedy exists, add. otherwise remove.
+//todo add toggle before. if alraedy exists, add. otherwise remove.
 var busStop = req.params.code
 User.findByIdAndUpdate(req.user.id, {
     $addToSet: {
@@ -89,7 +89,20 @@ User.findByIdAndUpdate(req.user.id, {
   .then(console.log('found user.'))
   .catch(err => console.log(err))
 })
-// .next(err, user)
+
+app.post('/save/bus/:code', (req, res) => {
+// var bus = req.body.busNo
+var bus = req.params.code
+User.findByIdAndUpdate(req.user.id, {
+    $addToSet: {
+      faveBus: bus
+    }
+  }).then(() => {
+      res.send({message: 'added with success'})
+      .then(console.log('found user.'))
+      .catch(err => console.log(err))
+})  // .then(res.send(user))
+})
 
 
 
