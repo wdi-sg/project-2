@@ -1,0 +1,30 @@
+<h1>Offer a trade request!</h1>
+<div class="card" style="width: 50rem;">
+  <img class="card-img-top" src="{{listing.photos}}" alt="Card image cap">
+  <div class="card-body">
+    <h4 class="card-title">{{listing.title}}</h4>
+    <p class="card-text">{{listing.description}}</p>
+  </div>
+</div>
+
+<h2>My offer</h2>
+
+<form action="/listings/requests/{{listing._id}}" method="POST" enctype = "multipart/form-data">
+  <div class="form-group">
+    <label for="offers">Photo upload</label>
+    <input type="file" name="image2" class="form-control-file" id="exampleFormControlFile1">
+  </div>
+
+  <div class="title">
+    <label for="exampleFormControlTextarea1">Title</label>
+    <input type="text" name="title2">
+  </div>
+
+  <div class="form-group">
+  <label for="exampleFormControlTextarea1">Description</label>
+  <textarea class="form-control" name="description2" id="exampleFormControlTextarea1" rows="3"></textarea>
+  <button type="submit" name="button">Submit</button>
+
+</div>
+
+</form>

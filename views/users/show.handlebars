@@ -1,0 +1,45 @@
+<h3>Hello, {{ user.username }}</h3>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" href="#">My Listings</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Trade requests</a>
+  </li>
+</ul>
+{{#each listings as |listo|}}
+<div class="card" style="width: 20rem;">
+  <img class="card-img-top" src="{{listo.photos}}" alt="Card image cap">
+  <div class="card-body">
+    <h4 class="card-title">{{listo.title}}</h4>
+    <p class="card-text">{{listo.description}}</p>
+    <form action="/listings/requests/{{listo._id}}?_method=DELETE" method="post">
+      <button type="submit" name="button">Delete</button>
+    </form>
+  </div>
+  <form action="/listings" method="POST" enctype = "multipart/form-data">
+    <div class="form-group">
+      <label for="listings">Photo upload</label>
+      <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+    </div>
+
+    <div class="title">
+      <label for="exampleFormControlTextarea1">Title</label>
+      <input type="text" name="title">
+    </div>
+
+    <div class="form-group">
+    <label for="exampleFormControlTextarea1">Description</label>
+    <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <button type="submit" name="button">Update</button>
+
+  </div>
+</div>
+{{/each}}
+
+{{offers}}
+
+
+{{!-- <form action="/profile/{{user.username}}" method="POST" enctype = "multipart/form-data">
+  <button type="submit" name="button">Submit</button>
+</div> --}}
