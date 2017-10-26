@@ -1,27 +1,29 @@
-<h1>Get Gigs, Make Good!</h1>
 
-<h2>Search Gigs</h2>
-<label for="searchInput">Search: </label>
-<input id="searchGigs" type="text">
-
-<h3>Search Results</h3>
-<div class="row" id="searchGigsResults">
-
-</div>
-
-<div class="row">
-
-  {{#each gig}}
-  <div class="col-4">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">{{{this.name}}}</h4>
-        <p class="card-text">
-          {{this.wage}} {{this.author.name}}
-          <a href="/profile/{{this.slug}}">Click!</a>
-        </p>
-      </div>
+    <div class="mx-auto" style="width: 200px;">
+      <h2>Search Gigs</h2>
+      <label for="searchInput">Search: </label>
+      <input id="searchGigs" type="text">
     </div>
   </div>
-  {{/each}}
+<div class = "container">
+<h3>Search Results</h3>
+<div class="row" id="searchGigsResults">
+</div>
+</div>
+
+<div class = "container">
+<div class="row">
+<div class="card-deck">
+{{#each gig}}
+<div class="card">
+  <img class="card-img-top" src="http://lorempixel.com/400/200" alt="Card image cap">
+  <div class="card-body">
+    <h4 class="card-title">{{{this.name}}}</h4>
+    <p class="card-text"> {{this.wage}} {{this.author.name}}</p>
+    <a href="/profile/{{this.slug}}" class="gig-link">Later will do!</a>
+  </div>
+</div>
+{{/each}}
+</div>
+</div>
 </div>
