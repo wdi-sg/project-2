@@ -2,9 +2,17 @@ const express = require('express')
 const router = express.Router()
 
 const Tour = require('../models/tour')
+const Show = require('../models/show')
+
 
 router.get('/', (req, res) => {
-  res.render('./tours/new')
+  Show.find({})
+  .then(tours => {
+    console.log(tours);
+    res.render('./tours/new', {
+      data: tours
+    })
+  })
 })
 
 // CREATE ONE
@@ -56,7 +64,7 @@ router.put('/:id', (req, res) => {
 
 // DELETE ONE
 router.delete('/:id', (req, res) => {
-  Show.findByIdAndRemove(req.params.id)
+  Tour.findByIdAndRemove(req.params.id)
   .then(() => res.redirect(`/`))
   .catch(err => console.log(err))
 })

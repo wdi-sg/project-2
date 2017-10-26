@@ -25,6 +25,8 @@ const tvshow_routes = require('./routes/tvshow_routes')
 const login_routes = require('./routes/login_routes')
 const tour_routes = require('./routes/tour_routes')
 const review_routes = require('./routes/review_routes')
+const show_routes = require('./routes/show_routes')
+const user_routes = require('./routes/user_routes')
 
 const app = express()
 
@@ -80,15 +82,13 @@ app.get('/', (req, res) => {
     })
 })
 
-app.get('/show/:id', (req, res) => {
-  res.render('show/show_tourlist')
-})
-
 app.use('/login', login_routes)
 app.use('/register', register_routes)
 app.use('/addtvshows', tvshow_routes)
 app.use('/addtours', tour_routes)
 app.use('/review', review_routes)
+app.use('/show', show_routes)
+app.use(`/:slug`, user_routes)
 
 app.get('/profile', hasLoggedOut, (req, res) => {
   res.send(req.user)

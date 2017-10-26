@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const Show = require('../models/show')
+const Tvshow = require('../models/show')
 
 router.get('/', (req, res) => {
   res.render('./tvshows/new')
@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 // CREATE ONE
 router.post('/', (req, res) => {
   var formData = req.body
-  var newTvShow = new Show()
+  var newTvShow = new Tvshow()
   newTvShow.slug = formData.name.toLowerCase().split(' ').join('')
   newTvShow.name = formData.name
   newTvShow.save()
@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
 
 // READ ONE
 router.get('/:id', (req, res) => {
-  Show
+  Tvshow
     .findById(req.params.id)
     .then(show => {
       res.render('tvshows/show', {
@@ -40,7 +40,7 @@ router.get('/:id', (req, res) => {
 // UPDATE ONE
 router.put('/:id', (req, res) => {
   var formData = req.body
-  Show.findByIdAndUpdate(req.params.id, {
+  Tvshow.findByIdAndUpdate(req.params.id, {
     name: formData.name
   })
   .then(() => res.redirect(`/addtvshows/${req.params.id}`))
@@ -49,7 +49,7 @@ router.put('/:id', (req, res) => {
 
 // DELETE ONE
 router.delete('/:id', (req, res) => {
-  Show.findByIdAndRemove(req.params.id)
+  Tvshow.findByIdAndRemove(req.params.id)
   .then(() => res.redirect(`/`))
   .catch(err => console.log(err))
 })

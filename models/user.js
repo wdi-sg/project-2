@@ -7,7 +7,11 @@ const userSchema = new Schema({
   name: String,
   email: String,
   password: String,
-  slug: String
+  slug: String,
+  cart:
+  [
+    { type: Schema.Types.ObjectId, ref: 'Tour' }
+  ]
 })
 
 userSchema.pre('save', function(next) {

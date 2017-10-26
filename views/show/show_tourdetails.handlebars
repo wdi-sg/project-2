@@ -1,0 +1,9 @@
+{{#each data}}
+<h3>Tour Name: {{ this.name }}</h3>
+<li>Show Name: {{ this.showname }}</li>
+<li>Highlights: {{this.highlights}}</li>
+<li>Overview: {{this.overview}}</li>
+<form action="/show/tourdetails/{{this.name}}/add" method="post">
+  <input type="submit">Add to Cart</input>
+</form>
+{{/each}}

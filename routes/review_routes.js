@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
   var formData = req.body
   var newReview = new Review({
     title: formData.title,
-    description: formData.description,
+    description: formData.description
     // author: '59e81c0f83674583051f18b1'
   }) // creating empty `Review` object
 
