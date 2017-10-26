@@ -1,0 +1,48 @@
+{{!-- READ --}}
+{{!-- Do I have many restaurants now? --}}
+
+{{!-- only one! so no loop needed --}}
+
+<h2>{{ supplier.company }} <small>({{ supplier.email }})</small></h2>
+
+{{!-- UPDATE 19 Oct: after populating the owner data --}}
+<h3>Contact No. : {{ supplier.contact}}</h3>
+
+<p>
+  {{ supplier.address }}<br>
+  {{ supplier.unit }}, {{ supplier.postalcode }}
+</p>
+
+{{!-- We can also setup a form here to update the existing data --}}
+{{!-- when there's a path, there's a route in your index.js --}}
+{{!-- why PUT, because all update technically MUST go thru PUT request --}}
+<h3>Update</h3>
+<form action="/supplier/new/{{ supplier.id }}?_method=PUT" method="post">
+  {{!-- we put the {{}} inside value cos we want to show the existing name --}}
+  <label for="lblCompanyName">Company Name :</label>
+  <input type="text" name="supplier[txtName]" placeholder="e.g. John Doe" value="{{ supplier.company }}">
+  <br/>
+
+  <label for="lblEmail">Email :</label>
+  <input type="text" name="supplier[txtEmail]" placeholder="e.g. domain@email.com" value="{{ supplier.email }}">
+  <br/>
+
+  <label for="lblEmail">Contact No :</label>
+  <input type="number" name="supplier[txtContact]" placeholder="e.g. 82226668" value="{{ supplier.contact }}">
+  <br/>
+
+  <label for="lblBusinessType">Address :</label>
+  <input type="text" name="supplier[txtAddress]" placeholder="e.g. Blk 1 Pasir ris drive" value="{{ supplier.address }}">
+  <br/>
+
+  <label for="lblPostalCode">Unit :</label>
+  <input type="text" name="supplier[txtUnit]" placeholder="e.g. #01-11" value="{{ supplier.unit }}">
+  <br/>
+
+  <label for="lblPostalCode">Postal Code :</label>
+  <input type="number" name="supplier[txtPostalCode]" placeholder="e.g. 760333" value="{{ supplier.postalcode }}" >
+  <br/>
+
+
+  <button type="submit" name="button">Submit</button>
+</form>

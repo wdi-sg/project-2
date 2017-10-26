@@ -1,14 +1,20 @@
 <h1>Login</h1>
-<link rel="stylesheet" href="/css/styles.css">
-<script type="text/javascript" href='/js/scripts.js'></script>
 
 <form action="/login" method="post">
+
+  <label for="type">Please Select admin/customer :</label>
+  <select name="user[type]">
+    <option value="customer">Customer</option>
+    <option value="admin">Admin</option>
+  </select>
+  <br>
+
   <label for="lblEmail">Email :</label>
-  <input type="text" name="customer[txtEmail]">
+  <input type="email" name="user[txtEmail]" placeholder="e.g. domain@email.com">
   <br/>
 
   <label for="lblPassword">Password :</label>
-  <input type="password" name="customer[txtPassword]">
+  <input type="password" name="user[txtPassword]" placeholder="eg. minimum 8 characters">
   <br/>
 
   <button type="submit" name="btnSubmit">Submit</button>

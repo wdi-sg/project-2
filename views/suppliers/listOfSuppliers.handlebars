@@ -1,0 +1,34 @@
+<div class="row">
+  {{!-- Loop --}}
+  {{#each suppliers as |supp|}}
+  <div class="col-4">
+    {{!--
+      Update 22 Oct,
+      Bootstrap card system,http://getbootstrap.com/docs/4.0/components/card/
+    --}}
+
+    {{!-- since we have the resto object in a loop, i can get each resto id too  --}}
+    {{!-- once we created this link, we need to prepare the route for that --}}
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{ supp.company }}</h4>
+        <p class="card-text">
+          {{!-- 22 Oct: show resto address here instead of just link  --}}
+          {{ supp.address }} {{ supp.unit }}<br>
+          , Singappore {{ supp.postalcode}}
+
+          {{ supp.contact }}
+        </p>
+
+
+        
+
+      </div>
+    </div>
+  </div>
+  {{/each}}
+
+  {{!-- Update 22 October, remove the li grid system to use grid system instead  --}}
+  {{!-- <ul>
+  </ul> --}}
+</div>

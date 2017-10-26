@@ -1,16 +1,63 @@
 <h1>Register</h1>
 
-<form action="/register" method="post">
+<label for="lblType">Please Select admin/customer :</label>
+<select id="selectType">
+  <option value="customer">Customer</option>
+  <option value="admin">Admin</option>
+</select>
+<br>
+
+{{!-- <div class="registerContainer"> --}}
+  <form id="customer" name="customer" action="/register" method="post" style="display:none">
+
+    <input type="hidden" name="user[type]" value="customer">
+
+    <label for="lblName">Name :</label>
+    <input type="text" name="user[txtName]" placeholder="e.g. John Doe">
+    <br/>
+
+    <label for="lblEmail">Email :</label>
+    <input type="text" name="user[txtEmail]" placeholder="e.g. domain@email.com">
+    <br/>
+
+    <label for="lblBusinessType">Business Type :</label>
+    <select name= "user[ddlBusinessType]">
+      <option value="restaurant">Restaurant</option>
+      <option value="hawker">Hawker</option>
+      <option value="coffee-shop">Coffee Shop</option>
+    </select>
+    <br/>
+
+    <label for="lblPassword">Password :</label>
+    <input type="password" name="user[txtPassword]" placeholder="min. 8 characters">
+    <br/>
+
+    <button type="submit" name="btnSubmit">Submit</button>
+  </form>
+{{!-- </div> --}}
+
+
+
+
+<form id ="admin" name="admin" action="/register" method="post" style="display:none">
+
+  <input type="hidden" name="user[type]" value="admin">
+  <input type="hidden" name="isAdmin" value=true >
+
   <label for="lblName">Name :</label>
-  <input type="text" name="customers[txtName]">
+  <input type="text" name="user[txtName]" placeholder="e.g. John Doe">
   <br/>
 
   <label for="lblEmail">Email :</label>
-  <input type="text" name="customer[txtEmail]">
+  <input type="text" name="user[txtEmail]" placeholder="e.g. domain@email.com">
+  <br/>
+
+  <label for="lblEmail">Admin Code :</label>
+  <input type="text" name="user[txtAdmin]">
   <br/>
 
   <label for="lblPassword">Password :</label>
-  <input type="password" name="customer[txtPassword]">
+  <input type="password" name="user[txtPassword]" placeholder="min. 8 characters">
   <br/>
 
   <button type="submit" name="btnSubmit">Submit</button>

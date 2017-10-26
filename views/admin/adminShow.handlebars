@@ -1,0 +1,39 @@
+<h3>List of Supplier</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Supplier Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contact No.</th>
+        <th scope="col">Address</th>
+        <th scope="col">Unit</th>
+        <th scope="col">Postal code</th>
+        {{!-- <th scope="col"></th> --}}
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    {{#each suppliers as |supp|}}
+
+    <tbody>
+      <tr>
+        <td>{{ supp.company }}</td>
+        <td>{{ supp.email }}</td>
+        <td>{{ supp.contact }}</td>
+        <td>{{ supp.address }}</td>
+        <td>{{ supp.unit }}</td>
+        <td>{{ supp.postalcode }}</td>
+        {{!-- <td><a href="/supplier/{{ supp.id }}" class="btn">Edit</a></td> --}}
+        <td>
+          {{!-- <a href="/vegetable/new" class="btn">Add Vegetable</a> --}}
+          <form class="" action="/vegetable/new" method="post">
+            <input type="hidden" name="id" value="{{supp.id}}">
+            <button type="submit" name="button" href="/vegetable/new">Add</button>
+          </form>
+        </td>
+        {{!-- how to pass the id over? /{{ supp.id }} --}}
+      </tr>
+    </tbody>
+
+{{/each}}
+</table>
+{{!-- <a class="btn btn-primary" href="/components/new" role="button">Add</a> --}}
