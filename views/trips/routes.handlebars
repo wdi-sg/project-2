@@ -12,7 +12,8 @@
         <h6 class="card-title">{{route.title}}</h6>
         <p class="card-text">
           {{ route.address }}, {{ route.category }}<br>
-          <a href="https://www.google.com/maps/@{{route.latitude}},{{route.longitude}},15z" target="_blank">MAP YO!</a><br>
+          {{!-- <a href="https://maps.google.com/?cid=9123933771843294962" target="_blank">View google map</a><br> --}}
+          <a href="https://www.google.com/maps/@{{route.latitude}},{{route.longitude}},15z" target="_blank">View google map</a><br>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">{{ route.description }}</li>
           </ul>

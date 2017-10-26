@@ -96,12 +96,4 @@ router.post('/', (req, res) => {
 
 })
 
-// router.get("/", (req,res)=>{
-//   res.render("new")
-// })
-// router.post("/tripImage",(req,res)=>{
-//   // res.send(req.body)
-//   console.log('inside upload button');
-// })
-
 module.exports = router

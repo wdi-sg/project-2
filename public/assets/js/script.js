@@ -27,7 +27,7 @@ function initMap () {
   autocomplete.addListener('place_changed', function () {
     infowindow.close()
     var place = autocomplete.getPlace()
-    console.log(place)
+    console.log(place.url)
     if (!place.geometry) {
       return
     }
@@ -47,7 +47,7 @@ function initMap () {
     marker.setVisible(true)
 
     infowindowContent.children['place-name'].textContent = place.name
-    infowindowContent.children['place-id'].textContent = place.place_id
+    // infowindowContent.children['place-id'].textContent = place.place_id
     infowindowContent.children['place-address'].textContent = place.formatted_address
     // infowindowContent.children['place-url'].textContent = place.url
     infowindow.open(map, marker)
@@ -82,6 +82,7 @@ $(function () {
       const $newCol = $('<div class="col-4">')
       const $newCard = $('<div class="card">')
       const $newCardBody = $('<div class="card-body">')
+      const $newCardImg = $('<img class="card-img-top" src=" " alt=" ">')
       const $newCardTitle = $('<h4 class="card-title">')
       const $newCardText = $('<p class="card-text">')
       const $newCardLinks = $(`<form
@@ -95,7 +96,8 @@ $(function () {
         `
           ${routes.address} ${routes.category}<br>
           ${routes.description }<br/>
-          ${routes.dateCreated }
+          ${routes.dateCreated}
+
         `
       )
 

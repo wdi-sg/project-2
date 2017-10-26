@@ -91,7 +91,7 @@ app.get('/logout', hasLoggedOut, (req, res) => {
 
 app.get('/routes', (req, res) => {
   // the return of then
-
+  // 'postby':req.user.id
   Travelplan.find().limit(9).sort({dateCreated: -1})
   .then(travelplans => {
     // at this point we got our data so we can render our page
@@ -126,6 +126,7 @@ app.use('/routes', hasLoggedOut, travelplan_routes)
 app.use('/register', isLoggedIn, register_routes)
 app.use('/login', isLoggedIn, login_routes)
 
+
 // NEW ROUTE - PROFILE - to show the user profile page
 app.get('/profile', hasLoggedOut, (req, res) => {
   res.send(req.user)
@@ -134,7 +135,9 @@ app.get('/profile', hasLoggedOut, (req, res) => {
 app.locals = {
   GOOGLE_MAPS_URL: process.env.GOOGLE_MAPS_URL
 }
-
+app.get('/test', (req,res) => {
+  res.render('test123')
+})
 // opening the port for express
 app.listen(port, () => {
   console.log(`Server is running on ${port}`)
