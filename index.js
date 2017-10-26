@@ -12,9 +12,6 @@ const path = require('path') // for Public files
 const exphbs = require('express-handlebars') // for Handlebars
 const bodyParser = require('body-parser') // for accessing POST request
 const methodOverride = require('method-override') // for accessing PUT / DELETE
-const multer = require('multer')
-const cloudinary = require('cloudinary')
-const upload = multer({ dest: './uploads/' })
 
 // UPDATE 23 Oct
 const session = require('express-session') // to create session and cookies
@@ -103,6 +100,23 @@ app.get('/routes', (req, res) => {
   .catch(err => {
     console.log(err)
   })
+})
+
+// NEW ROUTE - SEARCH - for realtime search of our restaurant db
+app.get('/search', (req, res) => {
+  res.render('users/search')
+})
+
+app.post('/search', (req, res) => {
+  const keyword = req.body.keyword
+  const regex = new RegExp(keyword, 'i')
+
+  Travelplan.find({
+    category: regex
+  })
+  .limit(20)
+  .then(travelplans => res.send(travelplans))
+  .catch(err => res.send(err)) // in case we have an error
 })
 
 // NEW ROUTE - REGISTER

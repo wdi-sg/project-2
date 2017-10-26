@@ -4,15 +4,15 @@ const Schema = mongoose.Schema
 const travelplanSchema = new Schema({
   title: {
     type: String,
-    required: [true, 'Please give a short title for your issue.']
+    // required: [true, 'Please give a short title for your issue.']
   },
   address: {
     type: String,
-    required: [true, 'Address not found.']
+    // required: [true, 'Address not found.']
   },
   category: {
     type: String,
-    required: [true, 'type in the country.']
+    // required: [true, 'type in the country.']
   },
   dateCreated: {
     type: Date
@@ -23,6 +23,12 @@ const travelplanSchema = new Schema({
     ref: 'User'
   },
   description: {
+    type: String
+  },
+  picture: {
+    type: String
+  },
+  link: {
     type: String
   }
 

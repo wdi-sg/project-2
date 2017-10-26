@@ -1,3 +1,6 @@
+var place_url = ""
+
+// GOOGLE MAP
 function initMap () {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -33.8688, lng: 151.2195},
@@ -45,8 +48,68 @@ function initMap () {
 
     infowindowContent.children['place-name'].textContent = place.name
     infowindowContent.children['place-id'].textContent = place.place_id
-    infowindowContent.children['place-address'].textContent =
-              place.formatted_address
+    infowindowContent.children['place-address'].textContent = place.formatted_address
+    infowindowContent.children['place-url'].textContent = place.url
     infowindow.open(map, marker)
   })
 }
+
+// SEARCH FORM
+$(function () {
+  const $searchInput = $('#searchInput')
+  const $searchResults = $('#searchResults')
+
+  $searchInput.on('mouseleave', e => { // e is the event object of the keyup event
+    var keyword = e.target.value
+    var json = JSON.stringify({
+      keyword
+    })
+
+    // PITSTOP: SPLIT RIGHT WITH INDEX.JS `/search` for better understanding
+    fetch('/search', {
+      method: 'POST',
+      body: json,
+      headers: {
+        "Content-Type" : "application/json"
+      }
+    })
+    .then(response => response.json()) // convert the json file into js object
+    .then(data => showResults(data)) // at this point we got the data
+  })
+
+  function showResults(data) {
+    let allTrips = data.map(routes => {
+      const $newCol = $('<div class="col-4">')
+      const $newCard = $('<div class="card">')
+      const $newCardBody = $('<div class="card-body">')
+      const $newCardTitle = $('<h4 class="card-title">')
+      const $newCardText = $('<p class="card-text">')
+      const $newCardLinks = $(`<form
+        class="form-inline"
+        action="/routes/${ routes.id }?_method=DELETE"
+        method="post"
+      >`)
+
+      $newCardTitle.text(routes.title)
+      $newCardText.html(
+        `
+          ${routes.address} ${routes.category}<br>
+          ${routes.description }<br/>
+          ${routes.dateCreated }
+        `
+      )
+
+      $newCardBody.append($newCardTitle, $newCardText)
+
+      // TODO: add the form section too
+
+      $newCard.append($newCardBody)
+      $newCol.append($newCard)
+      return $newCol
+
+    })
+
+    $searchResults.html('')
+    $searchResults.append(allTrips)
+  }
+})

@@ -7,7 +7,7 @@
   <div class="col-4">
 
     <div class="card">
-      <img class="card-img-top" src="/assets/img/ilya-yakover.jpg" alt="Card image cap">
+      <img class="card-img-top" src="{{route.picture}}" alt="Card image cap">
       <div class="card-body">
         <h6 class="card-title">{{route.title}}</h6>
         <p class="card-text">
@@ -22,7 +22,7 @@
           action="/routes/{{ route.id }}?_method=DELETE"
           method="post"
         >
-          <a href="/routes/{{ route.id }}" class="btn btn-primary">View</a>
+          <a href="/routes/{{ route.id }}" class="btn btn-primary">Update</a>
 
           &nbsp;
 

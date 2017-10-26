@@ -15,8 +15,12 @@ const userSchema = new Schema({
    type: String,
    required: [true, 'Password is required.']
  },
-  slug: String 
-})
+  slug: String,
+ travelplan: [{
+   type: Schema.Types.ObjectId,
+   ref: 'Travel'
+ }]
+ })
 
 // and save the hash instead
 userSchema.pre('save', function(next) {

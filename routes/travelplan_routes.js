@@ -31,7 +31,8 @@ router.put('/:id', (req, res) => {
     address: formData.address,
     category: formData.category,
     date: formData.dateCreated,
-    description: formData.description
+    description: formData.description,
+    pic: formData.pic
   })
   .then(() => res.redirect(`/routes/${req.params.id}`))
   .catch(err => console.log(err))
@@ -41,7 +42,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
 
   Travelplan.findByIdAndRemove(req.params.id)
-  .then(() => res.redirect(`/`))
+  .then(() => res.redirect(`/routes`))
   .catch(err => console.log(err))
 })
 
@@ -53,14 +54,26 @@ router.post('/', (req, res) => {
   newTravelplan.dateCreated = formData.dateCreated
   newTravelplan.category = formData.category
   newTravelplan.address = formData.address
+  newTravelplan.picture = formData.picture
   newTravelplan.description = formData.description
+  newTravelplan.link = formData.link
 
   newTravelplan.save()
   // UPDATE. 19 Oct
   .then(
+    // find current user then save into user.travelplans.push(travelplan.id)
+    // save
     () => res.redirect(`/routes`),
     err => res.send(err)
   ) // why? mongoose save(), doesn't have .catch()
 })
+
+// router.get("/", (req,res)=>{
+//   res.render("new")
+// })
+// router.post("/tripImage",(req,res)=>{
+//   // res.send(req.body)
+//   console.log('inside upload button');
+// })
 
 module.exports = router

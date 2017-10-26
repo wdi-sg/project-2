@@ -9,6 +9,8 @@
     <!-- CSS Files -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/assets/css/now-ui-kit.css?v=1.1.0" rel="stylesheet" />
+    <script>UPLOADCARE_PUBLIC_KEY = "1bfa402a6623b948a42e";</script>
+    <script src="https://ucarecdn.com/libs/widget/3.1.4/uploadcare.full.min.js" charset="utf-8"></script>
   </head>
 
   <body>
@@ -30,6 +32,11 @@
                 <ul class="navbar-nav" style="font-size: 20px;">
 
                   {{#if user}}
+                  <li class="nav-item">
+                    <a class="nav-link" href="/routes">
+                      <p>My Routes</p>&nbsp;<i class="ion-plane"></i>
+                    </a>
+                  </li>
                   <li class="nav-item">
                     <a class="nav-link" href="/routes/new">
                       <p>Add Itinerary</p>&nbsp;<i class="ion-plus-round"></i>
