@@ -1,9 +1,24 @@
 const Component = require('../models/component')
+const Type = require('../models/type')
+
 const express = require('express')
 const router = express.Router()
 
 router.get('/new', (req, res) => {
   res.render('components/new')
+})
+
+router.get('/variables', (req, res) => {
+  Type
+  .find()
+  .then(types => {
+    res.render('components/variables', {
+      types
+    })
+  })
+.catch(err => {
+  console.log(err)
+})
 })
 
 router.get('/showall', (req, res) => {
@@ -20,12 +35,30 @@ router.get('/showall', (req, res) => {
   })
 })
 
-router.get('/:id', (req, res) => {
-  // instead of find all, we can `findById`
+router.get('/summary', (req, res) => {
   Component
-  .findById(req.params.id) // no need limit since there's only one
-  .populate('owner')
-  // .populate(<field name>)
+  .aggregate(
+    [
+      { $group: {
+        _id: '$type',
+        total: { $sum: {$multiply: ['$unit_cost', '$quantity']} }
+      }
+      }
+    ]
+   )
+  .then(components => {
+    res.render('components/summary', {
+      components
+    })
+  })
+  .catch(err => {
+    console.log(err)
+  })
+})
+
+router.get('/:id', (req, res) => {
+  Component
+  .findById(req.params.id)
   .then(component => {
     res.render('components/show', {
       component
@@ -69,6 +102,15 @@ router.put('/:id', (req, res) => {
     type: formData.type
   })
   .then(() => res.redirect(`/components/${req.params.id}`))
+  .catch(err => console.log(err))
+})
+
+router.put('/variables', (req, res) => {
+  var formData = req.body
+  Type.findByIdAndUpdate(req.params.id, {
+    margin: formData.margin
+  })
+  .then(() => res.redirect('/components/variables'))
   .catch(err => console.log(err))
 })
 

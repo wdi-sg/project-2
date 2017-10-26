@@ -1,0 +1,30 @@
+<h3>Set variables</h3>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Margin</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+{{#each types as |type|}}
+<form action="/components/variables?_method=PUT" method="post">
+
+<tbody>
+  <tr>
+    <td>
+{{type.name}}
+</td>
+<td>
+  <label for="margin"></label>
+  <input type="number" name="margin" value ="{{type.margin}}">
+</td>
+<td>
+<button type="submit" name="button">Update</button>
+</td>
+</tr>
+</tbody>
+</form>
+{{/each}}
+</table>

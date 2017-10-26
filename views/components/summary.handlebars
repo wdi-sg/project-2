@@ -1,0 +1,20 @@
+<h3>Cost Summary</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Total Cost</th>  
+      </tr>
+    </thead>
+
+    {{#each components as |compo|}}
+
+    <tbody>
+      <tr>
+        <td>{{ compo._id}}</td>
+        <td>{{ compo.total }}</td>
+      </tr>
+    </tbody>
+
+{{/each}}
+</table>
