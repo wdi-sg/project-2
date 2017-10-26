@@ -7,6 +7,15 @@
   </head>
   <body>
     <h1> Buzz </h1>
+    <ul>
+      <li> <a href="/users/register"> New rider </a></li>
+      <li> <a href="/users/login"> Existing rider </a></li>
+      <li> <a href="/route"> Check out our buzz rides! </a></li>
+      {{#if user}}
+      <li> <a href="#"> {{ user.name }} </a>
+      <li> <a href="/logout"> Logout </a>
+      {{/if}}
+    </ul>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     {{{ body }}}
   </body>

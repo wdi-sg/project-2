@@ -1,10 +1,12 @@
+
 var input1 = $('#field1')
 var input2 = $('#field2')
+var map, marker1
 
 function initMap () {
   var directionsService = new google.maps.DirectionsService
   var directionsDisplay = new google.maps.DirectionsRenderer
-  var map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 1.307820, lng: 103.831830},
     zoom: 19
   })
@@ -14,38 +16,36 @@ function initMap () {
   autocomplete1.addListener('place_changed', startPostalCode)
   autocomplete2.addListener('place_changed', endPostalCode)
 
-  // var componentForm = {
-  //   street_number: 'short_name',
-  //   route: 'long_name',
-  //   locality: 'long_name',
-  //   administrative_area_level_1: 'short_name',
-  //   country: 'long_name',
-  //   postal_code: 'short_name'
-  // }
-
   function startPostalCode () {
          // Get the place details from the autocomplete object.
+    marker1.setAnimation(null)
+    console.log('hey')
     var place = autocomplete1.getPlace()
-
-    // for (var component in componentForm) {
-    //   document.getElementById(component).value = ''
-    //   document.getElementById(component).disabled = false
-    // }
-
-    // console.log(place.formatted_address.substr(place.formatted_address.length - 6))
+    map.setCenter(place.geometry.location)
+    marker1.setPosition(place.geometry.location)
+    marker1.setAnimation(google.maps.Animation.DROP)
     var startPostal = place.formatted_address.substr(place.formatted_address.length - 6) // returns postal code from google map
-         // Get each component of the address from the place details
-         // and fill the corresponding field on the form.
-    // for (var i = 0; i < place.address_components.length; i++) {
-    //   var addressType = place.address_components[i].types[0]
-    //   if (componentForm[addressType]) {
-    //     var val = place.address_components[i][componentForm[addressType]]
-    //     document.getElementById(addressType).value = val
-    //   }
-    // }
+    // fetch here
+
+    var jsonPostal = JSON.stringify({
+      startPostal
+    })
+
+    fetch('/route', {
+      method: 'POST',
+      body: jsonPostal,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(json => {
+      console.log('add to database')
+    })
   }
 
   function endPostalCode () {
+    marker1.setPosition(null)
     var place = autocomplete2.getPlace()
     var endPostal = place.formatted_address.substr(place.formatted_address.length - 6)
   }
@@ -71,3 +71,31 @@ function calculateAndDisplayRoute (directionsService, directionsDisplay) {
     }
   })
 }
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+}
+
+function success(pos) {
+  var crd = pos.coords
+  //
+  // console.log('Your current position is:')
+  // console.log(`Latitude : ${crd.latitude}`)
+  // console.log(`Longitude: ${crd.longitude}`)
+  // console.log(`More or less ${crd.accuracy} meters.`)
+
+  marker1 = new google.maps.Marker({
+    position: new google.maps.LatLng(crd.latitude, crd.longitude),
+    map: map,
+    animation: google.maps.Animation.BOUNCE
+  })
+
+  map.setCenter({lat: crd.latitude, lng: crd.longitude})
+};
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+};
+
+navigator.geolocation.getCurrentPosition(success, error, options) // center the map on current location

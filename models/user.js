@@ -18,11 +18,13 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  // mobile: {
-  //   type: String,
-  //   required: true
-  // },
-  slug: String
+  mobile: {
+    type: Number,
+    required: true
+  },
+  slug: String,
+  startPostal: Number,
+  endPostal: Number
 })
 
 userSchema.pre('save', function (next) {
@@ -37,6 +39,9 @@ userSchema.pre('save', function (next) {
   })
 })
 
+userSchema.methods.validPassword = function (plainPassword, callback) {
+  bcrypt.compare(plainPassword, this.password, callback)
+}
 const User = mongoose.model('User', userSchema)
 
 module.exports = User

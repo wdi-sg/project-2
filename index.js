@@ -1,3 +1,5 @@
+require('dotenv').config({ silent: true })
+
 const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
@@ -5,10 +7,18 @@ const mongoose = require('mongoose')
 const User = require('./models/user')
 const bodyParser = require('body-parser')
 const path = require('path')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
+const passport = require('./config/ppConfig')
+
+const { hasLoggedOut, isLoggedIn } = require('./helpers')
 
 const dbUrl = process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/project2'
 const port = process.env.PORT || 3000
 
+const login_routes = require('./routes/login_routes')
+
+mongoose.Promise = global.Promise
 mongoose.connect(dbUrl, {
   useMongoClient: true
 })
@@ -16,7 +26,6 @@ mongoose.connect(dbUrl, {
   () => { console.log('db is connected') },
   (err) => { console.log(err) }
 )
-mongoose.Promise = global.Promise
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
@@ -27,32 +36,44 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.use((req, res, next) => {
+  // app.locals.title = 'Prima'
+  app.locals.user = req.user // we'll only `req.user` if we managed to log in
+  // return res.send(req.user)
+  next()
+})
+
 app.get('/', (req, res) => {
   res.render('home')
 })
-
-app.get('/users/register', (req, res) => {
-  res.render('users/register')
+app.post('/route', (req, res) => {
+  console.log(req.user)
+  console.log(req.body)
+  res.send(req.body)
 })
+
+app.use('/users', isLoggedIn, login_routes)
+// app.use('/users', login_routes)
 
 app.get('/route', (req, res) => {
   res.render('map/route')
 })
 
-app.post('/users/register', (req, res) => {
-  var formData = req.body
-  var newUser = new User({
-    name: formData.name,
-    email: formData.email,
-    password: formData.password
-  })
-
-  newUser.save()
-  .then(
-    user => res.redirect('/'),
-    err => res.send(err)
-  )
+app.get('/logout', hasLoggedOut, (req, res) => {
+  req.logout()
+  res.redirect('/')
 })
+
 app.listen(port, () => {
   console.log(`App listening on server ${port}`)
 })
