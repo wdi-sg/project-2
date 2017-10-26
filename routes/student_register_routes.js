@@ -1,24 +1,27 @@
 const passport = require('../config/ppConfig')
-const User = require('../models/user')
+const Student = require('../models/student')
 const express = require('express')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  res.render('users/register')
+  res.render('students/register')
 })
 
 router.post('/', (req, res) => {
-  var formData = req.body.user
-  console.log(req.body)
-  var newUser = new User({
+  var formData = req.body.student
+  console.log('here1 :' , formData)
+  var newStudent = new Student({
     name: formData.name,
     email: formData.email,
     password: formData.password
   })
 
-  newUser.save()
+
+
+  newStudent.save()
   .then(
-    user => {
+    student => {
+      console.log('saved :', student)
       passport.authenticate('local', {
         successRedirect: '/'
       })(req, res);

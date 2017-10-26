@@ -3,15 +3,15 @@ const User= require('../models/user')
 const express = require('express')
 const router = express.Router()
 
-router.get('/', (req, res) => {
+router.get('/:slug', (req, res) => {
   Course
-  .findOne(req.params._id)
+  .findOne({slug: req.params.slug})
   .populate('teacher')
   .then(course => {
-    res.send(course)
-  // res.render('/courses/course', {
-  //   course
-  //   })
+    // res.send(course)
+    res.render('courses/course', {
+      course
+    })
   })
   .catch(err => {
     console.log(err)

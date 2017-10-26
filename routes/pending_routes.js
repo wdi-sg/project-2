@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     var formData = req.body.course
-    
+
     var newCourse = new Course({
       address: formData.address,
       name: formData.name,
@@ -23,6 +23,7 @@ router.post('/', (req, res) => {
       date: formData.date,
       time: formData.time,
       price: formData.price,
+      slug: formData.name.toLowerCase().split(' ').join('-')
     })
 
     newCourse.save()
