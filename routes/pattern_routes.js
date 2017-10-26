@@ -5,6 +5,7 @@ const Project = require('../models/project')
 const express = require('express')
 const router = express.Router()
 
+
 router.get('/new', (req, res) => {
   res.render('pattern/new')
 })
@@ -42,15 +43,46 @@ router.get('/:id', (req, res) => {
   .populate('creator')
   .populate('variation')
   .then(pattern => {
+
+    var userMatch = (pattern.creator.id === req.user.id)
+
     res.render('pattern/details', {
-      pattern
+      pattern, userMatch
     })
   })
+  .catch(err => res.send(err))
 })
 ///
 router.put('/:id', (req, res) => {
  // check if the user is the creator, if yes allow to edit
 })
+router.get('/:id/edit', (req, res) => {
+
+  Pattern.findById(req.params.id)
+  .populate('creator')
+  .then(pattern => {
+    if (pattern.creator.id === req.user.id){
+      res.render('pattern/edit', {
+        pattern
+      })// can pass in pattern infor
+    }
+    else res.redirect('/')
+  })
+})
+
+router.put('/:id/edit', (req, res) => {
+  const newPatternData = req.body.pattern
+  const patternId = req.params.id
+  Pattern.findByIdAndUpdate(patternId, {
+    title : newPatternData.title,
+    material : newPatternData.material,
+    steps: newPatternData.steps,
+
+  })
+  .then(() => res.redirect(`/pattern/${patternId}`))
+  .catch(err => res.send(err))
+})
+
 router.get('/:id/variation/new', (req,res) => {
   // const patternId = req.params.id
   Pattern.findById(req.params.id)

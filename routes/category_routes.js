@@ -6,7 +6,7 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  let categoryArray = ['woodcraft','papercraft', 'Sewing', 'knitting']
+  let categoryArray = ['woodcraft','papercraft', 'Sewing', 'Knitting']
   res.render('category/all', {
     categoryArray
   })

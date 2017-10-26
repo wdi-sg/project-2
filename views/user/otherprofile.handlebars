@@ -1,0 +1,39 @@
+
+<h2>{{ userDetails.name }}</h2>
+<div class="">
+  <ul>
+    <li>{{ userDetails.email }}</li>
+    {{!-- <li>{{ user.preferences }}</li>
+    <li>{{ user.level }}</li> --}}
+  </ul>
+
+
+</div>
+
+<div class="">
+  <h3>Pattern</h3>
+  <ul>
+    {{#each userDetails.pattern as |pattern| }}
+    <li>
+      {{ pattern.title }} <a href="/pattern/{{ pattern.id }}" class="">View</a>
+    </li>
+    {{/each}}
+
+  </ul>
+</div>
+
+
+<div class="">
+  <h3>Project</h3>
+  {{!-- <h4>{{user.project}}</h4> --}}
+  <ul>
+    {{#each userDetails.project as |project| }}
+    <li>
+      {{ project.title }}
+      {{!-- <a href="/pattern/{{ project.id }}" class="">View</a> --}}
+
+    </li>
+    {{/each}}
+
+  </ul>
+</div>

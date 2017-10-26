@@ -1,4 +1,12 @@
 <h3>{{ pattern.title }}</h3>
+
+<div class="">
+  {{#if userMatch}}
+  <li class="nav-item">
+    <a class="nav-link" href="/pattern/{{pattern.id}}/edit">Edit Pattern</a>
+  </li>
+  {{/if}}
+</div>
 <div class="">
   <h4>{{ pattern.creator.name }}</h4>
   <h4> {{ patttern.created }}</h4>
