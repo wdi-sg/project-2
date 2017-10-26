@@ -65,7 +65,9 @@ router.post('/enter', (req,res)=>{
 
 router.get('/:id', (req, res)=>{
   Fridge.findById(req.params.id)
+  .populate('task')
   .then(fridge => {
+    console.log(fridge)
     res.render('fridge/fridge', {fridge})
   })
 })
@@ -85,5 +87,19 @@ router.get('/:id/task', (req, res)=>{
   })
 })
 
+router.get('/:taskid', (req,res)=>{
+  res.send('hi')
+})
+
+router.delete('/:fridgeid/:taskid', (req, res)=>{
+  Fridge.findById(req.params.fridgeid)
+  .then(()=> {
+    Task.findByIdAndRemove(req.params.taskid)
+    .then(()=>{
+      res.redirect(`'/${req.params.fridgeid}`)
+    })
+  })
+  .catch(err => console.log(err))
+})
 
 module.exports = router

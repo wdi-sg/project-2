@@ -17,7 +17,6 @@ router.post('/', (req,res)=>{
   var formData = req.body
   User.find({name:formData.assign})
   .then(users=>{
-    console.log(users[0].id)
     var newTask = new Task({
       details: formData.details,
       assign: users[0].id,
@@ -27,8 +26,13 @@ router.post('/', (req,res)=>{
     newTask.save()
     .then(
       tasks =>{
-        console.log('task' + tasks)
-        res.redirect(`/fridge/${formData.fridge}`)
+        Fridge.findById(formData.fridge)
+        .then(fridgeOne =>{
+          fridgeOne.task.push(tasks.id)
+          fridgeOne.save()
+          console.log(tasks)
+          res.redirect(`/fridge/${formData.fridge}`)
+        })
       })
   })
 })

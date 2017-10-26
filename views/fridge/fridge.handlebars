@@ -2,6 +2,28 @@
 <h1>Fridge Passcode to Enter: {{fridge.passcode}}</h1>
 <h1 class="hidden blue">{{fridge.id}}</h1>
 
+<div class="row">
+  {{#each fridge.task as |task|}}
+  <div class="col-3">
+    <div class="card">
+      <img style="width: 100px" src="/img/stickynote.png" alt="Sticky Notes Image">
+      <div class="card-body">
+        <h4 class="card-title">{{ task.details }}</h4>
+        &nbsp;
+        <button class="btn btn-primary form-inline" type="button" onclick="location.href='/fridge/{{task.id}}'">Edit</button>
+        <form
+          class="form-inline"
+          action="/fridge/{{ fridge.id }}/{{task.id}}?_method=DELETE"
+          method="post">
+          &nbsp;
+          <button class="btn btn-danger" type="submit" name="button">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
+
 <div class="btn dropup">
   <button type="button" class="btn btn-primary btn-circle btn-xl" onclick="location.href='/fridge/{{fridge.id}}/task'">
       New Task

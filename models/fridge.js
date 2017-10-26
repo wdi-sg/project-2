@@ -7,6 +7,10 @@ const fridgeSchema = new Schema({
   members: [{
     type: Schema.Types.ObjectId,
     ref: 'User'
+  }],
+  task:[{
+    type: Schema.Types.ObjectId,
+    ref: 'Task'
   }]
 })
 
