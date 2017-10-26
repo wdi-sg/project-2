@@ -15,10 +15,20 @@ router.get('/cart', (req, res) => {
 
 // DELETE TOUR IN CART
 router.delete('/cart', (req, res) => {
-  Tour.findByIdAndRemove(this._id)
-  .populate('slug')
-  .then(() => res.render('users/cart'))
-  .catch(err => console.log(err))
+  User.findOne({slug: req.user.slug})
+  .then(user => {
+    var userCart = user.cart
+    var tour = req.body
+    console.log(tour)
+
+    // target the correct tour in the user cart
+    // remove tour from user cart
+    // save user
+  })
 })
+  // Tour.findByIdAndRemove(this._id)
+  // .populate('slug')
+  // .then(() => res.render('users/cart'))
+  // .catch(err => console.log(err))
 
 module.exports = router

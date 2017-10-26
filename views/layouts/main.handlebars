@@ -21,7 +21,7 @@
   <nav>
     <div class="nav-wrapper">
       <a href='/' class="brand-logo">Fantasy Tours</a>
-      <a href='/' data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      {{!-- <a href='/' data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a> --}}
 
       <ul class="right hide-on-med-and-down">
         {{#if user}}
@@ -35,7 +35,7 @@
         {{/if}}
       </ul>
 
-      <ul class="side-nav" id="mobile-demo">
+      {{!-- <ul class="side-nav" id="mobile-demo">
         {{#if user}}
         <li><a class="dropdown-button" href="#" data-activates="dropdown1">Admin<i class="material-icons right">arrow_drop_down</i></a></li>
         <li><a href='/{{ user.slug }}/cart'>Cart</a></li>
@@ -45,7 +45,7 @@
         <li><a href="/login">Login</a></li>
         <li><a href='/register'>Register</a></li>
         {{/if}}
-      </ul>
+      </ul> --}}
 
     </div>
   </nav>
