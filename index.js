@@ -76,7 +76,6 @@ app.use((req, res, next) => {
 app.post('/search', (req, res) => {
   const keyword = req.body.keyword
   const regex = new RegExp(keyword, 'i')
-  console.log('regex', regex)
 
   User.find({ username: regex })
   .limit(10)

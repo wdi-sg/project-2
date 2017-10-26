@@ -53,12 +53,13 @@ $(document).ready(function () {
     .then(response => response.json()) // convert the json file into js object
     .then(users => { // forEach user, create new li, add name, add to ul
       users.forEach(user => {
+        console.log(user.username)
         var $li = $('<li>')
         $li.text(user.username)
         $autocomplete.append($li)
       })
+      if(keyword === '') $autocomplete.empty() // empties autocomplete list if input field is emptied
     })
     .catch(err => console.log(err))
-
   })
 })

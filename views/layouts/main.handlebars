@@ -22,10 +22,13 @@
       <p>Not Logged In</p>
     {{/if}}
 
-    <form id="search" action="/profile/:username" method="get">
+    <form id="search" action="/profile" method="post">
       <input id="searchBar" type="text" name="username" placeholder="Search Pirated Twitter">
       <button type="submit">Search</button>
     </form>
+
+    <h5>Autocomplete List</h5>
+    <ul id="autocomplete"></ul>
 
     {{{ body }}}
 
