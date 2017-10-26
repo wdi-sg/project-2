@@ -1,0 +1,21 @@
+<table class="table table-striped">
+ 
+  <thead>
+    <tr>
+      <th>Asset Class</th>
+      <th>Allocation weight</th>
+     
+
+    </tr>
+  </thead>
+
+{{#each assetClassPosition as |ap|}}
+  <tbody>
+    <tr>
+      <td>{{ ap._id }}</td>
+      <td>{{ ap.total }}</td>
+    </tr>
+  </tbody>
+{{/each}}
+
+{{!-- </table> --}}

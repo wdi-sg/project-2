@@ -14,9 +14,9 @@ const userSchema = new Schema({
   },
   password: String,
   slug: String, // new field for vanity url
-  portfolio: [{
+  position: [{
     type: Schema.Types.ObjectId,
-    ref: 'Portfolio'
+    ref: 'Position'
   }]
 })
 

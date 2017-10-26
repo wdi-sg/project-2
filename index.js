@@ -80,9 +80,9 @@ app.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
-app.get('/portfolio', (req,res) => {
-  res.render('portfolio')
-})
+// app.get('/portfolio', (req,res) => {
+//   res.render('portfolio')
+// })
 
 app.use('/register', register_routes)
 
@@ -90,7 +90,7 @@ app.use('/login', login_routes)
 
 app.use('/profile', profile_routes)
 
-//app.use('/portfolio', portfolio_routes)
+app.use('/portfolio', portfolio_routes)
 
 
 app.get('/profile/:slug', (req, res) => {

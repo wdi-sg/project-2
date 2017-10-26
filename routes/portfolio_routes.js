@@ -1,35 +1,72 @@
-const Instrument = require('../models/instrument')
+const Position = require('../models/position')
 
 const express = require('express')
 
 const router = express.Router()
 
-const passport = require('../config/ppConfig')
 
 
-router.get('/', (req, res) => {
-  res.render('users/register')
-})
-
+// router.get('/', (req, res) => {
+//   Position
+//   .find({'user': req.user.id})
+//   //.find()
+//   .then( position => {
+//     res.render('portfolio', {
+//       position})
+// })
+//   .catch( err => {
+//     console.log(err);
+//   })
+//   })
 
 router.post('/', (req, res) => {
-  var formData = req.body.user
-  var newUser = new User({
-    name: formData.name,
-    email: formData.email,
-    password: formData.password
+  var formData = req.body.position
+
+  // remember how to create new object from constructor, it's back again
+  // thanks to FORMIDABLE mongoose
+  var newPosition = new Position({
+  name : formData.name,
+  ticker : formData.ticker,
+  inceptionDate : formData.inceptionDate,
+  units : formData.units,
+  price : formData.price,
+  assetClass: formData.assetClass,
+  amountInvested : formData.amountInvested,
+  closingPrice : formData.closingPrice,
+  user : req.user.id
+
   })
 
-  newUser.save()
+  newPosition.save()
+  .then()
   .then(
-    user => {
-      passport.authenticate('local', {
-        successRedirect: `/profile/${user.slug}`
-      })(req, res);
-    },
-    // success flow, redirect to profile page
-    err => res.send(err) // error flow
-  )
+    () => res.redirect('/portfolio'),
+    err => res.send(err)
+  ) // why? mongoose save(), doesn't have .catch()
 })
+
+router.get ('/', (req,res) => {
+  Position
+  .aggregate(
+    [
+      { $group: {
+        _id : '$assetClass',
+        total: { $sum : {$multiply:["$units", "$closingPrice"]}},
+
+      }
+
+      }
+    ]
+  )
+  .then(assetClassPosition => {
+    res.render('portfolio', {assetClassPosition
+    })
+    //res.send(assetClassPosition)
+  })
+  .catch(err=> {
+    console.log(err)
+  })
+})
+
 
 module.exports = router

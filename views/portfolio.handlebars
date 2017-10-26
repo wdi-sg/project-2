@@ -1,30 +1,102 @@
-<h3>Add your transactions</h3>
+<h3>Allocate a position</h3>
 
 {{!-- FORM TO CREATE NEW RESTAURANT, NOTICE THERE'S NO ID THERE --}}
 <form action="/portfolio" method="post">
-  <label for="name">Holdings</label>
-  <input type="text" name="instrument[name]" placeholder="company name">
+  <label for="name">Name</label>
+  <input type="text" name="position[name]" placeholder="company name">
 
   <label for="ticker">Ticker</label>
   {{!-- NOTICE on the attribute type below  --}}
-  <input type="text" name="instrument[ticker]" placeholder="ticker">
+  <input type="text" name="position[ticker]" placeholder="ticker">
 
-  <label for="inception date">Inception Date</label>
+  <label for="inceptionDate">Inception Date</label>
   {{!-- NOTICE on the attribute type below  --}}
-  <input type="date" name="instrument[date]" placeholder="">
+  <input type="date" name="position[inceptionDate]" placeholder="">
 
-  <label for="units">units</label>
+  <label for="units">Unit(s)</label>
   {{!-- NOTICE on the attribute type below  --}}
-  <input type="number" name="instrument[units]" placeholder="">
+  <input type="number" name="position[units]" placeholder="">
 
-  <label for="price">price</label>
+  <label for="price">Price</label>
   {{!-- NOTICE on the attribute type below  --}}
-  <input type="number" name="instrument[price]" placeholder="USD">
+  <input type="number" name="position[price]" placeholder="USD">
 
-  <label for="closing price">closing price</label>
+  <label for="assetClass">Asset Class</label>
   {{!-- NOTICE on the attribute type below  --}}
-  <input type="number" name="instrument[closingPrice]" placeholder="USD">
+  <select name="position[assetClass]" placeholder="Pick one">
+    <option selected hidden>Pick one</option>
+    <option>Equities</option>
+    <option>Bonds</option>
+    <option>Alternatives</option>
+    <option>Cash</option>
+  </select>
+
+
+
+  <label for="closingPrice">Closing price</label>
+  {{!-- NOTICE on the attribute type below  --}}
+  <input type="number" name="position[closingPrice]" placeholder="USD">
 
   <button type="submit"  id = 'bought' name="button">Buy</button>
-  <button type="submit"  id = 'sell' name="button">Sell</button>
+
 </form>
+
+<button type="submit"  id = 'sold' name="button">Sell</button>
+
+
+<table class="table table-striped">
+ 
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Ticker</th>
+      <th>Inception Date</th>
+      <th>Units</th>
+      <th>Price</th>
+      <th>Amount Invested</th>
+      <th>Closing Price</th>
+      <th>Current Market Value</th>
+
+    </tr>
+  </thead>
+
+{{#each position as |posi|}}
+  <tbody>
+    <tr>
+      <td>{{ posi.name }}</td>
+      <td>{{ posi.ticker }}</td>
+      <td>{{ posi.inceptionDate }}</td>
+      <td>{{ posi.units }}</td>
+      <td>{{ posi.price }}</td>
+      <td>{{ posi.amountInvested }}</td>
+      <td>{{ posi.closingPrice }}</td>
+      <td>{{ posi.currentMarketValue }}</td>
+    </tr>
+  </tbody>
+{{/each}}
+
+</table>
+
+<a href="/portfolio/assetclass">View Allocation</a>
+
+{{!-- <table class="table table-striped">
+ 
+  <thead>
+    <tr>
+      <th>Asset Class</th>
+      <th>Allocation weight</th>
+     
+
+    </tr>
+  </thead>
+
+{{#each assetClassPosition as |ap|}}
+  <tbody>
+    <tr>
+      <td>{{ ap._id }}</td>
+      <td>{{ ap.total }}</td>
+    </tr>
+  </tbody>
+{{/each}}
+
+</table> --}}
