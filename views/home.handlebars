@@ -5,9 +5,12 @@
   <button type="submit" name="button">Add to Collection</button>
 </form>
 
-{{#unless user.subscribeQuote }}
-<form action="/subscribe" method="post">
-  <input type="hidden" name="user[subscribeQuote]" value='true'>
-  <button type="submit" name="button">Receive a quote every morning</button>
-</form>
-{{/unless}}
+{{!-- show if user logged in & have not subscribed --}}
+{{#if user}}
+  {{#unless user.subscribeQuote }}
+  <form action="/subscribe?_method=PUT" method="post">
+    <input type="hidden" name="user[subscribeQuote]" value='true'>
+    <button type="submit" name="button">Receive a quote every morning</button>
+  </form>
+  {{/unless}}
+{{/if}}

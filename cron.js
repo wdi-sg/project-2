@@ -1,6 +1,10 @@
 require('dotenv').config({ silent: true })
 var CronJob = require('cron').CronJob
-var job = new CronJob('* * 19 * * *', sendEmail)
+var job = new CronJob('0 0 8 * * *', sendEmail)
+// Timing Syntax - Ex. if i put 5 for the 1st asteric, will run on the 5th second out of the 60 seconds.
+// minutes. If i put 10. Will run every hour, at the 10th minute.
+// I tried running 29 on the minutes. At 29 minuteth, it ran every second on the 29th minuteth. This is because I need to set the seconds as well
+// (10 10 22 * * * ) will run at 10pm at the 10th minute, at the 10second.
 
 const sgMail = require('@sendgrid/mail')
 const User = require('./models/user')

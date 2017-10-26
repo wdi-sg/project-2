@@ -14,9 +14,7 @@ router.get('/', (req, res) => {
       quote
     })
   })
-
-  // TODO:findCurrentQuote() should return promise instead
-  // .catch(err => console.log(err))
+  .catch(err => console.log(err))
 })
 
 // add quote into profile collection
@@ -80,9 +78,13 @@ router.delete('/:id', (req, res) => {
   .catch(err => console.log(err))
 })
 
-// router.get('/subscribe', (req, res) => {
-//   res.send('hello world')
-// })
-
+router.put('/:subscribe', (req, res) => {
+  var userId = req.user.id
+  User.findByIdAndUpdate(userId, {
+    subscribeQuote: true
+  })
+  .then(() => res.redirect('/'))
+  .catch(err => console.log(err))
+})
 
 module.exports = router
