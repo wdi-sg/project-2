@@ -1,16 +1,20 @@
 
 <div class="row">
-  <img src={{data.pictureurl}} alt="tour">
-  {{!--  put more img --}}
+  {{!-- <img src= {{ data.pictureurl.0 }}> --}}
   <h3>Tour Name: {{ data.name }}</h3>
   <ul>
     <li>Show Name: {{ data.showname }}</li>
-    <li>Highlights: {{data.highlights}}</li>
-    <li>Overview: {{data.overview}}</li>
+    <li>Overview: {{ data.overview }}</li>
+    <li>Highlights: {{ data.highlights }}</li>
   </ul>
 
-  <form action="/show/tourdetails/{{data.name}}/add" method="post">
-    <input type="submit">Add to Cart</input>
+  <form action="/show/tourdetails/{{data.slug}}" method="post">
+    <ul>
+      <li>Choose Date</li>
+      <li><input type="date" name="datechosen"></input></li>
+    </ul>
+
+    <input type="submit" value="Add to Cart"></input>
   </form>
 
 
@@ -31,7 +35,6 @@
 
     <button type="submit" name="button">Submit</button>
   </form>
-
 
   <ul>
     {{#each reviews as |review|}}

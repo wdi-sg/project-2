@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
   var newUser = new User({
     name: formData.name,
     email: formData.email,
-    password: formData.password // NOTICE, we're going to update this
+    password: formData.password
   })
 
   newUser.save()

@@ -3,6 +3,8 @@ const Schema = mongoose.Schema
 
 const showSchema = new Schema({
   name: String,
+  description: String,
+  showpic: String,
   slug: String
 })
 

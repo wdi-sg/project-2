@@ -78,7 +78,6 @@ app.get('/', (req, res) => {
   Show.find()
     .then((data) => {
       res.render('home', { showlist: data })
-      // res.send(data)
     })
 })
 

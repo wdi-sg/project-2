@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const bcrypt = require('bcrypt')
+const tourId = { type: Schema.Types.ObjectId, ref: 'Tour' }
 
 const userSchema = new Schema({
   name: String,
@@ -9,14 +10,19 @@ const userSchema = new Schema({
   password: String,
   slug: String,
   cart:
-  [
-    { type: Schema.Types.ObjectId, ref: 'Tour' }
-  ]
+  [{
+    tourDate: Date,
+    bookedTour: tourId
+
+  }]
 })
 
 userSchema.pre('save', function(next) {
   var user = this
   user.slug = user.name.toLowerCase().split(' ').join('-')
+
+  // to avoid rehashing the password everytime user.save() is called
+  if (!user.isModified('password')) return next()
 
   bcrypt.hash(user.password, 10)
   .then(hash => {

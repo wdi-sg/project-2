@@ -1,8 +1,13 @@
-<h3>cart</h3>
+<h3>Your Cart</h3>
+
 
 <ul>
   {{#each context as |item|}}
-    <li>{{ item.name }}</li>
-
+    {{!-- <li>{{ item.name }}</li> --}}
+    <a href="/show/tourdetails/{{item.slug}}">{{ item.name }}</a>
+    <button>Delete Tour</button>
+    <br>
   {{/each}}
 </ul>
+
+<h5>Please call 1-800-GOT-TOUR or email fantasytours@gmail.com with your details to confirm your booking!</h5>

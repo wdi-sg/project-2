@@ -1,7 +1,24 @@
 <h2>Add New Shows</h2>
 
 <form action="/addtvshows" method="post">
-  <label for="name">Name</label>
-  <input type="text" name="name" placeholder="e.g. The Big Bang Theory ">
+
+  <div class="row">
+    <div class="input-field col s12">
+      <textarea id="textarea1" class="materialize-textarea" type="text" name="name" placeholder="Game of Thrones"></textarea>
+      <label for="name">Name</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <textarea id="textarea1" class="materialize-textarea" type="text" name="description" placeholder="American Fantasy Tv Show"></textarea>
+      <label for="description">Description</label>
+    </div>
+  </div>
+  
+  <div class="row">
+  <input type="hidden" role="uploadcare-uploader" name="showpic" data-public-key="8ca25847559a0fdd22e0" data-images-only />
+  </div>
+
   <button type="submit" name="button">Submit</button>
 </form>

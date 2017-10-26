@@ -7,7 +7,7 @@ const tourSchema = new Schema({
   slug: String,
   overview: String,
   highlights: String,
-  dates: String,
+  // dates: Date,
   pictureurl: String
 })
 

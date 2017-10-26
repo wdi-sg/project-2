@@ -11,12 +11,13 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   var formData = req.body
   var newTvShow = new Tvshow()
-  newTvShow.slug = formData.name.toLowerCase().split(' ').join('')
   newTvShow.name = formData.name
+  newTvShow.description = formData.description
+  newTvShow.showpic = formData.showpic
+  newTvShow.slug = formData.name.toLowerCase().split(' ').join('')
   newTvShow.save()
   .then(
     () => {
-      console.log(`${newTvShow.id}`)
       res.redirect(`/addtvshows/${newTvShow.id}`)
     },
     err => res.send(err)

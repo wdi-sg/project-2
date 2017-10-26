@@ -2,58 +2,49 @@
 
 <form action="/addtours" method="post">
 
-  {{!-- <label for="showname">Name of Show</label>
-  <input type="text" name="showname" placeholder="e.g. Game of Thrones"> --}}
-
-  <div class="input-field col s12" select >
-    <select name="showname">
-      <option value="gameofthrones">Game of Thrones</option>
-      <option value="thelordoftherings">The Lord of the Rings</option>
-      <option value="downtonabbey">Downton Abbey</option>
-      <option value="harrypotter">Harry Potter</option>
-    </select>
-    <label>Materialize Select</label>
+  <div class="row">
+    <div class="input-field col s12" select >
+      <select name="showname">
+        <option value="gameofthrones">Game of Thrones</option>
+        <option value="thelordoftherings">The Lord of the Rings</option>
+        <option value="downtonabbey">Downton Abbey</option>
+        <option value="harrypotter">Harry Potter</option>
+      </select>
+      <label>Choose Show</label>
+    </div>
   </div>
   <br>
 
   <div class="row">
-      <div class="row">
-        <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea" type="text" name="name" placeholder="e.g. Malta Adventure"></textarea>
-          <label for="name">Name of Tour</label>
-        </div>
-      </div>
+    <div class="input-field col s12">
+      <textarea id="textarea1" class="materialize-textarea" type="text" name="name" placeholder="e.g. Malta Adventure"></textarea>
+      <label for="name">Name of Tour</label>
+    </div>
   </div>
 
   <div class="row">
-      <div class="row">
-        <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea" type="text" name="overview" placeholder="e.g. overview"></textarea>
-          <label for="overview">Overview</label>
-        </div>
-      </div>
+    <div class="input-field col s12">
+      <textarea id="textarea1" class="materialize-textarea" type="text" name="overview" placeholder="e.g. overview"></textarea>
+      <label for="overview">Overview</label>
+    </div>
   </div>
 
   <div class="row">
-      <div class="row">
-        <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea" type="text" name="highlights" placeholder="e.g. fun activites"></textarea>
-          <label for="highlights">Highlights</label>
-        </div>
-      </div>
+    <div class="input-field col s12">
+      <textarea id="textarea1" class="materialize-textarea" type="text" name="highlights" placeholder="e.g. fun activites"></textarea>
+      <label for="highlights">Highlights</label>
+    </div>
   </div>
 
-  <div class="row">
-      <div class="row">
-        <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea" type="text" name="dates" placeholder="e.g. 21 December 2017" ></textarea>
-          <label for="dates">Available Dates</label>
-        </div>
-      </div>
-  </div>
+  {{!-- <div class="row">
+    <div class="input-field col s12">
+      <input type="text" name="dates" class="datepicker">
+      <label for="dates">Available Dates</label>
+    </div>
+  </div> --}}
 
   <div class="row">
-  <input type="hidden" role="uploadcare-uploader" name="pictureurl" data-public-key="8ca25847559a0fdd22e0" data-images-only />
+  <input type="hidden" data-multiple role="uploadcare-uploader" name="pictureurl" data-public-key="8ca25847559a0fdd22e0" data-images-only />
   </div>
 
   <div class="row">
