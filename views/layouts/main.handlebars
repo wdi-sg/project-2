@@ -7,8 +7,15 @@
   <body>
     <a href="/"><h1>Pirated Twitter</h1></a>
     {{#if user}}
-      <a href="/profile/{{user.username}}">{{ user.username }}</a> <!-- render if user is logged in -->
-      <a href="/logout">Logout</a>
+      <div>
+        <a href="/profile/{{user.username}}">{{ user.username }}</a> <!-- render if user is logged in -->
+        <a href="/logout">Logout</a>
+      </div>
+      <div>
+        <a id="tweetNum" href="#">Tweets: {{ user.tweets.length }}</a>
+        <a href="#">Following: {{ user.following.length }}</a>
+        <a href="#">Followers: {{ user.followers.length }}</a>
+      </div>
     {{else}}
       <a href="/register">Register</a> <!-- render if user is not logged in -->
       <a href="/login">Login</a> <!-- render if user is not logged in -->

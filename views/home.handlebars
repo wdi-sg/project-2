@@ -1,7 +1,7 @@
 <h3>Home</h3>
 
 {{#if user}}
-  <form class="tweet" action="/new-tweet" method="post">
+  <form class="tweet" action="/new-tweet">
     <input type="hidden" name="user" value="{{ user.id }}">
     <textarea id="newTweet" rows="4" cols="50" required=true name="message" placeholder="What's happening?"></textarea>
     <button type="submit">Tweet</button>
@@ -10,7 +10,10 @@
   <ul id="wall">
     {{#each currentUser.tweets as |tweet|}}
     <li>
-      {{ tweet.message }}
+      <div>
+        <p>{{ tweet.message }}</p>
+        <p></p>
+      </div>
     </li>
     {{/each}}
 {{/if}}

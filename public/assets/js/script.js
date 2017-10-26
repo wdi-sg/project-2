@@ -8,6 +8,7 @@ $(document).ready(function () {
   $tweet.on('submit', function(e) {
     e.preventDefault()
 
+    var $tweetNum = $('#tweetNum')
     var tweetMessage = $('#newTweet').val()
     var form = $(this)
     var formData = form.serializeArray()
@@ -28,6 +29,7 @@ $(document).ready(function () {
         $li.text(message) // change text of list element to message
         $('#wall').append($li) // append new list element to wall
         $('#newTweet').val('') // empty text area
+        $tweetNum.text()
       }
     )
     .catch(err => console.log(err))

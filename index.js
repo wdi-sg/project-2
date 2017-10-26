@@ -2,7 +2,7 @@
 require('dotenv').config({ silent: true })
 
 // setting dburl and port
-const dbUrl = process.env.MONGODB_URI|| 'mongodb://localhost/project2'
+const dbUrl = process.env.MONGODB_URI || 'mongodb://localhost/project2'
 const port = process.env.PORT || 4000
 
 // installing all modules
