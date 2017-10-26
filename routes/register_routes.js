@@ -12,6 +12,7 @@ router.post('/', (req, res) => {
 
   var formData = req.body.user
   var newUser = new User({
+    username: formData.username,
     name: formData.name,
     email: formData.email,
     password: formData.password
@@ -21,7 +22,7 @@ router.post('/', (req, res) => {
   .then(
     user => {
       passport.authenticate('local', {
-        successRedirect: `/profile/${user.slug}`
+        successRedirect: `/profile/${user.username}`
       })(req, res);
     },
     err => res.send(err) // error flow

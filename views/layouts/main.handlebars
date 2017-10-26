@@ -2,26 +2,21 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Home</title>
+    <title>Pirated Twitter</title>
   </head>
   <body>
-    <a href="/"><h1>Homepage</h1></a>
+    <a href="/"><h1>Pirated Twitter</h1></a>
     {{#if user}}
-      <a href="/profile/{{user.slug}}">Profile</a> <!-- render if user is logged in -->
+      <a href="/profile/{{user.username}}">{{ user.username }}</a> <!-- render if user is logged in -->
+      <a href="/logout">Logout</a>
     {{else}}
       <a href="/register">Register</a> <!-- render if user is not logged in -->
       <a href="/login">Login</a> <!-- render if user is not logged in -->
-    {{/if}}
-    <a href="/logout">Logout</a>
-
-    {{#if user.name}}
-        <p>Logged in: {{ user.name }}</p>
-    {{else}}
-        <p>Logged in: none</p>
+      <p>Not Logged In</p>
     {{/if}}
 
     {{{ body }}}
-    
+
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="/assets/js/script.js" charset="utf-8"></script>
   </body>

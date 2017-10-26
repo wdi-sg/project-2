@@ -2,8 +2,8 @@ const User = require('../models/user')
 const express = require('express')
 const router = express.Router()
 
-router.get('/:slug', (req, res) => {
-  var slug = req.user.slug
+router.get('/:username', (req, res) => {
+  var username = req.user.username
 
   res.render('profile')
 })

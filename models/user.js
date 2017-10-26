@@ -2,17 +2,24 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
 
+const requiredString = { type: String, required: true }
+const tweetId = { type: Schema.Types.ObjectId, ref: 'Tweet' }
+
 const userSchema = new Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  password: { type: String, required: true },
-  slug: String // new field for vanity url
+  username: { type: String, lowercase: true, match: /^[a-z0-9]+$/, unique: true },
+  name: requiredString,
+  email: requiredString,
+  password: requiredString,
+  tweets: [tweetId],
+  followers: [ this ],
+  following: [ this ]
 })
 
 userSchema.pre('save', function(next) {
   var user = this
-  user.slug = user.name.toLowerCase().split(' ').join('-')
-
+  // if password is not modified, return next()
+  if (!user.isModified('password')) return next()
+  // else, hash the password
   bcrypt.hash(user.password, 10)
   .then(hash => {
     user.password = hash
@@ -25,5 +32,4 @@ userSchema.methods.validPassword = function (plainPassword, callback) {
 }
 
 const User = mongoose.model('User', userSchema)
-
 module.exports = User

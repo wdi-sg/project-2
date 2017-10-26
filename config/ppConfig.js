@@ -1,4 +1,3 @@
-
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const User = require('../models/user')
@@ -14,10 +13,10 @@ passport.deserializeUser((id, next) => {
 })
 
 passport.use(new LocalStrategy({
-  usernameField: 'user[email]', // this is from <input name="user[email]">
+  usernameField: 'user[username]', // this is from <input name="user[email]">
   passwordField: 'user[password]' // this is from <input name="user[password]">
-}, (email, password, next) => {
-  User.findOne({email: email})
+}, (username, password, next) => {
+  User.findOne({username: username})
   .then(user => {
     if (!user) return next(null, false)
     user.validPassword(password, (err, isMatch) => {

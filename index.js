@@ -6,11 +6,12 @@ const dbUrl = process.env.MONGODB_URI|| 'mongodb://localhost/project2'
 const port = process.env.PORT || 4000
 
 // installing all modules
-const express = require('express') // express
-const path = require('path') // for Public files
-const mongoose = require('mongoose') // mongoose
-const exphbs  = require('express-handlebars') // handlebars
-const bodyParser = require('body-parser') // for accessing POST request
+const express = require('express')
+const path = require('path')
+const mongoose = require('mongoose')
+const exphbs  = require('express-handlebars')
+const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const passport = require('./config/ppConfig')
@@ -25,6 +26,7 @@ const { hasLoggedOut, isLoggedIn } = require('./helpers')
 const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
 const profile_routes = require('./routes/profile_routes')
+const home_routes = require('./routes/home_routes')
 
 // initiating express
 const app = express()
@@ -41,6 +43,9 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: true
 }))
+
+// setup methodOverride
+app.use(methodOverride('_method'))
 
 // connect to mongodb via mongoose
 mongoose.Promise = global.Promise
@@ -68,10 +73,6 @@ app.use((req, res, next) => {
   next()
 })
 
-app.get('/', (req, res) => {
-  res.render('home')
-})
-
 app.get('/logout', hasLoggedOut, (req, res) => {
   req.logout()
   res.redirect('/')
@@ -81,6 +82,7 @@ app.get('/logout', hasLoggedOut, (req, res) => {
 app.use('/register', isLoggedIn, register_routes)
 app.use('/login', isLoggedIn, login_routes)
 app.use('/profile', hasLoggedOut, profile_routes)
+app.use('/', home_routes)
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`)
