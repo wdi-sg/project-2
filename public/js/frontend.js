@@ -99,7 +99,7 @@ $(function () {
   $('select option:selected').each(function () {
     str += $(this).text() + ' '
   })
-  $('.peepSkills').text(str)
+  $('.peepSkills').append(str)
 })
 .trigger('change')
 
