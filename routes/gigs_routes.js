@@ -34,4 +34,15 @@ router.get('/:slug', (req, res) => {
   })
 })
 
+router.post('/:slug', (req, res) => {
+  Gig.findOne({
+    slug: req.params.slug
+  })
+  .then((gig) => {
+    res.render('../views/gigs/edit', {
+      gig
+    })
+  })
+})
+
 module.exports = router

@@ -1,0 +1,27 @@
+
+<form action="/profile/{{user.slug}}/settings?_method=PUT" method="post">
+
+  {{!-- Need to print out the person's name using {{user.name}} or {{this.name}}?--}}
+  <label for="name">name</label>
+  <input type="text" name="name"
+          placeholder="name of your gig"
+          value="{{gig.name}}">
+
+  <label for="date">Date</label>
+  <input type="text" name="date" placeholder="when do you need it by?"
+  value="{{gig.dates}}">
+
+  <label for="specs">Specs of the Gig:</label>
+  <input type="text" name="specs" placeholder="More details please"
+  value="{{gig.specs}}">
+
+  <label for="skills">Skills</label>
+  <input type="text" name="skills" placeholder="Skills needed for this gig"
+  value="{{gig.skills}}">
+
+  <label for="contact">Contact Me!</label>
+  <input type="text" name="contact" placeholder="Gig-er"
+  value="{{gig.author.name}}}">
+
+  <button type="submit" name="button">Submit</button>
+</form>
