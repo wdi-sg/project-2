@@ -4,11 +4,30 @@
 <div id="floating-panel">
 
 <form action="/route" method="post" class="checkRoute">
-  <label for="start location"><b>Start bldg: </b></label>
+
+
+  <label for="Start location"><b>Start bldg: </b></label>
+  <input type="hidden" id="user" value="{{user}}">
   <input type="text" name="start" id="field1" size="35" placeholder="Building name/Address/Postal code">
   <br>
-  <label for="end location"><b>End bldg: </b></label>
+  <label for="End location"><b>End bldg: </b></label>
   <input type="text" name="end" id="field2" size="35" placeholder="Building name/Address/Postal code">
+  <br>
+  <label for="Arrival time (24-hour format)"><b>Reach by: </b></label>
+  <select name="time">
+    <option value="0600">06:00 AM</option>
+    <option value="0630">06:30 AM</option>
+    <option value="0700">07:00 AM</option>
+    <option value="0730">07:30 AM</option>
+    <option value="0800">08:00 AM</option>
+    <option value="0830">08:30 AM</option>
+    <option value="0900">09:00 AM</option>
+    <option value="0930">09:30 AM</option>
+    <option value="1000">10:00 AM</option>
+    <option value="1030">10:30 AM</option>
+    <option value="1100">11:00 AM</option>
+    <option value="1130">11:30 AM</option>
+  </select>
   <br>
   <button type="submit" name="button" id="check">Check routes</button>
 </form>

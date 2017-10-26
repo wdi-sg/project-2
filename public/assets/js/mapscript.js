@@ -1,6 +1,6 @@
-
 var input1 = $('#field1')
 var input2 = $('#field2')
+var userinput = $('#user')
 var map, marker1
 
 function initMap () {
@@ -24,19 +24,34 @@ function autoComplete () {
   var autocomplete2 = new google.maps.places.Autocomplete(input2[0])
 
   autocomplete1.addListener('place_changed', startPostalCode)
-  // autocomplete2.addListener('place_changed', endPostalCode)
 
   const $checkRoute = $('.checkRoute')
   $checkRoute.on('submit', function (e) {
     e.preventDefault()
 
     var address1 = autocomplete1.getPlace().formatted_address
-    var postal1 = address1.substr(address1.length - 6)
-    var address2 = autocomplete2.getPlace().formatted_address
-    var postal2 = address2.substr(address2.length - 6)
+    var postal1 = (address1.substr(address1.length - 6))
+    if (parseInt(postal1)) var postal1 = parseInt(postal1)
+    else return alert('Start bldg needs to have a postal code')
 
-    console.log('Starting from ', postal1, 'Ending at ', postal2)
-    console.log(req.user)
+    var address2 = autocomplete2.getPlace().formatted_address
+    var postal2 = parseInt(address2.substr(address2.length - 6))
+    if (parseInt(postal2)) var postal2 = parseInt(postal2)
+    else return alert('End bldg needs to have a postal code')
+
+    var postalArray = [postal1, postal2]
+    fetch('/route', {
+      method: 'POST',
+      body: JSON.stringify({postalArray, user: userinput.val()}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(json => {
+      console.log('add to database')
+    })
+
   })
   function startPostalCode () {
     marker1.setAnimation(null)
@@ -45,27 +60,8 @@ function autoComplete () {
     marker1.setPosition(place1.geometry.location)
     marker1.setAnimation(google.maps.Animation.DROP)
 
-    // fetch here
-
-    // var jsonPostal = JSON.stringify({
-    //   startPostal
-    // })
-    //
-    // fetch('/route', {
-    //   method: 'PUT',
-    //   body: jsonPostal,
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
-    // .then(res => res.json())
-    // .then(json => {
-    //   console.log('add to database')
-    // })
   }
 
-  // function endPostalCode () {
-  // }
 }
 function calculateAndDisplayRoute (directionsService, directionsDisplay) {
   marker1.setPosition(null)
