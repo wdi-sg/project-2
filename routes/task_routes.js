@@ -28,7 +28,7 @@ router.post('/', (req,res)=>{
     .then(
       tasks =>{
         console.log('task' + tasks)
-        res.redirect('/fridge')
+        res.redirect(`/fridge/${formData.fridge}`)
       })
   })
 })
