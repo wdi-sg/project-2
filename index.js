@@ -2,7 +2,7 @@ require('dotenv').config({silent: true})
 
 const dbUrl =
 process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/myportfoliomanager_test'
-const port = process.env.PORT || 8000 // this is for our express server
+const port = process.env.PORT || 7000 // this is for our express server
 const quoteApiKey =process.env.QUOTEAPI
 
 const express = require('express')
@@ -14,7 +14,7 @@ const methodOverride = require('method-override') // for accessing PUT / DELETE
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const passport = require('./config/ppConfig')
-
+const DateOnly = require('mongoose-dateonly')(mongoose)
 
 const User = require('./models/user')
 

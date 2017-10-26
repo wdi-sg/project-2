@@ -1,11 +1,12 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const DateOnly = require('mongoose-dateonly')(mongoose)
 
 
 const positionSchema = new Schema({
   name: String,
   ticker:  String,
-  inceptionDate: Date,
+  inceptionDate: DateOnly,
   units: Number,
   price: Number,
   assetClass: String,
@@ -24,6 +25,11 @@ positionSchema.virtual('currentMarketValue').get(function () {
   if (!this.closingPrice) return this.price * this.units
   return this.closingPrice * this.units
 })
+
+// positionSchema.virtual('totalMarketValue').get(function() {
+// var total = getTotal(this.amountInvested)
+// return parseInt(total)
+// })
 
 positionSchema.pre('save', function(next) {
   var position = this

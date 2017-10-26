@@ -3,7 +3,7 @@ const Position = require('../models/position')
 const express = require('express')
 
 const router = express.Router()
-
+const mongoose = require('mongoose') // for DB
 
 
 // router.get('/', (req, res) => {
@@ -18,6 +18,36 @@ const router = express.Router()
 //     console.log(err);
 //   })
 //   })
+
+
+router.get('/', (req, res) => {
+  Position
+  .find({'user': req.user.id})
+  .then( position => {
+    Position
+    .aggregate(
+      [ {$match: {
+        user: new mongoose.Types.ObjectId(req.user.id)
+      }
+    },
+        { $group: {
+          _id : '$assetClass',
+
+          total: { $sum : {$multiply:["$units", "$closingPrice"]}},
+          totalVal: {$sum : "$total"}
+
+        }
+        }
+      ]
+    )
+    .then(assetClassPosition => {
+      // res.send(assetClassPosition)
+      res.render('portfolio', {
+        position, assetClassPosition
+      })
+    })
+  })
+})
 
 router.post('/', (req, res) => {
   var formData = req.body.position
@@ -45,28 +75,28 @@ router.post('/', (req, res) => {
   ) // why? mongoose save(), doesn't have .catch()
 })
 
-router.get ('/', (req,res) => {
-  Position
-  .aggregate(
-    [
-      { $group: {
-        _id : '$assetClass',
-        total: { $sum : {$multiply:["$units", "$closingPrice"]}},
-
-      }
-
-      }
-    ]
-  )
-  .then(assetClassPosition => {
-    res.render('portfolio', {assetClassPosition
-    })
-    //res.send(assetClassPosition)
-  })
-  .catch(err=> {
-    console.log(err)
-  })
-})
+// router.get ('/', (req,res) => {
+//   Position
+//   .aggregate(
+//     [
+//       { $group: {
+//         _id : '$assetClass',
+//         total: { $sum : {$multiply:["$units", "$closingPrice"]}},
+//
+//       }
+//
+//       }
+//     ]
+//   )
+//   .then(assetClassPosition => {
+//     res.render('portfolio', {assetClassPosition
+//     })
+//     //res.send(assetClassPosition)
+//   })
+//   .catch(err=> {
+//     console.log(err)
+//   })
+// })
 
 
 module.exports = router

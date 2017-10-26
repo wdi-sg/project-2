@@ -71,15 +71,21 @@
       <td>{{ posi.amountInvested }}</td>
       <td>{{ posi.closingPrice }}</td>
       <td>{{ posi.currentMarketValue }}</td>
+
     </tr>
   </tbody>
+
+<p>{{posi.totalMarketValue}}</p>
+
 {{/each}}
 
 </table>
 
+
+
 <a href="/assetclass">View Allocation</a>
 
-{{!-- <table class="table table-striped">
+<table class="table table-striped">
  
   <thead>
     <tr>
@@ -95,8 +101,9 @@
     <tr>
       <td>{{ ap._id }}</td>
       <td>{{ ap.total }}</td>
+      <td>{{ ap.totalVal }}</td>
     </tr>
   </tbody>
 {{/each}}
 
-</table> --}}
+</table>
