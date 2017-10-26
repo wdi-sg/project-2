@@ -17,7 +17,6 @@ router.get("/", (req, res) => {
       console.log(err)
     })
 })
-
 //join an existing team
 router.put("/", (req, res) => {
   let project = req.body.project

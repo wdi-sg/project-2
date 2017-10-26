@@ -3,11 +3,11 @@ const mongoose = require("mongoose")
 const taskSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    // required: true,
     unique: true
   },
   projectId: mongoose.Schema.Types.ObjectId,
-  currentUser: mongoose.Schema.Types.ObjectId,
+  assigned: String,
   start: Date,
   end: Date,
   projectedEnd: Date,

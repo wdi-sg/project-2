@@ -25,6 +25,12 @@ body {
   display: inline-block;
 }
 
+.createTask {
+  display: inline-block;
+  height: 150px;
+  width: 300px;
+}
+
 #create,
 #review {
   width: 50%;

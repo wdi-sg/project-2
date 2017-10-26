@@ -1,4 +1,5 @@
 const Message = require("../models/message")
+const Task = require("../models/task")
 
 module.exports = io => {
   io.on("connection", function(socket) {
@@ -19,6 +20,22 @@ module.exports = io => {
         date: Date.now()
       })
       newMessage.save()
+    })
+
+    socket.on("task", task => {
+      console.log("connected?")
+      // console.log(task)
+      let newTask = new Task({
+        name: task.taskName,
+        projectId: task.projectId,
+        assigned: task.taskAssigned,
+        start: task.taskStart,
+        end: task.taskEnd,
+        projectedEnd: task.projectedEnd
+      })
+
+      newTask.save()
+      // console.log(newTask)
     })
   })
 }

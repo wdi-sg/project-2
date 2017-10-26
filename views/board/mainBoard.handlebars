@@ -7,22 +7,33 @@
 <div class="left">
   <div id="create" class="boardElement">
     <p>Create:</p>
+    {{#each tasks as |task|}}
+      <div>{{task.name}}: {{task.assigned}}</div>
+    {{/each}}
 
-    <p>Create a new task</p>
-    <form action="/board" id="createTask">
-      <input type="hidden" name="task[user]" value="{{user.name}}">
-      <input type="hidden" name="task[project]" value="{{user.project}}">
-      <input type="hidden" name="task[projectId]" value="{{user.projectId}}">
-      <label for="name">Task Name:</label>
-      <input type="text" name="task[name]">
-      <label for="currentUser">User:</label>
-      <input type="text" name="task[currentUser]" value="">
-      <label for="startDate">Start Date:</label>
-      <input type="date" name="task[startDate]" value="">
-      <label for="endDate">End Date:</label>
-      <input type="date" name="endDate" value="">
-      <button type="submit" name="button">Send</button>
-    </form>
+
+<div class="createTask">
+  <p>Create a new task</p>
+  <form action="/board" id="createTask">
+    <input type="hidden" id="taskUser" value="{{user.name}}">
+    <input type="hidden" id="taskProject" value="{{user.project}}">
+    <input type="hidden" id="taskProjectId" value="{{user.projectId}}">
+    <label for="name">Task Name:</label>
+    <input type="text" id="taskName">
+    <br>
+    <label for="currentUser">Assigned:</label>
+    <input type="text" id="taskAssigned">
+    <br>
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="taskStart">
+    <br>
+    <label for="endDate">End Date:</label>
+    <input type="date" id="taskEnd">
+    <label for="projectedEnd">Projected End Date:</label>
+    <input type="date" id="projectedEnd">
+    <button type="submit" name="button">Send</button>
+  </form>
+</div>
   </div>
 
   <div id="review" class="boardElement">
@@ -44,7 +55,7 @@
       <input type="hidden" id="userName" value="{{user.name}}">
       <input type="hidden" id="userProject" value="{{user.project}}">
       <input type="hidden" id="userProjectId" value="{{user.projectId}}">
-      <input id="m" autocomplete="off" type="text" name="message[name]">
+      <input id="m" autocomplete="off" type="text">
       <button type="submit" name="button">Send</button>
     </form>
   </div>
