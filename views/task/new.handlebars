@@ -3,14 +3,20 @@
 <form action="/task" method="post">
   <div class="form-group text-muted">
     <label for="name">Task</label>
-    <textarea name="details" class="form-control" rows="5" cols="30">Enter a Task </textarea>
+    <textarea name="details" class="form-control" rows="5" cols="30"></textarea>
   </div>
   <div class="form-group text-muted">
     <label for="name">Assign To: </label>
-    <select name="memberlist">
-      <option value={{member}}>{{member}}</option>
+    <select name="assign">
+      {{#each fridges.members as |member|}}
+      <option name="member" value = {{member.name}} >{{member.name}}</option>
+      {{/each}}
     </select>
-    <input type="text" name="details" class="form-control" placeholder="Enter a task">
   </div>
+  <div class="hidden">
+    <input type="text" name="fridge" value= {{ fridges.id}}>
+  </div>
+  <div>
+    <button type="submit" name="complete">Submit</button>
   </div>
 </form>

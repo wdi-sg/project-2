@@ -17,7 +17,6 @@ router.post('/', (req, res)=>{
     phoneNumber: formData.phoneNumber
   })
 
-  //TODO: can authenticate and auto login?
   newUser.save()
   .then(user => {
     passport.authenticate('local', {

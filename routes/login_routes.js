@@ -12,7 +12,7 @@ router.get('/', (req,res)=>{
 
 router.post('/', passport.authenticate('local', {
   successRedirect: '/profile',
-  failureRedirect: '/' //TODO: need to add alert to alert the user if the user is not existence.
+  failureRedirect: '/login' //TODO: need to add alert to alert the user if the user is not existence.
 }));
 
 module.exports = router

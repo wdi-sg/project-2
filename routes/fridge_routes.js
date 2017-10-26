@@ -76,5 +76,14 @@ router.delete('/:id', (req, res)=>{
   .catch(err => console.log(err))
 })
 
+router.get('/:id/task', (req, res)=>{
+  Fridge.findById(req.params.id)
+  .populate('members')
+  .then(fridges=>{
+    console.log(fridges)
+    res.render('task/new', {fridges})
+  })
+})
+
 
 module.exports = router

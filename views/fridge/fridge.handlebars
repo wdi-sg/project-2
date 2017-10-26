@@ -1,8 +1,9 @@
 <h1>{{fridge.name}} Fridge</h1>
-<h1>{{fridge.passcode}}</h1>
+<h1>Fridge Passcode to Enter: {{fridge.passcode}}</h1>
+<h1 class="hidden blue">{{fridge.id}}</h1>
 
 <div class="btn dropup">
-  <button type="button" class="btn btn-primary btn-circle btn-xl" onclick="location.href='/task/new'">
-      +
+  <button type="button" class="btn btn-primary btn-circle btn-xl" onclick="location.href='/fridge/{{fridge.id}}/task'">
+      New Task
   </button>
 </div>
