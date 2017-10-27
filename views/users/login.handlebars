@@ -1,16 +1,19 @@
-<h2>Login</h2>
 
-<form action="/login" method="post">
-  {{!-- no need name here, cos we're logging in --}}
+<div class="container">
+  <h2>Login</h2>
+  <form action="/login" method="post">
+    {{!-- no need name here, cos we're logging in --}}
 
-  <label for="email">Email</label>
-  {{!-- NOTICE on the attribute type below  --}}
-  <input type="email" name="user[email]" placeholder="e.g. happiness@email.com">
+    <label for="email">Email</label>
+    {{!-- NOTICE on the attribute type below  --}}
+    <input type="email" name="user[email]" placeholder="e.g. happiness@email.com">
 
-  <label for="password">Password</label>
-  {{!-- NOTICE on the attribute type below  --}}
-  <input type="password" name="user[password]" placeholder="happy password">
+    <label for="password">Password</label>
+    {{!-- NOTICE on the attribute type below  --}}
+    <input type="password" name="user[password]" placeholder="happy password">
 
-  <button type="submit" name="button">Submit</button>
-</form>
+    <button type="submit" name="button">Submit</button>
+  </form>
+</div>
+
 {{!-- if i go to /register, it will save new user instead --}}
