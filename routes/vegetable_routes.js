@@ -15,6 +15,18 @@ router.post('/new',(req,res) => {
   res.render('vegetables/new', suppInfo)
 })
 
+router.post('/update',(req,res) => {
+  const suppInfo = {
+    supp: req.body
+  }
+  res.render('vegetables/updateVeg', suppInfo)
+})
+
+//first get the id populate the ddl
+//get the select value and see is from which array
+//populate the form
+
+
 router.get('/view',(req,res) => {
   Supplier.find()
   .then(suppliers => {
@@ -32,6 +44,28 @@ router.get('/view',(req,res) => {
   })
 })
 
+router.put('/update', (req, res) => {
+  // thankfully since we're using mongoose
+  // we don't have to find and update separately
+  // there's a method in mongoose just for that
+  // `findByIdAndUpdate` http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate
+  var id = req.body
+  var formData = req.body.veg
+  var photo = result.secure_url
+  formData.photo = photo
+
+  Supplier.findByIdAndUpdate(req.body.id, {$push: {vegetables: formData}},
+  {safe: true, upsert: true},
+  function(err, model) {
+      console.log(err);
+  })
+  .then(() => res.redirect(`/vegetable/${req.params.id}`))
+  .catch(err => console.log(err))
+  // after update is done, redirect back to resto id
+  // this redirection can go to anywhere as long as you have the routes with you
+})
+
+
 router.post('/', upload.single('myFile'), function (req, res) {
   // console.log(req.file.path)
   cloudinary.uploader.upload(req.file.path, function (result) {
@@ -45,57 +79,29 @@ router.post('/', upload.single('myFile'), function (req, res) {
     formData.photo = photo
     // console.log(formData)
 
-    Supplier.findById(req.body.id).then(supplier => {
-      supplier.vegetables.push(formData)
-
-      // console.log(supplier.vegetables)
-      supplier.save().then(()=> console.log("saved")).catch(err => console.log(err))
-      // .then(() => console.log('saved'),
-      // // redirect(`/vegetable/new/${req.body.id}`),
-      //   err => res.send(err)
-      // )
-    })
-
-    // Supplier.findByIdAndUpdate(req.body.id, {$push: {vegetables: formData}},
-    // {safe: true, upsert: true},
-    // function(err, model) {
-    //     console.log(err);
+    // Supplier.findById(req.body.id).then(supplier => {
+    //   supplier.vegetables.push(formData)
+    //
+    //   // console.log(supplier.vegetables)
+    //   supplier.save()
+    //   .then(
+    //     ()=> res.redirect('/vegetable/new/${req.body.id}'),
+    //     err => console.log(err)
+    //   // .then(() => console.log('saved'),
+    //   // // redirect(`/vegetable/new/${req.body.id}`),
+    //   //   err => res.send(err)
+    //   // )
     // })
 
-
-
-    // console.log(id.findById());
-    //id.findById()
-
-    // get the suplier -> findbyid
-    // then, access to the vegelist array
-    // update new vegi to the array
-      // .push()
-    // .save()
-      // then redirect to somewhere
+    Supplier.findByIdAndUpdate(req.body.id, {$push: {vegetables: formData}},
+    {safe: true, upsert: true},
+    function(err, model) {
+        console.log(err);
+    })
 
 
   })
 })
-// router.post('/vegetable', upload.single('image'), function (req, res) {
-//   cloudinary.uploader.upload(req.file.path, function (result) {
-//     var formData = req.body.veg
-//
-//     var newVeg = new Vegetable({
-//       photo: result.secure_url,
-//       name: req.body.veg.txtName,
-//       price: req.body.veg.txtPrice,
-//       quantity: req.user.veg.txtQuantity
-//     })
-//
-//
-//
-//     newVeg.save()
-//     .then(
-//       () => res.redirect('/vegetable/new{{}}'),
-//       err => res.send(err)
-//     )
-//   })
-// })
+
 
 module.exports = router

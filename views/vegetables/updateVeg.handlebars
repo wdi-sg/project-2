@@ -1,0 +1,41 @@
+<h3>Update</h3>
+
+<select class="" name="">
+  {{#each supplier.vegetables as |vegetable| }}
+  <option value="{{vegetable.txtName}}">{{vegetable.txtName}}</option>
+  {{/each }}
+</select>
+
+
+<form action="/vegetable/{{ supplier.id }}?_method=PUT" method="post">
+
+  <input type="hidden" name="id" value="{{supp.id}}">
+
+  <label for="name">Vegetable Name:</label>
+  <input type="text" name="veg[txtName]" value="{{ vegetable.txtName }}">
+  <br/>
+  {{!-- we put the {{}} inside value cos we want to show the existing name --}}
+
+
+  <label for="lblPrice">Price per KG $:</label>
+  <input type="text" name="veg[txtPrice]" value="{{ vegetable.txtPrice }}">
+  <br/>
+
+  <label for="lblEmail">Minimum Quantity in KG :</label>
+  <input type="number" name="supplier[txtQuantity]" value="{{ vegetable.txtQuantity }}">
+  <br/>
+
+  <label for="lblBusinessType">Select your photo :</label>
+  <input type="text" name="supplier[photo]" value="{{ vegetable.photo }}">
+  <br/>
+
+  <button type="submit" name="button">Submit</button>
+</form>
+
+
+<h3>Delete</h3>
+{{!-- Same thing, different request type --}}
+<form action="/vegetable/{{ supp.id }}?_method=DELETE" method="post">
+  <button type="submit" name="button">Delete</button>
+  {{!-- don't need input fields here, cos we're not updating anything --}}
+</form>

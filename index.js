@@ -96,7 +96,6 @@ app.use((req, res, next) => {
   next()
 })
 
-
 app.get('/',(req,res) => {
   res.render('home')
 })
@@ -116,9 +115,10 @@ app.get('/logout', hasLoggedOut, (req, res) => {
 app.use('/register',isLoggedIn, register_routes)
 app.use('/login', isLoggedIn, login_routes)
 
-app.use('/supplier', hasLoggedOut, supplier_routes)
+app.use('/supplier', supplier_routes)
 app.use('/vegetable', hasLoggedOut, vegetable_routes)
 app.use('/admin', hasLoggedOut, vegetable_routes)
+app.use('/vegetable',hasLoggedOut, supplier_routes)
 
 
 app.listen(port,() =>{

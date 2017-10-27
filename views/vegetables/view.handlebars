@@ -1,0 +1,53 @@
+
+<div class="row">
+  {{#each supplier.vegetables as |vegetable| }}
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <img src="{{ vegetable.photo }}"><br>
+        Name : {{vegetable.txtName}}<br>
+        Price per KG $: {{ vegetable.txtPrice }}<br>
+        Minimum Quantity in KG : {{ vegetable.txtQuantity}}<br>
+      </div>
+    </div>
+  </div>
+  {{/each }}
+</div>
+
+
+{{!-- <h3>List of Vegetables</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Vegetable Name</th>
+        <th scope="col">Price per KG $</th>
+        <th scope="col">Minimum Quantity in KG</th>
+        <th scope="col">Photo</th>
+
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    {{#each supplier.vegetables as |vegetable|}}
+
+    <tbody>
+      <tr>
+        <td>{{ vegetable.txtName }}</td>
+        <td>{{ vegetable.txtPrice }}</td>
+        <td>{{ vegetable.txtQuantity }}</td>
+        <td><img src="{{ vegetable.photo }}"></td>
+
+
+        <td>
+
+          <form class="" action="/vegetable/new" method="post">
+            <input type="hidden" name="id" value="{{supp.id}}">
+            <button type="submit" name="button" href="/vegetable/new">Edit</button>
+          </form>
+        </td>
+
+      </tr>
+    </tbody>
+
+{{/each}}
+</table> --}}
+{{!-- <a class="btn btn-primary" href="/components/new" role="button">Add</a> --}}

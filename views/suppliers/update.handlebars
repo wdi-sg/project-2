@@ -17,7 +17,9 @@
 {{!-- when there's a path, there's a route in your index.js --}}
 {{!-- why PUT, because all update technically MUST go thru PUT request --}}
 <h3>Update</h3>
-<form action="/supplier/new/{{ supplier.id }}?_method=PUT" method="post">
+<form action="/supplier/update/{{ supplier.id }}?_method=PUT" method="post">
+
+
   {{!-- we put the {{}} inside value cos we want to show the existing name --}}
   <label for="lblCompanyName">Company Name :</label>
   <input type="text" name="supplier[txtName]" placeholder="e.g. John Doe" value="{{ supplier.company }}">
@@ -45,4 +47,11 @@
 
 
   <button type="submit" name="button">Submit</button>
+</form>
+
+<h3>Delete</h3>
+{{!-- Same thing, different request type --}}
+<form action="/supplier/{{ supplier.id }}?_method=DELETE" method="post">
+  <button type="submit" name="button">Delete</button>
+  {{!-- don't need input fields here, cos we're not updating anything --}}
 </form>

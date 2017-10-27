@@ -27,7 +27,11 @@
           {{!-- <a href="/vegetable/new" class="btn">Add Vegetable</a> --}}
           <form class="" action="/vegetable/new" method="post">
             <input type="hidden" name="id" value="{{supp.id}}">
-            <button type="submit" name="button" href="/vegetable/new">Add</button>
+            <button type="submit" name="button" href="/vegetable/new">Add Vegetable</button>
+          </form>
+          
+          <form class="" action="/vegetable/update" method="post">
+          <button type="submit" name="button" href="/vegetable/update">Edit Vegetable</button>
           </form>
         </td>
         {{!-- how to pass the id over? /{{ supp.id }} --}}

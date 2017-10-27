@@ -2,13 +2,7 @@
   {{!-- Loop --}}
   {{#each suppliers as |supp|}}
   <div class="col-4">
-    {{!--
-      Update 22 Oct,
-      Bootstrap card system,http://getbootstrap.com/docs/4.0/components/card/
-    --}}
 
-    {{!-- since we have the resto object in a loop, i can get each resto id too  --}}
-    {{!-- once we created this link, we need to prepare the route for that --}}
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">{{ supp.company }}</h4>
@@ -20,8 +14,14 @@
           {{ supp.contact }}
         </p>
 
+        <form
+          class="form-inline"
+          action="/vegetable/{{ supp.id }}?_method=DELETE"
+          method="post"
+        >
+          <a href="/vegetable/{{ supp.id }}" class="btn btn-primary">View Vegetable</a>
 
-        
+        </form>
 
       </div>
     </div>
