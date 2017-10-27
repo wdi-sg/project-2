@@ -1,26 +1,114 @@
 <div class="container">
-<h3>{{ user.name }}</h3>
+  <h3>{{ user.name }}</h3>
 
-<ul>
-  <li>email: {{ user.email }}</li>
-</ul>
+  <ul>
+    <li>Email: {{ user.email }}</li>
+  </ul>
 
-<label for="fixedDeposit">Fixed Deposit: </label>
-<select id="fixedDeposit">
-  <option value="" disabled selected>Please select</option>
-  <option value="Bank of China SGD Time Deposit">Bank of China SGD Time Deposit</option>
-  <option value="CIMB SGD Fixed Deposits Account">CIMB SGD Fixed Deposits Account</option>
-  <option value="Citibank S$ Time Deposit">Citibank S$ Time Deposit</option>
-  <option value="DBS S$ Fixed Deposit">DBS S$ Fixed Deposit</option>
-  <option value="HSBC Singapore Dollar Time Deposit">HSBC Singapore Dollar Time Deposit</option>
-  <option value="Maybank Singapore Dollar Time Deposit">Maybank Singapore Dollar Time Deposit</option>
-  <option value="OCBC Time Deposit Account">OCBC Time Deposit Account</option>
-  <option value="RHB Singapore Dollar Fixed Deposit">RHB Singapore Dollar Fixed Deposit</option>
-  <option value="Standard Chartered Singapore Dollar Time Deposits">Standard Chartered Singapore Dollar Time Deposits</option>
-  <option value="UOB Singapore Dollar Fixed Deposit">UOB Singapore Dollar Fixed Deposit</option>
-</select>
-<div id="results"></div>
+  <br>
+  <br>
+
+  <ul>
+    {{#each accounts as |acct|}}
+
+      <li>
+        <a href='/accounts/{{acct.id}}'>{{ acct.fd.name }}</a>
+      </li>
+
+    {{/each}}
+  </ul>
+
+  <br>
+  <br>
+
+  <h5>Add Fixed Deposit Account</h5>
+
+  <form action='/profile' method='post'>
+    <label for="fixedDeposit">Fixed Deposit: </label>
+    <select name="fixedDeposit">
+      <option value="" disabled selected>Please select</option>
+      {{#each fixedDeposits as |FD|}}
+        <option value="{{FD.id}}">{{FD.name}}</option>
+      {{/each}}
+     </select>
+
+    <br>
+
+    <div id="results"></div>
+
+    <br>
+
+    <label for="amount">Amount Deposited (S$): </label>
+    <input type="number" name="amount"><br>
+
+    <br>
+
+    <label for="period">Period</label>
+    <select name="period">
+      <option value="" disabled selected>Please select</option>
+      <option value="1">1 month</option>,
+      <option value="2">2 months</option>,
+      <option value="3">3 months</option>,
+      <option value="4">4 months</option>,
+      <option value="5">5 months</option>,
+      <option value="6">6 months</option>,
+      <option value="7">7 months</option>,
+      <option value="8">8 months</option>,
+      <option value="9">9 months</option>,
+      <option value="10">10 months</option>,
+      <option value="11">11 months</option>,
+      <option value="12">12 months</option>,
+      <option value="13">13 months</option>,
+      <option value="14">14 months</option>,
+      <option value="15">15 months</option>,
+      <option value="18">18 months</option>,
+      <option value="24">24 months</option>,
+      <option value="36">36 months</option>,
+      <option value="48">48 months</option>,
+      <option value="60">60 months</option>
+    </select>
+
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+      <i class="material-icons right"></i>
+    </button>
+
+  </form>
+
+  <br>
+  <br>
+
+  <h5>Update Profile</h5>
+
+  <form action="/profile/{{ user.id }}?_method=PUT" method="post">
+
+    <input type="hidden" name="slug" value="{{ user.name }}">
+
+    <label for="name">Name</label>
+    <input type="text" name="name" value="{{ user.name }}">
+
+    <label for="email">Email</label>
+    <input type="text" name="email" value="{{ user.email }}">
+
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+      <i class="material-icons right"></i>
+    </button>
+
+  </form>
+
+  <br>
+  <br>
+
+  <h5>Delete Profile</h5>
+
+  <form action="/profile/{{ user.id }}?_method=DELETE" method="post">
+
+    <button class="btn waves-effect waves-light" type="submit" name="action">Delete
+      <i class="material-icons right"></i>
+    </button>
+
+  </form>
 
 <br>
 <br>
+
 </div>

@@ -6,10 +6,12 @@ $(function () {
 
   $('select').material_select()
 
-  $("#fixedDeposit").on("change", function(){
-    var selected = $(this).val();
-    $("#results").html("You selected: " + selected);
-  })
+  $('.collapsible').collapsible();
+
+  // $("#fixedDeposit").on("change", function(){
+  //   var selected = $(this).val();
+  //   $("#results").html("You selected: " + selected);
+  // })
 
   const $deleteForm = $('.deleteForm')
 

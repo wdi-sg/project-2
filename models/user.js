@@ -3,24 +3,19 @@ const Schema = mongoose.Schema
 
 const bcrypt = require('bcrypt') // for login and register
 
-// setting the blueprint of User object
 const userSchema = new Schema({
-  name: String,
+  name: {
+    type: String,
+    required: true
+  },
   email: String,
-  password: String,
-  day: String,
-  month: String,
-  year: String,
-  slug: String,
-  fd: [{
-    type: Schema.Types.ObjectId,
-    ref: 'fixedDeposit'
-  }]
+  password: {
+    type: String
+  }
 })
 
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function (next) {
   var user = this
-  // logic to create slug
   user.slug = user.name.toLowerCase().split(' ').join('-')
 
   bcrypt.hash(user.password, 10)

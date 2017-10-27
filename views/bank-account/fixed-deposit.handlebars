@@ -1,0 +1,106 @@
+<div class="container">
+  <h2>Fixed Deposit</h2>
+
+  <form class="col s12 m6" action="/fixed-deposit?_method=PUT"" method="put">
+
+    <label for="amount">I want to deposit $</label>
+    <input type="amount" name="amount" class="black-text">
+
+    <label for="period">over</label>
+    <select name="period">
+      <option value="1">1 month</option>,
+      <option value="2">2 months</option>,
+      <option value="3">3 months</option>,
+      <option value="4">4 months</option>,
+      <option value="5">5 months</option>,
+      <option value="6">6 months</option>,
+      <option value="7">7 months</option>,
+      <option value="8">8 months</option>,
+      <option value="9">9 months</option>,
+      <option value="10">10 months</option>,
+      <option value="11">11 months</option>,
+      <option value="12">12 months</option>,
+      <option value="13">13 months</option>,
+      <option value="14">14 months</option>,
+      <option value="15">15 months</option>,
+      <option value="18">18 months</option>,
+      <option value="24">24 months</option>,
+      <option value="36">36 months</option>,
+      <option value="48">48 months</option>,
+      <option value="60">60 months</option>
+    </select>
+
+    <button class="btn waves-effect waves-light" type="submit" name="action">Calculate
+      <i class="material-icons right"></i>
+    </button>
+
+  </form>
+
+  <br>
+
+  {{#each fixedDeposits as |FD|}}
+    <div class>
+      <div class="row col s12 m6">
+
+        <ul class="left"><b>{{FD.name}}</b></ul>
+
+        <br>
+
+      </div>
+
+      <div class="row col s12 m6">
+
+        <ul class="left"><img src="{{FD.bank_img}}" height="60"></ul>
+
+        <br>
+
+        <p>Interest Rate: {{FD.interest_rate}}</p>
+
+        <br>
+
+        <p>Returns: {{FD.returns}}</p>
+
+        <br>
+
+        <ul class="right"><a href="{{FD.link}}" class="brand-logo waves-effect waves-light btn right">Apply Here</a></ul>
+
+        <br>
+        <br>
+
+      </div>
+
+      <div class="row col s12 m6">
+
+        <ul class="collapsible z-depth-0" data-collapsible="accordion" >
+
+        <li>
+          <div class="collapsible-header row col s12 m6"><ul class="center">
+
+            More Details
+
+          </ul></div>
+
+          <div class="collapsible-body">
+
+            <p>Minimum Age: {{FD.minimum_age}}</p>
+            <p>Minimum Deposit: $ {{FD.minimum_deposit.[0]}}</p>
+            <p>Fees and Charges: {{FD.fees_charges}}</p>
+
+          </div>
+
+        </li>
+      </ul>
+      </div>
+
+
+
+    </div>
+
+    <br>
+
+  {{/each}}
+
+  <br>
+  <br>
+
+</div>

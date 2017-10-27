@@ -7,7 +7,6 @@ const port = process.env.PORT || 9000
 const bodyParser = require('body-parser') // for accessing POST request
 const express = require('express')
 const exphbs = require('express-handlebars')
-const { hasLoggedOut, isLoggedIn } = require('./helpers')
 const methodOverride = require('method-override') // for accessing PUT / DELETE
 const mongoose = require('mongoose') // for DB
 const path = require('path') // for Public files
@@ -17,16 +16,17 @@ const MongoStore = require('connect-mongo')(session) // to store session into db
 
 // require all model files
 const User = require('./models/user')
-const creditCard = require('./models/credit-card')
-const savingsAccount = require('./models/savings-account')
-const fixedDeposit = require('./models/fixed-deposit')
+const FixedDeposit = require('./models/fixed-deposit')
+const SavingsAccount = require('./models/savings-account')
+const Account = require('./models/account')
 
 // require all my route files
-// const profile_routes = require('./routes/profile_routes')
 const login_routes = require('./routes/login_routes')
 const register_routes = require('./routes/register_routes')
 const profile_routes = require('./routes/profile_routes')
+const account_routes = require('./routes/account_routes')
 const fixed_deposit_routes = require('./routes/fixed_deposit_routes')
+const savings_account_routes = require('./routes/savings_account_routes')
 
 // initiating express, by calling express variable
 const app = express()
@@ -35,7 +35,7 @@ const app = express()
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 
-// MIDDLEWARES (explained on thursday)
+// MIDDLEWARES
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(function (req, res, next) {
   console.log('Method: ' + req.method + ' Path: ' + req.url)
@@ -72,6 +72,8 @@ app.use(passport.session())
 
 app.use((req, res, next) => {
   app.locals.user = req.user
+  app.locals.fixed_deposits = req.FixedDeposits
+  app.locals.account = req.account
   next()
 })
 
@@ -94,24 +96,20 @@ app.get('/investment-account', (req, res) => {
 })
 
 app.get('/news', (req, res) => {
-  res.render('bank-account/news', {
-    title: 'Investment News'
-  })
+  res.render('investment/news')
 })
 
-app.get('/register', isLoggedIn, (req, res) => {
-  res.render('register')
-})
-
-app.get('/logout', hasLoggedOut, (req, res) => {
+app.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
 })
 
-app.use('/login', isLoggedIn, login_routes)
-app.use('/register', isLoggedIn, register_routes)
-app.use('/profile', hasLoggedOut, profile_routes)
+app.use('/login', login_routes)
+app.use('/register', register_routes)
+app.use('/profile', profile_routes)
+app.use('/accounts', account_routes)
 app.use('/fixed-deposit', fixed_deposit_routes)
+app.use('/savings-account', savings_account_routes)
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`)

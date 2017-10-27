@@ -1,42 +1,76 @@
 const User = require('../models/user')
 const FixedDeposit = require('../models/fixed-deposit')
+const Account = require('../models/account')
 const express = require('express')
 const router = express.Router()
 
-router.get('/:slug', (req, res) => {
-//   // var fixedDeposits = this
-//   FixedDeposit.find()
-//   .then((fixedDeposits) => {
-//     res.send(fixedDeposits)
-//   })
-  res.render('profile')
+router.get('/', (req, res) => {
+  // return res.send(req.user)
+  var user = req.user
+
+  Account.find({
+    user: user.id
+  })
+  .populate('fd')
+  .then(accounts => {
+    FixedDeposit.find()
+    .then((fixedDeposits) => {
+      // var interestRatePerPeriod =
+      // return res.send({
+      //   accounts,
+      //   // fixedDeposits
+      // })
+
+      res.render('profile', {
+        accounts,
+        fixedDeposits
+      })
+    })
+  })
+  .catch(
+    err => console.log(err)
+  )
 })
 
-// router.post('/:slug', (req, res) => {
-//   // var fixedDeposits = this
-//   let fixedDeposits = fs.readFileSync('./data.json')
-//   fixedDeposits = JSON.parse(fixedDeposits)
-//
-//   fixedDeposits.push(req.body)
-//
-//   fs.writeFileSync('./data.json', JSON.stringify(fixedDeposits))
-//   res.render('/:slug')
-// })
+router.get('/accounts/:id', (req, res) => {
+  res.render('account')
+})
 
-// router.put('/profile/:name', (req, res) => {
-//   var formData = req.body
-//   User.findByIdAndUpdate(req.params.id, {
-//     name: formData.name,
-//     email: formData.email
-//   })
-//   .then(() => res.redirect(`/profile/${req.params.name}`))
-//   .catch(err => console.log(err))
-// })
-//
-router.delete('/profile/:name', (req, res) => {
+router.post('/', (req, res) => {
+  var formData = req.body
+  var user = req.user
+
+  var newAccount = new Account()
+  newAccount.user = user.id
+  newAccount.fd = formData.fixedDeposit
+  newAccount.amount = formData.amount
+  newAccount.period = formData.period
+
+  return res.send(newAccount)
+
+  newAccount.save()
+
+    .then(
+      () => res.redirect(`/profile`),
+      err => res.send(err)
+    )
+})
+
+router.put('/:id', (req, res) => {
+  var formData = req.body
+  User.findByIdAndUpdate(req.params.id, {
+    name: formData.name,
+    email: formData.email,
+    slug: formData.name.toLowerCase().split(' ').join('-')
+  })
+  .then(() => res.redirect(`/profile`))
+  .catch(err => console.log(err))
+})
+
+router.delete('/:id', (req, res) => {
   User.findByIdAndRemove(req.params.id)
-    .then(() => res.redirect(`/`))
-    .catch(err => console.log(err))
+  .then(() => res.redirect(`/`))
+  .catch(err => console.log(err))
 })
 
 module.exports = router
