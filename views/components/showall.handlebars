@@ -14,6 +14,7 @@
         <th scope="col">Quantity</th>
         <th scope="col">Total Cost</th>
         <th scope="col">Total Price</th>
+        <th scope="col">Margin</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -30,9 +31,21 @@
         <td>{{ compo.quantity }}</td>
         <td>{{ compo.totalCost }}</td>
         <td>{{ compo.totalPrice }}</td>
+        <td>{{ compo.type.margin }}%</td>
         <td><a href="/components/{{ compo.id }}" class="btn">Edit</a></td>
+      </tr>
+      {{/each}}
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total</td>
+        <td>{{sumCost}}</td>
+        <td>{{sumPrice}}</td>
+        <td>{{sumMargin}}%</td>
       </tr>
     </tbody>
 
-{{/each}}
 </table>

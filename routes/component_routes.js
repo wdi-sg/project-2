@@ -27,14 +27,22 @@ router.get('/variables', (req, res) => {
 })
 })
 
+// SHOW ALL COMPONENTS
 router.get('/showall', (req, res) => {
   Component
   .find()
   .populate('type')
   .sort({type: 1})
   .then(components => {
+    var sumCost = 0
+    var sumPrice = 0
+    for (var i = 0; i < components.length; i++) {
+      sumCost += components[i].totalCost
+      sumPrice += components[i].totalPrice
+    }
+    var sumMargin = Math.round((1 - sumCost / sumPrice) * 100)
     res.render('components/showall', {
-      components
+      components, sumCost, sumPrice, sumMargin
     })
   })
   .catch(err => {
@@ -43,42 +51,12 @@ router.get('/showall', (req, res) => {
 })
 
 router.get('/summary', (req, res) => {
-  // Component
-  // .find()
-  // .then(components => {
-  //   // return res.send(components)
-  //
-  //   Component.populate(components, { path: 'type', model: 'Type' })
-  //   .then(populatedUsers => {
-  //     res.send(populatedUsers)
-  //   })
-  //
-  //   // Component
-  //   // .aggregate(
-  //   //   [
-  //   //     { $group: {
-  //   //       _id: '$type.name',
-  //   //       total: { $sum: {$multiply: ['$unit_cost', '$quantity']} }
-  //   //     }
-  //   //     }
-  //   //   ]
-  //   // )
-  //   // .then(components => {
-  //   //   return res.send(components)
-  //   //
-  //   //
-  //   //   // res.render('components/summary', {
-  //   //   //   components
-  //   //   // })
-  //   // })
-  // }).catch(err => {
-  //   console.log(err)
-  // })
-
   Component
   .aggregate(
     [
-      { $lookup: {from: 'types', localField: 'type', foreignField: '_id', as: 'typeName'} },
+      { $lookup: {
+        from: 'types', localField: 'type', foreignField: '_id', as: 'typeName'
+      }},
       {
         $group: {
           _id: '$typeName.name',
