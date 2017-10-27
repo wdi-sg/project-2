@@ -7,6 +7,7 @@ const positionSchema = new Schema({
   name: String,
   ticker:  String,
   inceptionDate: DateOnly,
+  sellDate: DateOnly,
   units: Number,
   price: Number,
   assetClass: String,

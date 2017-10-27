@@ -31,17 +31,17 @@ router.get('/', (req, res) => {
       }
     },
         { $group: {
-          _id : '$assetClass',
+          _id : null,
 
           total: { $sum : {$multiply:["$units", "$closingPrice"]}},
-          totalVal: {$sum : "$total"}
+
 
         }
         }
       ]
     )
     .then(assetClassPosition => {
-      // res.send(assetClassPosition)
+
       res.render('portfolio', {
         position, assetClassPosition
       })
@@ -52,8 +52,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   var formData = req.body.position
 
-  // remember how to create new object from constructor, it's back again
-  // thanks to FORMIDABLE mongoose
+
   var newPosition = new Position({
   name : formData.name,
   ticker : formData.ticker,
@@ -72,7 +71,7 @@ router.post('/', (req, res) => {
   .then(
     () => res.redirect('/portfolio'),
     err => res.send(err)
-  ) // why? mongoose save(), doesn't have .catch()
+  )
 })
 
 // router.get ('/', (req,res) => {
@@ -97,6 +96,30 @@ router.post('/', (req, res) => {
 //     console.log(err)
 //   })
 // })
+
+router.get('/:id', (req,res) => {
+  Position.findById(req.params.id)
+  .then(position => {
+    res.render('showandupdate', {position})
+  })
+})
+
+router.put('/:id', (req, res) => {
+
+  var formData = req.body
+  console.log('=====================================')
+  console.log(req.body)
+  console.log('=====================================')
+  Position.findByIdAndUpdate(req.params.id, {
+    closingPrice: formData.closingPrice,
+    assetClass: formData.assetClass,
+    sellDate: formData.sellDate
+  })
+
+  .then(() => res.redirect(`/portfolio`))
+  .catch(err => console.log(err))
+
+})
 
 
 module.exports = router

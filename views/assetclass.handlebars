@@ -1,9 +1,12 @@
-<table class="table table-striped">
+<h2>Portfolio</h2>
+<canvas id="myChart" width="20" height="20"></canvas>
+
+<table class="table table-hover table-sm" id="assetClassTable">
  
-  <thead>
+  <thead class="thead-default">
     <tr>
       <th>Asset Class</th>
-      <th>Allocation weight</th>
+      <th>Total investment</th>
      
 
     </tr>
@@ -13,9 +16,9 @@
   <tbody>
     <tr>
       <td>{{ ap._id }}</td>
-      <td>{{ ap.total }}</td>
+      <td id ='{{ap._id}}'>{{ ap.total }}</td>
     </tr>
   </tbody>
 {{/each}}
 
-{{!-- </table> --}}
+</table>

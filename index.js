@@ -22,7 +22,7 @@ const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
 const profile_routes=require('./routes/profile_routes')
 const portfolio_routes=require('./routes/portfolio_routes')
-
+const assetclass_routes=require('./routes/assetclass_routes')
 
 const app = express()
 
@@ -91,6 +91,7 @@ app.use('/login', login_routes)
 app.use('/profile', profile_routes)
 
 app.use('/portfolio', portfolio_routes)
+app.use('/assetclass', assetclass_routes)
 
 
 app.get('/profile/:slug', (req, res) => {

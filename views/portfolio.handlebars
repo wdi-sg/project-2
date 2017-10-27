@@ -1,17 +1,17 @@
-<h3>Allocate a position</h3>
+<h3>Transaction details </h3>
 
 {{!-- FORM TO CREATE NEW RESTAURANT, NOTICE THERE'S NO ID THERE --}}
 <form action="/portfolio" method="post">
-  <label for="name">Name</label>
-  <input type="text" name="position[name]" placeholder="company name">
+  <label for="name">Holding</label>
+  <input type="text" name="position[name]" placeholder="">
 
   <label for="ticker">Ticker</label>
   {{!-- NOTICE on the attribute type below  --}}
-  <input type="text" name="position[ticker]" placeholder="ticker">
+  <input type="text" name="position[ticker]" placeholder="">
 
-  <label for="inceptionDate">Inception Date</label>
+  <label for="buyDate">Buy Date</label>
   {{!-- NOTICE on the attribute type below  --}}
-  <input type="date" name="position[inceptionDate]" placeholder="">
+  <input type="date" name="position[buyDate]" placeholder="">
 
   <label for="units">Unit(s)</label>
   {{!-- NOTICE on the attribute type below  --}}
@@ -41,21 +41,21 @@
 
 </form>
 
-<button type="submit"  id = 'sold' name="button">Sell</button>
 
-
-<table class="table table-striped">
+<table class="table table-hover table-sm" id= positionTable>
  
   <thead>
     <tr>
       <th>Name</th>
       <th>Ticker</th>
-      <th>Inception Date</th>
+      <th>Buy date</th>
+      <th>Sell date </th>
+       <th>Asset Class</th>
       <th>Units</th>
       <th>Price</th>
-      <th>Amount Invested</th>
+      <th>Amount Invested <br> (USD)</th>
       <th>Closing Price</th>
-      <th>Current Market Value</th>
+      <th>Current Market Value <br> (USD)</th>
 
     </tr>
   </thead>
@@ -66,31 +66,49 @@
       <td>{{ posi.name }}</td>
       <td>{{ posi.ticker }}</td>
       <td>{{ posi.inceptionDate }}</td>
+      <td>{{ posi.sellDate }}</td>
+      <td>{{ posi.assetClass }}</td>
       <td>{{ posi.units }}</td>
       <td>{{ posi.price }}</td>
       <td>{{ posi.amountInvested }}</td>
       <td>{{ posi.closingPrice }}</td>
+
       <td>{{ posi.currentMarketValue }}</td>
+      <td>  <form
+          class="form-inline deleteForm"
+          action="/portfolio/{{ posi.id }}?_method=PUT"
+          method="post"
+        >
+          <a href="/portfolio/{{ posi.id }}" class="btn btn-primary">Update</a>
+          {{!--
+            nbsp = non breaking space
+            so there's a slight space between the buttons
+          --}}
+          &nbsp;
+          <a href="/portfolio/{{ posi.id }}" class="btn btn-secondary" >Sell</a>
+          {{!-- don't need input fields here, cos we're not updating anything --}}
+          <br>
+          <input type="hidden" name="posiId" value="{{posi.id}}">
+
+        </form>
+              </td>
 
     </tr>
   </tbody>
 
-<p>{{posi.totalMarketValue}}</p>
+
 
 {{/each}}
 
 </table>
 
 
-
-<a href="/assetclass">View Allocation</a>
-
 <table class="table table-striped">
  
   <thead>
     <tr>
-      <th>Asset Class</th>
-      <th>Allocation weight</th>
+
+      <th>Total Portfolio Value</th>
      
 
     </tr>
@@ -99,11 +117,13 @@
 {{#each assetClassPosition as |ap|}}
   <tbody>
     <tr>
-      <td>{{ ap._id }}</td>
-      <td>{{ ap.total }}</td>
-      <td>{{ ap.totalVal }}</td>
+     
+      <td>USD {{ ap.total }}</td>
+
     </tr>
   </tbody>
 {{/each}}
 
 </table>
+
+<a href="/assetclass">View Allocation</a>

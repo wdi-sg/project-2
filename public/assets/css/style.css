@@ -1,0 +1,15 @@
+.container {
+  text-align: center;
+}
+
+#positionTable {
+  text-align: center;
+}
+
+#assetClassTable {
+  text-align: center;
+  max-width: 300px;
+  justify-content: center;
+  margin: auto;
+
+}
