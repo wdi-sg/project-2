@@ -86,19 +86,18 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 
+// Adding books to DB and user readBooks
 app.post('/book', (req, res) => {
   var formData = req.body
   var newBook = new Book({
     title: formData.bookTitle,
     author: formData.bookAuthor
   })
-
   newBook.save()
   .then(book => {
     console.log(app.locals.user)
     req.user.readBooks.push(book._id)
     console.log('req.user', req.user)
-
     req.user.save()
     .then(
       () => res.send({

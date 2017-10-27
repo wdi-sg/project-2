@@ -1,5 +1,5 @@
 $(function () {
-  // Browse Search
+  // Browse search bar function
   $('#search-form').submit(function (event) {
     event.preventDefault()
     var input = $('#query')
@@ -10,26 +10,24 @@ $(function () {
     ulBookDisplay.empty()
 
     var getLink = 'https://www.googleapis.com/books/v1/volumes?q=' + userQuery
-  //  + '&callback=handleResponse'
 
     $.get(getLink)
     .done(function (response) {
       var book_search = response.items
+      // for each book_search
       book_search.forEach(function (book) {
         var $newList = $('<li>')
-      //  $newList.text('Title: ' + book.volumeInfo.title)
 
-      // book img
+      // book img + anchor link href to bookdetails
         var $anchor = $('<a>')
-        $anchor.attr('href', '/browse/'+book.id)
-
+        // $anchor.attr('href', '/browse/' + book.id)
+        $anchor.attr('href', book.volumeInfo.canonicalVolumeLink)
         var $img = $('<img>')
         $img.attr('src', book.volumeInfo.imageLinks.thumbnail)
-
         $anchor.append($img)
-
         $newList.append($anchor)
 
+      // read btn
         var $btn = $('<button class="readBtn">Read this</button>')
         $newList.append($btn)
 
@@ -48,6 +46,7 @@ $(function () {
     })
   })
 
+// readBtn function
   $('#ulBookDisplay').on('click', '.readBtn', function () {
     var bookTitle = $(this).parent().find('h4').text()
     var bookAuthor = $(this).parent().find('h6').text()
@@ -55,8 +54,6 @@ $(function () {
       bookTitle,
       bookAuthor
     })
-
-    // console.log(json)
     fetch('/book', {
       credentials: 'include',
       method: 'POST',
@@ -68,7 +65,6 @@ $(function () {
     .then(response => response.json())
     .then(message => {
       console.log(message)
-      // if(message says success). add the book into the users read books array
     })
 
     // get the book id ?? but i havent created the book item
