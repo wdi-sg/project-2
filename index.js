@@ -97,8 +97,9 @@ app.post('/book', (req, res) => {
   .then(book => {
     console.log(app.locals.user)
     req.user.readBooks.push(book._id)
-    console.log(req.user)
+    console.log('req.user', req.user)
 
+    req.user.save()
     .then(
       () => res.send({
         message: 'success'
