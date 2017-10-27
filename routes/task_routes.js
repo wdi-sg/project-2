@@ -4,14 +4,12 @@ const Task = require('../models/task')
 const Fridge = require('../models/fridge')
 const User = require('../models/user')
 
-// routes
-// router.get('/new', (req,res)=>{
-//   Fridge.find({})
-//   .then(fridges => {
-//     console.log(this)
-//     res.render('task/new')
-//   })
-// })
+// Twilio Credentials
+const accountSid = process.env.ACCOUNTSID;
+const authToken =  process.env.ACCOUNTTOKEN;
+
+// require the Twilio module and create a REST client
+const client = require('twilio')(accountSid, authToken);
 
 router.get('/:id/edit', (req, res)=>{
   Task.findById(req.params.id)
@@ -67,9 +65,24 @@ router.put('/:id/complete', (req, res)=>{
   })
   .then(()=>{
     Task.findById(req.params.id)
+    .populate({
+      path: 'fridge',
+      populate: {path: 'members'}
+    })
     .then(task =>{
-      console.log(task)
-      res.redirect(`/fridge/${task.fridge}`)
+      var Members = task.fridge.members
+      Members.forEach((member)=>{
+        console.log(member.phoneNumber)
+        client.messages
+        .create({
+          to: `+${member.phoneNumber}`,
+          from: '+17173882453 ',
+          body: `${task.details} is completed`,
+        })
+        .then((message) => console.log(message.sid));
+      })
+
+        res.redirect(`/fridge/${task.fridge.id}`)
     })
   })
 })
