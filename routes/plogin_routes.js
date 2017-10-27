@@ -38,6 +38,19 @@ router.get('/profile', (req, res) => {
 })
 
 router.post('/profile', (req, res) => {
-  
+  Partner.findByIdAndUpdate(req.user._id,
+    {ride: {
+      startPostal: req.body.partner.startPostal,
+      endPostal: req.body.partner.endPostal,
+      arrTime: req.body.time
+    }
+    },
+  {new: true},
+  function (err, success) {
+    if (err) return console.log(err)
+    console.log(success)
+    // res.send('sucess')
+  }
+)
 })
 module.exports = router

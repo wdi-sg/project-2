@@ -46,7 +46,7 @@ function autoComplete () {
       time: $timeInput.val()
     })
     fetch('/route', {
-      method: 'POST',
+      method: 'PUT',
       body: jsonInput,
       headers: {
         'Content-Type': 'application/json'

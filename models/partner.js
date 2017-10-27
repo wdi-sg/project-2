@@ -23,10 +23,11 @@ const partnerSchema = new Schema({
     required: true
   },
   slug: String,
-  startPostal: String,
-  endPostal: String,
-  arrTime: Number,
-  ride: String,
+  ride: {
+    startPostal: String,
+    endPostal: String,
+    arrTime: Number
+  },
   type: String
 })
 
