@@ -82,7 +82,7 @@ router.post('/', (req, res) => {
     newTravelplan.picture = formData.picture
     newTravelplan.description = formData.description
     newTravelplan.link = formData.link
-
+    newTravelplan.postby = req.user.id
 
     newTravelplan.save()
     // UPDATE. 19 Oct
