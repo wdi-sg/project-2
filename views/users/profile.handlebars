@@ -24,7 +24,6 @@
         <div class="card-body">
           <h4 class="card-title">{{ medicine.name }}</h4>
           <p class="card-text">{{ medicine.dosage }}</p>
-          <p class="card-text">{{ medicine.id }}</p>
           <form action="/profile/{{ medicine.id }}?_method=PUT" method="post">
             <button type="submit" name="button">Update</button>
           </form>

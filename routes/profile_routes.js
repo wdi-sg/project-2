@@ -4,7 +4,6 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  // console.log(req.user.id)
   var userId = req.user.id
 
   User.findById(userId)
@@ -15,10 +14,6 @@ router.get('/', (req, res) => {
       medicines: medicineArray
     }
 
-    // return res.send({
-    //   context,
-    //   user: req.user
-    // })
     res.render('users/profile', context)
   })
 })
@@ -38,23 +33,9 @@ router.put('/', (req, res, next) => {
     newMedication.save()
     .then(() => {
       user.save()
-      .then(() => res.redirect('/'))
+      .then(() => res.redirect('/profile'))
     })
   })
-
-  // router.get('/:id', (req, res) => {
-  //   User
-  //   .findById(req.params.id)
-  //   .populate('userMed')
-  //   .then(medication => {
-  //     res.render('./users/profile', {
-  //       Medication
-  //     })
-  //   })
-  //   .catch(err => {
-  //     console.log(err)
-  //   })
-  // })
 })
 
 router.put('/:id', (req, res) => {
@@ -73,19 +54,12 @@ router.put('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-  // (AGAIN) thankfully since we're using mongoose
-  // there's a method in mongoose just for that
-  // `findByIdAndRemove` http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove
-  console.log('delete pressed!')
   Medication.findByIdAndRemove(req.params.id)
-  .then(() => {
+  .then((result) => {
     console.log('deleted')
-    // res.redirect('./users/profile')
+    res.redirect('/profile')
   })
   .catch(err => console.log(err))
 })
-// router.get('/', (req, res) => {
-//   res.render('./users/profile')
-// })
 
 module.exports = router
