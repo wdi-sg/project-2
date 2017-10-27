@@ -10,7 +10,7 @@ const path = require('path')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 
-const dbUrl = 'mongodb://localhost/MakeGood'
+const dbUrl = process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/MakeGood'
 const port = process.env.PORT || 3000
 const passport = require('./config/ppConfig')
 
@@ -45,7 +45,7 @@ app.use(function (req, res, next) {
 })
 
 app.use(session({
-  secret: 'secret test',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
   store: new MongoStore({ mongooseConnection: mongoose.connection })

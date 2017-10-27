@@ -60,7 +60,11 @@ $(function () {
       const $newCardBody = $('<div class="card-body">')
       const $newCardTitle = $('<h4 class="card-title">')
       const $newCardText = $('<p class="card-text">')
-      const $newCardLinks = $(`<form class="form-inline" action="/profile/${user.slug}/settings?_method=DELETE" method="post">`)
+      const $newCardLinks = $(`<form
+        class="form-inline"
+        action="/profile/${user.slug}/settings?_method=DELETE"
+        method="post"
+        >`)
 
       $newCardTitle.text(user.name)
       $newCardText.html(
@@ -83,6 +87,7 @@ $(function () {
 
   $searchGigs.on('keyup', e => { // e is the event object of the keyup event
     var keyword = e.target.value
+
     var json = JSON.stringify({
       keyword
     })
