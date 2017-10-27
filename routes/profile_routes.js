@@ -38,7 +38,6 @@ router.put('/:username/follow', (req, res) => {
             currUser.following.push(userId)
             currUser.save()
             .then(() => {
-              console.log('added target user to following and current user to target users followers')
               res.redirect(`/`)}
             )
             .catch(err => console.log(err))
