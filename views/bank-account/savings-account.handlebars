@@ -1,30 +1,73 @@
 <div class="container">
   <h2>Savings Account</h2>
+
+  <br>
+
+  {{#each savingsAccounts as |SA|}}
+    <div class>
+      <div class="row col s12 m6">
+
+        <ul class="left"><b>{{SA.name}}</b></ul>
+
+        <br>
+
+      </div>
+
+      <div class="row col s12 m6">
+
+        <ul class="left"><img src="{{SA.bank_img}}" height="60"></ul>
+
+        <br>
+
+        <p>Minimum Interest Rate: {{SA.min_interest_rate}}%</p>
+
+        <br>
+
+        <p>Maximum Interest Rate: {{SA.max_interest_rate}}%</p>
+
+        <br>
+
+        <p>Initial Deposit: {{SA.minimum_deposit}}</p>
+
+        <br>
+
+        <ul class="right"><a href="{{SA.link}}" class="brand-logo waves-effect waves-light btn right">Apply Here</a></ul>
+
+        <br>
+        <br>
+
+      </div>
+
+      <div class="row col s12 m6">
+
+        <ul class="collapsible z-depth-0" data-collapsible="accordion" >
+
+        <li>
+          <div class="collapsible-header row col s12 m6"><ul class="center">
+
+            More Details
+
+          </ul></div>
+
+          <div class="collapsible-body">
+
+            <p>Minimum Age: {{SA.minimum_age}}</p>
+            <p>Minimum Deposit: $ {{sa.minimum_deposit.[0]}}</p>
+            <p>Fees and Charges: {{SA.fees_charges}}</p>
+
+          </div>
+
+        </li>
+
+      </ul>
+      </div>
+
+    </div>
+
+    <br>
+
+  {{/each}}
+
+  <br>
+  <br>
 </div>
-
-<label for="name">name</label>
-<input type="text" name="name" class="black-text">
-
-<label for="bank_img">bank_img</label>
-<input type="text" name="bank_img" class="black-text">
-
-<label for="min_interest_rate">min_interest_rate</label>
-<input type="number" name="min_interest_rate" class="black-text">
-
-<label for="min_interest_rate">max_interest_rate</label>
-<input type="number" name="min_interest_rate" class="black-text">
-
-<label for="minimum_deposit">minimum_deposit</label>
-<input type="text" name="minimum_deposit" class="black-text">
-
-<label for="link">link</label>
-<input type="text" name="link" class="black-text">
-
-<label for="interest_rates">interest_rates</label>
-<input type="text" name="interest_rates" class="black-text">
-
-<label for="highlights">highlights</label>
-<input type="text" name="highlights" class="black-text">
-
-<label for="bonus_interest_rates">bonus_interest_rates</label>
-<input type="text" name="bonus_interest_rates" class="black-text">

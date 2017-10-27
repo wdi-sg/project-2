@@ -6,8 +6,8 @@
   </ul>
 
   <br>
-  <br>
 
+  <h8>Fixed Deposit Account(s)</h8>
   <ul>
     {{#each accounts as |acct|}}
 
@@ -19,6 +19,18 @@
   </ul>
 
   <br>
+
+  <h8>Savings Account(s)</h8>
+  <ul>
+    {{#each accounts as |acct|}}
+
+      <li>
+        <a href='/accounts/{{acct.id}}'>{{ acct.sa.name }}</a>
+      </li>
+
+    {{/each}}
+  </ul>
+
   <br>
 
   <h5>Add Fixed Deposit Account</h5>
@@ -76,6 +88,37 @@
 
   <br>
   <br>
+
+  <h5>Add Savings Account</h5>
+
+  <form action='/profile' method='post'>
+    <label for="savingsAccount">Savings Account: </label>
+    <select name="savingsAccount">
+      <option value="" disabled selected>Please select</option>
+      {{#each savingsAccount as |SA|}}
+        <option value="{{SA.id}}">{{SA.name}}</option>
+      {{/each}}
+     </select>
+
+    <br>
+
+    <div id="results"></div>
+
+    <br>
+
+    <label for="amount">Amount Deposited (S$): </label>
+    <input type="number" name="amount"><br>
+
+    <br>
+
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+      <i class="material-icons right"></i>
+    </button>
+
+  </form>
+
+    <br>
+    <br>
 
   <h5>Update Profile</h5>
 

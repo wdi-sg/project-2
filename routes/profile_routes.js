@@ -1,5 +1,6 @@
 const User = require('../models/user')
 const FixedDeposit = require('../models/fixed-deposit')
+const SavingsAccount = require('../models/savings-account')
 const Account = require('../models/account')
 const express = require('express')
 const router = express.Router()
@@ -15,15 +16,13 @@ router.get('/', (req, res) => {
   .then(accounts => {
     FixedDeposit.find()
     .then((fixedDeposits) => {
-      // var interestRatePerPeriod =
-      // return res.send({
-      //   accounts,
-      //   // fixedDeposits
-      // })
-
-      res.render('profile', {
-        accounts,
-        fixedDeposits
+      SavingsAccount.find()
+      .then((savingsAccount) => {
+        res.render('profile', {
+          accounts,
+          fixedDeposits,
+          savingsAccount
+        })
       })
     })
   })
@@ -46,7 +45,7 @@ router.post('/', (req, res) => {
   newAccount.amount = formData.amount
   newAccount.period = formData.period
 
-  return res.send(newAccount)
+  // return res.send(newAccount)
 
   newAccount.save()
 

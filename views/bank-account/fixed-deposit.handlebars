@@ -42,7 +42,11 @@
     <div class>
       <div class="row col s12 m6">
 
-        <ul class="left"><b>{{FD.name}}</b></ul>
+        <ul class="left">
+
+          <b>{{FD.name}}</b>
+
+        </ul>
 
         <br>
 
@@ -54,7 +58,12 @@
 
         <br>
 
-        <p>Interest Rate: {{FD.interest_rate}}</p>
+        <h8>Period : Interest Rate</h8>
+        <ul>
+          {{#each FD.interest_rate as |IR|}}
+            <li>{{IR.period}} month(s) : {{IR.rate}}%</li>
+          {{/each}}
+        </ul>
 
         <br>
 

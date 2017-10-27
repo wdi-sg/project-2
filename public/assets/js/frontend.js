@@ -1,17 +1,11 @@
 $(function () {
+  $('.parallax').parallax()
 
-  $('.parallax').parallax();
-
-  $(".dropdown-button").dropdown()
+  $('.dropdown-button').dropdown()
 
   $('select').material_select()
 
-  $('.collapsible').collapsible();
-
-  // $("#fixedDeposit").on("change", function(){
-  //   var selected = $(this).val();
-  //   $("#results").html("You selected: " + selected);
-  // })
+  $('.collapsible').collapsible()
 
   const $deleteForm = $('.deleteForm')
 
@@ -41,5 +35,4 @@ $(function () {
       form.parents('.col-4').remove()
     })
   })
-
 })

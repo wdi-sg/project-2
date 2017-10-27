@@ -1,11 +1,20 @@
 const User = require('../models/user')
 const FixedDeposit = require('../models/fixed-deposit')
+const SavingsAccount = require('../models/savings-account')
 const Account = require('../models/account')
 const express = require('express')
 const router = express.Router()
 
 router.get('/:id', (req, res) => {
-  res.render('account')
+  Account.findById(
+    req.params.id
+  )
+  .populate('fd')
+  .populate('sa')
+  .then((account) => {
+    res.render('account', {account})
+    // res.send({account})
+  })
 })
 
 module.exports = router

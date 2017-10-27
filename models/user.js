@@ -9,9 +9,7 @@ const userSchema = new Schema({
     required: true
   },
   email: String,
-  password: {
-    type: String
-  }
+  password: String
 })
 
 userSchema.pre('save', function (next) {

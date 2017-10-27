@@ -17,7 +17,6 @@ passport.use(new LocalStrategy({
   usernameField: 'user[email]',
   passwordField: 'user[password]'
 }, (email, password, next) => {
-
   User.findOne({email: email})
   .then(user => {
     if (!user) return next(null, false)

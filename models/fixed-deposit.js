@@ -18,13 +18,3 @@ const fixedDepositSchema = new Schema({
 const fixedDeposit = mongoose.model('fixed_deposit', fixedDepositSchema)
 
 module.exports = fixedDeposit
-
-
-// var test = data.filter(e => {
-//   if(e.interest_rate['18 months']) return e
-// })
-//
-// console.log(test)
-
-// model
-// $exsit or $in

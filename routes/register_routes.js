@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
     user => {
       passport.authenticate('local', {
         successRedirect: '/'
-      })(req, res);
+      })(req, res)
     },
     err => res.send(err)
   )

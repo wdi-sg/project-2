@@ -28,7 +28,7 @@ const account_routes = require('./routes/account_routes')
 const fixed_deposit_routes = require('./routes/fixed_deposit_routes')
 const savings_account_routes = require('./routes/savings_account_routes')
 
-// initiating express, by calling express variable
+// initiating express
 const app = express()
 
 // VIEW ENGINES aka handlebars setup
@@ -73,6 +73,7 @@ app.use(passport.session())
 app.use((req, res, next) => {
   app.locals.user = req.user
   app.locals.fixed_deposits = req.FixedDeposits
+  app.locals.savings_account = req.SavingsAccount
   app.locals.account = req.account
   next()
 })
@@ -83,20 +84,6 @@ app.get('/', (req, res) => {
 
 app.get('/credit-card', (req, res) => {
   res.render('credit-card')
-})
-
-app.get('/savings-account', (req, res) => {
-  res.render('bank-account/savings-account')
-})
-
-app.get('/investment-account', (req, res) => {
-  res.render('investment/investment-account', {
-    title: 'Ivestment Account'
-  })
-})
-
-app.get('/news', (req, res) => {
-  res.render('investment/news')
 })
 
 app.get('/logout', (req, res) => {

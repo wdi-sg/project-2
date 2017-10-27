@@ -10,6 +10,10 @@ const accountSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'fixed_deposit'
   },
+  sa: {
+    type: Schema.Types.ObjectId,
+    ref: 'savings_account'
+  },
   amount: Number,
   period: Number
 })
