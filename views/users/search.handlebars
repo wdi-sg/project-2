@@ -5,6 +5,7 @@
 
   <label for="searchInput">By Country: </label>
   <select type="text" class="form-control" name="trips[category]" id="searchInput" placeholder="Country">
+      <option value="All" selected>All</option>
       <option value="Afghanistan">Afghanistan</option>
       <option value="Albania">Albania</option>
       <option value="Algeria">Algeria</option>
@@ -194,7 +195,7 @@
       <option value="Senegal">Senegal</option>
       <option value="Seychelles">Seychelles</option>
       <option value="Sierra">Sierra Leone</option>
-      <option value="Singapore" selected>Singapore</option>
+      <option value="Singapore">Singapore</option>
       <option value="Slovakia">Slovakia (Slovak Republic)</option>
       <option value="Slovenia">Slovenia</option>
       <option value="Solomon Islands">Solomon Islands</option>
@@ -260,7 +261,7 @@
             {{ fullTrip.address }}<br>
             {{ fullTrip.category }}<br>
             {{!-- <a href="https://maps.google.com/?cid=9123933771843294962" target="_blank">View google map</a><br> --}}
-            <a href="https://www.google.com/maps/@{{fullTrip.latitude}},{{fullTrip.longitude}},15z" target="_blank">View google map</a><br>
+            <a href="https://www.google.com/maps/search/?api=1&query={{fullTrip.latitude}},{{fullTrip.longitude}}&query_place_id={{fullTrip.placeId}}" target="_blank">View google map</a><br>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">{{ fullTrip.description }}</li>
             </ul>

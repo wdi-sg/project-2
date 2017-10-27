@@ -14,7 +14,8 @@
           {{ route.address }}<br>
           {{ route.category }}<br/>
           {{!-- <a href="https://maps.google.com/?cid=9123933771843294962" target="_blank">View google map</a><br> --}}
-          <a href="https://www.google.com/maps/@{{route.latitude}},{{route.longitude}},15z" target="_blank">View google map</a><br>
+          {{!-- <a href="https://www.google.com/maps/@{{route.latitude}},{{route.longitude}},15z" target="_blank">View google map</a><br> --}}
+          <a href="https://www.google.com/maps/search/?api=1&query={{route.latitude}},{{route.longitude}}&query_place_id={{route.placeId}}" target="_blank">View google map</a><br>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">{{ route.description }}</li>
           </ul>

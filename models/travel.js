@@ -13,6 +13,7 @@ const travelplanSchema = new Schema({
   },
   latitude: String,
   longitude: String,
+  placeId: String,
   category: {
     type: String,
     // required: [true, 'type in the country.']

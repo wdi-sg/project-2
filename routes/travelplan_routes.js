@@ -71,6 +71,10 @@ router.post('/', (req, res) => {
     var data = JSON.parse(json)
     var latitude = data.results[0].geometry.location.lat
     var longitude = data.results[0].geometry.location.lng
+    var geoid = data.results[0].place_id
+    // console.log('===========================================')
+    // console.log(data.results[0])
+    // console.log('===========================================')
 
     var newTravelplan = new Travelplan()
     newTravelplan.title = formData.title
@@ -79,6 +83,7 @@ router.post('/', (req, res) => {
     newTravelplan.address = formData.address
     newTravelplan.latitude = latitude
     newTravelplan.longitude = longitude
+    newTravelplan.placeId = geoid
     newTravelplan.picture = formData.picture
     newTravelplan.description = formData.description
     newTravelplan.link = formData.link

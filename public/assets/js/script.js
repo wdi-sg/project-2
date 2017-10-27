@@ -4,7 +4,7 @@
 function initMap () {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 1.290270, lng: 103.851959},
-    zoom: 13
+    zoom: 14
   })
 
   var input = document.getElementById('pac-input')
@@ -39,17 +39,17 @@ function initMap () {
       map.setZoom(17)
     }
 
-          // Set the position of the marker using the place ID and location.
+    // Set the position of the marker using the place ID and location.
     marker.setPlace({
       placeId: place.place_id,
       location: place.geometry.location
     })
+
     marker.setVisible(true)
 
     infowindowContent.children['place-name'].textContent = place.name
     // infowindowContent.children['place-id'].textContent = place.place_id
     infowindowContent.children['place-address'].textContent = place.formatted_address
-    // infowindowContent.children['place-url'].textContent = place.url
     infowindow.open(map, marker)
   })
 }
@@ -98,15 +98,16 @@ $(function () {
         `
           ${routes.address} <br>
           ${routes.category}<br>
-          <a href="https://www.google.com/maps/@{{route.latitude}},{{route.longitude}},15z" target="_blank">View google map</a><br>
-          ${routes.description }<br/>
-          ${routes.dateCreated}
+          <a href="https://www.google.com/maps/search/?api=1&query=${routes.latitude},${routes.longitude}&query_place_id=${routes.placeId}" target="_blank">View google map</a><br>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">${routes.description }</li>
+          </ul>
+          <small class="text-muted">${ moment(this.dateCreated).format('MMMM Do YYYY') }</small>
 
         `
       )
 
       $newCardBody.append($newCardTitle, $newCardText)
-
       $newCard.append($newCardImg, $newCardBody)
       $newCol.append($newCard)
       return $newCol
