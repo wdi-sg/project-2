@@ -79,6 +79,12 @@ version 0.4.5 Day 3 (25 Oct):
 * added working category_routes: able to display 10 pattern and 10 project under the category.
 * added home_route, that will show 6 pattern from the categories.
 
+version 0.5.0 Day 4 (26 Oct):
+* added: update user, delete user.
+
+version 0.6.0 Day 5 (27 Oct) :
+* added: upload image function
+
 
 To be added:
 * finalise 3 models

@@ -6,7 +6,7 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  let categoryArray = ['woodcraft','papercraft', 'Sewing', 'Knitting']
+  let categoryArray = ['woodcraft','papercraft', 'sewing', 'knitting']
   res.render('category/all', {
     categoryArray
   })
@@ -19,7 +19,7 @@ router.get('/:category/', (req, res) => {
 
     Project.find({"category" : searchCategory}).limit(10)
     .then((projects) => {
-      
+
       res.render('category/show', {
         patterns , projects
       })

@@ -5,36 +5,45 @@ const Project = require('../models/project')
 const express = require('express')
 const router = express.Router()
 
+const cloudinary = require('cloudinary')
+const multer = require('multer')
+const upload = multer({ dest: './uploads/' })
+
 
 router.get('/new', (req, res) => {
   res.render('pattern/new')
 })
 
-router.post('/new', (req, res) => {
+router.post('/new', upload.single('image'), (req, res) => {
+
   const userData = req.user
   const userId = userData.id
   const userPattern = userData.pattern
   const patternData = req.body.pattern
-  let newPattern = new Pattern({
-    title : patternData.title,
-    creator : userId,
-    category : patternData.category,
-    material : patternData.material,
-    steps : patternData.steps
-  })
-  newPattern.save()
-  .then(pattern => {
-    userPattern.push(pattern.id)
-    User.findByIdAndUpdate(userId, {
-      pattern : userPattern
+  cloudinary.uploader.upload(req.file.path, function(result) {
+    let newPattern = new Pattern({
+      title : patternData.title,
+      creator : userId,
+      category : patternData.category,
+      material : patternData.material,
+      steps : patternData.steps,
+      imageUrl : result.secure_url
     })
-    .then(() => {
-      console.log('User successfully updated')
+    newPattern.save()
+    .then(pattern => {
+      userPattern.push(pattern.id)
+      User.findByIdAndUpdate(userId, {
+        pattern : userPattern
+      })
+      .then(() => {
+        console.log('User successfully updated')
 
-      res.redirect(`/`) //   res.redirect(`/${patternData.category}/${pattern.id}`)
-    })
-    .catch(err => console.log('Update failed'))
-  }, err => res.send(err))
+        res.redirect(`/`) //   res.redirect(`/${patternData.category}/${pattern.id}`)
+      })
+      .catch(err => console.log('Update failed'))
+    }, err => res.send(err))
+  })
+
 })
 
 router.get('/:id', (req, res) => {
@@ -53,9 +62,7 @@ router.get('/:id', (req, res) => {
   .catch(err => res.send(err))
 })
 ///
-router.put('/:id', (req, res) => {
- // check if the user is the creator, if yes allow to edit
-})
+
 router.get('/:id/edit', (req, res) => {
 
   Pattern.findById(req.params.id)
@@ -70,17 +77,64 @@ router.get('/:id/edit', (req, res) => {
   })
 })
 
-router.put('/:id/edit', (req, res) => {
+router.put('/:id/edit', upload.single('image'), (req, res) => {
   const newPatternData = req.body.pattern
   const patternId = req.params.id
-  Pattern.findByIdAndUpdate(patternId, {
-    title : newPatternData.title,
-    material : newPatternData.material,
-    steps: newPatternData.steps,
+  cloudinary.uploader.upload(req.file.path, function(result) {
+    
+    Pattern.findByIdAndUpdate(patternId, {
+      title : newPatternData.title,
+      material : newPatternData.material,
+      steps: newPatternData.steps,
+      imageUrl: result.secure_url,
 
+    })
+    .then(() => res.redirect(`/pattern/${patternId}`))
+    .catch(err => res.send(err))
   })
-  .then(() => res.redirect(`/pattern/${patternId}`))
-  .catch(err => res.send(err))
+})
+router.delete('/:id/edit', (req, res) => {
+  const patternId = req.params.id
+  Pattern.findById(req.params.id)
+  .populate('creator')
+  .then(pattern => {
+    console.log('found pattern')
+    if (pattern.creator.id === req.user.id){
+      const patternVariation = pattern.variation
+      console.log(patternVariation)
+      console.log(typeof patternVariation)
+      Pattern.findByIdAndRemove(patternId)
+      .then(() => {
+        for (var i = 0; i < patternVariation.length; i++) {
+          console.log(patternVariation[i])
+          console.log(patternVariation[i].id)
+          Project.findByIdAndUpdate(patternVariation[i], {
+            pattern : {}
+          })
+          .then(console.log('project updated'))
+          .catch(err => console.log(err))
+        }
+        User.findById(pattern.creator.id)
+        .then(user => {
+          console.log(user)
+          console.log(typeof user) // object
+          let patternArray = user.pattern
+          console.log(patternArray)
+          console.log(typeof patternArray) //object
+          // find the position of the pattern in the pattern array
+        })
+        .catch(err => console.log(err))
+        // User.findByIdAndUpdate(pattern.creator.id, {
+        //
+        // })
+
+
+
+        res.redirect(`/home`)})
+      .catch(err => res.send(err))
+    }
+    else res.redirect(`/pattern/${patternId}`)
+  })
 })
 
 router.get('/:id/variation/new', (req,res) => {
@@ -92,7 +146,7 @@ router.get('/:id/variation/new', (req,res) => {
     })
   })
 })
-router.post('/:id/variation/new', (req, res) => {
+router.post('/:id/variation/new', upload.single('image'), (req, res) => {
   const userData = req.user
   const userId = userData.id
   const userProject = userData.project
@@ -105,43 +159,43 @@ router.post('/:id/variation/new', (req, res) => {
   Pattern
   .findById(patternId)
   .then(pattern => {
-    //console.log('found pattern')
     // if (!projectTitle){
     //   var lastPartId = userId.slice(20)
     //   projectTitle = pattern.title +'v' + lastPartId
     // }
     const patternVariation = pattern.variation
     const projectCategory = pattern.category
-    let newProject = new Project({
-      title : projectTitle,
-      creator : userId,
-      category : projectCategory,
-      material : projectData.material,
-      pattern : patternId,
+    cloudinary.uploader.upload(req.file.path, function(result) {
+      let newProject = new Project({
+        title : projectTitle,
+        creator : userId,
+        category : projectCategory,
+        material : projectData.material,
+        pattern : patternId,
+        imageUrl : result.secure_url
+      })
 
+      newProject.save()
+      .then(project => {
+        //console.log('saving project')
+        userProject.push(project.id)
+        patternVariation.push(project.id)
+        Pattern.findByIdAndUpdate(patternId,{
+          variation : patternVariation
+        })
+        .then(() => console.log('update variation'))
+        .catch(err => console.log(err))
+
+        User.findByIdAndUpdate(userId, {
+          project : userProject
+        })
+        .then(() => {
+          console.log('User successfully updated')
+          res.redirect(`/profile`) // redirect to the details page of the projects
+        })
+        .catch(err => console.log('Update failed'))
+      }, err => res.send(err))
     })
-
-    newProject.save()
-    .then(project => {
-      //console.log('saving project')
-      userProject.push(project.id)
-      patternVariation.push(project.id)
-      Pattern.findByIdAndUpdate(patternId,{
-        variation : patternVariation
-      })
-      .then(() => console.log('update variation'))
-      .catch(err => console.log(err))
-
-      User.findByIdAndUpdate(userId, {
-        project : userProject
-      })
-      .then(() => {
-        console.log('User successfully updated')
-        res.redirect(`/profile`) // redirect to the details page of the projects
-      })
-      .catch(err => console.log('Update failed'))
-    }, err => res.send(err))
-
   })
 .catch(err => console.log('findpattern by id error'))
 })

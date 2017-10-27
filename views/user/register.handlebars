@@ -1,6 +1,6 @@
 <h3>Registration</h3>
 
-<form action="/register" method="post">
+<form enctype="multipart/form-data"  action="/register" method="post">
   <label for="name">Name</label>
   <input type="text" name="user[name]" placeholder="e.g. John Doe">
 
@@ -11,6 +11,9 @@
   <label for="password">Password</label>
 
   <input type="password" name="user[password]" placeholder="min. 8 characters">
+
+  <label for="image">Image :</label>
+  <input type="file" name="image">
 
   <button type="submit" name="button">Submit</button>
 </form>

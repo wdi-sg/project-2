@@ -1,15 +1,15 @@
 
 <h3>Add new pattern</h3>
 
-<form action="/pattern/new" method="post">
+<form  enctype="multipart/form-data" action="/pattern/new" method="post">
   <div class="">
     <label for="title">Title</label>
     <input type="text" name="pattern[title]" placeholder="Basic Drawstring bag">
     <select name="pattern[category]">
       <option value="woodcraft">Woodcraft</option>
       <option value="papercraft">Papercraft</option>
-      <option value="Sewing">Sewing</option>
-      <option value="Knitting">Knitting</option>
+      <option value="sewing">Sewing</option>
+      <option value="knitting">Knitting</option>
     </select>
   </div>
   <div class="">
@@ -18,6 +18,9 @@
     <label for="steps">Steps</label>
     <textarea name="pattern[steps]" rows="10" cols="40"></textarea>
   </div>
+  
+  <label for="image">Image :</label>
+  <input type="file" name="image">
 
 
 

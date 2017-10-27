@@ -18,7 +18,8 @@ const patternSchema = new Schema ({
   // },
   variation : [{ type : Schema.Types.ObjectId, ref: 'Project' }],
   material : String,
-  steps : String
+  steps : String,
+  imageUrl : String
 })
 
 // patternSchema.pre('save', function(next) {

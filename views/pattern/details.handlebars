@@ -1,10 +1,10 @@
 <h3>{{ pattern.title }}</h3>
 
+<img src="{{pattern.imageUrl}}" width=300 alt="Image">
+
 <div class="">
   {{#if userMatch}}
-  <li class="nav-item">
-    <a class="nav-link" href="/pattern/{{pattern.id}}/edit">Edit Pattern</a>
-  </li>
+  <a class="nav-link" href="/pattern/{{pattern.id}}/edit">Edit Pattern</a>
   {{/if}}
 </div>
 <div class="">
@@ -23,17 +23,28 @@
 
 <div class="">
   <a href="/pattern/{{pattern.id}}/variation/new" class="button">I did this</a>
-  <form class="" action="/pattern/{{pattern.id}}/bookmark" method="post">
-    <button type="submit" name="bookmarkBtn">Add to Bookmark</button>
-  </form>
 </div>
 
 <div class="">
+  <form class="bookmarkForm" action="/pattern/{{pattern.id}}/bookmark" method="post">
+    <button type="submit" name="bookmarkBtn">Add to Bookmark</button>
+  </form>
+
+</div>
+<div class="">
   <h3>Variation</h3>
-  <ul>
+  <div class="">
+
     {{#each pattern.variation as |variation| }}
-    <li>{{ variation.title }}</li>
+    <div class="">
+      <a href="/project/{{variation.id}}">
+      <img src="{{variation.imageUrl}}" width=100 alt="Image">
+      <h5> {{ variation.title }}</h5>
+      </a>
+
+    </div>
     {{/each}}
 
-  </ul>
+  </div>
+
 </div>

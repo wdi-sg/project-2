@@ -14,6 +14,10 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const passport = require('./config/ppConfig')
 
+const cloudinary = require('cloudinary')
+const multer = require('multer')
+const upload = multer({ dest: './uploads/' })
+
 const { hasLoggedOut, isLoggedIn } = require('./helpers')
 
 
@@ -23,7 +27,10 @@ const profile_routes = require('./routes/profile_routes')
 const pattern_routes = require('./routes/pattern_routes')
 const category_routes = require('./routes/category_routes')
 const home_routes = require('./routes/home_routes')
+const project_routes = require('./routes/project_routes')
+
 const app = express()
+cloudinary.cloudinary_js_config()
 
 const User = require('./models/user')
 
@@ -90,7 +97,7 @@ app.use('/profile', profile_routes)
 app.use('/pattern', hasLoggedOut, pattern_routes) // check if need hasLoggedOut function
 //app.use('/new', hasLoggedOut, new_routes)
 app.use('/category', category_routes)
-
+app.use('/project', project_routes)
 
 
 

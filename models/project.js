@@ -15,7 +15,8 @@ const projectSchema = new Schema ({
   category : String,
   //estimatedTimeCreator : String,
   material : String,
-  reflection : String
+  reflection : String,
+  imageUrl : String
 })
 
 const Project = mongoose.model('Project', projectSchema)

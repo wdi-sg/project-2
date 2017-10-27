@@ -1,12 +1,12 @@
 
 <h2>{{ user.name }}</h2>
+<img src="{{user.imageUrl}}" width=250 alt="Image">
 <div class="">
   <ul>
     <li>{{ user.email }}</li>
     {{!-- <li>{{ user.preferences }}</li>
     <li>{{ user.level }}</li> --}}
   </ul>
-
 <div class="">
   <button type="button" name="button"><a href="/profile/edit">Edit</a></button>
 </div>
@@ -51,7 +51,7 @@
     {{#each user.project as |project| }}
     <li>
       {{ project.title }}
-      {{!-- <a href="/pattern/{{ project.id }}" class="">View</a> --}}
+      <a href="/project/{{ project.id }}" class="">View</a>
 
     </li>
     {{/each}}

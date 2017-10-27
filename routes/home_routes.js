@@ -7,21 +7,18 @@ const router = express.Router()
 const async = require('async')
 
 router.get('/', (req, res) => {
-  let categoryArray = ['woodcraft','papercraft', 'Sewing', 'knitting']
+  let categoryArray = ['woodcraft','papercraft', 'sewing', 'knitting']
 
   Pattern.find({"category" : 'woodcraft'}).limit(6)
   .then((woodcraftPatterns) => {
-    Pattern.find({"category" : 'Sewing'}).limit(6)
+    Pattern.find({"category" : 'sewing'}).limit(6)
     .then((sewingPatterns) => {
       Pattern.find({"category" : 'papercraft'}).limit(6)
       .then((papercraftPatterns) => {
         res.render('home', {
           woodcraftPatterns, sewingPatterns, papercraftPatterns
         })
-
       })
-
-
     })
   })
   .catch(err => console.log(err))
