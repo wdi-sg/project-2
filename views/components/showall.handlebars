@@ -13,16 +13,18 @@
         <th scope="col">Unit cost</th>
         <th scope="col">Quantity</th>
         <th scope="col">Total Cost</th>
-        <th scope="col">Total Price</th>
-        <th scope="col">Margin</th>
+        {{#if user.isAdmin}}
+          <th scope="col">Total Price</th>
+          <th scope="col">Margin</th>
+        {{/if}}
         <th scope="col"></th>
       </tr>
     </thead>
 
-    {{#each components as |compo|}}
 
     <tbody>
       <tr>
+        {{#each components as |compo|}}
         <td>{{ compo.name }}</td>
         <td>{{ compo.description }}</td>
         <td>{{ compo.vendor }}</td>
@@ -30,8 +32,10 @@
         <td>{{ compo.unit_cost }}</td>
         <td>{{ compo.quantity }}</td>
         <td>{{ compo.totalCost }}</td>
-        <td>{{ compo.totalPrice }}</td>
-        <td>{{ compo.type.margin }}%</td>
+        {{#if ../user.isAdmin}}
+          <td>{{ compo.totalPrice }}</td>
+          <td>{{ compo.type.margin }}%</td>
+        {{/if}}
         <td><a href="/components/{{ compo.id }}" class="btn">Edit</a></td>
       </tr>
       {{/each}}
@@ -43,8 +47,10 @@
         <td></td>
         <td>Total</td>
         <td>{{sumCost}}</td>
-        <td>{{sumPrice}}</td>
-        <td>{{sumMargin}}%</td>
+        {{#if user.isAdmin}}
+          <td>{{sumPrice}}</td>
+          <td>{{sumMargin}}%</td>
+        {{/if}}
       </tr>
     </tbody>
 

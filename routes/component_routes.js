@@ -29,8 +29,12 @@ router.get('/variables', (req, res) => {
 
 // SHOW ALL COMPONENTS
 router.get('/showall', (req, res) => {
+  // if admin, can view all components
+  if (req.user.isAdmin) var statusFind = ''
+  // if not admin, can only view components owned by user
+  else statusFind = {'owner': req.user.id}
   Component
-  .find()
+  .find(statusFind)
   .populate('type')
   .sort({type: 1})
   .then(components => {
@@ -54,15 +58,15 @@ router.get('/summary', (req, res) => {
   Component
   .aggregate(
     [
-      { $lookup: {
-        from: 'types', localField: 'type', foreignField: '_id', as: 'typeName'
-      }},
-      {
-        $group: {
-          _id: '$typeName.name',
-          subtotalCost: { $sum: {$multiply: ['$unit_cost', '$quantity']} }
-        }
+    { $lookup: {
+      from: 'types', localField: 'type', foreignField: '_id', as: 'typeName'
+    }},
+    {
+      $group: {
+        _id: '$typeName.name',
+        subtotalCost: { $sum: {$multiply: ['$unit_cost', '$quantity']} }
       }
+    }
     ]
   )
   .then(components => {
