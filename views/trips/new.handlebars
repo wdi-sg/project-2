@@ -5,24 +5,12 @@
   <form action="/routes" method="post">
     <h2>Add new travel itinerary</h2>
 
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-4">
         <input type="date" class="form-control" name="trips[dateCreated]" placeholder="Date">
       </div>
       <div class="form-group col-md-4">
-        <input type="text" class="form-control" name="trips[title]" id="title" placeholder="Title">
-      </div>
-      <div class="form-group col-md-4">
-        <input id="pac-input" class="controls" name="trips[address] type="text" placeholder="Enter a location">
-            <div id="map"></div>
-            <div id="infowindow-content">
-              <span id="place-name"  class="title"></span><br>
-              <span id="place-address"></span><br>
-              <span id="place-url"></span><br>
-            </div>
-      </div>
-
-      <div class="form-group col-md-4">
         <select type="text" class="form-control" name="trips[category]" id="category" placeholder="Country">
+            <option value="default selected">Country</option>
             <option value="Afghanistan">Afghanistan</option>
             <option value="Albania">Albania</option>
             <option value="Algeria">Algeria</option>
@@ -212,7 +200,7 @@
             <option value="Senegal">Senegal</option>
             <option value="Seychelles">Seychelles</option>
             <option value="Sierra">Sierra Leone</option>
-            <option value="Singapore" selected>Singapore</option>
+            <option value="Singapore">Singapore</option>
             <option value="Slovakia">Slovakia (Slovak Republic)</option>
             <option value="Slovenia">Slovenia</option>
             <option value="Solomon Islands">Solomon Islands</option>
@@ -265,6 +253,16 @@
         </select>
       </div>
       <div class="form-group col-md-4">
+        <input id="pac-input" class="controls" name="trips[address] type="text" placeholder="Enter a location">
+            <div id="map"></div>
+            <div id="infowindow-content">
+              <span id="place-name"  class="title"></span><br>
+              <span id="place-address"></span><br>
+              <span id="place-url"></span><br>
+            </div>
+      </div>
+
+      <div class="form-group col-md-4">
 
         {{!-- <form class="uploadImgForm" action="/uploadImg" method="post"> --}}
           <input type="hidden" role="uploadcare-uploader" name="trips[picture]" />
@@ -272,9 +270,15 @@
         {{!-- </form> --}}
 
       </div>
-      <div class="form-group col-md-12">
-        <textarea type="text" class="form-control" name="trips[description]" id="description" placeholder="Cool! Tell me more about it"></textarea>
+
+      <div class="form-group col-md-4">
+        <input type="text" class="form-control" name="trips[title]" id="title" placeholder="Title">
       </div>
+
+      <div class="form-group col-md-12">
+        <textarea type="text" class="form-control" name="trips[description]" id="description" placeholder="Cool! Tell us more about it"></textarea>
+      </div>
+
       <div class="form-group col-md-12">
         <button type="submit" class="btn btn-success btn-block">
           <span class="glyphicon glyphicon-save"></span> Add Route</button>
