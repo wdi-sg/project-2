@@ -12,11 +12,14 @@
     <tbody>
       <tr>
         <td>{{ compo._id}}</td>
-        <td>{{ compo.total }}</td>
+        <td>{{ compo.subtotalCost }}</td>
+        {{/each}}
+      </tr>
+      <tr>
+        <td>Total</td>
+        <td>{{totalCost}}</td>
       </tr>
     </tbody>
 
 
-{{/each}}
 </table>
-{{component.total}}

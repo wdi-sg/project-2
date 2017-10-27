@@ -43,28 +43,58 @@ router.get('/showall', (req, res) => {
 })
 
 router.get('/summary', (req, res) => {
+  // Component
+  // .find()
+  // .then(components => {
+  //   // return res.send(components)
+  //
+  //   Component.populate(components, { path: 'type', model: 'Type' })
+  //   .then(populatedUsers => {
+  //     res.send(populatedUsers)
+  //   })
+  //
+  //   // Component
+  //   // .aggregate(
+  //   //   [
+  //   //     { $group: {
+  //   //       _id: '$type.name',
+  //   //       total: { $sum: {$multiply: ['$unit_cost', '$quantity']} }
+  //   //     }
+  //   //     }
+  //   //   ]
+  //   // )
+  //   // .then(components => {
+  //   //   return res.send(components)
+  //   //
+  //   //
+  //   //   // res.render('components/summary', {
+  //   //   //   components
+  //   //   // })
+  //   // })
+  // }).catch(err => {
+  //   console.log(err)
+  // })
+
   Component
-  .find()
-  .populate('type')
-  .then(component => {
-    Component
   .aggregate(
-      [
-        { $group: {
-          _id: '$type',
-          total: { $sum: {$multiply: ['$unit_cost', '$quantity']} }
+    [
+      { $lookup: {from: 'types', localField: 'type', foreignField: '_id', as: 'typeName'} },
+      {
+        $group: {
+          _id: '$typeName.name',
+          subtotalCost: { $sum: {$multiply: ['$unit_cost', '$quantity']} }
         }
-        }
-      ]
-   )
+      }
+    ]
+  )
   .then(components => {
+    var totalCost = 0
+    for (var i = 0; i < components.length; i++) {
+      totalCost += components[i].subtotalCost
+    }
     res.render('components/summary', {
-      components
+      components, totalCost
     })
-  })
-  .catch(err => {
-    console.log(err)
-  })
   })
 })
 
@@ -102,6 +132,28 @@ router.post('/', (req, res) => {
   )
 })
 
+// NEED TO BE BEFORE /:id
+router.put('/variables', (req, res) => {
+  var formData = req.body
+
+  formData.id.forEach((id, index) => {
+    Type.findByIdAndUpdate(id, {
+      margin: formData.margin[index]
+    })
+    .then(
+      () => {
+        if (index === formData.margin.length - 1) {
+          whenUpdateAllDone(req, res)
+        }
+      }
+    )
+  })
+})
+
+function whenUpdateAllDone (req, res) {
+  return res.redirect('/components/variables')
+}
+
 // UPDATE
 router.put('/:id', (req, res) => {
   var formData = req.body
@@ -114,16 +166,6 @@ router.put('/:id', (req, res) => {
     type: formData.type
   })
   .then(() => res.redirect('/components/showall'))
-  .catch(err => console.log(err))
-})
-
-router.put('/variables', (req, res) => {
-  var formData = req.body
-  // Type.findByIdAndUpdate(formData.id, {
-  //   margin: formData.margin
-  // })
-  res.send(formData.id)
-  // .then(() => res.redirect('/components/variables'))
   .catch(err => console.log(err))
 })
 

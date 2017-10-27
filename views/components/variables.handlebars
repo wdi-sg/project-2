@@ -1,5 +1,6 @@
 <h3>Set variables</h3>
 
+<form action="/components/variables?_method=PUT" method="post">
   <table class="table">
     <thead>
       <tr>
@@ -8,23 +9,22 @@
         <th scope="col"></th>
       </tr>
     </thead>
-{{#each types as |type|}}
-<form action="/components/variables?_method=PUT" method="post">
+  {{#each types as |type|}}
 
-<tbody>
-  <tr>
-    <td>
-{{type.name}}
-</td>
-<td>
-  <input type="hidden" name="id" value ="{{type.id}}">
-  <input type="number" name="margin" value ="{{type.margin}}">
-</td>
-<td>
-<button type="submit" name="button">Update</button>
-</td>
-</tr>
-</tbody>
-</form>
-{{/each}}
+  <tbody>
+    <tr>
+      <td>
+  {{type.name}}
+  </td>
+  <td>
+    <input type="hidden" name="id" value ="{{type.id}}">
+    <input type="number" name="margin" value ="{{type.margin}}">
+  </td>
+  <td>
+  </td>
+  </tr>
+  </tbody>
+  {{/each}}
 </table>
+<button type="submit" name="button">Update</button>
+</form>
