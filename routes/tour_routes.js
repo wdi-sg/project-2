@@ -24,10 +24,10 @@ router.post('/', (req, res) => {
   newTour.slug = formData.name.toLowerCase().split(' ').join('-')
   newTour.overview = formData.overview
   newTour.highlights = formData.highlights
-  // newTour.dates = formData.dates
-  newTour.pictureurl1 = formData.pictureurl
-  newTour.pictureurl2 = formData.pictureurl
-  newTour.pictureurl3 = formData.pictureurl
+  newTour.price = formData.price
+  newTour.pictureurl1 = `${formData.pictureurl}nth/0/`
+  newTour.pictureurl2 = `${formData.pictureurl}nth/1/`
+  newTour.pictureurl3 = `${formData.pictureurl}nth/2/`
   newTour.save()
   .then(
     () => {

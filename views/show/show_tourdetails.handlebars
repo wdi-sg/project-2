@@ -1,11 +1,14 @@
 
 <div class="row">
-  {{!-- <img src= {{ data.pictureurl.0 }}> --}}
+  <img src= {{ data.pictureurl1 }}>
+  <img src= {{ data.pictureurl2 }}>
+  <img src= {{ data.pictureurl3 }}>
   <h3>Tour Name: {{ data.name }}</h3>
   <ul>
     <li>Show Name: {{ data.showname }}</li>
     <li>Overview: {{ data.overview }}</li>
     <li>Highlights: {{ data.highlights }}</li>
+    <li>Price: Adult (16 years+): USD${{ data.price }}</li>
   </ul>
 
   <form action="/show/tourdetails/{{data.slug}}" method="post">

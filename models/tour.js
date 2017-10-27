@@ -7,7 +7,10 @@ const tourSchema = new Schema({
   slug: String,
   overview: String,
   highlights: String,
-  pictureurl: String
+  price: String,
+  pictureurl1: String,
+  pictureurl2: String,
+  pictureurl3: String
 })
 
 const Tour = mongoose.model('Tour', tourSchema)
