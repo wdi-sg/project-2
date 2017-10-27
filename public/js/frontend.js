@@ -93,17 +93,18 @@ $(function () {
     $searchGigsResults.append(allGigs)
   }
 
-  $('select')
-.change(function () {
-  var str = ''
-  $('select option:selected').each(function () {
-    str += $(this).text() + ' '
+// ===== userSkills =====//
+
+  $('#selectSkills').on('change', (e) => {
+    console.log('trrigered')
+    var userSkills = []
+    // get previous value first
+    var prev = $('#skills').val()
+    console.log(prev)
+    // get new added value
+    var str = $('#selectSkills :selected').text()
+    // userSkills.push($('#selectSkills :selected').text())
+    var newValue = prev ? `${prev}, ${str}` : `${str}`
+    $('#skills').attr('value', newValue)
   })
-  $('.peepSkills').append(str)
-})
-.trigger('change')
-
-  // ('#listOfSkills').find('option:selected').text()
-
-
 })
