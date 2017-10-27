@@ -18,9 +18,10 @@ body {
   color: white;
 }
 
-div {
+/*google maps cannot see
+/*div {
   color: black;
-}
+}*/
 
 .card-image {
 
