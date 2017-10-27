@@ -13,7 +13,7 @@ var labels = []
 $('#assetClassTable td').each(function(){
   var cellText= $(this).html()
   values.push(cellText)
-  // values.push($(this.html))
+
 })
 for (var i=0; i < values.length; i++){
   if (i % 2 === 0){

@@ -1,9 +1,7 @@
 const Position = require('../models/position')
-
 const express = require('express')
-
 const router = express.Router()
-const mongoose = require('mongoose') // for DB
+const mongoose = require('mongoose')
 
 
 router.get ('/', (req,res) => {

@@ -107,9 +107,7 @@ router.get('/:id', (req,res) => {
 router.put('/:id', (req, res) => {
 
   var formData = req.body
-  console.log('=====================================')
-  console.log(req.body)
-  console.log('=====================================')
+
   Position.findByIdAndUpdate(req.params.id, {
     closingPrice: formData.closingPrice,
     assetClass: formData.assetClass,

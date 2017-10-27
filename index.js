@@ -2,15 +2,15 @@ require('dotenv').config({silent: true})
 
 const dbUrl =
 process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/myportfoliomanager_test'
-const port = process.env.PORT || 7000 // this is for our express server
+const port = process.env.PORT || 7000
 const quoteApiKey =process.env.QUOTEAPI
 
 const express = require('express')
-const path = require('path') // for Public files
-const mongoose = require('mongoose') // for DB
-const exphbs = require('express-handlebars') // for Handlebars
-const bodyParser = require('body-parser') // for accessing POST request
-const methodOverride = require('method-override') // for accessing PUT / DELETE
+const path = require('path')
+const mongoose = require('mongoose')
+const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const passport = require('./config/ppConfig')
@@ -26,9 +26,6 @@ const assetclass_routes=require('./routes/assetclass_routes')
 
 const app = express()
 
-// df = quandl.get("FRED/GDP",returns="pandas")
-// records = json.loads(df.T.to_json()).values()
-// db.myCollection.insert(records)
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
@@ -49,7 +46,7 @@ app.use(methodOverride('_method'))
 mongoose.Promise = global.Promise
 mongoose.connect(dbUrl, {
   useMongoClient: true
-}) // http://mongoosejs.com/docs/connections.html
+})
 .then(
   () => { console.log('db is connected') },
   (err) => { console.log(err) }
@@ -59,7 +56,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
-  // store this to our db too
+
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }))
 
@@ -95,18 +92,16 @@ app.use('/assetclass', assetclass_routes)
 
 
 app.get('/profile/:slug', (req, res) => {
-  // res.send(`this is the profile page for ${req.params.slug}`)
-  // findOne method is from mongoose. google it up
+
   User.findOne({
     slug: req.params.slug
   })
   .then((user) => {
-    // UPDATE BEFORE CLASS 20 Oct
-    // render a new page with the user data found from the db
+
     res.render('users/show', {
       user
     })
-  }) // if i found the user
+  })
 })
 
 app.listen(port, () => {

@@ -1,10 +1,6 @@
 <h2>{{ position.name }} <small>({{ position.ticker }})</small></h2>
 
 
-
-{{!-- We can also setup a form here to update the existing data --}}
-{{!-- when there's a path, there's a route in your index.js --}}
-{{!-- why PUT, because all update technically MUST go thru PUT request --}}
 <h3>Update</h3>
 <form action="/portfolio/{{ position.id }}?_method=PUT" method="post">
 
@@ -13,7 +9,6 @@
 
   <label for="closingPrice">Closing Price</label>
   <input type="number" name="closingPrice" value="{{ position.closingPrice }}">
-  {{!-- we put the {{}} inside value cos we want to show the existing name --}}
 
   <button type="submit" name="button">Submit</button>
 </form>
@@ -25,13 +20,12 @@
 
   <label for="name">Name</label>
   <input type="text" name="name" value="{{ position.name }}">
-  {{!-- we put the {{}} inside value cos we want to show the existing name --}}
 
   <label for="assetClass">Transfer to</label>
   <input type="text" name="assetClass" value="Cash">
 
   <label for="sellDate">Sell Date</label>
-  {{!-- NOTICE on the attribute type below  --}}
+  
   <input type="date" name="position[sellDate]" placeholder="">
 
   <button type="submit" name="button">Submit</button>

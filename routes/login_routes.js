@@ -17,8 +17,9 @@ router.post('/', (req, res, next) => {
     req.logIn(user, (err) => {
       if (err) return next(err)
       return res.redirect(`/profile/${user.slug}`)
+
     })
-      // next(user);
+       next(user);
 
   })(req, res, next)
 })

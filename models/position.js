@@ -27,22 +27,15 @@ positionSchema.virtual('currentMarketValue').get(function () {
   return this.closingPrice * this.units
 })
 
-// positionSchema.virtual('totalMarketValue').get(function() {
-// var total = getTotal(this.amountInvested)
-// return parseInt(total)
-// })
-
 positionSchema.pre('save', function(next) {
   var position = this
-  // logic to create slug
+
   if (!position.closingPrice)
   position.closingPrice = position.price
-    next() // next() is calling the save()
+    next()
   })
 
 
 const Position = mongoose.model('Position', positionSchema)
 
-// make this available to our other files
-// remember that technically we're only running index.js
 module.exports = Position

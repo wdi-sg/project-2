@@ -1,28 +1,22 @@
 <h3>Transaction details </h3>
 
-{{!-- FORM TO CREATE NEW RESTAURANT, NOTICE THERE'S NO ID THERE --}}
 <form action="/portfolio" method="post">
   <label for="name">Holding</label>
   <input type="text" name="position[name]" placeholder="">
 
   <label for="ticker">Ticker</label>
-  {{!-- NOTICE on the attribute type below  --}}
   <input type="text" name="position[ticker]" placeholder="">
 
   <label for="buyDate">Buy Date</label>
-  {{!-- NOTICE on the attribute type below  --}}
   <input type="date" name="position[buyDate]" placeholder="">
 
   <label for="units">Unit(s)</label>
-  {{!-- NOTICE on the attribute type below  --}}
   <input type="number" name="position[units]" placeholder="">
 
   <label for="price">Price</label>
-  {{!-- NOTICE on the attribute type below  --}}
   <input type="number" name="position[price]" placeholder="USD">
 
   <label for="assetClass">Asset Class</label>
-  {{!-- NOTICE on the attribute type below  --}}
   <select name="position[assetClass]" placeholder="Pick one">
     <option selected hidden>Pick one</option>
     <option>Equities</option>
@@ -34,7 +28,6 @@
 
 
   <label for="closingPrice">Closing price</label>
-  {{!-- NOTICE on the attribute type below  --}}
   <input type="number" name="position[closingPrice]" placeholder="USD">
 
   <button type="submit"  id = 'bought' name="button">Buy</button>
@@ -80,13 +73,10 @@
           method="post"
         >
           <a href="/portfolio/{{ posi.id }}" class="btn btn-primary">Update</a>
-          {{!--
-            nbsp = non breaking space
-            so there's a slight space between the buttons
-          --}}
+
           &nbsp;
           <a href="/portfolio/{{ posi.id }}" class="btn btn-secondary" >Sell</a>
-          {{!-- don't need input fields here, cos we're not updating anything --}}
+
           <br>
           <input type="hidden" name="posiId" value="{{posi.id}}">
 
@@ -110,7 +100,6 @@
 
       <th>Total Portfolio Value</th>
      
-
     </tr>
   </thead>
 
