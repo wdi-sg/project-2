@@ -2,19 +2,21 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
 const Skill = require('../models/skills')
+const Gig = require('../models/gigs')
 
+/* Attempted to input user's gigs in user card but not successful */
 router.get('/:slug', (req, res) => {
-  Skill.find()
-  .then(skills => {
-    User.findOne({ slug: req.params.slug })
+  Gig.find().populate('author')
+    .then(gigs => {
+      User.findOne({ slug: req.params.slug })
     .then(people => {
       var context = {
-        skills: skills,
+        gig: gigs,
         peep: people
       }
       res.render('users/card', context)
     })
-  })
+    })
 })
 
 router.get('/:slug/settings', (req, res) => {
