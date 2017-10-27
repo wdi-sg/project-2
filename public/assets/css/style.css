@@ -13,3 +13,17 @@
   margin: auto;
 
 }
+
+#mainTitle {
+  font-family: 'Patua One', cursive;
+  font-size: 30px;
+
+}
+
+#navbarNav {
+  font-family: 'Julius Sans One', sans-serif;
+}
+
+/*body {
+  font-family: 'Merriweather Sans', sans-serif;
+}*/
