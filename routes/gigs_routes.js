@@ -48,11 +48,20 @@ router.post('/:slug', (req, res) => {
 router.get('/:slug/edit', (req, res) => {
   Gig.findOne({
     slug: req.params.slug
-  })
+  }).populate('author')
+  .then((gig) => {
+    if (req.user.name !== gig.author.name) {
+      res.redirect('/')
+    } else {
+      Gig.findOne({
+        slug: req.params.slug
+      })
   .then((gig) => {
     res.render('../views/gigs/edit', {
       gig
     })
+  })
+    }
   })
 })
 
