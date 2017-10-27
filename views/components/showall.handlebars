@@ -10,6 +10,7 @@
         <th scope="col">Unit cost</th>
         <th scope="col">Quantity</th>
         <th scope="col">Total Cost</th>
+        <th scope="col">Total Price</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -21,10 +22,11 @@
         <td>{{ compo.name }}</td>
         <td>{{ compo.description }}</td>
         <td>{{ compo.vendor }}</td>
-        <td>{{ compo.type }}</td>
+        <td>{{ compo.type.name }}</td>
         <td>{{ compo.unit_cost }}</td>
         <td>{{ compo.quantity }}</td>
         <td>{{ compo.totalCost }}</td>
+        <td>{{ compo.totalPrice }}</td>
         <td><a href="/components/{{ compo.id }}" class="btn">Edit</a></td>
       </tr>
     </tbody>

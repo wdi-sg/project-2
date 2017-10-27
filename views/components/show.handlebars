@@ -12,11 +12,11 @@
 
   <label for="type">Type</label>
     <select name="type">
-      <option selected hidden>{{ component.type }}</option>
-      <option>Software</option>
-      <option>Hardware</option>
-      <option>Professional Services</option>
-      <option>Third Party Services</option>
+      <option selected hidden value={{component.type.id}}>{{ component.type.name }}</option>
+      <option value="59f1964b4e4d8932d419fdc5">Software</option>
+      <option value="59f196774e4d8932d419fdda">Hardware</option>
+      <option value="59f196e14e4d8932d419fdfd">Professional Services</option>
+      <option value ="59f197124e4d8932d419fe0f">Third Party Services</option>
     </select>
 
     <label for="unit_cost">Unit cost</label>

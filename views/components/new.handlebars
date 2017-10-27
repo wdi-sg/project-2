@@ -13,11 +13,11 @@
 
   <label for="type">Type</label>
     <select name="type">
-      <option>Software</option>
-      <option>Hardware</option>
-      <option>Professional Services</option>
-      <option>Third Party Services</option>
+      {{#each types as |type|}}
+      <option value = "{{type.id}}">{{type.name}}</option>
+      {{/each}}
     </select>
+
 
   <label for="unit_cost">Unit cost</label>
   <input type="number" name="unit_cost">

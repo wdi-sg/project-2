@@ -8,7 +8,7 @@ const componentSchema = new Schema({
   unit_cost: Number,
   quantity: Number,
   type: {
-    type: Schema.Types.String,
+    type: Schema.Types.ObjectId,
     ref: 'Type'
   },
   owner: {
@@ -19,6 +19,11 @@ const componentSchema = new Schema({
 
 componentSchema.virtual('totalCost').get(function () {
   return this.quantity * this.unit_cost
+})
+
+componentSchema.virtual('totalPrice').get(function () {
+  // return this.type.margin
+   return Math.round(this.quantity * this.unit_cost / (1 - this.type.margin / 100))
 })
 
 // Use 'components' collection

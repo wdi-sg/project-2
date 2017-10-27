@@ -5,7 +5,13 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/new', (req, res) => {
-  res.render('components/new')
+  Type
+  .find()
+  .then(types => {
+    res.render('components/new', {
+      types
+    })
+  })
 })
 
 router.get('/variables', (req, res) => {
@@ -24,6 +30,7 @@ router.get('/variables', (req, res) => {
 router.get('/showall', (req, res) => {
   Component
   .find()
+  .populate('type')
   .sort({type: 1})
   .then(components => {
     res.render('components/showall', {
@@ -37,14 +44,18 @@ router.get('/showall', (req, res) => {
 
 router.get('/summary', (req, res) => {
   Component
+  .find()
+  .populate('type')
+  .then(component => {
+    Component
   .aggregate(
-    [
-      { $group: {
-        _id: '$type',
-        total: { $sum: {$multiply: ['$unit_cost', '$quantity']} }
-      }
-      }
-    ]
+      [
+        { $group: {
+          _id: '$type',
+          total: { $sum: {$multiply: ['$unit_cost', '$quantity']} }
+        }
+        }
+      ]
    )
   .then(components => {
     res.render('components/summary', {
@@ -54,11 +65,13 @@ router.get('/summary', (req, res) => {
   .catch(err => {
     console.log(err)
   })
+  })
 })
 
 router.get('/:id', (req, res) => {
   Component
   .findById(req.params.id)
+  .populate('type')
   .then(component => {
     res.render('components/show', {
       component
@@ -82,9 +95,8 @@ router.post('/', (req, res) => {
     type: formData.type,
     owner: req.user.id
   })
-  newComponent.save() // save the object that was created
+  newComponent.save()
   .then(
-    // success flow, for now is to redirect to all reviews route
     () => res.redirect('components/showall'),
     err => res.send('error happened')
   )
@@ -101,16 +113,17 @@ router.put('/:id', (req, res) => {
     quantity: formData.quantity,
     type: formData.type
   })
-  .then(() => res.redirect(`/components/${req.params.id}`))
+  .then(() => res.redirect('/components/showall'))
   .catch(err => console.log(err))
 })
 
 router.put('/variables', (req, res) => {
   var formData = req.body
-  Type.findByIdAndUpdate(req.params.id, {
-    margin: formData.margin
-  })
-  .then(() => res.redirect('/components/variables'))
+  // Type.findByIdAndUpdate(formData.id, {
+  //   margin: formData.margin
+  // })
+  res.send(formData.id)
+  // .then(() => res.redirect('/components/variables'))
   .catch(err => console.log(err))
 })
 
