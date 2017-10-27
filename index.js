@@ -1,6 +1,7 @@
 const port = process.env.PORT || 3000
 const dbUrl = process.env.NODE_ENV === 'production' ?
   process.env.MONGODB_URI : 'mongodb://localhost/project2'
+
 const request = require('request-promise-native')
 const express = require('express')
 const mongoose = require('mongoose') // for DB
@@ -22,6 +23,12 @@ const passport = require('./config/ppConfig');
 require('dotenv').config({
   silent: true
 })
+
+const tptApiKey = process.env.APIKEY
+const geoMapKey = process.env.GEO
+console.log(`my api key is ${tptApiKey}`)
+console.log(`my api key is ${geoMapKey}`)
+
 const home_routes = require('./routes/home_routes')
 const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
@@ -78,31 +85,49 @@ app.use((req, res, next) => {
 })
 
 app.get('/save/stops/:code', (req, res) => {
-//todo add toggle before. if alraedy exists, add. otherwise remove.
-var busStop = req.params.code
-User.findByIdAndUpdate(req.user.id, {
-    $addToSet: {
-      faveStops: busStop
-    }
-  })
-  // .then(res.send(user))
-  .then(console.log('found user.'))
-  .catch(err => console.log(err))
+//shd this be a post request instead?
+  //check if user is logged in. if not, send to login page.
+  if(!req.user){
+      res.redirect('/login')
+  }
+  else{
+    var busStop = req.params.code
+    User.findByIdAndUpdate(req.user.id, {
+      $addToSet: {
+        faveStops: busStop
+      }
+    })
+    .then(console.log('found user.'))
+    .catch(err => console.log(err))
+    // .then(res.send(user))
+  }
 })
 
-app.post('/save/bus/:code', (req, res) => {
-// var bus = req.body.busNo
-var bus = req.params.code
-User.findByIdAndUpdate(req.user.id, {
-    $addToSet: {
-      faveBus: bus
-    }
-  }).then(() => {
-      res.send({message: 'added with success'})
-      .then(console.log('found user.'))
+app.get('/save/bus/:code', (req, res) => {
+  if(!req.user){
+      res.redirect('/login')
+  }
+  // var bus = req.body.busNo
+  else{
+    var bus = req.params.code
+    User.findByIdAndUpdate(req.user.id, {
+      $addToSet: {
+        faveBus: bus
+      }
+    })
+    .then(console.log('found user.'))
       .catch(err => console.log(err))
-})  // .then(res.send(user))
-})
+
+      // .then(() => {
+      //   res.send({
+      //     message: 'added with success'
+      //   })
+        // }
+    // .then(res.send(user))
+
+  }//end else
+})//end get save
+
 
 
 

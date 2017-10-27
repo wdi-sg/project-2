@@ -3,7 +3,7 @@ const router = express.Router()
 const Stop = require('../models/stop')
 const distance = require('../helpers/distance.js')
 const app = require('../index.js')
-
+const geoMapKey = process.env.GEO
 router.get('/', (req, res) => {
   res.render('home')
 })
@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
     .then(stops => (findNearest(stops, req.body)))
     .then(nearest => {
       res.send({
-        nearest
+        nearest,geoMapKey
       })
     })
 })

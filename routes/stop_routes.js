@@ -4,13 +4,14 @@ const Stop = require('../models/stop')
 const BusService = require('../models/busService')
 const request = require('request-promise-native')
 const moment = require('moment');
+const tptApiKey = process.env.APIKEY
 
 router.get('/:code', (req, res) => {
   var busStop = req.params.code
   var options = {
     url: 'http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=' + busStop,
     headers: {
-      'AccountKey': 'BF/zvVwHSeWjAnJVwSw0nQ==',
+      'AccountKey': `${tptApiKey}`,
       'Content-Type': 'application/json'
     }
   }
