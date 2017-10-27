@@ -19,7 +19,7 @@ router.post('/', (req, res, next) => {
       return res.redirect(`/profile/${user.slug}`)
 
     })
-       next(user);
+       //next(user);
 
   })(req, res, next)
 })
