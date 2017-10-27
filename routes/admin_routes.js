@@ -22,10 +22,20 @@ res.render("admin/admin_landingpage",{
 router.get("/console",isAdmin, (req,res)=>{
   User.find()
   .then(usersFound=>{
-    res.render("admin/admin_console",{
-      title: "Admin Console",
-      users: usersFound
+    Thread.find()
+    .then(threadsFound=>{
+      Answer.find()
+      .then(answersFound=>{
+        res.render("admin/admin_console",{
+          title: "Admin Console",
+          users: usersFound,
+          threads: threadsFound,
+          answers: answersFound
+        })
+      })
+
     })
+
   })
 
 })
@@ -57,4 +67,75 @@ newAdmin.save()
 })
 })
 
+
+// THREADS TAB //
+router.put("/adminconsole/threads/:id", (req,res)=>{
+  Thread.findByIdAndUpdate(req.params.id,{
+    question: req.body.question,
+    description: req.body.description,
+    course: req.body.course,
+    creator: req.body.creator,
+    totalVotes: req.body.totalVotes
+  })
+.then(()=>{
+  req.flash("success","Thread details updated")
+  res.redirect("/admin/console#threadsPage")
+})
+
+})
+
+router.delete("/threads/:id", (req,res)=>{
+  Thread.findByIdAndRemove(req.params.id)
+  .then(()=>{
+    req.flash("success","Thread removed")
+    res.redirect("/admin/console#threadsPage")
+  })
+})
+
+// ANSWERS TAB //
+router.put("/adminconsole/answers/:id", (req,res)=>{
+  Answer.findByIdAndUpdate(req.params.id,{
+    description: req.body.description,
+    creatorName: req.body.creatorName,
+    totalVotes: req.body.totalVotes
+  })
+.then(()=>{
+  req.flash("success",`Parent ID ${req.params.id} details updated`)
+  res.redirect("/admin/console#answersPage")
+})
+
+})
+
+router.delete("/answers/:id", (req,res)=>{
+  Answer.findByIdAndRemove(req.params.id)
+  .then(()=>{
+  req.flash("success",`Answer from Parent ID ${req.params.id} details updated`)
+    res.redirect("/admin/console#answersPage")
+  })
+})
+
+// DELETE TAB //
+router.delete("/deleteAllUsers",(req,res)=>{
+  User.remove()
+  .then(()=>{
+    req.flash("success","All users removed from database")
+    res.redirect("/admin/console")
+  })
+})
+
+router.delete("/deleteAllThreads",(req,res)=>{
+  Thread.remove()
+  .then(()=>{
+    req.flash("success","All threads removed from database")
+    res.redirect("/admin/console")
+  })
+})
+
+router.delete("/deleteAllAnswers",(req,res)=>{
+  Answer.remove()
+  .then(()=>{
+    req.flash("success","All answers removed from database")
+    res.redirect("/admin/console")
+  })
+})
 module.exports = router

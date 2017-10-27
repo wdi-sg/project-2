@@ -13,7 +13,9 @@ const { hasLoggedOut, isLoggedIn } = require('../helpers')
 
 router.get("/courseSearch", (req,res)=>{
 
-res.render("courses/show_course")
+res.render("courses/show_course",{
+  title: "Search for threads by Course"
+})
 
 })
 

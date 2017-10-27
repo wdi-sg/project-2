@@ -9,6 +9,7 @@ const adminSchema = new Schema({
   password: {type: String},
   pic: String,
   course: {type: String},
+  coursePref: {type: String, default: "no"},
   adminCode: {type: String, required: true},
   type: {type: String, default: "admin"}
 })

@@ -5,6 +5,8 @@
   <h5>Name:<h5> <label>{{profile.name}}</label>
   <h5>Email:<h5><label> {{profile.email}}</label>
   <h5>Course:<h5><label> {{profile.course}}</label>
+  <h5>Thread Preference:<h5><label> {{profile.coursePref}}</label>
+
   <br>
 <h5>Update Profile Picture</h5>
 <form class="" action="/image" method="post">
@@ -55,6 +57,8 @@
       <input id="newEmail" type="email" name="email" value="{{profile.email}}">
       <label for="newCourse">Course</label>
       <input id="newCourse" type="text" name="course" value="{{profile.course}}">
+      <label for="newCourse">Load home page threads based on course? (yes/no)</label>
+      <input id="newCourse" type="text" name="coursePref" value="{{profile.coursePref}}">
   </div>
   <div class="modal-footer">
       <input class="btn black" type="submit" value="Update">

@@ -11,6 +11,7 @@ const userSchema = new Schema({
   password: {type: String},
   pic: {type: String},
   course: {type: String},
+  coursePref: {type: String, default: "no"},
   type: {type: String, default:"user"}
 })
 
