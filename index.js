@@ -3,14 +3,14 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 7000
 const dbUrl = process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/project-2'
-const sgMail = require('@sendgrid/mail')
+// const sgMail = require('@sendgrid/mail')
 
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const path = require('path')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
-const flash = require('connect-flash')
+// const flash = require('connect-flash')
 
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
