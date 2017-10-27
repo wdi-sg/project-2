@@ -43,9 +43,25 @@ module.exports = io => {
       newTask.save()
       // console.log(newTask)
     })
+
     socket.on("update", update => {
-      console.log("connected")
-      console.log(update)
+      let updateValue = "0"
+      if (update.newPosition === "review") updateValue = "1"
+      else if (update.newPosition === "return") updateValue = "2"
+
+      Task.findByIdAndUpdate(update.clickedId, {
+        status: updateValue
+      })
+        .then(() => {
+          console.log("done")
+        })
+        .catch(err => console.log(err))
+
+      let nsp = io.of(`/${update.projectId}`)
+      nsp.emit("updateThis", {
+        clickedId: update.clickedId,
+        newPosition: update.newPosition
+      })
     })
   })
 }

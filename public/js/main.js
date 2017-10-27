@@ -28,14 +28,10 @@ $(function() {
         border: "2px solid red"
       })
       clicked = true
-      // socket.emit("update", {
-      //   id: clickedId
-      // })
     }
   })
 
   $("body").on("click", ".boardElement", e => {
-    // console.log(newPosition)
     newPosition = e.target.id
     if (clicked && newPosition === "review") movePosition()
     else if (clicked && newPosition === "return") movePosition()
@@ -43,17 +39,28 @@ $(function() {
   })
 
   const movePosition = () => {
-    let $childDiv = $("body").find("#" + clickedId)
-    let $parentDiv = $("body").find("#" + newPosition)
-    currentPosition = newPosition
-    $parentDiv.append($childDiv)
     clicked = false
     $("body")
       .find("#" + clickedId)
       .css({
         border: "2px solid blue"
       })
+
+    socket.emit("update", {
+      clickedId: clickedId,
+      newPosition: newPosition,
+      projectId: userProjectId
+    })
   }
+
+  nsp.on("updateThis", update => {
+    //
+    console.log(update)
+    let $childDiv = $("body").find("#" + update.clickedId)
+    let $parentDiv = $("body").find("#" + update.newPosition)
+    currentPosition = update.newPosition
+    $parentDiv.append($childDiv)
+  })
 
   //chat path
   $message.submit(res => {

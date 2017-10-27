@@ -20,7 +20,7 @@ router.get("/", (req, res) => {
 //join an existing team
 router.put("/", (req, res) => {
   let project = req.body.project
-  console.log(project)
+  // console.log(project)
   Project.findById(project.id).then(projectExist => {
     if (!projectExist) console.log("Project doesn't exist")
     else
