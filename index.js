@@ -92,6 +92,9 @@ const vegetable_routes = require('./routes/vegetable_routes')
 // `app.use` => GET, POST, PUT, DELETE request for ALL routes
 app.use((req, res, next) => {
   app.locals.user = req.user
+  if (req.user) {
+    app.locals.admin = req.user.type === 'admin' ? req.user : null
+  }
   // app.locals.admin  // we'll only `req.user` if we managed to log in
   next()
 })
@@ -115,7 +118,7 @@ app.get('/logout', hasLoggedOut, (req, res) => {
 app.use('/register',isLoggedIn, register_routes)
 app.use('/login', isLoggedIn, login_routes)
 
-app.use('/supplier', supplier_routes)
+app.use('/supplier',hasLoggedOut, supplier_routes)
 app.use('/vegetable', hasLoggedOut, vegetable_routes)
 app.use('/admin', hasLoggedOut, vegetable_routes)
 app.use('/vegetable',hasLoggedOut, supplier_routes)

@@ -16,13 +16,11 @@
 
         <form
           class="form-inline"
-          action="/vegetable/{{ supp.id }}?_method=DELETE"
+          action="/supplier/update/{{ supp.id }}?_method=DELETE"
           method="post"
         >
-          <a href="/vegetable/{{ supp.id }}" class="btn btn-primary">View Vegetable</a>
-          {{#if ../admin}}
-            <a href="/supplier/update/{{ supp.id }}" class="btn btn-secondary">Edit Supplier</a>
-          {{/if}}
+          <a href="/supplier/update/{{ supp.id }}" class="btn btn-primary">View Supplier</a>
+
         </form>
 
       </div>

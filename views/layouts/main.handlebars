@@ -25,12 +25,14 @@
       <li class="nav-item">
         <a class="nav-link" href="/logout">Logout</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/supplier/new">Create Supplier</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/admin/view">View Supplier Admin</a>
-      </li>
+        {{#if admin}}
+        <li class="nav-item">
+          <a class="nav-link" href="/supplier/new">Create Supplier</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/view">Add Veg Admin</a>
+        </li>
+        {{/if}}
       {{else}}
       <li class="nav-item">
         <a class="nav-link" href="/register">Register</a>

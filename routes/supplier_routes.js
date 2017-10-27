@@ -24,6 +24,7 @@ router.get('/',(req,res) => {
     console.log(err)
   })
 })
+
 //update the supplier
 router.get('/update/:id', (req, res) => {
   // instead of find all, we can `findById`
@@ -46,6 +47,7 @@ router.get('/update/:id', (req, res) => {
   })
 })
 
+//get id to populate
 router.get('/:id', (req, res) => {
   // instead of find all, we can `findById`
   console.log('entered')
@@ -59,8 +61,6 @@ router.get('/:id', (req, res) => {
     // PITSTOP: look at the views folders here, compare it with the res.render
     // first argument
 
-    // res.send(restaurant)
-    console.log('populated')
     res.render('vegetables/view', {
       supplier
     })
@@ -91,19 +91,6 @@ router.put('/update/:id', (req, res) => {
   // this redirection can go to anywhere as long as you have the routes with you
 })
 
-router.delete('/update/:id', (req, res) => {
-  // (AGAIN) thankfully since we're using mongoose
-  // there's a method in mongoose just for that
-  // `findByIdAndRemove` http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove
-
-  Supplier.findByIdAndRemove(req.params.id)
-  .then(() => res.redirect(`/supplier`))
-  .catch(err => console.log(err))
-  // after delete is done, redirect back to home page
-  // (cos the current restaurant page is gone)
-  // this redirection can go to anywhere as long as you have the routes with you
-})
-
 
 router.post('/',(req,res) => {
   var formData = req.body.supplier
@@ -121,6 +108,19 @@ router.post('/',(req,res) => {
     () => res.redirect(`/supplier/update/${newSupplier.id}`),
     err => res.send(err)
   )
+})
+
+router.delete('/update/:id', (req, res) => {
+  // (AGAIN) thankfully since we're using mongoose
+  // there's a method in mongoose just for that
+  // `findByIdAndRemove` http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove
+
+  Supplier.findByIdAndRemove(req.params.id)
+  .then(() => res.redirect(`/supplier`))
+  .catch(err => console.log(err))
+  // after delete is done, redirect back to home page
+  // (cos the current restaurant page is gone)
+  // this redirection can go to anywhere as long as you have the routes with you
 })
 
 module.exports = router
