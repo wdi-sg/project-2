@@ -26,12 +26,14 @@ router.post("/register", (req,res)=>{
         let newUser = new User({
           name: formData.name,
           email: formData.email,
-          password: formData.password
+          password: formData.password,
+          course: formData.dropdown
         })
 
         newUser.save()
         .then(user=>{
-          res.redirect(`/profile`)
+          req.flash("success","Registration Successful, Please login with your credentials")
+          res.redirect(`/landingpage`)
         })
       }else{
         req.flash("error","Email already in use, please try again")

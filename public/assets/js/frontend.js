@@ -83,6 +83,48 @@ function showResults(data){
 
 }
 
+//Setup for course search
+const $courseSearchField = $('#courseSearchField')
+const $courseResultDiv = $(".courseSearchResults")
+// - Upon typing, send request to server to search for data, name simillar to keyword
+$courseSearchField.on('keyup', e => {
+  var json = JSON.stringify({
+    keyword: e.target.value
+  })
+  // where the routes for searching will be, shoudl return JSON file
+
+  fetch('/course/search', {
+    method: 'POST',
+    headers: {
+      "Content-Type": 'application/json'},
+    body: json
+  })
+  .then(response => {
+    return response.json()
+  })
+  .then(showCourseResults)
+  .catch(err=> console.log(err))
+})
+
+
+function showCourseResults(data){
+  let allResults = data.map(thread=>{
+
+    const $newList = $("<ul class='test'>")
+    const $newItem = $("<li>").text(thread.question)
+    const $newLink = $(`<a href="/thread/${thread._id}">`).text("View")
+    $newItem.append($newLink)
+    $newList.append($newItem)
+    return $newList
+  })
+  $courseResultDiv.html('')
+  $courseResultDiv.append(allResults)
+
+}
+
+
+
+
 
 
 const $deleteForm = $('.deleteForm')
@@ -102,7 +144,7 @@ const $deleteForm = $('.deleteForm')
     console.log(`delete this ${divId}`)
     console.log(json)
 
-    fetch('/deleteanswer', {
+    fetch('/addAnswer/threadpage', {
       method: 'DELETE',
       body: json,
       headers: {

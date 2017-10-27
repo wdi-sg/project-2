@@ -89,6 +89,7 @@ const default_routes = require("./routes/default_routes")
 const landing_page = require("./routes/landing_page")
 const thread_routes = require("./routes/thread_routes")
 const admin_routes = require("./routes/admin_routes")
+const course_routes = require("./routes/course_routes")
 
 // ===== ROUTE ACCESS ===== //
 app.use("/vote", vote_routes)
@@ -97,18 +98,11 @@ app.use("/", default_routes)
 app.use("/thread", thread_routes)
 app.use("/landingPage", landing_page)
 app.use("/admin", admin_routes)
-
+app.use("/course", course_routes)
 
 
 ///////// TESTING AREA ///////////
-app.delete("/deleteanswer",(req,res)=>{
-// User.findByIdAndRemove(req.body.divId)
-// .then(res=>{
-const json = JSON.stringify({data: 'hello'})
-  res.send(json)
-// })
 
-})
 
 
 //Run port access

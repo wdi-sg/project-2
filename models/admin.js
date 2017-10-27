@@ -8,6 +8,7 @@ const adminSchema = new Schema({
   email: { type: String, required: true, unique: true },
   password: {type: String},
   pic: String,
+  course: {type: String},
   adminCode: {type: String, required: true},
   type: {type: String, default: "admin"}
 })

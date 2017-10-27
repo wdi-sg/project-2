@@ -33,15 +33,17 @@ router.put('/threadpage/:id', (req, res) => {
 })
 })
 
-router.delete('/threadpage/:id', (req, res) => {
-  console.log(req)
-  Answer.findByIdAndRemove(req.params.id)
-  .then(() => {
-    req.flash('info', `Deleted answer (id: ${req.params.id})`)
-    res.redirect(`/thread/${req.body.threadId}`)
+// delete button from threads page
+router.delete('/threadpage', (req, res) => {
+  console.log("sent over from ajax",req.body.divId)
+  Answer.findByIdAndRemove(req.body.divId)
+  .then((result) => {
+    res.send(JSON.stringify(result))
   })
   .catch(err => console.log(err))
 })
+
+
 
 router.delete('/profile/:id', (req, res) => {
   console.log(req)

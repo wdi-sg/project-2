@@ -17,10 +17,14 @@ router.get('/', (req, res) => {
     }
     // console.log(req.flash());
     res.render('user/home', {
+      title: "Questions",
       threads: data
     })
   }).sort({totalVotes: -1})
 })
+
+
+
 
 router.get("/search",(req,res)=>{
   res.render("user/search",{
@@ -90,14 +94,15 @@ router.post("/search", (req, res)=>{
   })
 })
 router.post('/addquestions', function (req, res) {
-  var creator = ""
-  if(!req.user) creator = "anonymous"
-  else if(req.user.id) creator = req.user.id
+  var creatorId = ""
+  if(!req.user) creatorId = "anonymous"
+  else if(req.user.id) creatorId = req.user.id
 
   let newQues = new Thread({
     question: req.body.question,
     description: req.body.description,
-    creator: creator
+    course: req.body.dropdown,
+    creator: creatorId
 
   })
 
@@ -128,7 +133,8 @@ router.post("/image", (req,res)=>{
 router.put("/profile/:id", (req,res)=>{
   User.findByIdAndUpdate(req.params.id,{
     name: req.body.name,
-    email: req.body.email
+    email: req.body.email,
+    course: req.body.course
   })
   .then(()=>{
     Answer.update(

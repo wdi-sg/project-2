@@ -4,6 +4,7 @@ const router = express.Router()
 const Answer = require("../models/answers")
 const Thread = require('../models/threads')
 const User = require("../models/user")
+const Admin = require("../models/admin")
 
 
 
@@ -56,16 +57,33 @@ router.delete("/:id", (req,res)=>{
 
           })
         }else{
-          User.findById({_id: thread.creator})
+          User.findById(thread.creator)
           .then(creator=>{
 
-            res.render('user/singlethread', {
-              data: thread,
-              author: creator.name,
-              answer: result,
-              title: thread.question
+            if(creator=== null){
+              Admin.findById(thread.creator)
+              .then(adminCreator=>{
+                res.render('user/singlethread', {
+                  data: thread,
+                  author: adminCreator.name,
+                  answer: result,
+                  title: thread.question
 
-            })
+                })
+              })
+            }else{
+              res.render('user/singlethread', {
+                data: thread,
+                author: creator.name,
+                answer: result,
+                title: thread.question
+
+              })
+            }
+
+
+
+
 
           })
         }

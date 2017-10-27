@@ -35,15 +35,15 @@
     </td>
   </tr>
 </table>
+<h1>ANSWERS:</h1>
+{{#each answer}}
+<div class={{this._id}}>
 <table class="bordered">
-  <h1>ANSWERS:</h1>
-  {{#each answer}}
-  <div class={{this._id}}>
 
 
-  <tr>
-
-    <td><div class="buttons" align="center">
+    <tr>
+      <td>
+        <div class="buttons" align="center">
   <button class="ansup waves-effect waves-teal btn-flat" data={{this._id}} upvotes = {{this.upVotes}} ><i class="material-icons">expand_less</i></button>
   <p id={{this._id}}  >{{this.totalVotes}}</p>
   <button class="ansdown waves-effect waves-teal btn-flat" data={{this._id}} downvotes = {{this.downVotes}} ><i class="material-icons">expand_more</i></button>
@@ -52,13 +52,13 @@
   <td>
     {{#checkAdmin this.creator ../currentUser.id}}
       <form class="deleteForm" action="/addAnswer/threadpage/{{ this.id }}?_method=DELETE" method="post">
-        <input type="hidden" name="threadId" value={{../data._id}}>
+        <input type="hidden" name="threadId" value={{this._id}}>
         <input class="btn" type="submit" value="Delete">
       </form>
     {{/checkAdmin}}
     {{#checkAdmin "admin" ../currentUser.type}}
       <form class="deleteForm" action="/addAnswer/threadpage/{{ this.id }}?_method=DELETE" method="post">
-        <input type="hidden" name="threadId" value={{../data._id}}>
+        <input type="hidden" name="threadId" value={{this._id}}>
         <input class="btn" type="submit" value="Delete">
       </form>
     {{/checkAdmin}}
@@ -70,17 +70,8 @@
     Answered By: {{this.creatorName}}
   </td>
 </tr>
-  </div>
-  {{/each}}
-</table>
 
-{{#each answer}}
-<div class={{this._id}}>
-  sample text
-  <form class="deleteForm" action="" method="post">
-    <input type="hidden" name="objId" value={{this._id}}>
-    <button type="submit" name="button">Delete Test</button>
-  </form>
+</table>
 </div>
 {{/each}}
 
@@ -89,7 +80,7 @@
   <input type="hidden" name="id"  value={{data._id}}>
   <br><br>
   <textarea class="materialize-textarea" name="userinput" rows="4" cols="50" placeholder="Enter your answer here"></textarea>
-  <input id="animalType" type="submit">
+  <button class="btn" type="submit" name="button">Comment</button>
 </form>
 
 <!-- Set up for thread modification Modal -->

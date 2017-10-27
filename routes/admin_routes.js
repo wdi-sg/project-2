@@ -46,6 +46,7 @@ let newAdmin = new Admin({
   name: req.body.name,
   email: req.body.email,
   password: req.body.password,
+  course: req.body.dropdown,
   adminCode: req.body.adminCode
 })
 

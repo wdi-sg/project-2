@@ -17,7 +17,8 @@ const threadSchema = new mongoose.Schema({
   totalVotes : {type: Number, default: 0},
   upVotes: { type: Number, default: 0},
   downVotes: { type: Number, default: 0},
-  creator: { type: String}
+  creator: { type: String},
+  course: { type: String}
 })
 
 const Thread = mongoose.model('threads', threadSchema)
