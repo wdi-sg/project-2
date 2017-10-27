@@ -1,0 +1,13 @@
+<h3>Profile</h3>
+
+  <h3>Update</h3>
+
+  <form action="/restaurants/{{ restaurant.id }}?_method=PUT" method="post">
+    <label for="username">Username</label>
+    <input type="text" name="username" value="{{ user.name }}">
+
+    <label for="email">Email</label>
+    <input type="text" name="email" value="{{ user.email }}">
+
+    <button type="submit" name="button">Submit</button>
+  </form>

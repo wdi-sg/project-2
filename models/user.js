@@ -6,9 +6,7 @@ var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
 
 const userSchema = new Schema({
   name: {
-    type: String,
-    minlength: [3, 'Name must be between 3 and 20 characters'],
-    maxlength: [20, 'Name must be between 3 and 20 characters']
+    type: String
   },
   email: {
     type: String,
@@ -19,15 +17,19 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: true,
-    minlength: [6, 'Password must be between 6 and 20 characters'],
-    maxlength: [20, 'Password must be between 6 and 20 characters']
+    required: true
   },
-  slug: String
+  slug: String,
+  readBooks: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Book'
+  }]
 })
 
 userSchema.pre('save', function (next) {
   var user = this
+  console.log(user)
+  if (!user.isModified('password')) return next()
   // create slug
   user.slug = user.name.toLowerCase().split(' ').join('-')
   // hash the password
