@@ -106,10 +106,11 @@ app.use((req, res, next) => {
 
 // Homepage
 app.get('/', (req, res) => {
-  Location.find().limit(10)
+  Location.find().limit(9)
   .then(locations => {
     res.render('home', {
-      locations
+      locations,
+      title: 'Home'
     })
   })
   .catch(err => {
@@ -125,7 +126,8 @@ app.get('/profile', hasLoggedOut, (req, res) => {
   .then(locations => {
     res.render('profile', {
       locations,
-      user: req.user
+      user: req.user,
+      title: 'Profile'
     })
   })
   // res.send(req.user)

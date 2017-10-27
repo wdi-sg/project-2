@@ -7,7 +7,9 @@ const upload = multer({ dest: './uploads/' })
 const cloudinary = require('cloudinary')
 
 router.get('/new', (req, res) => {
-  res.render('locations/new')
+  res.render('locations/new', {
+    title: 'Create'
+  })
 })
 
 // to view the posts and add comments
@@ -22,7 +24,8 @@ router.get('/:id', (req, res) => {
     .then(comments => {
       res.render('locations/show', {
         location,
-        comments
+        comments,
+        title: 'View'
       })
     })
   })
@@ -43,7 +46,8 @@ router.get('/:id/edit', (req, res) => {
     .then(comments =>
       res.render('locations/edit', {
         location,
-        comments
+        comments,
+        title: 'Update'
       })
     )
   })
@@ -65,7 +69,7 @@ router.put('/:id', upload.single('image'), (req, res) => {
       description: formData.description,
       image: result.secure_url
     })
-  .then(() => res.redirect(`/locations/${req.params.id}`))
+  .then(() => res.redirect(`/profile`))
   .catch(err => console.log(err))
   })
 })
@@ -73,7 +77,7 @@ router.put('/:id', upload.single('image'), (req, res) => {
 // delete posts
 router.delete('/:id', (req, res) => {
   Location.findByIdAndRemove(req.params.id)
-  .then(() => res.redirect(`/`))
+  .then(() => res.redirect(`/profile`))
   .catch(err => console.log(err))
 })
 
@@ -93,7 +97,7 @@ router.post('/', upload.single('image'), (req, res) => {
 
     newLocation.save()
     .then(
-      () => res.redirect(`/locations/${newLocation.id}`),
+      () => res.redirect(`/profile`),
       err => res.send(err)
     )
   })

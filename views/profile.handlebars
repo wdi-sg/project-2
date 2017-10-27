@@ -1,7 +1,14 @@
+{{!-- <img src="{{user.image}}" width=500 alt="Image"> --}}
 <h3>{{ user.name }}</h3>
 <ul>
   <li>email: {{ user.email }}</li>
 </ul>
+
+{{!-- <form enctype="multipart/form-data" action="/profile" method="post">
+  <label for="image">Image :</label>
+    <input type="file" name="image">
+  <button type="submit" name="button">Submit</button>
+</form> --}}
 
 <br>
 
@@ -11,7 +18,7 @@
     <div class="tile is-vertical is-4">
       <div class="tile">
         <div class="tile is-parent is-vertical">
-          <article class="tile is-child notification is-primary">
+          <article class="tile is-child notification is-dark">
             <p class="title">{{this.name}} <small>({{this.country}})</small></p>
             <img src="{{ this.image }}">
             <p class="subtitle">{{this.type}}</p>

@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
   newComment.save()
   .then(
     () => {
-      res.redirect(`/locations/${formData.parent}/comment`)
+      res.redirect(`/locations/${formData.parent}`)
     },
     err => res.send('error happened')
   )
@@ -37,7 +37,7 @@ router.post('/', (req, res) => {
 router.delete('/:id', (req, res) => {
   Comment.findByIdAndRemove(req.params.id)
   .then((removedComment) => {
-    res.redirect(`/locations/${removedComment.location}/comment`)
+    res.redirect(`/locations/${removedComment.location}`)
   })
   .catch(err => console.log(err))
 })
