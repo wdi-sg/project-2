@@ -13,16 +13,44 @@ router.get("/",isLoggedIn,(req,res)=>{
 
 router.post("/register", (req,res)=>{
   var formData = req.body // if this is modified, change the landingpage fields as well as ppConfig
-  let newUser = new User({
-    name: formData.name,
-    email: formData.email,
-    password: formData.password
-  })
+  if(formData.email === "" || formData.name === "" ){
+    req.flash("error","Name and Email is required for signup")
+    res.redirect("/landingpage")
+  }else if(formData.passwordCfm !== formData.password){
+    req.flash("error","Passwords do not match, please try again")
+    res.redirect("/landingpage")
+  }else{
+    User.find({email: formData.email}).count()
+    .then(result=>{
+      if(result === 0){
+        let newUser = new User({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password
+        })
 
-  newUser.save()
-  .then(user=>{
-    res.redirect(`/profile`)
-  })
+        newUser.save()
+        .then(user=>{
+          res.redirect(`/profile`)
+        })
+      }else{
+        req.flash("error","Email already in use, please try again")
+        res.redirect("/landingpage")
+      }
+    })
+  }
+
+  // var formData = req.body // if this is modified, change the landingpage fields as well as ppConfig
+  // let newUser = new User({
+  //   name: formData.name,
+  //   email: formData.email,
+  //   password: formData.password
+  // })
+  //
+  // newUser.save()
+  // .then(user=>{
+  //   res.redirect(`/profile`)
+  // })
 })
 
 router.post("/login", passport.authenticate("local",{

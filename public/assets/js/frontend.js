@@ -84,4 +84,36 @@ function showResults(data){
 }
 
 
+
+const $deleteForm = $('.deleteForm')
+
+  $deleteForm.on('submit', function (e) {
+
+    e.preventDefault()
+
+    var form = $(this)
+    var formData = form.serializeArray()
+    console.log(formData);
+    var divId = formData[0].value
+    var json = JSON.stringify({
+      divId
+    })
+
+    console.log(`delete this ${divId}`)
+    console.log(json)
+
+    fetch('/deleteanswer', {
+      method: 'DELETE',
+      body: json,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(json => {
+      console.log('manipulate the dom now')
+      $(`.${divId}`).remove()
+    })
+  })
+
 })

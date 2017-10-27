@@ -5,10 +5,13 @@
     <title>ViscuSS</title>
     <script charset="utf-8" src="https://ucarecdn.com/libs/widget/3.1.4/uploadcare.full.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Happy+Monkey" rel="stylesheet">
+
       <!--Import materialize.css-->
       {{!-- <link type="text/css" rel="stylesheet" href="/assets/css/style.css"/> --}}
       <link type="text/css" rel="stylesheet" href="/assets/css/materialize.css"  media="screen,projection"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico" />
   </head>
   <body>
 
@@ -16,7 +19,7 @@
     <nav>
       <div class="nav-wrapper brown darken-4 z-depth-5">
       <ul class="left hide-on-med-and-down">
-        <a href="/" class="brand-logo center">ViscuSS</a>
+        <a href="/" class="brand-logo center"><img src="/assets/images/logo.png" height="65px" alt=""></a>
       <li><a href="/newquestion">Add a question</a></li>
       {{#if currentUser}}
       <li><a href="/profile">{{currentUser.name}}</a></li>
@@ -51,7 +54,7 @@
     <div class="parallax-container p-con-modified">
     <div class="parallax"><img src="/assets/images/background1.jpg"></div>
   </div>
-  <div class="section-white">
+  <div class="section brown">
     <div class="row container">
       <h1>{{title}}</h1>
       {{> alerts }}

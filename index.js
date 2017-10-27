@@ -101,6 +101,14 @@ app.use("/admin", admin_routes)
 
 
 ///////// TESTING AREA ///////////
+app.delete("/deleteanswer",(req,res)=>{
+// User.findByIdAndRemove(req.body.divId)
+// .then(res=>{
+const json = JSON.stringify({data: 'hello'})
+  res.send(json)
+// })
+
+})
 
 
 //Run port access

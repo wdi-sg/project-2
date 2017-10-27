@@ -38,6 +38,9 @@
 <table class="bordered">
   <h1>ANSWERS:</h1>
   {{#each answer}}
+  <div class={{this._id}}>
+
+
   <tr>
 
     <td><div class="buttons" align="center">
@@ -48,13 +51,13 @@
   <td><p>{{this.description}}</p></td>
   <td>
     {{#checkAdmin this.creator ../currentUser.id}}
-      <form action="/addAnswer/threadpage/{{ this.id }}?_method=DELETE" method="post">
+      <form class="deleteForm" action="/addAnswer/threadpage/{{ this.id }}?_method=DELETE" method="post">
         <input type="hidden" name="threadId" value={{../data._id}}>
         <input class="btn" type="submit" value="Delete">
       </form>
     {{/checkAdmin}}
     {{#checkAdmin "admin" ../currentUser.type}}
-      <form action="/addAnswer/threadpage/{{ this.id }}?_method=DELETE" method="post">
+      <form class="deleteForm" action="/addAnswer/threadpage/{{ this.id }}?_method=DELETE" method="post">
         <input type="hidden" name="threadId" value={{../data._id}}>
         <input class="btn" type="submit" value="Delete">
       </form>
@@ -67,8 +70,20 @@
     Answered By: {{this.creatorName}}
   </td>
 </tr>
+  </div>
   {{/each}}
 </table>
+
+{{#each answer}}
+<div class={{this._id}}>
+  sample text
+  <form class="deleteForm" action="" method="post">
+    <input type="hidden" name="objId" value={{this._id}}>
+    <button type="submit" name="button">Delete Test</button>
+  </form>
+</div>
+{{/each}}
+
 
 <form method="POST" action="/addAnswer">
   <input type="hidden" name="id"  value={{data._id}}>

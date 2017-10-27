@@ -19,7 +19,7 @@
 
 <ul class="collapsible" data-collapsible="accordion">
    <li>
-     <div class="collapsible-header"><i class="material-icons">chrome_reader_mode</i>Threads by You</div>
+     <div class="collapsible-header black white-text"><i class="material-icons">chrome_reader_mode</i>Threads by You</div>
      <div class="collapsible-body">
        {{#each questions}}
      <a href="/thread/{{this.id}}">{{this.question}}</a>
@@ -30,7 +30,7 @@
    </div>
    </li>
    <li>
-     <div class="collapsible-header"><i class="material-icons">place</i>Answers by You</div>
+     <div class="collapsible-header black white-text"><i class="material-icons">place</i>Answers by You</div>
      <div class="collapsible-body">
        {{#each answers}}
      <a href="/thread/{{this.parent}}">{{this.description}}</a>
