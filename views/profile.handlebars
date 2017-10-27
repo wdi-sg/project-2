@@ -3,3 +3,10 @@
 <p>Username: {{ currentUser.username }}</p>
 <p>Name: {{ currentUser.name }}</p>
 <p>E-mail: {{ currentUser.email }}</p>
+<p>Following: {{ currentUser.following.length }}</p>
+<p>Followers: {{ currentUser.followers.length }}</p>
+
+<form method="post" action="/profile/{{currentUser.username}}/follow?_method=PUT">
+  <input type="hidden" name="id" value={{currentUser.id}}>
+  <button type="submit">Follow</button>
+</form>
