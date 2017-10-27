@@ -38,6 +38,7 @@ $(function () {
 
 
   $searchInput.on('keyup', e => { // e is the event object of the keyup event
+    $('#allPeople').remove()
     var keyword = e.target.value
     var json = JSON.stringify({
       keyword
