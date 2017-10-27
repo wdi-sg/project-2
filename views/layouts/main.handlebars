@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Fantasy Tours</title>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Ruthie" rel="stylesheet">
       <link type="text/css" rel="stylesheet" href="/css/materialize.css" media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="/css/style.css"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -19,7 +20,7 @@
       <li><a href="/addtours">Add Tours</a></li>
     </ul>
   <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper black">
       <a href='/' class="brand-logo">Fantasy Tours</a>
       {{!-- <a href='/' data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a> --}}
 
@@ -27,7 +28,7 @@
         {{#if user}}
         <li><a class="dropdown-button" href="#" data-activates="dropdown1">Admin<i class="material-icons right">arrow_drop_down</i></a></li>
         <li><a href='/{{ user.slug }}/cart'>Cart</a></li>
-        <li>Logged in as {{ user.name }}</li>
+        <li>{{ user.name }}</li>
         <li><a href='/logout'>Logout</a></li>
         {{else}}
         <li><a href="/login">Login</a></li>

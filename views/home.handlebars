@@ -4,7 +4,8 @@
 <h2>Homepage not login</h2>
 {{/if}} --}}
 
-{{#each showlist as |showlist|}}
+{{!-- // photocard layout --}}
+{{!-- {{#each showlist as |showlist|}}
 <div class="row">
         <div class="col s12 m7">
           <div class="card">
@@ -21,7 +22,14 @@
           </div>
         </div>
       </div>
-{{/each}}
+{{/each}} --}}
+
+{{!-- // carousel layout --}}
+<div class="carousel">
+  {{#each showlist as |showlist|}}
+    <a class="carousel-item" href="/show/{{showlist.slug}}"><img src= {{ showlist.showpic }}></a>
+  {{/each}}
+</div>
 
 <h3>Tour Locations</h3>
 <div id="map"></div>

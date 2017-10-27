@@ -5,7 +5,8 @@ $(document).ready(function () {
   $('#textarea1').trigger('autoresize')
   $('select').material_select()
   $(".button-collapse").sideNav();
-      
+  $('.carousel').carousel({indicators: true});
+
   // initMap()
   var locations = [
         ['Bondi Beach', -33.890542, 151.274856, 4],
