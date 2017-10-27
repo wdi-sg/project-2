@@ -28,9 +28,9 @@ const cloudinary = require('cloudinary')
 // var upload = multer({ dest: './uploads/' })
 
 cloudinary.config({
-  cloud_name: 'dgqa1egur',
-  api_key: '484579494586545',
-  api_secret: 'fcrc-XxofjUysBei6vBv4WUaIKA'
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET
 })
 
 

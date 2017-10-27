@@ -1,12 +1,20 @@
-<h2>{{ supplier.company }} <small>({{ supplier.email }})</small></h2>
+<div class="card-deck-wrapper">
+  <div class="card-deck">
+    <div class="card">
+      <div class="card-header">
+        <h2>{{ supplier.company }} </h2>
+      </div>
+    </div>
 
-{{!-- UPDATE 19 Oct: after populating the owner data --}}
-<h3>Contact No. : {{ supplier.contact}}</h3>
+    <h3>Contact No. :{{ supplier.contact}}</h3>
+    Email: {{ supplier.email }}
 
-<p>
-  {{ supplier.address }}<br>
-  {{ supplier.unit }}, {{ supplier.postalcode }}
-</p>
+    <p>
+      {{ supplier.address }}<br>
+      #{{ supplier.unit }}, Singapore {{ supplier.postalcode }}
+    </p>
+  </div>
+</div>
 
 {{!-- We can also setup a form here to update the existing data --}}
 {{!-- when there's a path, there's a route in your index.js --}}
