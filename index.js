@@ -69,6 +69,14 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   res.render('home')
 })
+app.get('/medications/update/:id', (req, res) => {
+  Medication.findById(req.params.id)
+  .then(result => {
+    res.render('medications/update', {
+      medication: result
+    })
+  })
+})
 app.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')

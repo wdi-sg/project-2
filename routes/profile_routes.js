@@ -38,14 +38,9 @@ router.put('/', (req, res, next) => {
   })
 })
 
-router.put('/:id', (req, res) => {
-  // thankfully since we're using mongoose
-  // we don't have to find and update separately
-  // there's a method in mongoose just for that
-  // `findByIdAndUpdate` http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate
-  console.log('update pressed')
+router.put('/update', (req, res) => {
   var formData = req.body
-  Medication.findByIdAndUpdate(req.params.id, {
+  Medication.findByIdAndUpdate(formData.medId, {
     name: formData.name,
     dosage: formData.dosage
   })
@@ -56,7 +51,6 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   Medication.findByIdAndRemove(req.params.id)
   .then((result) => {
-    console.log('deleted')
     res.redirect('/profile')
   })
   .catch(err => console.log(err))

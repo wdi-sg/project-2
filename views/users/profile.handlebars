@@ -20,13 +20,11 @@
 <div class="row">
   {{#each medicines as |medicine|}}
     <div class="col-4">
-      <div class="card" class="deleteForm">
+      <div class="card">
         <div class="card-body">
           <h4 class="card-title">{{ medicine.name }}</h4>
           <p class="card-text">{{ medicine.dosage }}</p>
-          <form action="/profile/{{ medicine.id }}?_method=PUT" method="post">
-            <button type="submit" name="button">Update</button>
-          </form>
+          <a href="/medications/update/{{medicine.id }}">Update</a>
             <form action="/profile/{{ medicine.id }}?_method=DELETE" method="post">
               <button type="submit" name="button">Delete</button>
             </form>
