@@ -1,5 +1,5 @@
 <br/><br/><br/>
-
+<div class="container">
 <h6>{{ travelplans.title }}</h6>
 ({{travelplans.formattedDate}})
 
@@ -268,10 +268,10 @@
 
   <button type="submit" name="button">Submit</button>
 </form>
-
+<br/>
 <h6>Delete</h6>
-{{!-- Same thing, different request type --}}
 <form action="/routes/{{ travelplans.id }}?_method=DELETE" method="post">
   <button type="submit" name="button">Delete</button>
-  {{!-- don't need input fields here, cos we're not updating anything --}}
 </form>
+
+</div>{{!-- end of container --}}
