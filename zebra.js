@@ -6,7 +6,8 @@
 function sendEmailOnSchedule () {
   // console.log('hello world')
   require('dotenv').config({ silent: true })
-  const sgMail = require('@sendgrid/mail')
+  const sgMail = require('sendgrid')
+  // const sgMail = require('@sendgrid/mail')
   const User = require('./models/user')
   const dbUrl = process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/project-2'
   const mongoose = require('mongoose')
@@ -27,7 +28,7 @@ function sendEmailOnSchedule () {
       subscribers.forEach((subscriber) => {
         findCurrentQuote()
         .then(dailyQuote => {
-          sgMail.setApiKey(process.env.API_KEY)
+          sgMail.setApiKey(process.env.API_KEY_HEROKU)
           const msg = {
             to: subscriber.email,
             from: 'matthewfoys@gmail.com',
@@ -49,3 +50,43 @@ function sendEmailOnSchedule () {
 }
 // }
 sendEmailOnSchedule()
+
+// var sg = require('sendgrid')(process.env.API_KEY_HEROKU)
+// var request = sg.emptyRequest({
+//   method: 'POST',
+//   path: '/v3/mail/send',
+//   body: {
+//     personalizations: [
+//       {
+//         to: [
+//           {
+//             email: 'test@example.com',
+//           },
+//         ],
+//         subject: 'Hello World from the SendGrid Node.js Library!',
+//       },
+//     ],
+//     from: {
+//       email: 'test@example.com',
+//     },
+//     content: [
+//       {
+//         type: 'text/plain',
+//         value: 'Hello, Email!',
+//       },
+//     ],
+//   },
+// });
+//
+// //With promise
+// sg.API(request)
+//   .then(response => {
+//     console.log(response.statusCode);
+//     console.log(response.body);
+//     console.log(response.headers);
+//   })
+//   .catch(error => {
+//     //error is an instance of SendGridError
+//     //The full response is attached to error.response
+//     console.log(error.response.statusCode);
+//   });
