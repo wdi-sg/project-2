@@ -29,14 +29,7 @@ router.get("/", (req, res) => {
 })
 
 router.post("/", (req, res) => {
-	// User.findOne()
-	// 	.populate("owner")
-	// console.log(req.body.user)
-	// .then(
-	// 	one => {
-	// 		var ownerRef = one.id
-	// 	})
-	// console.log(req.body.textBox)
+
 	personality_insights.profile({
 		text: req.body.textBox,
 		consumption_preferences: true
@@ -67,8 +60,63 @@ router.post("/", (req, res) => {
 
 })
 
+router.put("/:id", (req, res) => {
+	// correct ObjectId
+	// console.log(req.params.id)
+
+	personality_insights.profile({
+		text: req.body.textBox,
+		consumption_preferences: true
+	},
+
+	function (err, response) {
+		if (err)
+			console.log("error:", err)
+			// else
+			// console.log(JSON.stringify(response, null, 2))
+		var big5Data = response["personality"]
+		// getting response from watson below
+		// console.log(big5Data)
+
+		var personality = {
+			openness: big5Data[0].percentile,
+			conscientiousness: big5Data[1].percentile,
+			extraversion: big5Data[2].percentile,
+			agreeableness: big5Data[3].percentile,
+			emotionalRange: big5Data[4].percentile,
+			created_at: new Date ()
+		}
+
+		Big5.findByIdAndUpdate(req.params.id, personality)
+
+
+			// big5Data.save()
+			.then(
+				() => res.redirect("/profile"),
+				(err) => console.log(err)
+			)
+			// res.send(response)
+
+	})
+
+})
+// Big5.findByIdAndUpdate(req.params.id, {
+// 	name: formData.name,
+// 	cuisine: formData.cuisine
+// })
+// 	.then((result) => {
+//
+//
+//
+//
+// 		res.redirect("/profile")
+// 	})
+// 	.catch(err => console.log(err))
+// after update is done, redirect back to resto id
+// this redirection can go to anywhere as long as you have the routes with you
+
 router.delete("/:id", (req, res) => {
-// Find by user id and delete 
+// Find by user id and delete
 	Big5.findByIdAndRemove(req.params.id)
 		.then((result) => {
 			console.log(result)

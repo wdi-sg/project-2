@@ -22,5 +22,26 @@
     <button type="submit" name="button">Delete</button>
   </form>
 
+  <h3>Update</h3>
+  <label for=""></label>
+  <form class="textBox" action="/profile/{{result.id}}?_method=PUT" method="post">
+    <textarea name="textBox" rows="97" cols="60"></textarea>
+    {{!-- <input type="hidden" name="user" value="{{user.id}}"> --}}
+    <button type="submit" name="button">Update</button>
+  </form>
+
+  {{!-- <h3>Update</h3>
+<form action="/restaurants/{{ restaurant.id }}?_method=PUT" method="post">
+  <label for="name">Name</label>
+  <input type="text" name="name" value="{{ restaurant.name }}"> --}}
+  {{!-- we put the {{}} inside value cos we want to show the existing name --}}
+
+  {{!-- <label for="cuisine">Cuisine</label>
+  <input type="text" name="cuisine" value="{{ restaurant.cuisine }}">
+
+  <button type="submit" name="button">Submit</button>
+</form> --}}
+
+
 </div>
 {{!-- {{/each}} --}}
