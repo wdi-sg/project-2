@@ -31,12 +31,6 @@ router.delete('/cart', (req, res) => {
     .then(() => res.redirect(`/${req.user.slug}/cart`))
     .catch(err => console.log(err))
   })
-
-    // target the correct tour in the user cart
-    // remove tour from user cart
-    // save user
-    // User.save()
-    // .then(() => res.render('users/cart'))
 })
 
 module.exports = router
