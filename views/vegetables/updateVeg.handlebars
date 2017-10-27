@@ -12,17 +12,17 @@
   <input type="hidden" name="id" value="{{veg.id}}">
 
   <label for="name">Vegetable Name:</label>
-  <input type="text" name="veg[txtName]" value="{{ vegetable.txtName }}">
+  <input type="text" name="veg[txtName]" value="{{ vegetable.name }}">
   <br/>
   {{!-- we put the {{}} inside value cos we want to show the existing name --}}
 
 
   <label for="lblPrice">Price per KG $:</label>
-  <input type="text" name="veg[txtPrice]" value="{{ vegetable.txtPrice }}">
+  <input type="text" name="veg[txtPrice]" value="{{ vegetable.price }}">
   <br/>
 
   <label for="lblEmail">Minimum Quantity in KG :</label>
-  <input type="number" name="veg[txtQuantity]" value="{{ vegetable.txtQuantity }}">
+  <input type="number" name="veg[txtQuantity]" value="{{ vegetable.quantity }}">
   <br/>
 
   <label for="lblBusinessType">Select your photo :</label>
