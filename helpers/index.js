@@ -27,21 +27,22 @@ const findCurrentQuote = () => {
   if (currentHour >= 12 && currentHour <= 18) timeEvent = 2
   if (currentHour >= 18 && currentHour <= 24) timeEvent = 3
 
-  return Quote.find().sort({publishedAt: 1}).findOne({
+  return Quote.findOne({
     timeEvent,
     publishedAt: {
       $gte: startOfToday
     }
   })
- .then(quote => {
-   return new Promise( // only when search query yearn output, then return
+  .sort({publishedAt: 1})
+  .then(quote => {
+    return new Promise( // only when search query yearn output, then return
      (resolve) => { // return quote. Mongoose is async
        if (quote) {
          resolve(quote)
        }
      }
    )
- })
+  })
 }
 
 module.exports = {
