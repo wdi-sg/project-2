@@ -5,8 +5,13 @@
 
 
 <label for=""></label>
-<form class=".textBox" action="/profile" method="post">
+<form class="textBox" action="/profile" method="post">
   <textarea name="textBox" rows="97" cols="60"></textarea>
+  <input type="hidden" name="user" value="{{user.id}}">
   <button type="submit" name="button">Analyze Text</button>
 </form>
 </div>
+
+{{!-- {{#each result}}
+  {{this.response}}
+{{/each}} --}}

@@ -7,23 +7,24 @@
   </head>
   <body>
     <nav>
-  <div class="nav-wrapper #ff9800 orange">
-    <a href="#" class="brand-logo">Welcome {{ user.name }}</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      {{#if user}}
-      <li><a href="/">Home</a></li>
-      <li><a href="/profile">Profile</a></li>
-      <li><a href="/logout">Logout</a></li>
-      {{else}}
+      <div class="container">
+        <div class="nav-wrapper #ff9800 orange">
+          <a href="#" class="brand-logo">Welcome {{ user.name }}</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            {{#if user}}
+            <li><a href="/">Home</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+            {{else}}
        {{!-- hides the below <li> --}}
-      <li><a href="/register">Register</a></li>
-      <li><a href="/login"> Login </a></li>
-      {{/if}}
-    </ul>
-  </div>
-</nav>
+            <li><a href="/register">Register</a></li>
+            <li><a href="/login"> Login </a></li>
+            {{/if}}
+          </ul>
+        </div>
+      </div>
 
-{{{ body }}}
+      {{{ body }}}
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
   </body>

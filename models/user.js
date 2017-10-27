@@ -8,6 +8,10 @@ const userSchema = new Schema ({
 	name: String,
 	email: String,
 	password: String
+	// owner: {
+	// 	type: Schema.Types.ObjectId,
+	// 	ref: "User"
+	// }
 })
 
 // hash password with bcrypt
