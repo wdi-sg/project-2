@@ -59,7 +59,6 @@ app.use((req, res, next) => {
   next()
 })
 
-
 app.use('/', home_router)
 app.use('/register', isLoggedIn, user_register_router)
 app.use('/login', isLoggedIn, user_login_router)
@@ -70,7 +69,6 @@ app.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
-
 app.listen(port, () => {
-  console.log('connected to port 7000 successfully')
+  console.log(`connected to port ${port} successfully`)
 })
