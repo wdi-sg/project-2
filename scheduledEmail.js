@@ -34,7 +34,7 @@ function testEmailSend () {
             from: 'matthewfoys@gmail.com',
             subject: `Good Morning ${subscriber.name}! Here is your morning quote`,
             text: `Morning ${subscriber.name} - Daily Quote`,
-            html: `<strong>Blessed morning ${subscriber.name}!<br/>
+            html: `<strong>
             Your Daily Quote: ${dailyQuote.quote} <br/>
             Author: ${dailyQuote.author} <br/>
             </strong>`
