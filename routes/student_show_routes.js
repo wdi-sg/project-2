@@ -1,4 +1,5 @@
 const Student = require('../models/student')
+const Course= require('../models/course')
 const express = require('express')
 const router = express.Router()
 
@@ -12,11 +13,9 @@ router.put('/:id', (req, res) => {
     name: formData.name,
     email: formData.email,
     description: formData.description,
-    currentCourse: formData.currentCourse,
+    currentCourse: formData.course,
     completedCourse: formData.completedCourse,
-    status: formData.status,
-    currentTeach: formData.currentTeach,
-    instructorRating: formData.instructorRating
+
   })
   .then(() => res.redirect(`/studentshow`))
   .catch(err => console.log(err))

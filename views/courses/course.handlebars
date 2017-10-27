@@ -1,9 +1,9 @@
 <div class="container">
   <h4><blockquote>
       Course Details
-      {{course.teacher}}
     </blockquote></h4>
   <h3>{{course.name}}</h3>
+  <h5>By : {{course.teacher.name}}</h5>
 <br>
   <div class="card">
     <div class="card-content">
@@ -18,12 +18,31 @@
     </div>
     <div class="card-content grey lighten-4">
       <div id="test4">{{course.address}}<br>
-                        Google Map Here</div>
-      <div id="test5">Date : {{course.date}}<br>
-                      Time : {{course.time}}<br>
-                      Duration : {{course.duration}}</div>
-      <div id="test6">Instructor : {{course.teacher}}<br>
-                      Current Students : {{course.currentStudents}}</div>
-    </div>
+        Google Map Here</div>
+        <div id="test5">Date : {{course.date}}<br>
+          Time : {{course.time}}<br>
+          Duration : {{course.duration}}</div>
+          <div id="test6">Instructor : {{course.teacher.name}}<br>
+            Current Students : {{course.currentStudents}}</div>
+          </div>
+
   </div>
+<a a href="/pending" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud</i>Sign Up</a>
+<a a href="/courseupdate" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud</i>Update</a>
+
+<h3>Reviews</h3>
+<form action="/course" method="post">
+
+  <label for="title">Title</label>
+  <input type="text" id="title" name="title" placeholder="Review Title">
+  <br>
+
+  <label for="description">What would you like to say?</label>
+  <textarea id="description" name="description" rows="8" cols="80"></textarea>
+  <br>
+
+  <button type="submit" name="button">Submit</button>
+</form>
+
+
 </div>

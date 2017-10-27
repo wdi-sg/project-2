@@ -13,10 +13,6 @@ const userSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'Course'
   },
-  currentTeach: {
-      type: Schema.Types.ObjectId,
-      ref: 'Course'
-  },
   instructorRating: String,
   type: String
 })

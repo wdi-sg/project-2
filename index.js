@@ -28,6 +28,8 @@ const course_routes = require('./routes/course_routes')
 const student_register_routes = require('./routes/student_register_routes')
 const student_login_routes = require('./routes/student_login_routes')
 const student_show_routes = require('./routes/student_show_routes')
+const course_update_routes = require('./routes/course_update_routes')
+
 
 const app = express()
 
@@ -61,7 +63,6 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
-  // store this to our db too
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }))
 
@@ -75,12 +76,11 @@ app.use((req, res, next) => {
   if (req.user) {
     app.locals.admin = req.user.type === 'admin' ? req.user : null;
   }
-
   next()
 })
 
+
 app.get('/', (req, res) => {
-  // the return of then
     res.render('courses/home')
 })
 
@@ -102,6 +102,7 @@ app.get('/logout', LoggedOut, (req, res) => {
   res.redirect('/')
 })
 
+app.use('/courseupdate', course_update_routes)
 app.use('/studentshow', student_show_routes)
 app.use('/studentlogin', student_login_routes)
 app.use('/studentregister', student_register_routes)

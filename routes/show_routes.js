@@ -1,9 +1,10 @@
+const Course= require('../models/course')
 const User = require('../models/user')
 const express = require('express')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  res.render('users/show')
+    res.render('users/show')
 })
 
 router.put('/:id', (req, res) => {
@@ -12,11 +13,10 @@ router.put('/:id', (req, res) => {
     name: formData.name,
     email: formData.email,
     description: formData.description,
-    currentCourse: formData.currentCourse,
-    completedCourse: formData.completedCourse,
+    currentCourse: formData.course,
     status: formData.status,
+    instructorRating: formData.instructorRating,
     currentTeach: formData.currentTeach,
-    instructorRating: formData.instructorRating
   })
   .then(() => res.redirect(`/show`))
   .catch(err => console.log(err))

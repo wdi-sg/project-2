@@ -15,7 +15,6 @@ const courseSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  status: String,
   slug: String
 })
 

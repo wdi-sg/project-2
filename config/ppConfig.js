@@ -11,7 +11,7 @@ passport.serializeUser((user, next) => {
 passport.deserializeUser((id, next) => {
 
   User.findById(id, function (err, admin) {
-    console.log('deserializeUser user :', admin)
+    // console.log('deserializeUser user :', admin)
     if (admin) next(err, admin)
   })
   Student.findById(id, function (err, student) {

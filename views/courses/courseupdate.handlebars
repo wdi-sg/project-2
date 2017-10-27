@@ -1,0 +1,29 @@
+<div class="container">
+  <h3>{{course.name}}</h3>
+</br>
+  <div class="details">
+
+    <h4>Course Updates</h4>
+  </br>
+  </br>
+  <form action="/show/{{course.id}}?_method=PUT" method="post">
+  <div class="course card-panel">
+      <input type="text" name="name" value="{{course.name}}">
+      <span class="blue-text text-darken-2">Name : {{course.name}}</span>
+    </div>
+  </br>
+  <div class="description card-panel">
+    <input type="text" name="description" value="{{course.description}}">
+      <span class="blue-text text-darken-2">About : {{course.description}}</span>
+    </div>
+
+  </br>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+   <i class="material-icons right"></i>
+ </button>
+
+
+
+  </form>
+  </div>
+</div>
