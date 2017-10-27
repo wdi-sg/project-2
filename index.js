@@ -15,7 +15,9 @@ const MongoStore = require('connect-mongo')(session)
 const passport = require('./config/ppConfig')
 
 const User = require('./models/user')
-//const Pharmacy = require('./models/pharmacies')
+const RetPharmacy = require('./models/retpharmacy')
+const LisPharmacy = require('./models/lispharmacy')
+const Medication = require('./models/medications')
 
 const { hasLoggedOut, isLoggedIn } = require('./helpers')
 
@@ -75,7 +77,7 @@ app.get('/logout', (req, res) => {
 app.use('/register', isLoggedIn, register_routes)
 app.use('/login', isLoggedIn, login_routes)
 app.use('/profile', hasLoggedOut, profile_routes)
-// app.use('/pharmacies', pharmacy_routes)
+app.use('/pharmacy', pharmacy_routes)
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`)

@@ -4,11 +4,17 @@ const bcrypt = require('bcrypt')
 
 const userSchema = new Schema({
   name: { type: String, required: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  userMed: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Medication'
+  }]
 })
 
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function (next) {
   var user = this
+
+  if (!user.isModified('password')) return next()
 
   bcrypt.hash(user.password, 10)
   .then(hash => {

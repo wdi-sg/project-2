@@ -19,7 +19,7 @@ router.post('/', (req, res, next) => {
   .then(
     user => {
       passport.authenticate('local', {
-        successRedirect: `/profile/${user.name}`
+        successRedirect: `/`
       })(req, res, next)
     },
     err => res.send(err) // error flow

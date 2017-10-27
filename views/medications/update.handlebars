@@ -1,0 +1,12 @@
+<h2>{{ medication.name }}</h2>
+
+<h3>Update</h3>
+<form action="/profile/?_method=PUT" method="post">
+  <label for="name">Medicine</label>
+  <input type="text" name="name">
+
+  <label for="reminder">Dosage</label>
+  <input type="text" name="dosage">
+
+  <button type="submit" name="button">Submit</button>
+</form>
