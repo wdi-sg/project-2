@@ -24,9 +24,7 @@ router.post('/', (req,res)=>{
     passcode: stringGen(5),
     members: [req.user.id]
   })
-  //
-
-
+  
   newFridge.save()
   .then(
     fridge => {
@@ -89,10 +87,6 @@ router.get('/:id/task', (req, res)=>{
     console.log(fridges)
     res.render('task/new', {fridges})
   })
-})
-
-router.get('/:fridgeid/:taskid', (req,res)=>{
-  res.send('hi')
 })
 
 router.delete('/:fridgeid/:taskid', (req, res)=>{

@@ -87,7 +87,6 @@ router.put('/:id/complete', (req, res)=>{
 })
 
 router.post('/', (req,res)=>{
-  console.log(req.body)
   var formData = req.body
   var newTask = new Task({
     details: formData.details,
@@ -98,6 +97,23 @@ router.post('/', (req,res)=>{
   newTask.save()
   .then(
     tasks =>{
+      Task.findById(newTask.id)
+      .populate({
+        path: 'fridge',
+        populate: {path: 'members'}
+      })
+      .then(task =>{
+        var Members = task.fridge.members
+        Members.forEach((member)=>{
+          client.messages
+          .create({
+            to: `+6592973473`,
+            from: '+17173882453 ',
+            body: `${task.fridge.name} has wants to ${task.details}`,
+          })
+          .then((message) => console.log(message.sid));
+        })
+      })
       Fridge.findById(formData.fridge)
       .then(fridgeOne =>{
         fridgeOne.task.push(tasks.id)

@@ -9,7 +9,7 @@
       <img style="width: 100px" src="/img/stickynote.png" alt="Sticky Notes Image">
       <h1 class="">{{ task.details }}</h1>
       &nbsp;
-      <button class="btn bt n-secondary form-inline" type="button" onclick="location.href='/task/{{task.id}}/edit'">Edit</button>
+      <button class="btn btn-secondary form-inline" type="button" onclick="location.href='/task/{{task.id}}/edit'">Edit</button>
       <div class="card-body">
         <p>Task taken by:{{ task.assign.name }}</p>
         {{#if task.complete}}
