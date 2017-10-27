@@ -7,9 +7,11 @@
   {{/if}}
 </div>
 <div class="">
-  <h4>{{ project.creator.name }}</h4>
-  <h4> {{ project.created }}</h4>
-  <h4> {{ project.category }}</h4>
+  <a href="/profile/{{project.creator.slug}}">
+    <h5>By: {{ project.creator.name }}</h5>
+  </a>
+  <h5>Date: {{ project.created }}</h5>
+  <h5>Category: {{ project.category }}</h5>
 </div>
 <div class="">
 

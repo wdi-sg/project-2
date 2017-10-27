@@ -8,9 +8,11 @@
   {{/if}}
 </div>
 <div class="">
-  <h4>{{ pattern.creator.name }}</h4>
-  <h4> {{ patttern.created }}</h4>
-  <h4> {{ pattern.category }}</h4>
+  <a href="/profile/{{pattern.creator.slug}}">
+    <h5>By: {{ pattern.creator.name }}</h5>
+  </a>
+  <h5>Date: {{ pattern.created }}</h5>
+  <h5>Category: {{ pattern.category }}</h5>
 </div>
 <div class="">
 
@@ -24,18 +26,18 @@
 <div class="">
   <a href="/pattern/{{pattern.id}}/variation/new" class="button">I did this</a>
 </div>
-
+{{#if notBookmark}}
 <div class="">
   <form class="bookmarkForm" action="/pattern/{{pattern.id}}/bookmark" method="post">
     <button type="submit" name="bookmarkBtn">Add to Bookmark</button>
   </form>
-
 </div>
+{{/if}}
 <div class="">
   <h3>Variation</h3>
   <div class="">
 
-    {{#each pattern.variation as |variation| }}
+    {{#each variations as |variation| }}
     <div class="">
       <a href="/project/{{variation.id}}">
       <img src="{{variation.imageUrl}}" width=100 alt="Image">

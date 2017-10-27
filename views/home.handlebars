@@ -4,7 +4,13 @@
   <h4>Woodcraft</h4>
   <ul>
     {{#each woodcraftPatterns as |woodcraftPattern|}}
-    <li><a href="/pattern/{{woodcraftPattern.id}}">{{woodcraftPattern.title}}</a> </li>
+    <div class="">
+      <a href="/pattern/{{woodcraftPattern.id}}">
+        <img src="{{woodcraftPattern.imageUrl}}" width=250 alt="Image">
+        {{woodcraftPattern.title}}
+      </a>
+    </div>
+
     {{/each}}
 
   </ul>
@@ -14,8 +20,14 @@
 <div class="">
   <h4>Papercraft</h4>
   <ul>
+
     {{#each papercraftPatterns as |papercraftPattern|}}
-    <li><a href="/pattern/{{papercraftPattern.id}}">{{papercraftPattern.title}}</a> </li>
+    <div class="">
+      <a href="/pattern/{{papercraftPattern.id}}">
+        <img src="{{papercraftPattern.imageUrl}}" width=250 alt="Image">
+        {{woodcraftPattern.title}}
+      </a>
+    </div>
     {{/each}}
 
   </ul>
@@ -26,9 +38,13 @@
   <h4>Sewing</h4>
   <ul>
     {{#each sewingPatterns as |sewingPattern|}}
-    <li><a href="/pattern/{{sewingPattern.id}}">{{sewingPattern.title}}</a></li>
+    <div class="">
+      <a href="/pattern/{{sewingPattern.id}}">
+        <img src="{{sewingPattern.imageUrl}}" width=250 alt="Image">
+        {{woodcraftPattern.title}}
+      </a>
+    </div>
     {{/each}}
-
   </ul>
 
 </div>

@@ -7,6 +7,7 @@ const router = express.Router()
 const async = require('async')
 
 router.get('/', (req, res) => {
+
   let categoryArray = ['woodcraft','papercraft', 'sewing', 'knitting']
 
   Pattern.find({"category" : 'woodcraft'}).limit(6)

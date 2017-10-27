@@ -8,15 +8,15 @@ const patternSchema = new Schema ({
     type : Schema.Types.ObjectId,
     ref : 'User'
   },
-  category : String, // considering  array
-  //difficulty : String,
+  category : String, 
+
   //estimatedTimeCreator : String,
   // estimatedTimeChallengers : {
   //   beginner : String,
   //   intermediate : String,
   //   advance : String
   // },
-  variation : [{ type : Schema.Types.ObjectId, ref: 'Project' }],
+
   material : String,
   steps : String,
   imageUrl : String

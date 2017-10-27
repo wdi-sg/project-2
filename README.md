@@ -82,8 +82,12 @@ version 0.4.5 Day 3 (25 Oct):
 version 0.5.0 Day 4 (26 Oct):
 * added: update user, delete user.
 
-version 0.6.0 Day 5 (27 Oct) :
+version 0.7.0 Day 5 (27 Oct) :
 * added: upload image function
+* change the Schema structure of user and pattern model
+* able to remove user & its pattern & projects
+
+
 
 
 To be added:

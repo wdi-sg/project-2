@@ -1,6 +1,6 @@
 
 <h2>{{ userDetails.name }}</h2>
-<img src="{{user.imageUrl}}" width=300 alt="Image">
+<img src="{{userDetails.imageUrl}}" width=300 alt="Image">
 <div class="">
   <ul>
     <li>{{ userDetails.email }}</li>
@@ -14,7 +14,7 @@
 <div class="">
   <h3>Pattern</h3>
   <ul>
-    {{#each userDetails.pattern as |pattern| }}
+    {{#each patterns as |pattern| }}
     <li>
       {{ pattern.title }} <a href="/pattern/{{ pattern.id }}" class="">View</a>
     </li>
@@ -28,10 +28,10 @@
   <h3>Project</h3>
   {{!-- <h4>{{user.project}}</h4> --}}
   <ul>
-    {{#each userDetails.project as |project| }}
+    {{#each projects as |project| }}
     <li>
       {{ project.title }}
-      {{!-- <a href="/pattern/{{ project.id }}" class="">View</a> --}}
+      <a href="/project/{{ project.id }}" class="">View</a>
 
     </li>
     {{/each}}
