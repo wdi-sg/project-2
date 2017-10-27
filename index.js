@@ -107,9 +107,11 @@ app.get('/routes', (req, res) => {
 app.get('/search', (req, res) => {
   Travelplan.find()
   .then(travelplans => {
-    res.render('users/search', {travelplans})
+    Travelplan.distinct('category')
+    .then(categories => {
+      res.render('users/search', {travelplans, categories})
+    })
   })
-
 })
 
 app.post('/search', (req, res) => {

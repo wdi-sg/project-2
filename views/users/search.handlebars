@@ -3,8 +3,16 @@
 <div class="container">
   <h2>View Trips</h2>
 
-  <label for="searchInput">By Country: </label>
+  <label for="searchInput">Filter by Country: </label>
   <select type="text" class="form-control" name="trips[category]" id="searchInput" placeholder="Country">
+<option value="All" selected>Choose by country:</option>
+{{#each categories as |search|}}
+    <option value="{{search}}">{{search}}</option>
+  {{/each}}
+</select>
+
+  {{!-- <label for="searchInput">By Country: </label> --}}
+  {{!-- <select type="text" class="form-control" name="trips[category]" id="searchInput" placeholder="Country">
       <option value="All" selected>All</option>
       <option value="Afghanistan">Afghanistan</option>
       <option value="Albania">Albania</option>
@@ -245,8 +253,8 @@
       <option value="Yugoslavia">Yugoslavia</option>
       <option value="Zambia">Zambia</option>
       <option value="Zimbabwe">Zimbabwe</option>
-  </select>
-  {{!-- <input id="searchInput" type="text" value="Singapore"> --}}
+  </select> --}}
+
 
   <br/>
   <div class="row" id="searchResults">

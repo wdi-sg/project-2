@@ -65,7 +65,6 @@ $(function () {
       keyword
     })
 
-    // PITSTOP: SPLIT RIGHT WITH INDEX.JS `/search` for better understanding
     fetch('/search', {
       method: 'POST',
       body: json,
