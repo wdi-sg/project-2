@@ -63,5 +63,9 @@ module.exports = io => {
         newPosition: update.newPosition
       })
     })
+
+    socket.on("delete", deleteId => {
+      console.log(deleteId)
+    })
   })
 }

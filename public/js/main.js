@@ -10,6 +10,7 @@ $(function() {
   const userName = $("#userName").val()
   const userProject = $("#userProject").val()
   const userProjectId = $("#userProjectId").val()
+  const $button = $("button")
 
   // project based connection
   let nsp = io(`/${userProjectId}`)
