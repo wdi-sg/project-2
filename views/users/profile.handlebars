@@ -1,13 +1,21 @@
-<h3>Profile</h3>
+<h3>User Profile</h3>
 
-  <h3>Update</h3>
+  <h5>Update</h5>
 
-  <form action="/restaurants/{{ restaurant.id }}?_method=PUT" method="post">
+  <form action="/profile?_method=PUT" method="post">
     <label for="username">Username</label>
     <input type="text" name="username" value="{{ user.name }}">
 
     <label for="email">Email</label>
     <input type="text" name="email" value="{{ user.email }}">
 
-    <button type="submit" name="button">Submit</button>
+    <button type="submit" name="button">Update </button>
   </form>
+
+  <h5>Delete</h5>
+  <form action="/profile?_method=DELETE" method="post">
+    <button type="submit" name="button">Delete</button>
+  </form>
+
+  <h5>Books Read</h5>
+  <ul class="ulBooksRead"></ul>

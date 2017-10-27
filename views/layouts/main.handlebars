@@ -22,11 +22,14 @@
             </li>
           </ul>
 
+          {{#if user}}
+          {{else}}
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="/login">Log In / Register <span class="sr-only">(current)</span></a>
             </li>
           </ul>
+          {{/if}}
 
         {{!-- Shows only when there is an active user --}}
         {{#if user}}
