@@ -75,6 +75,7 @@
         subscribers.forEach((subscriber) => {
           findCurrentQuote()
           .then(dailyQuote => {
+            console.log(dailyQuote)
             var request = sgMail.emptyRequest({
               method: 'POST',
               path: '/v3/mail/send',
@@ -103,6 +104,7 @@
                 ]
               }
             })
+            console.log(request)
             // With promise
             sgMail.API(request)
               .then(response => {
@@ -111,8 +113,6 @@
                 console.log(response.headers)
               })
               .catch(error => {
-                // error is an instance of SendGridError
-                // The full response is attached to error.response
                 console.log(error.response.statusCode)
               })
           })
