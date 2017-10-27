@@ -9,7 +9,7 @@ const listingsSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  offerId:{
+  offerId: {
     type: Schema.Types.ObjectId,
     ref: 'Offers'
   },

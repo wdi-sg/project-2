@@ -1,12 +1,14 @@
 <h3>Login</h3>
-
 <form action="/login" method="post">
-
-  <label for="username">Username</label>
-  <input type="username" name="user[username]" placeholder="e.g. User1992">
-
-  <label for="password">Password</label>
-  <input type="password" name="user[password]" placeholder="Enter your password">
-
-  <button type="submit" name="button">Submit</button>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Username</label>
+      <input type="username" class="form-control" name="user[username]" placeholder="e.g. Josh Jackson" required>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Password</label>
+      <input type="password" class="form-control" name="user[password]" placeholder="min. 8 characters" required>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" name="button">Log in</button>
 </form>

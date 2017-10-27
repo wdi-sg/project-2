@@ -1,4 +1,3 @@
-<h1>here!!</h1>
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <a class="nav-link" href="/profile/{{user.username}}">My Listings</a>
@@ -7,7 +6,6 @@
     <a class="nav-link active" href="/profile/{{user.username}}/offers">My trade requests</a>
   </li>
 </ul>
-
 {{#each offers as |offa|}}
 <div class="card" style="width: 20rem;">
   <img class="card-img-top" src="{{offa.photos}}" alt="Card image cap">
@@ -15,11 +13,13 @@
     <h4 class="card-title">{{offa.title}}</h4>
     <p class="card-text">{{offa.description}}</p>
     {{#if offa.dealt}}
-
-    <p>deal is closed</p>
+    <div class="alert alert-danger" role="alert">
+      Deal is closed!
+    </div>
     {{else}}
-    <p>deal still open</p>
-
+    <div class="alert alert-success" role="alert">
+      Deal is still on!
+    </div>
     {{/if}}
   </div>
   {{/each}}

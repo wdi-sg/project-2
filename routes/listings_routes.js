@@ -1,9 +1,8 @@
 const Listings = require('../models/listings')
 const Offers = require('../models/offer')
+const User = require('../models/user')
+const Comments = require('../models/comment')
 const express = require('express')
-const multer = require('multer')
-const cloudinary = require('cloudinary')
-const upload = multer({ dest: './uploads/' })
 const router = express.Router()
 
 router.get('/', (req, res) => {
@@ -42,9 +41,14 @@ router.get('/requests/:id', (req, res) => {
   })
   .then(listing => {
     Offers.find({ offerId: req.params.id })
+    .populate('author')
     .then(offers => {
-      res.render('listings/requests', {
-        listing, offers
+      Comments.find( {to: req.params.id })
+      .populate('by')
+      .then(comment => {
+        res.render('listings/requests', {
+          listing, offers, comment
+        })
       })
     })
   })
@@ -95,18 +99,31 @@ router.post('/requests/:id', (req, res) => {
 
 router.put('/requests/:id/update', (req, res) => {
   Listings.findByIdAndUpdate(req.params.id, {
-    dealt:true
+    dealt: true
   })
-  .then((listings)=>{
-      Offers.findByIdAndUpdate(listings.offerId,{
-        dealt : true
-      })
-      .then(()=>{
-        console.log('happy');
+  .then((listings) => {
+    Offers.findByIdAndUpdate(listings.offerId, {
+      dealt: true
+    })
+      .then(() => {
         res.redirect(`/listings/requests/${req.params.id}`)
       })
   })
 })
 
+router.post('/requests/:id/comment', (req, res) => {
+  User.findById(req.user.id)
+    .then(users => {
+      var newComment = new Comments({
+        comment: req.body.comment,
+        by: req.user.id,
+        to: req.params.id
+      })
+      newComment.save()
+        .then(comments => {
+          res.redirect(`/listings/requests/${req.params.id}`)
+        })
+    })
+})
 
 module.exports = router
