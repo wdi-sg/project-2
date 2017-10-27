@@ -1,3 +1,4 @@
+<br><br><br>
 <h3>List of Supplier</h3>
   <table class="table">
     <thead>
@@ -12,6 +13,8 @@
         <th scope="col"></th>
       </tr>
     </thead>
+
+
     {{#each suppliers as |supp|}}
 
     <tbody>
@@ -29,10 +32,11 @@
             <input type="hidden" name="id" value="{{supp.id}}">
             <button type="submit" name="button" href="/vegetable/new">Add Vegetable</button>
           </form>
-          
-          <form class="" action="/vegetable/update" method="post">
-          <button type="submit" name="button" href="/vegetable/update">Edit Vegetable</button>
-          </form>
+
+          {{!-- <form class="" action="/vegetable/table" method="post"> --}}
+            {{!-- <input type="hidden" name="id" value="{{supp.id}}"> --}}
+            <a href="/vegetable/table/{{supp.id}}"><button type="button">View Vegetable</button></a>
+          {{!-- </form> --}}
         </td>
         {{!-- how to pass the id over? /{{ supp.id }} --}}
       </tr>

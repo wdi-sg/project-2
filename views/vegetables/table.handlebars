@@ -1,0 +1,39 @@
+<br><br><br>
+<h3>List of Vegetables</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Vegetable Name</th>
+        <th scope="col">Price per KG $</th>
+        <th scope="col">Minimum Quantity in KG </th>
+        <th scope="col">Photo</th>
+        {{!-- <th scope="col"></th> --}}
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    {{#each vegetables as |veg|}}
+
+    <tbody>
+      <form class="" action="/vegetable/update/{{veg.owner}}?_method=PUT" method="post">
+      <tr>
+        <td><input type="text" name="name" value="{{ veg.name }}"></td>
+        <td><input type="text" name="price" value="{{ veg.price }}"></td>
+        <td><input type="text" name="quantity" value="{{ veg.quantity }}"></td>
+        <td><input type="file" style="display:none" name="myFile" class="form-control-file"><img class="vegePhoto" src="{{ veg.photo }}"></td>
+        {{!-- <td><a href="/supplier/{{ supp.id }}" class="btn">Edit</a></td> --}}
+        <td>
+          {{!-- <a href="/vegetable/new" class="btn">Add Vegetable</a> --}}
+            <input type="hidden" name="id" value="{{veg._id}}">
+            <input type="hidden" name="suppID" value="{{ ../suppID }}">
+            {{!--need to do a post here to submit--}}
+            <button type="submit" name="button" href="">Submit Edit</button>
+
+        </td>
+        {{!-- how to pass the id over? /{{ supp.id }} --}}
+      </tr>
+    </form>
+    </tbody>
+
+{{/each}}
+</table>
+{{!-- <a class="btn btn-primary" href="/components/new" role="button">Add</a> --}}

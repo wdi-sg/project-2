@@ -1,15 +1,15 @@
-<h3>Update</h3>
+<br><br><br>
 
-<select class="" name="">
-  {{#each supplier.vegetables as |vegetable| }}
+{{!-- <select class="" name="">
+  {{#each vegetables as |vegetable| }}
   <option value="{{vegetable.txtName}}">{{vegetable.txtName}}</option>
   {{/each }}
-</select>
+</select> --}}
 
+<h3>Update Vegetable</h3>
+<form action="/vegetable/update/{{ supplier.id }}?_method=PUT" method="post">
 
-<form action="/vegetable/{{ supplier.id }}?_method=PUT" method="post">
-
-  <input type="hidden" name="id" value="{{supp.id}}">
+  <input type="hidden" name="id" value="{{veg.id}}">
 
   <label for="name">Vegetable Name:</label>
   <input type="text" name="veg[txtName]" value="{{ vegetable.txtName }}">
@@ -22,11 +22,11 @@
   <br/>
 
   <label for="lblEmail">Minimum Quantity in KG :</label>
-  <input type="number" name="supplier[txtQuantity]" value="{{ vegetable.txtQuantity }}">
+  <input type="number" name="veg[txtQuantity]" value="{{ vegetable.txtQuantity }}">
   <br/>
 
   <label for="lblBusinessType">Select your photo :</label>
-  <input type="text" name="supplier[photo]" value="{{ vegetable.photo }}">
+  <input type="text" name="veg[photo]" value="{{ vegetable.photo }}">
   <br/>
 
   <button type="submit" name="button">Submit</button>
