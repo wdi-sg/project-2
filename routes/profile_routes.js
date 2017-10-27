@@ -20,7 +20,10 @@ router.get('/:slug', (req, res) => {
 })
 
 router.get('/:slug/settings', (req, res) => {
-  Skill.find()
+  if (req.user.name !== req.params.slug) {
+    res.redirect('/')
+  } else {
+    Skill.find()
   .then(skills => {
     User.findOne({slug: req.params.slug})
   .then(people => {
@@ -31,6 +34,7 @@ router.get('/:slug/settings', (req, res) => {
     res.render('users/profile', context)
   })
   })
+  }
 })
 
 router.put('/:slug/settings', (req, res) => {
