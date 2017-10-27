@@ -3,14 +3,13 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 7000
 const dbUrl = process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/project-2'
-// const sgMail = require('@sendgrid/mail')
 
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const path = require('path')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
-// const flash = require('connect-flash')
+const flash = require('connect-flash')
 
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
@@ -43,17 +42,17 @@ mongoose.connect(dbUrl, { useMongoClient: true })
 .then(() => { console.log('db is connected') },
 err => console.log(err))
 
-app.use(session({  // activating the sessions
-  secret: process.env.SESSION_SECRET, // to hash ur session data
+app.use(session({
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
   store: new MongoStore({ mongooseConnection: mongoose.connection })
-  // store this to our db too
 }))
 
-app.use(passport.initialize()) // activating
-app.use(passport.session()) // use the session
+app.use(passport.initialize())
+app.use(passport.session())
 
+app.use(flash())
 app.use((req, res, next) => {
   app.locals.user = req.user
   next()

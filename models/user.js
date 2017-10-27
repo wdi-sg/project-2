@@ -2,14 +2,12 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
 
-const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
 const userSchema = new Schema({
   email: {
     type: String,
     required: true,
     unique: true,
-    lowercase: true,
-    match: emailRegex
+    lowercase: true
   },
   password: {
     type: String,
