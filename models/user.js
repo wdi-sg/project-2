@@ -9,6 +9,7 @@ const userSchema = new Schema({
   email: String,
   password: String,
   slug: String,
+  admin: Boolean,
   cart:
   [{
     tourDate: Date,
