@@ -85,4 +85,17 @@ router.put('/:slug/edit', (req, res) => {
   })
 })
 
+router.delete('/:slug/edit', (req, res) => {
+  var gigId = req.body.gigID
+  console.log(gigId)
+
+  Gig.findByIdAndRemove(gigId)
+  .then(() => {
+    console.log('success!!')
+    res.redirect('/')
+    // res.send({message: 'user deleted'})
+  })
+  .catch(err => console.log(err))
+})
+
 module.exports = router

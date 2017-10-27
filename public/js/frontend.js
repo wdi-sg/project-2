@@ -30,10 +30,12 @@ $(function () {
        console.log('manipulate the dom now')
        form.parents('.col-4').remove()
        /* below's redirection is not a good approach.
-       This needs to be backend. Temporary fix */
+       This needs to be backend but res.redirect don't work.
+      Temporary fix */
        window.location.href = '/'
      })
   })
+
 
   $searchInput.on('keyup', e => { // e is the event object of the keyup event
     var keyword = e.target.value

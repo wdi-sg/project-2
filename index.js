@@ -101,9 +101,9 @@ app.delete('/deleteUser', (req, res) => {
   User.findByIdAndRemove(userId)
   .then(() => {
     console.log('success!!')
-    //  res.redirect('/')
-    res.send({message: 'user deleted'})
+    res.redirect('/')
   })
+  .catch(err => console.log(err))
 })
 
 app.get('/about', (req, res) => {

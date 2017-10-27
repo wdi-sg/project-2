@@ -29,3 +29,11 @@
 
   <button type="submit" name="button">Submit</button>
 </form>
+
+<form class="form-inline deleteGigForm" action="/gigs/{{gig.slug}}/edit?_method=DELETE" method="post">
+  &nbsp;
+  <button class="btn btn-danger" type="submit" name="button">Delete Gig</button><br>
+<input  name="gigID" value="{{gig._id}}">
+</form>
+
+//type="hidden"
