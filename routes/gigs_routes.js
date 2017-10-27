@@ -27,8 +27,9 @@ router.post('/new-gig', (req, res) => {
 router.get('/:slug', (req, res) => {
   Gig.findOne({
     slug: req.params.slug
-  })
+  }).populate('author')
   .then((gig) => {
+    // res.send(req.user.name)
     res.render('../views/gigs/gig-card', {
       gig
     })

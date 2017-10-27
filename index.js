@@ -140,6 +140,19 @@ app.get('/logout', hasLoggedOut, (req, res) => {
   res.redirect('/')
 })
 
+// ===== handlebars ===== //
+var hbs = require('handlebars')
+hbs.registerHelper('equal', function (lvalue, rvalue, options) {
+  if (arguments.length < 3) {
+    throw new Error('Handlebars Helper equal needs 2 parameters')
+  }
+  if (lvalue != rvalue) {
+    return options.inverse(this)
+  } else {
+    return options.fn(this)
+  }
+})
+
 // ======= Use Routes ======= //
 app.use('/signup', isLoggedIn, signupRoutes)
 app.use('/gigs', gigsRoutes)
