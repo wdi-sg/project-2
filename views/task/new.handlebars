@@ -1,20 +1,22 @@
 <h1 class="lead text-primary p"></h1>
-<h1></h1>
+
 <form action="/task" method="post">
   <div class="form-group text-muted">
     <label for="name">Task</label>
     <textarea name="details" class="form-control" rows="5" cols="30"></textarea>
   </div>
+
   <div class="form-group text-muted">
-    <label for="name">In Charge: </label>
-    <select name="assign">
+    <label for="name">Do you want to do it?</label>
+    <input type="checkbox" name="assign" value= {{user.id}}> Yes
+    {{!-- <select name="assign">
       {{#each fridges.members as |member|}}
       <option name="member" value = {{member.name}} >{{member.name}}</option>
       {{/each}}
-    </select>
+    </select> --}}
   </div>
-  <div class=".hidden-xs-up">
-    <input type="text" name="fridge" value= {{ fridges.id}}>
+  <div>
+    <input type="hidden" name="fridge" value= {{fridges.id}}>
   </div>
   <div>
     <button type="submit" name="complete">Submit</button>

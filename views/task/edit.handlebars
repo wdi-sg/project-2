@@ -2,18 +2,18 @@
 {{!-- when there's a path, there's a route in your index.js --}}
 {{!-- why PUT, because all update technically MUST go thru PUT request --}}
 <h3>Edit your Task</h3>
-<form action="/task/{{:taskid}}/edit?_method=PUT" method="post">
+<h1>{{tasks.assign}}</h1>
+<form action="/task/{{tasks.id}}/edit?_method=PUT" method="post">
   <label for="details">Details</label>
   <textarea name="details" class="form-control" rows="5" cols="30">
     {{tasks.details}}
   </textarea>
-  <div class="form-group text-muted">
-    <label for="name">In Charge: </label>
-    <select name="assign">
-      {{#each tasks.assign as |member|}}
-      <option name="member" value = {{member.name}} >{{member.name}}</option>
-      {{/each}}
-    </select>
-  </div>
-  <button type="submit" name="button">Submit</button>
+
+  {{!-- todo: make this a required field --}}
+  {{!-- <div class="form-group text-muted">
+    <label for="name">Do you want to take charge? </label>
+    <input type="radio" name="assign" value= {{user.id}}> Yes
+    <input type="radio" name="assign" value= {{tasks.assign}}> No
+  </div> --}}
+  <button type="submit">Submit</button>
 </form>

@@ -12,8 +12,7 @@ const taskSchema = new Schema({
     ref: 'User'
   },
   complete:{
-    type: Boolean,
-    default: "false"
+    type: Boolean
   }
 })
 

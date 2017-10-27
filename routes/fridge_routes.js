@@ -65,9 +65,13 @@ router.post('/enter', (req,res)=>{
 
 router.get('/:id', (req, res)=>{
   Fridge.findById(req.params.id)
-  .populate('task')
+  .populate({
+    path: 'task',
+    populate: {
+      path: 'assign'
+    }
+  })
   .then(fridge => {
-    console.log(fridge)
     res.render('fridge/fridge', {fridge})
   })
 })
