@@ -4,18 +4,24 @@ $(document).ready(function () {
   $('#textarea1').val('New Text')
   $('#textarea1').trigger('autoresize')
   $('select').material_select()
-  $(".button-collapse").sideNav();
-  $('.carousel').carousel({indicators: true});
-  $("#my_audio").get(0).play();
-  $('.slider').slider();
+  $('.button-collapse').sideNav()
+  $('.carousel').carousel({indicators: true})
+  $('#my_audio').get(0).play()
+  $('.slider').slider()
 
-  // initMap()
+  initMap()
+})
+
+function initMap () {
   var locations = [
-        ['Bondi Beach', -33.890542, 151.274856, 4],
-        ['Coogee Beach', -33.923036, 151.259052, 5],
-        ['Cronulla Beach', -34.028249, 151.157507, 3],
-        ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-        ['Maroubra Beach', -33.950198, 151.259302, 1]
+    ['Malta Adventure', 35.937496, 14.375416, 8],
+    ['Belfast Adventure', 55.2311523, -6.5181327, 7],
+    ['Hobbiton Caves Adventure', -37.872194, 175.68321, 6],
+    ['4WD Wakatipu Adventure', -45.0907964, 168.5474718, 5],
+    ['Oxfordshire Adventure', 51.7612056, -1.2464674, 4],
+    ['Village Adventure', 51.794968, -1.8838937, 3],
+    ['London Studio Adventure', 51.6929437, -0.4204523, 2],
+    ['Oxford Adventure', 51.7472602, -1.2455286, 1]
   ]
 
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -40,4 +46,4 @@ $(document).ready(function () {
       }
     })(marker, i))
   }
-})
+}
