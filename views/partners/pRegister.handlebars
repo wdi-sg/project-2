@@ -1,0 +1,23 @@
+<h2> Want to be part of the latest Buzz? </h2>
+<p> Please create an account below, or login <a href="/partners/login">here</a> </p>
+<form action="/partners/register" method="post">
+
+  <input type="hidden" name="user[type]" value="partner">
+
+  <label for="name">Organization name</label>
+  <input type="text" name="partner[name]" placeholder="How we address you">
+
+  <label for="email">Email</label>
+  {{!-- NOTICE on the attribute type below  --}}
+  <input type="email" name="partner[email]" placeholder="email@domain.com">
+
+  <label for="password">Password</label>
+  {{!-- NOTICE on the attribute type below  --}}
+  <input type="password" name="partner[password]" placeholder="min. 8 characters">
+
+  <label for="mobile">Mobile (+65)</label>
+  {{!-- NOTICE on the attribute type below  --}}
+  <input type="tel" name="partner[mobile]" placeholder="Let's get in touch">
+
+  <button type="submit" name="button">Register</button>
+</form>

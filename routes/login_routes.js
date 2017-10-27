@@ -29,7 +29,7 @@ router.post('/register', (req, res) => {
   )
 })
 
-router.post('/login', passport.authenticate('local', {
+router.post('/login', passport.authenticate('user-local', {
   successRedirect: '/',
   failureRedirect: '/users/login'
 }))
