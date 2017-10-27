@@ -26,8 +26,7 @@ require('dotenv').config({
 
 const tptApiKey = process.env.APIKEY
 const geoMapKey = process.env.GEO
-console.log(`my api key is ${tptApiKey}`)
-console.log(`my api key is ${geoMapKey}`)
+
 
 const home_routes = require('./routes/home_routes')
 const register_routes = require('./routes/register_routes')

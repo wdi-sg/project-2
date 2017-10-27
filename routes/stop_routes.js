@@ -29,12 +29,15 @@ router.get('/:code', (req, res) => {
         //convert string to usable format
         var sub = str.substring(str.indexOf('T') + 1, str.indexOf('+'))
         var sub2 = str2.substring(str2.indexOf('T') + 1, str2.indexOf('+'))
-        // console.log(sub)
+        console.log(sub)
+        console.log(sub2)
         //using moment package, get relative time that shows in arrival time in natural language
         var diff = moment(sub, "h:mm:ss").fromNow()
         var diff2 = moment(sub2, "h:mm:ss").fromNow()
-        // console.log(diff);
+        console.log(diff);
+        console.log(diff2);
         var num = arr[i].ServiceNo
+        console.log(num);
         buses.push({
           num, diff,diff2
         })
