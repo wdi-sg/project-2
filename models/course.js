@@ -18,9 +18,6 @@ const courseSchema = new Schema({
   slug: String
 })
 
-
 const Course = mongoose.model('Course', courseSchema)
-
-
 
 module.exports = Course

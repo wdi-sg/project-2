@@ -1,16 +1,16 @@
 <div class="container">
-<h1>Pending Courses</h1>
+  <h1>Pending Courses</h1>
   <ul class="collection">
     {{#each output as |out|}}
-    <li class="collection-item avatar">
-      <img src="" alt="" class="circle">
-      <span class="title">{{out.name}}</span>
-      <p>{{out.description}} <br>
-         {{out.currentStudents}} <br>
-      </p>
-      <a href="/course/{{out.slug}}" class="secondary-content"><i class="material-icons">grade</i></a>
-    </li>
-  {{/each}}
+      <li class="collection-item avatar">
+        <img src="" alt="" class="circle">
+          <span class="title">{{out.name}}</span>
+          <p>{{out.description}} <br>
+            {{out.currentStudents}} <br>
+          </p>
+        <a href="/course/{{out.slug}}" class="secondary-content"><i class="material-icons">grade</i></a>
+      </li>
+    {{/each}}
   </ul>
 </br>
   {{#if admin}}
@@ -42,9 +42,9 @@
          <label for="icon_prefix2">Duration</label>
        </div>
      </div>
-       <input type="text" name="course[date]" class="datepicker">
-       <input type="text" name="course[time]" class="timepicker">
-       <input type="number" name="course[currentStudents]" class="currentStudents">
+       <input type="text" name="course[date]" class="datepicker" placeholder="Date">
+       <input type="text" name="course[time]" class="timepicker" placeholder="Time">
+       <input type="number" name="course[currentStudents]" class="currentStudents" placeholder="number of students">
      <div class="row">
        <div class="input-field col s4">
          <i class="material-icons prefix">mode_edit</i>

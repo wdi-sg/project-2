@@ -8,8 +8,6 @@ router.get('/', (req, res) => {
   res.render('users/register')
 })
 
-
-
 router.post('/', (req, res) => {
   var userData = req.body.user
   console.log(req.body)
@@ -29,7 +27,7 @@ router.post('/', (req, res) => {
       console.log('save')
       passport.authenticate('local', {
         successRedirect: '/'
-      })(req, res);
+      })(req, res)
     },
     err => res.redirect('/register')
   )

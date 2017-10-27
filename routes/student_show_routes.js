@@ -1,10 +1,16 @@
 const Student = require('../models/student')
-const Course= require('../models/course')
+const Course = require('../models/course')
 const express = require('express')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  res.render('students/show')
+  Student.findOne({_id: req.user.id})
+  .then(student => {
+    console.log(student)
+    res.render('students/show', {
+      student
+    })
+  })
 })
 
 router.put('/:id', (req, res) => {
@@ -14,12 +20,11 @@ router.put('/:id', (req, res) => {
     email: formData.email,
     description: formData.description,
     currentCourse: formData.course,
-    completedCourse: formData.completedCourse,
+    completedCourse: formData.completedCourse
 
   })
   .then(() => res.redirect(`/studentshow`))
   .catch(err => console.log(err))
 })
-
 
 module.exports = router

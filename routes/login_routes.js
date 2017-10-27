@@ -4,7 +4,6 @@ const router = express.Router()
 const passport = require('../config/ppConfig')
 const userCode = process.env.USER_CODE
 
-
 router.get('/', (req, res) => {
   res.render('users/login')
 })
@@ -16,16 +15,16 @@ router.post('/', (req, res) => {
   })
   .then(
     user => {
-      if(!user) {
+      if (!user) {
         return res.redirect('/login')
       }
-    user.validPassword(userData.password, (err, valid) => {
-      if (!valid) {
-        return res.redirect('/login')
-      }
-      res.redirect('/')
-    })
-  },
+      user.validPassword(userData.password, (err, valid) => {
+        if (!valid) {
+          return res.redirect('/login')
+        }
+        res.redirect('/')
+      })
+    },
   err => res.send('error is found')
   )
 })
@@ -34,6 +33,5 @@ router.post('/', (req, res) => {
 //   successRedirect: '/',
 //   failureRedirect: 'login'
 // }))
-
 
 module.exports = router

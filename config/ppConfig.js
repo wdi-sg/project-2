@@ -3,13 +3,11 @@ const LocalStrategy = require('passport-local').Strategy
 const User = require('../models/user')
 const Student = require('../models/student')
 
-
 passport.serializeUser((user, next) => {
   next(null, user.id) // this user with specific id. has logged in before
 })
 
 passport.deserializeUser((id, next) => {
-
   User.findById(id, function (err, admin) {
     // console.log('deserializeUser user :', admin)
     if (admin) next(err, admin)
@@ -18,7 +16,6 @@ passport.deserializeUser((id, next) => {
     // console.log('deserializeUser user :', student)
     if (student) next(err, student)
   })
-
 })
 
 passport.use(new LocalStrategy({
@@ -26,16 +23,15 @@ passport.use(new LocalStrategy({
   passwordField: 'user[password]',
   passReqToCallback: true
 }, (req, email, password, next) => {
-
   const Collection = req.body.user.type === 'admin' ? User : Student
 
   Collection.findOne({email: email})
   .then(user => {
-  if (!user) return next(null, false)
-  user.validPassword(password, (err, isMatch) => {
-    if (err) return next(err)
-    if (isMatch) return next (null, user)
-    return next(null, false, { message: 'mismatched'})
+    if (!user) return next(null, false)
+    user.validPassword(password, (err, isMatch) => {
+      if (err) return next(err)
+      if (isMatch) return next(null, user)
+      return next(null, false, { message: 'mismatched'})
     })
   })
   .catch(err => next(err))

@@ -1,5 +1,5 @@
 const isLoggedIn = (req, res, next) => {
-  if(req.user) {
+  if (req.user) {
     res.redirect('/')
   } else {
     next()
@@ -8,7 +8,7 @@ const isLoggedIn = (req, res, next) => {
 
 // the opposite of the function above
 const hasLoggedOut = (req, res, next) => {
-  if(req.user) {
+  if (req.user) {
     next()
   } else {
     res.redirect('/')
@@ -16,7 +16,7 @@ const hasLoggedOut = (req, res, next) => {
 }
 
 const Logged = (req, res, next) => {
-  if(req.student) {
+  if (req.student) {
     res.redirect('/')
   } else {
     next()
@@ -24,7 +24,7 @@ const Logged = (req, res, next) => {
 }
 
 const LoggedOut = (req, res, next) => {
-  if(req.student) {
+  if (req.student) {
     next()
   } else {
     res.redirect('/')

@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   var formData = req.body.user
-  console.log('here1 :' , formData)
+  console.log('here1 :', formData)
   var newStudent = new Student({
     name: formData.name,
     email: formData.email,
@@ -17,15 +17,13 @@ router.post('/', (req, res) => {
     type: 'student'
   })
 
-
-
   newStudent.save()
   .then(
     student => {
       console.log('saved :', student)
       passport.authenticate('local', {
         successRedirect: '/'
-      })(req, res);
+      })(req, res)
     },
     err => res.send(err)
   )

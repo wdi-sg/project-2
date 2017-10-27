@@ -12,5 +12,4 @@ router.post('/', passport.authenticate('local', {
   failureRedirect: '/studentlogin'
 }))
 
-
 module.exports = router

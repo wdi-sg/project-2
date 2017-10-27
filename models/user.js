@@ -10,25 +10,25 @@ const userSchema = new Schema({
   slug: String,
   description: String,
   currentCourse: {
-      type: Schema.Types.ObjectId,
-      ref: 'Course'
+    type: Schema.Types.ObjectId,
+    ref: 'Course'
   },
   instructorRating: String,
   type: String
 })
 
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function (next) {
   var user = this
   user.slug = user.name.toLowerCase().split(' ').join('-')
 
   bcrypt.hash(user.password, 10)
   .then(hash => {
-  user.password = hash
-  next()
+    user.password = hash
+    next()
   })
 })
 
-userSchema.methods.validPassword = function(plainPassword, callback) {
+userSchema.methods.validPassword = function (plainPassword, callback) {
   bcrypt.compare(plainPassword, this.password, callback)
 }
 const User = mongoose.model('User', userSchema)

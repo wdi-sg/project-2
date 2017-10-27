@@ -18,6 +18,7 @@ const { LoggedOut, Logged } = require('./helpers')
 const User = require('./models/user')
 const Course = require('./models/course')
 const Student = require('./models/student')
+const Review = require('./models/review')
 
 const login_routes = require('./routes/login_routes')
 const register_routes = require('./routes/register_routes')
@@ -29,7 +30,6 @@ const student_register_routes = require('./routes/student_register_routes')
 const student_login_routes = require('./routes/student_login_routes')
 const student_show_routes = require('./routes/student_show_routes')
 const course_update_routes = require('./routes/course_update_routes')
-
 
 const app = express()
 
@@ -74,14 +74,13 @@ app.use((req, res, next) => {
   app.locals.course = req.course
   app.locals.student = req.student
   if (req.user) {
-    app.locals.admin = req.user.type === 'admin' ? req.user : null;
+    app.locals.admin = req.user.type === 'admin' ? req.user : null
   }
   next()
 })
 
-
 app.get('/', (req, res) => {
-    res.render('courses/home')
+  res.render('courses/home')
 })
 
 app.get('/profile', hasLoggedOut, (req, res) => {
