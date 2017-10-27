@@ -36,7 +36,6 @@ $(function () {
      })
   })
 
-
   $searchInput.on('keyup', e => { // e is the event object of the keyup event
     $('#allPeople').remove()
     var keyword = e.target.value
@@ -147,4 +146,14 @@ $(function () {
     $('#skills').attr('value', newValue)
   })
 
+  $('#selectGigSkills').on('change', (e) => {
+    // get previous value first
+    var prev = $('#gigSkills').val()
+    console.log(prev)
+    // get new added value
+    var str = $('#selectGigSkills :selected').text()
+    // userSkills.push($('#selectSkills :selected').text())
+    var newValue = prev ? `${prev}, ${str}` : `${str}`
+    $('#gigSkills').attr('value', newValue)
+  })
 })

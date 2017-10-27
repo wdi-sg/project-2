@@ -16,8 +16,15 @@
   value="{{gig.specs}}">
 
   <label for="skills">Skills</label>
-  <input type="text" name="skills" placeholder="Skills needed for this gig"
+  <input type="text" name="skills" id="gigSkills" placeholder="Skills needed for this gig"
   value="{{gig.skills}}">
+
+  <select id="selectGigSkills" name="test">
+    <option selected disabled hidden style='display: none' value=''></option>
+    {{#each skills}}
+    <option value="{{this.name}}">{{this.name}}</option>
+    {{/each}}
+  </select>
 
   <label for="description">description</label>
   <input type="text" name="description" placeholder="Description of work"
