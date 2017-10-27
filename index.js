@@ -113,7 +113,7 @@ app.delete('/deleteroute', (req, res) => {
 })
 
 // NEW ROUTE - SEARCH - for realtime search of our restaurant db
-app.get('/search', (req, res) => {
+app.get('/destination', (req, res) => {
   Travelplan.find()
   .then(travelplans => {
     Travelplan.distinct('category')

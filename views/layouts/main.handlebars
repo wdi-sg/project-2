@@ -17,14 +17,14 @@
   <body>
     <div class="container">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-dark fixed-top" color-on-scroll="400">
+    <nav class="navbar navbar-expand-lg bg-dark fixed-top" color-on-scroll="100">
         <div class="container">
             <div class="navbar-translate">
                 <a class="navbar-brand" href="/" title="Itinerary | The only solution of itinerary planning" style="font-size: 1.8571em;">
                   Itinerary
                 </a>
                 <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar1"><i class="ion-navicon-round"></i></span>
                     <span class="navbar-toggler-bar bar2"></span>
                     <span class="navbar-toggler-bar bar3"></span>
                 </button>
@@ -54,6 +54,13 @@
                       <p>Logout</p>
                     </a>
                   </li>
+                  &nbsp| &nbsp
+                  <li class="nav-item">
+                    <a class="nav-link btn btn-neutral" href="/destination">
+                      <i class="ion-map"></i>
+                      <p>Destination</p>
+                    </a>
+                  </li>
 
                   {{else}}
                     <li class="nav-item">
@@ -66,6 +73,12 @@
                       <a class="nav-link btn btn-neutral" href="/login">
                         <i class="ion-person"></i>
                         <p>Login</p>
+                      </a>
+                    </li> &nbsp| &nbsp
+                    <li class="nav-item">
+                      <a class="nav-link btn btn-neutral" href="/destination">
+                        <i class="ion-map"></i>
+                        <p>Destination</p>
                       </a>
                     </li>
                   {{/if}}
