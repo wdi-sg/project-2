@@ -9,10 +9,10 @@ const listingsSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  offerId: [{
+  offerId:{
     type: Schema.Types.ObjectId,
-    ref: 'Offer'
-  }],
+    ref: 'Offers'
+  },
   dealt: Boolean
 })
 

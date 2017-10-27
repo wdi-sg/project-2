@@ -12,7 +12,8 @@ const offerSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }
+  },
+  dealt: Boolean
 })
 
 const Offers = mongoose.model('Offers', offerSchema)
