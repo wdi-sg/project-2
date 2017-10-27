@@ -9,6 +9,7 @@ const port = process.env.PORT || 3000
 
 const express = require("express")
 const mongoose = require("mongoose")
+const path = require("path")
 const exphbs = require("express-handlebars")
 const bodyParser = require("body-parser")
 // access POST request
@@ -32,6 +33,8 @@ const app = express()
 app.engine("handlebars", exphbs({ defaultLayout: "main"}))
 app.set("view engine", "handlebars")
 
+// paths
+app.use(express.static(path.join(__dirname, "public")))
 // setup bodyParser
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
