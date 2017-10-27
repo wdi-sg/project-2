@@ -1,4 +1,4 @@
-var place_url = ""
+
 
 // GOOGLE MAP
 function initMap () {
@@ -59,7 +59,7 @@ $(function () {
   const $searchInput = $('#searchInput')
   const $searchResults = $('#searchResults')
 
-  $searchInput.on('mouseleave', e => { // e is the event object of the keyup event
+  $searchInput.on('change', e => { // e is the event object of the keyup event
     var keyword = e.target.value
     var json = JSON.stringify({
       keyword
@@ -82,8 +82,8 @@ $(function () {
       const $newCol = $('<div class="col-4">')
       const $newCard = $('<div class="card">')
       const $newCardBody = $('<div class="card-body">')
-      const $newCardImg = $('<img class="card-img-top" src=" " alt=" ">')
-      const $newCardTitle = $('<h4 class="card-title">')
+      const $newCardImg = $('<img class-img-top>')
+      const $newCardTitle = $('<h6 class="card-title">')
       const $newCardText = $('<p class="card-text">')
       const $newCardLinks = $(`<form
         class="form-inline"
@@ -91,10 +91,14 @@ $(function () {
         method="post"
       >`)
 
+      $newCardImg.attr('src', routes.picture)
+
       $newCardTitle.text(routes.title)
       $newCardText.html(
         `
-          ${routes.address} ${routes.category}<br>
+          ${routes.address} <br>
+          ${routes.category}<br>
+          <a href="https://www.google.com/maps/@{{route.latitude}},{{route.longitude}},15z" target="_blank">View google map</a><br>
           ${routes.description }<br/>
           ${routes.dateCreated}
 
@@ -103,9 +107,7 @@ $(function () {
 
       $newCardBody.append($newCardTitle, $newCardText)
 
-      // TODO: add the form section too
-
-      $newCard.append($newCardBody)
+      $newCard.append($newCardImg, $newCardBody)
       $newCol.append($newCard)
       return $newCol
 

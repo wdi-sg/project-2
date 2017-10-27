@@ -105,7 +105,11 @@ app.get('/routes', (req, res) => {
 
 // NEW ROUTE - SEARCH - for realtime search of our restaurant db
 app.get('/search', (req, res) => {
-  res.render('users/search')
+  Travelplan.find()
+  .then(travelplans => {
+    res.render('users/search', {travelplans})
+  })
+
 })
 
 app.post('/search', (req, res) => {
