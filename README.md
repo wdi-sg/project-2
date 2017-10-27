@@ -1,4 +1,6 @@
-# Crane (working title)
+# Craft Hub (working title)
+
+link: https://tsurucrafthub.herokuapp.com/home
 
 Ever stumbled upon a pattern/ template of a craft project that you really want to attempt but unsure how long it will take or need inspiration for the choice of different material.
 
@@ -82,10 +84,14 @@ version 0.4.5 Day 3 (25 Oct):
 version 0.5.0 Day 4 (26 Oct):
 * added: update user, delete user.
 
-version 0.7.0 Day 5 (27 Oct) :
+version 0.7.5 Day 5 (27 Oct) :
 * added: upload image function
 * change the Schema structure of user and pattern model
 * able to remove user & its pattern & projects
+* fix: prevent multiple adding of bookmark for same project for the user
+* add: remove bookmark on profile page and as an option when updating a variation for the pattern. 
+
+
 
 
 

@@ -33,7 +33,7 @@ router.post('/new', upload.single('image'), (req, res) => {
     .then(pattern => {
       console.log('success')
       res.redirect(`/pattern/${pattern.id}`)
-    }, err => res.send(err))
+    }, err => res.direct('/pattern/new'))
   })
 
 })
@@ -43,6 +43,7 @@ router.get('/:id', (req, res) => {
   Pattern.findById(patternId)
   .populate('creator')
   .then(pattern => {
+    let dateTime = pattern.created.toString().replace(/[GMT+].*/g,'')
     let userBookmark = req.user.bookmark
     let notBookmark = true
     let userBookmarkId =""
@@ -57,7 +58,7 @@ router.get('/:id', (req, res) => {
     Project.find({pattern : patternId})
     .then(variations => {
       res.render('pattern/details', {
-        pattern, userMatch, variations, notBookmark
+        pattern, userMatch, variations, notBookmark, dateTime
       })
     })
   })
@@ -82,19 +83,25 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id/edit', upload.single('image'), (req, res) => {
   const newPatternData = req.body.pattern
   const patternId = req.params.id
+  // console.log(req.body)
   cloudinary.uploader.upload(req.file.path, function(result) {
+    Pattern.findById(patternId)
+    .then(currentPattern => {
+      //console.log(result)
+      let toUpdate = {
+        title : newPatternData.title || currentPattern.title,
+        material : newPatternData.material || currentPattern.material,
+        steps:  newPatternData.steps || currentPattern.steps ,
+        imageUrl : result.secure_url
+      }
 
-    Pattern.findByIdAndUpdate(patternId, {
-      title : newPatternData.title,
-      material : newPatternData.material,
-      steps: newPatternData.steps,
-      imageUrl: result.secure_url,
-
+      Pattern.findByIdAndUpdate(patternId, toUpdate)
+      .then(() => res.redirect(`/pattern/${patternId}`))
+      .catch(err => res.send(err))
     })
-    .then(() => res.redirect(`/pattern/${patternId}`))
-    .catch(err => res.send(err))
   })
 })
+
 router.delete('/:id/edit', (req, res) => {
   const patternId = req.params.id
   Pattern.findById(req.params.id)
@@ -123,30 +130,39 @@ router.delete('/:id/edit', (req, res) => {
     })
     .catch(err => res.send(err))
   }
-
   else res.redirect(`/pattern/${patternId}`)
   })
 })
-
 router.get('/:id/variation/new', (req,res) => {
-  // const patternId = req.params.id
-  Pattern.findById(req.params.id)
-  .then(pattern => {
-    res.render('pattern/variation', {
-      pattern
+  const patternId = req.params.id
+  User.findById(req.user.id)
+  .then(user => {
+    let userBookmark = user.bookmark
+    let eachBookmark = ""
+    let hasBookmark = false
+    for (var i = 0; i < userBookmark.length; i++) {
+      eachBookmark = userBookmark[i].toString()
+      if (eachBookmark === patternId) {
+        hasBookmark = true
+      }
+    }
+    Pattern.findById(req.params.id)
+    .then(pattern => {
+      res.render('pattern/variation', {
+        pattern, hasBookmark
+      })
     })
   })
 })
+
 router.post('/:id/variation/new', upload.single('image'), (req, res) => {
   const userData = req.user
   const userId = userData.id
   const userProject = userData.project
-  // console.log(req.params)
+  const removeBookmark = req.body.removeBookmark
   const patternId = req.params.id
   const projectData = req.body.project
   let projectTitle = projectData.title
-
-
   Pattern
   .findById(patternId)
   .then(pattern => {
@@ -157,6 +173,7 @@ router.post('/:id/variation/new', upload.single('image'), (req, res) => {
         creator : userId,
         category : projectCategory,
         material : projectData.material,
+        reflection : projectData.reflection,
         pattern : patternId,
         imageUrl : result.secure_url
       })
@@ -164,23 +181,33 @@ router.post('/:id/variation/new', upload.single('image'), (req, res) => {
       newProject.save()
       .then(project => {
 
-        res.redirect(`/project/${project.id}`) // redirect to the details page of the projects
-        // User.findByIdAndUpdate(userId, {
-        //   project : userProject
-        // })
-        // .then(() => {
-        //   console.log('User successfully updated')
-        // })
-        // .catch(err => console.log('Update failed'))
+        if (removeBookmark === 'yes'){
+          User.findById(req.user.id )
+          .then((user) => {
+            let userBookmark = user.bookmark
+            let  userBookmarkId =''
+            let bookmarkIndex = 2
+            for (var i = 0; i < userBookmark.length; i++) {
+              userBookmarkId = userBookmark[i].toString()
+              if (userBookmarkId === patternId){
+                bookmarkIndex = i
+              }
+            }
+            userBookmark.splice(bookmarkIndex,1)
+            User.findByIdAndUpdate(req.user.id, {
+              bookmark : userBookmark
+            })
+            .then(() => res.redirect(`/project/${project.id}`))
+            .catch((err) => res.send(err))
+          })
+        }
+
+        else res.redirect(`/project/${project.id}`)
       }, err => res.send(err))
     })
   })
-.catch(err => console.log('findpattern by id error'))
+  .catch(err => console.log('findpattern by id error'))
 })
-// router.get('/:id/bookmark', (req, res) => {
-//   console.log('get ')
-//   //res.redirect('/pattern/:id')
-// })
 
 router.post('/:id/bookmark', (req, res) => {
   const userId = req.user.id
@@ -205,17 +232,33 @@ router.post('/:id/bookmark', (req, res) => {
         bookmark : userBookmark
       })
       .then(() => {
-
         res.redirect(`/pattern/${patternId}`)
       }, (err) => console.log(err))
-
     })
-
   } else {
     res.redirect(`/pattern/${patternId}`)
   }
-
-
+})
+router.put('/:id/bookmark', (req, res) => {
+  const patternId = req.params.id
+  User.findById(req.user.id )
+  .then((user) => {
+    let userBookmark = user.bookmark
+    let  userBookmarkId =''
+    let bookmarkIndex = 2
+    for (var i = 0; i < userBookmark.length; i++) {
+      userBookmarkId = userBookmark[i].toString()
+      if (userBookmarkId === patternId){
+        bookmarkIndex = i
+      }
+    }
+    userBookmark.splice(bookmarkIndex,1)
+    User.findByIdAndUpdate(req.user.id, {
+      bookmark : userBookmark
+    })
+    .then(() => res.redirect('/profile'))
+    .catch((err) => res.send(err))
+  })
 })
 
 module.exports = router

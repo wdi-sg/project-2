@@ -10,8 +10,10 @@
   <a href="/profile/{{project.creator.slug}}">
     <h5>By: {{ project.creator.name }}</h5>
   </a>
-  <h5>Date: {{ project.created }}</h5>
-  <h5>Category: {{ project.category }}</h5>
+  <h5>Date: {{ dateTime }}</h5>
+  <a href="/category/{{ pattern.category }}">
+    <h5>Category: {{ project.category }}</h5>
+  </a>
 </div>
 <div class="">
 
@@ -19,5 +21,8 @@
 </div>
 <div class="">
   <p>{{ project.material }}</p>
+</div>
+<div class="">
   <p> {{ project.reflection }}</p>
+
 </div>

@@ -9,7 +9,7 @@ const cloudinary = require('cloudinary')
 const multer = require('multer')
 const upload = multer({ dest: './uploads/' })
 
-
+// considering creating individual projects
 // router.get('/new', (req, res) => {
 //   res.render('project/new')
 // })
@@ -47,11 +47,12 @@ router.get('/:id', (req, res) => {
   .populate('creator')
   .populate('pattern')
   .then(project => {
+    let dateTime = project.created.toString().replace(/[GMT+].*/g,'')
 
     var userMatch = (project.creator.id === req.user.id)
 
     res.render('project/details', {
-      project, userMatch
+      project, userMatch, dateTime
     })
   })
   .catch(err => res.send(err))

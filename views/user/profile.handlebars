@@ -22,14 +22,10 @@
   <div class="">
     {{#each patterns as |pattern| }}
     <a href="/pattern/{{ pattern.id }}" class="">
-      <h5>
-        {{ pattern.title }}
-      </h5>
-      <img src="{{pattern.imageUrl}}" width=250 alt="Image">
-
+      <h5>{{ pattern.title }}</h5>
+      <img src="{{pattern.imageUrl}}" width=150 alt="Image">
     </a>
     {{/each}}
-
   </div>
 
 
@@ -42,8 +38,13 @@
     {{#each user.bookmark as |bookmark| }}
     <a href="/pattern/{{ bookmark.id }}" class="">
       <h5> {{ bookmark.title }}</h5>
-      <img src="{{bookmark.imageUrl}}" width=250 alt="Image">
+      <img src="{{bookmark.imageUrl}}" width=150 alt="Image">
     </a>
+    <a href="/pattern/{{ bookmark.id }}/variation/new">Completed</a>
+    <form class="removeBookmarkForm" action="/pattern/{{bookmark.id}}/bookmark?_method=PUT" method="post">
+      <button type="submit" name="button">Remove Bookmark</button>
+      <input type="hidden" name="patternId" value="{{bookmark.id}}">
+    </form>
     {{/each}}
   </div>
 
@@ -57,14 +58,10 @@
   <div class="">
     {{#each projects as |project| }}
     <a href="/project/{{ project.id }}" class="">
-      <h5>
-        {{ project.title }}
-      </h5>
-      <img src="{{project.imageUrl}}" width=250 alt="Image">
+      <h5>{{ project.title }} </h5>
+      <img src="{{project.imageUrl}}" width=150 alt="Image">
     </a>
-
     {{/each}}
-
   </div>
 
   </ul>

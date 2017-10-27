@@ -17,6 +17,20 @@
   <input type="file" name="image">
 
 
+  {{#if hasBookmark}}
+  <div class="">
+    <input type="radio" name="removeBookmark" value="no" checked> Do not remove bookmark<br>
+    <input type="radio" name="removeBookmark" value="yes"> Remove Bookmark<br>    
+  </div>
+  {{/if}}
 
   <button type="submit" name="button">Submit</button>
 </form>
+
+
+
+
+{{!-- <form class="removeBookmarkForm" action="/pattern/{{pattern.id}}/variation/new?_method=PUT" method="post">
+  <button type="submit" name="button">Remove Bookmark</button>
+  <input type="hidden" name="patternId" value="{{pattern.id}}">
+</form> --}}

@@ -1,6 +1,6 @@
 <h3>{{ pattern.title }}</h3>
 
-<img src="{{pattern.imageUrl}}" width=300 alt="Image">
+<img src="{{pattern.imageUrl}}" width=270 alt="Image">
 
 <div class="">
   {{#if userMatch}}
@@ -11,8 +11,10 @@
   <a href="/profile/{{pattern.creator.slug}}">
     <h5>By: {{ pattern.creator.name }}</h5>
   </a>
-  <h5>Date: {{ pattern.created }}</h5>
-  <h5>Category: {{ pattern.category }}</h5>
+  <h5>Date: {{ dateTime }}</h5>
+  <a href="/category/{{ pattern.category }}">
+    <h5>Category: {{ pattern.category }}</h5>
+  </a>
 </div>
 <div class="">
 
@@ -28,7 +30,7 @@
 </div>
 {{#if notBookmark}}
 <div class="">
-  <form class="bookmarkForm" action="/pattern/{{pattern.id}}/bookmark" method="post">
+  <form class="addBookmarkForm" action="/pattern/{{pattern.id}}/bookmark" method="post">
     <button type="submit" name="bookmarkBtn">Add to Bookmark</button>
   </form>
 </div>
@@ -40,7 +42,7 @@
     {{#each variations as |variation| }}
     <div class="">
       <a href="/project/{{variation.id}}">
-      <img src="{{variation.imageUrl}}" width=100 alt="Image">
+      <img src="{{variation.imageUrl}}" width=150 alt="Image">
       <h5> {{ variation.title }}</h5>
       </a>
 

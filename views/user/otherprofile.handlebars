@@ -13,28 +13,26 @@
 
 <div class="">
   <h3>Pattern</h3>
-  <ul>
+  <div class="">
     {{#each patterns as |pattern| }}
-    <li>
-      {{ pattern.title }} <a href="/pattern/{{ pattern.id }}" class="">View</a>
-    </li>
+    <a href="/pattern/{{ pattern.id }}" class="">
+      <h5>{{ pattern.title }}</h5>
+      <img src="{{pattern.imageUrl}}" width=150 alt="Image">
+    </a>
     {{/each}}
+  </div>
 
-  </ul>
-</div>
 
 
 <div class="">
   <h3>Project</h3>
-  {{!-- <h4>{{user.project}}</h4> --}}
-  <ul>
+
+  <div class="">
     {{#each projects as |project| }}
-    <li>
-      {{ project.title }}
-      <a href="/project/{{ project.id }}" class="">View</a>
-
-    </li>
+    <a href="/project/{{ project.id }}" class="">
+      <h5>{{ project.title }} </h5>
+      <img src="{{project.imageUrl}}" width=150 alt="Image">
+    </a>
     {{/each}}
-
-  </ul>
+  </div>
 </div>
