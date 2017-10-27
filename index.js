@@ -6,6 +6,7 @@ const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const User = require('./models/user')
 const Partner = require('./models/partner')
+const methodOverride = require('method-override')
 
 const bodyParser = require('body-parser')
 const path = require('path')
@@ -33,6 +34,7 @@ mongoose.connect(dbUrl, {
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
+app.use(methodOverride('_method'))
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json())

@@ -2,10 +2,10 @@
 
   <h3> Offer new rides </h3>
   <label for="startPostal">Starting postal code</label>
-  <input type="text" name="partner[startPostal]" placeholder="e.g. 123456">
+  <input type="text" name="partner[startPostal]" maxlength="6" minlength="6" placeholder="e.g.123456">
 
   <label for="endPostal">Ending postal code</label>
-  <input type="text" name="partner[endPostal]" placeholder="e.g. 123456">
+  <input type="text" name="partner[endPostal]" maxlength="6" minlength="6" placeholder="e.g. 123456">
 
   <label for="arrival time"> Arrival time <label>
     <select id="time" name="time">
@@ -25,3 +25,5 @@
 
   <button type="submit" name="button">Submit</button>
 </form>
+<br><br>
+<a href="/partners/delete"> Delete my account </a>

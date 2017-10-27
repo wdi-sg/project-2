@@ -2,6 +2,7 @@ var input1 = $('#field1')
 var input2 = $('#field2')
 var $userId = $('#user')
 var $timeInput = $('#time')
+var $currentLocation = $('#currentLocation')
 var map, marker1
 
 function initMap () {
@@ -102,5 +103,4 @@ function success(pos) {
 function error(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
 };
-
 navigator.geolocation.getCurrentPosition(success, error, options) // center the map on current location

@@ -38,19 +38,32 @@ router.get('/profile', (req, res) => {
 })
 
 router.post('/profile', (req, res) => {
+  var formData = req.body
   Partner.findByIdAndUpdate(req.user._id,
     {ride: {
-      startPostal: req.body.partner.startPostal,
-      endPostal: req.body.partner.endPostal,
-      arrTime: req.body.time
+      startPostal: formData.partner.startPostal,
+      endPostal: formData.partner.endPostal,
+      arrTime: formData.time
     }
     },
   {new: true},
   function (err, success) {
     if (err) return console.log(err)
     console.log(success)
-    // res.send('sucess')
+    .then(() => res.redirect('/partners/profile'))
   }
 )
+})
+
+router.get('/delete', (req, res) => {
+  res.render('partners/delete')
+})
+
+router.delete('/delete/:id', (req, res) => {
+  // res.send(req.params.id)
+Partner.findByIdAndRemove(req.params.id)
+.then( () => {
+  res.redirect("/")
+})  // Partner.findByIdAndRemove(req.params.id)
 })
 module.exports = router
