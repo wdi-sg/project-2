@@ -14,7 +14,8 @@ router.post('/register', (req, res) => {
     name: formData.partner.name,
     email: formData.partner.email,
     password: formData.partner.password,
-    mobile: formData.partner.mobile
+    mobile: formData.partner.mobile,
+    type: formData.user.type
   })
 
   newPartner.save()
@@ -32,4 +33,11 @@ router.post('/login', passport.authenticate('partner-local', {
   failureRedirect: '/partners/login'
 }))
 
+router.get('/profile', (req, res) => {
+  res.render('partners/pRides')
+})
+
+router.post('/profile', (req, res) => {
+  
+})
 module.exports = router

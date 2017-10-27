@@ -1,0 +1,27 @@
+<form action="/partners/profile" method="post">
+
+  <h3> Offer new rides </h3>
+  <label for="startPostal">Starting postal code</label>
+  <input type="text" name="partner[startPostal]" placeholder="e.g. 123456">
+
+  <label for="endPostal">Ending postal code</label>
+  <input type="text" name="partner[endPostal]" placeholder="e.g. 123456">
+
+  <label for="arrival time"> Arrival time <label>
+    <select id="time" name="time">
+      <option value="6.0">06:00 AM</option>
+      <option value="6.5">06:30 AM</option>
+      <option value="7.0">07:00 AM</option>
+      <option value="7.5">07:30 AM</option>
+      <option value="8.0">08:00 AM</option>
+      <option value="8.5">08:30 AM</option>
+      <option value="9.0">09:00 AM</option>
+      <option value="9.5">09:30 AM</option>
+      <option value="10.0">10:00 AM</option>
+      <option value="10.5">10:30 AM</option>
+      <option value="11.0">11:00 AM</option>
+      <option value="11.5">11:30 AM</option>
+    </select>
+
+  <button type="submit" name="button">Submit</button>
+</form>

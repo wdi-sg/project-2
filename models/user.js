@@ -26,7 +26,8 @@ const userSchema = new Schema({
   startPostal: String,
   endPostal: String,
   arrTime: Number,
-  ride: String
+  ride: String,
+  type: String
 })
 
 userSchema.pre('save', function (next) {

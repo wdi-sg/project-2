@@ -12,7 +12,6 @@ const path = require('path')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const passport = require('./config/ppConfig')
-// const passport1 = require('./config/partnerConfig')
 
 const { hasLoggedOut, isLoggedIn, isPLoggedIn } = require('./helpers')
 
@@ -51,12 +50,8 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-// app.use(passport1.initialize())
-// app.use(passport1.session())
-
 app.use((req, res, next) => {
   app.locals.user = req.user // we'll only `req.user` if we managed to log in
-  app.locals.partner = req.partner
   next()
 })
 
@@ -64,10 +59,13 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 
-app.use('/users', isLoggedIn, loginRoutes)
+// app.use('/users', isLoggedIn, loginRoutes)
+app.use('/users', loginRoutes)
+
 app.use('/route', routeRoutes)
 // app.use('/partners', isPLoggedIn, pLoginRoutes)
 app.use('/partners', pLoginRoutes)
+
 app.get('/logout', hasLoggedOut, (req, res) => {
   req.logout()
   res.redirect('/')

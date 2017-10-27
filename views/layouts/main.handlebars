@@ -10,16 +10,11 @@
     <ul>
       <li> <a href="/route"> Check out our buzz rides! </a></li>
       {{#if user}}
-      <li> <a href="#"> {{ user.name }} </a>
+      <li> <a href="/{{user.type}}/profile"> {{ user.name }} : Ride Panel </a>
       <li> <a href="/logout"> Logout </a>
       {{else}}
       <li> <a href="/users/register"> New rider </a></li>
       <li> <a href="/users/login"> Existing rider </a></li>
-      {{/if}}
-      {{#if partner}}
-      <li> <a href="#"> {{ partner.name }} </a>
-      <li> <a href="/logout"> Logout </a>
-      {{else}}
       <li> <a href="/partners/register"> Buzz partners </a></li>
       {{/if}}
     </ul>

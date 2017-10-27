@@ -3,7 +3,6 @@ const express = require('express')
 const router = express.Router()
 const passport = require('../config/ppConfig')
 
-
 router.get('/register', (req, res) => {
   res.render('users/register')
 })
@@ -19,7 +18,8 @@ router.post('/register', (req, res) => {
     name: formData.user.name,
     email: formData.user.email,
     password: formData.user.password,
-    mobile: formData.user.mobile
+    mobile: formData.user.mobile,
+    type: formData.user.type
   })
 
   newUser.save()
@@ -29,9 +29,15 @@ router.post('/register', (req, res) => {
   )
 })
 
-router.post('/login', passport.authenticate('user-local', {
-  successRedirect: '/',
-  failureRedirect: '/users/login'
-}))
+router.post('/login', (req, res) =>{
+  passport.authenticate('user-local', {
+    successRedirect: '/',
+    failureRedirect: '/users/login'
+  })(req, res)
+})
+
+router.get('/profile', (req, res) => {
+  res.render('users/rides')
+})
 
 module.exports = router

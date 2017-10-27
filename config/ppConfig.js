@@ -4,34 +4,32 @@ const User = require('../models/user')
 const Partner = require('../models/partner')
 
 passport.serializeUser((user, next) => {
-  // if (user.type === 'user')
-  console.log('testing user.email', user.id)
-  next(null, user.id) // this user with specific id. has logged in before
+  next(null, { id:user.id, type: user.type }) // this user with specific id. has logged in before
 })
 
-passport.deserializeUser(function (id, next) {
-  Partner.findById(id, function (err, user) {
-    console.log('testingpartner', user)
-  })
-  console.log('huge test', Partner.findById(id, function (err, user){ return user}))
-  User.findById(id, function (err, user) {
-    console.log('testinguser', user)
-  })
-  User.findById(id, function (err, user) {
-    console.log('testing user.email pt 2', user)
-    next(err, user)
-  })
+passport.deserializeUser(function (user, next) {
+  if (user.type === 'user') {
+    User.findById(user.id, function (err, user) {
+      if (user) next(err, user)
+    })
+  }
+  else {
+    Partner.findById(user.id, function (err, user) {
+      if (user) next(err, user)
+    })
+  }
 })
 
 passport.use('user-local', new LocalStrategy({
   usernameField: 'user[email]',
-  passwordField: 'user[password]'
+  passwordField: 'user[password]',
+  passReqToCallback: true
 },
-(email, password, next) => {
+(req, email, password, next) => {
   console.log('passport entered')
   User.findOne({email: email})
   .then(user => {
-    console.log('found user')
+    user.type = req.body.user.type
     if (!user) return next(null, false)
     user.validPassword(password, (err, isMatch) => {
       if (err) return next(err)

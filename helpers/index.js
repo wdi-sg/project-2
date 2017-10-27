@@ -16,7 +16,7 @@ const hasLoggedOut = (req, res, next) => {
 }
 
 const isPLoggedIn = (req, res, next) => {
-  if(req.partner) {
+  if(req.user) {
     res.redirect('/')
   } else {
     next()

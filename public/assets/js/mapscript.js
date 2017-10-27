@@ -55,12 +55,9 @@ function autoComplete () {
     .then(res => {
       res.json()
         .then((data) => {
-          $("#databaseResponse").text(`There are a total of ${data} user(s) looking for the same trip`)
+          $("#databaseResponse").text(`There are a total of ${data} user(s) looking for the same trip. Buzz associates will contact you if there are suitable arrangements.`)
         })
     })
-    // .then(json => {
-    //   console.log('add to database')
-    // })
     .catch(err => console.log(err))
   })
   function startPostalCode () {

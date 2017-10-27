@@ -30,15 +30,6 @@ router.post('/', (req, res) => {
     .then((data) => {
       res.send(JSON.stringify(data))
     })
-
-    // ,
-    //   function (err, c) {
-    //     if (err) console.log(err)
-    //     console.log(`There are ${c} user(s) looking for the same trip`)
-        // $("#databaseResponse").text(`There are ${c} user(s) looking for the same trip`)
-    //     // document.getElementById("databaseResponse").textContent = `There are ${c} user(s) looking for the same trip`
-    //     res.send('test')
-    //   })
   }
 )
 })

@@ -26,7 +26,8 @@ const partnerSchema = new Schema({
   startPostal: String,
   endPostal: String,
   arrTime: Number,
-  ride: String
+  ride: String,
+  type: String
 })
 
 partnerSchema.pre('save', function (next) {
