@@ -94,6 +94,18 @@ app.post('/', isLoggedIn, (req, res) => {
   .catch(err => res.send(err))
 })
 
+app.delete('/deleteUser', (req, res) => {
+  var userId = req.body.userId
+  console.log(userId)
+
+  User.findByIdAndRemove(userId)
+  .then(() => {
+    console.log('success!!')
+    //  res.redirect('/')
+    res.send({message: 'user deleted'})
+  })
+})
+
 app.get('/about', (req, res) => {
   res.render('about')
 })

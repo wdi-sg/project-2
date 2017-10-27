@@ -24,11 +24,10 @@
     <option value="{{this.name}}">{{this.name}}</option>
     {{/each}}
   </select>
-  
+
 <h1>Skills List:</h1>
 <div class = "listOfSkills"></div>
   <div class="peepSkills">
-    <h1>hello</h1>
   </div>
 
   <label for="projs">Past Projects and Gigs</label>
@@ -41,3 +40,8 @@
 
   <button type="submit" name="button">Submit</button>
 </form>
+
+<form class="form-inline deleteForm" action="/profile/{{user.slug}}/settings?_method=DELETE" method="post">
+  &nbsp;
+  <button class="btn btn-danger" type="submit" name="button">Delete User</button><br>
+<input type="hidden" name="profileId" value="{{user._id}}">

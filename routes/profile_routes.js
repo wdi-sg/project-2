@@ -43,7 +43,6 @@ router.put('/:slug/settings', (req, res) => {
         nickname: profileData.nickname,
         about: profileData.about,
         skills: profileData.skills,
-        // skills: userSkills,
         projs: profileData.projs,
         contact: profileData.contact
       })

@@ -5,6 +5,36 @@ $(function () {
   const $searchGigs = $('#searchGigs')
   const $searchGigsResults = $('#searchGigsResults')
 
+  const $deleteForm = $('.deleteForm')
+  $deleteForm.on('submit', function (e) {
+    e.preventDefault()
+
+    var form = $(this)
+    var formData = form.serializeArray()
+    var userId = formData[0].value
+    var json = JSON.stringify({
+      userId
+    })
+
+    console.log(`delete this user ${userId}`)
+    console.log(json)
+
+    fetch('/deleteUser', {
+      method: 'DELETE',
+      body: json,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+     .then(json => {
+       console.log('manipulate the dom now')
+       form.parents('.col-4').remove()
+       /* below's redirection is not a good approach.
+       This needs to be backend. Temporary fix */
+       window.location.href = '/'
+     })
+  })
+
   $searchInput.on('keyup', e => { // e is the event object of the keyup event
     var keyword = e.target.value
     var json = JSON.stringify({
@@ -30,6 +60,7 @@ $(function () {
       const $newCardBody = $('<div class="card-body">')
       const $newCardTitle = $('<h4 class="card-title">')
       const $newCardText = $('<p class="card-text">')
+      const $newCardLinks = $(`<form class="form-inline" action="/profile/${user.slug}/settings?_method=DELETE" method="post">`)
 
       $newCardTitle.text(user.name)
       $newCardText.html(
@@ -96,8 +127,6 @@ $(function () {
 // ===== userSkills =====//
 
   $('#selectSkills').on('change', (e) => {
-    console.log('trrigered')
-    var userSkills = []
     // get previous value first
     var prev = $('#skills').val()
     console.log(prev)
