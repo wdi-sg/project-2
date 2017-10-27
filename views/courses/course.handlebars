@@ -17,8 +17,20 @@
       </ul>
     </div>
     <div class="card-content grey lighten-4">
-      <div id="test4">{{course.address}}<br>
-        Google Map Here</div>
+      <div id="test4">{{course.google}}<br>
+<form action="/course" method="post">
+    <h3><input id="pac-input" name="google" class="controls" type="text" placeholder="Enter a location" value="{{course.google}}">
+        <div id="map"></div>
+        <div id="infowindow-content">
+        <span id="place-name"  class="title"></span><br>
+        Place ID <span id="place-id"></span><br>
+        <span id="place-address"></span>
+    </div></h3>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
+</form>
+  </div>
         <div id="test5">Date : {{course.date}}<br>
           Time : {{course.time}}<br>
           Duration : {{course.duration}}</div>
@@ -35,6 +47,7 @@
 <form action="/course" method="post">
 
   <label for="title">Title</label>
+  <input type="hidden" name="courseId" value={{course.id}}>
   <input type="text" id="title" name="title" placeholder="Review Title">
   <br>
 
@@ -45,13 +58,13 @@
   <button type="submit" name="button">Submit</button>
 </form>
 
-<div class="row">
-  {{#each reviews as |review|}}
+{{!-- <div class="row">
+  {{#each review}}
       <div class="col s4 m4">
         <div class="card blue-grey darken-1">
           <div class="card-content white-text">
-            <span class="card-title">{{review.name}}</span>
-            <p>{{review.description}}</p>
+            <span class="card-title">{{this.name}}</span>
+            <p>{{this.description}}</p>
           </div>
           <div class="card-action">
             <a href="#">This is a link</a>
@@ -59,5 +72,19 @@
         </div>
       </div>
     {{/each}}
-  </div>
+  </div> --}}
+
+  <!-- this is the do the -->
+  <div class="row">
+
+
+{{#each review}}
+  <form class="" action="index.html" method="post">
+    <input type="text" name="" value="{{this.title}}">
+    <input type="text" name="" value="{{this.description}}">
+    <input type="submit" name="" value="Edit">
+
+  </form>
+  {{/each}}
+    </div>
 </div>

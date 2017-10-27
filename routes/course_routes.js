@@ -9,20 +9,29 @@ router.get('/:slug', (req, res) => {
   .findOne({slug: req.params.slug})
   .populate('teacher')
   .then(course => {
-    res.render('courses/course', {
-      course
+    Review.find({author:course.id})
+    .then(results=>{
+      console.log(results);
+      res.render('courses/course', {
+        course,
+        review: results
+      })
     })
+
   })
   .catch(err => {
     console.log(err)
   })
 })
 
+
 router.post('/', (req, res) => {
+  // res.send(req.body);
   var formData = req.body
   var newReview = new Review({
     title: formData.title,
-    description: formData.description
+    description: formData.description,
+    author: formData.courseId
   })
   newReview.save()
   .then(

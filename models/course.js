@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 const User = require('../models/user')
 
 const courseSchema = new Schema({
-  address: String,
+  google: String,
   name: String,
   description: String,
   currentStudents: Number,
