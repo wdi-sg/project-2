@@ -3,10 +3,8 @@ const Tweet = require('../models/tweet')
 const express = require('express')
 const router = express.Router()
 
-
 router.get('/', (req, res) => {
   var user = req.user
-
   // not logged in (no tweets)
   if (!user) res.render('home')
   // logged in (show user tweets)
@@ -24,30 +22,10 @@ router.get('/', (req, res) => {
       .then(tweets => {
         res.render('home', { tweets })
       })
-      // var tweetsArray = []
-
     })
     .catch(err => console.log(err))
-    // .then(() => {
-      // console.log(tweetsArray)
-    // })
   }
 })
-
-
-      // User.find({'_id': { $in: following }})
-      // .populate('tweets')
-      // .then(users => {
-      //   users.forEach(user => {
-      //     user.tweets.forEach(tweet => {
-      //       var tweetNode = {
-      //         message: tweet.message,
-      //         author: tweet.author
-      //       }
-      //       tweetsArray.push(tweetNode)
-      //     })
-      //   })
-      //   // console.log(users[0].tweets[0].message)
 
 router.put('/new-tweet', (req, res) => {
   // variables
