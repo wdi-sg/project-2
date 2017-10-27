@@ -59,11 +59,12 @@ router.get('/delete', (req, res) => {
   res.render('partners/delete')
 })
 
-router.delete('/delete/:id', (req, res) => {
-  // res.send(req.params.id)
-Partner.findByIdAndRemove(req.params.id)
+router.delete('/delete', (req, res) => {
+  console.log('body',req.body)
+  console.log('user',req.user)
+Partner.findByIdAndRemove(req.user.id)
 .then( () => {
-  res.redirect("/")
+  res.redirect('/')
 })  // Partner.findByIdAndRemove(req.params.id)
 })
 module.exports = router

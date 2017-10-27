@@ -1,6 +1,7 @@
 <h3> We're sad to see you go, please leave us feedback on how we can improve Buzz. </h3>
 
-<form action="/partners/delete/{{user.id}}?_method=DELETE" method="post">
+{{!-- <form action="/partners/delete/{{user.id}}?_method=DELETE" method="post"> --}}
+  <form action="/partners/delete?_method=DELETE" method="post">
 
   <label for="Feedback"> Feedback/comments </label>
   <input type="text" name="feedback" placeholder="How can Buzz be better?">
