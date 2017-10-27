@@ -34,7 +34,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: labels,
         datasets: [{
-            label: '# of Votes',
+            label: '',
             data: dataSet,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
