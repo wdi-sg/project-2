@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Arty Crafty Courses</title>
     <link rel="stylesheet" href="/assets/css/style.css">
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link type="text/css" rel="stylesheet" href="assets/css/materialize.css"  media="screen,projection"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -29,7 +29,11 @@
           <a href="/" class="brand-logo">Home  <i class="material-icons md-48"> home </i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             {{#if user}}
-              <li><a href="/show">{{user.name}}</a></li>
+              {{#if admin}}
+                <li><a href="/show">{{user.name}}</a></li>
+              {{else}}
+                <li><a href="/studentshow">{{user.name}}</a></li>
+              {{/if}}
               <li><a href="/logout">Logout</a></li>
               <li><a href="/pending">Pending</a></li>
             {{else}}
@@ -41,11 +45,9 @@
         </div>
       </nav>
 
-
       {{{body}}}
 
-
-</br>
+      </br>
         <footer class="page-footer #304ffe indigo accent-4">
           <div class="container" >
             <div class="row">

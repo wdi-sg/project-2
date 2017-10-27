@@ -13,12 +13,12 @@ const userSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'Course'
   },
-  status: String,
   currentTeach: {
       type: Schema.Types.ObjectId,
       ref: 'Course'
   },
   instructorRating: String,
+  type: String
 })
 
 userSchema.pre('save', function(next) {

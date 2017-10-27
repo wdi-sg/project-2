@@ -6,9 +6,7 @@ const courseSchema = new Schema({
   address: String,
   name: String,
   description: String,
-  currentStudents: [{
-    name: String
-  }],
+  currentStudents: Number,
   duration: String,
   date: String,
   time: String,
@@ -21,10 +19,6 @@ const courseSchema = new Schema({
   slug: String
 })
 
-// courseSchema.pre('save', function(next) {
-//   var course = this
-//   course.slug = course.name.toLowerCase().split(' ').join('-')
-// })
 
 const Course = mongoose.model('Course', courseSchema)
 

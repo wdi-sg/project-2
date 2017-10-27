@@ -13,6 +13,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const passport = require('./config/ppConfig')
 const { hasLoggedOut, isLoggedIn } = require('./helpers')
+const { LoggedOut, Logged } = require('./helpers')
 
 const User = require('./models/user')
 const Course = require('./models/course')
@@ -26,6 +27,7 @@ const show_routes = require('./routes/show_routes')
 const course_routes = require('./routes/course_routes')
 const student_register_routes = require('./routes/student_register_routes')
 const student_login_routes = require('./routes/student_login_routes')
+const student_show_routes = require('./routes/student_show_routes')
 
 const app = express()
 
@@ -70,6 +72,10 @@ app.use((req, res, next) => {
   app.locals.user = req.user
   app.locals.course = req.course
   app.locals.student = req.student
+  if (req.user) {
+    app.locals.admin = req.user.type === 'admin' ? req.user : null;
+  }
+
   next()
 })
 
@@ -87,6 +93,16 @@ app.get('/logout', hasLoggedOut, (req, res) => {
   res.redirect('/')
 })
 
+app.get('/profile', LoggedOut, (req, res) => {
+  res.send(req.student)
+})
+
+app.get('/logout', LoggedOut, (req, res) => {
+  req.logout()
+  res.redirect('/')
+})
+
+app.use('/studentshow', student_show_routes)
 app.use('/studentlogin', student_login_routes)
 app.use('/studentregister', student_register_routes)
 app.use('/course', course_routes)

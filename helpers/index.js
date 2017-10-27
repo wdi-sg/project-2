@@ -15,7 +15,25 @@ const hasLoggedOut = (req, res, next) => {
   }
 }
 
+const Logged = (req, res, next) => {
+  if(req.student) {
+    res.redirect('/')
+  } else {
+    next()
+  }
+}
+
+const LoggedOut = (req, res, next) => {
+  if(req.student) {
+    next()
+  } else {
+    res.redirect('/')
+  }
+}
+
 module.exports = {
   hasLoggedOut,
-  isLoggedIn
+  isLoggedIn,
+  Logged,
+  LoggedOut
 }

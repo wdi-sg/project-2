@@ -23,6 +23,8 @@ router.post('/', (req, res) => {
       date: formData.date,
       time: formData.time,
       price: formData.price,
+      currentStudents: formData.currentStudents,
+      teacher: formData.user,
       slug: formData.name.toLowerCase().split(' ').join('-')
     })
 

@@ -9,6 +9,7 @@ router.get('/:slug', (req, res) => {
   .populate('teacher')
   .then(course => {
     // res.send(course)
+    console.log('course : ', course)
     res.render('courses/course', {
       course
     })

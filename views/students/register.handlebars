@@ -4,21 +4,24 @@
 
 <div class="row">
     <form class="col s12" action="/studentregister" method="post">
+
+      <input type="hidden" name="user[type]" value="student">
+
       <div class="row">
         <div class="input-field col s12">
-          <input placeholder="Username" name="student[name]" id="name" type="text" class="validate">
+          <input placeholder="Username" name="user[name]" id="name" type="text" class="validate">
           <label for="name"></label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input placeholder="Password" name="student[password]" id="password" type="password" class="validate">
+          <input placeholder="Password" name="user[password]" id="password" type="password" class="validate">
           <label for="password"></label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input placeholder="Email" name="student[email]" id="email" type="email" class="validate">
+          <input placeholder="Email" name="user[email]" id="email" type="email" class="validate">
           <label for="email"></label>
         </div>
       </div>

@@ -15,7 +15,7 @@ passport.deserializeUser((id, next) => {
     if (admin) next(err, admin)
   })
   Student.findById(id, function (err, student) {
-    console.log('deserializeUser user :', student)
+    // console.log('deserializeUser user :', student)
     if (student) next(err, student)
   })
 
@@ -23,10 +23,13 @@ passport.deserializeUser((id, next) => {
 
 passport.use(new LocalStrategy({
   usernameField: 'user[email]',
-  passwordField: 'user[password]'
-}, (email, password, next) => {
-  console.log('passport entered')
-  User.findOne({email: email})
+  passwordField: 'user[password]',
+  passReqToCallback: true
+}, (req, email, password, next) => {
+
+  const Collection = req.body.user.type === 'admin' ? User : Student
+
+  Collection.findOne({email: email})
   .then(user => {
   if (!user) return next(null, false)
   user.validPassword(password, (err, isMatch) => {
@@ -38,22 +41,22 @@ passport.use(new LocalStrategy({
   .catch(err => next(err))
 }))
 
-passport.use(new LocalStrategy({
-  usernameField: 'student[email]',
-  passwordField: 'student[password]'
-}, (email, password, next) => {
-  console.log(email, password)
-  Student.findOne({email: email})
-  .then(student => {
-    console.log(student)
-  if (!student) return next(null, false)
-  student.validPassword(password, (err, isMatch) => {
-    if (err) return next(err)
-    if (isMatch) return next (null, student)
-    return next(null, false, { message: 'mismatched'})
-    })
-  })
-  .catch(err => next(err))
-}))
+// passport.use(new LocalStrategy({
+//   usernameField: 'student[email]',
+//   passwordField: 'student[password]'
+// }, (email, password, next) => {
+//   console.log(email, password)
+//   Student.findOne({email: email})
+//   .then(student => {
+//     console.log(student)
+//   if (!student) return next(null, false)
+//   student.validPassword(password, (err, isMatch) => {
+//     if (err) return next(err)
+//     if (isMatch) return next (null, student)
+//     return next(null, false, { message: 'mismatched'})
+//     })
+//   })
+//   .catch(err => next(err))
+// }))
 
 module.exports = passport

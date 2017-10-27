@@ -8,12 +8,13 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  var formData = req.body.student
+  var formData = req.body.user
   console.log('here1 :' , formData)
   var newStudent = new Student({
     name: formData.name,
     email: formData.email,
-    password: formData.password
+    password: formData.password,
+    type: 'student'
   })
 
 

@@ -1,31 +1,29 @@
 <div class="container">
   <h4><blockquote>
       Course Details
-
-    <h2>{{course.name}}</h2>
-    <h2>{{course.description}}</h2>
-      {{#each input as |in|}}
+      {{course.teacher}}
     </blockquote></h4>
-  <h4>{{in.name}}</h4>
+  <h3>{{course.name}}</h3>
 <br>
   <div class="card">
     <div class="card-content">
-      <p>{{in.description}}</p>
+      <p>{{course.description}}</p>
     </div>
     <div class="card-tabs">
       <ul class="tabs tabs-fixed-width">
         <li class="tab"><a class="active" href="#test4">Address</a></li>
         <li class="tab"><a href="#test5">Time</a></li>
-        <li class="tab"><a href="#test6">Instructor</a></li>
+        <li class="tab"><a href="#test6">People</a></li>
       </ul>
     </div>
     <div class="card-content grey lighten-4">
-      <div id="test4">{{in.address}}</div>
-      <div id="test5">{{in.date}}<br>
-                      {{in.time}}<br>
-                      {{in.course.duration}}</div>
-      <div id="test6">{{in.teacher.name}}</div>
+      <div id="test4">{{course.address}}<br>
+                        Google Map Here</div>
+      <div id="test5">Date : {{course.date}}<br>
+                      Time : {{course.time}}<br>
+                      Duration : {{course.duration}}</div>
+      <div id="test6">Instructor : {{course.teacher}}<br>
+                      Current Students : {{course.currentStudents}}</div>
     </div>
   </div>
-  {{/each}}
 </div>
