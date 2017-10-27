@@ -15,15 +15,14 @@ function sendEmailOnSchedule () {
   mongoose.Promise = global.Promise
   mongoose.connect(dbUrl, { useMongoClient: true })
   .then(() => {
-    sendEmail()
     console.log('db is connected')
   },
   err => console.log(err))
 
-  function sendEmail () {
-    User.find({
-      subscribeQuote: true
-    })
+  // function sendEmail () {
+  User.find({
+    subscribeQuote: true
+  })
     .then((subscribers) => {
       subscribers.forEach((subscriber) => {
         findCurrentQuote()
@@ -47,6 +46,6 @@ function sendEmailOnSchedule () {
         // console.log('Each Subscriber', subscriber)
       })
     })
-  }
 }
+// }
 sendEmailOnSchedule()
