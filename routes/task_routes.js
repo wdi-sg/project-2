@@ -107,7 +107,7 @@ router.post('/', (req,res)=>{
         Members.forEach((member)=>{
           client.messages
           .create({
-            to: `+6592973473`,
+            to: `+65${member.phoneNumber}`,
             from: '+17173882453 ',
             body: `${task.fridge.name} has wants to ${task.details}`,
           })
