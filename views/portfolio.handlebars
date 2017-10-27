@@ -15,7 +15,7 @@
 
   <label for="price">Price</label>
   <input type="number" name="position[price]" placeholder="USD">
-
+  <br>
   <label for="assetClass">Asset Class</label>
   <select name="position[assetClass]" placeholder="Pick one">
     <option selected hidden>Pick one</option>
@@ -26,7 +26,7 @@
   </select>
 
 
-
+  <br>
   <label for="closingPrice">Closing price</label>
   <input type="number" name="position[closingPrice]" placeholder="USD">
 
@@ -58,7 +58,7 @@
     <tr>
       <td>{{ posi.name }}</td>
       <td>{{ posi.ticker }}</td>
-      <td>{{ posi.inceptionDate }}</td>
+      <td>{{ posi.buyDate }}</td>
       <td>{{ posi.sellDate }}</td>
       <td>{{ posi.assetClass }}</td>
       <td>{{ posi.units }}</td>
