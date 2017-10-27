@@ -103,6 +103,15 @@ app.get('/routes', (req, res) => {
   })
 })
 
+app.delete('/deleteroute', (req, res) => {
+  var restoId = req.body.routeId
+
+  Travelplan.findByIdAndRemove(routeId)
+  .then(() => {
+    res.send({message: 'REMOVE'})
+  })
+})
+
 // NEW ROUTE - SEARCH - for realtime search of our restaurant db
 app.get('/search', (req, res) => {
   Travelplan.find()
@@ -136,6 +145,7 @@ app.use('/login', isLoggedIn, login_routes)
 app.get('/profile', hasLoggedOut, (req, res) => {
   res.send(req.user)
 })
+
 
 app.locals = {
   GOOGLE_MAPS_URL: process.env.GOOGLE_MAPS_URL
