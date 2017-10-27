@@ -8,7 +8,12 @@ const listingsSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }
+  },
+  offerId: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Offer'
+  }],
+  dealt: Boolean
 })
 
 const Listings = mongoose.model('Listings', listingsSchema)

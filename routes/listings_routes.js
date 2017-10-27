@@ -18,39 +18,24 @@ router.get('/', (req, res) => {
     console.log(err);
   })
 })
-router.put('/requests/:id', (req, res) => {
-  var formData = req.body
-  Listings.findByIdAndUpdate(req.params.id, {
-    title: formData.title,
-    description: formData.description,
-    photos: formData.photos
-  })
-  .then(() => res.redirect(`/restaurants/${req.params.id}`))
-  .catch(err => console.log(err))
-})
-
-router.delete('/requests/:id', (req, res) => {
-
-  Listings.findByIdAndRemove(req.params.id)
-  .then(() => res.redirect('/'))
-  .catch(err => console.log(err))
-})
 
 router.post('/', upload.single('image'), function (req, res) {
-  cloudinary.uploader.upload(req.file.path, function (result) {
     var newList = new Listings({
-      photos: result.secure_url,
+      photos: req.body.image,
       description: req.body.description,
       title: req.body.title,
-      author: req.user.id
+      author: req.user.id,
+      dealt: false
     })
     newList.save()
+
     .then(
       () => res.redirect('/listings'),
       err => res.send(err)
     )
-  })
 })
+
+// router.put('/')
 
 router.get('/requests/:id', (req, res) =>{
   var id = req.params.id
@@ -59,7 +44,7 @@ router.get('/requests/:id', (req, res) =>{
     _id: id
   })
   .then(listing =>{
-    Offers.find()
+    Offers.find({ offerId: req.params.id })
     .then(offers =>{
       res.render('listings/requests', {
         listing,offers
@@ -71,28 +56,39 @@ router.get('/requests/:id', (req, res) =>{
   })
 })
 
+router.put('/requests/:id', (req, res) => {
+  var formData = req.body
+  Listings.findByIdAndUpdate(req.params.id, {
+    title: formData.title,
+    description: formData.description
+    })
+  .then(() => res.redirect(`/profile/${req.user.username}`))
+  .catch(err => console.log(err))
+})
 
-  // .then(listings =>{
-  //   Offers.find()
-  //   .then(Offers =>{
-  //     res.render('listings/listings', {
-  //       listings,offer
-  //     })
-  //   }
+router.delete('/requests/:id', (req, res) => {
 
-router.post('/requests/:id', (req, res) =>{
-  console.log('hee');
+  Listings.findByIdAndRemove(req.params.id)
+  .then(() => res.redirect('/'))
+  .catch(err => console.log(err))
+})
+
+
+router.post('/requests/:id',upload.single('image'), (req, res) =>{
     var newOffer = new Offers({
-      description: req.body.description2,
-      title: req.body.title2
+      description: req.body.description,
+      photos: req.body.image,
+      title: req.body.title,
+      offerId: req.params.id,
+      author: req.user.id
       })
     newOffer.save()
-    res.send('test')
-    // .then(
-    //   () => res.redirect('/listings/requests/:id'),
-    //   err => res.send(err)
-    // )
+    .then(
+      () => res.redirect('/'),
+      err => res.send(err)
+    )
 })
+
 
 
 

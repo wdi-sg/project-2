@@ -8,6 +8,10 @@ const offerSchema = new Schema({
   offerId: {
     type: Schema.Types.ObjectId,
     ref: 'Listings'
+  },
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
 })
 

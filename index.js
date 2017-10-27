@@ -6,15 +6,14 @@ process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://loc
 const port = process.env.PORT || 9000
 
 const express = require('express')
+const path = require('path')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
-const multer = require('multer')
-const cloudinary = require('cloudinary')
 const server = require('http')
-const io = require('socket.io').listen(server)
-const upload = multer({ dest: './uploads/' })
+
+const app = express()
 
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
@@ -22,18 +21,28 @@ const passport = require('./config/ppConfig')
 
 const User = require('./models/user')
 const Listings = require('./models/listings')
+const Offers = require('./models/offer')
 const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
 const listings_routes = require('./routes/listings_routes')
 const { hasLoggedOut, isLoggedIn } = require('./helpers')
 
-const app = express()
 
-cloudinary.config({
-  cloud_name: 'dhbynh1cm',
-  api_key: '929476258342752',
-  api_secret: 'zDirnIRxdA24cAvVBUJEbHQorHU'
+app.engine('handlebars', exphbs({ defaultLayout: 'main'}))
+app.set('view engine', 'handlebars')
+
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(function (req, res, next) {
+  console.log('Method: ' + req.method + ' Path: ' + req.url)
+  next()
 })
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
+
+app.use(methodOverride('_method'))
 
 mongoose.Promise = global.Promise
 mongoose.connect(dbUrl, {
@@ -51,20 +60,12 @@ app.use(session({
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }))
 
-app.use(methodOverride('_method'))
-
 app.use(passport.initialize())
 app.use(passport.session())
-app.engine('handlebars', exphbs({ defaultLayout: 'main'}))
-app.set('view engine', 'handlebars')
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
 
 app.use((req, res, next) => {
   app.locals.user = req.user
+  app.locals.listings = req.listings
   next()
 })
 
@@ -73,16 +74,8 @@ app.get('/', (req, res) => {
 })
 
 app.get('/profile/:slug', hasLoggedOut, (req, res) => {
-  // User.findOne({
-  //   slug: req.params.slug
-  // })
-  // .then((user) => {
-  //   res.render('users/show', {
-  //     user
-  //   })
-  // })
   Listings
-  .find()
+  .find({author: req.user.id})
   .then(listings =>{
     res.render('users/show', {
       listings
@@ -93,11 +86,17 @@ app.get('/profile/:slug', hasLoggedOut, (req, res) => {
   })
 })
 
-app.post('/profile/:slug', (req, res) =>{
-  Listings.find()
-  .then((listings) => {
-    // if(req.user._id === listing.author)
-    res.send(listings)
+app.get('/profile/:slug/offers', hasLoggedOut, (req, res) => {
+  Offers
+  .find({author: req.user.id})
+  .then(offers =>{
+    console.log(req.user.id);
+    res.render('users/myoffers', {
+      offers
+    })
+  })
+  .catch(err =>{
+    console.log(err);
   })
 })
 
@@ -105,11 +104,11 @@ app.post('/profile/:slug', (req, res) =>{
 app.use('/login', isLoggedIn, login_routes)
 app.use('/register', isLoggedIn, register_routes)
 app.use('/listings', hasLoggedOut, listings_routes)
-
 app.get('/logout', hasLoggedOut, (req, res) => {
   req.logout()
   res.redirect('/')
 })
+
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`)

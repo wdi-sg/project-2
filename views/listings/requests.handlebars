@@ -7,24 +7,40 @@
   </div>
 </div>
 
-<h2>My offer</h2>
+<h2>Post my offer</h2>
 
-<form action="/listings/requests/{{listing._id}}" method="POST" enctype = "multipart/form-data">
+<form action="/listings/requests/{{listing._id}}" method="post">
+
   <div class="form-group">
-    <label for="offers">Photo upload</label>
-    <input type="file" name="image2" class="form-control-file" id="exampleFormControlFile1">
-  </div>
-
-  <div class="title">
-    <label for="exampleFormControlTextarea1">Title</label>
-    <input type="text" name="title2">
+    <label for="listings">Photo upload</label>
+    <input type="hidden" role="uploadcare-uploader" name="image" />
   </div>
 
   <div class="form-group">
-  <label for="exampleFormControlTextarea1">Description</label>
-  <textarea class="form-control" name="description2" id="exampleFormControlTextarea1" rows="3"></textarea>
-  <button type="submit" name="button">Submit</button>
-
+  <label for="title">Title</label>
+  <input type="text" name="title">
 </div>
 
+<div class="form-group">
+<label for="exampleFormControlTextarea1">Description</label>
+<textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+
+  <button type="submit" name="button">Submit</button>
 </form>
+
+<h2>Offers</h2>
+{{#each offers as |offa|}}
+    <div class="card" style="width: 20rem;">
+  <img class="card-img-top" src="{{offa.photos}}" alt="Card image cap">
+  <div class="card-body">
+    <h4 class="card-title">{{offa.title}}</h4>
+    <p class="card-text">{{offa.description}}</p>
+    <form action="/listings/requests/{{listo._id}}?_method=PUT" method="post">
+      <button type="button" class="btn btn-primary btn-lg">Deal!</button>
+    </form>
+  </div>
+</div>
+
+  </div>
+{{/each}}
