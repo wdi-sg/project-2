@@ -25,11 +25,13 @@
 {{/each}} --}}
 
 {{!-- // carousel layout --}}
-<div class="carousel">
-  {{#each showlist as |showlist|}}
-    <a class="carousel-item" href="/show/{{showlist.slug}}"><img src= {{ showlist.showpic }}></a>
-  {{/each}}
-</div>
+<div class="container">
+  <div class="carousel">
+    {{#each showlist as |showlist|}}
+      <a class="carousel-item" href="/show/{{showlist.slug}}"><img src= {{ showlist.showpic }}></a>
+    {{/each}}
+  </div>
 
-<h3>Tour Locations</h3>
-<div id="map"></div>
+  <h3>Tour Locations</h3>
+  <div id="map"></div>
+</div">

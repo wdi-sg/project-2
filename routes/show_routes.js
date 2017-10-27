@@ -10,23 +10,20 @@ const Review = require('../models/review')
 router.get('/:name', (req, res) => {
   Tour.find({showname: req.params.name})
   .then(tours => {
-    // console.log(tours)
     res.render('show/show_tourlist', {
       data: tours
     })
   })
 })
 
-// Prints tour details
+// Prints review
 router.get('/tourdetails/:slug', (req, res) => {
   Tour.find({slug: req.params.slug})
   .then(tours => {
-    // console.log(tours[0].slug)
     Review.find({tourSlug: tours[0].slug})
       .populate('author')
       .limit(5)
       .then((reviews) => {
-        // console.log(reviews)
         res.render('show/show_tourdetails', {
           data: tours[0],
           reviews

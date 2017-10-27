@@ -6,6 +6,8 @@ $(document).ready(function () {
   $('select').material_select()
   $(".button-collapse").sideNav();
   $('.carousel').carousel({indicators: true});
+  $("#my_audio").get(0).play();
+  $('.slider').slider();
 
   // initMap()
   var locations = [

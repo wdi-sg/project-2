@@ -1,51 +1,75 @@
+<div class="container">
+  <div class="row">
 
-<div class="row">
-  <img src= {{ data.pictureurl1 }}>
-  <img src= {{ data.pictureurl2 }}>
-  <img src= {{ data.pictureurl3 }}>
-  <h3>Tour Name: {{ data.name }}</h3>
-  <ul>
-    <li>Show Name: {{ data.showname }}</li>
-    <li>Overview: {{ data.overview }}</li>
-    <li>Highlights: {{ data.highlights }}</li>
-    <li>Price: Adult (16 years+): USD${{ data.price }}</li>
-  </ul>
-
-  <form action="/show/tourdetails/{{data.slug}}" method="post">
+    <h3>Tour Name: {{ data.name }}</h3>
+    <div class="slider">
+      <ul class="slides">
+        <li>
+          <img src={{ data.pictureurl3 }}> <!-- random image -->
+          <div class="caption center-align">
+            <h3>This is our big Tagline!</h3>
+            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+          </div>
+        </li>
+        <li>
+          <img src={{ data.pictureurl2 }}> <!-- random image -->
+          <div class="caption left-align">
+            <h3>Left Aligned Caption</h3>
+            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+          </div>
+        </li>
+        <li>
+          <img src={{ data.pictureurl1 }}> <!-- random image -->
+          <div class="caption right-align">
+            <h3>Right Aligned Caption</h3>
+            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+          </div>
+        </li>
+      </ul>
+    </div>
     <ul>
-      <li>Choose Date</li>
-      <li><input type="date" name="datechosen"></input></li>
+      <li>Show Name: {{ data.showname }}</li>
+      <li>Overview: {{ data.overview }}</li>
+      <li>Highlights: {{ data.highlights }}</li>
+      <li>Price: Adult (16 years+): USD${{ data.price }}</li>
     </ul>
 
-    <input type="submit" value="Add to Cart"></input>
-  </form>
+    <form action="/show/tourdetails/{{data.slug}}" method="post">
+      <ul>
+        <li>Choose Date</li>
+        <li><input type="date" name="datechosen"></input></li>
+      </ul>
+
+      <input type="submit" value="Add to Cart"></input>
+    </form>
 
 
-  <h3>Add reviews</h3>
-  <form action="/review/add" method="post">
+    <h3>Add reviews</h3>
+    <form action="/review/add" method="post">
 
-    <input type="hidden" name="tourId" value="{{ data.id }}">
-    <input type="hidden" name="userId" value="{{ user.id }}">
-    <input type="hidden" name="slug" value="{{ data.slug }}">
+      <input type="hidden" name="tourId" value="{{ data.id }}">
+      <input type="hidden" name="userId" value="{{ user.id }}">
+      <input type="hidden" name="slug" value="{{ data.slug }}">
 
-    <label for="title">Title</label>
-    <input type="text" id="title" name="title" placeholder="e.g. Best Trip Ever">
-    <br>
+      <label for="title">Title</label>
+      <input type="text" id="title" name="title" placeholder="e.g. Best Trip Ever">
+      <br>
 
-    <label for="description">Description</label>
-    <textarea id="description" name="description" rows="8" cols="80"></textarea>
-    <br>
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="8" cols="80"></textarea>
+      <br>
 
-    <button type="submit" name="button">Submit</button>
-  </form>
+      <button type="submit" name="button">Submit</button>
+    </form>
 
-  <ul>
-    {{#each reviews as |review|}}
-    <li>Author: {{ review.author.name }}</li>
-    <li>Review Title: {{ review.title}}</li>
-    <li>Review Description: {{ review.description}}</li>
-    <br>
-    {{/each}}
-  </ul>
+    <ul>
+      {{#each reviews as |review|}}
+      <li>Author: {{ review.author.name }}</li>
+      <li>Review Title: {{ review.title}}</li>
+      <li>Review Description: {{ review.description}}</li>
+      <br>
+      {{/each}}
+    </ul>
 
+  </div>
 </div>
