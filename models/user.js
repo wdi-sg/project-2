@@ -23,8 +23,10 @@ const userSchema = new Schema({
     required: true
   },
   slug: String,
-  startPostal: Number,
-  endPostal: Number
+  startPostal: String,
+  endPostal: String,
+  arrTime: Number,
+  ride: String
 })
 
 userSchema.pre('save', function (next) {

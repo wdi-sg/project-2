@@ -16,8 +16,8 @@ const { hasLoggedOut, isLoggedIn } = require('./helpers')
 const dbUrl = process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/project2'
 const port = process.env.PORT || 3000
 
-const login_routes = require('./routes/login_routes')
-
+const loginRoutes = require('./routes/login_routes')
+const routeRoutes = require('./routes/route_routes')
 mongoose.Promise = global.Promise
 mongoose.connect(dbUrl, {
   useMongoClient: true
@@ -54,29 +54,9 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   res.render('home')
 })
-app.post('/route', (req, res) => {
-  // console.log('req.body', req.body)
-  // console.log('test', req.session.passport.user)
-  console.log('req.body.user', (req.body.user).substring(7, 31))
-  var _id = (req.body.user).substring(7, 31)
 
-  User.findByIdAndUpdate(_id,
-    { startPostal: req.body.postalArray[0],
-      endPostal: req.body.postalArray[1]
-    },
-  { new: true },
-  function (err, success) {
-    if (err) return console.log(err)
-    res.send(success)
-  }
-)
-})
-
-app.use('/users', isLoggedIn, login_routes)
-
-app.get('/route', (req, res) => {
-  res.render('map/route')
-})
+app.use('/users', isLoggedIn, loginRoutes)
+app.use('/route', routeRoutes)
 
 app.get('/logout', hasLoggedOut, (req, res) => {
   req.logout()

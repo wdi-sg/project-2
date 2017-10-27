@@ -1,6 +1,7 @@
 var input1 = $('#field1')
 var input2 = $('#field2')
-var userinput = $('#user')
+var $userId = $('#user')
+var $timeInput = $('#time')
 var map, marker1
 
 function initMap () {
@@ -32,26 +33,35 @@ function autoComplete () {
     var address1 = autocomplete1.getPlace().formatted_address
     var postal1 = (address1.substr(address1.length - 6))
     if (parseInt(postal1)) var postal1 = parseInt(postal1)
-    else return alert('Start bldg needs to have a postal code')
+    else return alert('Start bldg needs to be an address with a postal code')
 
     var address2 = autocomplete2.getPlace().formatted_address
     var postal2 = parseInt(address2.substr(address2.length - 6))
     if (parseInt(postal2)) var postal2 = parseInt(postal2)
-    else return alert('End bldg needs to have a postal code')
-
+    else return alert('End bldg needs to be an address with a postal code')
     var postalArray = [postal1, postal2]
+    var jsonInput = JSON.stringify({
+      postalArray,
+      user: $userId.val(),
+      time: $timeInput.val()
+    })
     fetch('/route', {
       method: 'POST',
-      body: JSON.stringify({postalArray, user: userinput.val()}),
+      body: jsonInput,
       headers: {
         'Content-Type': 'application/json'
       }
     })
-    .then(res => res.json())
-    .then(json => {
-      console.log('add to database')
+    .then(res => {
+      res.json()
+        .then((data) => {
+          $("#databaseResponse").text(`There are a total of ${data} user(s) looking for the same trip`)
+        })
     })
-
+    // .then(json => {
+    //   console.log('add to database')
+    // })
+    .catch(err => console.log(err))
   })
   function startPostalCode () {
     marker1.setAnimation(null)
@@ -59,9 +69,7 @@ function autoComplete () {
     map.setCenter(place1.geometry.location)
     marker1.setPosition(place1.geometry.location)
     marker1.setAnimation(google.maps.Animation.DROP)
-
   }
-
 }
 function calculateAndDisplayRoute (directionsService, directionsDisplay) {
   marker1.setPosition(null)
@@ -86,13 +94,11 @@ var options = {
 
 function success(pos) {
   var crd = pos.coords
-
   marker1 = new google.maps.Marker({
     position: new google.maps.LatLng(crd.latitude, crd.longitude),
     map: map,
     animation: google.maps.Animation.BOUNCE
   })
-
   map.setCenter({lat: crd.latitude, lng: crd.longitude})
 };
 
