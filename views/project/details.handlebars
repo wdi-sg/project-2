@@ -4,6 +4,9 @@
 <div class="">
   {{#if userMatch}}
   <a class="nav-link" href="/project/{{project.id}}/edit">Edit</a>
+  <form class="" action="/project/{{project.id}}/edit?_method=DELETE" method="post">
+    <button type="submit" name="button">Delete</button>
+  </form>
   {{/if}}
 </div>
 <div class="">
@@ -11,9 +14,14 @@
     <h5>By: {{ project.creator.name }}</h5>
   </a>
   <h5>Date: {{ dateTime }}</h5>
-  <a href="/category/{{ pattern.category }}">
+  <a href="/category/{{ project.category }}">
     <h5>Category: {{ project.category }}</h5>
   </a>
+  {{#if projectPatternExist}}
+  <a href="/pattern/{{project.pattern.id}}">
+    <h5>Based on: {{project.pattern.title}}</h5>
+  </a>
+  {{/if}}
 </div>
 <div class="">
 

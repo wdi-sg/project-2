@@ -64,7 +64,7 @@ router.get('/:id', (req, res) => {
   })
   .catch(err => res.send(err))
 })
-///
+
 
 router.get('/:id/edit', (req, res) => {
 
@@ -109,24 +109,9 @@ router.delete('/:id/edit', (req, res) => {
   .then(pattern => {
 
     if (pattern.creator.id === req.user.id){
-      const patternVariation = pattern.variation
-      console.log(patternVariation)
-      console.log(typeof patternVariation)
       Pattern.findByIdAndRemove(patternId)
       .then(() => {
-        for (var i = 0; i < patternVariation.length; i++) {
-          console.log(patternVariation[i])
-          console.log(patternVariation[i].id)
-          Project.findByIdAndUpdate(patternVariation[i], {
-            pattern : {}
-          })
-          .then(() => {
-            console.log('project updated')
-
-            res.redirect(`/home`)
-          })
-          .catch(err => console.log(err))
-        }
+        res.redirect(`/home`)
     })
     .catch(err => res.send(err))
   }

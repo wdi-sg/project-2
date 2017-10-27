@@ -51,10 +51,21 @@ router.delete('/',hasLoggedOut, (req, res) => {
                 console.log('delete patten') })
               }
             })
+            .catch(err => {
+              req.logout()
+              res.redirect(`/`)
+            })
+          })
+          .catch(err => {
+            req.logout()
+            res.redirect(`/`)
           })
         }
       })
-      .catch(err => res.send(err))
+      .catch(err => {
+        req.logout()
+        res.redirect(`/`)
+      })
     })
     .catch(err => res.send(err))
   })

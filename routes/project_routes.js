@@ -48,11 +48,11 @@ router.get('/:id', (req, res) => {
   .populate('pattern')
   .then(project => {
     let dateTime = project.created.toString().replace(/[GMT+].*/g,'')
-
+    let projectPatternExist = project.pattern
     var userMatch = (project.creator.id === req.user.id)
 
     res.render('project/details', {
-      project, userMatch, dateTime
+      project, userMatch, dateTime, projectPatternExist
     })
   })
   .catch(err => res.send(err))
