@@ -4,7 +4,15 @@
   background-color: grey;
 }
 
-.navbar-fixed {
-    font-family: 'Ruthie', cursive;
-    font-size: 50px;
+html {
+    font-family: IM Fell Double Pica, Calibri, Trebuchet, serif;
   }
+
+.carousel {
+  background-color: black ;
+}
+
+.carousel .carousel-item {
+  width: 400px !important;
+  height: 400px !important;
+}
