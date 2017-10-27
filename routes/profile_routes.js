@@ -16,26 +16,39 @@ router.post('/', (req, res) => {
 router.put('/:username/follow', (req, res) => {
   var userId = req.body.id // user to follow
   var currUserId = req.user.id // current user
-  console.log('userId: ', userId)
-  console.log('currUserId: ', currUserId)
-  console.log('currUserName: ', req.user.name)
-  User.findById(userId)
+
+  User.findById(userId) // find user to follow in db
   .then(user => {
-    if(user.id !== currUserId) {
-      console.log("found user's username: ", user.username)
-      console.log('not current user')
+    var i = 0
+    var followersLen = user.followers.length
+    if (user.id !== currUserId) { // if user to follow is not current user
+      for (; i < followersLen; i++) { // if current user is already a follower, redirect back to profile
+        if (user.followers[i] == currUserId) {
+          res.redirect(`/profile/${user.username}`)
+          break
+        }
+      }
 
-      // check if currUserId already exists in followers array
-      // if not, push
-
-      user.following.push(currUserId)
-      user.save()
-      .then(() => {
-        console.log('saved!')
-        res.redirect('/')
-      })
+      if (i === followersLen) {
+        user.followers.push(currUserId) // add current user id to follower list
+        user.save()
+        .then(() => {
+          User.findById(currUserId)
+          .then(currUser => {
+            currUser.following.push(userId)
+            currUser.save()
+            .then(() => {
+              console.log('added target user to following and current user to target users followers')
+              res.redirect(`/`)}
+            )
+            .catch(err => console.log(err))
+          })
+        })
+        .catch(err => console.log(err))
+      }
     }
   })
+  .catch(err => console.log(err))
 })
 
 module.exports = router
