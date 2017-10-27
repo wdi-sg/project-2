@@ -35,6 +35,7 @@ router.get('/showall', (req, res) => {
   else statusFind = {'owner': req.user.id}
   Component
   .find(statusFind)
+  .populate('owner')
   .populate('type')
   .sort({type: 1})
   .then(components => {
@@ -54,7 +55,7 @@ router.get('/showall', (req, res) => {
   })
 })
 
-router.get('/summary', (req, res) => {
+router.get('/cost', (req, res) => {
   Component
   .aggregate(
     [
@@ -74,7 +75,7 @@ router.get('/summary', (req, res) => {
     for (var i = 0; i < components.length; i++) {
       totalCost += components[i].subtotalCost
     }
-    res.render('components/summary', {
+    res.render('components/cost', {
       components, totalCost
     })
   })

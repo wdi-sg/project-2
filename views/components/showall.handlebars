@@ -6,6 +6,9 @@
   <table class="table">
     <thead>
       <tr>
+        {{#if user.isAdmin}}
+        <th scope="col">Owner</th>
+        {{/if}}
         <th scope="col">Name</th>
         <th scope="col">Description</th>
         <th scope="col">Vendor</th>
@@ -25,6 +28,9 @@
     <tbody>
       <tr>
         {{#each components as |compo|}}
+        {{#if ../user.isAdmin}}
+          <td>{{ compo.owner.name }}</td>
+        {{/if}}
         <td>{{ compo.name }}</td>
         <td>{{ compo.description }}</td>
         <td>{{ compo.vendor }}</td>
