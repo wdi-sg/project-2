@@ -17,6 +17,7 @@ const userSchema = new Schema({
   password: String,
   profile: [profileSchema],
   slug: String,
+  profileImg: String,
   gigs: [{}, {}, {}]
 })
 

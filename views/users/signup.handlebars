@@ -1,6 +1,11 @@
 <h3>Sign Up!</h3>
 
-<form action="/signup" method="post">
+
+<form enctype="multipart/form-data" action="/signup" method="post">
+
+  <label for="image">Image :</label>
+      <input type="file" name="image">
+
   <label for="name">Name</label>
   <input type="text" name="name" placeholder="e.g. John Doe">
 
