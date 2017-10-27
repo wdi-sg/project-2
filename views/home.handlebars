@@ -3,14 +3,19 @@
 {{#if user}}
   <form class="tweet" action="/new-tweet">
     <input type="hidden" name="user" value="{{ user.id }}">
+    <input type="hidden" name="username" value="{{ user.username }}">
+    <input type="hidden" name="tweetNum" value="{{ user.tweets.length }}">
     <textarea id="newTweet" rows="4" cols="50" required=true name="message" placeholder="What's happening?"></textarea>
     <button type="submit">Tweet</button>
   </form>
 
 
   <ul id="wall">
-    {{#each currentUser.tweets as |tweet|}}
-      <li>{{ tweet.message }}</li>
+    {{#each tweets as |tweet|}}
+      <li>
+        <p>{{ tweet.message }}</p>
+        <p>by: {{ tweet.author.username }}</p>
+      </li>
     {{/each}}
   </ul>
 {{/if}}

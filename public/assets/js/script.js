@@ -15,7 +15,9 @@ $(document).ready(function () {
     var form = $(this)
     var formData = form.serializeArray()
     var userId = formData[0].value
-    var message = formData[1].value
+    var username = formData[1].value
+    var tweetNum = formData[2].value
+    var message = formData[3].value
     var json = JSON.stringify({userId, message})
 
     fetch('/new-tweet', {
@@ -27,8 +29,15 @@ $(document).ready(function () {
     })
     .then(
       () => {
+        // increase tweet counter
+        tweetNum++
+        $tweetNum.text(`Tweets: ${tweetNum}`)
+
         var $li = $('<li>') // create new list element
-        $li.text(message) // change text of list element to message
+        var $p1 = $('<p>').text(message)
+        var $p2 = $('<p>').text(`by: ${username}`)
+        $li.append($p1).append($p2)
+
         $('#wall').append($li) // append new list element to wall
         $('#newTweet').val('') // empty text area
         $tweetNum.text()
