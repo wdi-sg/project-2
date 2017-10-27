@@ -45,7 +45,8 @@ router.put('/:id', (req, res) => {
     title: formData.title,
     address: formData.address,
     category: formData.category,
-    dateCreated: new Date(formData.dateCreated),
+    // dateCreated: new Date(formData.dateCreated),
+    dateCreated: formData.dateCreated,
     description: formData.description,
     pic: formData.pic
   })
