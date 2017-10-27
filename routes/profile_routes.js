@@ -34,37 +34,31 @@ router.delete('/',hasLoggedOut, (req, res) => {
   const userId = req.user.id
   User.findByIdAndRemove(req.user.id)
   .then(() => {
+    req.logout()
+    res.redirect(`/`)
+
     Pattern.find({creator: userId})
     .then(patternsArray => {
       for (var i = 0; i < patternsArray.length; i++) {
         Pattern.findByIdAndRemove(patternsArray[i].id)
         .then(() => {
-          console.log('delete patten')
+          
           Project.find({creator: userId})
           .then(projectsArray => {
             for (var i = 0; i < projectsArray.length; i++) {
               Project.findByIdAndRemove(projectsArray[i].id)
-              .then(() => {
-
-                req.logout()
-                res.redirect(`/`)
-                console.log('delete patten') })
+              .then(() => {})
               }
             })
             .catch(err => {
-              req.logout()
-              res.redirect(`/`)
+
             })
           })
           .catch(err => {
-            req.logout()
-            res.redirect(`/`)
           })
         }
       })
       .catch(err => {
-        req.logout()
-        res.redirect(`/`)
       })
     })
     .catch(err => res.send(err))
