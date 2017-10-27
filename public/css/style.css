@@ -21,26 +21,33 @@ body {
 
 .boardElement {
   border: 2px solid black;
-  margin: 0 -4px;
+  /*margin: 0 -4px;*/
   display: inline-block;
 }
 
 .createTask {
   display: inline-block;
-  height: 150px;
+  height: 180px;
   width: 300px;
+  border: 2px solid red;
+  overflow: auto;
+}
+
+.taskItem {
+  border: 2px solid blue;
 }
 
 #create,
 #review {
-  width: 50%;
+  display: inline-block;
+  width: 30%;
 }
 
 #return {
-  width: 100%;
+  width: 30%;
 }
 
 .left {
-  display: inline-block;
-  width: 70%;
+  display: flex;
+  width: 65%;
 }

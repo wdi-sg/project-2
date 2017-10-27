@@ -14,7 +14,12 @@ const hasLoggedOut = (req, res, next) => {
   }
 }
 
+const compare = (item1, item2) => {
+  return item1 === item2
+}
+
 module.exports = {
   hasLoggedOut,
-  isLoggedIn
+  isLoggedIn,
+  compare
 }

@@ -23,7 +23,13 @@ module.exports = io => {
     })
 
     socket.on("task", task => {
-      console.log("connected?")
+      // console.log("connected?")
+
+      let nsp = io.of(`/${task.projectId}`)
+      nsp.emit("task", {
+        name: task.taskName,
+        assigned: task.taskAssigned
+      })
       // console.log(task)
       let newTask = new Task({
         name: task.taskName,
@@ -36,6 +42,10 @@ module.exports = io => {
 
       newTask.save()
       // console.log(newTask)
+    })
+    socket.on("update", update => {
+      console.log("connected")
+      console.log(update)
     })
   })
 }

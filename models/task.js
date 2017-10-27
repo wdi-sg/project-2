@@ -14,6 +14,18 @@ const taskSchema = new mongoose.Schema({
   status: { type: String, default: "0" } //create, review, return
 })
 
+taskSchema.methods.isCreate = function(status) {
+  return this.status === "0"
+}
+
+taskSchema.methods.isReview = function(status) {
+  return this.status === "1"
+}
+
+taskSchema.methods.isReturn = function(status) {
+  return this.status === "2"
+}
+
 const Task = mongoose.model("Task", taskSchema)
 
 module.exports = Task

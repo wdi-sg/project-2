@@ -19,7 +19,7 @@ const http = require("http").Server(app) //what is this?
 const io = require("socket.io")(http)
 
 //helpers
-const { hasLoggedOut, isLoggedIn } = require("./helpers")
+const { hasLoggedOut, isLoggedIn, compare } = require("./helpers")
 
 //models
 const User = require("./models/user")
@@ -33,6 +33,14 @@ const mainBoard_routes = require("./routes/mainBoard_routes")
 //middlewares
 app.engine("handlebars", exphbs({ defaultLayout: "main" }))
 app.set("view engine", "handlebars")
+
+// var hbsHelpers = exphbs.create({
+//   helpers: require("./helpers/handlebars.js").helpers,
+//   extname: ".hbs"
+// })
+//
+// app.engine(".hbs", hbsHelpers.engine)
+// app.set("view engine", ".hbs")
 
 app.use(bodyParser.json())
 app.use(

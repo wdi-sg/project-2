@@ -1,50 +1,84 @@
 
+
 {{#if user.project}}
 <h3>Project: {{user.project}}</h3>
-<!-- <canvas class="whiteboard"></canvas> -->
 <div class="mainBoard">
 
 <div class="left">
   <div id="create" class="boardElement">
-    <p>Create:</p>
+    <h2>Create:</h2>
     {{#each tasks as |task|}}
-      <div>{{task.name}}: {{task.assigned}}</div>
+      {{#if task.isCreate}}
+        <div class="taskItem" id={{task.id}}>
+          <h4>Task: {{task.name}}</h4>
+          <p>Assigned to: {{task.assigned}}</p>
+          <p>Start: {{task.start}}</p>
+          <p>End: {{task.end}}</p>
+          <p>Projected End: {{task.projectedEnd}}</p>
+        </div>
+      {{/if}}
     {{/each}}
 
-
-<div class="createTask">
-  <p>Create a new task</p>
-  <form action="/board" id="createTask">
-    <input type="hidden" id="taskUser" value="{{user.name}}">
-    <input type="hidden" id="taskProject" value="{{user.project}}">
-    <input type="hidden" id="taskProjectId" value="{{user.projectId}}">
-    <label for="name">Task Name:</label>
-    <input type="text" id="taskName">
-    <br>
-    <label for="currentUser">Assigned:</label>
-    <input type="text" id="taskAssigned">
-    <br>
-    <label for="startDate">Start Date:</label>
-    <input type="date" id="taskStart">
-    <br>
-    <label for="endDate">End Date:</label>
-    <input type="date" id="taskEnd">
-    <label for="projectedEnd">Projected End Date:</label>
-    <input type="date" id="projectedEnd">
-    <button type="submit" name="button">Send</button>
-  </form>
-</div>
   </div>
 
   <div id="review" class="boardElement">
-    <p>Review/Test:</p>
+    <h2>Review/Test:</h2>
+    {{#each tasks as |task|}}
+    {{#if task.isReview}}
+      <div class="taskItem" id={{task.id}}>
+        <h4>Task: {{task.name}}</h4>
+        <p>Assigned to: {{task.assigned}}</p>
+        <p>Start: {{task.start}}</p>
+        <p>End: {{task.end}}</p>
+        <p>Projected End: {{task.projectedEnd}}</p>
+      </div>
+      {{/if}}
+    {{/each}}
   </div>
 
   <div id="return" class="boardElement">
-    <p>Return/Bugs:</p>
+    <h2>Return/Bugs:</h2>
+
+    {{#each tasks as |task|}}
+      {{#if task.isReturn}}
+        <div class="taskItem" id={{task.id}}>
+          <h4>Task: {{task.name}}</h4>
+          <p>Assigned to: {{task.assigned}}</p>
+          <p>Start: {{task.start}}</p>
+          <p>End: {{task.end}}</p>
+          <p>Projected End: {{task.projectedEnd}}</p>
+        </div>
+      {{/if}}
+    {{/each}}
   </div>
+
 </div>
-<p>Chat</p>
+
+    <div class="createTask">
+      <form action="/board" id="createTask">
+        <p>Create a new task</p>
+        <input type="hidden" id="taskUser" value="{{user.name}}">
+        <input type="hidden" id="taskProject" value="{{user.project}}">
+        <input type="hidden" id="taskProjectId" value="{{user.projectId}}">
+        <label for="name">Task Name:</label>
+        <input type="text" id="taskName">
+        <br>
+        <label for="currentUser">Assigned:</label>
+        <input type="text" id="taskAssigned">
+        <br>
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="taskStart">
+        <br>
+        <label for="endDate">End Date:</label>
+        <input type="date" id="taskEnd">
+        <br>
+        <label for="projectedEnd">Projected End Date:</label>
+        <input type="date" id="projectedEnd">
+        <button type="submit" name="button">Create a new task</button>
+      </form>
+    </div>
+
+<p>Chat:</p>
   <div class="chat">
     <ul id="messages">
       {{#each messages as |message|}}
