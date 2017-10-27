@@ -6,7 +6,7 @@ const DateOnly = require('mongoose-dateonly')(mongoose)
 const positionSchema = new Schema({
   name: String,
   ticker:  String,
-  inceptionDate: DateOnly,
+  buyDate: DateOnly,
   sellDate: DateOnly,
   units: Number,
   price: Number,

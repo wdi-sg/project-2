@@ -56,7 +56,7 @@ router.post('/', (req, res) => {
   var newPosition = new Position({
   name : formData.name,
   ticker : formData.ticker,
-  inceptionDate : formData.inceptionDate,
+  buyDate : formData.buyDate,
   units : formData.units,
   price : formData.price,
   assetClass: formData.assetClass,
