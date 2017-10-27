@@ -6,8 +6,21 @@
   <input type="hidden" name="user" value="{{user.id}}">
   <button type="submit" name="button">Analyze Text</button>
 </form>
-</div>
 
-{{!-- {{#each result}}
-  {{this.response}}
-{{/each}} --}}
+
+{{!-- {{#each data as |result|}} --}}
+{{!-- <p>{{data}}</p> --}}
+  <ul>
+    {{!-- #id='red' --}}
+    <li>Openness: {{result.openness}}</li>
+    <li>Conscientiousness: {{result.conscientiousness}}</li>
+    <li>Extraversion: {{result.extraversion}}</li>
+    <li>Agreeableness: {{result.agreeableness}}</li>
+    <li>Emotion Range: {{result.emotionalRange}}</li>
+  </ul>
+  <form action="/profile/{{result.id}}?_method=DELETE" method="post">
+    <button type="submit" name="button">Delete</button>
+  </form>
+
+</div>
+{{!-- {{/each}} --}}

@@ -7,6 +7,7 @@ const big5Schema = new Schema ({
 	extraversion: Number,
 	agreeableness: Number,
 	emotionalRange: Number,
+	created_at: Date,
 	owner: {
 		type: Schema.Types.ObjectId,
 		ref: "User"

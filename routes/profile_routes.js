@@ -15,11 +15,17 @@ var personality_insights = new PersonalityInsightsV3({
 })
 
 router.get("/", (req, res) => {
-
-	res.render("users/profile",{
-		user: req.user
-	})
-	// res.send(req.user)
+	// finding owner by user Id
+	Big5.findOne({owner: req.user.id}).sort({created_at: -1})
+		.then(
+			result => {
+				res.render("users/profile",{
+					result
+				})
+			}
+		)
+	// res.send(data)
+	// })
 })
 
 router.post("/", (req, res) => {
@@ -47,17 +53,29 @@ router.post("/", (req, res) => {
 			extraversion: big5Data[2].percentile,
 			agreeableness: big5Data[3].percentile,
 			emotionalRange: big5Data[4].percentile,
+			created_at: new Date (),
 			owner: req.body.user
 		})
 		newPersonality.save()
 			.then(
-				() => console.log("Saved Successful"),
+				() => res.redirect("/profile"),
 				(err) => console.log(err)
 			)
 		// res.send(response)
-		res.render("users/profile", { result: response})
+
 	})
 
+})
+
+router.delete("/:id", (req, res) => {
+// Find by user id and delete 
+	Big5.findByIdAndRemove(req.params.id)
+		.then((result) => {
+			console.log(result)
+			res.redirect("/profile")
+			// res.redirect('./users/profile')
+		})
+		.catch(err => console.log(err))
 })
 
 module.exports = router
