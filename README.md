@@ -1,65 +1,41 @@
-# Your Project Name
+# Project #2: Biblio-File
+Created by: [__Ming Yi Koh__](https://github.com/mingyikoh)
+<br>
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+[*Link to Biblio-File*!](https://cryptic-tundra-69544.herokuapp.com/)
 
-## Getting Started
+---
+## Overview
+*Biblio-File* is a platform that aims to help avid readers record, take notes and review books that they've read.
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+---
+## Technical Documentation
+* Coding Theory
+* Future Possible Updates
+* Coding Sequence
+* Acknowledgements
 
-### Prerequisites
+#### Coding Theory
+Due to time constraints, the project was greatly simplified. The main aim was to create a functional CRUD for the users. If time allowed, we would utilise Google Books API to search for book titles and allow for readers to record the books that they've read.
 
-What is needed to install and run the project, how do we install them
+#### Future Possible Updates
+* Add reviews
+* Add ratings
 
-```
-Code example
-```
+#### Coding Sequence
+1. Install and require all necessary modules
+1. Create main handlebars
+1. Create User models
+1. Do up basic user registration and login function
+1. Set up passport/sessions
+1. Create routes
+1. Do up basic CRUD for user
+1. Find Google Books API
+1. Add books read to user DB
 
-### How to Use
+#### Acknowledgements
+* **Shumin Huang** (TA)
+<br>For the help and advice rendered through personal consultations, especially for taking the time to help cover and making sure I understand the topics that were taught while I was away.
 
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
-
-
-```
-Code example
-```
-
-More steps...
-
-```
-until finished
-```
-
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
-
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
-
-## Built With
-
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
-
-## Workflow
-
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
-
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+* **Prima Aulia** (Lecturer)
+<br>For the patience and assistance given over the course as well as the effort to tailor my project MVP based on my progress over the days.
