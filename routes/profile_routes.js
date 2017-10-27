@@ -16,6 +16,22 @@ router.get('/', (req, res)=>{
     })
 })
 
+router.get('/edit', (req,res)=>{
+  var user = req.user
+  res.render('profileEdit', {user})
+})
 
+router.put('/edit', (req, res)=>{
+  var user =req.user
+  var formData=req.body.user
+  User.findOneAndUpdate({name: user.name}, {
+    name: formData.name,
+    email: formData.email,
+    phoneNumber: formData.phoneNumber
+  })
+  .then(()=>{
+    res.redirect('/profile')
+  })
+})
 
 module.exports = router

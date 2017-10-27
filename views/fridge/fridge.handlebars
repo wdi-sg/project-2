@@ -7,16 +7,17 @@
   <div class="col-3">
     <div class="card">
       <img style="width: 100px" src="/img/stickynote.png" alt="Sticky Notes Image">
+      <h1 class="">{{ task.details }}</h1>
+      &nbsp;
+      <button class="btn bt n-secondary form-inline" type="button" onclick="location.href='/task/{{task.id}}/edit'">Edit</button>
       <div class="card-body">
-        <h4 class="card-title">{{ task.details }}</h4>
-        &nbsp;
-        <h4 class="card-title">Task taken by:{{ task.assign.name }}</h4>
-        &nbsp;
-        <button class="btn btn-secondary form-inline" type="button" onclick="location.href='/task/{{task.id}}/edit'">Edit</button>
-
+        <p>Task taken by:{{ task.assign.name }}</p>
         {{#if task.complete}}
+        <p>Task Status: Completed</p>
         {{else}}
+        <p>Task Status: Not Complete</p>
         {{#if task.assign}}
+        {{!-- <button class="btn btn-secondary form-inline" type="button" onclick="location.href='/task/{{task.id}}/edit'">Edit</button> --}}
         <form
         class="form-inline"
         action="/task/{{task.id}}/editAssign?_method=PUT"

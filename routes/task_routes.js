@@ -22,8 +22,7 @@ router.put('/:id/edit', (req, res)=>{
   var formData = req.body
   console.log(req.body)
   Task.findByIdAndUpdate(req.params.id, {
-    details: formData.details,
-    assign: formData.assign
+    details:formData.details
   })
   .then((task)=>{
     Task.findById(req.params.id)
@@ -75,7 +74,7 @@ router.put('/:id/complete', (req, res)=>{
         console.log(member.phoneNumber)
         client.messages
         .create({
-          to: `+${member.phoneNumber}`,
+          to: `+65${member.phoneNumber}`,
           from: '+17173882453 ',
           body: `${task.details} is completed`,
         })
@@ -92,6 +91,7 @@ router.post('/', (req,res)=>{
   var formData = req.body
   var newTask = new Task({
     details: formData.details,
+    assign: formData.assign,
     fridge: formData.fridge,
     complete: false
   })
