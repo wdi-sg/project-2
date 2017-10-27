@@ -1,30 +1,29 @@
 <h3>Set variables</h3>
-
-<form action="/components/variables?_method=PUT" method="post">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-        <th scope="col">Margin(%)</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-  {{#each types as |type|}}
-
-  <tbody>
+<div class="content table-responsive table-full-width">
+  <table class="table table-hover table-striped">
+    <form action="/components/variables?_method=PUT" method="post">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Type</th>
+          <th scope="col">Margin(%)</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+    {{#each types as |type|}}
     <tr>
-      <td>
-  {{type.name}}
-  </td>
-  <td>
-    <input type="hidden" name="id" value ="{{type.id}}">
-    <input type="number" name="margin" value ="{{type.margin}}">
-  </td>
-  <td>
-  </td>
+      <input type="hidden" name="id" value ="{{type.id}}">
+          <td>
+            {{type.name}}
+          </td>
+          <td>
+            <input type="number" name="margin" value ="{{type.margin}}">
+          </td>
+    {{/each}}
   </tr>
-  </tbody>
-  {{/each}}
-</table>
-<button type="submit" name="button">Update</button>
-</form>
+    </tbody>
+  </table>
+  <button type="submit" name="button">Update</button>
+  </form>
+</div>
