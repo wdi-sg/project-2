@@ -97,6 +97,7 @@ router.post('/', upload.single('myFile'), function (req, res) {
     {safe: true, upsert: true},
     function(err, model) {
         console.log(err);
+        res.redirect('/admin/view')
     })
 
 
