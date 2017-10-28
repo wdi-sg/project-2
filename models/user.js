@@ -12,7 +12,7 @@ const userSchema = new Schema({
   admin: Boolean,
   cart:
   [{
-    tourDate: Date,
+    tourDate: String,
     bookedTour: tourId
   }]
 })

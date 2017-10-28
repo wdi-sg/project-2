@@ -32,11 +32,44 @@ button {
   color: black;
 }
 
-input {
+/*input {
   background-color: white;
   color: black;
-}
+}*/
 
 form {
-  background-color: grey
+  background-color: grey;
+}
+
+#reviewtitle {
+  font-size: 18px;
+}
+
+#reviewdes {
+  font-size: 14px;
+}
+
+.tourname {
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+#tourdetails {
+  font-size: 17px;
+}
+
+#addcart {
+  font-size: 17px;
+  text-align: center;
+  /*vertical-align: middle;*/
+}
+
+#dates {
+  color: white;
+}
+
+.card-action {
+  font-size: 20px;
+  text-align: center;
 }

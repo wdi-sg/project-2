@@ -1,24 +1,31 @@
 <div class="container">
-<h3>Your Cart</h3>
+<h3 class="tourname">My Cart</h3>
 
 <ul>
   {{#each userCart as |tour|}}
-    <div>
-      <a href="/show/tourdetails/{{tour.bookedTour.slug}}">{{ tour.bookedTour.name }}</a>
-      <p>{{ tour.tourDate }}</p>
-    </div>
     <div class="row">
-      <form action="/{{tour.bookedTour.slug}}/cart?_method=DELETE" method="post">
-        <input type="hidden" name="id" value= {{ tour.bookedTour._id }}>
-        <button class="btn waves-effect waves-light" type="delete" name="button">Delete
-          <i class="material-icons right">delete</i>
-        </button>
-      </form>
+
+      <div class="col s4">
+        <a href="/show/tourdetails/{{tour.bookedTour.slug}}"><h4>{{ tour.bookedTour.name }}</h4></a>
+        <p><h6>{{ tour.tourDate }}</h6></p>
+      </div>
+
+      <div class="col s2.5 push-s6">
+        <br>
+        <br>
+        <form action="/{{tour.bookedTour.slug}}/cart?_method=DELETE" method="post">
+          <input type="hidden" name="id" value= {{ tour.bookedTour._id }}>
+          <button class="btn waves-effect waves-light cyan lighten-1" type="delete" name="button">Delete
+            <i class="material-icons right">delete</i>
+          </button>
+        </form>
+      </div>
+
     </div>
 
     <br>
   {{/each}}
 </ul>
 
-<h5>Please call 1-800-GOT-TOUR or email fantasytours@gmail.com with your details to confirm your booking!</h5>
+<h5>Please call 1-800-FAT-TOUR or email info@fantasytours.com with your details to confirm your booking!</h5>
 </div>

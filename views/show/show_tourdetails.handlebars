@@ -1,51 +1,85 @@
 <div class="container">
-  <div class="row">
 
-    <h3>Tour Name: {{ data.name }}</h3>
+  <div class="row">
+    <h3 class="tourname">{{ data.name }}</h3>
+
     <div class="slider">
       <ul class="slides">
         <li>
           <img src={{ data.pictureurl3 }}>
           <div class="caption center-align">
-            <h3>{{ data.name }}</h3>
-            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            <h3>Experience the magic</h3>
           </div>
         </li>
         <li>
           <img src={{ data.pictureurl2 }}>
           <div class="caption left-align">
-            <h3>Left Aligned Caption</h3>
-            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            <h3>Go all the way</h3>
+            <h5 class="light grey-text text-lighten-3">to your real fantasy</h5>
           </div>
         </li>
         <li>
           <img src={{ data.pictureurl1 }}>
           <div class="caption right-align">
-            <h3>Right Aligned Caption</h3>
-            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            <h3>Wanderlust.</h3>
           </div>
         </li>
       </ul>
     </div>
-    <ul>
-      <li>Overview: {{ data.overview }}</li>
-      <li>Highlights: {{ data.highlights }}</li>
-      <li>Price: Adult (16 years+): USD${{ data.price }}</li>
+
+    <ul id="tourdetails">
+      <li>{{ data.overview }}</li><br>
+      <li>{{ data.highlights }}</li><br>
+      <li>USD${{ data.price }} per person</li>
     </ul>
 
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="row" id="addcart">
     <form action="/show/tourdetails/{{data.slug}}" method="post">
+
       <ul>
-        <li>Choose Date</li>
-        <li><input type="date" name="datechosen"></input></li>
+        <div class="col s4 offset-s3">
+          <h5>Available Dates</h5>
+          <input type="text" name="datechosen" class="datepicker">
+        </div>
       </ul>
 
-      <input type="submit" value="Add to Cart"></input>
+      <div class="col s3">
+        <br>
+        <br>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Add to Cart<i class="material-icons right">send</i>
+        </button>
+      </div>
+
     </form>
+  </div>
 
+  <div class="divider"></div>
 
-    <h3>Add reviews</h3>
+  <div class="row">
+    <h3 class="tourname">Reviews</h3>
+
+  <div class="col s7">
+    <ul>
+      {{#each reviews as |review|}}
+      <li id="reviewtitle">{{ review.title }}</li>
+      <li id="reviewdes">{{ review.description }}</li>
+      <li>~{{ review.author.name }}</li>
+      <br>
+      {{/each}}
+    </ul>
+  </div>
+
+  <div class="col s1">
+  </div>
+
+  <div class="col s4">
     <form action="/review/add" method="post">
 
+      <h5>Add Review</h5>
       <input type="hidden" name="tourId" value="{{ data.id }}">
       <input type="hidden" name="userId" value="{{ user.id }}">
       <input type="hidden" name="slug" value="{{ data.slug }}">
@@ -59,16 +93,8 @@
       <br>
 
       <button type="submit" name="button">Submit</button>
+
     </form>
-
-    <ul>
-      {{#each reviews as |review|}}
-      <li>Author: {{ review.author.name }}</li>
-      <li>Review Title: {{ review.title}}</li>
-      <li>Review Description: {{ review.description}}</li>
-      <br>
-      {{/each}}
-    </ul>
-
+  </div>
   </div>
 </div>
