@@ -72,11 +72,14 @@ $(document).ready(function () {
     })
     .then(response => response.json()) // convert the json file into js object
     .then(users => { // forEach user, create new li, add name, add to ul
+      // var data = {} FIX AUTOCOMPLETE
       users.forEach(user => {
+        // data[user] = null
         var $li = $('<li>')
         $li.text(user.username)
         $autocomplete.append($li)
       })
+      // console.log(data)
       if(keyword === '') $autocomplete.empty() // empties autocomplete list if input field is emptied
     })
     .catch(err => console.log(err))

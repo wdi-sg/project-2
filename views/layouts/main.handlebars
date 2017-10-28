@@ -65,12 +65,12 @@
                 </ul>
               </div>
               <div class="card-tabs">
-                <ul class="tabs tabs-fixed-width">
-                  {{#if user}}
-                  <li class="tab"><a href="#" class="blue-text lighten-3">Following: {{ user.following.length }}</a></li>
-                  <li class="tab"><a href="#" class="blue-text lighten-3">Followers: {{ user.followers.length }}</a></li>
-                  {{/if}}
-                </ul>
+                {{#if user}}
+                  <ul class="tabs tabs-fixed-width">
+                    <li class="tab"><a href="#" class="blue-text lighten-3">Following: {{ user.following.length }}</a></li>
+                    <li class="tab"><a href="#" class="blue-text lighten-3">Followers: {{ user.followers.length }}</a></li>
+                  </ul>
+                {{/if}}
               </div>
             </div>
           </div>
@@ -88,7 +88,7 @@
         <div class="container">
           <div class="row">
             <div class="col s6">
-              <p class="white-text left">© 2014 Copyright Text</p>
+              <p class="white-text">© 2014 Copyright Text</p>
             </div>
             <div class="col s6">
               <p class="white-text right">Made by <strong><a class="white-text" href="https://github.com/koozy0">koozy</a></strong></p>
@@ -101,17 +101,5 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="/assets/js/materialize.js"></script>
     <script src="/assets/js/script.js" charset="utf-8"></script>
-    {{!-- <script>
-      $(document).ready(function(){
-        $('input.autocomplete').autocomplete({
-          data: {
-              "Apple": null,
-              "Microsoft": null,
-              "Google": null,
-              "Gargle":null
-          }
-        });
-      });
-    </script> --}}
   </body>
 </html>
