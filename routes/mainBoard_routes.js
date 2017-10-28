@@ -4,10 +4,15 @@ const Task = require("../models/task")
 const Message = require("../models/message")
 const express = require("express")
 const router = express.Router()
+const app = express()
 
 router.get("/", (req, res) => {
   if (!req.user.project) res.redirect("/manageProject")
   else {
+    let nsp = req.io.of(`/${req.user.projectId}`)
+    nsp.on("connection", function(socket) {
+      console.log("Connected to unique project ID")
+    })
     //displays latest 10 messages from database
     Message.find({ projectId: req.user.projectId })
       .sort({ date: -1 })

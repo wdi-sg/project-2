@@ -17,7 +17,7 @@ const app = express()
 //socket.io
 const http = require("http").Server(app) //what is this?
 const io = require("socket.io")(http)
-
+app.io = io
 //helpers
 const { hasLoggedOut, isLoggedIn, compare } = require("./helpers")
 
@@ -79,6 +79,7 @@ app.use(passport.session())
 
 app.use((req, res, next) => {
   app.locals.user = req.user
+  req.io = io
   next()
 })
 
@@ -112,6 +113,11 @@ app.use("/login", isLoggedIn, login_routes)
 
 // socket connection routes
 const socketIO = require("./routes/websocket_routes")(io)
+
+io.on("projectBasedConnection", key => {
+  console.log("recieved")
+  console.log(key)
+})
 
 http.listen(port, () => {
   console.log(`Server is running on port ${port}`)

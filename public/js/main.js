@@ -107,4 +107,9 @@ $(function() {
 
     $create.prepend($("<div>").text(task.name))
   })
+
+  socket.on("projectBasedConnection", key => {
+    console.log("recieved")
+    console.log(key)
+  })
 })

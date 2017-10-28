@@ -67,5 +67,5 @@ module.exports = io => {
     socket.on("delete", deleteId => {
       console.log(deleteId)
     })
-  })
+  }) //end of connection
 }
