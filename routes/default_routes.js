@@ -146,49 +146,53 @@ router.post("/image", (req,res)=>{
 
 
 router.put("/profile/:id", (req,res)=>{
-
-  if(req.user.type === "user"){
-    User.findByIdAndUpdate(req.params.id,{
-      name: req.body.name,
-      email: req.body.email,
-      course: req.body.course,
-      coursePref: req.body.coursePref
-    })
-    .then(()=>{
-      Answer.update(
-   {creator: req.params.id}, //query, you can also query for email
-   {$set: { creatorName: req.body.name}},
-   {multi: true} //for multiple documents
-  )
-  .then(()=>{
-    req.flash("info","Profile details updated!")
+  if(req.body.coursePref !== "no" || req.body.coursePref !== "yes"){
+    req.flash("error","Invalid course preference input, please type either 'yes' or 'no'")
     res.redirect("/profile")
-  })
-
-
-    })
-  }else if(req.user.type==="admin"){
-    Admin.findByIdAndUpdate(req.params.id,{
-      name: req.body.name,
-      email: req.body.email,
-      course: req.body.course,
-      coursePref: req.body.coursePref
-    })
+  }else{
+    if(req.user.type === "user"){
+      User.findByIdAndUpdate(req.params.id,{
+        name: req.body.name,
+        email: req.body.email,
+        course: req.body.course,
+        coursePref: req.body.coursePref
+      })
+      .then(()=>{
+        Answer.update(
+     {creator: req.params.id}, //query, you can also query for email
+     {$set: { creatorName: req.body.name}},
+     {multi: true} //for multiple documents
+    )
     .then(()=>{
-      Answer.update(
-   {creator: req.params.id}, //query, you can also query for email
-   {$set: { creatorName: req.body.name}},
-   {multi: true} //for multiple documents
-  )
-  .then(()=>{
-    req.flash("info","Profile details updated!")
-    res.redirect("/profile")
-  })
-
-
+      req.flash("info","Profile details updated!")
+      res.redirect("/profile")
     })
+
+
+      })
+    }else if(req.user.type==="admin"){
+      Admin.findByIdAndUpdate(req.params.id,{
+        name: req.body.name,
+        email: req.body.email,
+        course: req.body.course,
+        coursePref: req.body.coursePref
+      })
+      .then(()=>{
+        Answer.update(
+     {creator: req.params.id}, //query, you can also query for email
+     {$set: { creatorName: req.body.name}},
+     {multi: true} //for multiple documents
+    )
+    .then(()=>{
+      req.flash("info","Profile details updated!")
+      res.redirect("/profile")
+    })
+
+
+      })
+    }
+
   }
-
 })
 // admin console edit users page ================
 router.put("/profile/adminconsole/:id", (req,res)=>{
