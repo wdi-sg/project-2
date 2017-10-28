@@ -1,16 +1,38 @@
-<h3>{{ quote.quote }} - {{ quote.author }}</h3>
+<section class="hero is-white is-fullheight">
+  <div class="hero-body">
+   <div class="container has-text-centered">
+     <div class="column is-10 is-offset-1">
+       <h1 class="title is-3">
+         Morning Quote
+       </h1>
+        {{!-- <div style="text-align:center" class="container"> --}}
+        <h1 class="title">
+          "{{ quote.quote }}"
+        </h1>
+        <h2 style="padding-top:10px; font-size:28px; letter-spacing:2px; font-style:italic"
+        class="subtitle is-4">
+          {{ quote.author }}
+        </h2>
+          <form style="display:inline-block" action="/addcollection" method="post">
+            <input class="input" type="hidden" name="quoteId" value="{{ quote.id }}">
+            <button style="border-radius:10px"class="button is-medium is-grey" type="submit" name="button">Add</button>
+          </form>
+        {{!-- show if user logged in & have not subscribed --}}
+        {{#if user}}
+          {{#unless user.subscribeQuote }}
+          <form style="display:inline-block" action="/subscribe?_method=PUT" method="post">
+            <input class="input" type="hidden" name="user[subscribeQuote]" value='true'>
+            <button style="border-radius:10px" class='button is-small is-white' type="submit" name="button">Subscribe</button>
+          </form>
+            {{/unless}}
+          {{/if}}
+      <div style="margin-bottom: 80px;"class="container"></div>
+     </div>
+   </div>
+ </div>
+</section>
+{{!-- <section style="margin-top:100px"class="hero is-success is-medium">
+  <div class="hero-body">
 
-<form action="/addcollection" method="post">
-  <input type="hidden" name="quoteId" value="{{ quote.id }}">
-  <button type="submit" name="button">Add to Collection</button>
-</form>
-
-{{!-- show if user logged in & have not subscribed --}}
-{{#if user}}
-  {{#unless user.subscribeQuote }}
-  <form action="/subscribe?_method=PUT" method="post">
-    <input type="hidden" name="user[subscribeQuote]" value='true'>
-    <button type="submit" name="button">Receive a quote every morning</button>
-  </form>
-  {{/unless}}
-{{/if}}
+  </div>
+</section> --}}

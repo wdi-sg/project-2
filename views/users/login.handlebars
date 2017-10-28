@@ -1,11 +1,35 @@
-<h3>User Login</h3>
-
-<form action="/login" method="post">
-  <label for="Email">E-mail</label>
-  <input type="email" name="user[email]" placeholder="e.g larry@gmail.com">
-
-  <label for="password">Password</label>
-  <input type="password" name="user[password]" placeholder="your password">
-
-  <button type="submit" name="button">Log In</button>
-</form>
+<section class="hero is-small">
+    <div class="hero-body">
+      <div class="container has-text-centered ">
+        <div class="column is-4 is-offset-4">
+          <h3 style="font-weight:normal"class="title is-3 is-black">Log Into Your Account</h3>
+          <div class="box">
+            <form action="/login" method="post">
+              <div class="field">
+                <div class="control">
+                  <input class="input is-medium" type="email" name="user[email]" placeholder="Your Email*" autofocus="">
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input is-medium" type="password" name="user[password]" placeholder="Your Password*">
+                </div>
+              </div>
+              <div class="field">
+                <label class="checkbox">
+                  <input type="checkbox">
+                  Remember me
+                </label>
+              </div>
+              <button style="margin: 0 auto" class="button is-info is-primary is-medium" type="submit" name="button">Login</button>
+            </form>
+          </div>
+          <p class="has-text-grey">
+            <a href="./register">Sign Up</a> &nbsp;·&nbsp;
+            <a href="../">Forgot Password</a> &nbsp;·&nbsp;
+            <a href="../">Need Help?</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>

@@ -1,16 +1,46 @@
+
+
+  <div style="margin: 30px" class="hero-head">
+    <div class="container has-text-centered ">
+      <h3 class="title"> {{quote.author}}</h3>
+      <h3 style=""class="title">"{{quote.quote}}"</h3>
+    </div>
+  </div>
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container has-text-centered ">
+        <div class="column is-6 is-offset-3">
+          <div class="box">
+            {{!-- <h3 style="font-weight:normal"class="title is-3 is-black">Update Quote</h3> --}}
+              <form action="/quotes/{{ quote.id }}?_method=PUT" method="post">
+                <div class="control">
+                  <label style="font-size:20px;"class="label" for="Author">Author</label>
+                  <input class="input" type="text" name="author" value="{{ quote.author }}">
+                </div>
+                {{!-- we put the {{}} inside value cos we want to show the existing name --}}
+                <div class="control">
+                  <label style="font-size:20px; margin-top:5px;" class="label" for="Quote">Quote</label>
+                  <input class="input" type="text" name="quote" value="{{ quote.quote }}">
+                </div>
+                <br>
+                <button style="margin: 0 auto" class="button is-primary is-medium" type="submit" name="button">Update</button>
+                {{!-- <button type="submit" name="button">Update</button> --}}
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{{!--
 <h2>Update Quote</h2>
-
-<h3>Author: {{quote.author}}</h3>
-<h3>Quote: {{quote.quote}}</h3>
-
 
 <form action="/quotes/{{ quote.id }}?_method=PUT" method="post">
   <label for="Author">Author</label>
-  <input type="text" name="author" value="{{ quote.author }}">
+  <input class="input" type="text" name="author" value="{{ quote.author }}">
   {{!-- we put the {{}} inside value cos we want to show the existing name --}}
-
+{{!--
   <label for="Quote">Quote</label>
-  <input type="text" name="quote" value="{{ quote.quote }}">
+  <input class="input" type="text" name="quote" value="{{ quote.quote }}">
 
   <button type="submit" name="button">Update</button>
-</form>
+</form> --}}

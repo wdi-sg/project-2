@@ -1,14 +1,27 @@
-<h2>Quote Collections</h2>
 
-<ul>
+<section class="hero is-small is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Quote Collections
+      </h1>
+    </div>
+  </div>
+</section>
+
+
+<div class="columns is-multiline">
   {{#each quotes}}
-    <li>
-      {{ this.quote }}
-      -   {{ this.author }}
-      <form action="/addcollection" method="post">
-        <input type="hidden" name="quoteId" value="{{this._id}}">
-        <button type="submit" name="button">Add</button>
-      </form>
-    </li>
+  <div class="column is-one-third">
+    <div style="height:170px; text-align:center" class="card">
+      <div class="card-content is-centered">
+        <strong>{{ this.author }}</strong><br>
+        "{{ this.quote }}"
+        <form action="/addcollection" method="post">
+          <input type="hidden" name="quoteId" value="{{this._id}}">
+          <button type="submit" name="button">Add</button>
+        </form>
+      </div>
+    </div>
+  </div>
   {{/each}}
-</ul>
+</div>
