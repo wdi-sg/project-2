@@ -1,38 +1,128 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Pirated Twitter</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   </head>
   <body>
-    <a href="/"><h1>Pirated Twitter</h1></a>
-    {{#if user}}
-      <div>
-        <a href="/profile/{{user.username}}">{{ user.username }}</a> <!-- render if user is logged in -->
-        <a href="/logout">Logout</a>
+    <nav class="blue">
+      <div class="nav-wrapper">
+        <!-- Nav bar home logo -->
+        <div class="container">
+          <a href="/" class="brand-logo white-text">Pirated Twitter</a>
+          <!-- Nav bar items -->
+          <ul class="hide-on-med-and-down right">
+            <!-- Search Bar -->
+            <li>
+              <div class="center row">
+                <div class="col s12">
+                  <div class="row" id="topbarsearch">
+                    <div class="input-field col s6 s12 white-text">
+                      <form id="search" action="/profile" method="post">
+                        <i class="transparent material-icons prefix">search</i>
+                        <input type="text" placeholder="Search" id="autocomplete-input" class="autocomplete" name="username">
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <!-- Links -->
+            {{#if user}}
+            <li><a href="/logout" class="white-text">Logout</a></li>
+            {{else}}
+            <li><a href="/register" class="white-text">Register</a></li> <!-- render if user is not logged in -->
+            <li><a href="/login" class="white-text">Login</a></li> <!-- render if user is not logged in -->
+            {{/if}}
+          </ul>
+        </div>
       </div>
-      <div>
-        <a id="tweetNum" href="#">Tweets: {{ user.tweets.length }}</a>
-        <a href="#">Following: {{ user.following.length }}</a>
-        <a href="#">Followers: {{ user.followers.length }}</a>
+    </nav>
+
+    <main>
+      <div class="container">
+        <div class="row">
+          <!-- left column -->
+          <div class="col s4">
+            <div class="card blue">
+              <div class="card-image">
+                <img src="/assets/images/profile-placeholder.jpg">
+                <span class="card-title">{{ user.name }}</span>
+              </div>
+              <div class="card-content">
+                <ul>
+                  {{#if user}}
+                  <li><a href="/profile/{{user.username}}" class="white-text">@{{ user.username }}</a></li>
+                  <br>
+                  <li><a id="tweetNum" href="#" class="white-text">Tweets: {{ user.tweets.length }}</a></li>
+                  {{else}}
+                  <li><p class="white-text">Not Logged In</p></li>
+                  {{/if}}
+                </ul>
+              </div>
+              <div class="card-tabs">
+                <ul class="tabs tabs-fixed-width">
+                  {{#if user}}
+                  <li class="tab"><a href="#" class="blue-text lighten-3">Following: {{ user.following.length }}</a></li>
+                  <li class="tab"><a href="#" class="blue-text lighten-3">Followers: {{ user.followers.length }}</a></li>
+                  {{/if}}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- right column -->
+          <div class="col s8">
+            <ul id="autocomplete"></ul>
+            {{{ body }}}
+          </div>
+        </div>
       </div>
-    {{else}}
-      <a href="/register">Register</a> <!-- render if user is not logged in -->
-      <a href="/login">Login</a> <!-- render if user is not logged in -->
-      <p>Not Logged In</p>
-    {{/if}}
+    </main>
 
-    <form id="search" action="/profile" method="post">
-      <input id="searchBar" type="text" name="username" placeholder="Search Pirated Twitter">
-      <button type="submit">Search</button>
-    </form>
-
-    <h5>Autocomplete List</h5>
-    <ul id="autocomplete"></ul>
-
-    {{{ body }}}
+    <footer class="page-footer blue">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Footer Content</h5>
+            <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Links</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2014 Copyright Text
+        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+      </div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="/assets/js/materialize.js"></script>
     <script src="/assets/js/script.js" charset="utf-8"></script>
+    {{!-- <script>
+      $(document).ready(function(){
+        $('input.autocomplete').autocomplete({
+          data: {
+              "Apple": null,
+              "Microsoft": null,
+              "Google": null,
+              "Gargle":null
+          }
+        });
+      });
+    </script> --}}
   </body>
 </html>

@@ -1,6 +1,6 @@
 $(document).ready(function () {
   const $tweet = $('.tweet')
-  const $searchBar = $('#searchBar')
+  const $searchBar = $('#autocomplete-input')
   const $autocomplete = $('#autocomplete')
 
   // prevent form submission
@@ -16,8 +16,9 @@ $(document).ready(function () {
     var formData = form.serializeArray()
     var userId = formData[0].value
     var username = formData[1].value
-    var tweetNum = formData[2].value
-    var message = formData[3].value
+    var name = formData[2].value
+    var tweetNum = formData[3].value
+    var message = formData[4].value
     var json = JSON.stringify({userId, message})
 
     fetch('/new-tweet', {
@@ -33,12 +34,22 @@ $(document).ready(function () {
         tweetNum++
         $tweetNum.text(`Tweets: ${tweetNum}`)
 
-        var $li = $('<li>') // create new list element
-        var $p1 = $('<p>').text(message)
-        var $p2 = $('<p>').text(`by: ${username}`)
-        $li.append($p1).append($p2)
+        var $row = $('<div class="row">')
+        var $card = $('<div class="card">')
 
-        $('#wall').append($li) // append new list element to wall
+        var $authorContainer = $('<div class="card-action">')
+        var $authorName = $('<a href="#" class="black-text tweetAuthorName">').text(`${name}`)
+        var $author = $('<p class="grey-text tweetAuthor">').text(`@${username}`)
+
+        var $messageContainer = $('<div class="card-content black-text">')
+        var $message = $('<p>').text(message)
+
+        $messageContainer.append($message)
+        $authorContainer.append($authorName).append($author)
+        $card.append($authorContainer).append($messageContainer)
+        $row.append($card)
+
+        $('#wall').prepend($row) // append new list element to wall
         $('#newTweet').val('') // empty text area
         $tweetNum.text()
       }
@@ -62,7 +73,6 @@ $(document).ready(function () {
     .then(response => response.json()) // convert the json file into js object
     .then(users => { // forEach user, create new li, add name, add to ul
       users.forEach(user => {
-        console.log(user.username)
         var $li = $('<li>')
         $li.text(user.username)
         $autocomplete.append($li)

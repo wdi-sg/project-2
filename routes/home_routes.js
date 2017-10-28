@@ -17,7 +17,8 @@ router.get('/', (req, res) => {
       var qObj = {
         author: following
       }
-      Tweet.find(qObj).limit(10)
+      Tweet.find(qObj)
+      // .limit(20) TO ADD FUNCTIONALITY FOR DYNAMIC DISPLAY OF TWEETS USING CURSOR
       .populate('author')
       .then(tweets => {
         res.render('home', { tweets })

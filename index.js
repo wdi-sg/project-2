@@ -91,7 +91,7 @@ app.get('/logout', hasLoggedOut, (req, res) => {
 // routes
 app.use('/register', isLoggedIn, register_routes)
 app.use('/login', isLoggedIn, login_routes)
-app.use('/profile', hasLoggedOut, profile_routes)
+app.use('/profile', profile_routes)
 app.use('/', home_routes)
 
 app.listen(port, () => {

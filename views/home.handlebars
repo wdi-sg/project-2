@@ -1,20 +1,26 @@
-<h3>Home</h3>
-
 {{#if user}}
   <form class="tweet" action="/new-tweet">
     <input type="hidden" name="user" value="{{ user.id }}">
     <input type="hidden" name="username" value="{{ user.username }}">
+    <input type="hidden" name="name" value="{{ user.name }}">
     <input type="hidden" name="tweetNum" value="{{ user.tweets.length }}">
-    <textarea id="newTweet" rows="4" cols="50" required=true name="message" placeholder="What's happening?"></textarea>
-    <button type="submit">Tweet</button>
+    <textarea id="newTweet" class="materialize-textarea" required=true name="message" placeholder="What's happening?"></textarea>
+    <input type="submit" class="blue waves-effect waves-light btn" value="Tweet">
   </form>
 
   <ul id="wall">
     {{#each tweets as |tweet|}}
-      <li>
-        <p>{{ tweet.message }}</p>
-        <p>by: {{ tweet.author.username }}</p>
-      </li>
+      <div class="row">
+        <div class="card">
+          <div class="card-action">
+            <a href="#" class="black-text tweetAuthorName">{{ tweet.author.name }}</a>
+            <p class="grey-text tweetAuthor">@{{ tweet.author.username }}</p>
+          </div>
+          <div class="card-content black-text">
+            <p>{{ tweet.message }}</p>
+          </div>
+        </div>
+      </div>
     {{/each}}
   </ul>
 {{/if}}
