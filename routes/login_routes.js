@@ -3,13 +3,15 @@ const express = require('express')
 const router = express.Router()
 const passport = require('../config/passport_config')
 
+// LOGIN PAGE
 router.get('/', (req, res) => {
   res.render('users/login')
 })
 
+// PASSPORT
 router.post('/', passport.authenticate('local', {
-  successRedirect: '/components/showall', // the routes to go when it's successful
-  failureRedirect: '/login' // the routes to go when it's not
+  successRedirect: '/components/showall',
+  failureRedirect: '/login'
 }))
 
 module.exports = router

@@ -15,23 +15,23 @@
 
   <body>
     <div class="wrapper">
-      <div class="sidebar" data-color="green" data-image="../assets/img/sidebar-5.jpg">
+      <div class="sidebar" data-color="azure" >
         <div class="sidebar-wrapper">
           <div class="logo">
                 <a href="#" class="simple-text">
-                    Conso
-                    <i class="pe-7s-gleam"></i>
+                  Conso
+                  <i class="pe-7s-cloud"></i>
                 </a>
             </div>
             <ul class="nav">
             {{#if user}}
-
             <li>
               <a href="/components/showall">
                 <i class="pe-7s-news-paper"></i>
                 <p>View Components</p>
               </a>
             </li>
+            {{/if}}
             {{#if user.isAdmin}}
             <li>
               <a href="/components/cost">
@@ -45,6 +45,21 @@
                 <p>Set variables</p>
               </a>
             </li>
+            {{/if}}
+            {{#unless user}}
+              <li>
+                <a href="/register">
+                  <i class="pe-7s-add-user"></i>
+                  <p>Register</p>
+                </a>
+              </li>
+              <li>
+                <a href="/login">
+                  <i class="pe-7s-door-lock"></i>
+                  <p>Login</p>
+                </a>
+              </li>
+            {{/unless}}
           </ul>
         </div>
       </div>
@@ -55,20 +70,17 @@
             <div class="navbar-header">
             </div>
             <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                    </ul>
+            </div>
+            <div class="collapse navbar-collapse">
               <ul class="nav navbar-nav navbar-right">
-                {{/if}}
+              {{#if user}}
                 <li>
                   <a href="/logout">Logout</a>
                 </li>
                 {{/if}}
-                {{#unless user}}
-                <li>
-                  <a href="/register">Register</a>
-                </li>
-                <li>
-                  <a href="/login">Login</a>
-                </li>
-                {{/unless}}
+
               </ul>
             </div>
           </div>
