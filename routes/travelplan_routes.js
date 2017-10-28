@@ -10,11 +10,9 @@ router.get('/new', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  // instead of find all, we can `findById`
   Travelplan
   .findById(req.params.id) // no need limit since there's only one
   .populate('postby')
-  // .populate(<field name>)
   .then(travelplans => {
     res.render('trips/show', {
       travelplans
@@ -29,17 +27,6 @@ router.get('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
 
   var formData = req.body.trips
-  // return res.send(formData)
-  //
-  // return res.send({
-  //   title: formData.title,
-  //   address: formData.address,
-  //   category: formData.category,
-  //   date: new Date(formData.dateCreated),
-  //   description: formData.description,
-  //   pic: formData.pic
-  // })
-
 
   Travelplan.findByIdAndUpdate(req.params.id, {
     title: formData.title,
@@ -73,9 +60,6 @@ router.post('/', (req, res) => {
     var latitude = data.results[0].geometry.location.lat
     var longitude = data.results[0].geometry.location.lng
     var geoid = data.results[0].place_id
-    // console.log('===========================================')
-    // console.log(data.results[0])
-    // console.log('===========================================')
 
     var newTravelplan = new Travelplan()
     newTravelplan.title = formData.title
@@ -91,13 +75,11 @@ router.post('/', (req, res) => {
     newTravelplan.postby = req.user.id
 
     newTravelplan.save()
-    // UPDATE. 19 Oct
     .then(
-      // find current user then save into user.travelplans.push(travelplan.id)
       // save
       () => res.redirect(`/routes`),
       err => res.send(err)
-    ) // why? mongoose save(), doesn't have .catch()
+    )
   })
 
 })

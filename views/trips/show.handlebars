@@ -18,7 +18,13 @@
   <input type="text" class="form-control" name="trips[title]" id="title" value="{{ travelplans.title }}">
 
   <label for="address">Location</label>
-  <input type="text" class="form-control" name="trips[address]" id="address" value="{{ travelplans.address }}">
+  <input type="text" class="controls" name="trips[address]" id="pac-input" value="{{ travelplans.address }}">
+    <div id="map"></div>
+    <div id="infowindow-content">
+      <span id="place-name"  class="title"></span><br>
+      <span id="place-address"></span><br>
+      <span id="place-url"></span><br>
+    </div>
 
   <label for="address">Country</label>
   <select type="text" class="form-control" name="trips[category]" id="category" placeholder="Country">
