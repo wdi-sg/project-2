@@ -8,52 +8,49 @@ const tptApiKey = process.env.APIKEY
 //------------------------------Load the stops into DB, once--------------------------------------------//
 
 //load stops in the db, each as new Stop
-//TObeDOne; check if data already in system, skip 500. if count/length checked, stop getting data.
+//todo; check if data already in system, skip 500. if count/length checked, stop getting data.
 router.get('/stops', (req, res) => {
-      var countStopAddedToDB = 0
-      var loadStopsCount = 0
+  var countStopAddedToDB = 0
+  var loadStopsCount = 0
 
-      while (loadStopsCount < 5000) {
-        var options = {
-          url: 'http://datamall2.mytransport.sg/ltaodataservice/BusStops?$skip=' + loadStopsCount,
-          headers: {
-            'AccountKey': `${tptApiKey}`,
-            'Content-Type': 'application/json'
-          }
-        }
-        loadStopsCount += 500
-        //make a request, with the above url and jsn format
-        request(options)
-          .then(json => {
-            var data = JSON.parse(json)
-            // res.send(data.value) //pass to loadStops_routes for populating in form.
-            data.value.forEach(function(stop) {
-              var newStop = new Stop({
-                stopCode: stop.BusStopCode,
-                road: stop.RoadName,
-                description: stop.Description,
-                longitude: stop.Longitude,
-                latitude: stop.Latitude
-              })
-              newStop.save()
-                .then(
-                  console.log('done'),
-                  err => res.send(err))
-            }) //end foreeach - how to populate data.
-            countStopAddedToDB += 500
-            console.log(countStopAddedToDB, 'countStopAddedToDB');
-          }) //end then json
-      } //end while
+  while (loadStopsCount < 5000) {
+    var options = {
+      url: 'http://datamall2.mytransport.sg/ltaodataservice/BusStops?$skip=' + loadStopsCount,
+      headers: {
+        'AccountKey': `${tptApiKey}`,
+        'Content-Type': 'application/json'
+      }
+    }
+    loadStopsCount += 500
+    //make a request, with the above url and json format
+    request(options)
+      .then(json => {
+        var data = JSON.parse(json)
+        // res.send(data.value) //pass to loadStops_routes for populating in form.
+        data.value.forEach(function(stop) {
+          var newStop = new Stop({
+            stopCode: stop.BusStopCode,
+            road: stop.RoadName,
+            description: stop.Description,
+            longitude: stop.Longitude,
+            latitude: stop.Latitude
+          })
+          newStop.save()
+            .then(
+              console.log('done'),
+              err => res.send(err))
+        }) //end foreeach - how to populate data.
+        countStopAddedToDB += 500
+        console.log(countStopAddedToDB, 'countStopAddedToDB');
+      }) //end then json
+  } //end while
 })
 //----------------------------------END----------------------------------------//
 
 
-
-//-------------------------------------Reference only-------------------------------------//
+//-------------------------------------Phase 2 Use Only----------------//
 //http://localhost:3000/load/serviceFromRoutes
-
 //this gets all of the routes with services and stops available
-
 router.get('/serviceFromRoutes', (req, res) => {
   var loadRouteCount = 0
   while (loadRouteCount < 24500) {
@@ -113,38 +110,6 @@ router.get('/serviceFromRoutes', (req, res) => {
   } //end while
 }) //end get
 
-//get bus arrival time
-router.get('/busArrival/:bus', (req, res) => {
-  var bus = req.params.bus
-  var options = {
-    url: 'http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode='+bus,
-    headers: {
-      'AccountKey': `${tptApiKey}`,
-      'Content-Type': 'application/json'
-    }
-  }
-  request(options)
-    .then(json => {
-      var data = JSON.parse(json)
-      console.log(data);
-      res.send(data)
-    })
-})
+//removed router.get('/addBusToStops'...) as it is not used
 
-
-//able to get associated buses, but some buses are missing from data set - find out why
-//future use: if need to show just associated buses for this stop quickly, without fetching from real time arrival api endpoint
-router.get('/addBusToStops', (req, res) => {
-  Stop.find({stopCode : { $in: [28011] }  }).limit(3) //, 28019, 28031
-  .then(stopsArr => {
-    for(var i = 0; i<stopsArr.length; i++){
-      console.log(stopsArr[i].stopCode)
-      BusService.find({stops:stopsArr[i].stopCode})
-      .then(results => {results.forEach(bus=>console.log(bus.busService))})
-    }
-
-  })
-  .catch(err => console.log(err))
-})
-
-    module.exports = router
+module.exports = router

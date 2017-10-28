@@ -1,3 +1,6 @@
+//calculate distance between coords in meters
+//Haversine formula example from:
+//https://stackoverflow.com/questions/29118745/get-nearest-latitude-and-longitude-from-array/29119331
 function toRad(x) {
    return x * Math.PI / 180;
 }

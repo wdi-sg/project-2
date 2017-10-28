@@ -13,12 +13,11 @@ router.post('/', (req, res) => {
     email: formData.email,
     password: formData.password
   })
-//findone.
   newUser.save()
-  .then(
-    user => res.redirect(`/`),
-    err => res.send(err)
-  )
+    .then(
+      user => res.redirect(`/`),
+      err => res.send(err)
+    )
 })
 
 module.exports = router
