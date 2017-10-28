@@ -5,7 +5,7 @@
     <title>ViscuSS</title>
     <script charset="utf-8" src="https://ucarecdn.com/libs/widget/3.1.4/uploadcare.full.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Happy+Monkey" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:300|Fira+Sans:400i|Poppins:300" rel="stylesheet">
 
       <!--Import materialize.css-->
       {{!-- <link type="text/css" rel="stylesheet" href="/assets/css/style.css"/> --}}
@@ -17,12 +17,18 @@
 
     <div class=" left-align">
     <nav>
-      <div class="nav-wrapper brown darken-4 z-depth-5">
+      <div class="nav-wrapper white ">
+      <a href="/" class="brand-logo center"><img src="/assets/images/logo.png"  alt=""></a>
       <ul class="left hide-on-med-and-down">
-        <a href="/" class="brand-logo center"><img src="/assets/images/logo.png" height="65px" alt=""></a>
       <li><a href="/newquestion">Add a question</a></li>
       {{#if currentUser}}
-      <li><a href="/profile">{{currentUser.name}}</a></li>
+      <li><a href="/profile">
+        <div class="chip">
+      <img src={{currentUser.pic}}>
+      {{currentUser.name}}
+      </div>
+      </a>
+      </li>
       <li><a href="/logout">Logout</a></li>
       {{else}}
       <li><a href="/landingpage">Login/Register</a></li>
@@ -53,41 +59,44 @@
     </nav>
 
     <div class="parallax-container p-con-modified">
-    <div class="parallax"><img src="/assets/images/background1.jpg"></div>
+    <div class="parallax"><img src="/assets/images/background3.jpg"></div>
   </div>
-  <div class="section brown">
+  <div class="section">
     <div class="row container">
+      <br>
+      <br>
+      <br>
       <h1 class="center">{{title}}</h1>
       {{> alerts }}
       {{{body}}}
     </div>
   </div>
   <div class="parallax-container">
-  <div class="parallax"><img src="/assets/images/background2.jpg"></div>
+  <div class="parallax"><img src="/assets/images/background4.jpg"></div>
 </div>
 
-<footer class="page-footer brown darken-3 z-depth-5">
+<footer class="page-footer white z-depth-5">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">No time to fill this shit up bro, the fucking commands take forever to trouble sh</p>
+                <h4 class="black-text">Footer Content</h4>
+                <p class="black-text">No time to fill this shit up bro, the fucking commands take forever to trouble sh</p>
               </div>
               <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Social</h5>
+                <h4 class="black-text">Social</h4>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">LinkedIn</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">About</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Contact Us</a></li>
+                  <li><a class="black-text" href="#!">Facebook</a></li>
+                  <li><a class="black-text" href="#!">LinkedIn</a></li>
+                  <li><a class="black-text" href="#!">About</a></li>
+                  <li><a class="black-text" href="#!">Contact Us</a></li>
                 </ul>
               </div>
             </div>
           </div>
-          <div class="footer-copyright brown darken-4 z-depth-5">
+          <div class="footer-copyright white black-text z-depth-5">
             <div class="container">
             © 2017 Mexican Cartel José
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            <a class="black-text right" href="#!">More Links</a>
             </div>
           </div>
         </footer>
