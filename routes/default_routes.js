@@ -146,7 +146,8 @@ router.post("/image", (req,res)=>{
 
 
 router.put("/profile/:id", (req,res)=>{
-  if(req.body.coursePref !== "no" || req.body.coursePref !== "yes"){
+  console.log(req.body.coursePref);
+  if(req.body.coursePref !== "no" && req.body.coursePref !== "yes"){
     req.flash("error","Invalid course preference input, please type either 'yes' or 'no'")
     res.redirect("/profile")
   }else{
