@@ -42,6 +42,7 @@
   }
 
   #bgVideo {
+  position: fixed;
   min-width: 100%;
   min-height: 100%;
   }
@@ -54,6 +55,14 @@
     .col-4 {
       max-width: 100%;
       flex: 100%;
+    }
+
+    #bgVideo {
+      display:none;
+    }
+
+    .page-header-image {
+      background-image:url("/assets/img/ilya-yakover.jpg");
     }
   }
 
