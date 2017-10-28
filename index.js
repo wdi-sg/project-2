@@ -91,7 +91,7 @@ app.get('/logout', hasLoggedOut, (req, res) => {
 
 app.get('/routes', (req, res) => {
   // the return of then
-  Travelplan.find({'postby':req.user.id}).limit(9).sort({dateCreated: -1})
+  Travelplan.find({'postby':req.user.id}).limit(20).sort({dateCreated: -1})
   .then(travelplans => {
     // at this point we got our data so we can render our page
     res.render('trips/routes', {

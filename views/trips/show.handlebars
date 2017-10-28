@@ -11,8 +11,8 @@
 
 <h6>Update</h6>
 <form action="/routes/{{ travelplans.id }}?_method=PUT" method="post">
-  <label for="title">Date</label>
-  <input type="date" class="form-control" name="trips[dateCreated]" value="{{ travelplans.dateCreated }}">
+  {{!-- <label for="title">Date</label>
+  <input type="date" class="form-control" name="trips[dateCreated]" value="{{ travelplans.dateCreated }}"> --}}
 
   <label for="title">Title</label>
   <input type="text" class="form-control" name="trips[title]" id="title" value="{{ travelplans.title }}">

@@ -38,7 +38,12 @@
   /*CSS FOR ALL*/
   .bg-dark {
     background-color: black !important;
-    opacity: 0.7;
+    opacity: 0.9;
+  }
+
+  #bgVideo {
+  min-width: 100%;
+  min-height: 100%;
   }
 
   /*// Extra small devices (portrait phones, less than 576px)*/
