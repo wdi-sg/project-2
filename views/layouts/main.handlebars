@@ -62,12 +62,16 @@
         </div>
       </a>
       </li>
-      <li><a href="/logout">Logout</a></li>
+      {{#checkAdmin "admin" currentUser.type}}
+      <li><a href="/admin/console">Admin Panel<i class="material-icons prefix">developer_board</i></a></li>
+      {{/checkAdmin}}
+      <li><a href="/logout">Logout<i class="material-icons prefix">flight_takeoff</i></a></li>
       {{else}}
       <li><a href="/landingpage">Login/Register</a></li>
       {{/if}}
-      <li><a href="/newquestion">Add a question</a></li>
-      <li><a href="/search">Search for Thread</a></li>
+      <li><a href="/newquestion"><i class="material-icons left">mode_edit</i>Add a question</a></li>
+      <li><a href="/search"><i class="material-icons left">search</i></a></li>
+      <li><a href="/course/courseSearch"><i class="material-icons prefix left">school</i>Find By Course</a></li>
     </ul>
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
