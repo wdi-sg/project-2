@@ -1,30 +1,37 @@
+<section class="hero is-small is-white is-bold">
+  <h1 style="margin:20px;"class="title">My Collection</h1>
+  <h1 style="margin:10px"class="subtitle is-4">Added Quotes</h1>
+  <div class="columns is-multiline">
+    {{#each addedQuotes as |quote|}}
+    <div class="column is-one-third">
+      <div style="height:170px; text-align:center" class="card">
+          <div class="card-content is-centered">
+            <strong>{{ quote.author }}</strong><br>
+            "{{ quote.quote }}"
+          <form action="/quotes/{{quote._id}}?_method=DELETE" method="post">
+            <button type="submit" name="button">Delete</button>
+          </form>
+          </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <h1 style="margin:10px"class="subtitle is-4">Personal Quotes</h1>
+  <div class="columns is-multiline">
+    {{#each personalQuotes}}
+    <div class="column is-one-third">
+      <div style="height:170px; text-align:center" class="card">
+          <div class="card-content is-centered">
+            <strong>{{ this.author }}</strong><br>
+            "{{ this.quote }}"
+            <button onclick="window.location.href='/quotes/{{this._id}}'">Update</button>
+            <form action="/{{this._id}}?_method=DELETE" method="post">
+              <button type="submit" name="button">Delete</button>
+            </form>
+          </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
 
-<h3>Greetings {{user.name}}!</h3>
-<h3>Here is a list of your favourite quotes!</h3>
-
-<ul>
-  {{#each addedQuotes as |quote|}}
-    <li>
-      {{quote.quote}}
-        - {{quote.author}}
-        <form action="/quotes/{{quote._id}}?_method=DELETE" method="post">
-          <button type="submit" name="button">Delete</button>
-        </form>
-    </li>
-  {{/each}}
-</ul>
-
-<h3>My Personal Quotes</h3>
-<ul>
-  {{#each personalQuotes}}
-    <li>
-      {{this.quote}}
-        - {{this.author}}
-        <button onclick="window.location.href='/quotes/{{this._id}}'">Update</button>
-        <form action="/{{this._id}}?_method=DELETE" method="post">
-          <button type="submit" name="button">Delete</button>
-        </form>
-
-    </li>
-  {{/each}}
-</ul>
+</section>
