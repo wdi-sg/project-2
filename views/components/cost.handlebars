@@ -1,4 +1,7 @@
-<h3>Cost Summary</h3>
+<div class="header">
+  <h4 class="title">Cost Summary</h4>
+</div>
+
 <div class="content table-responsive table-full-width">
   <table class="table table-hover table-striped">
     <thead>
@@ -7,20 +10,18 @@
         <th scope="col">Total Cost</th>
       </tr>
     </thead>
+    
     <tbody>
-
     {{#each components as |compo|}}
-
       <tr>
         <td>{{ compo._id}}</td>
         <td>{{ compo.subtotalCost }}</td>
-        {{/each}}
       </tr>
+    {{/each}}
       <tr>
         <td>Total</td>
         <td>{{totalCost}}</td>
       </tr>
     </tbody>
-
   </table>
 </div>

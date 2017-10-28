@@ -1,13 +1,16 @@
 <div class="header">
   <h4 class="title">All Components</h4>
 </div>
+
 <div class="header">
-  <h5 class ="title">
-  <a href="/components/new">
-    Add new component
+  <h6 class ="subtitle">
+    <button class="btn-primary btn-xs btn-fill">
+    <a class ="abc" href="/components/new">
+    </a>
     <i class=pe-7s-plus></i>
-  </a>
-</h5>
+    Add new component
+  </button>
+  </h6>
 </div>
   <div class="content table-responsive table-full-width">
     <table class="table table-hover table-striped">
@@ -36,7 +39,10 @@
           {{#each components as |compo|}}
           {{#if ../user.isAdmin}}
             <td>{{ compo.owner.name }}</td>
+          {{!-- {{else}}
+            <td></td> --}}
           {{/if}}
+
           <td>{{ compo.name }}</td>
           <td>{{ compo.description }}</td>
           <td>{{ compo.vendor }}</td>
@@ -62,9 +68,14 @@
           <td></td>
           <td></td>
           <td></td>
+          {{#if user.isAdmin}}
           <td></td>
+          {{/if}}
           <td>Total</td>
           <td>{{sumCost}}</td>
+          {{#unless user.isAdmin}}
+          <td></td>
+          {{/unless}}
           {{#if user.isAdmin}}
             <td>{{sumPrice}}</td>
             <td>{{sumMargin}}%</td>
@@ -73,4 +84,5 @@
         </tr>
     </tbody>
   </table>
+
 </div>
