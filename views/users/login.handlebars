@@ -1,20 +1,37 @@
-<br/><br/><br/>
-
+<div class="page-header">
+<div class="page-header-image" style="background-image:url(/assets/img/uriel-soberanes.jpg)"></div>
 <div class="container">
-<h3>Login</h3>
+  <div class="col-md-4 content-center">
+      <div class="card card-login card-plain">
 
-{{!-- if i go to /register, it will save new user instead --}}
 <form action="/login" method="post">
-  {{!-- no need name here, cos we're logging in --}}
 
-  <label for="email">Email</label>
+  <div class="header header-primary text-center">
+    <h3>User Login</h3>
+  </div>
 
-  <input type="email" name="user[email]" placeholder="email address...">
+  <div class="input-group form-group-no-border input-lg">
+      <span class="input-group-addon">
+        <i class="ion-android-send"></i>
+      </span>
 
-  <label for="password">Password</label>
+  <input type="email" class="form-control" name="user[email]" placeholder="email address...">
+  </div>
 
-  <input type="password" name="user[password]" placeholder="password...">
+  <div class="input-group form-group-no-border input-lg">
+      <span class="input-group-addon">
+        <i class="ion-android-lock"></i>
+      </span>
+  <input type="password" class="form-control" name="user[password]" placeholder="password...">
+  </div>
 
-  <button type="submit" name="button">Submit</button>
+  <div class="footer text-center">
+    <button type="submit" name="button" class="btn btn-primary btn-round btn-lg btn-block">Submit</button>
+  </div>
+
 </form>
+
+   </div>
+  </div>
+</div>
 </div>
