@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
       })(req, res);
     },
     // success flow, redirect to profile page
-    err => res.send(err) // error flow
+    err => res.render(err) // error flow
   )
 })
 

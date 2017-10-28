@@ -1,10 +1,9 @@
 <br/><br/><br/>
 
 <div class="container">
-<div class="row">
+<div class="card-columns">
   {{!-- Loop --}}
   {{#each travelplans as | route |}}
-  <div class="col-4">
 
     <div class="card">
       <img class="card-img-top" src="{{route.picture}}" alt="Card image cap">
@@ -31,13 +30,13 @@
           &nbsp;
 
           <button class="btn btn-danger" type="submit" name="button">Delete</button>
-          {{!-- don't need input fields here, cos we're not updating anything --}}
+
         </form>
 
         <p class="card-text"><small class="text-muted">{{route.formattedDate}}</small></p>
       </div>
+
     </div>
-  </div>
   {{/each}}
 
 </div>

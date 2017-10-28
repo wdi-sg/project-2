@@ -78,10 +78,10 @@ $(function () {
 
   function showResults(data) {
     let allTrips = data.map(routes => {
-      const $newCol = $('<div class="col-4">')
+      const $newCol = $('<div class="card-row">')
       const $newCard = $('<div class="card">')
-      const $newCardBody = $('<div class="card-body">')
       const $newCardImg = $('<img class-img-top>')
+      const $newCardBody = $('<div class="card-body">')
       const $newCardTitle = $('<h6 class="card-title">')
       const $newCardText = $('<p class="card-text">')
       const $newCardLinks = $(`<form
