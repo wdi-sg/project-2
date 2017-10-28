@@ -47,10 +47,6 @@
   min-height: 100%;
   }
 
-  .card-columns{
-    column-count: 3;
-  }
-
   /*// Extra small devices (portrait phones, less than 576px)*/
   @media (max-width: 575px) {}
 
