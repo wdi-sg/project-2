@@ -41,7 +41,7 @@ Code example
 
 ## Live Version
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+https://project2liyuan.herokuapp.com/show/gameofthrones
 
 ## Built With
 
@@ -52,12 +52,6 @@ What did you use to build it, list the technologies, plugins, gems, packages etc
 ## Workflow
 
 Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
-
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
 
 ## Acknowledgments
 

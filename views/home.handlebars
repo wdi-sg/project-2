@@ -1,37 +1,12 @@
-{{!-- {{#if user}}
-<h2>Homepage with login status</h2>
-{{else}}
-<h2>Homepage not login</h2>
-{{/if}} --}}
-
-{{!-- // photocard layout --}}
-{{!-- {{#each showlist as |showlist|}}
-<div class="row">
-        <div class="col s12 m7">
-          <div class="card">
-            <div class="card-image">
-              <img src= {{ showlist.showpic }} >
-              <span class="card-title">{{ showlist.name }}</span>
-            </div>
-            <div class="card-content">
-              <p>{{ showlist.description }}</p>
-            </div>
-            <div class="card-action">
-              <a href="/show/{{showlist.slug}}">Show Available Tours</a>
-            </div>
-          </div>
-        </div>
-      </div>
-{{/each}} --}}
-
-{{!-- // carousel layout --}}
 <div class="container">
+
   <div class="carousel">
     {{#each showlist as |showlist|}}
-      <a class="carousel-item" href="/show/{{showlist.slug}}"><img src= {{ showlist.showpic }}></a>
+      <a class="carousel-item" href="/show/{{showlist.slug}}"><img src= {{ showlist.showpic }} height="350" width="850"></a>
     {{/each}}
   </div>
 
   <h3>Tour Locations</h3>
   <div id="map"></div>
-</div">
+
+</div>

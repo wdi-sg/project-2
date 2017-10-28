@@ -9,7 +9,7 @@ $(document).ready(function () {
   // $('#my_audio').get(0).play()
   $('.slider').slider()
 
-  initMap()
+  // initMap()
 })
 
 function initMap () {
