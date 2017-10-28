@@ -4,7 +4,12 @@ $(function () {
   $('.parallax').parallax()
   $('select').material_select();
    $(".button-collapse").sideNav();
-   $('.modal').modal();
+   $('.modal').modal()
+   $(".dropdown-button").dropdown({
+     hover: true,
+     gutter: 0, // Spacing from edge
+     belowOrigin: true });
+
 
   $('.up').click(function () {
     var id = $(this).attr('data')

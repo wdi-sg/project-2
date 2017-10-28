@@ -11,8 +11,11 @@
 
 
 {{#if alerts }}
-<p class="light-green-text text-accent-3 center">{{ alerts.success }}</p>
-<p class="red-text text-accent-4 center">  {{ alerts.error }}</p>
-<p class="orange-text text-darken-4 center">  {{ alerts.info }}</p>
+<div class=" fixed-action-btn horizontal">
+  <p class="light-green-text text-accent-3 center">{{ alerts.success }}</p>
+  <p class="red-text text-accent-4 center">{{ alerts.error }}</p>
+  <p class="light-green-text text-accent-3 center">  {{ alerts.info }}</p>
+</div>
+
 
 {{/if}}

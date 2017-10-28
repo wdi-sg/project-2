@@ -3,9 +3,9 @@
 <table>
   <tr>
     <td><div class="buttons" align="center">
-    <button class="up waves-effect waves-teal btn-flat" data={{this._id}} upvotes = {{this.upVotes}}><i class="material-icons">expand_less</i></button>
+    <button class="up waves-effect waves-teal btn-flat" onclick="Materialize.toast('Upvoted!', 1000)" data={{this._id}} upvotes = {{this.upVotes}}><i class="material-icons">expand_less</i></button>
     <p id={{this._id}}>{{this.totalVotes}}</p>
-    <button class="down waves-effect waves-teal btn-flat" data={{this._id}} downvotes = {{this.downVotes}}><i class="material-icons">expand_more</i></button>
+    <button class="down waves-effect waves-teal btn-flat" onclick="Materialize.toast('Downvoted!', 1000)" data={{this._id}} downvotes = {{this.downVotes}}><i class="material-icons">expand_more</i></button>
     </div></td>
     <td><a href="/thread/{{this.id}}" class="black-text">{{this.question}}</a></td>
   </tr>

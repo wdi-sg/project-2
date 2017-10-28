@@ -19,46 +19,62 @@
     <nav>
       <div class="nav-wrapper white ">
       <a href="/" class="brand-logo center"><img src="/assets/images/logo.png"  alt=""></a>
-      <ul class="left hide-on-med-and-down">
-      <li><a href="/newquestion">Add a question</a></li>
+      <ul class="right hide-on-med-and-down">
+
+      <li><a href="/newquestion"><i class="material-icons left">mode_edit</i>Add a question</a></li>
+      <li><a href="/course/courseSearch"><i class="material-icons prefix left">school</i>Find By Course</a></li>
+      <li><a href="/search"><i class="material-icons left">search</i></a></li>
+
+      <!-- check if user is logged in-->
+      {{#if currentUser}}
+      <li><a class='dropdown-button' href='#' data-activates='dropdown2'>
+      <div class="chip">
+    <img src={{currentUser.pic}}>
+    {{currentUser.name}}
+    </div>
+    </a>
+    </li>
+    <ul id='dropdown2' class='dropdown-content'>
+    <li><a href="/profile">View Profile<i class="material-icons prefix">account_box</i></a></li>
+    {{#checkAdmin "admin" currentUser.type}}
+    <li><a href="/admin/console">Admin Panel<i class="material-icons prefix">developer_board</i></a></li>
+    {{/checkAdmin}}
+    <li><a href="/logout">Logout<i class="material-icons prefix">flight_takeoff</i></a></li>
+    <li class="divider"></li>
+    </ul>
+      {{else}}
+      <li><a href="/landingpage"><i class="material-icons prefix left">vpn_key</i>Login/Register</a></li>
+      {{/if}}
+      <!-- end user check -->
+
+
+    </ul>
+    <ul class="left hide-on-med-and-down">
+      <li><a href="/admin"><i class="material-icons">security</i></a></li>
+    </ul>
+    <ul id="slide-out" class="side-nav">
+      <li><i class="material-icons center">store_mall_directory</i></li>
       {{#if currentUser}}
       <li><a href="/profile">
         <div class="chip">
-      <img src={{currentUser.pic}}>
-      {{currentUser.name}}
-      </div>
+          <img src={{currentUser.pic}}>
+          {{currentUser.name}}
+        </div>
       </a>
       </li>
       <li><a href="/logout">Logout</a></li>
       {{else}}
       <li><a href="/landingpage">Login/Register</a></li>
       {{/if}}
-      <li><a href="/course/courseSearch">Find By Course</a></li>
-      <li><a href="/search">Search</a></li>
-    </ul>
-    <ul class="right">
-      <li><a href="/admin">Admin</a></li>
-      {{#checkAdmin "admin" currentUser.type}}
-      <li><a href="/admin/console">Admin Console</a></li>
-      {{/checkAdmin}}
-    </ul>
-    <ul id="slide-out" class="side-nav">
-      <li><a href="/"><h1>ViscuSS</h1></a></li>
-      <li>---</li>
       <li><a href="/newquestion">Add a question</a></li>
-      {{#if currentUser}}
-      <li><a href="/profile">{{currentUser.name}}</a></li>
-      <li><a href="/logout">Logout</a></li>
-      {{else}}
-      <li><a href="/landingpage">Login/Register</a></li>
-      {{/if}}
-      <li><a href="/search">Search</a></li>
+      <li><a href="/search">Search for Thread</a></li>
     </ul>
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
     </nav>
 
     <div class="parallax-container p-con-modified">
+      {{> alerts }}
     <div class="parallax"><img src="/assets/images/background3.jpg"></div>
   </div>
   <div class="section">
@@ -67,7 +83,7 @@
       <br>
       <br>
       <h1 class="center">{{title}}</h1>
-      {{> alerts }}
+
       {{{body}}}
     </div>
   </div>

@@ -4233,7 +4233,7 @@ nav.nav-extended .nav-content {
 }
 
 nav a {
-  color: #fff;
+  color: black;
 }
 
 nav i,
@@ -5291,8 +5291,8 @@ button.btn-floating {
 
 .fixed-action-btn {
   position: fixed;
-  right: 23px;
-  bottom: 23px;
+  right: 1200px;
+  bottom: 150px;
   padding-top: 15px;
   margin-bottom: 0;
   z-index: 997;
@@ -5828,7 +5828,7 @@ button.btn-floating {
   line-height: 32px;
   padding: 0 12px;
   border-radius: 16px;
-  background-color: white;
+  background-color: background-color: rgba(255, 255, 255, 0.9);
   margin-bottom: 5px;
   margin-right: 5px;
 }
@@ -7437,7 +7437,7 @@ input[type=range]:focus::-ms-fill-upper {
   line-height: 48px;
   margin: 0 32px 0 0;
   width: 24px;
-  color: rgba(0, 0, 0, 0.54);
+  color: black;
 }
 
 .side-nav .divider {

@@ -20,7 +20,7 @@
           </form>
       {{/checkAdmin}}
       {{#checkAdmin currentUser.type "admin"}}
-      <a class="waves-effect waves-light btn modal-trigger" href="#threadMod">Modify</a>
+      <a class="waves-effect waves-light btn modal-trigger"href="#threadMod">Modify</a>
         <br><br>
         <form class="" action="/thread/threadpage/{{data.id}}?_method=DELETE" method="post">
           <input class="btn" type="submit" value="Delete">
@@ -57,13 +57,13 @@
     {{#checkAdmin this.creator ../currentUser.id}}
       <form class="deleteForm" action="/addAnswer/threadpage/{{ this.id }}?_method=DELETE" method="post">
         <input type="hidden" name="threadId" value={{this._id}}>
-        <input class="btn" type="submit" value="Delete">
+        <input class="btn" onclick="Materialize.toast('Answer deleted', 1000)" type="submit" value="Delete">
       </form>
     {{/checkAdmin}}
     {{#checkAdmin "admin" ../currentUser.type}}
       <form class="deleteForm" action="/addAnswer/threadpage/{{ this.id }}?_method=DELETE" method="post">
         <input type="hidden" name="threadId" value={{this._id}}>
-        <input class="btn" type="submit" value="Delete">
+        <input class="btn" onclick="Materialize.toast('Answer deleted', 1000)" type="submit" value="Delete">
       </form>
     {{/checkAdmin}}
   </td>
