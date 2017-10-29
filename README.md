@@ -28,8 +28,7 @@ This project includes (links under Built With):
 
 ### Brainstorming
 
-These are the initial wireframe plans before I started coding (and realizing I had not enough time/experience)
-
+These are the initial wireframe plans before I started coding (and realizing I had not enough time/experience).
 
 
 ![Homepage](/public/assets/pictures/Wireframe1.jpg "Homepage")  |  ![Route page](/public/assets/pictures/Wireframe2.jpg "Route page")
@@ -37,10 +36,33 @@ These are the initial wireframe plans before I started coding (and realizing I h
 ![Route page pt2](/public/assets/pictures/Wireframe3.jpg "Route page pt 2")  |  ![Partners](/public/assets/pictures/Wireframe4.jpg "Partners")
 
 ![Flowchart](/public/assets/pictures/Flowchart.jpg "Flowchart")
-This is what the app looked like by the end of the week's deadline (save for the homepage at the top of this page):
-![Partnerlogin](/public/assets/pictures/Partnerlogin_actual.png "Partnerlogin")  |  ![Partnerinput](/public/assets/pictures/PartnerInput_actual.png "Partnerinput")
+
+This is what the app looked like by the end of the week deadline (save for the homepage at the top of this page).
+
+![Partnerlogin](/public/assets/pictures/Partnerlogin_actual.png "Partnerlogin")  | ![Partnerinput](/public/assets/pictures/PartnerInput_actual.png "Partnerinput")
 :------------------------------------------------:|:-------------------------------------------------:
 ![Userlogin_actual](/public/assets/pictures/Userlogin_actual.png "Userlogin_actual")  |  ![Routecheck_actual](/public/assets/pictures/Routecheck_actual.png "Routecheck_actual")
+
+The main app logic would be the Routecheck portion, which also uses geocoding to translate human-readable addresses into longitude and latitudes. For Buzz, I used a side product from Google API, which is the formatted address, to obtain the postal code. Using the postal code, we can then identify the start and end regions and group users in mongoDB. For information on Singapore postal code system, please visit [this resource](https://www.ura.gov.sg/realEstateIIWeb/resources/misc/list_of_postal_districts.htm) from Urban Redevelopment Authority (SG).
+
+There are some parts of the project I had set out to do but had not completed by the deadline:
+
+  * Allowing rides to populate based on user criteria
+  * Let users sign up for available bus rides
+
+These were hindered by my first two days being spent trying to work out how to implement the Google Maps Javascript API.
+
+There are also several bugs at the time of writing & code freeze:
+
+  * Google Maps API does not output directions in between locations when clicking on the End bldg autocomplete suggestions instead of selecting via keyboard and the tab button.
+  * Major: Running a delete database operation under the Partner ride panel seems to crash the site
+
+Some improvements that can also be made:
+
+  * Add map-click to populate address field
+  * Display login error messages on the same page using flash module
+  * Add nearest bus stop as pickup point using Data.gov.sg API (I was ambitious)
+
 
 ### Prerequisites
 
