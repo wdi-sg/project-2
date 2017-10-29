@@ -6,7 +6,7 @@ $(document).ready(function () {
   $('select').material_select()
   $('.button-collapse').sideNav()
   $('.carousel').carousel({indicators: true})
-  // $('#my_audio').get(0).play()
+  $('#my_audio').get(0).play()
   $('.slider').slider()
   $('.datepicker').pickadate({
    selectMonths: true, // Creates a dropdown to control month
@@ -17,7 +17,7 @@ $(document).ready(function () {
    closeOnSelect: false // Close upon selecting a date,
  });
 
-  // initMap()
+  initMap()
 })
 
 function initMap () {
