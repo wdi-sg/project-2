@@ -15,8 +15,7 @@
         <br>
         <form action="/{{tour.bookedTour.slug}}/cart?_method=DELETE" method="post">
           <input type="hidden" name="id" value= {{ tour.bookedTour._id }}>
-          <button class="btn waves-effect waves-light cyan lighten-1" type="delete" name="button">Delete
-            <i class="material-icons right">delete</i>
+          <button class="btn waves-effect" type="delete" name="button">Delete<i class="material-icons right">delete</i>
           </button>
         </form>
       </div>
@@ -27,5 +26,5 @@
   {{/each}}
 </ul>
 
-<h5>Please call 1-800-FAT-TOUR or email info@fantasytours.com with your details to confirm your booking!</h5>
+<h5 style="text-align:center;">Please call 1-800-FAT-TOUR or email info@fantasytours.com <br> with your details to confirm your booking!</h5>
 </div>

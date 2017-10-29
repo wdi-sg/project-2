@@ -2,11 +2,12 @@
   width: 100%;
   height: 400px;
   background-color: grey;
+  color: black;
 }
 
 html {
-    font-family: IM Fell Double Pica, Calibri, Trebuchet, serif;
-  }
+  font-family: IM Fell Double Pica, Calibri, Trebuchet, serif;
+}
 
 .carousel .carousel-item {
   width: 400px !important;
@@ -16,29 +17,6 @@ html {
 body {
   background-color: black;
   color: white;
-}
-
-/*google maps cannot see
-/*div {
-  color: black;
-}*/
-
-.card-image {
-
-}
-
-button {
-  background-color: white;
-  color: black;
-}
-
-/*input {
-  background-color: white;
-  color: black;
-}*/
-
-form {
-  background-color: grey;
 }
 
 #reviewtitle {
@@ -62,7 +40,7 @@ form {
 #addcart {
   font-size: 17px;
   text-align: center;
-  /*vertical-align: middle;*/
+  border-radius: 25px
 }
 
 #dates {
@@ -72,4 +50,16 @@ form {
 .card-action {
   font-size: 20px;
   text-align: center;
+}
+
+.picker__date-display, .picker__weekday-display, .picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected, .slider .indicators .indicator-item.active {
+    background-color: #616161;
+}
+
+.picker__close, .picker__today {
+  color: #616161;
+}
+
+#select-options-d94c250d-0fba-2e56-7e26-ae3202ba8cc8 {
+  color: black;
 }

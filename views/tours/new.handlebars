@@ -1,57 +1,59 @@
-<h2>Add New Tours</h2>
+<div class="container">
 
-<form action="/addtours" method="post">
+  <h2>Add New Tours</h2>
+  <form action="/addtours" method="post">
 
-  <div class="row">
-    <div class="input-field col s12" select >
-      <select name="showname">
-        <option value="gameofthrones">Game of Thrones</option>
-        <option value="thelordoftherings">The Lord of the Rings</option>
-        <option value="downtonabbey">Downton Abbey</option>
-        <option value="harrypotter">Harry Potter</option>
-        <option value="sherlock">Sherlock</option>
-      </select>
-      <label>Choose Show</label>
+    <div class="row">
+      <div class="input-field col s12" select >
+        <select name="showname">
+          <div id="chooseshow">
+            <option id="chooseshow" value="gameofthrones">Game of Thrones</option>
+            <option value="thelordoftherings">The Lord of the Rings</option>
+            <option value="downtonabbey">Downton Abbey</option>
+            <option value="harrypotter">Harry Potter</option>
+            <option value="sherlock">Sherlock</option>
+          </div>
+        </select>
+        <label>Choose Show</label>
+      </div>
     </div>
-  </div>
-  <br>
 
-  <div class="row">
-    <div class="input-field col s12">
-      <textarea id="textarea1" class="materialize-textarea" type="text" name="name" placeholder="e.g. Malta Adventure"></textarea>
-      <label for="name">Name of Tour</label>
+    <div class="row">
+      <div class="input-field col s12">
+        <textarea id="textarea1" class="materialize-textarea" type="text" name="name" placeholder="e.g. Malta Adventure"></textarea>
+        <label for="name">Name of Tour</label>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="input-field col s12">
-      <textarea id="textarea1" class="materialize-textarea" type="text" name="overview" placeholder="e.g. overview"></textarea>
-      <label for="overview">Overview</label>
+    <div class="row">
+      <div class="input-field col s12">
+        <textarea id="textarea1" class="materialize-textarea" type="text" name="overview" placeholder="e.g. overview"></textarea>
+        <label for="overview">Overview</label>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="input-field col s12">
-      <textarea id="textarea1" class="materialize-textarea" type="text" name="highlights" placeholder="e.g. fun activites"></textarea>
-      <label for="highlights">Highlights</label>
+    <div class="row">
+      <div class="input-field col s12">
+        <textarea id="textarea1" class="materialize-textarea" type="text" name="highlights" placeholder="e.g. fun activites"></textarea>
+        <label for="highlights">Highlights</label>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="input-field col s12">
-      <input type="number" min="1" step="any" name="price"/>
-      <label for="price">Price</label>
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="number" min="1" step="any" name="price"/>
+        <label for="price">Price</label>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-  <input type="hidden" data-multiple role="uploadcare-uploader" name="pictureurl" data-public-key="8ca25847559a0fdd22e0" data-images-only />
-  </div>
+    <div class="row">
+      <input type="hidden" data-multiple role="uploadcare-uploader" name="pictureurl" data-public-key="8ca25847559a0fdd22e0" data-images-only />
+    </div>
 
-  <div class="row">
-  <button class="btn waves-effect waves-light" type="submit" name="button">Submit
-    <i class="material-icons right">send</i>
-  </button>
-  </div>
+    <div class="row">
+      <button class="btn waves-effect waves-light" type="submit" name="button">Submit<i class="material-icons right">send</i>
+      </button>
+    </div>
 
-</form>
+  </form>
+</div>

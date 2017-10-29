@@ -1,24 +1,36 @@
-<h2>Name of Tour: {{ tour.name }}</h2>
+<div class="container">
+  <h2>Name of Tour: {{ tour.name }}</h2>
 
-<h3>Update</h3>
-<form action="/addtours/{{ tour.id }}?_method=PUT" method="post">
+  <h3>Update</h3>
+  <form action="/addtours/{{ tour.id }}?_method=PUT" method="post">
 
-  <label for="name">Name of Tour</label>
-  <input type="text" name="name" placeholder="e.g. Malta Adventure">
-  <br>
+    <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea" type="text" name="name" placeholder="Malta Adventure"></textarea>
+          <label for="name">Name of Tour</label>
+        </div>
+    </div>
 
-  <label for="overview">Overview</label>
-  <textarea type="text" name="overview" placeholder="e.g. overview" rows="8" cols="80"></textarea>
-  <br>
+    <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea" type="text" name="overview" placeholder="playing around"></textarea>
+          <label for="overview">Overview</label>
+        </div>
+    </div>
 
-  <label for="highlights">Highlights</label>
-  <textarea type="text" name="highlights" placeholder="e.g. fun activites" rows="8" cols="80"></textarea>
-  <br>
+    <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea" type="text" name="highlights" placeholder="fun activities"></textarea>
+          <label for="highlights">Highlights</label>
+        </div>
+    </div>
 
-  <button type="submit" name="button">Submit</button>
-</form>
+    <button class="btn waves-effect" type="submit">Submit<i class="material-icons right">send</i></button>
+  </form>
 
-<h3>Delete</h3>
-<form action="/addtours/{{ tour.id }}?_method=DELETE" method="post">
-  <button type="submit" name="button">Delete</button>
-</form>
+  <h3>Delete</h3>
+    <form action="/addtours/{{ tour.id }}?_method=DELETE" method="post">
+      <button class="btn waves-effect" type="delete" name="button">Delete<i class="material-icons right">delete</i>
+    </form>
+
+</div>
