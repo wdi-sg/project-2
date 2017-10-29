@@ -7,7 +7,7 @@ Get bus stops nearby along with real time bus arrival data, on your phone on des
 ## Flowchart
 <!-- ![Project Flowchart]('./P2-flowchart.jpg') -->
 
-![project-2](readmedocs/P2-flowchart.jpg)
+![project-2](readmedocs/flowchart.jpg)
 
 
 ## Tech Stack:
