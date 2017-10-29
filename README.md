@@ -1,65 +1,58 @@
-# Your Project Name
+# Itinerary - the sharing platform
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+[https://itineraries.herokuapp.com/](https://itineraries.herokuapp.com/)
 
-## Getting Started
+![](/public/assets/img/landing.png)
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+## Background
 
-### Prerequisites
+Itinerary is a platform to help traveller keep **record of their travel routes** by sharing it effortlessly in itinerary.
+On the other half, Users are also able to view other traveller route to help planning trip to places easier.
 
-What is needed to install and run the project, how do we install them
+![Image of flowchart](/public/assets/img/erd.png)
 
-```
-Code example
-```
+This is my first time building a full-stack web app, using Node.js and Express, with the following features:
+* One Models: Users
+* Views and Access levels for Public vs. Users
+* Login and Authentication using [Passport](http://passportjs.org/)
+* Use of Google Maps API
+* Use of Uploadcare Image uploader
 
-### How to Use
+### Flow Chart :
+![Image of flowchart](/public/assets/img/flowchart.png)
 
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+## User Stories
 
+The idea was to build a platform where user can share their travel routes. And the pubic can view and plan their trip.
 
-```
-Code example
-```
+Once logged in, user can create a route post with input of date travelled, country situated, uploading one image of the place, title and short description of the place. Only route that publish by the user are able to update and delete by user.
 
-More steps...
+While the public can only view routes filter by country.
 
-```
-until finished
-```
+---
 
+Eventually the website looks like this:
 
-## Tests
+![Screenshot 1](/public/assets/img/landing.png)  |  ![Screenshot 2](/public/assets/img/add-itinerary.png)
+:------------------------------------------------:|:-------------------------------------------------:
+![Screenshot 3](/public/assets/img/register.png)  |  ![Screenshot 1](/public/assets/img/update.png)
 
-Did you write automated tests? If so, how do we run them.
+## Development
 
+* [Node.js](https://nodejs.org/en/), [Express](http://expressjs.com/)
+* [mLab (mongoDB Hosting)](https://mlab.com)
+* [Heroku Cloud Server](https://www.heroku.com)
+* ORM: [Mongoose](http://mongoosejs.com/)
+* [Bootstrap CSS Framework](http://getbootstrap.com/), with a Bootstrap Template
+* [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/)
+* [Parse, manipulate, and display dates and times](https://momentjs.com/) in JavaScript.
+* JavaScript, jQuery
 
-```
-Code example
-```
+## References, Tools, and Inspiration
 
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
-
-## Built With
-
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
-
-## Workflow
-
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
-
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+* [Video](https://www.handy.travel/en)
+* [Icon sets for Ionic Framework](http://ionicons.com/)
+* [Google Maps Javascript Api](https://mapstyle.withgoogle.com/)
+* [Uploadcare Image upload](https://uploadcare.com/)
+* [Bootstrap 4 Ui Kit](http://www.creative-tim.com/product/now-ui-kit)
+* Instructors and Classmates at GA Singapore wdi 12
