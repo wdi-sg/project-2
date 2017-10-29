@@ -1,62 +1,74 @@
-<h1>Fridge Name: {{fridge.name}}</h1>
-<h1>Fridge Passcode to Enter the fridge: {{fridge.passcode}}</h1>
-{{!-- <h1 type="hidden">{{fridge.id}}</h1> --}}
+<div class="container">
 
-<div class="row">
-  {{#each fridge.task as |task|}}
-  <div class="col-3">
-    <div class="card">
-      <img style="width: 100px" src="/img/stickynote.png" alt="Sticky Notes Image">
-      <h1 class="">{{ task.details }}</h1>
-      &nbsp;
-      <button class="btn btn-secondary form-inline" type="button" onclick="location.href='/task/{{task.id}}/edit'">Edit</button>
-      <div class="card-body">
-        <p>Task taken by:{{ task.assign.name }}</p>
-        {{#if task.complete}}
-        <p>Task Status: Completed</p>
-        {{else}}
-        <p>Task Status: Not Complete</p>
-        {{#if task.assign}}
-        {{!-- <button class="btn btn-secondary form-inline" type="button" onclick="location.href='/task/{{task.id}}/edit'">Edit</button> --}}
-        <form
-        class="form-inline"
-        action="/task/{{task.id}}/editAssign?_method=PUT"
-        method="post">
-        &nbsp;
-        <button class="btn btn-primary" type="submit" name="button">Remove In charge</button>
-      </form>
-      {{else}}
-      <form
-      class="form-inline"
-      action="/task/{{task.id}}/editAssignMe?_method=PUT"
-      method="post">
-      &nbsp;
-        <button class="btn btn-primary" type="submit" name="button">I want to take up this task</button>
-      </form>
-      {{/if}}
-        <form
-          class="form-inline"
-          action="/task/{{task.id}}/complete?_method=PUT"
-          method="post">
-          &nbsp;
-          <button class="btn btn-primary" type="submit" name="button">Completed</button>
-        </form>
-        {{/if}}
-        <form
-        class="form-inline"
-        action="/fridge/{{ fridge }}/{{task.id}}?_method=DELETE"
-        method="post">
-        &nbsp;
-        <button class="btn btn-danger" type="submit" name="button">Delete</button>
-      </form>
+  {{!-- heading --}}
+  <div class="d-flex justify-content-between">
+    <h1 class="d-inline">Fridge Name: {{fridge.name}}</h1>
+
+    {{!-- dropbox --}}
+    <div class="dropdown">
+      <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        PassCode
+      </button>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+        <p class="text-center align-middle">Enter the passcode below to enter an existing Fridge</p>
+        <div class="dropdown-divider"></div>
+        <p class="text-center align-middle">{{fridge.passcode}}</p>
       </div>
     </div>
+
   </div>
-  {{/each}}
+
+  {{!-- listing of tasks --}}
+  <div class="container" style="background: url(/img/fridgeframe.png) no-repeat;
+                                background-size: cover;">
+  <div class="row" >
+    {{#each fridge.task as |task|}}
+    <div class="col-3" style="margin-top: 20px;">
+      <div class="card" style="background: url(/img/stickynote.png) no-repeat;
+                              background-color: rgba(255, 255, 255, 0);
+                              height: 255px;">
+        <h2 class="text-center" style="margin-top: 30px; width: 245.5px; height: 60px; overflow: scroll;">{{ task.details }}</h2>
+        <div class="card-body" style="padding: 0 20px;">
+          <p>Task taken by:{{ task.assign.name }}</p>
+          {{#if task.complete}}
+          <p>Task Status: Completed</p>
+          {{else}}
+          <p>Task Status: Not Complete</p>
+          <div class="dropdown">
+          <button class="btn btn-secondary form-inline dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            More Options
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            {{#if task.assign}}
+            <form class="form-inline" action="/task/{{task.id}}/editAssign?_method=PUT" method="post">
+              <button class="dropdown-item text-primary" type="submit" name="button">Remove In charge</button>
+            </form>
+            {{else}}
+            <form class="form-inline" action="/task/{{task.id}}/editAssignMe?_method=PUT"method="post">
+              <button class="dropdown-item text-primary" type="submit" name="button">I want to take up this task</button>
+            </form>
+            {{/if}}
+            <form class="form-inline"action="/task/{{task.id}}/complete?_method=PUT"method="post">
+              <button class="dropdown-item text-primary" type="submit" name="button">Completed</button>
+            </form>
+            {{/if}}
+            <button class="dropdown-item text-info" type="button" onclick="location.href='/task/{{task.id}}/edit'">Edit</button>
+            <form class="form-inline" action="/fridge/{{ fridge }}/{{task.id}}?_method=DELETE" method="post">
+              <button class="dropdown-item text-danger" type="submit" name="button">Delete</button>
+            </form>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
 </div>
 
-<div class="btn dropup">
+{{!-- New task button --}}
+<div class="btn">
   <button type="button" class="btn btn-primary btn-circle btn-xl" onclick="location.href='/fridge/{{fridge.id}}/task'">
-      New Task
+    New Task
   </button>
+</div>
 </div>

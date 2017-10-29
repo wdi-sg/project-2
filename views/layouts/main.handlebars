@@ -7,23 +7,25 @@
     <link rel="styleshhet" href="/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Just+Me+Again+Down+Here" rel="stylesheet">
   </head>
-  <body>
-    <div class="nav navbar">
+  <body style="font-family: 'Fredericka the Great', cursive;">
+    <div class="nav navbar navbar-light" style="background-color: rgb(248,249,250);">
       <div class="container">
         {{#if user}}
-        
         <a href="/profile" class="navbar-brand">Fridge Magnets</a>
-        <div class="navbar-nav justify-content-end dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="btn-group">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                  style="width: 211.16px;">
             {{user.name}}
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/fridge/enter">Enter Existing Fridge</a>
-            <a class="dropdown-item" href="/profile/edit">Edit Profile</a>
-            <a class="dropdown-item" href="/logout">Logout</a>
-          </div>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item" href="/fridge/enter">Enter Existing Fridge</a>
+          <a class="dropdown-item" href="/profile/edit">Edit Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/logout">Logout</a>
         </div>
+      </div>
 
         {{else}}
         <a href="/" class="navbar-brand">Fridge Magnets</a>
@@ -33,13 +35,10 @@
         <ul class="navbar-nav justify-content-end">
           <li><a href="/register">Register</a></li>
         </ul>
+        {{/if}}
       </div>
     </div>
-    {{/if}}
-    <div class="container">
       {{{body}}}
-    </div>
-  <script src="/script.js" charset="utf-8"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
