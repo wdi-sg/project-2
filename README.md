@@ -38,7 +38,7 @@ OR run ‘<host>/load/stops’ which will load bus stops from API
 
 
 ### User Stories
-User stories
+
 1. As a busy student, I want to check bus timings on stop near my place so I can plan my route on the go.
 E.g. Do I take bus 5 to GA from Eunos Link or 8/22 to MRT from bedok Reservoir Road.
 
