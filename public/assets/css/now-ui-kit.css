@@ -2611,7 +2611,7 @@ textarea.form-control {
     height: 200px;
     background-color: #F7F9F9;
     color: #424242;
-    padding: 10px 10px 0 0;
+    padding: 10px 10px 0 10px;
     resize: none;
     border: none;
     border-bottom: 1px solid #BFC9CA;
@@ -3186,7 +3186,8 @@ h5,
 
 h6,
 .h6 {
-    font-size: 1em;
+    /*font-size: 1em;*/
+    font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
 }

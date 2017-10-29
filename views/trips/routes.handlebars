@@ -1,5 +1,5 @@
-<br/><br/><br/>
-
+<div class="container-fluid" style="background-image:url(/assets/img/antoine-barres.jpg)">
+  <br/><br/><br/><br/>
 <div class="container">
 <div class="card-columns">
   {{!-- Loop --}}
@@ -25,7 +25,7 @@
           action="/routes/{{ route.id }}?_method=DELETE"
           method="post"
         >
-          <a href="/routes/{{ route.id }}" class="btn btn-primary">Update</a>
+          <a href="/routes/{{ route.id }}" class="btn btn-warning">Update</a>
 
           &nbsp;
 
@@ -39,5 +39,5 @@
     </div>
   {{/each}}
 
-</div>
+  </div>
 </div>
