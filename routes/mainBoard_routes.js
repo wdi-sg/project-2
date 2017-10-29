@@ -13,6 +13,7 @@ router.get("/", (req, res) => {
     nsp.on("connection", function(socket) {
       console.log("Connected to unique project ID")
     })
+
     //displays latest 10 messages from database
     Message.find({ projectId: req.user.projectId })
       .sort({ date: -1 })

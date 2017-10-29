@@ -34,14 +34,6 @@ const mainBoard_routes = require("./routes/mainBoard_routes")
 app.engine("handlebars", exphbs({ defaultLayout: "main" }))
 app.set("view engine", "handlebars")
 
-// var hbsHelpers = exphbs.create({
-//   helpers: require("./helpers/handlebars.js").helpers,
-//   extname: ".hbs"
-// })
-//
-// app.engine(".hbs", hbsHelpers.engine)
-// app.set("view engine", ".hbs")
-
 app.use(bodyParser.json())
 app.use(
   bodyParser.urlencoded({

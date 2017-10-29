@@ -3,7 +3,6 @@ const mongoose = require("mongoose")
 const taskSchema = new mongoose.Schema({
   name: {
     type: String,
-    // required: true,
     unique: true
   },
   projectId: mongoose.Schema.Types.ObjectId,

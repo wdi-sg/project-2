@@ -3,28 +3,33 @@
   <head>
     <meta charset="utf-8">
     <title> {{title}} </title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" href="./css/style.css">
   </head>
   <body>
     <nav>
-      <a href="/">Home</a>
-
-      {{#if user}}
-      <a href="/board">Kanban Board</a>
-      <!-- <a href="/manageTasks">Manage Tasks</a> -->
-      <a href="/manageProject">Manage Project</a>
-      <a class="nav-link" href="/profile">{{ user.name }}</a>
-      <a class="nav-link" href="/logout">Logout</a>
-      {{else}}
-      <a class="nav-link" href="/register">Register</a>
-      <a class="nav-link" href="/login">Login</a>
-      {{/if}}
+      <div class="nav-wrapper blue">
+        <ul id="nav-mobile" class="left">
+          <li><a href="/"><i class="material-icons right">home</i>Home</a></li>
+          {{#if user}}
+          <li><a href="/board"><i class="material-icons right">assignment</i>Sprint Board</a></li>
+          <li><a href="/manageProject"><i class="material-icons right">folder_shared</i>Manage Project</a></li>
+          <li><a class="nav-link" href="/profile"><i class="material-icons right">account_circle</i>{{ user.name }}</a></li>
+          <li><a class="nav-link" href="/logout">Logout</a></li>
+          {{else}}
+          <li><a class="nav-link" href="/register">Register</a></li>
+          <li><a class="nav-link" href="/login">Login</a></li>
+          {{/if}}
+        </ul>
+      </div>
     </nav>
     {{{ body }}}
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
     <!-- add scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="./js/main.js" charset="utf-8"></script>
   </body>
 </html>

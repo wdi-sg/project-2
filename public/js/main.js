@@ -25,9 +25,9 @@ $(function() {
     if (!clicked) {
       clickedId = e.target.id
       $jTarget = $("body").find("#" + clickedId)
-      $jTarget.css({
-        border: "2px solid red"
-      })
+      $jTarget.children().removeClass("yellow")
+      $jTarget.children().addClass("orange")
+
       clicked = true
     }
   })
@@ -41,11 +41,11 @@ $(function() {
 
   const movePosition = () => {
     clicked = false
-    $("body")
+    let $movedId = $("body")
       .find("#" + clickedId)
-      .css({
-        border: "2px solid blue"
-      })
+      .children()
+    $movedId.removeClass("orange")
+    $movedId.addClass("yellow")
 
     socket.emit("update", {
       clickedId: clickedId,
@@ -55,11 +55,21 @@ $(function() {
   }
 
   nsp.on("updateThis", update => {
-    //
-    console.log(update)
     let $childDiv = $("body").find("#" + update.clickedId)
     let $parentDiv = $("body").find("#" + update.newPosition)
     currentPosition = update.newPosition
+
+    if ($parentDiv.attr("id") === "return") {
+      $childDiv.removeClass("s6")
+      $childDiv.addClass("s3")
+    } else if (
+      $parentDiv.attr("id") === "create" ||
+      $parentDiv.attr("id") === "review"
+    ) {
+      $childDiv.removeClass("s3")
+      $childDiv.addClass("s6")
+    }
+    //moves the child div to new position
     $parentDiv.append($childDiv)
   })
 
@@ -106,10 +116,5 @@ $(function() {
     let $taskName = $()
 
     $create.prepend($("<div>").text(task.name))
-  })
-
-  socket.on("projectBasedConnection", key => {
-    console.log("recieved")
-    console.log(key)
   })
 })

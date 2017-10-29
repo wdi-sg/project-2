@@ -1,43 +1,24 @@
-/*.whiteboard {
-  border: 2px solid black;
-  display: inline-block;
-  height: 100%;
-  width: 70%;
-}*/
-html,
-body {
-  height: 100%;
-}
-
-.chat {
-  display: inline-block;
-  border: 1px solid blue;
-  width: 28%;
-}
-
-.mainboard {
-  height: 4000px;
-}
-
 .boardElement {
   border: 2px solid black;
-  /*margin: 0 -4px;*/
-  display: inline-block;
 }
 
-.createTask {
-  display: inline-block;
-  height: 180px;
-  width: 300px;
-  border: 2px solid red;
-  overflow: auto;
+.left {
+  display: flex;
+}
+
+.projectTitle {
+  padding: 0 10px;
 }
 
 .taskItem {
-  border: 2px solid blue;
+  /*border: 2px solid blue;*/
+  /*margin: 2px;*/
+}
+.card {
+  padding: 2px;
 }
 
-#create,
+/*#create,
 #review {
   display: inline-block;
   width: 30%;
@@ -50,4 +31,4 @@ body {
 .left {
   display: flex;
   width: 100%;
-}
+}*/
