@@ -1,8 +1,8 @@
 <br/><br/><br/>
 
 <div class="container">
-  <h2>View Trips</h2>
-
+  <h4>View Trips</h4>
+  <hr>
   <label for="searchInput">Filter by Country: </label>
   <select type="text" class="form-control" name="trips[category]" id="searchInput" placeholder="Country">
 <option value="All" selected>Choose by country:</option>
@@ -18,20 +18,23 @@
         <img class="card-img-top" src="{{fullTrip.picture}}" alt="Card image cap">
         <div class="card-body">
           <h6 class="card-title">{{fullTrip.title}}</h6>
-          <p class="card-text">
-            {{ fullTrip.address }}<br>
-            {{ fullTrip.category }}<br>
-            {{!-- <a href="https://maps.google.com/?cid=9123933771843294962" target="_blank">View google map</a><br> --}}
-            <a href="https://www.google.com/maps/search/?api=1&query={{fullTrip.latitude}},{{fullTrip.longitude}}&query_place_id={{fullTrip.placeId}}" target="_blank">View google map</a><br>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">{{ fullTrip.description }}</li>
-            </ul>
-          </p>
+          <div class="card-text">
+            <p class="mb-0">
+              {{ fullTrip.address }}<br>
+            </p>
+            <footer class="blockquote-footer">{{ fullTrip.category }}</footer>
+            <hr>
+            <p style="font-size:14px; color: black;">{{ fullTrip.description }}</p>
 
-          <p class="card-text"><small class="text-muted">{{fullTrip.formattedDate}}</small></p>
+            <hr>
+            <div class="row">
+              <div class="col"><small class="text-muted">{{fullTrip.formattedDate}}</small></div>
+              <div class="col text-right"><small><em><a href="https://www.google.com/maps/search/?api=1&query={{fullTrip.latitude}},{{fullTrip.longitude}}&query_place_id={{fullTrip.placeId}}" target="_blank">View google map</a></em></small></div>
+            </div>
+            {{!-- <a href="https://maps.google.com/?cid=9123933771843294962" target="_blank">View google map</a><br> --}}
+          </div>
         </div>
       </div>
     {{/each}}
-
-  </div>
+    </div>
 </div>

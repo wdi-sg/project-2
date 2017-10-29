@@ -95,14 +95,17 @@ $(function () {
       $newCardTitle.text(routes.title)
       $newCardText.html(
         `
+          <p class="mb-0">
           ${routes.address} <br>
-          ${routes.category}<br>
-          <a href="https://www.google.com/maps/search/?api=1&query=${routes.latitude},${routes.longitude}&query_place_id=${routes.placeId}" target="_blank">View google map</a><br>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">${routes.description }</li>
-          </ul>
-          <small class="text-muted">${ moment(this.dateCreated).format('MMMM Do YYYY') }</small>
-
+          </p>
+          <footer class="blockquote-footer">${routes.category}</footer>
+          <hr>
+          <p style="font-size:14px; color: black;">${routes.description}</p>
+          <hr>
+          <div class="row">
+            <div class="col"><small class="text-muted">${ moment(this.dateCreated).format('MMMM Do YYYY') }</small></div>
+            <div class="col text-right"><small><em><a href="https://www.google.com/maps/search/?api=1&query=${routes.latitude},${routes.longitude}&query_place_id=${routes.placeId}" target="_blank">View google map</a></em></small></div>
+          </div>
         `
       )
 

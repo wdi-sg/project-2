@@ -47,6 +47,14 @@
   min-height: 100%;
   }
 
+  hr {
+    margin-top:10px;
+  }
+
+  .card-title {
+    margin-bottom:10px;
+  }
+
   /*// Extra small devices (portrait phones, less than 576px)*/
   @media (max-width: 575px) {}
 

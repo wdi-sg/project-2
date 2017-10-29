@@ -10,14 +10,16 @@
       <div class="card-body">
         <h6 class="card-title">{{route.title}}</h6>
         <p class="card-text">
-          {{ route.address }}<br>
-          {{ route.category }}<br/>
+          <p class="mb-0">
+            {{ route.address }}<br>
+          </p>
+          <footer class="blockquote-footer">{{ route.category }}</footer>
           {{!-- <a href="https://maps.google.com/?cid=9123933771843294962" target="_blank">View google map</a><br> --}}
           {{!-- <a href="https://www.google.com/maps/@{{route.latitude}},{{route.longitude}},15z" target="_blank">View google map</a><br> --}}
-          <a href="https://www.google.com/maps/search/?api=1&query={{route.latitude}},{{route.longitude}}&query_place_id={{route.placeId}}" target="_blank">View google map</a><br>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{ route.description }}</li>
-          </ul>
+          <div class="text-left" style="font-size: 15px;"><a href="https://www.google.com/maps/search/?api=1&query={{route.latitude}},{{route.longitude}}&query_place_id={{route.placeId}}" target="_blank">View google map</a></div>
+          <hr>
+          <p style="font-size:14px; color: black;">{{ route.description }}</p>
+          <hr>
         </p>
 
         <form
@@ -40,4 +42,5 @@
   {{/each}}
 
   </div>
+</div>
 </div>
