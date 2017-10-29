@@ -2,6 +2,8 @@
 
 Buzz is a web app which offers on-demand bus transportation for users. It aims to pool users travelling from a similar origin and destination, then match these groups to a private bus service. As a result, transportation becomes more efficient.
 
+![Homepage_actual](/public/assets/pictures/Homepage_actual.png "Homepage_actual")
+
 ## Workflow
 
 User story:
@@ -18,6 +20,7 @@ Clusters of similar journeys are gathered together, and interested bus vendors c
 This project includes (links under Built With):
   * Two database document models: Users and Partners
   * Google Maps Javascript API
+  * mLab mongodb online database
   * CRUD operations using mongoose and mongodb
   * Bcrypt password encryption
   * Account login & multiple-strategy authentication with Passport
@@ -26,12 +29,19 @@ This project includes (links under Built With):
 ### Brainstorming
 
 These are the initial wireframe plans before I started coding (and realizing I had not enough time/experience)
-![alt text](/public/assets/pictures/Wireframe1.jpg "Homepage")
-![alt text](/public/assets/pictures/Wireframe2.jpg "Route page")
-![alt text](/public/assets/pictures/Wireframe3.jpg "Route page pt 2")
-![alt text](/public/assets/pictures/Wireframe4.jpg "Partners")
-![alt text](/public/assets/pictures/Flowchart.jpg "Flowchart")
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+
+
+
+![Homepage](/public/assets/pictures/Wireframe1.jpg "Homepage")  |  ![Route page](/public/assets/pictures/Wireframe2.jpg "Route page")
+:------------------------------------------------:|:-------------------------------------------------:
+![Route page pt2](/public/assets/pictures/Wireframe3.jpg "Route page pt 2")  |  ![Partners](/public/assets/pictures/Wireframe4.jpg "Partners")
+
+![Flowchart](/public/assets/pictures/Flowchart.jpg "Flowchart")
+This is what the app looked like by the end of the week's deadline (save for the homepage at the top of this page):
+![Partnerlogin](/public/assets/pictures/Partnerlogin_actual.png "Partnerlogin")  |  ![Partnerinput](/public/assets/pictures/PartnerInput_actual.png "Partnerinput")
+:------------------------------------------------:|:-------------------------------------------------:
+![Userlogin_actual](/public/assets/pictures/Userlogin_actual.png "Userlogin_actual")  |  ![Routecheck_actual](/public/assets/pictures/Routecheck_actual.png "Routecheck_actual")
+
 ### Prerequisites
 
 Users just need to run the url (scroll down below) on their internet browser, preferably Google Chrome.
@@ -75,16 +85,6 @@ More steps...
 until finished
 ```
 
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
-
 ## Live Version
 
 This app is deployed on the Heroku platform, and accessible via this link: [Buzz](https://buzznearyou.herokuapp.com)
@@ -92,11 +92,9 @@ This app is deployed on the Heroku platform, and accessible via this link: [Buzz
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
 * [Google maps Javascript API](https://developers.google.com/maps/documentation/javascript/) - Geocoding and map visualization API
 
-* [mongoDB](https://www.mongodb.com/) - database program
+* [mlab](https://mlab.com/) - online mongodb service
 
 * [mongoose](http://mongoosejs.com/) - object data modelling program
 * [Passport](https://www.npmjs.com/package/passport) - Used with passport-local for login authentication
