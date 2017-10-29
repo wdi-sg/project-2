@@ -5,9 +5,9 @@
 
   <tr>
     <td><div class="buttons" align="center">
-    <button class="up waves-effect waves-teal btn-flat" onclick="Materialize.toast('Upvoted!', 1000)" data={{data._id}} upvotes = {{data.upVotes}} ><i class="material-icons">expand_less</i></button>
+    <button class="up waves-effect waves-teal btn-flat"  data={{data._id}} upvotes = {{data.upVotes}} ><i class="material-icons">expand_less</i></button>
     <p id={{data._id}}  >{{data.totalVotes}}</p>
-    <button class="down waves-effect waves-teal btn-flat" onclick="Materialize.toast('Downvoted!', 1000)" data={{data._id}} downvotes = {{data.downVotes}} ><i class="material-icons">expand_more</i></button>
+    <button class="down waves-effect waves-teal btn-flat" data={{data._id}} downvotes = {{data.downVotes}} ><i class="material-icons">expand_more</i></button>
     </div></td>
     <td>
     <p>{{data.description}}</p></td>

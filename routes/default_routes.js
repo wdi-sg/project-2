@@ -129,26 +129,32 @@ router.post("/search", (req, res)=>{
 // })
 
 router.post('/addquestions', function (req, res) {
-  var creatorId = ""
-  if(!req.user) creatorId = "anonymous"
-  else if(req.user.id) creatorId = req.user.id
+  if(req.body.question === "" || req.body.description === ""){
+    req.flash("error", "Question/Details field missing input, please try again")
+    res.redirect("/newquestion")
+  }else{
+    var creatorId = ""
+    if(!req.user) creatorId = "anonymous"
+    else if(req.user.id) creatorId = req.user.id
 
-  let newQues = new Thread({
-    question: req.body.question,
-    description: req.body.description,
-    course: req.body.dropdown,
-    creator: creatorId,
-    sortDate: new Date(),
-    date: new Date().toLocaleDateString(),
-    time: new Date().toLocaleTimeString()
+    let newQues = new Thread({
+      question: req.body.question,
+      description: req.body.description,
+      course: req.body.dropdown,
+      creator: creatorId,
+      sortDate: new Date(),
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString()
 
-  })
+    })
 
-  newQues.save()
-  .then(output => {
-  })
-  // debug code (output request body)
-  res.redirect(`/thread/${newQues.id}`)
+    newQues.save()
+    .then(output => {
+    })
+    // debug code (output request body)
+    res.redirect(`/thread/${newQues.id}`)
+  }
+
 })
 
 router.post("/image", (req,res)=>{

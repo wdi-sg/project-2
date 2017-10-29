@@ -12,17 +12,27 @@ $(function () {
 
 
   $('.up').click(function () {
+    var check = $("#usercheck").val()
+    if(check ==="") Materialize.toast('Please login to vote!', 1000)
+    else if(check !== ""){
       var id = $(this).attr('data')
       var currentUp = $(this).attr('upvotes')
       var currentNum = $(`#${id}`).text()
       $.post('/vote/upvote', {current: currentNum, obj: id, up: currentUp}, function (dataBack) {
         $(`#${id}`).text(dataBack)
+        if(currentNum !== $(`#${id}`).text()) Materialize.toast('Upvoted!', 1000)
       })
       $(this).attr('upvotes', parseInt(currentUp) + 1)
+
+    }
+
 
   })
 
   $('.down').click(function () {
+    var check = $("#usercheck").val()
+    if(check ==="") Materialize.toast('Please login to vote!', 1000)
+    else if(check !== ""){
     var id = $(this).attr('data')
     var currentDown = $(this).attr('downvotes')
     var currentNum = $(`#${id}`).text()
@@ -30,9 +40,15 @@ $(function () {
       $(`#${id}`).text(dataBack)
     })
     $(this).attr('downvotes', parseInt(currentDown) + 1)
+    Materialize.toast('Downvoted!', 1000)
+  }
+
   })
 
   $('.ansup').click(function () {
+    var check = $("#usercheck").val()
+    if(check ==="") Materialize.toast('Please login to vote!', 1000)
+    else if(check !== ""){
     var id = $(this).attr('data')
     var currentUp = $(this).attr('upvotes')
     var currentNum = $(`#${id}`).text()
@@ -40,9 +56,14 @@ $(function () {
       $(`#${id}`).text(dataBack)
     })
     $(this).attr('upvotes', parseInt(currentUp) + 1)
+    Materialize.toast('Upvoted!', 1000)
+  }
   })
 
   $('.ansdown').click(function () {
+    var check = $("#usercheck").val()
+    if(check ==="") Materialize.toast('Please login to vote!', 1000)
+    else if(check !== ""){
     var id = $(this).attr('data')
     var currentDown = $(this).attr('downvotes')
     var currentNum = $(`#${id}`).text()
@@ -50,6 +71,8 @@ $(function () {
       $(`#${id}`).text(dataBack)
     })
     $(this).attr('downvotes', parseInt(currentDown) + 1)
+    Materialize.toast('Downvoted!', 1000)
+  }
   })
 
   const $searchField = $('#searchField')

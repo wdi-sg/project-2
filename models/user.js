@@ -3,7 +3,9 @@ const Schema = mongoose.Schema
 const bcrypt = require('bcrypt');
 
 
-
+// const checkSchema = new mongoose.Schema({
+//   voteId: String
+// })
 // create a schema
 const userSchema = new Schema({
   name: {type: String, required: true},
@@ -12,10 +14,10 @@ const userSchema = new Schema({
   pic: {type: String},
   course: {type: String},
   coursePref: {type: String, default: "no"},
-  // threadUp: String,
-  // threadDown: String,
-  // answerUp: String,
-  // answerDown: String,
+  threadUp: Array,
+  threadDown: Array,
+  answerUp: Array,
+  answerDown: Array,
   type: {type: String, default:"user"}
 })
 
