@@ -2,26 +2,23 @@
   <div class="hero-body">
    <div class="container has-text-centered">
      <div class="column is-10 is-offset-1">
-       <h1 class="title is-3">
-         Morning Quote
-       </h1>
-        <h1 class="title">
+
+        <h1 style ="font-size: 50px"class="title is-2 homepage-quote">
           "{{ quote.quote }}"
         </h1>
-        <h2 style="padding-top:10px; font-size:28px; letter-spacing:2px; font-style:italic"
-        class="subtitle is-4">
+        <h2 style ="font-size: 30px" class="subtitle is-4 homepage-author">
           {{ quote.author }}
         </h2>
-          <form style="display:inline-block" action="/addcollection" method="post">
+          <form class="button-in-line" action="/addcollection" method="post">
             <input class="input" type="hidden" name="quoteId" value="{{ quote.id }}">
-            <button style="border-radius:10px"class="button is-medium is-grey" type="submit" name="button">Add</button>
+            <button class="button is-medium is-light" type="submit" name="button">Add</button>
           </form>
         {{!-- show if user logged in & have not subscribed --}}
         {{#if user}}
           {{#unless user.subscribeQuote }}
-          <form style="display:inline-block" action="/subscribe?_method=PUT" method="post">
+          <form class="button-in-line" action="/subscribe?_method=PUT" method="post">
             <input class="input" type="hidden" name="user[subscribeQuote]" value='true'>
-            <button style="border-radius:10px" class='button is-small is-white' type="submit" name="button">Subscribe</button>
+            <button class='button is-medium is-white' type="submit" name="button">Subscribe</button>
           </form>
             {{/unless}}
           {{/if}}

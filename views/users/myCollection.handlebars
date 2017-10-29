@@ -1,37 +1,45 @@
-<section class="hero is-small is-white is-bold">
-  <h1 style="margin:20px;"class="title">My Collection</h1>
-  <h1 style="margin:10px"class="subtitle is-4">Added Quotes</h1>
+<section class="hero is-info is-fullheight">
+  <h1 style="margin:20px;"class="title">My Quote Collection</h1>
+  {{#if addedQuotes}}
+  <h1 style="margin:10px"class="subtitle is-3 myQuoteHeader">Added Quotes</h1>
   <div class="columns is-multiline">
     {{#each addedQuotes as |quote|}}
     <div class="column is-one-third">
-      <div style="height:170px; text-align:center" class="card">
+      <div class="card myCard">
           <div class="card-content is-centered">
-            <strong>{{ quote.author }}</strong><br>
-            "{{ quote.quote }}"
+            {{ quote.author }}<br>
+            <div class="myQuote">"{{ this.quote }}"</div>
           <form action="/quotes/{{quote._id}}?_method=DELETE" method="post">
-            <button type="submit" name="button">Delete</button>
+            <button style="border-radius:10px;"class="button is-danger is-small is-outlined"type="submit" name="button">Delete</button>
           </form>
           </div>
       </div>
     </div>
     {{/each}}
   </div>
-  <h1 style="margin:10px"class="subtitle is-4">Personal Quotes</h1>
+  {{else}}
+  <h1 style="margin:10px"class="subtitle is-4"><a href="../quotes/collection">Added Quotes:(Empty)</a></h1>
+  {{/if}}
+  {{#if personalQuotes}}
+  <h1 style="margin:10px"class="subtitle is-3 myQuoteHeader">Personal Quotes</h1>
   <div class="columns is-multiline">
     {{#each personalQuotes}}
     <div class="column is-one-third">
       <div style="height:170px; text-align:center" class="card">
           <div class="card-content is-centered">
-            <strong>{{ this.author }}</strong><br>
-            "{{ this.quote }}"
-            <button onclick="window.location.href='/quotes/{{this._id}}'">Update</button>
-            <form action="/{{this._id}}?_method=DELETE" method="post">
-              <button type="submit" name="button">Delete</button>
+            {{ this.author }}<br>
+            <div class="myQuote">"{{ this.quote }}"</div>
+            <button style="border-radius:10px;"class="button is-link is-small is-outlined" onclick="window.location.href='/quotes/{{this._id}}'">Update</button>
+            <form class="button-in-line" action="/{{this._id}}?_method=DELETE" method="post">
+              <button style="border-radius:10px;"class="button is-danger is-small is-outlined"type="submit" name="button">Delete</button>
             </form>
           </div>
       </div>
     </div>
     {{/each}}
   </div>
+  {{else}}
+  <h1 style="margin:10px"class="subtitle is-4"><a href="../quotes/addQuote">Personal Quotes (Empty)</a></h1>
+  {{/if}}
 
 </section>

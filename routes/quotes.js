@@ -7,7 +7,7 @@ const User = require('../models/user')
 router.get('/collection', (req, res) => {
   var startDate = new Date()  // Current date
   var currentDate = new Date()
-  startDate.setDate(startDate.getDate() - 7) // render last 7 days quotes
+  startDate.setDate(startDate.getDate() - 7)
   startDate.setHours(0)
   startDate.setMinutes(0)
   startDate.setSeconds(0)
@@ -50,7 +50,7 @@ router.post('/addQuote', (req, res) => {
   newQuote.creatorId = user.id
   newQuote.save()
   .then(() => {
-    res.redirect('addQuote')
+    res.redirect(`../profile/${user.slug}`)
   }, err => {
     console.log('Either fields are not filled up')
     res.redirect('addQuote')

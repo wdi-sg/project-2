@@ -1,25 +1,25 @@
 
-<section class="hero is-small is-dark">
+<section class="hero is-info is-fullheight">
   <div class="hero-body">
     <div class="container">
-      <h1 class="title">Quote Collections
+      <h1 class="title">Quotes from Last Week
       </h1>
     </div>
   </div>
   <div class="columns is-multiline">
     {{#each quotes}}
-    <div class="column is-one-third">
-      <div style="height:170px; text-align:center" class="card">
-        <div class="card-content is-centered">
-          <strong>{{ this.author }}</strong><br>
-          "{{ this.quote }}"
-          <form action="/addcollection" method="post">
-            <input type="hidden" name="quoteId" value="{{this._id}}">
-            <button type="submit" name="button">Add</button>
-          </form>
+      <div class="column is-one-third">
+        <div class="card exploreCard">
+          <div class="card-content is-centered">
+            <div class="exploreQuote">"{{ this.quote }}"</div>
+            <div class="exploreAuthor">{{ this.author }}</div>
+            <form action="/addcollection" method="post">
+              <input type="hidden" name="quoteId" value="{{this._id}}">
+              <button style="border-radius:10px;"class="button is-link is-small is-outlined"type="submit" name="button">Add</button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
     {{/each}}
   </div>
 </section>
