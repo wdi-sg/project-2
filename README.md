@@ -16,9 +16,9 @@ If you are a developer and would like to contribute or use this code, simply
 5. If you do not have **mongodb**, please download from https://robomongo.org/download, create a localhost connection
 and once you start adding users and gigs, the data should start adding as well.
 6. This app requires a Cloudinary account. After signing up, you should be able to see 3 things that you'd need in your (hidden) .env file:
-.. CLOUDINARY_URL
-.. API_KEY
-.. API_SECRET
+..* CLOUDINARY_URL
+..* API_KEY
+..* API_SECRET
 You'd need all three to start.
 
 If you would like to contribute, please see below, at "Known Bugs" for some parts that you can contribute!
