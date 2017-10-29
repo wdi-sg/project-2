@@ -6490,7 +6490,7 @@ Created using IcoMoon - icomoon.io
         left: 300px;
     }
     .bootstrap-collapse .navbar .navbar-collapse {
-        background: none !important;
+        background-color: none !important;
     }
     .bootstrap-collapse .navbar .navbar-nav {
         margin-top: 53px;
