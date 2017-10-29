@@ -1,10 +1,12 @@
-<h3> Find your way </h3>
+<h1> Help Buzz help you </h1>
 <div class="row">
   <div class="col-8">
     <div id="map"></div>
   </div>
   <div class="col-4">
     <div id="floating-panel">
+      {{#if user}}
+      <p> See which routes are available! Type the address of your start and end <strong>buildings</strong>, and select the autocomplete suggestions that appear. Click the button to proceed. </p>
       <form action="/route" method="post" class="checkRoute">
         <label for="Start location"><b>Start bldg: </b></label>
         <br>
@@ -32,10 +34,12 @@
           <option value="11.5">11:30 AM</option>
         </select>
         <br>
-        <h5 class="card-text">See similar rides/ request this route</h5>
-        <button type="submit" name="button" class="btn btn-primary" id="check">Check routes</button>
+        <button type="submit" name="button" class="btn btn-primary" id="check">Check available routes</button>
         <p id="databaseResponse"> </p>
       </form>
+      {{else}}
+      <p>To use this feature, please <a href="/users/login">log in </a> so that we can track your interest in specific routes. </p>
+      {{/if}}
     </div>
   </div>
 </div>

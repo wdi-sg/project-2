@@ -1,20 +1,41 @@
-<h2> Want to be part of the latest Buzz? </h2>
-<p> Please create an account below, or login <a href="/partners/login">here</a> </p>
-<form action="/partners/register" method="post">
+<h1> Partner with Buzz </h1>
+<div class="row">
+  <div class="col-7 container-fluid">
+    <img src="/assets/pictures/corporate_business.jpg" class="img-thumbnail" alt="Corporate business">
+  </div>
+  <div class="col-5">
+    <p> Please create an account below, or login <a href="/partners/login">here</a> </p>
+    <form action="/partners/register" method="post">
 
-  <input type="hidden" name="user[type]" value="partners">
-
-  <label for="name">Organization name</label>
-  <input type="text" name="partner[name]" placeholder="How we address you">
-
-  <label for="email">Email</label>
-  <input type="email" name="partner[email]" placeholder="email@domain.com">
-
-  <label for="password">Password</label>
-  <input type="password" name="partner[password]" placeholder="min. 8 characters">
-
-  <label for="mobile">Mobile (+65)</label>
-  <input type="tel" name="partner[mobile]" placeholder="Let's get in touch">
-
-  <button type="submit" name="button">Register</button>
-</form>
+      <input type="hidden" name="user[type]" value="partners">
+      <div class="form-group row">
+        <label class="col-sm-5 col-form-label" for="name">Organization name</label>
+        <div class="col-sm-7">
+          <input type="text" name="partner[name]" placeholder="Bus Co.">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-5 col-form-label" for="email">Email</label>
+        <div class="col-sm-7">
+          <input type="email" name="partner[email]" placeholder="email@domain.com">
+          <small class="form-text text-muted">Your organization particulars will only be used by Buzz.</small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-5 col-form-label" for="password">Password</label>
+        <div class="col-sm-7">
+          <input type="password" name="partner[password]" placeholder="min. 8 characters">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-5 col-form-label" for="mobile">Contact No. (+65)</label>
+        <div class="col-sm-7">
+          <input type="tel" name="partner[mobile]" placeholder="Let's get in touch">
+        </div>
+      </div>
+      <button class ="btn btn-info" type="submit" name="button">Register</button>
+    </form>
+    <a href="#"> For general/media enquiries </a>
+  </div>
+</div>
+<br>

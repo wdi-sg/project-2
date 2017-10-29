@@ -1,9 +1,11 @@
-<h3> We're sad to see you go, please leave us feedback on how we can improve Buzz. </h3>
+<h2> Partner account deletion</h2>
 
-{{!-- <form action="/partners/delete/{{user.id}}?_method=DELETE" method="post"> --}}
-  <form action="/partners/delete?_method=DELETE" method="post">
+ <p>Thank you for your interest in Buzz, please let us know how we can improve. <br>If you would like to speak to an account representative, click <a href="#">here</a>. For faster correspondence, please call +65 61111111. </p>
 
-  <label for="Feedback"> Feedback/comments </label>
-  <input type="text" name="feedback" placeholder="How can Buzz be better?">
+  <form id="deleteForm" action="/partners/delete?_method=DELETE" method="post">
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Feedback/comments</label>
+      <textarea class="form-control" form="deleteForm" rows="3"></textarea>
+    </div>
   <button type="submit" name="button" id="delete">Delete my account</button>
 </form>
