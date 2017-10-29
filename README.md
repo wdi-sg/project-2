@@ -1,13 +1,12 @@
 # Conso
 ### Project cost consolidation and pricing application
 
-Conso is an application which assists businesses with project cost consolidation and pricing. It is especially useful for projects which require input from multiple parties.
+Conso is a cloud based application which assists businesses with project cost consolidation and pricing. It is especially useful for projects which require input from multiple parties.
 
 ## Live prototype
 https://conso.herokuapp.com
 
 ## Workflow
-<!--  draw wireframes, use task tracking, ? Did you use source control, with regular commits? Include links to them here. -->
 
 ### The problem
 
@@ -44,7 +43,7 @@ They have access to a summary report by cost type.
 
 ### ERD
 
-![ERD](/ERD project 2.png)
+![ERD](/ERD_project_2.png)
 
 ### How to Use
 ```
