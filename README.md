@@ -9,11 +9,11 @@ Buzz is a web app which offers on-demand bus transportation for users. It aims t
 User story:
 As a user,  I would like a solution that takes me to work more effectively than public transport, so that I can arrive to work well-rested.
 
-The idea for this came about a year back initially when Uber and Grab was, and still sort of is, occupying headlines. Instead of a car transport service, why not buses, which are economically, and environmentally friendlier? I took an hour by public transport to get to the CBD, whereas a car or taxi ride would take me 30 minutes. However, the latter would be at least 7/8x more expensive.
+The idea for this came about a year back initially when Uber and Grab was, and still sort of is, occupying headlines. Instead of a car transport service, why not buses, which are economically and environmentally friendlier? I took an hour by public transport to get to the CBD, whereas a car or taxi ride would take me 30 minutes. However, the latter would be at least 7/8x more expensive.
 
-But lo and behold, there is actually a very similar model which exists in my city, Singapore. It's called [Beeline](https://www.beeline.sg/) and thus, there will be quite a few parallels between this and my app. I would have liked to use it, but the service did not put up a route which was suitable for me.
+But lo and behold, there is actually a very similar model which exists in my city, Singapore. It's called [Beeline](https://www.beeline.sg/) and thus, there will be quite a few parallels between this and my app. I would have loved to use it, but the service did not put up a route suitable for myself.
 
-Introducing Buzz, it collects user-input journey information, and attempts to fill the gap for PMETs who are willing to pay a reasonable premium for something more direct, reliable, and faster. Instead of a tiring commute with multiple transitions and possible delays, that can be replaced with a single mode of transport, the bus.
+Introducing Buzz, it collects user-input journey information, and attempts to fill the gap for PMETs who are willing to pay a reasonable premium for something more direct, reliable, and faster. Instead of a tiring commute with multiple transitions and possible delays, we use a single mode of transport: a private bus.
 
 Clusters of similar journeys are gathered together, and interested bus vendors can provide regular service trips after a minimum number of paying customers.
 
@@ -43,7 +43,7 @@ This is what the app looked like by the end of the week deadline (save for the h
 :------------------------------------------------:|:-------------------------------------------------:
 ![Userlogin_actual](/public/assets/pictures/Userlogin_actual.png "Userlogin_actual")  |  ![Routecheck_actual](/public/assets/pictures/Routecheck_actual.png "Routecheck_actual")
 
-The main app logic would be the Routecheck portion, which also uses geocoding to translate human-readable addresses into longitude and latitudes. For Buzz, I used a side product from Google API, which is the formatted address, to obtain the postal code. Using the postal code, we can then identify the start and end regions and group users in mongoDB. For information on Singapore postal code system, please visit [this resource](https://www.ura.gov.sg/realEstateIIWeb/resources/misc/list_of_postal_districts.htm) from Urban Redevelopment Authority (SG).
+The main app logic would be the Routecheck portion, which also uses geocoding to translate human-readable addresses into longitudes and latitudes. For Buzz, I used a side product from Google API, which is the formatted address, to obtain the postal code. Using these postal codes, we can identify the start and end regions and group users in mongoDB. For information on Singapore postal code system, please visit [this resource](https://www.ura.gov.sg/realEstateIIWeb/resources/misc/list_of_postal_districts.htm) from Urban Redevelopment Authority (SG).
 
 There are some parts of the project I had set out to do but had not completed by the deadline:
 
