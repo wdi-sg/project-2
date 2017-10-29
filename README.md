@@ -1,6 +1,34 @@
 
 
-# Your Project Name
+# Salty Lemon
+<Brief Description here>
+
+<img src="./public/assets/images/home-page.png">
+
+## Live Version
+
+
+Problem I'm trying to solve it for.
+
+## Feature Prioritisation
+<img src="./public/assets/images/user-story.png">
+
+## WireFrames
+
+<img src="./public/assets/images/wireframe1.png">
+
+<img src="./public/assets/images/wireframe2.png">
+
+## Entity Relationship Diagram
+<img src="./public/assets/images/erd.jpg">
+
+## User Story Specific
+<img src="./public/assets/images/user-story.png">
+
+
+
+
+
 This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
 
 ## Getting Started

@@ -14,10 +14,6 @@ const quoteSchema = new Schema({
   timeEvent: Number,
   publishedAt: Date,
   creatorId: String
-  // hasShown: {
-  //   type: Boolean,
-  //   default: false
-  // }
 })
 
 const Quote = mongoose.model('Quote', quoteSchema)
