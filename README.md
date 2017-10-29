@@ -21,23 +21,30 @@ https://travelog-yukitsuboniwa.herokuapp.com/
 
 ### Wireframes
 
-Homepage
+1.Homepage
+
 ![Homepage](public/img/homepage.jpg)
 
-Register
+2.Register
+
 ![Register](public/img/register.jpg)
 
-Login
+3.Login
+
 ![Login](public/img/login.jpg)
 
-Profile
+4.Profile
+
 ![Profile](public/img/profile.jpg)
 
-Comment/Review
+5.Comment/Review
+
 ![Review](public/img/review.jpg)
 
 ### Built With
 
 1. Creately - creating ERD, Flowcharts and wireframes
+
 2. Bootstrap and Bulma - CSS frameworks
+
 3. Cloudinary - for uploading images
