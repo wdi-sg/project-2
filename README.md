@@ -133,13 +133,7 @@ This app is deployed on the Heroku platform, and accessible via this link: [Buzz
 
 
 
-
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
-
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+* [Beeline](https://www.beeline.sg/) for providing a working model to draw inspiration from
+* Knowledgeable TA [Alex Min](https://github.com/alex-min) for providing assistance during some knowledge roadblocks such as figuring out multiple passport authentication or different ways of fetching put requests.
