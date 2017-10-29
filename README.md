@@ -94,9 +94,9 @@ Did you write user stories, draw wireframes, use task tracking, produce ERDs? Di
 
 
 ## To Be added
-* Email notification API
+* Email verification API
 * QR code for mobile continuation
-* Bus timing alert
+* Make votes linked to user accounts and prevent anonymous users from voting
 
 
 ## Authors

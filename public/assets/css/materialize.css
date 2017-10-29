@@ -4715,7 +4715,7 @@ small {
   margin: 2rem 0 1rem 0;
   border-radius: 2px;
   background-color: #fff;
-  background-image: url("/assets/images/background3.jpg");
+  /*background-image: url("/assets/images/background3.jpg");*/
   font-weight: bold;
   font-size: 20px;
 }

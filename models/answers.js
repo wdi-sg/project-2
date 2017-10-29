@@ -7,6 +7,8 @@ const answerSchema = new mongoose.Schema({
   upVotes: { type: Number, default: 0},
   downVotes: { type: Number, default: 0 },
   totalVotes: { type: Number, default: 0 },
+  date: String,
+  time: String,
   parent: Schema.Types.ObjectId,
   creator: String,
   creatorName: String

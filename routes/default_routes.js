@@ -97,8 +97,6 @@ router.get("/profile", hasLoggedOut, (req,res)=>{
 
 
 router.post("/search", (req, res)=>{
-  // res.send(req.body.keyword)
-
   const keyword = req.body.keyword
 
   Thread.find({
@@ -108,6 +106,31 @@ router.post("/search", (req, res)=>{
     res.send(results)
   })
 })
+ //// ===== TESTING FOR NEW MODEL ===//
+router.get("/testingdate", (req,res)=>{
+
+  n =  new Date();
+y = n.getFullYear();
+m = n.getMonth() + 1;
+d = n.getDate()
+h = n.getHours()
+minutes = n.getMinutes()
+
+var hours = ""
+var mins = ""
+var timeframe = "AM"
+if (h>12){
+  h = h-12
+  timeframe = "PM"
+}
+h.toString().length < 2 ? hours = `0${h}`: hours = `${h}`
+minutes.toString().length < 2 ? mins = `0${minutes}`: mins = `${minutes}`
+
+
+// res.send(`${d}/${m}/${y}-----${hours}:${mins} ${timeframe}`)
+res.send(n.toLocaleTimeString())
+})
+
 router.post('/addquestions', function (req, res) {
   var creatorId = ""
   if(!req.user) creatorId = "anonymous"
@@ -117,7 +140,9 @@ router.post('/addquestions', function (req, res) {
     question: req.body.question,
     description: req.body.description,
     course: req.body.dropdown,
-    creator: creatorId
+    creator: creatorId,
+    date: new Date().toLocaleDateString(),
+    time: new Date().toLocaleTimeString()
 
   })
 
