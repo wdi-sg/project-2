@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Bus When</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light justify-content-between" style="background-color: #CFC1AF;">
+    <a class="navbar-brand mb-0 h1" href="/">Bus When</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        {{!-- The actual navbar items --}}
+    <div class="collapse navbar-collapse " id="navbarNav">
+      {{!-- <ul class="navbar-nav "> --}}
+        {{!-- <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li> --}}
+        {{!-- <li class="nav-item">
+          <a class="nav-link" href="/faves">Buses</a>
+        </li> --}}
+        <ul class="navbar-nav">
+
+          {{#if user}}
+            {{!-- if user has logged in  --}}
+            <li class="nav-item">
+              <a class="nav-link">Hi {{ user.name }}</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+          {{else}}
+            {{!-- if user has not logged in --}}
+            <li class="nav-item">
+              <a class="nav-link" href="/register">Register</a>
+            </li>
+            {{!-- UPDATE AFTER 20 Oct, adding link to login page for `user` --}}
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+
+          {{/if}}
+        </ul>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    {{{ body }}}
+  </div>
+  <footer class="bd-footer text-muted">
+    <div class="container-fluid p-3 p-md-5">
+      <p class="text-center">Carefully crafted for you by <a href="https://github.com/nikitas89" target="_blank" rel="noopener">@nikitas89</a>, and <a href="http://getbootstrap.com/" target="_blank">Bootstrap 4</a></p>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
+  <script src="/assets/js/frontend.js" charset="utf-8"></script>
+</body>
+
+</html>

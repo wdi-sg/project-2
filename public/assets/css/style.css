@@ -1,0 +1,21 @@
+/*UPDATE 22 OCT, custom stylesheet that bootrap layout doesn't cover */
+nav {
+  margin-bottom: 30px;
+}
+
+.card {
+  margin-bottom: 15px;
+}
+
+.saveBtn{
+  width: 30px;
+  height: 30px;
+  background-image: url('../img/save.png');
+  /*background-repeat: none;*/
+  background-size: 100%;
+}
+
+.nearStopUL li{
+display: inline;
+padding-left: 15px;
+}
