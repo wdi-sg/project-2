@@ -21,7 +21,11 @@ Usually this is done with spreadsheets. However working with spreadsheets presen
 1. High degree of human involvement in the workflow increases instances of error which can be extremely costly to the business.
 
 
-Conso will address these issues.
+Conso addresses these issues with the following features:
+
+1. Multiple users may work on their own costs concurrently in the same database
+1. Information will be compiled and summarised by the system almost instantaneously and with accuracy every time
+1. Pricing will be done by the system with user defined margins
 
 ### User Stories
 
