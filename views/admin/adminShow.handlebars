@@ -1,4 +1,7 @@
-<br><br><br>
+<div class="page-header">
+	<div class="page-header-image" data-parallax="true" style="background-image: url('/assets/img/wallpaper3.jpg');"></div>
+<br><br><br><br>
+<div class="container">
 <h3>List of Supplier</h3>
   <table class="table">
     <thead>
@@ -30,12 +33,12 @@
           {{!-- <a href="/vegetable/new" class="btn">Add Vegetable</a> --}}
           <form class="" action="/vegetable/new" method="post">
             <input type="hidden" name="id" value="{{supp.id}}">
-            <button type="submit" name="button" href="/vegetable/new">Add Vegetable</button>
+            <button type="submit" name="button" href="/vegetable/new" class="btn btn-warning">Add Vegetable</button>
           </form>
 
           {{!-- <form class="" action="/vegetable/table" method="post"> --}}
             {{!-- <input type="hidden" name="id" value="{{supp.id}}"> --}}
-            <a href="/vegetable/table/{{supp.id}}"><button type="button">View Vegetable</button></a>
+            <a href="/vegetable/table/{{supp.id}}"><button type="button" class="btn btn-warning">View Vegetable</button></a>
           {{!-- </form> --}}
         </td>
         {{!-- how to pass the id over? /{{ supp.id }} --}}
@@ -44,4 +47,8 @@
 
 {{/each}}
 </table>
+
+</div>
+</div>
+</div>
 {{!-- <a class="btn btn-primary" href="/components/new" role="button">Add</a> --}}

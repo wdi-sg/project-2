@@ -1,37 +1,39 @@
-<br><br><br><br>
-<div class="row">
-  {{!-- Loop --}}
-  {{#each suppliers as |supp|}}
-  <div class="col-4">
 
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">{{ supp.company }}</h4>
-        <p class="card-text">
-          {{!-- 22 Oct: show resto address here instead of just link  --}}
-          {{ supp.address }} {{ supp.unit }}<br>
-          , Singappore {{ supp.postalcode}}
+<div class="page-header">
+  <div class="page-header-image" data-parallax="true" style="background-image: url('/assets/img/wallpaper3.jpg');"></div>
+  <br><br><br><br>
+  <div class="container">
+    <div class="row">
+      {{#each suppliers as |supp|}}
+        <div class="col-sm-4 ">
+          <div class="text-center">
+            <div class="card card-plain">
+              <br>
+              <h4 class="card-title">{{ supp.company }}</h4>
+              <p class="card-text">
+                Contact number : {{ supp.contact }}
+              </p>
+              <p class="card-text">
+                Email: {{supp.email}}
+              </p>
+              <p class="card-text">
+                {{!-- 22 Oct: show resto address here instead of just link  --}}
+                {{ supp.address }} # {{ supp.unit }}<br>
+                  , Singappore {{ supp.postalcode}}
+              </p>
 
-          {{ supp.contact }}
-        </p>
-
-        <form
-          class="form-inline"
-          action="/vegetable/{{ supp.id }}?_method=DELETE"
-          method="post"
-        >
-          <a href="/vegetable/{{ supp.id }}" class="btn btn-primary">View Vegetable</a>
-          {{#if ../admin}}
-            <a href="/supplier/update/{{ supp.id }}" class="btn btn-secondary">Edit Supplier</a>
-          {{/if}}
-        </form>
-
-      </div>
+              <p>
+                <form action="/vegetable/{{ supp.id }}?_method=DELETE" method="post">
+                  <a href="/vegetable/{{ supp.id }}" class="btn bg-warning">View Vegetable</a>
+                  {{#if ../admin}}
+                    <a href="/supplier/update/{{ supp.id }}" class="btn bg-warning">Edit Supplier</a>
+                  {{/if}}
+                </form>
+              </p>
+            </div>
+          </div>
+        </div>
+      {{/each}}
     </div>
   </div>
-  {{/each}}
-
-  {{!-- Update 22 October, remove the li grid system to use grid system instead  --}}
-  {{!-- <ul>
-  </ul> --}}
 </div>

@@ -1,17 +1,22 @@
-<br><br><br>
-<div class="row">
-  {{#each supplier.vegetables as |vegetable| }}
-  <div class="col-4">
-    <div class="card">
-      <div class="card-body">
-        <img src="{{ vegetable.photo }}"><br>
-        Name : {{vegetable.name}}<br>
-        Price per KG $ : {{ vegetable.price }}<br>
-        Minimum Quantity in KG : {{ vegetable.quantity}}<br>
-      </div>
-    </div>
-  </div>
-  {{/each }}
+<div class="page-header">
+  <div class="page-header-image" data-parallax="true" style="background-image: url('/assets/img/wallpaper3.jpg');"></div>
+  <br><br><br><br>
+  <div class="container">
+    <div class="row">
+      {{#each supplier.vegetables as |vegetable| }}
+        <div class="col-sm-4 ">
+          <div class="text-center">
+            <div class="card card-plain">
+              <img src="{{ vegetable.photo }}"><br>
+              <p class="card-text">Name : {{vegetable.name}}</p>
+              <p class="card-text">Price per KG $ : {{ vegetable.price }}</p>
+              <p class="card-text"> Minimum Quantity in KG : {{ vegetable.quantity}}</p>
+            </div>
+          </div>
+        </div>
+{{/each }}
+</div>
+</div>
 </div>
 
 

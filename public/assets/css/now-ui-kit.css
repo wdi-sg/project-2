@@ -30,6 +30,9 @@
  * Copyright 2012-2013 Mattia Larentis
  * http://www.apache.org/licenses/LICENSE-2.0
  */
+.form{
+  margin: 0 auto;
+}
 
 .bootstrap-switch {
     display: inline-block;
@@ -1377,7 +1380,6 @@
 .navbar .navbar-nav>a.btn {
     border-width: 2px;
     font-weight: 400;
-    font-size: 0.8571em;
     line-height: 1.35em;
     margin: 5px 1px;
     border: none;
@@ -3183,6 +3185,7 @@ h6,
 }
 
 p {
+    font-size: 16px;
     line-height: 1.61em;
 }
 
@@ -3289,7 +3292,7 @@ p.description {
 body {
     color: #2c2c2c;
     font-size: 14px;
-    font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Droid Sans', "Montserrat", "Helvetica Neue", Arial, sans-serif;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
 }
@@ -3615,7 +3618,6 @@ body {
 
 .navbar .navbar-nav .nav-link:not(.btn) {
     text-transform: uppercase;
-    font-size: 0.7142em;
     padding: 0.5rem 0.7rem;
     line-height: 1.625rem;
 }
@@ -3668,7 +3670,6 @@ body {
 
 .navbar .navbar-brand {
     text-transform: uppercase;
-    font-size: 0.8571em;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     line-height: 1.625rem;
@@ -5015,7 +5016,7 @@ Created using IcoMoon - icomoon.io
 }
 
 .card[data-background-color="orange"] {
-    background-color: #f96332;
+    background-color: #FEB145;
 }
 
 .card[data-background-color="red"] {
@@ -5037,6 +5038,24 @@ Created using IcoMoon - icomoon.io
 .card-signup {
     max-width: 350px;
     margin: 0 auto;
+}
+
+.card-supplier {
+    max-width: 550px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    padding: 50px;
+    box-shadow: 0 0 5px 0;
+}
+
+.card-login {
+    max-width: 550px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 0 5px 0;
 }
 
 .card-signup .header {
@@ -5089,6 +5108,11 @@ Created using IcoMoon - icomoon.io
 .card-plain {
     background: transparent;
     box-shadow: none;
+    max-width: 350px;
+    margin: 0 auto;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    min-height: auto;
 }
 
 .card-plain .header {
@@ -5101,9 +5125,6 @@ Created using IcoMoon - icomoon.io
     padding-right: 0;
 }
 
-.footer {
-    padding: 24px 0;
-}
 
 .footer.footer-default {
     background-color: #f2f2f2;
@@ -5538,7 +5559,6 @@ Created using IcoMoon - icomoon.io
 .page-header .container {
     height: 100%;
     z-index: 1;
-    text-align: center;
     position: relative;
 }
 
@@ -5579,7 +5599,7 @@ Created using IcoMoon - icomoon.io
 }
 
 .page-header:before {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.28);
 }
 
 .page-header[filter-color="orange"] {

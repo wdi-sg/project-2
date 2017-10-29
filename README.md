@@ -1,69 +1,46 @@
 # Greenie GoGo!
 
-Problem :
-- Some supplier may reject their request if order minimum quantity does not met
-- No idea where to get reasonable price vegetables
+# Project #1: Greenie GoGo!
+
+<img src="public/assets/img/website.png">
+
+## Problem :
+- No idea where to get reasonable wholesale vegetables  
 - Time consuming to look for suppliers
-- Limited storage space and  vegetables no longer fresh
-- Minimise wastage of vegetables & saving capital at the same time
+- Lost of name cards of supplier
 
-## Getting Started
+## Target Audience :
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+- Restaurant
+- Hawker
+- Coffee Shop
 
-### Prerequisites
+## Objective :
 
-What is needed to install and run the project, how do we install them
+Able to find wholesales suppliers within 2 clicks. Users can compare the prices and see their minimum order accepted by suppliers. Save up unnecessary effort to call supplier can straight look for another supplier instead.
 
-```
-Code example
-```
+## ERD Diagram :
 
-### How to Use
-
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+<img src="public/assets/img/erd.png">
 
 
-```
-Code example
-```
+## To Be Implemented :
 
-More steps...
-
-```
-until finished
-```
+- Able to edit vegetables details use by the admin
+- A search functionally to filter suppliers by name, address
+- Customer able to purchase directly without calling supplier
+- Recommend customer, appropriate supplier according to their business type, as some supplier do not accept small orders
 
 
-## Tests
+## Built With :
 
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
-
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
-
-## Built With
-
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
-
-## Workflow
-
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
-
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+- HTML5
+- CSS3
+- Javascript
+- Node
+- Express
+- Bootstrap 4
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+- With the help of my senior (Alex)

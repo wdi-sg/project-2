@@ -1,29 +1,62 @@
-<br><br><br>
-<form action="/supplier" method="post">
-  <h3>Add Supplier</h3>
-  <label for="lblCompanyName">Company Name :</label>
-  <input type="text" name="supplier[txtName]" placeholder="e.g. John Doe">
-  <br/>
+<div class="page-header">
+	<div class="page-header-image" data-parallax="true" style="background-image: url('/assets/img/wallpaper3.jpg');"></div>
+	<br><br><br><br>
+	<div class="container">
+		<div class="row">
+			<div class="card card-login">
 
-  <label for="lblEmail">Email :</label>
-  <input type="text" name="supplier[txtEmail]" placeholder="e.g. domain@email.com">
-  <br/>
+			<div class="card-plain">
+				<h3 class="title text-center">Add Supplier</h3>
 
-  <label for="lblEmail">Contact No :</label>
-  <input type="number" name="supplier[txtContact]" placeholder="e.g. 82226668">
-  <br/>
 
-  <label for="lblBusinessType">Address :</label>
-  <input type="text" name="supplier[txtAddress]" placeholder="e.g. Blk 1 Pasir ris drive">
-  <br/>
+					<form action="/supplier" method="post">
+						<div class="card-body">
 
-  <label for="lblPostalCode">Unit :</label>
-  <input type="text" name="supplier[txtUnit]" placeholder="e.g. #01-11">
-  <br/>
+						<label for="lblCompanyName">Company Name :</label>
+						<div class="text-center">
+							<input type="text" class="form-control" name="supplier[txtName]" placeholder="Enter Company Name">
 
-  <label for="lblPostalCode">Postal Code :</label>
-  <input type="number" name="supplier[txtPostalCode]" placeholder="e.g. 760333" >
-  <br/>
+						</div>
+						<br>
 
-  <button type="submit" name="btnSubmit">Submit</button>
-</form>
+						<label for="lblEmail">Email :</label>
+						<div class="text-center">
+							<input type="text" class="form-control" name="supplier[txtEmail]" placeholder="Enter Email">
+						</div>
+						<br>
+
+						<label for="lblEmail">Contact No :</label>
+						<div class="text-center">
+							<input type="number" class="form-control" name="supplier[txtContact]" placeholder="Enter Contact">
+						</div>
+						<br>
+
+						<label for="lblBusinessType">Address :</label>
+						<div class="text-center">
+							<input type="text" class="form-control" name="supplier[txtAddress]" placeholder="Enter Address">
+						</div>
+						<br>
+
+						<label for="lblUnit">Unit No :</label>
+						<div class="text-center">
+							<input type="text" class="form-control" name="supplier[txtUnit]" placeholder="Enter Unit No.">
+						</div>
+						<br>
+
+						<label for="lblPostalCode">Postal Code :</label>
+						<div class="text-center">
+							<input type="number" class="form-control" name="supplier[txtPostalCode]" placeholder="Enter Postal">
+
+						</div>
+						<br>
+
+						<div class="text-center">
+							<button type="submit" name="btn" class="btn btn-warning">Submit</button>
+						</div>
+				</div>
+				</form>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>

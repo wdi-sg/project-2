@@ -1,65 +1,83 @@
-<br><br><br>
-<h1>Register</h1>
+<div class="page-header">
+	<div class="page-header-image" data-parallax="true" style="background-image: url('/assets/img/wallpaper2.jpg');"></div>
+	<br><br>
+	<div class="container">
+		<div class="col-md-4 content-center">
+			<div class="row">
+				<div class="card-login">
+					<h1 class="title text-center">Register</h1>
+					<div class="card-plain">
+						<label for="lblType">Please Select admin/customer :</label>
+						<select id="selectType">
+          <option value="customer">Customer</option>
+          <option value="admin">Admin</option>
+        </select>{{!-- <div class="registerContainer"> --}}
+						<form id="customer" name="customer" action="/register" method="post" style="display:none">
 
-<label for="lblType">Please Select admin/customer :</label>
-<select id="selectType">
-  <option value="customer">Customer</option>
-  <option value="admin">Admin</option>
-</select>
-<br>
+							<br>
 
-{{!-- <div class="registerContainer"> --}}
-  <form id="customer" name="customer" action="/register" method="post" style="display:none">
+							<input type="hidden" name="user[type]" value="customer">
 
-    <input type="hidden" name="user[type]" value="customer">
+							<div class="pull-left">
+								<label for="lblName">Name :</label>
+							</div>
+							<input type="text" class="form-control" name="user[txtName]" placeholder="e.g. John Doe">
+							<br/>
+							<div class="pull-left">
+								<label for="lblEmail">Email :</label>
+							</div>
+							<input type="text" class="form-control" name="user[txtEmail]" placeholder="e.g. domain@email.com">
+							<br/>
+							<div class="pull-left">
+								<label for="lblPassword">Password :</label>
+							</div>
+							<input type="password" class="form-control" name="user[txtPassword]" placeholder="min. 8 characters">
+							<br/>
 
-    <label for="lblName">Name :</label>
-    <input type="text" name="user[txtName]" placeholder="e.g. John Doe">
-    <br/>
+							<label for="lblBusinessType">Business Type :</label>
+							<select name="user[ddlBusinessType]">
+            <option value="restaurant">Restaurant</option>
+            <option value="hawker">Hawker</option>
+            <option value="coffee-shop">Coffee Shop</option>
+          </select>
+							<br>
+							<br>
+							<div class="text-center">
+								<button type="submit" class="btn bg-warning" name="btnSubmit">Submit</button>
+							</div>
 
-    <label for="lblEmail">Email :</label>
-    <input type="text" name="user[txtEmail]" placeholder="e.g. domain@email.com">
-    <br/>
+						</form>
 
-    <label for="lblBusinessType">Business Type :</label>
-    <select name= "user[ddlBusinessType]">
-      <option value="restaurant">Restaurant</option>
-      <option value="hawker">Hawker</option>
-      <option value="coffee-shop">Coffee Shop</option>
-    </select>
-    <br/>
-
-    <label for="lblPassword">Password :</label>
-    <input type="password" name="user[txtPassword]" placeholder="min. 8 characters">
-    <br/>
-
-    <button type="submit" name="btnSubmit">Submit</button>
-  </form>
-{{!-- </div> --}}
-
-
+					</div>
 
 
-<form id ="admin" name="admin" action="/register" method="post" style="display:none">
 
-  <input type="hidden" name="user[type]" value="admin">
-  <input type="hidden" name="isAdmin" value=true >
+					<form id="admin" name="admin" action="/register" method="post" style="display:none">
+						<br>
+						<input type="hidden" name="user[type]" value="admin">
+						<input type="hidden" name="isAdmin" value=true>
 
-  <label for="lblName">Name :</label>
-  <input type="text" name="user[txtName]" placeholder="e.g. John Doe">
-  <br/>
+						<label for="lblName">Name :</label>
+						<input type="text" class="form-control" name="user[txtName]" placeholder="e.g. John Doe">
+						<br/>
 
-  <label for="lblEmail">Email :</label>
-  <input type="text" name="user[txtEmail]" placeholder="e.g. domain@email.com">
-  <br/>
+						<label for="lblEmail">Email :</label>
+						<input type="text" class="form-control" name="user[txtEmail]" placeholder="e.g. domain@email.com">
+						<br/>
 
-  <label for="lblEmail">Admin Code :</label>
-  <input type="text" name="user[txtAdmin]">
-  <br/>
+						<label for="lblEmail">Admin Code :</label>
+						<input type="text" class="form-control" name="user[txtAdmin]">
+						<br/>
 
-  <label for="lblPassword">Password :</label>
-  <input type="password" name="user[txtPassword]" placeholder="min. 8 characters">
-  <br/>
-
-  <button type="submit" name="btnSubmit">Submit</button>
-</form>
+						<label for="lblPassword">Password :</label>
+						<input type="password" class="form-control" name="user[txtPassword]" placeholder="min. 8 characters">
+						<br/>
+						<div class="text-center">
+							<button type="submit" class="btn bg-warning" name="btnSubmit">Submit</button>
+						</div>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
