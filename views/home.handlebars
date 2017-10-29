@@ -1,13 +1,22 @@
 {{!-- <form action="/" method="post"> --}}
 {{!-- <form action="/geo" method="post">  --}}
-<button type="submit" name="getGeo" id="getGeo">Get my location</button>{{!-- </form> --}}
-<button type="submit" name="speechButton" id="speechButton">Use Speech</button>
-<button type="submit" name="stopSpeechButton" id="stopSpeechButton">Stop Speech</button>
-<div class="stopsNearby">
+<div class="container-fluid">
+<div class="row">
+  <button class="btn btn-primary" type="submit" name="getGeo" id="getGeo"> Get my location</button>{{!-- </form> --}}
+  <button class="btn" type="submit" name="speechButton" id="speechButton">Use Speech</button>
+  <button class="btn" type="submit" name="stopSpeechButton" id="stopSpeechButton">Stop Speech</button>
+  <i class='glyphicon glyphicon-map-marker'></i>
 
 </div>
-<div class="map">
-  <img src="" alt="" class="gmap">
+<div class="row">
+  <div class="stopsNearby col-md-5 col-sm-12">
+
+  </div>
+  <div class="map col-md-5 col-sm-12">
+    <img src="" alt="" class="gmap">
+  </div>
+</div>
+
 </div>
 
 {{!-- todo Phase 2 only

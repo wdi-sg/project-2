@@ -12,17 +12,18 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light justify-content-between" style="background-color: #e3f2fd;">
-    {{!-- Remember that anything written here, will be displayed for all pages --}}
-    <a class="navbar-brand mb-0 h1" href="/">Bus When</a>{{!-- Navbar hamburger icon for responsive reasons --}}
+  <nav class="navbar navbar-expand-lg navbar-light justify-content-between" style="background-color: #CFC1AF;">
+    <a class="navbar-brand mb-0 h1" href="/">Bus When</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button>{{!-- The actual navbar items --}}
+        </button>
+
+        {{!-- The actual navbar items --}}
     <div class="collapse navbar-collapse " id="navbarNav">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+      {{!-- <ul class="navbar-nav "> --}}
+        {{!-- <li class="nav-item active">
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
+        </li> --}}
         {{!-- <li class="nav-item">
           <a class="nav-link" href="/faves">Buses</a>
         </li> --}}
@@ -33,7 +34,7 @@
             <li class="nav-item">
               <a class="nav-link">Hi {{ user.name }}</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ">
               <a class="nav-link" href="/logout">Logout</a>
             </li>
           {{else}}
@@ -55,7 +56,7 @@
   </div>
   <footer class="bd-footer text-muted">
     <div class="container-fluid p-3 p-md-5">
-      <p class="text-center">Carefully crafted for you by <a href="https://github.com/nikitas89" target="_blank" rel="noopener">@nikitas89</a>, and <a href="http://getbootstrap.com/" target="_blank">Bootstrap 4</a> 🚀</p>
+      <p class="text-center">Carefully crafted for you by <a href="https://github.com/nikitas89" target="_blank" rel="noopener">@nikitas89</a>, and <a href="http://getbootstrap.com/" target="_blank">Bootstrap 4</a></p>
     </div>
   </footer>
 

@@ -91,10 +91,10 @@ app.use((req, res, next) => {
 //------------------------------------------------------//
 //Set up routes here
 const home_routes = require('./routes/home_routes')
+const stop_routes = require('./routes/stop_routes')
 const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
 const load_routes = require('./routes/load_routes')
-const stop_routes = require('./routes/stop_routes')
 
 //------------------------------------------------------//
 
