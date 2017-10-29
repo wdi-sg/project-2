@@ -7,38 +7,54 @@
     <div class>
       <div class="row col s12 m6">
 
-        <ul class="left"><b>{{SA.name}}</b></ul>
+        <ul class="left">
+
+          <li><b>{{SA.name}}</b></li>
+
+        </ul>
 
         <br>
 
       </div>
 
-      <div class="row col s12 m6">
+      <div class="row">
 
-        <ul class="left"><img src="{{SA.bank_img}}" height="60"></ul>
+        <div class="col s12 m6">
 
-        <br>
-
-        <p>Minimum Interest Rate: {{SA.min_interest_rate}}%</p>
-
-        <br>
-
-        <p>Maximum Interest Rate: {{SA.max_interest_rate}}%</p>
+          <ul>
+            <li><img src="{{SA.bank_img}}" height="60"></li>
+          </ul>
 
         <br>
 
-        <p>Initial Deposit: {{SA.minimum_deposit}}</p>
+        <ul>
+          <li>Minimum Interest Rate: {{SA.min_interest_rate}}%</li>
+        </ul>
 
         <br>
 
-        <ul class="right"><a href="{{SA.link}}" class="brand-logo waves-effect waves-light btn right">Apply Here</a></ul>
+        <ul>
+          <li>Maximum Interest Rate: {{SA.max_interest_rate}}%</li>
+        </ul>
+
+        <br>
+
+        <ul>
+          <li>Initial Deposit: {{SA.minimum_deposit}}</li>
+        </ul>
+
+        <br>
+
+        <ul class="left">
+          <li><a href="{{SA.link}}" class="brand-logo waves-effect waves-light btn right">Apply Here</a></li>
+        </ul>
 
         <br>
         <br>
 
       </div>
 
-      <div class="row col s12 m6">
+      {{!-- <div class="row col s12 m6">
 
         <ul class="collapsible z-depth-0" data-collapsible="accordion" >
 
@@ -60,7 +76,7 @@
         </li>
 
       </ul>
-      </div>
+      </div> --}}
 
     </div>
 

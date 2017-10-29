@@ -12,8 +12,7 @@ router.get('/:id', (req, res) => {
   .populate('fd')
   .populate('sa')
   .then((account) => {
-    res.render('account', {account})
-    // res.send({account})
+    res.render('acct_fixed_dep', {account})
   })
 })
 

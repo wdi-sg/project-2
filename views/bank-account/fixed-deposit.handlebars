@@ -44,7 +44,7 @@
 
         <ul class="left">
 
-          <b>{{FD.name}}</b>
+          <li><b>{{FD.name}}</b></li>
 
         </ul>
 
@@ -52,58 +52,76 @@
 
       </div>
 
-      <div class="row col s12 m6">
+      <div class="row">
 
-        <ul class="left"><img src="{{FD.bank_img}}" height="60"></ul>
+        <div class="col s12 m6">
 
-        <br>
+          <ul class="left"><img src="{{FD.bank_img}}" height="60"></ul>
 
-        <h8>Period : Interest Rate</h8>
-        <ul>
-          {{#each FD.interest_rate as |IR|}}
-            <li>{{IR.period}} month(s) : {{IR.rate}}%</li>
-          {{/each}}
-        </ul>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
 
-        <br>
+          <h8>Period : Interest Rate</h8>
 
-        <p>Returns: {{FD.returns}}</p>
+          <ul>
+            {{#each FD.interest_rate as |IR|}}
+              <li>{{IR.period}} month(s) : {{IR.rate}}%</li>
+            {{/each}}
+          </ul>
 
-        <br>
+          <br>
 
-        <ul class="right"><a href="{{FD.link}}" class="brand-logo waves-effect waves-light btn right">Apply Here</a></ul>
+          <p>Returns: {{FD.returns}}</p>
 
-        <br>
-        <br>
+          <br>
+
+          <ul class="left">
+
+            <li><a href="{{FD.link}}" class="brand-logo waves-effect waves-light btn right">Apply Here</a></li>
+
+          </ul>
+
+        </div>
 
       </div>
 
-      <div class="row col s12 m6">
 
-        <ul class="collapsible z-depth-0" data-collapsible="accordion" >
+      <div class="row">
 
-        <li>
-          <div class="collapsible-header row col s12 m6"><ul class="center">
+        <div class="col s12 m6">
 
-            More Details
+          <ul class="collapsible z-depth-0" data-collapsible="accordion">
 
-          </ul></div>
+            <li>
 
-          <div class="collapsible-body">
+              <div class="collapsible-header row col s12 m6">
 
-            <p>Minimum Age: {{FD.minimum_age}}</p>
-            <p>Minimum Deposit: $ {{FD.minimum_deposit.[0]}}</p>
-            <p>Fees and Charges: {{FD.fees_charges}}</p>
+                <ul class="center">
 
-          </div>
+                  More Details
 
-        </li>
-      </ul>
+            </li>
+
+          </ul>
+
+        </div>
+
+        <div class="collapsible-body">
+
+          <p>Minimum Age: {{FD.minimum_age}}</p>
+          <p>Minimum Deposit: $ {{FD.minimum_deposit.[0]}}</p>
+          <p>Fees and Charges: {{FD.fees_charges}}</p>
+
+        </div>
+
+          </li>
+          </ul>
+        </div>
+
       </div>
-
-
-
-    </div>
 
     <br>
 
