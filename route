@@ -1,10 +1,5 @@
 OUR ROUTE PLANS
 
-app.use('/')
-  GET /
-  GET /search
-  POST /search
-
 app.use('login')
   GET /
   POST /
@@ -23,7 +18,3 @@ app.use('/routes')
   POST /
   POST /:id
   DELETE /:id
-
-app.use('/admins)
-  GET /register
-  POST /register
