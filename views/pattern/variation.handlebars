@@ -1,30 +1,59 @@
 
-<h3>Add new variation</h3>
+<h2 class="text-info ml-1">Add new Variation</h2>
 
 <form enctype="multipart/form-data" action="/pattern/{{pattern.id}}/variation/new" method="post">
-  <div class="">
-    <label for="title">Title</label>
-    <input type="text" name="project[title]" placeholder="">
+  <div class="row mb-2 ml-1">
+    <div class="form-group col-md-6 card border-info card-header text-info" style="max-width: 30rem">
+
+      <div class="">
+        <label class="card-title" for="image">Add Image :</label>
+        <input class="card-title" type="file" name="image">
+      </div>
+    </div>
+    <div class="form-group col-md-5 border-info">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label text-info" for="title">Title: </label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" name="project[title]" placeholder="{{pattern.title}} (your name)">
+        </div>
+      </div>
+    </div>
+
   </div>
-  <div class="">
-    <label for="material">Material</label>
-    <textarea name="project[material]" rows="10" cols="20"></textarea>
-    <label for="reflection">Reflection</label>
-    <textarea name="project[reflection]" rows="10" cols="40"></textarea>
+  <div class="row mb-2">
+    <div class="form-group col-md-5">
+      <label class="text-info" for="material">Material:</label>
+      <textarea class="form-control border-info"name="project[material]" rows="10" ></textarea>
+
+    </div>
+    <div class="form-group col-md-7">
+      <label class="text-info" for="reflection">Reflection:</label>
+      <textarea class="form-control border-info" name="project[reflection]" rows="10" ></textarea>
+
+    </div>
   </div>
 
-  <label for="image">Image :</label>
-  <input type="file" name="image">
+  <div class="mb-2">
+
+    {{#if hasBookmark}}
+    <div class="btn-group" data-toggle="buttons">
+
+      <label class="btn btn-info btn-sm active border-white border-top-0 border-left-0 border-bottom-0">
+        <input class="form-check-input " type="radio" name="removeBookmark" value="no" checked> Do not remove bookmark
+      </label>
 
 
-  {{#if hasBookmark}}
-  <div class="">
-    <input type="radio" name="removeBookmark" value="no" checked> Do not remove bookmark<br>
-    <input type="radio" name="removeBookmark" value="yes"> Remove Bookmark<br>    
+      <label class="btn btn-info btn-sm border-white border-top-0 border-right-0 border-bottom-0">
+        <input class="form-check-input" type="radio" name="removeBookmark" value="yes"> Remove Bookmark
+      </label>
+
+    </div>
+    {{/if}}
   </div>
-  {{/if}}
 
-  <button type="submit" name="button">Submit</button>
+
+
+  <button class="btn btn-info" type="submit" name="button">Submit</button>
 </form>
 
 

@@ -1,15 +1,23 @@
 
-<h3>Login</h3>
+<h2 class="text-info">Login</h2>
 
 <form action="/login" method="post">
+  <div class="form-group form-inline row">
+    <div class="form-group col-sm-5">
 
-  <label for="email">Email</label>
+      <label class="text-info m-2" for="email">Email:</label>
 
-  <input type="email" name="user[email]" placeholder="e.g. domain@email.com">
+      <input class="col-sm-9" type="email" name="user[email]" placeholder="e.g. domain@email.com">
+    </div>
 
-  <label for="password">Password</label>
+    <div class="form-group col-sm-5">
 
-  <input type="password" name="user[password]" placeholder="your password">
+      <label class="text-info m-2" for="password">Password:</label>
 
-  <button type="submit" name="button">Submit</button>
+      <input class="col-sm-9"type="password" name="user[password]" placeholder="your password">
+    </div>
+  </div>
+
+
+  <button class="btn btn-info" type="submit" name="button">Login</button>
 </form>

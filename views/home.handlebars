@@ -1,50 +1,52 @@
-<h2>Home</h2>
+<h2 class="text-info">Home</h2>
 
 <div class="">
-  <h4>Woodcraft</h4>
-  <ul>
+  <h4 class="text-info">Woodcraft</h4>
+  <div class="d-flex flex-row mb-2">
     {{#each woodcraftPatterns as |woodcraftPattern|}}
-    <div class="">
-      <a href="/pattern/{{woodcraftPattern.id}}">
-        <img src="{{woodcraftPattern.imageUrl}}" width=200 alt="Image">
-        {{woodcraftPattern.title}}
+    <div class="d-inline-flex m-1 mr-2">
+      <a class="text-info" href="/pattern/{{woodcraftPattern.id}}">
+        <img src="{{woodcraftPattern.imageUrl}}" height=150 alt="Image">
+        <h6>{{woodcraftPattern.title}}</h6>
       </a>
     </div>
 
     {{/each}}
 
-  </ul>
+  </div>
+
+
 
 </div>
 
 <div class="">
-  <h4>Papercraft</h4>
-  <ul>
+  <h4 class="text-info">Papercraft</h4>
+  <div class="d-flex flex-row mb-2">
 
     {{#each papercraftPatterns as |papercraftPattern|}}
-    <div class="">
-      <a href="/pattern/{{papercraftPattern.id}}">
-        <img src="{{papercraftPattern.imageUrl}}" width=200 alt="Image">
-        {{woodcraftPattern.title}}
+    <div class="d-inline-flex m-1 mr-2">
+      <a class="text-info" href="/pattern/{{papercraftPattern.id}}">
+        <img src="{{papercraftPattern.imageUrl}}" height=150 alt="Image">
+        <h6>{{woodcraftPattern.title}}</h6>
       </a>
     </div>
     {{/each}}
 
-  </ul>
+  </div>
 
 </div>
 
 <div class="">
-  <h4>Sewing</h4>
-  <ul>
+  <h4 class="text-info">Sewing</h4>
+  <div class="d-flex flex-row mb-2">
     {{#each sewingPatterns as |sewingPattern|}}
-    <div class="">
-      <a href="/pattern/{{sewingPattern.id}}">
-        <img src="{{sewingPattern.imageUrl}}" width=200 alt="Image">
-        {{woodcraftPattern.title}}
+    <div class="d-inline-flex m-1 mr-2">
+      <a class="text-info" href="/pattern/{{sewingPattern.id}}">
+        <img src="{{sewingPattern.imageUrl}}" height=150 alt="Image">
+        <h6>{{sewingPattern.title}}</h6>
       </a>
     </div>
     {{/each}}
-  </ul>
+  </div>
 
 </div>

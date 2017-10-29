@@ -1,38 +1,51 @@
 
-<h2>{{ userDetails.name }}</h2>
-<img src="{{userDetails.imageUrl}}" width=300 alt="Image">
-<div class="">
-  <ul>
-    <li>{{ userDetails.email }}</li>
-    {{!-- <li>{{ user.preferences }}</li>
-    <li>{{ user.level }}</li> --}}
-  </ul>
+<h2 class="text-info">{{ userDetails.name }}</h2>
+<div class="d-flex">
+  <div class="card border-0 col-sm-3">
+    <img class="img-thumbnail border-0 rounded float-left" src="{{userDetails.imageUrl}}" width=250 alt="{{ userDetails.name }}'s Image">
 
+  </div>
+  <div class="col-sm-3">
+    <div class="">
+      {{!-- <h5>{{ userDetails.email }}</h5> --}}
+      {{!-- <li>{{ user.preferences }}</li>
+      <li>{{ user.level }}</li> --}}
+
+    </div>
+
+
+
+  </div>
 
 </div>
 
-<div class="">
-  <h3>Pattern</h3>
-  <div class="">
+<div class="mb-3">
+  <h3 class="text-info">Pattern</h3>
+  <div class="d-flex flex-row">
     {{#each patterns as |pattern| }}
-    <a href="/pattern/{{ pattern.id }}" class="">
-      <h5>{{ pattern.title }}</h5>
-      <img src="{{pattern.imageUrl}}" width=150 alt="Image">
-    </a>
+    <div class="d-inline-flex m-2">
+      <a href="/pattern/{{ pattern.id }}" class="text-info">
+        <h6>{{ pattern.title }}</h6>
+        <img src="{{pattern.imageUrl}}" height=150 alt="{{pattern.title}}'s Image">
+      </a>
+    </div>
     {{/each}}
   </div>
 
 
 
-<div class="">
-  <h3>Project</h3>
+<div class="mb-2">
+  <h3 class="text-info">Project</h3>
 
-  <div class="">
+  <div class="d-flex flex-row">
     {{#each projects as |project| }}
-    <a href="/project/{{ project.id }}" class="">
-      <h5>{{ project.title }} </h5>
-      <img src="{{project.imageUrl}}" width=150 alt="Image">
-    </a>
+    <div class="d-inline-flex m-2">
+      <a href="/project/{{ project.id }}" class="text-info">
+        <h6>{{ project.title }} </h6>
+        <img src="{{project.imageUrl}}" height=150 alt="{{ project.title }}'s Image">
+      </a>
+
+    </div>
     {{/each}}
   </div>
 </div>

@@ -7,22 +7,22 @@
     <title>Crane</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a href="/" class="navbar-brand mb-0 h1"><img src="" alt="">Craft Hub</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+      <a href="/" class="navbar-brand mb-0 h1 text-white"><img src="" alt="">Craft Hub</a>
       <div class="collapse navbar-collapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link text-white" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="/category" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle text-white" href="/category" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Categories
               </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/category/woodcraft">Woodcraft</a>
-                <a class="dropdown-item" href="/category/papercraft">Papercraft</a>
-                <a class="dropdown-item" href="/category/sewing">Sewing</a>
-                <a class="dropdown-item" href="/category/knitting">Knitting</a>
+                <a class="dropdown-item text-info" href="/category/woodcraft">Woodcraft</a>
+                <a class="dropdown-item text-info" href="/category/papercraft">Papercraft</a>
+                <a class="dropdown-item text-info" href="/category/sewing">Sewing</a>
+                <a class="dropdown-item text-info" href="/category/knitting">Knitting</a>
               </div>
             </li>
           </ul>
@@ -30,21 +30,21 @@
           <ul class="navbar-nav">
           {{#if user}}
           <li class="nav-item">
-            <a class="nav-link" href="/pattern/new">Add New Pattern</a>
+            <a class="nav-link text-white mr-2" href="/pattern/new">Add New Pattern</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/profile/">{{ user.name }}</a>
+            <a class="nav-link text-white mr-2" href="/profile/">{{ user.name }}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/logout">Logout</a>
+            <a class="nav-link text-white" href="/logout">Logout</a>
           </li>
 
           {{else}}
           <li class="nav-item">
-            <a class="nav-link" href="/register">Register</a>
+            <a class="nav-link text-white mr-2" href="/register">Register</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link text-white mr-2" href="/login">Login</a>
           </li>
 
           {{/if}}
@@ -64,7 +64,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <script src="/assets/js/frontend.js" charset="utf-8"></script>
-  
+
 
 
   </body>

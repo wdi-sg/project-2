@@ -4,18 +4,22 @@ link: https://tsurucrafthub.herokuapp.com/home
 
 Ever stumbled upon a pattern/ template of a craft project that you really want to attempt but unsure how long it will take or need inspiration for the choice of different material.
 
-Crane is here to help.
+Craft Hub is here to help.
 
-Crane will:
-1) Allow user to upload their variation to the pattern/ template that they based on
-2) Allow user to state the amount of time they took and calculate the average amount of time user took for the pattern/ template.
-3) Inspire and encourage user to make more craft.
+Craft Hub will:
+* 1) Allow user to upload their variation to the pattern/ template that they based on.
+* 2) Allow user to state the amount of time they took and calculate the average amount of time user took for the pattern/ template.
+* 3) Inspire and encourage user to make more craft.
+
+What Craft Hub can not do:
+* Magically make your craft project appear.(User still need to put in effort to make it)
+
 
 ----------
 
 # ERD Diagram
 
-# ![](/Readmeassets/ERD.jpg)
+# ![](/Readmeassets/ERD_new.jpg)
 
 -----------
 # Wireframes
@@ -41,9 +45,58 @@ For each variation/ project that the user create, it will have their own individ
 
 
 ----------
+Routes list
+
+```
+('/home')
+Get /
+
+('/login')
+Get /
+Post / redirect to home
+
+('/register')
+Get /
+Post / redirect to profile
+
+('category/')
+Get / (not relevant currently)
+Get/:category (show 10 pattern & 10 project under the category selected)
+
+('/profile/')
+Get /
+Delete /
+Get /edit
+Put /edit
+Get /:slug
+
+('/pattern/')
+Get /new
+Post /new
+Get /:id (pattern id)
+
+Get /:id/edit
+Put /:id/edit
+Delete /:id/edit
+
+Get /:id/variation/new
+Post /:id/variation/new
+
+Post /:id/bookmark // add bookmark to user
+Put /:id/bookmark // removeBookmark
+
+('/projects')
+
+Get /:id (projects id)
+Get /:id/edit
+Put /:id/edit
+Delete /:id/edit ```
+
+------------
+
 # Flow Chart
 
-# ![](/Readmeassets/flowchart.jpg)
+# ![](/Readmeassets/flowchart_new.jpg)
 
 
 ------------
@@ -54,16 +107,21 @@ For each variation/ project that the user create, it will have their own individ
 * Variation/ project: linking to pattern, project details page, uploading project.
 * search function, home page
 * Features to build only after above is completed: Calculation of average time spent, analysis of user's project (ie. breakdown of how many project done in each category or each level. )
+
 -----------
 
 ## Built With
 
-HTML
-CSS
-Javascript
-Node
-Express
+* HTML
+* CSS
+* Javascript
+* Node
+* Express
+
 -----------
+
+## Log
+
 version 0.1.0 Day 1 (23 Oct):
 * added Erd Diagram, wireframes, flowchart.  
 * install relevant dependencies
@@ -89,20 +147,30 @@ version 0.7.5 Day 5 (27 Oct) :
 * change the Schema structure of user and pattern model
 * able to remove user & its pattern & projects
 * fix: prevent multiple adding of bookmark for same project for the user
-* add: remove bookmark on profile page and as an option when updating a variation for the pattern. 
+* add: remove bookmark on profile page and as an option when updating a variation for the pattern.
+
+version 0.8.0 Day 6 (29 Oct):
+* added: CSS
+* routes list to readme
 
 
-
-
-
+--------------
+## Improvement
 
 To be added:
 * finalise 3 models
-* create the handlebars for the routes
-* create the routes: project
-* include external frameworks
-* bonus features
+* search function
+* bonus features: estimated time spend
+* user prefence category
+* more category
+
+
+
+To Fix:
+* Deleting Account + pattern + project under it
+* Delete pattern should update all variation project pattern name.  
+
 ------------
 
 ## Acknowledgments
-(to be fill up later)
+Images list used for the database: check picturessource.txt (to be upload once is insert in database)

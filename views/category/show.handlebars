@@ -1,29 +1,32 @@
-<h3>{{ patterns.category }}</h3>
-<div class="">
-  <h4>Patterns</h4>
-  <div class="">
+<h2 class="text-info">{{ searchCategory }}</h2>
+<div class="mb-2">
+  <h4 class="text-info">Patterns</h4>
+  <div class="d-flex flex-row mb-2">
     {{#each patterns as |pattern|}}
+    <div class="d-inline-flex m-1 mr-2">
 
-    <a href="/pattern/{{ pattern.id }}" class="">
-      <img src="{{pattern.imageUrl}}" width=150 alt="Image">
-      <h5>{{ pattern.title }}</h5>
-    </a>
+      <a href="/pattern/{{ pattern.id }}" class="text-info">
+        <img src="{{pattern.imageUrl}}" height=190 alt="Image">
+        <h6>{{ pattern.title }}</h6>
+      </a>
+
+    </div>
 
     {{/each}}
   </div>
 
 </div>
 
-<div class="">
-  <h4>Projects</h4>
-  <div class="">
+<div class="mb-2">
+  <h4 class="text-info">Projects</h4>
+  <div class="d-flex flex-row mb-2">
     {{#each projects as |project|}}
-    <a href="/project/{{ project.id }}" class="">
-      <img  src="{{project.imageUrl}}" width=150 alt="Image">
-      <h5>{{ project.title }}</h5>
-    </a>
+    <div class="d-inline-flex m-1 mr-2">
+      <a href="/project/{{ project.id }}" class="text-info">
+        <img  src="{{project.imageUrl}}" height=160 alt="Image">
+        <h6>{{ project.title }}</h6>
+      </a>
+    </div>
     {{/each}}
   </div>
-
-
 </div>

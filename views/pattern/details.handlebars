@@ -1,58 +1,85 @@
-<h3>{{ pattern.title }}</h3>
+<div class="d-flex flex-row justify-content-xl-between mb-3">
+  <h3 class="text-info">{{ pattern.title }}</h3>
+  <div class="d-flex justify-content-end">
+    {{#if userMatch}}
 
-<img src="{{pattern.imageUrl}}" width=270 alt="Image">
+    <div class="p-2">
 
-<div class="">
-  {{#if userMatch}}
-  <a class="nav-link" href="/pattern/{{pattern.id}}/edit">Edit Pattern</a>
-  
-  <form class="" action="/pattern/{{pattern.id}}/edit?_method=DELETE" method="post">
-    <button type="submit" name="button">Delete</button>
-  </form>
-  {{/if}}
-</div>
-<div class="">
-  <a href="/profile/{{pattern.creator.slug}}">
-    <h5>By: {{ pattern.creator.name }}</h5>
-  </a>
-  <h5>Date: {{ dateTime }}</h5>
-  <a href="/category/{{ pattern.category }}">
-    <h5>Category: {{ pattern.category }}</h5>
-  </a>
-</div>
-<div class="">
+      <a  href="/pattern/{{pattern.id}}/edit"><button class="btn btn-info" type="button" name="button">Edit</button></a>
+    </div>
+    <div class="p-2">
+      <form class="" action="/pattern/{{pattern.id}}/edit?_method=DELETE" method="post">
+        <button class="btn btn-info" type="submit" name="button">Delete</button>
+      </form>
+
+    </div>
+    {{/if}}
+  </div>
 
 
 </div>
-<div class="">
-  <p>{{ pattern.material }}</p>
-  <p> {{ pattern.steps }}</p>
-</div>
 
-<div class="">
-  <a href="/pattern/{{pattern.id}}/variation/new" class="button">I did this</a>
+
+<div class="d-flex flex-row justify-content-xl-between mb-3">
+  <div class="card border-0 col-sm-3">
+    <img class="img-thumbnail border-0 rounded float-left" src="{{pattern.imageUrl}}" width=250 alt="{{ pattern.title }}'s Image">
+
+  </div>
+
+
+
+  <div class="col-sm-7  ">
+    <div class="d-flex flex-row justify-content-xl-between mb-3 ">
+      <div class="col-sm-6">
+        <a class="text-info"href="/pattern/{{pattern.id}}/variation/new" ><button class="btn btn-info col-sm-8" type="button" name="button">Submit my version</button></a>
+      </div>
+      {{#if notBookmark}}
+      <div class="col-sm-6">
+        <form class="addBookmarkForm" action="/pattern/{{pattern.id}}/bookmark" method="post">
+          <button class="btn btn-info col-sm-8" type="submit" name="bookmarkBtn">Add to Bookmark</button>
+        </form>
+      </div>
+      {{/if}}
+
+    </div>
+    <div class="col">
+      <h5>By: <a class="text-info" href="/profile/{{pattern.creator.slug}}">{{ pattern.creator.name }} </a></h5>
+      <h5>Date: {{ dateTime }}</h5>
+      <h5>Category:<a class="text-info" href="/category/{{ pattern.category }}"> {{ pattern.category }}</a></h5>
+
+    </div>
+
+  </div>
 </div>
-{{#if notBookmark}}
 <div class="">
-  <form class="addBookmarkForm" action="/pattern/{{pattern.id}}/bookmark" method="post">
-    <button type="submit" name="bookmarkBtn">Add to Bookmark</button>
-  </form>
-</div>
-{{/if}}
-<div class="">
-  <h3>Variation</h3>
-  <div class="">
+  <h3 class="text-info">Variation</h3>
+  <div class="d-flex flex-wrap">
 
     {{#each variations as |variation| }}
-    <div class="">
+    <div class="d-inline-flex m-2">
       <a href="/project/{{variation.id}}">
-      <img src="{{variation.imageUrl}}" width=150 alt="Image">
-      <h5> {{ variation.title }}</h5>
+        <h6> {{ variation.title }}</h6>
+        <img src="{{variation.imageUrl}}" height=150 alt="{{ variation.title }}'s Image">
       </a>
 
     </div>
     {{/each}}
 
+  </div>
+  <div class="d-flex flex-row justify-content-xl-between">
+    <div class="card border-info mb-3 col-md-4" >
+
+      <h6 >Materials:</h6>
+      <p class="card-text">{{ pattern.material }}</p>
+
+
+
+    </div>
+    <div class="card border-info mb-3 col-md-7" >
+
+      <h6>Steps: </h6>
+      <p class="card-text"> {{ pattern.steps }}</p>
+    </div>
   </div>
 
 </div>

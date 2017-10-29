@@ -21,7 +21,7 @@ router.get('/:category/', (req, res) => {
     .then((projects) => {
 
       res.render('category/show', {
-        patterns , projects
+        patterns , projects, searchCategory
       })
     })
 
