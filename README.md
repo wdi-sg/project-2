@@ -1,13 +1,13 @@
 # Bus When
-## [Bus When - Web App Link](https://nikitas-project2.herokuapp.com/)
+### [Bus When - Web App Link](https://nikitas-project2.herokuapp.com/)
 
 Link: nikitas-project2.herokuapp.com
 Get bus stops nearby along with real time bus arrival data, on your phone on desktop.
 
-##Flowchart
+## Flowchart
 <!-- ![Project Flowchart]('./P2-flowchart.jpg') -->
 
-![project-2]( /readmedocs/P2-flowchart.jpg)
+![project-2](readmedocs/P2-flowchart.jpg)
 
 
 ## Tech Stack:
@@ -37,22 +37,15 @@ Installation
 OR run ‘<host>/load/stops’ which will load bus stops from API
 
 
-###User Stories
+### User Stories
 User stories
 1. As a busy student, I want to check bus timings on stop near my place so I can plan my route on the go.
 E.g. Do I take bus 5 to GA from Eunos Link or 8/22 to MRT from bedok Reservoir Road.
 
 2. As a busy commuter, I want to use my voice to check bus timings instead of tapping commands on the phone as I’m gathering my things to save time and leave quickly.
 
-## Built With
-
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
 
 ## Workflow
-
-
 
 ### ERD
 ![ERD](readmedocs/BWERD291017.png)
