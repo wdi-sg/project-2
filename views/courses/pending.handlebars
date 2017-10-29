@@ -8,15 +8,13 @@
           <p>{{out.description}} <br>
             {{out.currentStudents}} <br>
           </p>
-        <a href="/course/{{out.slug}}" class="secondary-content"><i class="material-icons">grade</i></a>
+          <a class="btn-floating btn-small waves-effect waves-light c2185b pink darken-2" href="/course/{{out.slug}}" class="secondary-content"><i class="material-icons">list</i></a>
       </li>
     {{/each}}
   </ul>
 </br>
   {{#if admin}}
-<div class="progress">
-    <div class="indeterminate"></div>
-</div>
+<h3>Course Creation</h2>
 </br>
   <div class="row">
     <form class="col s12" action="/pending" method="post">
@@ -25,34 +23,42 @@
         <div class="input-field col s6">
           <i class="material-icons prefix">mode_edit</i>
           <textarea id="icon_prefix2" name="course[name]" class="materialize-textarea"></textarea>
-          <label for="icon_prefix2">Name</label>
+          <label for="icon_prefix2">Name of Course</label>
         </div>
       </div>
       <div class="row">
        <div class="input-field col s12">
          <i class="material-icons prefix">mode_edit</i>
          <textarea id="icon_prefix2" name="course[description]" class="materialize-textarea"></textarea>
-         <label for="icon_prefix2">Description</label>
+         <label for="icon_prefix2">Description of Course</label>
        </div>
      </div>
        <div class="row">
        <div class="input-field col s4">
          <i class="material-icons prefix">mode_edit</i>
          <textarea id="icon_prefix2" name="course[duration]" class="materialize-textarea"></textarea>
-         <label for="icon_prefix2">Duration</label>
+         <label for="icon_prefix2">Duration of Course</label>
        </div>
      </div>
-       <input type="text" name="course[date]" class="datepicker" placeholder="Date">
-       <input type="text" name="course[time]" class="timepicker" placeholder="Time">
-       <input type="number" name="course[currentStudents]" class="currentStudents" placeholder="number of students">
+       <input type="text" name="course[date]" class="datepicker" placeholder="Pick a Date">
+       <input type="text" name="course[time]" class="timepicker" placeholder="Pick a Time">
      <div class="row">
        <div class="input-field col s4">
          <i class="material-icons prefix">mode_edit</i>
          <textarea id="icon_prefix2" name="course[price]" class="materialize-textarea"></textarea>
-         <label for="icon_prefix2">Price</label>
+         <label for="icon_prefix2">Enter expected Price for Course</label>
        </div>
      </div>
-     <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+     <div class="input-field col s12">
+   <select>
+     <option value="" disabled selected>Pick Type of Art</option>
+     <option value="1">Painting</option>
+     <option value="2">Pottery</option>
+     <option value="3">Paper Crafting</option>
+   </select>
+   <label>Select</label>
+ </div>
+     <button class="btn waves-effect waves-light c2185b pink darken-2 pulse" type="submit" name="action">Submit
  <i class="material-icons right">send</i>
 </button>
 {{else}}

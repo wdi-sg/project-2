@@ -26,9 +26,9 @@
         Place ID <span id="place-id"></span><br>
         <span id="place-address"></span>
     </div></h3>
-    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    {{!-- <button class="btn waves-effect waves-light c2185b pink darken-2 pulse" type="submit" name="action">Submit
     <i class="material-icons right">send</i>
-  </button>
+  </button> --}}
 </form>
   </div>
         <div id="test5">Date : {{course.date}}<br>
@@ -39,24 +39,36 @@
           </div>
   </div>
 {{#if admin}}
-  <a a href="/courseupdate/{{course.id}}" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud</i>Update</a>
+  <a a href="/courseupdate/{{course.id}}" class="waves-effect waves-light btn-large c2185b pink darken-2 pulse"><i class="material-icons left">cloud</i>Update</a>
 {{else}}
-  <a a href="/pending" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud</i>Sign Up</a>
+  <a a href="/pending" class="waves-effect waves-light btn-large c2185b pink darken-2 pulse"><i class="material-icons left">touch_app</i>Sign Up</a>
 {{/if}}
-<h3>Reviews</h3>
-<form action="/course" method="post">
 
-  <label for="title">Title</label>
-  <input type="hidden" name="courseId" value={{course.id}}>
-  <input type="text" id="title" name="title" placeholder="Review Title">
-  <br>
+<div class="row">
+    <div class="col s12">
+      <div class="card-panel ">
+        <h6>Write a Review</h6>
+        <form action="/course" method="post">
 
-  <label for="description">What would you like to say?</label>
-  <textarea id="description" name="description" rows="8" cols="80"></textarea>
-  <br>
+          <label for="title">Title</label>
+          <input type="hidden" name="courseId" value={{course.id}}>
+          <input type="text" id="title" name="title" placeholder="Review Title">
+          <br>
 
-  <button type="submit" name="button">Submit</button>
-</form>
+          <label for="description">What would you like to say?</label>
+          <textarea id="description" name="description" rows="8" cols="80"></textarea>
+          <br>
+
+          <button class="btn waves-effect waves-light c2185b pink darken-2 pulse" type="submit" name="action">Submit Review
+          <i class="material-icons right">chat_bubble_outline</i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
 
 {{!-- <div class="row">
   {{#each review}}
@@ -75,16 +87,22 @@
   </div> --}}
 
   <!-- this is the do the -->
-  <div class="row">
-
-
-{{#each review}}
-  <form class="" action="index.html" method="post">
-    <input type="text" name="" value="{{this.title}}">
-    <input type="text" name="" value="{{this.description}}">
-    <input type="submit" name="" value="Edit">
-
-  </form>
+<div class="row">
+  {{#each review}}
+    <form class="" action="index.html" method="post">
+      <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{this.title}}</div>
+          <div class="collapsible-body"><input type="text" name="" value="{{this.title}}"></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">place</i>{{this.description}}</div>
+          <div class="collapsible-body"><input type="text" name="" value="{{this.description}}"></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><input type="submit" name="" value="Edit"></div>
+        </li>
+      </ul>
+    </form>
   {{/each}}
-    </div>
 </div>

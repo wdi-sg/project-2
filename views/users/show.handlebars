@@ -7,52 +7,40 @@
     <h4>Profile Details</h4>
   </br>
   <form action="/show/{{user.id}}?_method=PUT" method="post">
-  <div class="user card-panel">
-      <input type="text" name="name" value="{{user.name}}">
-      <span class="blue-text text-darken-2">Name : {{user.name}}</span>
-    </div>
+
+    <ul class="collapsible" data-collapsible="expandable" data-collapsible="accordion">
+  
+    <li>
+      <div class="collapsible-header"><i class="material-icons">accessibility</i>Name : {{user.name}}</div>
+      <div class="collapsible-body">Edit :<input type="text" name="name" value="{{user.name}}"> </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">email</i>Email : {{user.email}}</div>
+      <div class="collapsible-body">Edit :<input type="text" name="email" value="{{user.email}}"></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">beach_access</i>About : {{user.description}}</div>
+      <div class="collapsible-body">Edit :<input type="text" name="description" value="{{user.description}}"></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">school</i>Current Courses : {{user.currentCourse}}</div>
+      <div class="collapsible-body">Edit :<input type="text" name="currentCourse" value="{{user.currentCourse}}"></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">done_all</i>Completed Courses : {{user.completedCourse}}</div>
+      <div class="collapsible-body">Edit :<input type="text" name="completedCourse" value="{{user.completedCourse}}"></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">gradient</i>Currently teaching : {{user.currentTeach}}</div>
+      <div class="collapsible-body">Edit :<input type="text" name="currentTeach" value="{{user.currentTeach}}"></div>
+    </li>
+  </ul>
+
   </br>
-  <div class="email card-panel">
-      <input type="text" name="email" value="{{user.email}}">
-      <span class="blue-text text-darken-2">Email : {{user.email}}</span>
-    </div>
-  </br>
-  <div class="description card-panel">
-    <input type="text" name="description" value="{{user.description}}">
-      <span class="blue-text text-darken-2">About : {{user.description}}</span>
-    </div>
-  </br>
-  <div class="currentCourse card-panel">
-    <input type="text" name="currentCourse" value="{{user.currentCourse}}">
-      <span class="blue-text text-darken-2">Current Courses : {{user.currentCourse}}</span>
-    </div>
-  </br>
-  <div class="email card-panel">
-    <input type="text" name="completedCourse" value="{{user.completedCourse}}">
-      <span class="blue-text text-darken-2">Completed Courses : {{user.completedCourse}}</span>
-    </div>
-  </br>
-  <div class="status card-panel">
-    <input type="text" name="status" value="{{user.status}}">
-      <span class="blue-text text-darken-2">Status : {{user.status}}</span>
-    </div>
-  </br>
-  <div class="status card-panel">
-    <input type="text" name="currentTeach" value="{{user.currentTeach}}">
-      <span class="blue-text text-darken-2">Currently teaching : {{user.currentTeach}}</span>
-    </div>
-  </br>
-  <div class="status card-panel">
-    <input type="text" name="instructorRating" value="{{user.instructorRating}}">
-      <span class="blue-text text-darken-2">instructor Rating : {{user.instructorRating}}</span>
-    </div>
-  </br>
-    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <button class="btn waves-effect waves-light c2185b pink darken-2 pulse" type="submit" name="action">Submit
    <i class="material-icons right"></i>
  </button>
-
-
-
   </form>
+   </br>
   </div>
 </div>

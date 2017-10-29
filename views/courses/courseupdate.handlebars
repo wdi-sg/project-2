@@ -7,29 +7,36 @@
   </br>
 
   <form action="/courseupdate/{{course.id}}?_method=PUT" method="post">
-  <div class="course card-panel">
-      <input type="text" name="name" value="{{course.name}}">
-      <span class="blue-text text-darken-2">Name : {{course.name}}</span>
-    </div>
+
+    <ul class="collapsible" data-collapsible="accordion">
+  <li>
+    <div class="collapsible-header"><i class="material-icons">brush</i>Name : {{course.name}}</div>
+    <div class="collapsible-body"><input type="text" name="name" value="{{course.name}}"></div>
+  </li>
+  <li>
+    <div class="collapsible-header"><i class="material-icons">gradient</i>About : {{course.description}}</div>
+    <div class="collapsible-body"><input type="text" name="description" value="{{course.description}}"></div>
+  </li>
+  <li>
+    <div class="collapsible-header"><i class="material-icons">av_timer</i>Duration : {{course.duration}}</div>
+    <div class="collapsible-body"><input type="text" name="duration" value="{{course.duration}}"></div>
+  </li>
+  <li>
+    <div class="collapsible-header"><i class="material-icons">date_range</i>Date : {{course.date}}</div>
+    <div class="collapsible-body"><input type="text" name="date" class="datepicker" value="{{course.date}}"></div>
+  </li>
+  <li>
+    <div class="collapsible-header"><i class="material-icons">access_time</i>Time : {{course.time}}</div>
+    <div class="collapsible-body"><input type="text" name="time" class="timepicker" value="{{course.time}}"></div>
+  </li>
+  <li>
+    <div class="collapsible-header"><i class="material-icons">monetization_on</i>Price : {{course.price}}/div>
+    <div class="collapsible-body"><input type="text" name="price" value="{{course.price}}"></div>
+  </li>
+</ul>
+
   </br>
-  <div class="description card-panel">
-    <input type="text" name="description" value="{{course.description}}">
-      <span class="blue-text text-darken-2">About : {{course.description}}</span>
-    </div>
-  </br>
-  <div class="description card-panel">
-    <input type="text" name="duration" value="{{course.duration}}">
-      <span class="blue-text text-darken-2">Duration : {{course.duration}}</span>
-    </div>
-    <input type="text" name="date" class="datepicker" value="{{course.date}}">
-    <input type="text" name="time" class="timepicker" value="{{course.time}}">
-  </br>
-  <div class="description card-panel">
-    <input type="text" name="price" value="{{course.price}}">
-      <span class="blue-text text-darken-2">Price : {{course.price}}</span>
-    </div>
-  </br>
-    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <button class="btn waves-effect waves-light c2185b pink darken-2 pulse" type="submit" name="action">Submit
    <i class="material-icons right"></i>
  </button>
 </form>
@@ -38,10 +45,10 @@
        action="/courseupdate/{{course.id}}?_method=DELETE"
        method="post"
        >
- <button class="btn waves-effect waves-light" type="submit" name="button">Delete
+ <button class="btn waves-effect waves-light c2185b pink darken-2 pulse" type="submit" name="button">Delete
 <i class="material-icons right"></i>
 </button>
 </form>
-
+<br>
   </div>
 </div>
