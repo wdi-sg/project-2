@@ -10,22 +10,29 @@ https://conso.herokuapp.com
 
 ### The problem
 
-Cost consolidation and subsequent pricing of complex, one-off projects such as those in construction and IT systems require input and collaboration among multiple parties.
+Cost consolidation and subsequent pricing of complex, one-off projects such as developing IT systems require input and collaboration among multiple parties.
 
-Usually this is done with spreadsheets. The problem is spreadsheets do not cut it. They cannot be worked on concurrently and having multiple spreadsheets with multiple owners create chaos and there is a need to compile all the data. As there is a lot of human involvement in this kind of workflow, it can lead to human error which can be extremely costly to the business. The process is also slow.
+Usually this is done with spreadsheets. However working with spreadsheets presents a host of problems:
 
-This application aims to address the problems detailed above.
+1. Spreadsheets cannot be worked on concurrently
+1. Having multiple spreadsheets with multiple owners create chaos
+1. It is time consuming as there is a need to compile all the data in a master sheet
+1. The workflow is not agile as the master sheet needs to be updated each time one contributor makes a change
+1. High degree of human involvement in the workflow increases instances of error which can be extremely costly to the business.
+
+
+Conso will address these issues.
 
 ### User Stories
 
 #### User
 The user will be able to create a cost component and specify the following details:
 1. Name
-2. Description
-3. Vendor
-4. Type
-5. Unit cost
-6. Quantity
+1. Description
+1. Vendor
+1. Type
+1. Unit cost
+1. Quantity
 
 They will be able to update these details and delete cost components.
 
@@ -44,6 +51,11 @@ They have access to a summary report by cost type.
 ### ERD
 
 ![ERD](/ERD_project_2.png)
+
+### Wireframes
+
+![wireframe](/wireframe.png)
+
 
 ### How to Use
 ```
@@ -66,15 +78,20 @@ Step 8 onwards applies to Admin only
 
 
 ## Built With
+Conso is build with Node.js, MongoDB and the following modules:
 
-* bcrypt: ^1.0.3
-* body-parser: ^1.18.2
-* express: ^4.16.2
-* express-handlebars: ^3.0.0
-* method-override: ^2.3.10
-* mongoose: ^4.12.3
-* nodemon: ^1.12.1
-
+* "bcrypt": "^1.0.3",
+* "body-parser": "^1.18.2",
+* "connect-mongo": "^2.0.0",
+* "dotenv": "^4.0.0",
+* "express": "^4.16.2",
+* "express-handlebars": "^3.0.0",
+* "express-session": "^1.15.6",
+* "method-override": "^2.3.10",
+* "mongoose": "^4.12.3",
+* "nodemon": "^1.12.1",
+* "passport": "^0.4.0",
+* "passport-local": "^1.0.0"
 
 
 ## Author
