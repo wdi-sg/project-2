@@ -1,11 +1,11 @@
 {
-  "name": "GigHub",
+  "name": "GotGig",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/wdi-sg/project-2.git",
   "author": "dayah",
   "license": "MIT",
-  "description": "GigHub - the best place to find gigs and jobs!",
+  "description": "GotGig - the best place to find gigs and jobs!",
   "scripts": {
     "start": "nodemon"
   },
