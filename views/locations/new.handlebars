@@ -1,0 +1,25 @@
+<h3>Create Post</h3><br>
+
+<form enctype="multipart/form-data" action="/locations" method="post">
+  <label for="name">Name :</label>
+  <input type="text" name="name" placeholder="e.g. Tokyo Tower">
+
+  <label for="country">Country :</label>
+  <input type="text" name="country" placeholder="e.g. Japan">
+
+  <label for="country">Type :</label>
+  <input type="text" name="type" placeholder="e.g. Landmark"><br>
+
+  <label for="title">Title :</label><br>
+    <textarea type="text" id="title" name="title" rows="1" cols="80" placeholder="e.g. Travel Guide to Tokyo Tower"></textarea>
+    <br>
+
+    <label for="description">Description :</label><br>
+    <textarea id="description" name="description" rows="8" cols="80" placeholder="Type your Travel Guide Here!"></textarea>
+    <br>
+
+    <label for="image">Image :</label>
+      <input type="file" name="image">
+
+  <button type="submit" name="button">Submit</button>
+</form>

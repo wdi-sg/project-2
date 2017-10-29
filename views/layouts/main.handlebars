@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Travel Log</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          <h1><a href="/"><img src="http://res.cloudinary.com/dnqgbyfhs/image/upload/c_crop,h_70,w_140,x_20,y_65/v1508777864/taq97atlsgth6ggmkiyy.png" alt='Logo'/></a></h1>
+        </a>
+    </div>
+    <div id="navMenuTransparentExample" class="navbar-menu">
+      <div class="navbar-start">
+        <div class="navbar-item">
+          {{#if user}}
+          {{!-- if user has logged in  --}}
+          <a class="navbar-link is-active" href="/profile">
+            {{ user.name }}
+          </a>
+          <a class="navbar-link is-active" href="/logout">
+            Logout
+          </a>
+          <a class="navbar-link  is-active" href="/locations/new">
+            Create New Post
+          </a>
+          {{!-- <a class="navbar-link  is-active" href="/comments">
+            Read Comments
+          </a> --}}
+          {{!-- <a class="navbar-link  is-active" href="/search">
+          Search Posts
+          </a> --}}
+          {{else}}
+          <a class="navbar-link  is-active" href="/register">
+            Register
+          </a>
+          <a class="navbar-link  is-active" href="/login">
+            Login
+          </a>
+          {{!-- <a class="navbar-link  is-active" href="/search">
+          Search Posts
+          </a> --}}
+          {{/if}}
+
+        </div>
+      </div>
+    </div>
+
+        {{!-- <div id="navMenuTransparentExample" class="navbar-menu">
+          <div class="navbar-start">
+            <div class="navbar-item">
+              {{#if admin}}
+                <a class="navbar-link is-active" href="/admin/profile">
+                  {{ admin.name }}
+                </a>
+                <a class="navbar-link is-active" href="/logout">
+                  Logout
+                </a>
+              {{else}}
+              <a class="navbar-link  is-active" href="/admin/login">
+                Click here if Admin
+              </a>
+              {{/if}}
+            </div>
+          </div>
+        </div> --}}
+  </nav>
+
+  <section class="hero is-primary is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          {{ title }}
+        </h1>
+      </div>
+    </div>
+  </section>
+
+
+    <div class="container is-fluid">
+        <div class="notification">
+              {{{ body }}}
+        </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>
+            <strong>&copy; 2017 Travel Log(made by Yuki)</strong><a href=""></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/frontend.js"></script>
+  </body>
+</html>

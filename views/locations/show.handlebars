@@ -1,0 +1,56 @@
+<h2>{{ location.name }} <small>({{ location.country }})</small></h2>
+<small>{{ location.type }}</small><br>
+<img src="{{location.image}}" width=500 alt="Image">
+<h2>{{ location.title }}</h2><br>
+<p>{{ location.description }}</p><br>
+
+{{#if user}}
+
+<h2>Comments</h2>
+
+<ul>
+
+{{#each comments as |comment|}}
+  <li>{{ comment.name }}  - {{ comment.description }}</li>
+
+  {{!-- if user is the one who created the comment, then you can delete it --}}
+  {{#checkComment comment.author ../user }}
+    <form action="/comments/{{ this.id }}?_method=DELETE" method="post">
+      <button type="submit" name="button">Delete</button>
+    </form><br>
+  {{/checkComment }}
+
+{{/each}}
+
+</ul><br>
+
+<h3>Add Comment</h3>
+<form action="/comments" method="post">
+  <input type="hidden" name="parent" value={{location.id}}>
+
+  <label for="description">Comment :</label><br>
+  <textarea id="description" name="description" placeholder="Add a comment..." rows="5" cols="100"></textarea>
+  <br>
+
+  <button type="submit" name="button">Submit</button>
+</form><br>
+
+{{else}}
+
+<h2>Comments :</h2>
+<ul>
+
+{{#each comments as |comment|}}
+  <li>{{ comment.name }}  -  {{ comment.description }}</li>
+{{/each}}
+
+</ul><br>
+
+<h3>Add Comment</h3>
+
+  <div class="control">
+  <textarea class="textarea" type="text" placeholder="Please Log-In to Add Comments" disabled></textarea>
+  </div>
+
+
+{{/if}}

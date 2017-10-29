@@ -1,0 +1,59 @@
+<ul>
+  <div class="columns is-multiline">
+    {{#each locations}}
+    <div class="tile is-vertical is-4">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          <article class="tile is-child notification is-dark">
+            <p class="title">{{this.name}} <small>({{this.country}})</small></p>
+            <img src="{{ this.image }}">
+            <p class="subtitle">{{this.type}}</p>
+            <p class="subtitle">{{this.title}}</p>
+            <p class="subtitle">{{this.description}}</p>
+              <form
+                class="form-inline"
+                action="/locations/{{ this.id }}?_method=DELETE"
+                method="post"
+                >
+                <a href="/locations/{{ this.id }}" class="btn btn-info">View More</a>
+                &nbsp;
+                {{!-- <a href="locations/comment" class="btn btn-primary">Add Comment</a> --}}
+                &nbsp;
+                {{!-- <button class="btn btn-danger" type="submit" name="button">Delete</button> --}}
+              </form>
+            </article>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </ul>
+
+  {{!-- <div class="row">
+    {{#each locations }}
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">{{ this.name }} <small>({{ this.country }})</small></h4>
+          <img src='{{ this.image }}', {width: 250, height: 250, crop: "fit"} alt="Image">
+          <p class="card-text">
+            {{ this.title }}
+          </p><br>
+          <p class="card-text">
+            {{ this.description }}
+          </p><br>
+          <form
+            class="form-inline"
+            action="/locations/{{ this.id }}?_method=DELETE"
+            method="post"
+          >
+            <a href="/locations/{{ this.id }}" class="btn btn-primary">View More</a>
+
+            &nbsp;
+            <button class="btn btn-danger" type="submit" name="button">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div> --}}

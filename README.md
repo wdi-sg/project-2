@@ -1,65 +1,50 @@
-# Your Project Name
-
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
-
-## Getting Started
-
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
-
-### Prerequisites
-
-What is needed to install and run the project, how do we install them
-
-```
-Code example
-```
-
-### How to Use
-
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+#  Yuki Tsuboniwa: "Project #2"
+![Space Invader Logo](http://res.cloudinary.com/dnqgbyfhs/image/upload/c_crop,h_70,w_140,x_20,y_65/v1508777864/taq97atlsgth6ggmkiyy.png)
 
 
-```
-Code example
-```
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #2: Travel Log
 
-More steps...
+https://travelog-yukitsuboniwa.herokuapp.com/
 
-```
-until finished
-```
+### Overview
 
+  Travel Log is a web app built using Node, Express and MongoDb. It is designed for users to be able to create an account and login. The user are able to Create, Read, Update and Delete their posts. The idea is for them to share their travel experiences and be able to add comments and communicate with other user to share their opinions and experiences to one another.
 
-## Tests
+### Entity Relationship Diagram
 
-Did you write automated tests? If so, how do we run them.
+![ERD](/public/img/erd.png)
 
 
-```
-Code example
-```
+### Flowchart
 
-## Live Version
+![Flowchart](public/img/flowchart.jpg)
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+### Wireframes
 
-## Built With
+1.Homepage
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
+![Homepage](public/img/homepage.jpg)
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+2.Register
 
-## Workflow
+![Register](public/img/register.jpg)
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+3.Login
 
-## Authors
+![Login](public/img/login.jpg)
 
-Did you collaborate with others on this project, list them here
+4.Profile
 
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+![Profile](public/img/profile.jpg)
 
-## Acknowledgments
+5.Comment/Review
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+![Review](public/img/review.jpg)
 
+### Built With
+
+1. Creately - creating ERD, Flowcharts and wireframes
+
+2. Bootstrap and Bulma - CSS frameworks
+
+3. Cloudinary - for uploading images
