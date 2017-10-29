@@ -4,7 +4,9 @@ const router = express.Router()
 const passport = require('../config/ppConfig')
 
 router.get('/', (req, res) => {
-  res.render('users/login')
+  res.render('users/login', {
+    title: "Login"
+  })
 })
 
 // router.post('/', (req, res) => {

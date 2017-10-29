@@ -4,7 +4,9 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  res.render('users/register')
+  res.render('users/register', {
+    title: 'Register'
+  })
 })
 
 router.post('/', (req, res) => {
