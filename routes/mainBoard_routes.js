@@ -14,10 +14,10 @@ router.get("/", (req, res) => {
       console.log("Connected to unique project ID")
     })
 
-    //displays latest 10 messages from database
+    //displays latest all messages from database
     Message.find({ projectId: req.user.projectId })
       .sort({ date: -1 })
-      .limit(10)
+      // .limit(10)
       .then(messages => {
         messages.reverse()
         Task.find({ projectId: req.user.projectId }).then(tasks => {

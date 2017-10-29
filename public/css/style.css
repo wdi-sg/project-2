@@ -8,6 +8,9 @@
 
 .projectTitle {
   padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .taskItem {
@@ -16,6 +19,22 @@
 }
 .card {
   padding: 2px;
+}
+
+.chatMessage {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+.chat {
+}
+
+.chatWrapper {
+  height: 600px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 /*#create,

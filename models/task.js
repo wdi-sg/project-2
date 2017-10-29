@@ -6,10 +6,11 @@ const taskSchema = new mongoose.Schema({
     unique: true
   },
   projectId: mongoose.Schema.Types.ObjectId,
+  description: String,
   assigned: String,
-  start: Date,
+  // start: Date,
   end: Date,
-  projectedEnd: Date,
+  // projectedEnd: Date,
   status: { type: String, default: "0" } //create, review, return
 })
 
