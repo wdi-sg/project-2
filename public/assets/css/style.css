@@ -3,7 +3,7 @@
   margin-top: 45px;
   color: #616677;
   font-family: 'Playfair Display', serif;
-  font-size: 30px;
+  font-size: 20px;
   width:860px
 
 }
@@ -50,6 +50,7 @@
 }
 
 #wb {
-margin-left: 410px;
-font-size: 18px
+/*margin-left: 410px;*/
+margin: auto;
+font-size: 16px
 }
