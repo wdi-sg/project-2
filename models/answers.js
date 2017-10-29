@@ -7,6 +7,7 @@ const answerSchema = new mongoose.Schema({
   upVotes: { type: Number, default: 0},
   downVotes: { type: Number, default: 0 },
   totalVotes: { type: Number, default: 0 },
+  sortDate: Date,
   date: String,
   time: String,
   parent: Schema.Types.ObjectId,

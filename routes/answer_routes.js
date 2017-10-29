@@ -16,7 +16,10 @@ router.post('/', function (req, res) {
     description: req.body.userinput,
     parent: req.body.id,
     creator: author,
-    creatorName: authorName
+    creatorName: authorName,
+    sortDate: new Date(),
+    date: new Date().toLocaleDateString(),
+    time: new Date().toLocaleTimeString()
   })
   newAnswer.save()
   .then(() => {
@@ -25,7 +28,6 @@ router.post('/', function (req, res) {
 })
 
 router.put('/threadpage/:id', (req, res) => {
-  // res.send(req.body)
   Answer.findByIdAndUpdate(req.params.id, {description: req.body.answerNew})
 .then(() => {
   req.flash('info', `Answer Updated!`)

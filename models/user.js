@@ -12,6 +12,10 @@ const userSchema = new Schema({
   pic: {type: String},
   course: {type: String},
   coursePref: {type: String, default: "no"},
+  // threadUp: String,
+  // threadDown: String,
+  // answerUp: String,
+  // answerDown: String,
   type: {type: String, default:"user"}
 })
 

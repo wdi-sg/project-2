@@ -11,17 +11,14 @@ const { hasLoggedOut, isLoggedIn } = require('../helpers')
 
 router.get('/', (req, res) => {
   if(req.user === undefined || req.user.coursePref === "no"){
-    Thread.find({}, function (err, data) {
-      if (err) {
-        console.log(err)
-        return
-      }
-      // console.log(req.flash());
-      res.render('user/home', {
+
+    Thread.find().sort({totalVotes: -1})
+    .then(result=>{
+      res.render("user/home",{
         title: "Questions",
-        threads: data
+        threads: result
       })
-    }).sort({totalVotes: -1})
+    })
   }else if(req.user.coursePref === "yes"){
     Thread.find({ course: req.user.course}, function (err, data) {
       if (err) {
@@ -107,29 +104,29 @@ router.post("/search", (req, res)=>{
   })
 })
  //// ===== TESTING FOR NEW MODEL ===//
-router.get("/testingdate", (req,res)=>{
-
-  n =  new Date();
-y = n.getFullYear();
-m = n.getMonth() + 1;
-d = n.getDate()
-h = n.getHours()
-minutes = n.getMinutes()
-
-var hours = ""
-var mins = ""
-var timeframe = "AM"
-if (h>12){
-  h = h-12
-  timeframe = "PM"
-}
-h.toString().length < 2 ? hours = `0${h}`: hours = `${h}`
-minutes.toString().length < 2 ? mins = `0${minutes}`: mins = `${minutes}`
-
-
+// router.get("/testingdate", (req,res)=>{
+//
+//   n =  new Date();
+// y = n.getFullYear();
+// m = n.getMonth() + 1;
+// d = n.getDate()
+// h = n.getHours()
+// minutes = n.getMinutes()
+//
+// var hours = ""
+// var mins = ""
+// var timeframe = "AM"
+// if (h>12){
+//   h = h-12
+//   timeframe = "PM"
+// }
+// h.toString().length < 2 ? hours = `0${h}`: hours = `${h}`
+// minutes.toString().length < 2 ? mins = `0${minutes}`: mins = `${minutes}`
+//
+//
 // res.send(`${d}/${m}/${y}-----${hours}:${mins} ${timeframe}`)
-res.send(n.toLocaleTimeString())
-})
+// res.send(n.toLocaleTimeString())
+// })
 
 router.post('/addquestions', function (req, res) {
   var creatorId = ""
@@ -141,6 +138,7 @@ router.post('/addquestions', function (req, res) {
     description: req.body.description,
     course: req.body.dropdown,
     creator: creatorId,
+    sortDate: new Date(),
     date: new Date().toLocaleDateString(),
     time: new Date().toLocaleTimeString()
 

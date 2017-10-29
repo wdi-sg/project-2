@@ -19,6 +19,7 @@ const threadSchema = new mongoose.Schema({
   downVotes: { type: Number, default: 0},
   creator: { type: String},
   course: { type: String},
+  sortDate: Date,
   date: String,
   time: String
 })
