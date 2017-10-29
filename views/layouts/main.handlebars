@@ -6,48 +6,57 @@
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   </head>
-  <body>
-    {{!-- <h1> <a href="/"> Buzz </a></h1> --}}
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-      {{!-- <a class="navbar-brand" href="/"><h1>Buzz</h1></a> --}}
+  <body style="background-color: #D1DEDE">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4471AB">
+
       <a class="navbar-brand" href="/">
-        <img src="/assets/pictures/BuzzLogo_pixabay.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        <img src="/assets/pictures/buzzlogo.png" width="120" height="70" class="d-inline-block align-top" alt="">
+        {{!-- <img src="/assets/pictures/BuzzLogo_pixabay.png" width="30" height="30" class="d-inline-block align-top" alt="">
         <img src="/assets/pictures/u_pixabay.png" width="30" height="30" class="d-inline-block align-top" alt="">
         <img src="/assets/pictures/z_pixabay.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        <img src="/assets/pictures/z_pixabay.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        <img src="/assets/pictures/z_pixabay.png" width="30" height="30" class="d-inline-block align-top" alt=""> --}}
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Find a buzz ride <span class="sr-only">(current)</span></a>
+      <li class="nav-item active"> {{!-- TODO: toggle active status upon click --}}
+        <a class="nav-link" href="/route">Check a buzz route <span class="sr-only">(current)</span></a>
       </li>
-        <li class="nav-item active">
-        <a class="nav-link" href="#">Features <span class="sr-only">(current)</span></a>
-      </li>
+      {{#if user}}
+        <li class="nav-item">
+          <a class="nav-link" href="/{{user.type}}/profile"> {{ user.name }} : Ride Panel  ({{ user.type }}) </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Log out </a>
+        </li>
+      {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="/users/register"> New riders </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/login"> Current riders </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/partners/register"> Buzz partners </a>
+        </li>
+      {{/if}}
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <a class="nav-link disabled" href="#">Available routes (coming soon)</a>
       </li>
     </ul>
   </div>
     </nav>
-    <ul>
-      <li> <a href="/route"> Check out our buzz rides! </a></li>
-      {{#if user}}
-      <li> <a href="/{{user.type}}/profile"> {{ user.name }} : Ride Panel </a>
-      <li> <a href="/logout"> Logout </a>
-      {{else}}
-      <li> <a href="/users/register"> New rider </a></li>
-      <li> <a href="/users/login"> Existing rider </a></li>
-      <li> <a href="/partners/register"> Buzz partners </a></li>
-      {{/if}}
-    </ul>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div class="container">
     {{{ body }}}
+    </div>
+
+    <footer class="card text-white bg-dark mb-3 bd-footer text-muted">
+        <div class="container-fluid p-3 p-md-5">
+          <p class="text-center">Put together by <a href="https://github.com/imjustlooking" target="_blank" rel="noopener">Gabriel Lu</a>, with <a href="http://getbootstrap.com/" target="_blank">Bootstrap 4</a> </p>
+        </div>
+    </footer>
   </body>
 </html>
