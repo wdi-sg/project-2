@@ -1,5 +1,9 @@
-nav {
-  margin-bottom: 30px;
+body {
+  margin: auto 0;
+}
+
+#main-nav {
+  padding: 10px 70px 10px 50px;
 }
 
 .card {

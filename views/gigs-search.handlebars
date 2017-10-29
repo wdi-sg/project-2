@@ -1,13 +1,11 @@
-<div class= container>
 
-</div>
     <div class="mx-auto" style="width: 200px;">
-      <h2>Search Gigs</h2>
+      <h2 style="margin-top: 20px">Search Gigs</h2>
       <label for="searchInput">Search: </label>
       <input id="searchGigs" type="text">
     </div>
   </div>
-<div class = "container">
+<div class = "container" style="margin-top: 20px">
 <h3>Search Results</h3>
 <div class="row" id="searchGigsResults">
 </div>
@@ -18,7 +16,7 @@
 
 {{#each gig}}
 <div class="col-4">
-<div class="card">
+<div class="card" style="margin-bottom: 20px">
   <div class="card-body">
     <h4 class="card-title">{{{this.name}}}</h4>
     <p class="card-text"> {{this.wage}} {{this.author.name}}</p>
