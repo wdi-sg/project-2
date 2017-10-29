@@ -72,14 +72,6 @@
     .page-header-image {
       background-image:url("/assets/img/uriel-soberanes.jpg");
     }
-
-    .navbar-collapse .justify-content-end .has-image .collapse .show {
-      background-color: black!important;
-    }
-
-    ul.navbar-nav {
-      background-color: black!important;
-    }
   }
 
   /*// Medium devices (tablets, less than 992px)*/
