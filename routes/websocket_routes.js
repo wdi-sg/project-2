@@ -36,16 +36,14 @@ module.exports = io => {
       })
 
       newTask.save().then(newTask => {
-        console.log(newTask)
         nsp.emit("task", {
           id: newTask.id,
           name: newTask.name,
           description: newTask.description,
           assigned: newTask.assigned,
-          end: newTask.end
+          end: newTask.dateSlug
         })
       })
-      // console.log(newTask)
     })
 
     socket.on("update", update => {
@@ -68,8 +66,15 @@ module.exports = io => {
       })
     })
 
-    socket.on("delete", deleteId => {
-      console.log(deleteId)
+    socket.on("delete", targetId => {
+      let nsp = io.of(`/${targetId.projectId}`)
+
+      nsp.emit("deleteThis", {
+        targetId: targetId.targetId
+      })
+      Task.findByIdAndRemove(targetId.targetId).then(() => {
+        console.log("removed")
+      })
     })
   }) //end of connection
 }

@@ -1,9 +1,11 @@
-<h1>Index Page</h1>
+<div class="container">
+  <h1>Scrum Master 9000</h1>
 
+  <p class="flow-text">Agile methodology requires teams to communicate quickly and often. The <strong>Scrum Master 9000</strong> was build to help teams manage their offsite members who traditionally are not able to attend scrum.</p>
 
-<h3>List of users</h3>
-{{#each users as |users|}}
-<p>User: <strong>{{users.name}}</strong></p>
-<p>Project Name: <strong>{{users.project}}</strong></p>
-<br>
-{{/each}}
+  <h5>List of users</h5>
+  {{#each users as |users|}}
+  <p>User: <strong>{{users.name}}</strong></p>
+  <p>Project: <strong>{{users.project}}</strong></p>
+  {{/each}}
+</div>

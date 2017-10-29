@@ -1,48 +1,51 @@
-{{#if user.project}}
-<h3>Project: {{user.project}}</h3>
-<h3>Project ID: {{user.projectId}}</h3>
-<p>Share this ID to let others join your project</p>
-<h4>Members:</h4>
-{{#each users as |users|}}
-<p>{{users.name}}</p>
-{{/each}}
 
-<h4>User Stories</h4>
-<!-- <h4>Add Members:</h4>
-<form action="/manageProject/add?_method=PUT" method="post">
-  <input type="hidden" name="member[projectName]" value="{{user.project}}">
-  <label for="name">Member Name:</label>
-  <input type="text" name="member[name]" placeholder="add a member">
-  <button type="submit" name="button">Add member</button>
-</form> -->
+<div class="container">
+  {{#if user.project}}
+  <h4>Current Project: {{user.project}}</h4>
+  <!-- <h5>Project ID: <strong>{{user.projectId}}</strong></h5>
+  <p>Share this ID to let others join your project</p> -->
+  <h5>Project Members:</h5>
+  <blockquote>
+    {{#each users as |users|}}
+    <p>{{users.name}}</p>
+    {{/each}}
+  </blockquote>
 
-<h4>Leave Project</h4>
-<form action="/manageProject/?_method=DELETE" method="post">
-  <button type="submit" name="button">Delete</button>
-</form>
+  <h5>Leave Project</h5>
+  <form action="/manageProject/?_method=DELETE" method="post">
+    <button type="submit" name="button" class="btn red">Leave</button>
+  </form>
 
 
-{{else}}
-<p>You don't have a project.</p>
-<h2>Join an existing project</h2>
-<form action="/manageProject/?_method=PUT" method="post">
-  <label for="name">Project Name:</label>
-  <input type="text" name="project[id]" placeholder="enter project Id to join">
-  <button type="submit" name="button">Join Project</button>
-</form>
+  {{else}}
+  <p>You don't have a project.</p>
+  <h4>Join an existing project</h4>
+  <h5>List of avaliable projects</h5>
+  <blockquote>
+    {{#each projects as |project|}}
+      <p><strong>{{project.name}}:</strong> {{project.id}}</p>
+    {{/each}}
+  </blockquote>
+  <form action="/manageProject/?_method=PUT" method="post">
+    <label for="name">Project Name:</label>
+    <input type="text" name="project[id]" placeholder="enter project Id to join">
+    <button type="submit" name="button" class="btn">Join Project</button>
+  </form>
 
-<h2>Create a new project</h2>
-<form action="/manageProject" method="post">
-  <label for="name">Project Name:</label>
-  <input type="text" name="project[name]" placeholder="project name">
-  <br>
-  <label for="startDate">Project Start Date:</label>
-  <input type="date" name="project[startDate]" value="">
-  <br>
-  <label for="endDate">Project End Date:</label>
-  <input type="date" name="project[endDate]" value="">
-  <br>
-  <button type="submit" name="button">Create Project</button>
-</form>
+  <h4>Create a new project</h4>
+  <form action="/manageProject" method="post">
+    <label for="name">Project Name:</label>
+    <input type="text" name="project[name]" placeholder="project name">
+    <br>
+    <label for="startDate">Project Start Date:</label>
+    <input type="date" name="project[startDate]" value="">
+    <br>
+    <label for="endDate">Project End Date:</label>
+    <input type="date" name="project[endDate]" value="">
+    <br>
+    <button type="submit" name="button" class="btn">Create Project</button>
+  </form>
 
-{{/if}}
+  {{/if}}
+
+</div>

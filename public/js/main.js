@@ -19,7 +19,6 @@ $(function() {
   let clickedId = ""
   let currentPosition = "create"
   let newPosition = ""
-  //id = create , review , return
 
   $("body").on("click", ".taskItem", e => {
     if (!clicked) {
@@ -37,6 +36,28 @@ $(function() {
     if (clicked && newPosition === "review") movePosition()
     else if (clicked && newPosition === "return") movePosition()
     else if (clicked && newPosition === "create") movePosition()
+  })
+
+  $("body").on("click", ".delBtn", function() {
+    // console.log("clicked")
+    let targetId = $(this)
+      .parents()
+      .eq(1)
+      .attr("id")
+    // $("body")
+    //   .find("#" + targetId)
+    //   .remove()
+    let projectId = $("#taskProjectId").val()
+    socket.emit("delete", {
+      targetId: targetId,
+      projectId: projectId
+    })
+  })
+
+  nsp.on("deleteThis", targetId => {
+    $("body")
+      .find("#" + targetId.targetId)
+      .remove()
   })
 
   const movePosition = () => {
@@ -100,7 +121,7 @@ $(function() {
 
   //task creation
   $task.submit(res => {
-    console.log($("#taskDescription").val())
+    // console.log($("#taskDescription").val())
     socket.emit("task", {
       user: $("#taskUser").val(),
       project: $("#taskProject").val(),
@@ -129,31 +150,97 @@ $(function() {
     let $description = $("<p>")
     let $assigned = $("<p>")
     let $end = $("<p>")
+    let $delBtn = $(
+      `<button type="button" name="delButton" class="delBtn btn waves-effect waves-light">Delete</button>`
+    )
+
     $name.text("Task: " + task.name)
     $description.text(task.description)
-    $assigned.text("Assigned: " + task.assigned)
+    $assigned.text("Assigned to: " + task.assigned)
     $end.text("Required: " + task.end)
 
     $card.append($name)
     $card.append($description)
     $card.append($assigned)
     $card.append($end)
+    $card.append($delBtn)
 
     $item.append($card)
 
     $item.attr("id", task.id)
-    // console.log($card)
-    // <div class="taskItem col s3" id={{task.id}}>
-    //   <div class="card yellow lighten-3 z-depth-3">
-    //     <h5>Task: {{task.name}}</h5>
-    //     <p>Assigned to: {{task.assigned}}</p>
-    //     <p> description </p>
-    //     <p>End: {{task.end}}</p>
-    //   </div>
-    // </div>
 
     $create.append($item)
   })
 
   $(".modal").modal()
+
+  //inline-editable (taken from https://codepen.io/clemsos/pen/YWYRaL)
+  $(".inline-editable").hover(
+    function() {
+      $(this).addClass("editHover")
+    },
+    function() {
+      $(this).removeClass("editHover")
+    }
+  )
+
+  let oldText, newText
+
+  $(".inline-editable").bind("click", replaceHTML)
+
+  function replaceHTML() {
+    if (!$(".editing").length) {
+      oldText = $(this).html()
+      $(this).addClass("editing")
+      var form = createForm(oldText)
+      $(this)
+        .html("")
+        .html(form)
+      $(this).unbind("click", replaceHTML)
+    }
+  }
+
+  function createForm(text) {
+    var form = '<form class="inline-editor">'
+    form += '<input type="text" class="editBox" value="'
+    form += oldText
+    form += '" /> </form>'
+    form += '<a href="#" class="btnSave white-text btn ">Save</a>'
+    form += '<a href="#" class="btnDiscard">Cancel</a>'
+    return form
+  }
+
+  $(document.body).on("click", ".btnDiscard", function() {
+    $(this)
+      .parent()
+      .html(oldText)
+    $(".inline-editable").removeClass("editing")
+    $(".inline-editable").bind("click", replaceHTML)
+    $(".inline-editable").removeClass("editHover")
+  })
+
+  $(document.body).on("click", ".btnSave", function() {
+    newText = $(this)
+      .parent()
+      .find(".editBox")
+      .val()
+    saveChanges(this, newText)
+  })
+
+  function saveChanges(div, newText) {
+    // get data for DB
+    var id = $(div)
+      .parent()
+      .attr("id")
+    var dataToUpdate = { id: id, text: newText }
+    console.log(dataToUpdate)
+
+    $(".inline-editable").removeClass("editing")
+    $(div)
+      .parent()
+      .html(newText)
+    $(".inline-editable").bind("click", replaceHTML)
+    $(".inline-editable").removeClass("editHover")
+  }
+  //end inline-editable
 })

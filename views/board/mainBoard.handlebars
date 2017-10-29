@@ -18,12 +18,13 @@
           {{#if task.isCreate}}
           <div class="taskItem col s6" id={{task.id}}>
             <div class="card yellow lighten-3 z-depth-3">
-              <h5>Task: {{task.name}}</h5>
-              <p>{{task.description}}</p>
-              <p>Assigned to: {{task.assigned}}</p>
+              <h5 class="inline-editable">Task: {{task.name}}</h5>
+              <p class="inline-editable">{{task.description}}</p>
+              <p class="inline-editable">Assigned to: {{task.assigned}}</p>
               <!-- <p>Start: {{task.start}}</p> -->
-              <p>Required: {{task.end}}</p>
+              <p class="inline-editable">Required: {{task.dateSlug}}</p>
               <!-- <p>Projected End: {{task.projectedEnd}}</p> -->
+              <button type="button" name="delButton" class="delBtn btn waves-effect waves-light">Delete</button>
             </div>
           </div>
           {{/if}}
@@ -36,12 +37,13 @@
           {{#if task.isReview}}
           <div class="taskItem col s6" id={{task.id}}>
             <div class="card yellow lighten-3 z-depth-3">
-              <h5>Task: {{task.name}}</h5>
-              <p>{{task.description}}</p>
-              <p>Assigned to: {{task.assigned}}</p>
+              <h5 class="inline-editable">Task: {{task.name}}</h5>
+              <p class="inline-editable">{{task.description}}</p>
+              <p class="inline-editable">Assigned to: {{task.assigned}}</p>
               <!-- <p>Start: {{task.start}}</p> -->
-              <p>Required: {{task.end}}</p>
+              <p class="inline-editable">Required: {{task.dateSlug}}</p>
               <!-- <p>Projected End: {{task.projectedEnd}}</p> -->
+              <button type="button" name="delButton" class="delBtn btn waves-effect waves-light">Delete</button>
             </div>
           </div>
           {{/if}}
@@ -57,12 +59,13 @@
           {{#if task.isReturn}}
           <div class="taskItem col s3" id={{task.id}}>
             <div class="card yellow lighten-3 z-depth-3">
-              <h5>Task: {{task.name}}</h5>
-              <p>{{task.description}}</p>
-              <p>Assigned to: {{task.assigned}}</p>
+              <h5 class="inline-editable">Task: {{task.name}}</h5>
+              <p class="inline-editable">{{task.description}}</p>
+              <p class="inline-editable">Assigned to: {{task.assigned}}</p>
               <!-- <p>Start: {{task.start}}</p> -->
-              <p>Required: {{task.end}}</p>
+              <p>Required: {{task.dateSlug}}</p>
               <!-- <p>Projected End: {{task.projectedEnd}}</p> -->
+              <button type="button" name="delButton" class="delBtn btn waves-effect waves-light" id="{{user.projectId}}">Delete</button>
             </div>
           </div>
           {{/if}}

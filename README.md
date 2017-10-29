@@ -1,72 +1,38 @@
 # Team Task Manager
 
+Link to site:
 http://159.89.194.112/
+
+The Team Task Manager is to help teams be agile even when working offsite. The sprint board list all tasks for the project in real time and any edits are reflected onto all team members.
+
+In addition, the Team Task Manager comes with inbuilt communication tools.
 
 ## Getting Started
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+1. Create .env file in main directory - add SESSION_SECRET
+2. yarn install - to install dependencies
+3. ensure mongodb is up and running on your local machine
 
-### Prerequisites
+## ERD
 
-What is needed to install and run the project, how do we install them
+1. Projects
+2. Tasks
+3. Users
+4. Messages
 
-```
-Code example
-```
+![ERD](./public/images/erd.png)
 
-### How to Use
+## Wireframes
 
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+The bulk of the website is on the Sprint board.
 
-restart pm2
-```
-pm2 restart <project-name>
-```
-restart nginx
-```
-sudo systemctl restart nginx
-```
+![Sprintboard Screenshot](./public/images/sprintBoard.png)
 
-```
-Code example
-```
+## List of Routes
 
-More steps...
-
-```
-until finished
-```
-
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
-
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
-
-## Built With
-
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
-
-## Workflow
-
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
-
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+- Login
+- Register
+- Index (shows list of users and projects)
+- Profile (shows list of task)
+- Manage Project (allows creating, joining, and leaving projects)
+- Sprint Board (shows the task management board)

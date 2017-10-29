@@ -10,8 +10,19 @@ const taskSchema = new mongoose.Schema({
   assigned: String,
   // start: Date,
   end: Date,
+  dateSlug: String,
   // projectedEnd: Date,
   status: { type: String, default: "0" } //create, review, return
+})
+
+taskSchema.pre("save", function(next) {
+  let task = this
+
+  if (task.end) {
+    task.dateSlug = task.end.toString().slice(0, 15)
+  }
+
+  next()
 })
 
 taskSchema.methods.isCreate = function(status) {

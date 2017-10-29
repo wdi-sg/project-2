@@ -9,8 +9,11 @@ router.get("/", (req, res) => {
   // res.render("board/manageProject")
   User.find({ project: req.user.project })
     .then(users => {
-      res.render("board/manageProject", {
-        users
+      Project.find().then(projects => {
+        res.render("board/manageProject", {
+          users,
+          projects
+        })
       })
     })
     .catch(err => {

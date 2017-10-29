@@ -6,6 +6,10 @@
   display: flex;
 }
 
+.editHover {
+  background: #ffcc80;
+}
+
 .projectTitle {
   padding: 0 10px;
   display: flex;
@@ -13,10 +17,6 @@
   justify-content: space-between;
 }
 
-.taskItem {
-  /*border: 2px solid blue;*/
-  /*margin: 2px;*/
-}
 .card {
   padding: 2px;
 }
