@@ -27,7 +27,12 @@ What did you use to build it, list the technologies, plugins, gems, packages etc
 
 ## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+* Wireframes for sign up and login
+![](/public/assets/images/medicate_sl.jpeg)
+* Wireframe for homepage
+![](/public/assets/images/medicate_home.jpeg)
+* Wireframe for google map
+![](/public/assets/images/medicate_map.jpeg)
 
 ## Authors
 
