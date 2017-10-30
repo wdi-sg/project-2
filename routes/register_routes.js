@@ -1,17 +1,11 @@
-
 const User = require('../models/user')
-
 const express = require('express')
-
 const router = express.Router()
-
 const passport = require('../config/ppConfig')
-
 
 router.get('/', (req, res) => {
   res.render('users/register')
 })
-
 
 router.post('/', (req, res) => {
   var formData = req.body.user
@@ -21,15 +15,14 @@ router.post('/', (req, res) => {
     password: formData.password
   })
 
-  newUser.save()
-  .then(
+  newUser.save().then(
     user => {
       passport.authenticate('local', {
         successRedirect: `/profile/${user.slug}`
-      })(req, res);
+      })(req, res)
     },
-    // success flow, redirect to profile page
-    err => res.send(err) // error flow
+
+    err => res.send(err)
   )
 })
 
