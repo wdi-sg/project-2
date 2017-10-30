@@ -40,6 +40,7 @@ Register an account and start tweeting. The search bar on the top left helps you
 * [Method-Override](https://github.com/expressjs/method-override)
 * [Express-Session](https://www.npmjs.com/package/express-sessions)
 * [Passport](http://www.passportjs.org/)
+* [Materialize](http://materializecss.com/)
 
 ## Planned Features
 
