@@ -1,5 +1,3 @@
-
-
 # Salty Lemon
 Salty Lemon is an app for programmers who feel like when the going gets tough and you feel like giving up, and you feel like you are not good enough that at that moment of despair, you may find comfort and hope.
 
@@ -7,14 +5,14 @@ This app shows you three quotes at the homepage at specific time-interval that i
 
 <img src="/public/assets/images/home-page.png">
 
-Your personal Quote Collection. Your space. You can add quotes you like & add personal quotes that speaks to you.
+###### Your personal Quote Collection. Your space.
+You can add quotes you like & add personal quotes that speaks to you.
 <img src="/public/assets/images/profile.png">
 
 
 ## Live Version
 • https://saltylemon.herokuapp.com/
 
-Problem I'm trying to solve it for.
 
 ## Feature Prioritisation
 <img src="public/assets/images/user-story.png">
@@ -33,5 +31,17 @@ Problem I'm trying to solve it for.
 
 
 ## Built With
+• HTML5
+• CSS3
+• Javascript
+• Node
+• Express
+• MongoDB
+• ORM:Mongoose
+• Bulma CSS
+• SendGrid API
+• Heroku Cloud Server
 
 ## Acknowledgements
+• Bulma Templates - https://github.com/dansup/bulma-templates/blob/master/templates/blog.html
+• Instructors and Classmates at GeneralAssembly
