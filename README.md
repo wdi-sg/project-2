@@ -17,6 +17,41 @@ Register an account and start tweeting. The search bar on the top left helps you
 ## ERD
 ![ERD](/public/assets/images/proj2_erd.png "ERD.png")
 
+#### User Schema
+
+```javascript
+const requiredString = { type: String, required: true }
+const tweetId = { type: Schema.Types.ObjectId, ref: 'Tweet' }
+
+const userSchema = new Schema({
+  username: { type: String, lowercase: true, match: /^[a-z0-9]+$/, unique: true },
+  name: requiredString,
+  email: requiredString,
+  password: requiredString,
+  tweets: [tweetId],
+  mentions: [tweetId],
+  followers: [ this ],
+  following: [ this ]
+})
+```
+
+#### Tweet Schema
+
+```javascript
+const userId = { type: Schema.Types.ObjectId, ref: 'User' }
+const requiredString = { type: String, required: true }
+
+const tweetSchema = new Schema({
+  message: requiredString,
+  author: userId,
+  parentTweet: this,
+  childrenTweets: [ this ],
+  mentions: [userId],
+  favourites: [userId],
+  retweets: [userId]
+})
+```
+
 ## Wireframe
 ![Wireframe](/public/assets/images/wireframe.png "wireframe.png")
 
