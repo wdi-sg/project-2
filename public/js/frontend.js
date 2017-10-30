@@ -1,12 +1,11 @@
 $(document).ready(function () {
   console.log('js file is connected')
   $('.dropdown-button').dropdown()
-  // $('#textarea1').val('New Text')
   $('#textarea1').trigger('autoresize')
   $('select').material_select()
   $('.button-collapse').sideNav()
   $('.carousel').carousel({indicators: true})
-  // $('#my_audio').get(0).play()
+  $('#my_audio').get(0).play()
   $('.slider').slider()
   $('.datepicker').pickadate({
    selectMonths: true, // Creates a dropdown to control month
