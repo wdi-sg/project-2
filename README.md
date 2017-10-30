@@ -1,65 +1,54 @@
-# Your Project Name
+# Pirated Twitter
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+This is a replica of [Twitter](https://twitter.com/?lang=en). You can follow your friends to see what they're saying or post your own tweets. Additional features such as mentions, replies and retweeting are on the way!
 
-## Getting Started
+## Overview
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+Register an account and start tweeting. The search bar on the top left helps you find your friends via their twitter handle.
 
-### Prerequisites
+* Register an account
+* Login with your account
+* Search for your friends
+* Follow your friends to see their tweets
+* Tweet!
 
-What is needed to install and run the project, how do we install them
+## [▶ Click here to visit the site](https://project-2-koozy.herokuapp.com/)
 
-```
-Code example
-```
+## ERD
+![ERD](/public/assets/images/proj2_erd.png "ERD.png")
 
-### How to Use
+## Wireframe
+![Wireframe](/public/assets/images/wireframe.png "wireframe.png")
 
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+## Routes
 
-
-```
-Code example
-```
-
-More steps...
-
-```
-until finished
-```
-
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
-
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+* Home
+* Login
+* Register
+* Profile
+* Search
+* Logout
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
+* [jQuery](http://jquery.com/)
+* [Mongoose](http://mongoosejs.com/)
+* [Node.js](https://nodejs.org/en/)
+* [Express.js](https://expressjs.com/)
+* [Express-Handlebars](https://github.com/ericf/express-handlebars)
+* [Body-Parser](https://www.npmjs.com/package/body-parser)
+* [Method-Override](https://github.com/expressjs/method-override)
+* [Express-Session](https://www.npmjs.com/package/express-sessions)
+* [Passport](http://www.passportjs.org/)
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+## Planned Features
 
-## Workflow
+* Mentions
+* Replies
+* Retweets
+* Sort tweets by time/date
+* Favourites
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+## References
 
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+* [Twitter](https://twitter.com/?lang=en)
