@@ -7,7 +7,7 @@ There has always been a problem in my family with different members of the famil
 Try it here:
 https://fridgie-magnets.herokuapp.com/
 
-## Workflow
+## Function
 * User first register for an account
 * User can then create a new fridge which represents a group or a family
 * In the fridge, members can add new task that needs to be completed to the fridge.
