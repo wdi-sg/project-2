@@ -1,0 +1,118 @@
+<h3>Transaction details </h3>
+
+<form action="/portfolio" method="post">
+  <label for="name">Holding</label>
+  <input type="text" name="position[name]" placeholder="">
+
+  <label for="ticker">Ticker</label>
+  <input type="text" name="position[ticker]" placeholder="">
+
+  <label for="buyDate">Buy Date</label>
+  <input type="date" name="position[buyDate]" placeholder="">
+
+  <label for="units">Unit(s)</label>
+  <input type="number" name="position[units]" placeholder="">
+
+  <label for="price">Price</label>
+  <input type="number" name="position[price]" placeholder="USD">
+  <br>
+  <label for="assetClass">Asset Class</label>
+  <select name="position[assetClass]" placeholder="Pick one">
+    <option selected hidden>Pick one</option>
+    <option>Equities</option>
+    <option>Bonds</option>
+    <option>Alternatives</option>
+    <option>Cash</option>
+  </select>
+
+
+  <br>
+  <label for="closingPrice">Closing price</label>
+  <input type="number" name="position[closingPrice]" placeholder="USD">
+
+  <button type="submit"  id = 'bought' name="button">Buy</button>
+
+</form>
+
+
+<table class="table table-hover table-sm" id= positionTable>
+ 
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Ticker</th>
+      <th>Buy date</th>
+      <th>Sell date </th>
+       <th>Asset Class</th>
+      <th>Units</th>
+      <th>Price</th>
+      <th>Amount Invested <br> (USD)</th>
+      <th>Closing Price</th>
+      <th>Current Market Value <br> (USD)</th>
+
+    </tr>
+  </thead>
+
+{{#each position as |posi|}}
+  <tbody>
+    <tr>
+      <td>{{ posi.name }}</td>
+      <td>{{ posi.ticker }}</td>
+      <td>{{ posi.buyDate }}</td>
+      <td>{{ posi.sellDate }}</td>
+      <td>{{ posi.assetClass }}</td>
+      <td>{{ posi.units }}</td>
+      <td>{{ posi.price }}</td>
+      <td>{{ posi.amountInvested }}</td>
+      <td>{{ posi.closingPrice }}</td>
+
+      <td>{{ posi.currentMarketValue }}</td>
+      <td>  <form
+          class="form-inline deleteForm"
+          action="/portfolio/{{ posi.id }}?_method=PUT"
+          method="post"
+        >
+          <a href="/portfolio/{{ posi.id }}" class="btn btn-primary">Update</a>
+
+          &nbsp;
+          <a href="/portfolio/{{ posi.id }}" class="btn btn-secondary" >Sell</a>
+
+          <br>
+          <input type="hidden" name="posiId" value="{{posi.id}}">
+
+        </form>
+              </td>
+
+    </tr>
+  </tbody>
+
+
+
+{{/each}}
+
+</table>
+
+
+<table class="table table-striped">
+ 
+  <thead>
+    <tr>
+
+      <th>Total Portfolio Value</th>
+     
+    </tr>
+  </thead>
+
+{{#each assetClassPosition as |ap|}}
+  <tbody>
+    <tr>
+     
+      <td>USD {{ ap.total }}</td>
+
+    </tr>
+  </tbody>
+{{/each}}
+
+</table>
+
+<a href="/assetclass">View Allocation</a>

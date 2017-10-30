@@ -1,0 +1,32 @@
+<h2>{{ position.name }} <small>({{ position.ticker }})</small></h2>
+
+
+<h3>Update</h3>
+<form action="/portfolio/{{ position.id }}?_method=PUT" method="post">
+
+  <input type="hidden" name="assetClass" value="{{ position.assetClass }}">
+  <input type="hidden" name="sellDate" value="{{ position.sellDate }}">
+
+  <label for="closingPrice">Closing Price</label>
+  <input type="number" name="closingPrice" value="{{ position.closingPrice }}">
+
+  <button type="submit" name="button">Submit</button>
+</form>
+
+<h3>Sell</h3>
+<form action="/portfolio/{{ position.id }}?_method=PUT" method="post">
+
+  <input type="hidden" name="closingPrice" value="{{ position.closingPrice }}">
+
+  <label for="name">Name</label>
+  <input type="text" name="name" value="{{ position.name }}">
+
+  <label for="assetClass">Transfer to</label>
+  <input type="text" name="assetClass" value="Cash">
+
+  <label for="sellDate">Sell Date</label>
+  
+  <input type="date" name="position[sellDate]" placeholder="">
+
+  <button type="submit" name="button">Submit</button>
+</form>

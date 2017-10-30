@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Portfolio Manager</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Patua+One|Playfair+Display:400,700" rel="stylesheet">
+  <body>
+
+      <nav
+        class="navbar navbar-expand-lg navbar-inverse bg-inverse justify-content-between"
+        style="background-color: #baa451;"
+      >
+
+        <a class="navbar-brand mb-0 h1" id= 'mainTitle' href="/">My Portfolio Manager</a>
+
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse " id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/assetclass">Portfolio</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/portfolio">Transactions</a>
+            </li>
+
+
+          </ul>
+
+          <ul class="navbar-nav">
+          {{#if user}}
+
+            <li class="nav-item">
+              <a class="nav-link" href="/profile/{{user.slug}}">{{ user.name }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+          {{else}}
+
+              <li class="nav-item">
+                <a class="nav-link" href="/register">Register</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+
+          {{/if}}
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        {{{ body }}}
+      </div>
+      <footer class="bd-footer text-muted">
+        <div class="container-fluid p-3 p-md-5">
+          <p class="text-center" target="_blank" rel="noopener" target="_blank">Intelligent Investing</p>
+        </div>
+      </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js" charset="utf-8"></script>
+    <script src="/assets/js/script.js" charset="utf-8"></script>
+  </body>
+</html>

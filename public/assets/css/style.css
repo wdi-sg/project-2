@@ -1,0 +1,56 @@
+.container {
+  text-align: center;
+  margin-top: 45px;
+  color: #616677;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  width:860px
+
+}
+
+#positionTable {
+  text-align: center;
+}
+
+#assetClassTable {
+  text-align: center;
+  max-width: 300px;
+  justify-content: center;
+  margin: auto
+
+}
+
+#mainTitle {
+  /*font-family: 'Patua One', cursive;*/
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  font-size: 30px;
+  color: #3f3b2b
+
+}
+
+#navbarNav {
+
+  /*font-family: 'Patua One', cursive;*/
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+}
+
+.nav-link {
+  color: #616677
+}
+
+#homeBody {
+  background-image: url("../images/bg2.jpg");
+  background-size: 100% 160%;
+  background-repeat: no-repeat;
+
+
+
+}
+
+#wb {
+/*margin-left: 410px;*/
+margin: auto;
+font-size: 16px
+}
