@@ -3,7 +3,6 @@ const router = express.Router()
 const Quote = require('../models/quote')
 const User = require('../models/user')
 
-// const moment = require('moment')
 const { findCurrentQuote } = require('../helpers')
 
 // Show quote on homepage. Depends on either morning, afternoon, evening
