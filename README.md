@@ -64,6 +64,20 @@ const tweetSchema = new Schema({
 * Search
 * Logout
 
+## Time Management
+
+* **Day 1, Monday**: LinkedIn replica. Drew up wireframes, ERD, and routes. Added create home, login, and register routes
+
+* **Day 2, Tuesday**: LinkedIn replica. Added sessions, fixed multiple bugs for sessions. Create webform for LinkedIn replica.
+
+* **Day 3, Wednesday**: Ditched LinkedIn replica project. Started working on Twitter replica, plan new ERDs, routes, and new wireframes
+
+* **Day 4, Thursday**: Added tweet functionality, and user wall (only own tweets).
+
+* **Day 5, Friday**: Completed user wall (all followed tweets). Basic autocomplete feature.
+
+* **Day 6/7, Saturday/Sunday**: CSS.
+
 ## Built With
 
 * [jQuery](http://jquery.com/)
