@@ -3,6 +3,7 @@
   height: 400px;
   background-color: grey;
   color: black;
+  border-radius:20px;
 }
 
 html {
