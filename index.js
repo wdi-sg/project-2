@@ -11,7 +11,6 @@ const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
-
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const passport = require('./config/ppConfig')
@@ -87,23 +86,63 @@ app.get('/', (req, res) => {
 })
 
 // Adding books to DB and user readBooks
-app.post('/book', (req, res) => {
+app.post('/saveBook', (req, res) => {
   var formData = req.body
+// save the book to DB
   var newBook = new Book({
     title: formData.bookTitle,
-    author: formData.bookAuthor
+    author: formData.bookAuthor,
+    description: formData.bookDescription
   })
   newBook.save()
+})
+
+// Creating 'I have read this' or 'unread this' btn
+// pseudo code is...
+// 1. on.click more info
+// 2. get book specific API
+// 3. add book to DB if it doesnt already exist in DB..
+// 4. find book _id of current book
+// 5. iterate current user's readBooks array
+// 6. if book_id matches any of user readBooks array, add 'remove from read list' btn
+// 6. else add 'I have read this' btn
+app.post('/createBtn', (req, res) => {
+  var formData = req.body
+  var returnId = ''
+  Book.findOne(
+    {title: formData.bookTitle}
+  )
   .then(book => {
-    console.log(app.locals.user)
+    req.user.readBooks.forEach((bookid) => {
+      console.log('book.id', book.id)
+      console.log('bookid', bookid)
+      if (bookid == book.id) {
+        console.log('match!')
+        returnId = book.id
+        console.log('returnId', returnId)
+      }
+    })
+  })
+  return returnId
+})
+
+app.post('/addReadBook', (req, res) => {
+  var formData = req.body
+  Book.findOne(
+    {title: formData.bookTitle}
+  )
+  .then(book => {
+    // console.log(book)
+    // console.log(req.user)
+    // req.user.readBooks.forEach((bookId) => {
+    //   if(bookId === book.id)
+    // })
+
     req.user.readBooks.push(book._id)
-    console.log('req.user', req.user)
     req.user.save()
-    .then(
-      () => res.send({
-        message: 'success'
-      })
-    )
+    .then((result) => res.send({
+      message: result
+    }))
     .catch(
       err => console.log(err)
     )

@@ -28,7 +28,7 @@ const userSchema = new Schema({
 
 userSchema.pre('save', function (next) {
   var user = this
-  console.log(user)
+  // console.log(user)
   if (!user.isModified('password')) return next()
   // create slug
   user.slug = user.name.toLowerCase().split(' ').join('-')
@@ -36,7 +36,7 @@ userSchema.pre('save', function (next) {
   bcrypt.hash(user.password, 10)
   .then(hash => {
     user.password = hash
-    console.log('pre save flow', user)
+    // console.log('pre save flow', user)
     next() // next() is calling the save()
   })
 })
