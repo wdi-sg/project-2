@@ -120,10 +120,13 @@ app.post('/createBtn', (req, res) => {
         console.log('match!')
         returnId = book.id
         console.log('returnId', returnId)
+        res.send({
+          message: returnId
+        })
       }
     })
   })
-  return returnId
+  // return returnId
 })
 
 app.post('/addReadBook', (req, res) => {
@@ -132,6 +135,7 @@ app.post('/addReadBook', (req, res) => {
     {title: formData.bookTitle}
   )
   .then(book => {
+
     // console.log(book)
     // console.log(req.user)
     // req.user.readBooks.forEach((bookId) => {

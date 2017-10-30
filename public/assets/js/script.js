@@ -56,6 +56,10 @@ $(function () {
       $description.text(response.volumeInfo.description)
       $newList.append($description)
 
+      var $btn = $('<button>')
+      $btn.attr('class', 'readBtn')
+      $btn.html('I have read this!')
+
       fetch('/createBtn', {
         credentials: 'include',
         method: 'POST',
@@ -64,17 +68,38 @@ $(function () {
           'Content-Type': 'application/json'
         }
       })
+      .then(response => {
+        var message = response.json()
+        console.log(message)
+        if (message) {
+          $btn.attr('class', 'unreadBtn')
+          $btn.html('Unread Book')
+          // $btn.class('unreadBtn')
+          // $btn.text('Unread book')
+        }
+      })
+
+      // .then(message => {
+      //   console.log(message)
+      //   if (message) {
+      //     $btn.attr('class', 'unreadBtn')
+      //     $btn.html('Unread Book')
+      //     // $btn.class('unreadBtn')
+      //     // $btn.text('Unread book')
+      //   } else {
+      //     $btn.attr('class', 'readBtn')
+      //     $btn.html('I have read this!')
+      //   }
+      // })
       // .then(function (value){
+      $newList.append($btn)
       //   console.log(value)
       // })
 
-      var $btn = $('<button class="readBtn">I have read this!</button>')
-      $newList.append($btn)
 
       ulBookDisplay.append($newList)
     })
-})
-
+  })
 // Browse search bar function
   $('#search-form').submit(function (event) {
     event.preventDefault()
@@ -144,7 +169,7 @@ $(function () {
     })
     .then(response => response.json())
     .then(message => {
-      // console.log(message.readBooks)
+      console.log(message.readBooks)
     })
   })
     // get the book id ?? but i havent created the book item
