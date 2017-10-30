@@ -26,7 +26,7 @@ You can add quotes you like & add personal quotes that speaks to you.
 <img src="public/assets/images/erd.png">
 
 ## User Story Specific
-<img src="public/assets/images/user-story.png">
+<img src="public/assets/images/user-specific.png">
 
 
 ## Built With
