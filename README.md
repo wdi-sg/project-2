@@ -30,17 +30,18 @@ You can add quotes you like & add personal quotes that speaks to you.
 
 
 ## Built With
-• HTML5
-• CSS3
-• Javascript
-• Node
-• Express
-• MongoDB
-• ORM:Mongoose
-• Bulma CSS
-• SendGrid API
-• Heroku Cloud Server
+  * HTML5
+  * CSS3
+  * Javascript
+  * Node
+  * Express
+  * MongoDB
+  * ORM:Mongoose
+  * Bulma CSS
+  * SendGrid API
+  * Heroku Cloud Server
 
 ## Acknowledgements
-• Bulma Templates - https://github.com/dansup/bulma-templates/blob/master/templates/blog.html
-• Instructors and Classmates at GeneralAssembly
+  * Bulma Templates <Enter>
+    - https://github.com/dansup/bulma-templates/blob/master/templates/blog.html
+  * Instructors and Classmates at GeneralAssembly
