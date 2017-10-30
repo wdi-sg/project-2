@@ -1,65 +1,53 @@
-# Your Project Name
+# Project 2: Fridge Magnets
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
-
-## Getting Started
-
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
-
-### Prerequisites
-
-What is needed to install and run the project, how do we install them
-
-```
-Code example
-```
-
-### How to Use
-
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
-
-
-```
-Code example
-```
-
-More steps...
-
-```
-until finished
-```
-
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
+There has always been a problem in my family with different members of the family completed the same task without the knowledge of another family member. Through this project, I hope to develop a simple web application that family members will be informed once a task is completed.
 
 ## Live Version
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+Try it here:
+https://fridgie-magnets.herokuapp.com/
+
+## Workflow
+* User first register for an account
+* User can then create a new fridge which represents a group or a family
+* In the fridge, members can add new task that needs to be completed to the fridge.
+* User may either take up the task themselves, or wait until other members of the fridge takes up the task.
+* Once the task is completed, another notification will be sent to all members of the fridge.
+* Task will not be deleted until one of the members delete the task.
+
+## ERD
+
+<img src="/public/img/ERD.png" alt="ERD">
+
+## Flow Chart
+
+<img src="/public/img/flowchart.png" alt="ERD">
+
+## Wire Frame
+
+<img src="/public/img/homepage1.png">
+<img src="/public/img/registerpage.png">
+<img src="/public/img/loginpage.png">
+<img src="/public/img/profilepage.png">
+<img src="/public/img/fridgepage.png">
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
+* HTML 5
+* CSS 3
+* JavaScript
+* Node
+* Express
+* Mongoose
+* TWilio API
+* BootStrap 4
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+## Future Implementation
 
-## Workflow
+* Calender events
+* Current Date and Time on profile and fridge page
+* Modify for small team task assignments or group work
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+## Reference
 
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+* image: PxHere https://pxhere.com/

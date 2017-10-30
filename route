@@ -1,0 +1,43 @@
+ROUTE PLANS
+
+app.use('/')
+  GET /
+
+app.use('/login')
+  GET /
+  POST /
+
+app.use('/register')
+  GET /
+  POST /
+
+app.use('/profile')
+  GET /
+  GET /edit
+  PUT /edit
+
+app.use('/fridge')
+  GET /new
+  GET /enter
+  GET /:id
+  GET /:id/task
+
+  POST /
+  POST /enter
+
+  DELETE /:id
+  DELETE /:fridgeid/:taskid
+
+app.use('/task')
+  GET /:id/edit
+
+  PUT /:id/edit
+  PUT /:id/editAssignMe
+  PUT /:id/editAssign
+  PUT /:id/complete
+
+  POST /
+
+
+app.use('/logout')
+  GET /
