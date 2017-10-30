@@ -26,7 +26,8 @@ What did you use to build it, list the technologies, plugins, gems, packages etc
 * [Data.gov.sg](https://data.gov.sg/dataset/listing-of-licensed-pharmacies?view_id=1a13c7da-a4a8-4808-b34b-eca95eef94a4&resource_id=16db7800-d81e-4d0d-9d59-936f2c10d668)
 
 ## Workflow
-
+* ERD Diagram
+![](/public/assets/images/erd.jpeg)
 * Wireframes for sign up and login
 ![](/public/assets/images/medicate_sl.jpeg)
 * Wireframe for homepage
