@@ -6,32 +6,17 @@ Medicate
 
 Medicate provides a listing of all licensed and retail pharmacies in Singapore. Data taken from data.gov.sg. It also stores user medications which allows the user to easily access their medication list.
 
-
-### Prerequisites
-
-What is needed to install and run the project, how do we install them
-
-
 ### How to Use
-
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
-
 
 Pharmacy locations can be accessed on the main homepage. To display retail locations, click on icon top left of the map display and check box to reveal retail pharmacy locations.
 
 Sign up is required to add user profile and assign medications list.
 
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
 ## Live Version
 
 Deloyed on the following:
-Github: https://github.com/G174/project-2
-Heroku: https://proj2grace.herokuapp.com/
+* Github: https://github.com/G174/project-2
+* Heroku: https://proj2grace.herokuapp.com/
 
 ## Built With
 
@@ -46,10 +31,9 @@ Did you write user stories, draw wireframes, use task tracking, produce ERDs? Di
 
 ## Authors
 
-Did you collaborate with others on this project, list them here
-
-* **The coding gods of WDI12** -  
+* **The coding gods of WDI12**
+Zheng Yu, Soe Min and Joseph.  
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [youtube resource on adding multiple locations ](https://www.youtube.com/watch?v=gYa8PtGi4GY).
+*  [youtube resource on adding multiple locations for google maps ](https://www.youtube.com/watch?v=gYa8PtGi4GY).
