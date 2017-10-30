@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" src="./css/style.css">
+<title>GotGig | 2017</title>
+</head>
+<body>
+  <nav id="main-nav" class="navbar navbar-dark bg-dark navbar-expand-md bg-faded justify-content-center" style="padding: 10px 70px 10px 50px">
+  <a class="navbar-brand" href="/about">
+    <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    GotGig
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-item nav-link" href="/">Gigs</a></li>
+        <li class="nav-item"><a class="nav-item nav-link" href="/peeps">Peeps</a></li>
+      <li class="nav-item"><a class="nav-item nav-link" href="/about">About</a></li>
+    </ul>
+
+        {{#if user}}
+        <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="/profile/{{user.slug}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.name}}</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="nav-item nav-link" href="/gigs/new-gig">New Gig</a>
+          <a class="nav-item nav-link" href="/profile/{{user.slug}}/settings">Settings</a>
+        </div>
+        </li>
+        <li class="nav-item ">
+        <a class="nav-item nav-link" href="/logout">Logout</a>
+        </li>
+      </ul>
+
+        {{else}}
+        <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+        <li><a class="nav-item nav-link" href="/signup">Sign Up</a></li>
+        <li><a class="nav-item nav-link" href="/login">Login</a></li>
+        </ul>
+        {{/if}}
+  </div>
+</nav>
+
+<div class="container-fluid">
+  {{{body}}}
+</div>
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
+  <script src="/js/frontend.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>
