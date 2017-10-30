@@ -94,7 +94,7 @@ app.get('/logout', hasLoggedOut, (req, res) => {
 app.use('/home', home_routes)
 app.use('/register', isLoggedIn, register_routes)
 app.use('/profile', profile_routes)
-app.use('/pattern', hasLoggedOut, pattern_routes) // check if need hasLoggedOut function
+app.use('/pattern', pattern_routes) // check if need hasLoggedOut function
 //app.use('/new', hasLoggedOut, new_routes)
 app.use('/category', category_routes)
 app.use('/project', project_routes)
