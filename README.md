@@ -61,6 +61,10 @@ https://gotgig.herokuapp.com/
 
 ## Workflow
 
+Wireframes (attempted)
+* ![wireframe](/imgs/wireframe.jpg)
+* ![wireframe2](/imgs/wireframe2.jpg)
+
 Day 1 (evening):
 1. Came up with a basic ERD, Wireframe, List of Routes.
 2. Started with Sign up, Login Page and Linked Database of users
