@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Itinerary | Share Your Trip Plan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- CSS Files -->
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    <link href="/assets/css/now-ui-kit.css?v=1.1.0" rel="stylesheet" />
+    <script>UPLOADCARE_PUBLIC_KEY = "1bfa402a6623b948a42e";</script>
+    <script src="https://ucarecdn.com/libs/widget/3.1.4/uploadcare.full.min.js" charset="utf-8"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <div class="container">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-dark fixed-top">
+        <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand" href="/" title="Itinerary | The only solution of itinerary planning" style="font-size: 1.8571em;">
+                  Itinerary
+                </a>
+                <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                <ul class="navbar-nav" style="font-size: 20px;">
+
+                  {{#if user}}
+                  <li class="nav-item">
+                    <a class="nav-link" href="/routes">
+                      <p>My Routes</p>&nbsp;<i class="ion-plane"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/routes/new">
+                      <p>Add Itinerary</p>&nbsp;<i class="ion-plus-round"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="">
+                          <p>Welcome, {{ user.name }}</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link btn btn-neutral" href="/logout">
+                      <i class="ion-person"></i>
+                      <p>Logout</p>
+                    </a>
+                  </li>
+                  &nbsp| &nbsp
+                  <li class="nav-item">
+                    <a class="nav-link btn btn-neutral" href="/destination">
+                      <i class="ion-map"></i>
+                      <p>Destination</p>
+                    </a>
+                  </li>
+
+                  {{else}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">
+                            <i class="ion-person-add"></i>
+                            <p>Register</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link btn btn-neutral" href="/login">
+                        <i class="ion-person"></i>
+                        <p>Login</p>
+                      </a>
+                    </li> &nbsp| &nbsp
+                    <li class="nav-item">
+                      <a class="nav-link btn btn-neutral" href="/destination">
+                        <i class="ion-map"></i>
+                        <p>Destination</p>
+                      </a>
+                    </li>
+                  {{/if}}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    </div>
+
+    {{{ body }}}
+
+    <footer class="footer text-light bg-dark">
+      <div class="d-flex justify-content-center">
+      Designed by&nbsp;
+      <a href="https://github.com/heyzernut" target="_blank">Hazel Toh</a> &nbsp;|&nbsp;Builded by&nbsp;
+      <a href="http://getbootstrap.com/" target="_blank"> Bootstrap 4</a>&nbsp;<i class="ion-android-favorite-outline"></i>
+      </div>
+    </footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <script src="/assets/js/now-ui-kit.js?v=1.1.0" type="text/javascript"></script>
+  <script src="/assets/js/script.js"></script>
+  <script src={{GOOGLE_MAPS_URL}}></script>
+  </body>
+</html>

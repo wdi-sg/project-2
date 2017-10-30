@@ -1,0 +1,46 @@
+<div class="container-fluid" style="background-image:url(/assets/img/antoine-barres.jpg)">
+  <br/><br/><br/><br/>
+<div class="container">
+<div class="card-columns">
+  {{!-- Loop --}}
+  {{#each travelplans as | route |}}
+
+    <div class="card">
+      <img class="card-img-top" src="{{route.picture}}" alt="Card image cap">
+      <div class="card-body">
+        <h6 class="card-title">{{route.title}}</h6>
+        <p class="card-text">
+          <p class="mb-0">
+            {{ route.address }}<br>
+          </p>
+          <footer class="blockquote-footer">{{ route.category }}</footer>
+          {{!-- <a href="https://maps.google.com/?cid=9123933771843294962" target="_blank">View google map</a><br> --}}
+          {{!-- <a href="https://www.google.com/maps/@{{route.latitude}},{{route.longitude}},15z" target="_blank">View google map</a><br> --}}
+          <div class="text-left" style="font-size: 15px;"><a href="https://www.google.com/maps/search/?api=1&query={{route.latitude}},{{route.longitude}}&query_place_id={{route.placeId}}" target="_blank">View google map</a></div>
+          <hr>
+          <p style="font-size:14px; color: black;">{{ route.description }}</p>
+          <hr>
+        </p>
+
+        <form
+          class="form-inline"
+          action="/routes/{{ route.id }}?_method=DELETE"
+          method="post"
+        >
+          <a href="/routes/{{ route.id }}" class="btn btn-warning">Update</a>
+
+          &nbsp;
+
+          <button class="btn btn-danger" type="submit" name="button">Delete</button>
+
+        </form>
+
+        <p class="card-text"><small class="text-muted">{{route.formattedDate}}</small></p>
+      </div>
+
+    </div>
+  {{/each}}
+
+  </div>
+</div>
+</div>

@@ -1,0 +1,45 @@
+<div class="page-header" filter-color="">
+<div class="page-header-image" style="background-image:url(/assets/img/uriel-soberanes.jpg)"></div>
+<div class="container">
+  <div class="col-md-4 content-center">
+      <div class="card card-login card-plain">
+        <br/><br/><br/>
+
+{{!-- FORM TO CREATE NEW USER --}}
+<form action="/register" method="post">
+
+  <div class="header header-primary text-center">
+    <h3>Registration</h3>
+  </div>
+
+  <div class="input-group form-group-no-border input-lg">
+      <span class="input-group-addon">
+        <i class="ion-android-contact"></i>
+      </span>
+  <input type="text" class="form-control" name="user[name]" placeholder="Name...">
+ </div>
+
+ <div class="input-group form-group-no-border input-lg">
+     <span class="input-group-addon">
+       <i class="ion-android-send"></i>
+     </span>
+  <input type="email" class="form-control" id="validationServer02" name="user[email]" placeholder="Email Address...">
+ </div>
+
+ <div class="input-group form-group-no-border input-lg">
+     <span class="input-group-addon">
+       <i class="ion-android-lock"></i>
+     </span>
+  <input type="password" class="form-control" id="validationServer03" name="user[password]" placeholder="Password...">
+</div>
+
+<div class="footer text-center">
+  <button type="submit" name="button" class="btn btn-primary btn-round btn-lg btn-block">Get Started</button>
+</div>
+
+</form>
+
+    </div>
+  </div>
+</div>
+</div>
