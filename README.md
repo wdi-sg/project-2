@@ -9,12 +9,23 @@ Apart from the other SG-based finance portals, Fat Pocket allows its users to sy
 ## Live Version
 * https://fatpocket.herokuapp.com/
 
-#### Objectives
+## Objectives
 Users to be able to
 * Compare and get the best credit card(s)/ bank account(s)/ investment account(s)
 * Sync all of his/ her credit card(s)/ bank account(s)/ investment account(s) to his/her Fat Pocket account for an overview of his/her assets
 
 <img src="public/assets/img/flowchart.png">
+
+### Routes
+* /
+* /credit-card
+* /fixed-deposit
+* /savings-account
+* /investment
+* /news
+* /login
+* /register
+* /profile
 
 ## ERD
 <img src="public/assets/img/erd.png" height="150">
@@ -32,15 +43,15 @@ Users to be able to
 <img src="public/assets/img/user-page2.png">
 <img src="public/assets/img/user-page3.png">
 
-#### Eatery Page:
+#### Fixed Deposit Page:
 <img src="public/assets/img/fixed-deposit.png">
 
-#### Rating/Review Page:
+#### Savings Account Page:
 <img src="public/assets/img/savings-account.png">
 
 ## To Be Added
 
-* Sort Credit Cards/ Bank Accounts/ Investment Accounts according to keywords
+* Calculate Sort Credit Cards/ Bank Accounts/ Investment Accounts according to keywords
 * Credit Cards database and comparison
 * Investment Accounts database and comparison
 * Investment News
