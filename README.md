@@ -16,7 +16,8 @@ Users will have to register an account with us. After logging in. They can use t
 
 ### Wireframe
 
-
+![Wireframe1][https://github.com/subutai1175/project-2/blob/master/Wireframe%202.JPG]
+![Wireframe2][https://github.com/subutai1175/project-2/blob/master/Wireframe%201.JPG]
 
 ### Link to App
 
