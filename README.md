@@ -21,4 +21,4 @@ Users will have to register an account with us. After logging in. They can use t
 
 ### Link to App
 
-![Link to App](https://project2102017.herokuapp.com/)
+[Link to App](https://project2102017.herokuapp.com/)
