@@ -98,7 +98,8 @@ Here are some parts that I know this code is lacking/or maybe just plain wrong. 
 
 1. When searching for peeps, it won't work if the person doesn't have any profile data.
 2. When the gigs are searched, the gig.author.name is undefined :(. Smth wrong with fontend.js line 121 ```${gig.author}``` (tried gig.author.name but turns out undefined.)
-3. frontend.js line 35.
+3. signup_routes line 16. Currently, if the user does not input an image, the sign up won't work. Technically that's a good thing for this app but this app should at least give a msg to remind to add in image.
+4. frontend.js line 35.
 
 ## Future Developments
 
