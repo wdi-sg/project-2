@@ -8,17 +8,17 @@ Users will have to register an account with us. After logging in. They can use t
 
 ### ERD
 
-![ERD Diagram][https://github.com/subutai1175/project-2/blob/master/ERD%20Diagram.png]
+[ERD Diagram][https://github.com/subutai1175/project-2/blob/master/ERD%20Diagram.png]
 
 ### Flowchart
 
-![Flowchart][https://github.com/subutai1175/project-2/blob/master/Flowchart.png]
+[Flowchart][https://github.com/subutai1175/project-2/blob/master/Flowchart.png]
 
 ### Wireframe
 
-![Wireframe1][https://github.com/subutai1175/project-2/blob/master/Wireframe%202.JPG]
-![Wireframe2][https://github.com/subutai1175/project-2/blob/master/Wireframe%201.JPG]
+[Wireframe1][https://github.com/subutai1175/project-2/blob/master/Wireframe%202.JPG]
+[Wireframe2][https://github.com/subutai1175/project-2/blob/master/Wireframe%201.JPG]
 
 ### Link to App
 
-![Link to App][https://project2102017.herokuapp.com/]
+[Link to App][https://project2102017.herokuapp.com/]
