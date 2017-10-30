@@ -16,7 +16,6 @@ Problem I'm trying to solve it for.
 <img src="public/assets/images/user-story.png">
 
 ## WireFrames
-
 <img src="public/assets/images/wireframe1.png">
 
 <img src="public/assets/images/wireframe2.png">
