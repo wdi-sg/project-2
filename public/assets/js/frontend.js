@@ -25,8 +25,6 @@ $(function () {
       $(this).attr('upvotes', parseInt(currentUp) + 1)
 
     }
-
-
   })
 
   $('.down').click(function () {
@@ -38,9 +36,9 @@ $(function () {
     var currentNum = $(`#${id}`).text()
     $.post('/vote/downvote', {current: currentNum, obj: id, down: currentDown}, function (dataBack) {
       $(`#${id}`).text(dataBack)
+      if(currentNum !== $(`#${id}`).text()) Materialize.toast('Downvoted!', 1000)
     })
     $(this).attr('downvotes', parseInt(currentDown) + 1)
-    Materialize.toast('Downvoted!', 1000)
   }
 
   })
@@ -54,9 +52,10 @@ $(function () {
     var currentNum = $(`#${id}`).text()
     $.post('/vote/ansupvote', {current: currentNum, obj: id, up: currentUp}, function (dataBack) {
       $(`#${id}`).text(dataBack)
+      if(currentNum !== $(`#${id}`).text()) Materialize.toast('Upvoted!', 1000)
+
     })
     $(this).attr('upvotes', parseInt(currentUp) + 1)
-    Materialize.toast('Upvoted!', 1000)
   }
   })
 
@@ -69,9 +68,9 @@ $(function () {
     var currentNum = $(`#${id}`).text()
     $.post('/vote/ansdownvote', {current: currentNum, obj: id, down: currentDown}, function (dataBack) {
       $(`#${id}`).text(dataBack)
+      if(currentNum !== $(`#${id}`).text()) Materialize.toast('Downvoted!', 1000)
     })
     $(this).attr('downvotes', parseInt(currentDown) + 1)
-    Materialize.toast('Downvoted!', 1000)
   }
   })
 

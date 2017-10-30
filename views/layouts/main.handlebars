@@ -50,6 +50,19 @@
     <ul class="left hide-on-med-and-down">
       <li><a href="/admin"><i class="material-icons">security</i></a></li>
       <li><a href="/newquestion"><i class="material-icons left">mode_edit</i>Add a question</a></li>
+      <li><a class="modal-trigger" href="#instructionsModal">How To Use</a></li>
+      <div id="instructionsModal" class="modal modal-fixed-footer instrucPage">
+        <div class="modal-content">
+      <h4>Welcome to Viscuss, the leading virtual discussion app!</h4>
+      <p>Have questions that you urgently need the answers to but no one to turn to? We have specifically targeted your alumnis as well as people with
+      expertise in the fields related to your courses! Feel free to ask questions and do your part to contribute back to the community back answering
+    any questions you are able to!</p>
+    </div>
+    <div class="modal-footer">
+      <a href="/landingpage" class="modal-action modal-close waves-effect waves-black btn-flat">Register for an account now and start your journey!</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-black btn-flat">Close</a>
+    </div>
+  </div>
 
     </ul>
     <ul id="slide-out" class="side-nav">
@@ -78,12 +91,11 @@
     </nav>
 
     <div class="parallax-container p-con-modified">
-      {{> alerts }}
     <div class="parallax"><img src="/assets/images/background3.jpg"></div>
   </div>
   <div class="section">
     <div class="row container">
-      <br>
+      {{> alerts }}
       <br>
       <br>
       <h1 class="center">{{title}}</h1>

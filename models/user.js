@@ -27,7 +27,7 @@ userSchema.pre("save", function(next){
   var user = this
 
   user.slug = user.name.toLowerCase().split(" ").join("-")
-  // if (!user.isModified('password')) return next();
+  if (!user.isModified('password')) return next();
 
   //hash the password
   bcrypt.hash(user.password, 11)

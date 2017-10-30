@@ -103,30 +103,6 @@ router.post("/search", (req, res)=>{
     res.send(results)
   })
 })
- //// ===== TESTING FOR NEW MODEL ===//
-// router.get("/testingdate", (req,res)=>{
-//
-//   n =  new Date();
-// y = n.getFullYear();
-// m = n.getMonth() + 1;
-// d = n.getDate()
-// h = n.getHours()
-// minutes = n.getMinutes()
-//
-// var hours = ""
-// var mins = ""
-// var timeframe = "AM"
-// if (h>12){
-//   h = h-12
-//   timeframe = "PM"
-// }
-// h.toString().length < 2 ? hours = `0${h}`: hours = `${h}`
-// minutes.toString().length < 2 ? mins = `0${minutes}`: mins = `${minutes}`
-//
-//
-// res.send(`${d}/${m}/${y}-----${hours}:${mins} ${timeframe}`)
-// res.send(n.toLocaleTimeString())
-// })
 
 router.post('/addquestions', function (req, res) {
   if(req.body.question === "" || req.body.description === ""){
