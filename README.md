@@ -43,6 +43,7 @@ Register an account and start tweeting. The search bar on the top left helps you
 
 ## Planned Features
 
+* Fix autocomplete feature
 * Mentions
 * Replies
 * Retweets
