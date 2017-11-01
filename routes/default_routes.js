@@ -12,7 +12,7 @@ const { hasLoggedOut, isLoggedIn } = require('../helpers')
 router.get('/', (req, res) => {
   if(req.user === undefined || req.user.coursePref === "no"){
 
-    Thread.find().sort({totalVotes: -1})
+    Thread.find().sort({totalVotes: 1})
     .then(result=>{
       res.render("user/home",{
         title: "Questions",
@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
         title: "Questions",
         threads: data
       })
-    }).sort({totalVotes: -1})
+    }).sort({totalVotes: 1})
   }
 
 })
