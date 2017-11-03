@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicate</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <!--<![endif]-->
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="/assets/css/style.css">
+        <!--<![endif]-->
+</head>
+  <body>
+    <div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="/">Medicate</a>
+
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item pure-menu-selected"><a href="/profile" class="pure-menu-link">Profile</a></li>
+            {{#if user}}
+            <li class="pure-menu-item">
+              <a class="pure-menu-link" href="/logout">Logout</a>
+            </li>
+            {{else}}
+            <li class="pure-menu-item"><a href="/login" class="pure-menu-link">Login</a></li>
+            {{/if}}
+            <li class="pure-menu-item"><a href="/register" class="pure-menu-link">Sign Up</a></li>
+        </ul>
+    </div>
+      <div class="container">
+        <br>
+        <br>
+        <br>
+        <br>
+        {{{ body }}}
+      </div>
+      <footer class="bd-footer text-muted">
+        <div class="container-fluid p-3 p-md-5">
+          <p class="text-center">&copy 2017 by <a href="https://github.com/g174" target="_blank" rel="noopener">Grace</a></p>
+        </div>
+      </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
+    <script src="/assets/js/frontend.js" charset="utf-8"></script>
+  </body>
+</html>

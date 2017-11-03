@@ -1,0 +1,11 @@
+<h3>Update</h3>
+<form action="/profile/update/?_method=PUT" method="post">
+  <input type="hidden" name="medId" value={{medication.id}}>
+  <label for="name">Rename Medicine: </label>
+  <input type="text" name="name" value="{{ medication.name }}">
+
+  <label for="dosage">New Dosage: </label>
+  <input type="text" name="dosage">
+
+  <button type="submit" name="button">Submit</button>
+</form>

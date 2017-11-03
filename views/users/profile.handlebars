@@ -1,0 +1,35 @@
+
+<div class="row">
+  <h2>User Profile</h2>
+</div>
+<div class="row">
+  <h3>New Medications</h3>
+</div>
+
+  <form action="/profile?_method=put" method="post">
+    <label for="medicine">Medicine</label>
+    <input type="text" name="medicine" placeholder="e.g. Paracetamol">
+
+    <label for="dosage">Dosage</label>
+    <input type="text" name="dosage" placeholder="e.g. 500mg">
+
+    <button type="submit" name="button">Add to list</button>
+  </form>
+
+<h3>Current Medications</h3>
+<div class="row">
+  {{#each medicines as |medicine|}}
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">{{ medicine.name }}</h4>
+          <p class="card-text">{{ medicine.dosage }}</p>
+          <a href="/medications/update/{{medicine.id }}">Update</a>
+            <form action="/profile/{{ medicine.id }}?_method=DELETE" method="post">
+              <button type="submit" name="button">Delete</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
