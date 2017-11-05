@@ -15,7 +15,16 @@ const hasLoggedOut = (req, res, next) => {
   }
 }
 
+const isNotLoggedIn = (req, res, next) => {
+  if(!req.user) {
+    res.redirect('/register')
+  } else {
+    next()
+  }
+}
+
 module.exports = {
   hasLoggedOut,
-  isLoggedIn
+  isLoggedIn,
+  isNotLoggedIn
 }

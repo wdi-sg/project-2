@@ -49,17 +49,23 @@ router.get('/:id', (req, res) => {
   .then(project => {
     let dateTime = project.created.toString().replace(/[GMT+].*/g,'')
     let projectPatternExist = project.pattern
-    var userMatch = (project.creator.id === req.user.id)
+    if (req.user) {
+      var userMatch = (project.creator.id === req.user.id)
+      res.render('project/details', {
+        project, userMatch, dateTime, projectPatternExist
+      })
 
-    res.render('project/details', {
-      project, userMatch, dateTime, projectPatternExist
-    })
+    } else {
+      res.render('project/details', {
+        project, dateTime, projectPatternExist
+      })
+    }
   })
   .catch(err => res.send(err))
 })
 ///
 
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', isNotLoggedIn, (req, res) => {
 
   Project.findById(req.params.id)
   .populate('creator')

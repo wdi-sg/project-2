@@ -90,7 +90,8 @@ Put /:id/bookmark // removeBookmark
 Get /:id (projects id)
 Get /:id/edit
 Put /:id/edit
-Delete /:id/edit ```
+Delete /:id/edit
+```
 
 ------------
 

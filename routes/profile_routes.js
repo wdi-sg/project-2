@@ -39,30 +39,32 @@ router.delete('/',hasLoggedOut, (req, res) => {
 
     Pattern.find({creator: userId})
     .then(patternsArray => {
-      for (var i = 0; i < patternsArray.length; i++) {
-        Pattern.findByIdAndRemove(patternsArray[i].id)
-        .then(() => {
-          
-          Project.find({creator: userId})
-          .then(projectsArray => {
-            for (var i = 0; i < projectsArray.length; i++) {
-              Project.findByIdAndRemove(projectsArray[i].id)
-              .then(() => {})
-              }
-            })
-            .catch(err => {
-
-            })
-          })
-          .catch(err => {
-          })
+      if (patternsArray) {
+        for (var i = 0; i < patternsArray.length; i++) {
+          const editedPatternTitle = "(removed) " + patternsArray[i].title
+          let toUpdate = {
+            title : editedPatternTitle,
+            material : "",
+            steps: "",
+            imageUrl : "http://res.cloudinary.com/hqxmir9qs/image/upload/v1509874538/500x500placeholder_xy64yy.jpg"
+          }
+          Pattern.findByIdAndUpdate(patternsArray[i].id, toUpdate)
         }
-      })
-      .catch(err => {
-      })
+      }
+      Project.find({creator: userId})
+      .then(projectsArray => {
+        if (projectsArray){
+          for (var i = 0; i < projectsArray.length; i++) {
+            Project.findByIdAndRemove(projectsArray[i].id)
+            .catch(err => {})
+          }}
+        }
+      )
+      .catch(err => {})
     })
     .catch(err => res.send(err))
   })
+})
 
 
 
