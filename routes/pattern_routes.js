@@ -4,7 +4,7 @@ const Pattern = require('../models/pattern')
 const Project = require('../models/project')
 const express = require('express')
 const router = express.Router()
-const { hasLoggedOut, isLoggedIn, isNotLoggedIn } = require('../helpers')
+const { hasLoggedOut, isLoggedIn, isNotLoggedIn } = require('../helpers/index')
 
 const cloudinary = require('cloudinary')
 const multer = require('multer')
@@ -62,17 +62,19 @@ router.get('/:id', (req, res) => {
           pattern, userMatch, variations, notBookmark, dateTime
         })
       })
-    })
-    .catch(err => res.send(err))
-  } else {
-    Project.find({pattern : patternId})
-    .then(variations => {
-      res.render('pattern/details', {
-        pattern, variations, dateTime
+      .catch(err => res.send(err))
+    } else {
+      Project.find({pattern : patternId})
+      .then(variations => {
+        res.render('pattern/details', {
+          pattern, variations, dateTime
+        })
       })
-    })
-  }
+    }
+  })
+  .catch(err => res.send(err))
 })
+
 
 
 router.get('/:id/edit', isNotLoggedIn, (req, res) => {

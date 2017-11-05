@@ -9,6 +9,9 @@ const cloudinary = require('cloudinary')
 const multer = require('multer')
 const upload = multer({ dest: './uploads/' })
 
+const { isNotLoggedIn } = require('../helpers/index')
+
+
 // considering creating individual projects
 // router.get('/new', (req, res) => {
 //   res.render('project/new')
