@@ -1,0 +1,172 @@
+<div class='row'>
+  <div class='col s12'>
+    <ul class='tabs black'>
+      <li class='tab col s3'><a class='white-text' href='#consolePage'>Console</a></li>
+      <li class='tab col s3'><a class='white-text'href='#usersPage'>Users</a></li>
+      <li class='tab col s3'><a class='white-text'href='#threadsPage'>Threads</a></li>
+      <li class='tab col s3'><a class='white-text'href='#answersPage'>Answers</a></li>
+    </ul>
+  </div>
+  <div class="">
+    &nbsp;
+    <h5>Welcome back {{currentUser.name}}</h5>
+    <p><b> Admin Code</b> {{currentUser.adminCode}}</p>
+    <p>________________________</p>
+  </div>
+  <div id='consolePage' class='col s12'>
+    <div class=''>
+      <table>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Users</td>
+          <td>
+            <form class="" action="/admin/deleteAllUsers?_method=DELETE" method="post">
+              <button class="btn red accent-4" type="submit" name="button">Delete<i class="material-icons right">delete_sweep</i></button>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td>Threads</td>
+          <td>
+            <form class="" action="/admin/deleteAllThreads?_method=DELETE" method="post">
+              <button class="btn red accent-4" type="submit" name="button">Delete<i class="material-icons right">delete_sweep</i></button>
+            </form>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Answers</td>
+          <td>
+            <form class="" action="/admin/deleteAllAnswers?_method=DELETE" method="post">
+                <button class="btn red accent-4" type="submit" name="button">Delete<i class="material-icons right">delete_sweep</i></button>
+          </form>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <!-- Users tab -->
+  <div id='usersPage' class='col s12'>
+    <ul class="collapsible" data-collapsible="accordion">
+        {{#each users}}
+        <li>
+          <div class="collapsible-header black white-text"><i class="material-icons">filter_drama</i>{{this.name}}</div>
+          <div class="collapsible-body">
+            <table>
+            <tr>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Course</th>
+              <th>Course Preference</th>
+              <th>Unique ID</th>
+              <th>Edit User Details</th>
+              <th>Delete User</th>
+            </tr>
+            <form class="" action="/profile/adminconsole/{{this.id}}?_method=PUT" method="post">
+              <tr>
+              <td> <input type="text" name="name" value="{{this.name}}" ></td>
+              <td> <input type="email" name="email" value="{{this.email}}" ></td>
+              <td> <input type="text" name="course" value="{{this.course}}" ></td>
+              <td> <input type="text" name="coursePref" value="{{this.coursePref}}" ></td>
+              <td> {{this.id}}</td>
+              <td>
+                <button class="btn black" type="submit" name="button"><i class="material-icons">brush</i></button>
+              </td>
+             </form>
+              <td>
+              <form class="" action="/user/{{this.id}}?_method=DELETE" method="post">
+                <button class="btn black" type="submit" name="button"><i class="material-icons">delete</i></button>
+                </form>
+            </td>
+            </tr>
+
+          </table>
+        </div>
+        </li>
+          {{/each}}
+      </ul>
+  </div>
+  <!-- threads start here -->
+  <div id='threadsPage' class='col s12'>
+    <ul class="collapsible" data-collapsible="accordion">
+        {{#each threads}}
+        <li>
+          <div class="collapsible-header black white-text"><i class="material-icons">filter_drama</i>{{this.question}}</div>
+          <div class="collapsible-body">
+            <table>
+            <tr>
+              <th>Questions</th>
+              <th>Description</th>
+              <th>Course</th>
+              <th>Creator</th>
+              <th>Total votes</th>
+              <th>Edit Thread Details</th>
+              <th>Delete Thread</th>
+            </tr>
+            <form class="" action="/admin/adminconsole/threads/{{this.id}}?_method=PUT" method="post">
+              <tr>
+              <td> <input type="text" name="question" value="{{this.question}}" ></td>
+              <td> <input type="text" name="description" value="{{this.description}}" ></td>
+              <td> <input type="text" name="course" value="{{this.course}}" ></td>
+              <td> <input type="text" name="creator" value="{{this.creator}}" ></td>
+              <td> <input type="text" name="totalVotes" value="{{this.totalVotes}}" ></td></td>
+              <td>
+                <button class="btn black" type="submit" name="button"><i class="material-icons">brush</i></button>
+              </td>
+             </form>
+              <td>
+              <form class="" action="/admin/threads/{{this.id}}?_method=DELETE" method="post">
+                <button class="btn black" type="submit" name="button"><i class="material-icons">delete</i></button>
+                </form>
+            </td>
+            </tr>
+
+          </table>
+        </div>
+        </li>
+          {{/each}}
+      </ul>
+  </div>
+  <!-- ANSWERS TAB START HERE -->
+  <div id='answersPage' class='col s12'>
+    <ul class="collapsible" data-collapsible="accordion">
+        {{#each answers}}
+        <li>
+          <div class="collapsible-header black white-text"><i class="material-icons">filter_drama</i>Parent ID: {{this.parent}}</div>
+          <div class="collapsible-body">
+            <table>
+            <tr>
+              <th>Description</th>
+              <th>Creator Name</th>
+              <th>Total votes</th>
+              <th>Edit Answer Details</th>
+              <th>Delete Answer</th>
+            </tr>
+            <form class="" action="/admin/adminconsole/answers/{{this.id}}?_method=PUT" method="post">
+              <tr>
+              <td> <input type="text" name="description" value="{{this.description}}" ></td>
+              <td> <input type="text" name="creatorName" value="{{this.creatorName}}" ></td>
+              <td> <input type="text" name="totalVotes" value="{{this.totalVotes}}" ></td></td>
+              <td>
+                <button class="btn black" type="submit" name="button"><i class="material-icons">brush</i></button>
+              </td>
+             </form>
+              <td>
+              <form class="" action="/admin/answers/{{this.id}}?_method=DELETE" method="post">
+                <button class="btn black" type="submit" name="button"><i class="material-icons">delete</i></button>
+                </form>
+            </td>
+            </tr>
+
+          </table>
+        </div>
+        </li>
+          {{/each}}
+      </ul>
+  </div>
+</div>
+<!-- TESTING AREA DO NOT PUT ANY WORKING CODE BELOW -->

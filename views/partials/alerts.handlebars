@@ -1,0 +1,21 @@
+{{!-- <% if (alerts.error) { %>
+  <% alerts.error.forEach(function(msg) { %>
+    <div class="alert alert-danger"><%= msg %></div>
+  <% }); %>
+<% } %>
+<% if (alerts.success) { %>
+  <% alerts.success.forEach(function(msg) { %>
+    <div class="alert alert-success"><%= msg %></div>
+  <% }); %>
+<% } %> --}}
+
+
+{{#if alerts }}
+<div class="container">
+  <p class="light-green-text text-accent-3 center">{{ alerts.success }}</p>
+  <p class="red-text text-accent-4 center">{{ alerts.error }}</p>
+  <p class="light-green-text text-accent-3 center">  {{ alerts.info }}</p>
+</div>
+
+
+{{/if}}

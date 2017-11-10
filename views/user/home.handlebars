@@ -1,0 +1,19 @@
+
+{{!-- <div class="card-panel hoverable"> --}}
+<table class="bordered">
+  {{#each threads}}
+  <tr class="hoverable">
+    <td><div class="buttons" align="center">
+    <button class="up waves-effect waves-teal btn-flat"  data={{this._id}} upvotes = {{this.upVotes}}><i class="material-icons">expand_less</i></button>
+    <p id={{this._id}}>{{this.totalVotes}}</p>
+    <button class="down waves-effect waves-teal btn-flat"  data={{this._id}} downvotes = {{this.downVotes}}><i class="material-icons">expand_more</i></button>
+    </div></td>
+    <td><a href="/thread/{{this.id}}" class="black-text"><h3> {{this.question}}</h3></a>
+      <br> Thread Opened: {{date}},{{this.time}}
+      <br> 8 Answers
+      <br>{{this.course}}
+    </td>
+  </tr>
+  {{/each}}
+</table>
+{{!-- </div> --}}

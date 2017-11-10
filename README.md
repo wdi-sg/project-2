@@ -1,17 +1,31 @@
-# Your Project Name
+# ViscuSS
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+A virtual discussion platform for students from local polytechnics. Each course will have their own page, this allows a more accurate and specific location for students to ask and obtain relevant answers.
+
+Students/lecturers can contribute to the page by adding their own answers or questions, users can then vote to decide on the most favourable answers/questions.
+
+Questions and answers can be accessed via the user profile page.
+
+## Live Version
+
+[ViscuSS](https://viscuss.herokuapp.com/)
+### ERD
+
+![](/public/assets/images/ERD.png)
 
 ## Getting Started
 
 Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+
+
+
 
 ### Prerequisites
 
 What is needed to install and run the project, how do we install them
 
 ```
-Code example
+npm install
 ```
 
 ### How to Use
@@ -39,19 +53,51 @@ Did you write automated tests? If so, how do we run them.
 Code example
 ```
 
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
 
 ## Built With
 
 What did you use to build it, list the technologies, plugins, gems, packages etc.
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+* [jQuery](http://jquery.com/)
+* [Mongoose](http://mongoosejs.com/)
+* [MongoDB](https://www.mongodb.com/)
 
 ## Workflow
 
+#### Wireframes
+
+**Home Page**
+
+![](/public/assets/images/homepage.png)
+
+**Instructions**
+
+![](/public/assets/images/instructions.png)
+
+**Login and Registration Page**
+
+![](/public/assets/images/landingpage.png)
+
+**Adding new Questions**
+
+![](/public/assets/images/newquestion.png)
+
+**Sample Question Page**
+
+![](/public/assets/images/singlethread.png)
+
+**Sample Course Thread Page**
+
+![](/public/assets/images/coursethread.png)
+
 Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+
+
+## To Be added
+* Email verification API
+* QR code for mobile continuation
+* Make votes linked to user accounts and prevent anonymous users from voting
+
 
 ## Authors
 
@@ -62,4 +108,3 @@ Did you collaborate with others on this project, list them here
 ## Acknowledgments
 
 * Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-

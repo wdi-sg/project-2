@@ -1,0 +1,28 @@
+
+<form method="POST" action="/addquestions">
+  <i class="material-icons prefix">subject</i>
+  <label for="questionText">Question</label>
+  <input id="questionText" type="text" name="question">
+
+  <i class="material-icons prefix">mode_edit</i>
+  <label for="textarea1">More Details</label>
+  <textarea id="textarea1" class="materialize-textarea" name="description"></textarea>
+
+  <div class="input-field col s12">
+    <i class="material-icons prefix">school</i>
+      <select name="dropdown">
+        <option value="none" disable selected>Choose your course (optional)</option>
+        <option value="Web Development Immersive">GA - WDI 12</option>
+        <option value="Digitan Animation">Digital Animation</option>
+        <option value="Experience and Product Design">Experience And Product Design</option>
+        <option value="Games Design and Development">Games Design and Development</option>
+        <option value="Interior Design">Interior Design</option>
+        <option value="Media and Communication">Media and Communication</option>
+        <option value="Visual Communication and Media Design">Visual Communication and Media Design</option>
+        <option value="Visual Effects and Motion Graphics">Visual Effects and Motion Graphics</option>
+      </select>
+      <label> Course Preference</label>
+    </div>
+
+  <input class="btn black"type="submit">
+</form>
