@@ -9,14 +9,14 @@ router.get('/', (req, res) => {
 })
 
 // show /browse/:bookID
-// router.get('/:id', (req, res) => {
-//   var getLink = 'https://www.googleapis.com/books/v1/volumes/' + req.params.id
-//   console.log('getLink: ' + getLink)
-//   $.get(getLink)
-//   .done(function (response) {
-//     console.log(response)
-//   })
-//   res.render('browse/bookDetails')
-// })
+router.get('/:id', (req, res) => {
+  var getLink = 'https://www.googleapis.com/books/v1/volumes/' + req.params.id
+  console.log('getLink: ' + getLink)
+  $.get(getLink)
+  .done(function (response) {
+    console.log(response)
+  })
+  res.render('browse/bookDetails')
+})
 
 module.exports = router

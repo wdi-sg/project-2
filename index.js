@@ -17,6 +17,7 @@ const passport = require('./config/ppConfig')
 
 const { hasLoggedOut, isLoggedIn } = require('./helpers')
 
+// require models
 const User = require('./models/user')
 const Book = require('./models/book')
 
@@ -97,15 +98,7 @@ app.post('/saveBook', (req, res) => {
   newBook.save()
 })
 
-// Creating 'I have read this' or 'unread this' btn
-// pseudo code is...
-// 1. on.click more info
-// 2. get book specific API
-// 3. add book to DB if it doesnt already exist in DB..
-// 4. find book _id of current book
-// 5. iterate current user's readBooks array
-// 6. if book_id matches any of user readBooks array, add 'remove from read list' btn
-// 6. else add 'I have read this' btn
+// Creating 'I have read this' / 'unread this' button
 app.post('/createBtn', (req, res) => {
   var formData = req.body
   var returnId = ''
@@ -114,42 +107,42 @@ app.post('/createBtn', (req, res) => {
   )
   .then(book => {
     req.user.readBooks.forEach((bookid) => {
-      console.log('book.id', book.id)
-      console.log('bookid', bookid)
       if (bookid == book.id) {
-        console.log('match!')
         returnId = book.id
-        console.log('returnId', returnId)
         res.send({
           message: returnId
         })
       }
     })
   })
-  // return returnId
 })
 
+// Add to read books
 app.post('/addReadBook', (req, res) => {
   var formData = req.body
   Book.findOne(
     {title: formData.bookTitle}
   )
   .then(book => {
-
-    // console.log(book)
-    // console.log(req.user)
-    // req.user.readBooks.forEach((bookId) => {
-    //   if(bookId === book.id)
-    // })
-
     req.user.readBooks.push(book._id)
     req.user.save()
-    .then((result) => res.send({
-      message: result
-    }))
-    .catch(
-      err => console.log(err)
-    )
+  })
+})
+
+// Remove read book
+app.post('/removeReadBook', (req, res) => {
+  var formData = req.body
+  Book.findOne(
+    {title: formData.bookTitle}
+  )
+  .then(book => {
+    for (var i = req.user.readBooks.length - 1; i >= 0; i--) {
+      if (req.user.readBooks[i] == book.id) {
+        console.log(i)
+        req.user.readBooks.splice(i, 1)
+        req.user.save()
+      }
+    }
   })
 })
 
@@ -162,7 +155,7 @@ app.use('/profile', profile_routes)
 // ROUTE for logout
 app.get('/logout', hasLoggedOut, (req, res) => {
   req.logout()
-  res.redirect('/register')
+  res.redirect('/')
 })
 
 // opening port for express
