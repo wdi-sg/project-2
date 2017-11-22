@@ -5,7 +5,7 @@ Fantasy Tours is a leading specialist tour operator featuring stunning location
 We bring you to stunningly beautiful places, most of which are remote and hard to find. We trek you deep into old growth forests, along wild sea cliffs, across rocky beaches, into caves and crumbling medieval ruins. We have costumes, swords and wands available for use, at no extra cost. Experience the magic. Go all the way into your favourite fantasy.
 
 ## Live Version
-[Fantasy Tours](https://project2liyuan.herokuapp.com)
+[Fantasy Tours](https://fantasytours.herokuapp.com)
 
 ## Table of Contents
 1. Workflow
