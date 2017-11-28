@@ -1,65 +1,96 @@
-# Your Project Name
+# ArtyCraftyCourses
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+#Get messy here at! https://artycraftycourses.herokuapp.com/
 
-## Getting Started
+## OverView
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+Platform for Artsy & Crafty people to find and share their art skills with others like-minded people.
 
-### Prerequisites
+Allows experienced people to have an opportunity to start their very own art class that they are skilled in. The platform allows people to apply for an instructor position, having this position allows them to create art courses online. Only when there is enough demand for the course, then course will be passed on to allow the student users to enrol in them. The platform also allows student users to register to apply for any current course and vote for a course that they would like to attend.
 
-What is needed to install and run the project, how do we install them
+Instructor :
+Needs an Admin Code for Registration.
+Must prove to be well knowledge in the field of Art course pending creation.
+Must have a space for students to comfortably attend the course.
+Able to show a certain level of competency for teaching.
+Must have a PayPal Account.
 
-```
-Code example
-```
+Student :
+Free registration.
+Must have a PayPal Account.
 
-### How to Use
-
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
-
-
-```
-Code example
-```
-
-More steps...
-
-```
-until finished
-```
+Art platform :
+Collects the transaction from students.
+Students can get cancelation fee only till 5 days before course begins.
+Teacher is paid when course is done.
 
 
-## Tests
+## Site Navigation
 
-Did you write automated tests? If so, how do we run them.
+Home Page :
+* Available art genres for sign up.
+* Updates and Current relevant news.
+---
+Register Page :
+* Student - Requires Username, password and email.
+* Instructor = Requires  **ADMIN CODE**, username, password and email.
+---
+Login page :
+* Selection of student or Instructor.
+email and password require.
+---
+Profile page:
+* Student - Basic Profile : name, email, about, current course, completed course
+Able to update, edit profile.
+* Instructor - Advance Profile : name, email, about, current course, completed course, currently teaching.
+Able to update, edit profile.
+---
+Current Course page:
+* View current available courses here.
+* Instructor is able to edit & update own's current course.
+* Each available course can be recommended by students who completed it.
+* Each available course can be reviewed students who completed it.
+* Each available course has it's own details.
+---
+Pending Course page:
+* View pending courses available here.
+* Pending courses can be voted up / down once per user.
+* Instructor can create new course in this page.
+* When pending course reaches a certain number of Up votes, it goes to current courses.
+* Each pending course can be questioned by users.
+* Each pending course can be updated by Instructor who created it.
+* Each pending course has its own details.
 
+## Codes
 
-```
-Code example
-```
 
 ## Live Version
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+HEROKU : https://artycraftycourses.herokuapp.com/
+
+GITHUB : https://github.com/sillyadventures/project-2
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+* [Materalize](http://materializecss.com/)
+* [jQuery](http://jquery.com/)
+* [herokuapp](https://www.heroku.com/)
+* [Robo 3T](https://robomongo.org/)
+* [mlab](https://mlab.com/)
+* [google maps API](https://developers.google.com/maps/)
+* [Unsplash (images)](https://unsplash.com/)
+* [handlebars](http://handlebarsjs.com/)
 
 ## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+![ERD](/public/assets/readmeimages/erdflow.png "ERD")
+![site flow](/public/assets/readmeimages/siteflow.png "site")
 
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+* Little Hazel
+* Superman Joseph
+* Einstein Soh Min
+* Old man William
+* Teaching Assistant Master Alex Min

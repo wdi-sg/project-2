@@ -1,0 +1,108 @@
+<div class="container">
+  <h4><blockquote>
+      Course Details
+    </blockquote></h4>
+  <h3>{{course.name}}</h3>
+  <h5>By : {{course.teacher.name}}</h5>
+<br>
+  <div class="card">
+    <div class="card-content">
+      <p>{{course.description}}</p>
+    </div>
+    <div class="card-tabs">
+      <ul class="tabs tabs-fixed-width">
+        <li class="tab"><a class="active" href="#test4">Address</a></li>
+        <li class="tab"><a href="#test5">Time</a></li>
+        <li class="tab"><a href="#test6">People</a></li>
+      </ul>
+    </div>
+    <div class="card-content grey lighten-4">
+      <div id="test4">{{course.google}}<br>
+<form action="/course" method="post">
+    <h3><input id="pac-input" name="google" class="controls" type="text" placeholder="Enter a location" value="{{course.google}}">
+        <div id="map"></div>
+        <div id="infowindow-content">
+        <span id="place-name"  class="title"></span><br>
+        Place ID <span id="place-id"></span><br>
+        <span id="place-address"></span>
+    </div></h3>
+    {{!-- <button class="btn waves-effect waves-light c2185b pink darken-2 pulse" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button> --}}
+</form>
+  </div>
+        <div id="test5">Date : {{course.date}}<br>
+          Time : {{course.time}}<br>
+          Duration : {{course.duration}}</div>
+          <div id="test6">Instructor : {{course.teacher.name}}<br>
+            Current Students : {{course.currentStudents}}</div>
+          </div>
+  </div>
+{{#if admin}}
+  <a a href="/courseupdate/{{course.id}}" class="waves-effect waves-light btn-large c2185b pink darken-2 pulse"><i class="material-icons left">cloud</i>Update</a>
+{{else}}
+  <a a href="/pending" class="waves-effect waves-light btn-large c2185b pink darken-2 pulse"><i class="material-icons left">touch_app</i>Sign Up</a>
+{{/if}}
+
+<div class="row">
+    <div class="col s12">
+      <div class="card-panel ">
+        <h6>Write a Review</h6>
+        <form action="/course" method="post">
+
+          <label for="title">Title</label>
+          <input type="hidden" name="courseId" value={{course.id}}>
+          <input type="text" id="title" name="title" placeholder="Review Title">
+          <br>
+
+          <label for="description">What would you like to say?</label>
+          <textarea id="description" name="description" rows="8" cols="80"></textarea>
+          <br>
+
+          <button class="btn waves-effect waves-light c2185b pink darken-2 pulse" type="submit" name="action">Submit Review
+          <i class="material-icons right">chat_bubble_outline</i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+{{!-- <div class="row">
+  {{#each review}}
+      <div class="col s4 m4">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title">{{this.name}}</span>
+            <p>{{this.description}}</p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div> --}}
+
+  <!-- this is the do the -->
+<div class="row">
+  {{#each review}}
+    <form class="" action="index.html" method="post">
+      <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{this.title}}</div>
+          <div class="collapsible-body"><input type="text" name="" value="{{this.title}}"></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">place</i>{{this.description}}</div>
+          <div class="collapsible-body"><input type="text" name="" value="{{this.description}}"></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><input type="submit" name="" value="Edit"></div>
+        </li>
+      </ul>
+    </form>
+  {{/each}}
+</div>

@@ -1,0 +1,46 @@
+<div class="container">
+
+  <h3>{{user.name}}</h3>
+</br>
+  <div class="details">
+
+    <h4>Profile Details</h4>
+  </br>
+  <form action="/show/{{user.id}}?_method=PUT" method="post">
+
+    <ul class="collapsible" data-collapsible="expandable" data-collapsible="accordion">
+  
+    <li>
+      <div class="collapsible-header"><i class="material-icons">accessibility</i>Name : {{user.name}}</div>
+      <div class="collapsible-body">Edit :<input type="text" name="name" value="{{user.name}}"> </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">email</i>Email : {{user.email}}</div>
+      <div class="collapsible-body">Edit :<input type="text" name="email" value="{{user.email}}"></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">beach_access</i>About : {{user.description}}</div>
+      <div class="collapsible-body">Edit :<input type="text" name="description" value="{{user.description}}"></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">school</i>Current Courses : {{user.currentCourse}}</div>
+      <div class="collapsible-body">Edit :<input type="text" name="currentCourse" value="{{user.currentCourse}}"></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">done_all</i>Completed Courses : {{user.completedCourse}}</div>
+      <div class="collapsible-body">Edit :<input type="text" name="completedCourse" value="{{user.completedCourse}}"></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">gradient</i>Currently teaching : {{user.currentTeach}}</div>
+      <div class="collapsible-body">Edit :<input type="text" name="currentTeach" value="{{user.currentTeach}}"></div>
+    </li>
+  </ul>
+
+  </br>
+    <button class="btn waves-effect waves-light c2185b pink darken-2 pulse" type="submit" name="action">Submit
+   <i class="material-icons right"></i>
+ </button>
+  </form>
+   </br>
+  </div>
+</div>

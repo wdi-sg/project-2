@@ -1,0 +1,54 @@
+<div class="container">
+  <h3>{{course.name}}</h3>
+</br>
+  <div class="details">
+
+    <h4>Course Updates</h4>
+  </br>
+
+  <form action="/courseupdate/{{course.id}}?_method=PUT" method="post">
+
+    <ul class="collapsible" data-collapsible="accordion">
+  <li>
+    <div class="collapsible-header"><i class="material-icons">brush</i>Name : {{course.name}}</div>
+    <div class="collapsible-body"><input type="text" name="name" value="{{course.name}}"></div>
+  </li>
+  <li>
+    <div class="collapsible-header"><i class="material-icons">gradient</i>About : {{course.description}}</div>
+    <div class="collapsible-body"><input type="text" name="description" value="{{course.description}}"></div>
+  </li>
+  <li>
+    <div class="collapsible-header"><i class="material-icons">av_timer</i>Duration : {{course.duration}}</div>
+    <div class="collapsible-body"><input type="text" name="duration" value="{{course.duration}}"></div>
+  </li>
+  <li>
+    <div class="collapsible-header"><i class="material-icons">date_range</i>Date : {{course.date}}</div>
+    <div class="collapsible-body"><input type="text" name="date" class="datepicker" value="{{course.date}}"></div>
+  </li>
+  <li>
+    <div class="collapsible-header"><i class="material-icons">access_time</i>Time : {{course.time}}</div>
+    <div class="collapsible-body"><input type="text" name="time" class="timepicker" value="{{course.time}}"></div>
+  </li>
+  <li>
+    <div class="collapsible-header"><i class="material-icons">monetization_on</i>Price : {{course.price}}/div>
+    <div class="collapsible-body"><input type="text" name="price" value="{{course.price}}"></div>
+  </li>
+</ul>
+
+  </br>
+    <button class="btn waves-effect waves-light c2185b pink darken-2 pulse" type="submit" name="action">Submit
+   <i class="material-icons right"></i>
+ </button>
+</form>
+</br>
+ <form class="form-inline deleteForm"
+       action="/courseupdate/{{course.id}}?_method=DELETE"
+       method="post"
+       >
+ <button class="btn waves-effect waves-light c2185b pink darken-2 pulse" type="submit" name="button">Delete
+<i class="material-icons right"></i>
+</button>
+</form>
+<br>
+  </div>
+</div>

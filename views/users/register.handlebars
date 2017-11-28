@@ -1,0 +1,40 @@
+<div class="container">
+
+  <h1>User Register</h1>
+
+<div class="row">
+    <form class="col s12" action="/register" method="post">
+
+      <input type="hidden" name="user[type]" value="admin">
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Username" name="user[name]" id="name" type="text" class="validate">
+          <label for="name"></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Password" name="user[password]" id="password" type="password" class="validate">
+          <label for="password"></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Email" name="user[email]" id="email" type="email" class="validate">
+          <label for="email"></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Admin Code" name="user[code]" id="agidmincode" type="password" class="validate">
+          <label for="admin_code"></label>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light #c2185b pink darken-2 pulse" type="submit" name="action">Submit
+   <i class="material-icons right"></i>
+ </button>
+    </form>
+  </div>
+
+  </div>

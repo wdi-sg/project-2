@@ -1,0 +1,70 @@
+<div class="container">
+  <h1>Pending Courses</h1>
+  <ul class="collection">
+    {{#each output as |out|}}
+      <li class="collection-item avatar">
+        <img src="" alt="" class="circle">
+          <span class="title">{{out.name}}</span>
+          <p>{{out.description}} <br>
+            {{out.currentStudents}} <br>
+          </p>
+          <a class="btn-floating btn-small waves-effect waves-light c2185b pink darken-2" href="/course/{{out.slug}}" class="secondary-content"><i class="material-icons">list</i></a>
+      </li>
+    {{/each}}
+  </ul>
+</br>
+  {{#if admin}}
+<h3>Course Creation</h2>
+</br>
+  <div class="row">
+    <form class="col s12" action="/pending" method="post">
+      <input type="hidden" name="course[user]" value="{{user.id}}">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">mode_edit</i>
+          <textarea id="icon_prefix2" name="course[name]" class="materialize-textarea"></textarea>
+          <label for="icon_prefix2">Name of Course</label>
+        </div>
+      </div>
+      <div class="row">
+       <div class="input-field col s12">
+         <i class="material-icons prefix">mode_edit</i>
+         <textarea id="icon_prefix2" name="course[description]" class="materialize-textarea"></textarea>
+         <label for="icon_prefix2">Description of Course</label>
+       </div>
+     </div>
+       <div class="row">
+       <div class="input-field col s4">
+         <i class="material-icons prefix">mode_edit</i>
+         <textarea id="icon_prefix2" name="course[duration]" class="materialize-textarea"></textarea>
+         <label for="icon_prefix2">Duration of Course</label>
+       </div>
+     </div>
+       <input type="text" name="course[date]" class="datepicker" placeholder="Pick a Date">
+       <input type="text" name="course[time]" class="timepicker" placeholder="Pick a Time">
+     <div class="row">
+       <div class="input-field col s4">
+         <i class="material-icons prefix">mode_edit</i>
+         <textarea id="icon_prefix2" name="course[price]" class="materialize-textarea"></textarea>
+         <label for="icon_prefix2">Enter expected Price for Course</label>
+       </div>
+     </div>
+     <div class="input-field col s12">
+   <select>
+     <option value="" disabled selected>Pick Type of Art</option>
+     <option value="1">Painting</option>
+     <option value="2">Pottery</option>
+     <option value="3">Paper Crafting</option>
+   </select>
+   <label>Select</label>
+ </div>
+     <button class="btn waves-effect waves-light c2185b pink darken-2 pulse" type="submit" name="action">Submit
+ <i class="material-icons right">send</i>
+</button>
+{{else}}
+Hey there.
+{{/if}}
+  </form>
+</div>
+
+ </div>
