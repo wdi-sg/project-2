@@ -12,10 +12,6 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   var getLink = 'https://www.googleapis.com/books/v1/volumes/' + req.params.id
   console.log('getLink: ' + getLink)
-  $.get(getLink)
-  .done(function (response) {
-    console.log(response)
-  })
   res.render('browse/bookDetails')
 })
 
