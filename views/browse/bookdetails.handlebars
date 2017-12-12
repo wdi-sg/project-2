@@ -2,11 +2,26 @@
 
 <body class="bookDetailsContent">
 
-  <img src="" alt="">
-  <h3>Title</h3>
-  <h4>Author: </h4>
-  <h6>Publisher: </h6>
-  <h6>Published Date: </h6>
-  <p>Description...</p>
-  <button type="button" name="button">READ</button>
+  {{#if book.img}}
+  <img src="{{ book.img }}" alt="">
+  {{else}}
+  <img src="{{ book.thumbnail }}">
+  {{/if}}
+
+  <h3>{{ book.title }}</h3>
+  <h4>Author: {{ book.author }}</h4>
+  <h6>Publisher: {{ book.publisher }}</h6>
+  <h6>Published Date: {{ book.publishedDate }}</h6>
+  <p>{{ book.description }}</p>
+
+  {{#if checker}}
+  <button type="button" class="unreadBtn" name="{{ book._id }}">Unread Book</button>
+  {{else}}
+  <button type="button" class="readBtn" name="{{ book._id }}">Read Book</button>
+  {{/if}}
+
+  <div class="commentsSection">
+    <input type="text"/>
+  </div>
+
 </body>

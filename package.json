@@ -6,7 +6,7 @@
   "author": "Prima Aulia Gusta <primaulia@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon"
+    "start": "nodemon index.js"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",

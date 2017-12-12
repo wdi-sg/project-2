@@ -2,17 +2,11 @@ const User = require("../models/user")
 const express = require("express")
 const router = express.Router()
 const passport = require("../config/ppConfig")
+const { hasLoggedOut, isLoggedIn } = require("../helpers")
+const Books = require("../models/book")
 
 router.get("/", (req, res) => {
-  res.render("users/login")
+  res.render("browse/booksRead")
 })
-
-router.post(
-  "/",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login"
-  })
-)
 
 module.exports = router
