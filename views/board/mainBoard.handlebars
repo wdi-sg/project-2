@@ -16,8 +16,8 @@
           <h5>Plan/Build:</h5>
           {{#each tasks as |task|}}
           {{#if task.isCreate}}
-          <div class="taskItem col s6" id={{task.id}}>
-            <div class="card yellow lighten-3 z-depth-3">
+          <div class="col s6" id={{task.id}}>
+            <div class="card yellow lighten-3 z-depth-3 taskItem">
               <h5 class="inline-editable">Task: {{task.name}}</h5>
               <p class="inline-editable">{{task.description}}</p>
               <p class="inline-editable">Assigned to: {{task.assigned}}</p>
@@ -35,8 +35,8 @@
           <h5>Review/Test:</h5>
           {{#each tasks as |task|}}
           {{#if task.isReview}}
-          <div class="taskItem col s6" id={{task.id}}>
-            <div class="card yellow lighten-3 z-depth-3">
+          <div class="col s6" id={{task.id}}>
+            <div class="card yellow lighten-3 z-depth-3 taskItem">
               <h5 class="inline-editable">Task: {{task.name}}</h5>
               <p class="inline-editable">{{task.description}}</p>
               <p class="inline-editable">Assigned to: {{task.assigned}}</p>
@@ -57,8 +57,8 @@
           <h5>Backlog/Return:</h5>
           {{#each tasks as |task|}}
           {{#if task.isReturn}}
-          <div class="taskItem col s3" id={{task.id}}>
-            <div class="card yellow lighten-3 z-depth-3">
+          <div class="col s3" id={{task.id}}>
+            <div class="card yellow lighten-3 z-depth-3 taskItem">
               <h5 class="inline-editable">Task: {{task.name}}</h5>
               <p class="inline-editable">{{task.description}}</p>
               <p class="inline-editable">Assigned to: {{task.assigned}}</p>

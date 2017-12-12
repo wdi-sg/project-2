@@ -22,7 +22,7 @@ $(function() {
 
   $("body").on("click", ".taskItem", e => {
     if (!clicked) {
-      clickedId = e.target.id
+      clickedId = e.target.parentNode.id
       $jTarget = $("body").find("#" + clickedId)
       $jTarget.children().removeClass("yellow")
       $jTarget.children().addClass("orange")
@@ -110,11 +110,15 @@ $(function() {
     //   $messageList.find(":first-child").remove()
     // }
 
-    let $messageString = `<li class='flow-text chatMessage'><b>${msg.user}:</b></li>`
+    let $messageString = `<li class='flow-text chatMessage'><b>${
+      msg.user
+    }:</b></li>`
 
     $messageList.append(
       $(
-        `<li class='flow-text chatMessage'><strong>${msg.user}:</strong> ${msg.message}</li>`
+        `<li class='flow-text chatMessage'><strong>${msg.user}:</strong> ${
+          msg.message
+        }</li>`
       )
     )
   })

@@ -10,18 +10,25 @@
   <body>
     <nav>
       <div class="nav-wrapper blue">
-        <ul id="nav-mobile" class="left">
-          <li><a href="/"><i class="material-icons right">home</i>Home</a></li>
-          {{#if user}}
-          <li><a href="/board"><i class="material-icons right">assignment</i>Sprint Board</a></li>
-          <li><a href="/manageProject"><i class="material-icons right">folder_shared</i>Manage Project</a></li>
-          <li><a class="nav-link" href="/profile"><i class="material-icons right">account_circle</i>{{ user.name }}</a></li>
-          <li><a class="nav-link" href="/logout">Logout</a></li>
-          {{else}}
-          <li><a class="nav-link" href="/register">Register</a></li>
-          <li><a class="nav-link" href="/login">Login</a></li>
-          {{/if}}
-        </ul>
+        <div class="container">
+          <ul id="nav-mobile" class="left">
+            <li><a href="/"><i class="material-icons right">home</i>Home</a></li>
+            {{#if user}}
+            <li><a href="/board"><i class="material-icons right">assignment</i>Task Board</a></li>
+            <li><a href="/manageProject"><i class="material-icons right">folder_shared</i>Manage Project</a></li>
+            {{/if}}
+          </ul>
+          <ul id="nav-mobile" class="right">
+            {{#if user}}
+            <li><a class="nav-link" href="/profile"><i class="material-icons right">account_circle</i>{{ user.name }}</a></li>
+            <li><a class="nav-link" href="/logout">Logout</a></li>
+            {{else}}
+            <li><a class="nav-link" href="/register">Register</a></li>
+            <li><a class="nav-link" href="/login">Login</a></li>
+            {{/if}}
+          </ul>
+
+        </div>
       </div>
     </nav>
     {{{ body }}}

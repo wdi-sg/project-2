@@ -30,9 +30,17 @@ The bulk of the website is on the Sprint board.
 
 ## List of Routes
 
-- Login
-- Register
-- Index (shows list of users and projects)
-- Profile (shows list of task)
-- Manage Project (allows creating, joining, and leaving projects)
-- Sprint Board (shows the task management board)
+* Login
+* Register
+* Index (shows list of users and projects)
+* Profile (shows list of task)
+* Manage Project (allows creating, joining, and leaving projects)
+* Sprint Board (shows the task management board)
+
+## Hosting
+
+Hosted on DigitalOcean.
+
+* Ubuntu 16.04.3 x64
+* NGINX (reverse proxy)
+* pm2 (node process manager)
