@@ -6,7 +6,6 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 router.get("/", (req, res) => {
-  // res.render("board/manageProject")
   User.find({ project: req.user.project })
     .then(users => {
       Project.find().then(projects => {
@@ -20,10 +19,10 @@ router.get("/", (req, res) => {
       console.log(err)
     })
 })
+
 //join an existing team
 router.put("/", (req, res) => {
   let project = req.body.project
-  // console.log(project)
   Project.findById(project.id).then(projectExist => {
     if (!projectExist) console.log("Project doesn't exist")
     else
@@ -32,7 +31,7 @@ router.put("/", (req, res) => {
         projectId: projectExist.id
       })
         .then(() => {
-          res.redirect("/manageProject")
+          res.redirect("/board")
         })
         .catch(err => console.log(err))
   })
@@ -52,7 +51,7 @@ router.post("/", (req, res) => {
     User.findByIdAndUpdate(req.user.id, {
       project: savedProject.name,
       projectId: savedProject._id
-    }).then(() => res.redirect("/manageProject"))
+    }).then(() => res.redirect("/board"))
   })
 })
 

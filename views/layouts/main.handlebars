@@ -14,8 +14,12 @@
           <ul id="nav-mobile" class="left">
             <li><a href="/"><i class="material-icons right">home</i>Home</a></li>
             {{#if user}}
+            {{#if user.project}}
             <li><a href="/board"><i class="material-icons right">assignment</i>Task Board</a></li>
             <li><a href="/manageProject"><i class="material-icons right">folder_shared</i>Manage Project</a></li>
+            {{else}}
+            <li><a href="/manageProject"><i class="material-icons right">folder_shared</i>Join/Create Project</a></li>
+            {{/if}}
             {{/if}}
           </ul>
           <ul id="nav-mobile" class="right">

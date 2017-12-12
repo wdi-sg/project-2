@@ -2,8 +2,7 @@
 <div class="container">
   {{#if user.project}}
   <h4>Current Project: {{user.project}}</h4>
-  <!-- <h5>Project ID: <strong>{{user.projectId}}</strong></h5>
-  <p>Share this ID to let others join your project</p> -->
+
   <h5>Project Members:</h5>
   <blockquote>
     {{#each users as |users|}}
@@ -18,9 +17,10 @@
 
 
   {{else}}
-  <p>You don't have a project.</p>
-  <h4>Join an existing project</h4>
-  <h5>List of avaliable projects</h5>
+  <div class="card-panel teal lighten-2">
+    <h4>You don't have a project! <br> Join an existing project or create your own.</h4>
+  </div>
+  <h5>List of avaliable projects:</h5>
   <blockquote>
     {{#each projects as |project|}}
       <p><strong>{{project.name}}:</strong> {{project.id}}</p>
@@ -45,7 +45,6 @@
     <br>
     <button type="submit" name="button" class="btn">Create Project</button>
   </form>
-
   {{/if}}
-
+  <br>
 </div>
