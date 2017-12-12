@@ -37,6 +37,15 @@
   flex-direction: column-reverse;
 }
 
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+}
+
 /*#create,
 #review {
   display: inline-block;

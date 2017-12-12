@@ -1,11 +1,42 @@
-<div class="container">
+<div class="container row">
   <h1>Team Task Manager</h1>
 
   <p class="flow-text">Agile methodology requires teams to communicate quickly and often. The <strong>Team Task Manager</strong> was build to help teams work with offsite members who traditionally are not able to attend scrum.</p>
 
-  <h5>List of users</h5>
-  {{#each users as |users|}}
-  <p>User: <strong>{{users.name}}</strong></p>
-  <p>Project: <strong>{{users.project}}</strong></p>
-  {{/each}}
+  <h4>How to use Team Task Manager?</h4>
+  <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header">1. Register an account.</div>
+      <div class="collapsible-body">
+        <a href="/register">Register an account here.</a>
+        <p>or</p>
+        <a href="/login">Login if you already have one.</a>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header">2. Join/Create a project.</div>
+      <div class="collapsible-body">
+        <p>Join or create a project at: <a href="/manageProject">Manage Project.</a></p>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header">3. Use the Task Board!</div>
+      <div class="collapsible-body">
+        <p><a href="board">View the Task Board.</a></p>
+        <p><strong>- Create task</strong> by clicking on <strong>Create New Task</strong> button and fill in the details.</p>
+        <p><strong>- Edit a task's details</strong> by clicking on them</p>
+        <p><strong>- Move a task</strong> by clicking on the task card and then clicking on another area</p>
+        <p><strong>- Chat with teammates</strong> with the chat on the right side.</p>
+      </div>
+    </li>
+  </ul>
+
+  <br>
+
+  <h4>Task Board Screenshot:</h4>
+  <div class="col s12">
+    <img class="materialboxed" width="650" src="./images/sprintBoard2.png" alt="Task Board Screenshot">
+  </div>
+
+
 </div>
