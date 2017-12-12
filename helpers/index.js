@@ -28,12 +28,13 @@ const findCurrentQuote = () => {
   if (currentHour >= 18 && currentHour <= 24) timeEvent = 3
 
   return Quote.find({
-    timeEvent,
-    publishedAt: {
-      $gte: startOfToday
-    }
+    timeEvent
+    // ,
+  //   publishedAt: {
+  //     $gte: startOfToday
+  //   }
   })
-  .sort({publishedAt: 1})
+  // .sort({publishedAt: 1})
   .limit(1)
   .then(quote => {
     return new Promise( // only when search query yearn output, then return

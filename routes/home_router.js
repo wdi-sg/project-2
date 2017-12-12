@@ -54,7 +54,7 @@ router.get('/profile/:slug', (req, res) => {
     return res.redirect('/')
   }
   const addedQuotes = user.addedQuotes
-  // console.log(addedQuotes)
+  console.log(addedQuotes)
   Quote.find({
     '_id': { $in: addedQuotes }
   })
