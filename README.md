@@ -3,15 +3,28 @@
 Link to site:
 http://159.89.194.112/
 
-The Team Task Manager is to help teams be agile even when working offsite. The sprint board list all tasks for the project in real time and any edits are reflected onto all team members.
+The Team Task Manager is to help teams be agile even when working offsite. The task board list all tasks for the project in real time and any edits are reflected onto all team members.
 
 In addition, the Team Task Manager comes with inbuilt communication tools.
 
-## Getting Started
+## How to use the Team Task manager
+
+1. Register/login to an account.
+2. Join/Create a team at "/manageProject"
+3. View the Task Board at "/board"
+4. Create tasks on the board by pressing the "Create New Task" button
+5. Delete task by clicking on the delete button on the Task card
+6. Move task around by clicking on the task and clicking another section.
+
+## Setting up the project
 
 1. Create .env file in main directory - add SESSION_SECRET
 2. yarn install - to install dependencies
 3. ensure mongodb is up and running on your local machine
+
+### Stack
+
+Node, Express, Handlebars, MongoDB
 
 ## ERD
 
@@ -22,7 +35,7 @@ In addition, the Team Task Manager comes with inbuilt communication tools.
 
 ![ERD](./public/images/erd.png)
 
-## Wireframes
+## Screenshot
 
 The bulk of the website is on the Sprint board.
 
@@ -32,10 +45,10 @@ The bulk of the website is on the Sprint board.
 
 * Login
 * Register
-* Index (shows list of users and projects)
+* Index (shows guide on how to use)
 * Profile (shows list of task)
 * Manage Project (allows creating, joining, and leaving projects)
-* Sprint Board (shows the task management board)
+* Task Board (shows the task management board)
 
 ## Hosting
 
