@@ -7,6 +7,8 @@ $(function () {
 
   $('.collapsible').collapsible()
 
+  $('.slider').slider();
+
   const $deleteForm = $('.deleteForm')
 
   $deleteForm.on('submit', function (e) {
