@@ -3,7 +3,6 @@ const Task = require("../models/task")
 
 module.exports = io => {
   io.on("connection", function(socket) {
-    // console.log("someone connected")
     socket.on("chat message", msg => {
       //send to other users with same projectId
       let nsp = io.of(`/${msg.projectId}`)
@@ -25,14 +24,13 @@ module.exports = io => {
     socket.on("task", task => {
       let nsp = io.of(`/${task.projectId}`)
 
+      //create a new task
       let newTask = new Task({
         name: task.taskName,
         projectId: task.projectId,
         description: task.taskDescription,
         assigned: task.taskAssigned,
-        // start: task.taskStart,
         end: task.taskEnd
-        // projectedEnd: task.projectedEnd
       })
 
       newTask.save().then(newTask => {
@@ -46,6 +44,7 @@ module.exports = io => {
       })
     })
 
+    //updates task card section
     socket.on("update", update => {
       let updateValue = "0"
       if (update.newPosition === "review") updateValue = "1"
@@ -66,6 +65,7 @@ module.exports = io => {
       })
     })
 
+    //delete a task card
     socket.on("delete", targetId => {
       let nsp = io.of(`/${targetId.projectId}`)
 

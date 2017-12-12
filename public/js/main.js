@@ -20,6 +20,7 @@ $(function() {
   let currentPosition = "create"
   let newPosition = ""
 
+  //highlights clicked task card
   $("body").on("click", ".taskItem", e => {
     if (!clicked) {
       clickedId = e.target.parentNode.id
@@ -31,6 +32,7 @@ $(function() {
     }
   })
 
+  //move task card to new positon.\
   $("body").on("click", ".boardElement", e => {
     newPosition = e.target.id
     if (clicked && newPosition === "review") movePosition()
@@ -38,15 +40,12 @@ $(function() {
     else if (clicked && newPosition === "create") movePosition()
   })
 
+  //deletes selected task card
   $("body").on("click", ".delBtn", function() {
-    // console.log("clicked")
     let targetId = $(this)
       .parents()
       .eq(1)
       .attr("id")
-    // $("body")
-    //   .find("#" + targetId)
-    //   .remove()
     let projectId = $("#taskProjectId").val()
     socket.emit("delete", {
       targetId: targetId,
@@ -106,10 +105,6 @@ $(function() {
     return false
   })
   nsp.on("chat message", function(msg) {
-    // if ($messageList.children().length > 9) {
-    //   $messageList.find(":first-child").remove()
-    // }
-
     let $messageString = `<li class='flow-text chatMessage'><b>${
       msg.user
     }:</b></li>`
@@ -125,7 +120,6 @@ $(function() {
 
   //task creation
   $task.submit(res => {
-    // console.log($("#taskDescription").val())
     socket.emit("task", {
       user: $("#taskUser").val(),
       project: $("#taskProject").val(),
@@ -133,18 +127,15 @@ $(function() {
       taskName: $("#taskName").val(),
       taskDescription: $("#taskDescription").val(),
       taskAssigned: $("#taskAssigned").val(),
-      // taskStart: $("#taskStart").val(),
       taskEnd: $("#taskEnd").val()
-      // projectedEnd: $("#projectedEnd").val()
     })
     $("#taskName").val("")
     $("#taskDescription").val("")
     $("#taskAssigned").val("")
-    // $("#taskStart").val("")
     $("#taskEnd").val("")
-    // $("#projectedEnd").val("")
     return false
   })
+
   nsp.on("task", task => {
     //adds task to board
     let $item = $("<div class='taskItem col s6'>")
@@ -179,6 +170,7 @@ $(function() {
   $(".modal").modal()
 
   //inline-editable (taken from https://codepen.io/clemsos/pen/YWYRaL)
+  //to be updated. currently does not modify database
   $(".inline-editable").hover(
     function() {
       $(this).addClass("editHover")
