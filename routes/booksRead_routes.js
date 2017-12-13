@@ -7,7 +7,6 @@ const Books = require("../models/book")
 
 // Show all books read by user
 router.get("/", (req, res) => {
-  var readBooks = req.user.readBooks
   User.findById(req.user.id)
     .populate("readBooks")
     .then(result => {

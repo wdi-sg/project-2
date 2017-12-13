@@ -22,6 +22,7 @@ const { hasLoggedOut, isLoggedIn } = require("./helpers")
 // require models
 const User = require("./models/user")
 const Book = require("./models/book")
+const Comment = require("./models/comment")
 
 // require routes
 const login_routes = require("./routes/login_routes")
@@ -144,6 +145,19 @@ app.post("/removeReadBook", (req, res) => {
       req.user.save()
     }
   }
+})
+
+// Add comment
+app.post("/addComment", (req, res) => {
+  var formData = req.body
+  // console.log(formData)
+  // console.log(req.user)
+  var newComment = new Comment({
+    book_id: formData.bookId,
+    author: req.user._id,
+    comment: formData.comment
+  })
+  newComment.save().then(comment => res.json(comment))
 })
 
 // NEW ROUTES - admin registration flow

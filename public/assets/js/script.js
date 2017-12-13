@@ -119,4 +119,30 @@ $(function() {
     $button.attr("class", "readBtn")
     $button.html("Read Book")
   })
+
+  $(document).on("click", ".addComment", function(e) {
+    e.preventDefault()
+    var bookId = this.name
+    var comment = $(".textarea")[0].value
+    // console.log(comment)
+    var json = JSON.stringify({
+      bookId,
+      comment
+    })
+    fetch("/addComment", {
+      credentials: "include",
+      method: "POST",
+      body: json,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(result => {
+        $(".displayComments .displayArea").append(
+          `<p>` + result.comment + `</p>`
+        )
+      })
+    $(".textarea").val("")
+  })
 })
