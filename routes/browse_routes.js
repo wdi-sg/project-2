@@ -28,6 +28,7 @@ router.get("/:_id", (req, res) => {
         book_id: book._id,
         author: user._id
       }).then(comments => {
+        console.log("view!!")
         res.render("./browse/bookDetails", { book, bookReadChecker, comments })
       })
       // .then(comments => console.log(comments))
