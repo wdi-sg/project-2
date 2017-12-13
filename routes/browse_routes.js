@@ -29,7 +29,7 @@ router.get("/:_id", (req, res) => {
         author: user._id
       }).then(comments => {
         console.log("view!!")
-        res.render("./browse/bookDetails", { book, bookReadChecker, comments })
+        res.render("browse/bookdetails", { book, bookReadChecker, comments })
       })
       // .then(comments => console.log(comments))
       // pass the bookReadChecker into the view
