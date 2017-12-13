@@ -1,7 +1,7 @@
 <div class="container">
   <h2>Fixed Deposit</h2>
 
-  <form class="col s12 m6" action="/fixed-deposit?_method=PUT"" method="put">
+  <form class="col s12 m6" action="/fixed-deposit?_method=PUT" method="put">
 
     <label for="amount">I want to deposit $</label>
     <input type="amount" name="amount" class="black-text">
@@ -39,93 +39,43 @@
   <br>
 
   {{#each fixedDeposits as |FD|}}
-    <div class>
-      <div class="row col s12 m6">
-
-        <ul class="left">
-
-          <li><b>{{FD.name}}</b></li>
-
-        </ul>
-
-        <br>
-
+    <div class="row">
+      <div class="col s12">
+        <b>{{FD.name}}</b>
       </div>
+    </div>
 
-      <div class="row">
-
-        <div class="col s12 m6">
-
-          <ul class="left"><img src="{{FD.bank_img}}" height="60"></ul>
-
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-
-          <h8>Period : Interest Rate</h8>
-
-          <ul>
-            {{#each FD.interest_rate as |IR|}}
-              <li>{{IR.period}} month(s) : {{IR.rate}}%</li>
-            {{/each}}
-          </ul>
-
-          <br>
-
-          <p>Returns: {{FD.returns}}</p>
-
-          <br>
-
-          <ul class="left">
-
-            <li><a href="{{FD.link}}" class="brand-logo waves-effect waves-light btn right">Apply Here</a></li>
-
-          </ul>
-
-        </div>
-
-      </div>
+    <div class="row">
+      <div class="col s4"><img src="{{FD.bank_img}}" height="60"></div>
+      <div class="col s4"><p>Interest: {{FD.interest}}</p></div>
+      <div class="col s4"><p>Returns: {{FD.returns}}</p></div>
+    </div>
 
 
       <div class="row">
+        <ul class="collapsible" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header">More Details</div>
+            <div class="collapsible-body"><span>
+              <strong><h8>Period : Interest Rate</h8></strong>
 
-        <div class="col s12 m6">
+              <ul>
+                {{#each FD.interest_rate as |IR|}}
+                  <li>{{IR.period}} month(s) : {{IR.rate}}%</li>
+                {{/each}}
+              </ul>
 
-          <ul class="collapsible z-depth-0" data-collapsible="accordion">
-
-            <li>
-
-              <div class="collapsible-header row col s12 m6">
-
-                <ul class="center">
-
-                  More Details
-
-            </li>
-
-          </ul>
-
-        </div>
-
-        <div class="collapsible-body">
-
-          <p>Minimum Age: {{FD.minimum_age}}</p>
-          <p>Minimum Deposit: $ {{FD.minimum_deposit.[0]}}</p>
-          <p>Fees and Charges: {{FD.fees_charges}}</p>
-
-        </div>
-
+              <p><strong>Minimum Age: {{FD.minimum_age}}</strong></p>
+              <p><strong>Minimum Deposit: $ {{FD.minimum_deposit.[0]}}</strong></p>
+              <p><strong>Fees and Charges: {{FD.fees_charges}}</strong></p>
+              </span></div>
           </li>
-          </ul>
-        </div>
-
+        </ul>
       </div>
 
-    <br>
+      <br>
 
-  {{/each}}
+{{/each}}
 
   <br>
   <br>
