@@ -22,6 +22,7 @@ router.get("/:_id", (req, res) => {
         e => JSON.stringify(e) === JSON.stringify(book._id)
       )
       // const comments = []
+      //
       Comment.find({
         book_id: book._id,
         author: user._id
