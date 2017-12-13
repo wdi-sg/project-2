@@ -35,7 +35,10 @@
       <h3>Comments</h3>
       <div class="displayArea">
         {{#each comments}}
-        <p>{{this.comment}}</p>
+          <div>
+            <p>{{this.comment}}</p>
+            <button class="deleteComment" name="{{this._id}}">Delete Comment</button>
+        </div>
         {{/each}}
       </div>
     </div>

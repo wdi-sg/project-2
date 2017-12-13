@@ -140,9 +140,32 @@ $(function() {
       .then(res => res.json())
       .then(result => {
         $(".displayComments .displayArea").append(
-          `<p>` + result.comment + `</p>`
+          `<div><p>` +
+            result.comment +
+            `</p><button class="deleteComment" name="` +
+            result._id +
+            `">Delete Comment</button></div>`
         )
       })
     $(".textarea").val("")
+  })
+
+  $(document).on("click", ".deleteComment", function(e) {
+    // e.preventDefault()
+    var commentId = this.name
+    var json = JSON.stringify({
+      commentId
+    })
+    fetch("/booksRead/deleteComment", {
+      credentials: "include",
+      method: "DELETE",
+      body: json,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    $(this)
+      .parent()
+      .empty()
   })
 })
