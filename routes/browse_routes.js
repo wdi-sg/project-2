@@ -13,6 +13,7 @@ router.get("/", (req, res) => {
 
 // show /browse/:bookID
 router.get("/:_id", (req, res) => {
+  console.log("Entered!!")
   // find the book based on :id
   Book.findOne({ _id: req.params._id }).then(book => {
     // find the current user to check readBooks list.
@@ -27,7 +28,7 @@ router.get("/:_id", (req, res) => {
         book_id: book._id,
         author: user._id
       }).then(comments => {
-        res.render("browse/bookDetails", { book, bookReadChecker, comments })
+        res.render("/browse/bookDetails", { book, bookReadChecker, comments })
       })
       // .then(comments => console.log(comments))
       // pass the bookReadChecker into the view
