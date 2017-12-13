@@ -19,9 +19,9 @@ router.get("/:_id", (req, res) => {
       // comparing
       const checker = user.readBooks.includes(book._id)
       // =================== this portion is not working for books included, example search "w" ================
-      // console.log(user.readBooks)
-      // console.log(book._id)
-      // console.log(checker)
+      console.log(user.readBooks[0])
+      console.log(book._id)
+      console.log(checker)
       // pass the checker into the view
       res.render("browse/bookDetails", { book, checker: checker })
     })

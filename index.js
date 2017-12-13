@@ -98,10 +98,10 @@ app.get("/", (req, res) => {
   res.render("home")
 })
 
-// Adding books to DB and user readBooks
+// Adding books to DB
 app.post("/saveBook", (req, res) => {
   var formData = req.body
-  // save the book to DB
+  // check if book is already in DB
   Book.findOne({ apiId: formData.apiId }).then(book => {
     if (book) return res.json(book)
     if (!book) {
@@ -118,8 +118,6 @@ app.post("/saveBook", (req, res) => {
       newBook.save().then(book => res.json(book))
     }
   })
-
-  // .then(result => res.render('bookDetail',result))
 })
 
 // book details router

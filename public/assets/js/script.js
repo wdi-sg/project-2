@@ -1,5 +1,5 @@
 $(function() {
-  // Browse search bar function
+  // Browse searchbar function
   $("#search-form").submit(function(event) {
     event.preventDefault()
     var input = $("#query")
@@ -43,7 +43,7 @@ $(function() {
   })
 
   // More-Info btn onclick functions => save to db
-  $("#ulBookDisplay").on("click", ".moreInfo", function() {
+  $(document).on("click", ".moreInfo", function() {
     var ulBookDisplay = $("#ulBookDisplay")
     ulBookDisplay.empty()
     var getLink = "https://www.googleapis.com/books/v1/volumes/" + this.name
@@ -119,23 +119,4 @@ $(function() {
     $button.attr("class", "readBtn")
     $button.html("Read Book")
   })
-
-  // $(function() {
-  //   if ($("body.bookDetailsContent").length > 0) {
-  //     // var getUrlParameter = function getUrlParameter(sParam) {
-  //     //   var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-  //     //   sURLVariables = sPageURL.split('&'),
-  //     //   sParameterName,
-  //     //   i
-  //     //   for (i = 0 i < sURLVariables.length i++) {
-  //     //     sParameterName = sURLVariables[i].split('=')
-  //     //     if (sParameterName[0] === sParam) {
-  //     //       return sParameterName[1] === undefined ? true : sParameterName[1]
-  //     //     }
-  //     //   }
-  //     // }
-  //     // var getLink = 'https://www.googleapis.com/books/v1/volumes/' + this.name
-  //     // console.log(getLink)
-  //   }
-  // })
 })

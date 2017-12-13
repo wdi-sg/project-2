@@ -3,15 +3,18 @@ const Schema = mongoose.Schema
 const uniqueValidator = require("mongoose-unique-validator")
 
 const commentSchema = new Schema({
-  apiId: {
-    type: String,
-    unique: true
+  book_id: {
+    type: Schema.Types.ObjectId,
+    ref: "Book"
   },
-  comment: String,
-  author: String
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  },
+  comment: String
 })
 
 commentSchema.plugin(uniqueValidator)
-const Book = mongoose.model("Book", commentSchema)
+const Comment = mongoose.model("Comment", commentSchema)
 
-module.exports = Book
+module.exports = Comment
