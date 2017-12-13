@@ -30,6 +30,7 @@ const userSchema = new Schema({
 
 userSchema.pre('save', function(next){
   var user = this
+  if (!user.isModified('password')) return next();
   bcrypt.hash(user.password, 10)
   .then(hash => {
   // call the next() when the password is hashed

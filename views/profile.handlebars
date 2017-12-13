@@ -3,13 +3,11 @@
   <div class="row">
     {{#each members.fridges as |fridge|}}
     <div class="col-3">
-      <div class="card" style="background: url(/img/refrigerator_outline.png) no-repeat;
-                              background-size: cover;
-                              height: 495px;">
+      <div class="card">
         <div class="card-body mw-100">
-          <h1 class="card-title text-center" style="margin:40px 0;">{{ fridge.name }}</h1>
+          <h1 class="card-title text-center">{{ fridge.name }}</h1>
           &nbsp;
-          <div class="container" style="margin:0 10px 10px 10px;">
+          <div class="container profile">
             <button class="btn btn-primary d-inline w-50 align-middle" type="button" onclick="location.href='/fridge/{{fridge.id}}'">Enter</button>
             <form
             class="d-inline"

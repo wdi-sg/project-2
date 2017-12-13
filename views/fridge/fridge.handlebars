@@ -19,17 +19,18 @@
   </div>
 
   {{!-- listing of tasks --}}
-  <div class="container" style="background: url(/img/fridgeframe.png) no-repeat;
-                                background-size: cover;">
-  <div class="row" >
+  <div class="container task">
+  <div class="row">
     {{#each fridge.task as |task|}}
-    <div class="col-3" style="margin-top: 20px;">
-      <div class="card" style="background: url(/img/stickynote.png) no-repeat;
-                              background-color: rgba(255, 255, 255, 0);
-                              height: 255px;">
-        <h2 class="text-center" style="margin-top: 30px; width: 245.5px; height: 60px; overflow: scroll;">{{ task.details }}</h2>
-        <div class="card-body" style="padding: 0 20px;">
+    <div class="fridge col-3">
+      <div id="tasknote" class="card">
+        <h2 class="text-center">{{ task.details }}</h2>
+          <div class="card-body">
+          {{#if task.assign}}
           <p>Task taken by:{{ task.assign.name }}</p>
+          {{else}}
+          <p>Task taken by: None</p>
+          {{/if}}
           {{#if task.complete}}
           <p>Task Status: Completed</p>
           {{else}}
@@ -41,7 +42,7 @@
           <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
             {{#if task.assign}}
             <form class="form-inline" action="/task/{{task.id}}/editAssign?_method=PUT" method="post">
-              <button class="dropdown-item text-primary" type="submit" name="button">Remove In charge</button>
+              <button class="dropdown-item text-primary" type="submit" name="button">I can't do it.</button>
             </form>
             {{else}}
             <form class="form-inline" action="/task/{{task.id}}/editAssignMe?_method=PUT"method="post">

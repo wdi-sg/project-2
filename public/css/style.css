@@ -1,0 +1,52 @@
+body{
+  font-family: 'Delius Swash Caps', cursive;
+}
+.nav{
+  background-color: rgb(248,249,250);
+}
+.nav>button{
+  width: 211.16px;
+}
+
+#homepage{
+  background: url(/img/fridgewithmagnets.jpg) no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+  padding-top: 30px;
+}
+.card{
+  background: url(/img/refrigerator_outline.png) no-repeat;
+  background-size: cover;
+  height: 495px;
+  border: none;
+}
+.card-title{
+  margin: 40px 0;
+}
+.profile{
+  margin:0 10px 10px 10px;
+}
+.task{
+  background: url(/img/fridgeframe.png) no-repeat;
+  background-size: cover;
+}
+#tasknote{
+  background: url(/img/stickynote.png) no-repeat;
+  background-color: rgba(255, 255, 255, 0);
+  height:255px;
+}
+#tasknote>h2{
+  margin-top: 30px;
+  width: 245.5px;
+  height: 80px;
+  overflow: scroll;
+
+}
+#tasknote>.card-body{
+  padding: 0 20px;
+}
+.fridge{
+  margin-top: 20px;
+}

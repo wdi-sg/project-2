@@ -24,7 +24,7 @@ router.post('/', (req,res)=>{
     passcode: stringGen(5),
     members: [req.user.id]
   })
-  
+
   newFridge.save()
   .then(
     fridge => {
