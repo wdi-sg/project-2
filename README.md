@@ -33,13 +33,13 @@ Node, Express, Handlebars, MongoDB
 3. Users
 4. Messages
 
-![ERD](./public/images/erd.png)
+<img src="./public/images/erd.png" alt="ERD" width="500"/>
 
 ## Screenshot
 
 The bulk of the website is on the Sprint board.
 
-![Sprintboard Screenshot](./public/images/sprintBoard.png)
+<img src="./public/images/sprintBoard.png" alt="Sprintboard Screenshot" width="800"/>
 
 ## List of Routes
 
