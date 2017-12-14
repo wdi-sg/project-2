@@ -11,12 +11,10 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   var formData = req.body.user
   var newUser = new User({
+    imgUrl: formData.imgUrl,
     name: formData.name,
     email: formData.email,
     password: formData.password,
-    day: formData.day,
-    month: formData.month,
-    year: formData.year
   })
 
   newUser.save()

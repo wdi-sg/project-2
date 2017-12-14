@@ -28,7 +28,7 @@
           <div id="menu-container">
             <ul id='dropdown1' class='dropdown-content'>
               <li><a class="nav-link black-text" href="/fixed-deposit">Fixed Deposit</a></li>
-              <li><a class="nav-link black-text" href="/savings-account">Savings Account (Under Construction!)</a></li>
+              <li><a class="nav-link black-text" href="/savings-account">Savings Account</a></li>
             </ul>
 
 
@@ -43,7 +43,7 @@
               {{#if user}}
 
                 <li><a class="nav-link black-text" href="/logout">Logout</a></li>
-                <li><a class="nav-link black-text" href="/profile">{{user.name}}</a></li>
+                <li><a class="nav-link black-text" href="/profile"><strong>{{user.name}}</strong></a></li>
 
               {{else}}
 
@@ -69,32 +69,32 @@
 {{!-- ---------------------------------------------------------------- --}}
 
 
-    <footer class="page-footer #e3f2fd blue">
+    <footer class="page-footer blue lighten-5">
       <div class="container">
         <div class="row">
           <div class="col xl7 l7 s12">
             <h5>
               <a href="/"><img width="50" class="icon hide-on-med-and-down" src="/assets/img/logo.png"></a>
-              <a href="/" class="brand-logo white-text">Fat Pocket</a>
+              <a href="/" class="brand-logo black-text">Fat Pocket</a>
             </h5>
           </div>
           <div class="col xl3 l3 offset-l2 s12">
-            <h5 class="white-text">Links</h5>
+            <h5 class="black-text">Links</h5>
             <ul>
-              <li><a class="grey-text text-lighten-3" href="/fixed-deposit">Fixed Deposit</a></li>
-              <li><a class="grey-text text-lighten-3" href="/savings-account">Savings Account</a></li>
-              <li><a class="grey-text text-lighten-3" href="/credit-card">Credit Card</a></li>
-              <li><a class="grey-text text-lighten-3" href="/investment">Investment</a></li>
+              <li><a class="black-text text-lighten-3" href="/fixed-deposit">Fixed Deposit</a></li>
+              <li><a class="black-text text-lighten-3" href="/savings-account">Savings Account</a></li>
+              <li><a class="black-text text-lighten-3" href="/credit-card">Credit Card</a></li>
+              <li><a class="black-text text-lighten-3" href="/investment">Investment</a></li>
             </ul>
           </div>
         </div>
       </div>
       <div class="footer-copyright">
         <div class="container">
-          <ul class="left hide-on-med-and-down">
+          <ul class="left hide-on-med-and-down black-text">
             © 2017 Fat Cat Lady Pte Ltd. All rights reserved.
           </ul>
-          <ul class="right hide-on-med-and-down">
+          <ul class="right hide-on-med-and-down black-text">
             Use of this site constitutes acceptance of our Terms of Use and Privacy Policy.
           </ul>
         </div>
@@ -107,5 +107,6 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="/assets/js/frontend.js"></script>
+    <script charset="utf-8" src="https://ucarecdn.com/libs/widget/3.2.1/uploadcare.full.min.js"></script>
  </body>
 </html>

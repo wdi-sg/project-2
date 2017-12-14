@@ -1,9 +1,14 @@
 <div class="container">
-  <h3>{{ user.name }}</h3>
-
-  <ul>
-    <li>Email: {{ user.email }}</li>
-  </ul>
+  <br>
+  <div class="row">
+      <div class="card blue lighten-3">
+        <div class="card-content black-text center">
+          <img src="{{ user.imgUrl }}" height="200px" class="circle">
+          <span class="card-title"><strong>{{ user.name }}</strong></span>
+          <p>Email: {{ user.email }}</p>
+        </div>
+      </div>
+  </div>
 
   <br>
 

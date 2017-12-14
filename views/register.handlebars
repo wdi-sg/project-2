@@ -3,6 +3,9 @@
 
 <form class="col s12 m6" action="/register" method="post">
 
+  <label for="img">Profile Photo</label><br>
+  <input type="hidden" role="uploadcare-uploader" name="user[imgUrl]" data-public-key="a36c375b98316f02f9a9" data-images-only /><br><br>
+
   <label for="name">Name</label>
   <input type="text" name="user[name]" placeholder="e.g. John Doe" class="black-text">
 
