@@ -32,49 +32,44 @@
 
   </div>
   <div class="col-sm-6 border rounded border-info">
-    <div class="p-2">
+    <div class="p-1">
       <h3 class="text-info">Bookmark</h3>
 
       <div class="d-flex flex-wrap">
         {{#each user.bookmark as |bookmark| }}
-        <div class="d-inline-flex m-2">
-          <div class="p-2">
-            <a class="text-info" href="/template/{{ bookmark.id }}" >
-              <h6> {{ bookmark.title }}</h6>
-              <img src="{{bookmark.imageUrl}}" height=120 alt="{{ bookmark.title }}'s Image">
-            </a>
-            <div class="d-flex flex-row">
-              <div class="p-1">
-                <a href="/template/{{ bookmark.id }}/variation/new"><button class="btn btn-info btn-sm" type="button" name="button">Completed</button></a>
-              </div>
-              <div class="p-1">
-                <form class="removeBookmarkForm" action="/template/{{bookmark.id}}/bookmark?_method=PUT" method="post">
-                  <button  class="btn btn-info btn-sm" type="submit" name="button">Remove</button>
-                  <input type="hidden" name="patternId" value="{{bookmark.id}}">
-                </form>
-              </div>
+        <div class="card m-1" style="width: 10.15rem;">
+          <a class="text-info" href="/template/{{ bookmark.id }}">
 
-            </div>
+              <p class="card-title">{{bookmark.title}}</p>
 
+            <img class="card-img-top"  src="{{bookmark.imageUrl}}" height=120 alt="{{bookmark.title}}'s image">
+          </a>
+          <div class="mp-0 d-flex flex-row">
+            <a href="/template/{{ bookmark.id }}/variation/new"><button class="btn btn-info btn-sm" type="button" name="button">Completed</button></a>
+            <form class="removeBookmarkForm" action="/template/{{bookmark.id}}/bookmark?_method=PUT" method="post">
+              <button  class="btn btn-info btn-sm" type="submit" name="button">Remove</button>
+              <input type="hidden" name="patternId" value="{{bookmark.id}}">
+            </form>
           </div>
+
         </div>
         {{/each}}
       </div>
-
-
     </div>
-
   </div>
 </div>
 <div class="mb-3">
   <h3 class="text-info">Pattern</h3>
   <div class="d-flex flex-wrap">
     {{#each patterns as |pattern| }}
-    <div class="d-inline-flex m-2">
+    <div class="card m-1" style="width: 11rem;">
       <a href="/template/{{ pattern.id }}" class="text-info">
-        <h6>{{ pattern.title }}</h6>
-        <img src="{{pattern.imageUrl}}" height=150 alt="{{pattern.title}}'s image">
+      <img class="card-img-top"  src="{{pattern.imageUrl}}" height=150 alt="{{pattern.title}}'s image">
+        <div class="card-body">
+          <p class="card-text">{{pattern.title}}</p>
+        </div>
       </a>
+
     </div>
     {{/each}}
   </div>
@@ -88,11 +83,14 @@
   <h3 class="text-info">Projects</h3>
   <div class="d-flex flex-row">
     {{#each projects as |project| }}
-    <div class="d-inline-flex m-2">
-      <a class="text-info" href="/project/{{ project.id }}" class="">
-        <h6>{{ project.title }} </h6>
-        <img src="{{project.imageUrl}}" height=150 alt="{{ project.title }}'s Image">
+    <div class="card m-1" style="width: 11rem;">
+      <a href="/project/{{ project.id }}" class="text-info">
+      <img class="card-img-top"  src="{{project.imageUrl}}" height=150 alt="{{project.title}}'s image">
+        <div class="card-body">
+          <p class="card-text">{{project.title}}</p>
+        </div>
       </a>
+
     </div>
     {{/each}}
   </div>

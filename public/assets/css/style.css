@@ -12,6 +12,13 @@ nav {
 .text-info {
   color: #26a69a !important;
 }
+.card-img-top {
+  /*height: 200px;*/
+}
+.card-img-top-profile{
+  height: 150px;
+  align-self: center;
+}
 
 h1,
 h2,
