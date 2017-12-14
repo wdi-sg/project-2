@@ -16,12 +16,18 @@
 
   {{!-- <ul id="myChart"> --}}
   {{!-- #id='red' --}}
-  <div>
-    <li>Openness: {{result.openness}}</li>
-    <li>Conscientiousness: {{result.conscientiousness}}</li>
-    <li>Extraversion: {{result.extraversion}}</li>
-    <li>Agreeableness: {{result.agreeableness}}</li>
-    <li>Emotion Range: {{result.emotionalRange}}</li>
+  <div class="row">
+    <div class="col s12 m5">
+      <div class="card-panel">
+        <span class="black-text">
+            <li>Openness: {{result.openness}}</li>
+            <li>Conscientiousness: {{result.conscientiousness}}</li>
+            <li>Extraversion: {{result.extraversion}}</li>
+            <li>Agreeableness: {{result.agreeableness}}</li>
+            <li>Emotion Range: {{result.emotionalRange}}</li>
+        </span>
+      </div>
+    </div>
   </div>
   {{!-- </ul> --}}
   <form action="/profile/{{result.id}}?_method=DELETE" method="post">

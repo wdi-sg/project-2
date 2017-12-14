@@ -2,6 +2,13 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  font-family: 'Fira Sans', sans-serif;
+  background-image: url("./IBM-Watson-Wallpaper.jpg");
+  background-position: center center;
+  background-repeat:  no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #000;
 }
 
 main {

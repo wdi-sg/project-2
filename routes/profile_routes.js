@@ -34,6 +34,7 @@ router.post("/", (req, res) => {
 		text: req.body.textBox,
 		consumption_preferences: true
 	},
+	
 	function (err, response) {
 		if (err)
 			console.log("error:", err)
