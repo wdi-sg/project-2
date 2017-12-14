@@ -3,7 +3,7 @@ var input2 = $('#field2')
 var $userId = $('#user')
 var $timeInput = $('#time')
 var $currentLocation = $('#currentLocation')
-var map, marker1
+var map, marker1, autocomplete1, autocomplete2
 
 function initMap () {
   var directionsService = new google.maps.DirectionsService
@@ -14,16 +14,18 @@ function initMap () {
   })
   directionsDisplay.setMap(map)
 
+  autoComplete()
   var onChangeHandler = function () {
     calculateAndDisplayRoute(directionsService, directionsDisplay)
   }
-  $('#field2').on('change', onChangeHandler)
-  autoComplete()
+  $('#field2').change(function () {
+    setTimeout(onChangeHandler, 100)
+  })
 }
 
 function autoComplete () {
-  var autocomplete1 = new google.maps.places.Autocomplete(input1[0]) // adds autocomplete feature to Start bldg field
-  var autocomplete2 = new google.maps.places.Autocomplete(input2[0])
+  autocomplete1 = new google.maps.places.Autocomplete(input1[0]) // adds autocomplete feature to Start bldg field
+  autocomplete2 = new google.maps.places.Autocomplete(input2[0])
 
   autocomplete1.addListener('place_changed', startPostalCode)
 
@@ -31,15 +33,24 @@ function autoComplete () {
   $checkRoute.on('submit', function (e) {
     e.preventDefault()
 
-    var address1 = autocomplete1.getPlace().formatted_address
+    address1 = autocomplete1.getPlace().formatted_address
     var postal1 = (address1.substr(address1.length - 6))
-    if (parseInt(postal1)) var postal1 = parseInt(postal1)
-    else return alert('Start bldg needs to be an address with a postal code')
-
-    var address2 = autocomplete2.getPlace().formatted_address
+    if (parseInt(postal1)) {
+      var postal1 = parseInt(postal1)
+    } else {
+      input1.val('')
+      input2.val('')
+      return alert('Start bldg needs to be an address with a postal code')
+    }
+    address2 = autocomplete2.getPlace().formatted_address
     var postal2 = parseInt(address2.substr(address2.length - 6))
-    if (parseInt(postal2)) var postal2 = parseInt(postal2)
-    else return alert('End bldg needs to be an address with a postal code')
+    if (parseInt(postal2)) {
+      var postal2 = parseInt(postal2)
+    } else {
+      input1.val('')
+      input2.val('')
+      return alert('End bldg needs to be an address with a postal code')
+    }
     var postalArray = [postal1, postal2]
     var jsonInput = JSON.stringify({
       postalArray,
@@ -72,14 +83,16 @@ function autoComplete () {
 function calculateAndDisplayRoute (directionsService, directionsDisplay) {
   marker1.setPosition(null)
   directionsService.route({
-    origin: $('#field1').val(),
-    destination: $('#field2').val(),
+    origin: autocomplete1.getPlace().formatted_address,
+    destination: autocomplete2.getPlace().formatted_address,
     travelMode: 'DRIVING'
   },
   function (response, status) {
     if (status === 'OK') {
       directionsDisplay.setDirections(response)
     } else {
+      input1.val('')
+      input2.val('')
       window.alert('Directions ' + status + ', please ensure valid addresses are entered in both Start and End fields.')
     }
   })

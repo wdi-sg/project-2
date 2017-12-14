@@ -2,6 +2,7 @@ const Partner = require('../models/partner')
 const express = require('express')
 const router = express.Router()
 const passport = require('../config/ppConfig')
+const {hasLoggedOut} = require('../helpers')
 
 router.get('/register', (req, res) => {
   res.render('partners/pRegister')
@@ -20,7 +21,7 @@ router.post('/register', (req, res) => {
 
   newPartner.save()
   .then(
-    user => res.redirect('/'),
+    user => res.redirect('/partners/login'),
     err => res.send(err)
   )
 })
@@ -29,7 +30,7 @@ router.get('/login', (req, res) => {
   res.render('partners/pLogin')
 })
 router.post('/login', passport.authenticate('partner-local', {
-  successRedirect: '/',
+  successRedirect: '/partners/profile',
   failureRedirect: '/partners/login'
 }))
 
@@ -50,7 +51,7 @@ router.post('/profile', (req, res) => {
   function (err, success) {
     if (err) return console.log(err)
     console.log(success)
-    .then(() => res.redirect('/partners/profile'))
+    res.redirect('/partners/profile')
   }
 )
 })
@@ -59,12 +60,15 @@ router.get('/delete', (req, res) => {
   res.render('partners/delete')
 })
 
-router.delete('/delete', (req, res) => {
-  console.log('body',req.body)
-  console.log('user',req.user)
-Partner.findByIdAndRemove(req.user.id)
-.then( () => {
-  res.redirect('/')
-})  // Partner.findByIdAndRemove(req.params.id)
+router.delete('/delete', hasLoggedOut, (req, res, next) => {
+  console.log('body', req.body)
+  console.log('user', req.user)
+  var id = req.user._id
+  req.logout()
+  Partner.findByIdAndRemove(id, function (err) {
+    if (err) { return err }
+    res.redirect('/partners/register')
+  })
 })
+
 module.exports = router
