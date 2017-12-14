@@ -20,7 +20,7 @@ router.put('/', (req, res, next) => {
   ).then((data) =>
     FixedDeposit.returns.updateMany((deposit * (1 + ((data / 100) / 4)) ^ ((period) / 4)) - deposit)
   ).then((returns) =>
-    res.redirect('/fixed-deposit')
+    res.redirect('/fixed-deposit', {returns})
     .catch(err => console.log(err))
   )
 })

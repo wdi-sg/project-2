@@ -18,6 +18,7 @@ const MongoStore = require('connect-mongo')(session) // to store session into db
 const User = require('./models/user')
 const FixedDeposit = require('./models/fixed-deposit')
 const SavingsAccount = require('./models/savings-account')
+const CreditCard = require('./models/credit-card')
 const Account = require('./models/account')
 
 // require all my route files
@@ -27,6 +28,8 @@ const profile_routes = require('./routes/profile_routes')
 const account_routes = require('./routes/account_routes')
 const fixed_deposit_routes = require('./routes/fixed_deposit_routes')
 const savings_account_routes = require('./routes/savings_account_routes')
+const credit_card_routes = require('./routes/credit_card_routes')
+
 
 // initiating express
 const app = express()
@@ -74,16 +77,13 @@ app.use((req, res, next) => {
   app.locals.user = req.user
   app.locals.fixed_deposits = req.FixedDeposits
   app.locals.savings_account = req.SavingsAccount
+  app.locals.credit_card = req.CreditCard
   app.locals.account = req.account
   next()
 })
 
 app.get('/', (req, res) => {
   res.render('home')
-})
-
-app.get('/credit-card', (req, res) => {
-  res.render('credit-card')
 })
 
 app.get('/logout', (req, res) => {
@@ -97,6 +97,30 @@ app.use('/profile', profile_routes)
 app.use('/accounts', account_routes)
 app.use('/fixed-deposit', fixed_deposit_routes)
 app.use('/savings-account', savings_account_routes)
+
+
+app.get('/credit-card', (req, res) => {
+  CreditCard.find()
+    .then(creditcards => {
+      CreditCard.distinct('type')
+      .then(types => {
+        res.render('credit-card', {creditcards, types})
+    })
+  })
+})
+
+app.post('/search', (req, res) => {
+    const keyword = req.body.keyword
+    const regex = new RegExp(keyword, 'i')
+
+    CreditCard.find({
+      type: regex
+    })
+    .limit(20)
+    .then(creditcards => res.send(creditcards))
+    .catch(err => res.send(err)) // in case we have an error
+})
+
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`)

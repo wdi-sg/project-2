@@ -15,7 +15,8 @@ const accountSchema = new Schema({
     ref: 'savings_account'
   },
   amount: Number,
-  period: Number
+  period: Number,
+  returns: Number
 })
 
 const Account = mongoose.model('account', accountSchema)

@@ -13,6 +13,7 @@ router.get('/', (req, res) => {
     user: user.id
   })
   .populate('fd')
+  .populate('sa')
   .then(accounts => {
     FixedDeposit.find()
     .then((fixedDeposits) => {
@@ -42,10 +43,9 @@ router.post('/', (req, res) => {
   var newAccount = new Account()
   newAccount.user = user.id
   newAccount.fd = formData.fixedDeposit
+  newAccount.sa = formData.savingsAccount
   newAccount.amount = formData.amount
   newAccount.period = formData.period
-
-  // return res.send(newAccount)
 
   newAccount.save()
 

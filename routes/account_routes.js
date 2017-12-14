@@ -16,4 +16,15 @@ router.get('/:id', (req, res) => {
   })
 })
 
+// router.put('/:id', (req, res) => {
+//   Account.findById(
+//     req.params.id
+//   )
+//   .populate('fd')
+//   .populate('sa')
+//   .then((account) => {
+//     res.send('acct_fixed_dep', {account})
+//   })
+// })
+
 module.exports = router
