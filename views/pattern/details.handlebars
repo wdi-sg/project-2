@@ -5,10 +5,10 @@
 
     <div class="p-2">
 
-      <a  href="/pattern/{{pattern.id}}/edit"><button class="btn btn-info" type="button" name="button">Edit</button></a>
+      <a  href="/template/{{pattern.id}}/edit"><button class="btn btn-info" type="button" name="button">Edit</button></a>
     </div>
     <div class="p-2">
-      <form class="" action="/pattern/{{pattern.id}}/edit?_method=DELETE" method="post">
+      <form class="" action="/template/{{pattern.id}}/edit?_method=DELETE" method="post">
         <button class="btn btn-info" type="submit" name="button">Delete</button>
       </form>
 
@@ -31,11 +31,11 @@
   <div class="col-sm-7  ">
     <div class="d-flex flex-row justify-content-xl-between mb-3 ">
       <div class="col-sm-6">
-        <a class="text-info"href="/pattern/{{pattern.id}}/variation/new" ><button class="btn btn-info col-sm-8" type="button" name="button">Submit my version</button></a>
+        <a class="text-info"href="/template/{{pattern.id}}/variation/new" ><button class="btn btn-info col-sm-8" type="button" name="button">Submit my version</button></a>
       </div>
       {{#if notBookmark}}
       <div class="col-sm-6">
-        <form class="addBookmarkForm" action="/pattern/{{pattern.id}}/bookmark" method="post">
+        <form class="addBookmarkForm" action="/template/{{pattern.id}}/bookmark" method="post">
           <button class="btn btn-info col-sm-8" type="submit" name="bookmarkBtn">Add to Bookmark</button>
         </form>
       </div>

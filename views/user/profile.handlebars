@@ -39,16 +39,16 @@
         {{#each user.bookmark as |bookmark| }}
         <div class="d-inline-flex m-2">
           <div class="p-2">
-            <a class="text-info" href="/pattern/{{ bookmark.id }}" >
+            <a class="text-info" href="/template/{{ bookmark.id }}" >
               <h6> {{ bookmark.title }}</h6>
               <img src="{{bookmark.imageUrl}}" height=120 alt="{{ bookmark.title }}'s Image">
             </a>
             <div class="d-flex flex-row">
               <div class="p-1">
-                <a href="/pattern/{{ bookmark.id }}/variation/new"><button class="btn btn-info btn-sm" type="button" name="button">Completed</button></a>
+                <a href="/template/{{ bookmark.id }}/variation/new"><button class="btn btn-info btn-sm" type="button" name="button">Completed</button></a>
               </div>
               <div class="p-1">
-                <form class="removeBookmarkForm" action="/pattern/{{bookmark.id}}/bookmark?_method=PUT" method="post">
+                <form class="removeBookmarkForm" action="/template/{{bookmark.id}}/bookmark?_method=PUT" method="post">
                   <button  class="btn btn-info btn-sm" type="submit" name="button">Remove</button>
                   <input type="hidden" name="patternId" value="{{bookmark.id}}">
                 </form>
@@ -71,7 +71,7 @@
   <div class="d-flex flex-wrap">
     {{#each patterns as |pattern| }}
     <div class="d-inline-flex m-2">
-      <a href="/pattern/{{ pattern.id }}" class="text-info">
+      <a href="/template/{{ pattern.id }}" class="text-info">
         <h6>{{ pattern.title }}</h6>
         <img src="{{pattern.imageUrl}}" height=150 alt="{{pattern.title}}'s image">
       </a>

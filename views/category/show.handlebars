@@ -1,16 +1,18 @@
 <h2 class="text-info">{{ searchCategory }}</h2>
 <div class="mb-2">
-  <h4 class="text-info">Patterns</h4>
-  <div class="d-flex flex-row mb-2">
+  <h4 class="text-info">Templates</h4>
+  <div class="d-flex flex-wrap">
     {{#each patterns as |pattern|}}
-    <div class="d-inline-flex m-1 mr-2">
-
-      <a href="/pattern/{{ pattern.id }}" class="text-info">
-        <img src="{{pattern.imageUrl}}" height=190 alt="Image">
-        <h6>{{ pattern.title }}</h6>
+    <div class="card m-1" style="width: 13rem;">
+      <a class="text-info" href="/template/{{pattern.id}}">
+      <img class="card-img-top"  src="{{pattern.imageUrl}}" height=200 alt="Image">
+        <div class="card-body">
+          <p class="card-text">{{pattern.title}}</p>
+        </div>
       </a>
 
     </div>
+
 
     {{/each}}
   </div>
@@ -19,14 +21,22 @@
 
 <div class="mb-2">
   <h4 class="text-info">Projects</h4>
-  <div class="d-flex flex-row mb-2">
+  <div class="d-flex flex-wrap">
     {{#each projects as |project|}}
-    <div class="d-inline-flex m-1 mr-2">
+    <div class="card m-1" style="width: 13rem;">
+      <a class="text-info" href="/project/{{ project.id }}">
+      <img class="card-img-top"  src="{{project.imageUrl}}" height=200 alt="Image">
+        <div class="card-body">
+          <p class="card-text">{{project.title}}</p>
+        </div>
+      </a>
+    </div>
+    {{!-- <div class="d-inline-flex m-1 mr-2">
       <a href="/project/{{ project.id }}" class="text-info">
         <img  src="{{project.imageUrl}}" height=160 alt="Image">
         <h6>{{ project.title }}</h6>
       </a>
-    </div>
+    </div> --}}
     {{/each}}
   </div>
 </div>

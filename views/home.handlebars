@@ -2,13 +2,16 @@
 
 <div class="">
   <h4 class="text-info">Woodcraft</h4>
-  <div class="d-flex flex-row mb-2">
+  <div class="d-flex flex-row mb-2 mx-auto">
     {{#each woodcraftPatterns as |woodcraftPattern|}}
-    <div class="d-inline-flex m-1 mr-2">
-      <a class="text-info" href="/pattern/{{woodcraftPattern.id}}">
-        <img src="{{woodcraftPattern.imageUrl}}" height=150 alt="Image">
-        <h6>{{woodcraftPattern.title}}</h6>
+    <div class="card m-1" style="width: 13rem;">
+      <a class="text-info" href="/template/{{woodcraftPattern.id}}">
+      <img class="card-img-top"  src="{{woodcraftPattern.imageUrl}}" height=200 alt="Image">
+        <div class="card-body">
+          <p class="card-text">{{woodcraftPattern.title}}</p>
+        </div>
       </a>
+
     </div>
 
     {{/each}}
@@ -19,16 +22,19 @@
 
 </div>
 
-<div class="">
+<div class="mx-auto">
   <h4 class="text-info">Papercraft</h4>
-  <div class="d-flex flex-row mb-2">
+  <div class="d-flex flex-row mb-2 ">
 
     {{#each papercraftPatterns as |papercraftPattern|}}
-    <div class="d-inline-flex m-1 mr-2">
-      <a class="text-info" href="/pattern/{{papercraftPattern.id}}">
-        <img src="{{papercraftPattern.imageUrl}}" height=150 alt="Image">
-        <h6>{{woodcraftPattern.title}}</h6>
+    <div class="card m-1" style="width: 13rem;">
+      <a class="text-info" href="/template/{{papercraftPattern.id}}">
+      <img class="card-img-top"  src="{{papercraftPattern.imageUrl}}" height=200 alt="Image">
+        <div class="card-body">
+          <p class="card-text">{{papercraftPattern.title}}</p>
+        </div>
       </a>
+
     </div>
     {{/each}}
 
@@ -40,11 +46,15 @@
   <h4 class="text-info">Sewing</h4>
   <div class="d-flex flex-row mb-2">
     {{#each sewingPatterns as |sewingPattern|}}
-    <div class="d-inline-flex m-1 mr-2">
-      <a class="text-info" href="/pattern/{{sewingPattern.id}}">
-        <img src="{{sewingPattern.imageUrl}}" height=150 alt="Image">
-        <h6>{{sewingPattern.title}}</h6>
+
+    <div class="card m-1" style="width: 13rem;">
+      <a class="text-info" href="/template/{{sewingPattern.id}}">
+      <img class="card-img-top"  src="{{sewingPattern.imageUrl}}" height=200 alt="Image">
+        <div class="card-body">
+          <p class="card-text">{{sewingPattern.title}}</p>
+        </div>
       </a>
+
     </div>
     {{/each}}
   </div>

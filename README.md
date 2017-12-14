@@ -154,6 +154,9 @@ version 0.8.0 Day 6 (29 Oct):
 * added: CSS
 * routes list to readme
 
+version 0.8.1 (5 Nov) :
+* Fix bugs: Non-user are now able to view pattern and other user profile
+
 
 --------------
 ## Improvement
@@ -162,7 +165,7 @@ To be added:
 * finalise 3 models
 * search function
 * bonus features: estimated time spend
-* user prefence category
+* user preference category
 * more category
 
 

@@ -32,9 +32,8 @@ router.post('/new', upload.single('image'), (req, res) => {
     })
     newPattern.save()
     .then(pattern => {
-      console.log('success')
-      res.redirect(`/pattern/${pattern.id}`)
-    }, err => res.direct('/pattern/new'))
+      res.redirect(`/template/${pattern.id}`)
+    }, err => res.direct('/template/new'))
   })
 
 })
@@ -107,7 +106,7 @@ router.put('/:id/edit', upload.single('image'), (req, res) => {
       }
 
       Pattern.findByIdAndUpdate(patternId, toUpdate)
-      .then(() => res.redirect(`/pattern/${patternId}`))
+      .then(() => res.redirect(`/template/${patternId}`))
       .catch(err => res.send(err))
     })
   })
@@ -133,7 +132,7 @@ router.delete('/:id/edit', isNotLoggedIn, (req, res) => {
     })
     .catch(err => res.send(err))
   }
-  else res.redirect(`/pattern/${patternId}`)
+  else res.redirect(`/template/${patternId}`)
   })
 })
 router.get('/:id/variation/new', isNotLoggedIn, (req,res) => {
@@ -178,7 +177,7 @@ router.post('/:id/variation/new', upload.single('image'), (req, res) => {
         material : projectData.material,
         reflection : projectData.reflection,
         pattern : patternId,
-        imageUrl : "http://res.cloudinary.com/hqxmir9qs/image/upload/v1509874538/500x500placeholder_xy64yy.jpg"
+        imageUrl : result.secure_url
       })
 
       newProject.save()
@@ -235,11 +234,11 @@ router.post('/:id/bookmark', isNotLoggedIn, (req, res) => {
         bookmark : userBookmark
       })
       .then(() => {
-        res.redirect(`/pattern/${patternId}`)
+        res.redirect(`/template/${patternId}`)
       }, (err) => console.log(err))
     })
   } else {
-    res.redirect(`/pattern/${patternId}`)
+    res.redirect(`/template/${patternId}`)
   }
 })
 router.put('/:id/bookmark', isNotLoggedIn, (req, res) => {

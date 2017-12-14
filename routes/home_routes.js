@@ -10,11 +10,11 @@ router.get('/', (req, res) => {
 
   let categoryArray = ['woodcraft','papercraft', 'sewing', 'knitting']
 
-  Pattern.find({"category" : 'woodcraft'}).limit(6)
+  Pattern.find({"category" : 'woodcraft'}).limit(5)
   .then((woodcraftPatterns) => {
-    Pattern.find({"category" : 'sewing'}).limit(6)
+    Pattern.find({"category" : 'sewing'}).limit(5)
     .then((sewingPatterns) => {
-      Pattern.find({"category" : 'papercraft'}).limit(6)
+      Pattern.find({"category" : 'papercraft'}).limit(5)
       .then((papercraftPatterns) => {
         res.render('home', {
           woodcraftPatterns, sewingPatterns, papercraftPatterns

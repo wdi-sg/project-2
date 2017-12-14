@@ -1,13 +1,13 @@
 
 <div class="d-flex flex-row justify-content-xl-between">
   <h2 class="text-info ml-1">Edit: {{pattern.title}} </h2>
-  <form class="" action="/pattern/{{pattern.id}}/edit?_method=DELETE" method="post">
+  <form class="" action="/template/{{pattern.id}}/edit?_method=DELETE" method="post">
     <button class="btn btn-info" type="submit" name="button">Delete</button>
   </form>
 
 </div>
 
-<form enctype="multipart/form-data" action="/pattern/{{pattern.id}}/edit?_method=PUT" method="post">
+<form enctype="multipart/form-data" action="/template/{{pattern.id}}/edit?_method=PUT" method="post">
   <div class="row ml-1 mb-2">
     <div class="form-group col-md-6 card border-info card-header card-body text-info" style="max-width: 30rem">
 
