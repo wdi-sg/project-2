@@ -1,24 +1,27 @@
 <div class="container">
-<h3>{{user.name}} Profile</h3>
-<label for=""></label>
-<form class="textBox" action="/profile" method="post">
-  <textarea name="textBox" rows="97" cols="60"></textarea>
-  <input type="hidden" name="user" value="{{user.id}}">
-  <button type="submit" name="button">Analyze Text</button>
-</form>
+  <h3>{{user.name}} Profile</h3>
+  <form class="textBox" action="/profile" method="post">
+    <div class="input-field">
+      <textarea name="textBox" id="textarea1" class="materialize-textarea">
+      </textarea>
+      <label for="textarea1">Input Text to be Analyzed</label>
+    </div>
+    <input type="hidden" name="user" value="{{user.id}}">
+    <button type="submit" name="button">Analyze Text</button>
+  </form>
 
 
-{{!-- {{#each data as |result|}} --}}
-{{!-- <p>{{data}}</p> --}}
+  {{!-- {{#each data as |result|}} --}}
+  {{!-- <p>{{data}}</p> --}}
 
-  <ul id="myChart">
-    {{!-- #id='red' --}}
-    <li>Openness: {{result.openness}}</li>
-    <li>Conscientiousness: {{result.conscientiousness}}</li>
-    <li>Extraversion: {{result.extraversion}}</li>
-    <li>Agreeableness: {{result.agreeableness}}</li>
-    <li>Emotion Range: {{result.emotionalRange}}</li>
-  </ul>
+  {{!-- <ul id="myChart"> --}}
+  {{!-- #id='red' --}}
+  <li>Openness: {{result.openness}}</li>
+  <li>Conscientiousness: {{result.conscientiousness}}</li>
+  <li>Extraversion: {{result.extraversion}}</li>
+  <li>Agreeableness: {{result.agreeableness}}</li>
+  <li>Emotion Range: {{result.emotionalRange}}</li>
+  {{!-- </ul> --}}
   <form action="/profile/{{result.id}}?_method=DELETE" method="post">
     <button type="submit" name="button">Delete</button>
   </form>
@@ -26,8 +29,7 @@
   <h3>Update</h3>
   <label for=""></label>
   <form class="textBox" action="/profile/{{result.id}}?_method=PUT" method="post">
-    <textarea name="textBox" rows="97" cols="60"></textarea>
-    {{!-- <input type="hidden" name="user" value="{{user.id}}"> --}}
+    <textarea name="textBox" rows="97" cols="60"></textarea>{{!-- <input type="hidden" name="user" value="{{user.id}}"> --}}
     <button type="submit" name="button">Update</button>
   </form>
 
