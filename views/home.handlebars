@@ -2,7 +2,7 @@
 
 <div class="">
   <h4 class="text-info">Woodcraft</h4>
-  <div class="d-flex flex-row mb-2 mx-auto">
+  <div class="d-flex flex-wrap mb-2 mx-auto">
     {{#each woodcraftPatterns as |woodcraftPattern|}}
     <div class="card m-1" style="width: 13rem;">
       <a class="text-info" href="/template/{{woodcraftPattern.id}}">
@@ -22,7 +22,7 @@
 
 <div class="mx-auto">
   <h4 class="text-info">Papercraft</h4>
-  <div class="d-flex flex-row mb-2 ">
+  <div class="d-flex flex-wrap mb-2 ">
 
     {{#each papercraftPatterns as |papercraftPattern|}}
     <div class="card m-1" style="width: 13rem;">
@@ -42,7 +42,7 @@
 
 <div class="">
   <h4 class="text-info">Sewing</h4>
-  <div class="d-flex flex-row mb-2">
+  <div class="d-flex flex-wrap mb-2">
     {{#each sewingPatterns as |sewingPattern|}}
 
     <div class="card m-1" style="width: 13rem;">
