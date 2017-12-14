@@ -1,5 +1,3 @@
-
-// this is too make sure you can access the `.env` file
 require('dotenv').config({ silent : true })
 
 const express = require('express')
@@ -20,12 +18,9 @@ const port = process.env.PORT || 5000
 
 const app = express()
 
-//cloudinary
-// const multer = require('multer')
-
 const cloudinary = require('cloudinary')
 
-// var upload = multer({ dest: './uploads/' })
+
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -41,8 +36,7 @@ app.use(function (req, res, next) {
   next()
 })
 
-// Activation of session after you connect to mongoose
-// MUST BE AFTER YOUR `mongoose.connect`
+
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -81,6 +75,8 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 const Customer = require('./models/customer')
+const Vegetable = require('./models/vegetable')
+const Supplier = require('./models/supplier')
 //require all my route files
 const register_routes = require('./routes/register_routes')
 const login_routes = require('./routes/login_routes')
@@ -88,14 +84,11 @@ const supplier_routes = require('./routes/supplier_routes')
 const vegetable_routes = require('./routes/vegetable_routes')
 
 
-// why we use. `app.use`, because we want to apply this local data for EVERY routes
-// `app.use` => GET, POST, PUT, DELETE request for ALL routes
 app.use((req, res, next) => {
   app.locals.user = req.user
   if (req.user) {
     app.locals.admin = req.user.type === 'admin' ? req.user : null
   }
-  // app.locals.admin  // we'll only `req.user` if we managed to log in
   next()
 })
 
@@ -104,11 +97,9 @@ app.get('/',(req,res) => {
 })
 
 app.get('/profile', hasLoggedOut, (req, res) => {
-  // UPDATE 23 OCT
   res.send(req.customer)
 })
 
-// NEW ROUTE - LOGOUT
 app.get('/logout', hasLoggedOut, (req, res) => {
   req.logout()
   res.redirect('/')

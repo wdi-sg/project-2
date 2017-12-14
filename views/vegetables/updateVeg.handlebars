@@ -1,11 +1,5 @@
 <br><br><br>
 
-{{!-- <select class="" name="">
-  {{#each vegetables as |vegetable| }}
-  <option value="{{vegetable.txtName}}">{{vegetable.txtName}}</option>
-  {{/each }}
-</select> --}}
-
 <h3>Update Vegetable</h3>
 <form action="/vegetable/update/{{ supplier.id }}?_method=PUT" method="post">
 
@@ -14,7 +8,6 @@
   <label for="name">Vegetable Name:</label>
   <input type="text" name="veg[txtName]" value="{{ vegetable.name }}">
   <br/>
-  {{!-- we put the {{}} inside value cos we want to show the existing name --}}
 
 
   <label for="lblPrice">Price per KG $:</label>
@@ -34,8 +27,6 @@
 
 
 <h3>Delete</h3>
-{{!-- Same thing, different request type --}}
 <form action="/vegetable/{{ supp.id }}?_method=DELETE" method="post">
   <button type="submit" name="button">Delete</button>
-  {{!-- don't need input fields here, cos we're not updating anything --}}
 </form>

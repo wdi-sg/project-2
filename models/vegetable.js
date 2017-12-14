@@ -12,10 +12,6 @@ const vegSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Admin'
   }
-  //  supplier:[{
-  //    type: Schema.Types.ObjectId,
-  //    ref: 'Supplier'
-  //  }]
 
 })
 const Vegetable = mongoose.model('vegetable', vegSchema)

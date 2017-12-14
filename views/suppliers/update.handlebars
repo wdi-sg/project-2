@@ -15,14 +15,10 @@
               {{ supplier.address }}<br> #{{ supplier.unit }}, Singapore {{ supplier.postalcode }}
             </p>
 
-            {{!-- We can also setup a form here to update the existing data --}}
-            {{!-- when there's a path, there's a route in your index.js --}}
-            {{!-- why PUT, because all update technically MUST go thru PUT request --}}
             <h3 class="card-title text-center">Update</h3>
             <form action="/supplier/update/{{ supplier.id }}?_method=PUT" method="post">
 
 
-              {{!-- we put the {{}} inside value cos we want to show the existing name --}}
               <label for="lblCompanyName">Company Name : </label>
               <input type="text" class="form-control" name="supplier[txtName]" placeholder="e.g. John Doe" value="{{ supplier.company }}">
               <br/>
@@ -52,14 +48,12 @@
               </div>
             </form>
 
-            <h3 class="card-title text-center">Delete Supplier</h3>{{!-- Same thing, different request type --}}
+            <h3 class="card-title text-center">Delete Supplier</h3>
             <form action="/supplier/update/{{ supplier.id }}?_method=DELETE" method="post">
               <div class="text-center">
                 <button type="submit" class="btn bg-warning" name="button">Delete</button>
               </div>
-              {{!-- don't need input fields here, cos we're not updating anything --}}
             </form>
-
           </div>
         </div>
       </div>

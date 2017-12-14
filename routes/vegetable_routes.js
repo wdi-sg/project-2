@@ -5,11 +5,13 @@ const router = express.Router()
 //cloudinary
 const multer = require('multer')
 const cloudinary = require('cloudinary')
-var upload = multer({ dest: './uploads/' })
+var upload = multer({
+  dest: './uploads/'
+})
 
 
 
-router.post('/new',(req,res) => {
+router.post('/new', (req, res) => {
   const suppInfo = {
     supp: req.body
   }
@@ -17,86 +19,67 @@ router.post('/new',(req,res) => {
 })
 
 
-router.get('/view',(req,res) => {
+router.get('/view', (req, res) => {
   Supplier.find()
-  .then(suppliers => {
-    // at this point we got our data so we can render our page
+    .then(suppliers => {
 
-    res.render('admin/adminShow', {
-      suppliers
-      // remember object literal on es6, we don't need to type in pairs
-      // if key and argument is the same name
-      // i.e. restaurants: restaurants
+      res.render('admin/adminShow', {
+        suppliers
+      })
     })
-  })
-  .catch(err => {
-    console.log(err)
-  })
+    .catch(err => {
+      console.log(err)
+    })
 })
 
-// router.post('/table',(req,res) => {
-//   const suppId = req.body.id
-//   console.log('entered!')
-//   Supplier.findById(req.body.id)
-//     .then((data) => {
-//       res.render('vegetables/table', { vegetables: data.vegetables, suppID: req.body.id})
-//     })
-//   .catch(err => {
-//     console.log(err)
-//   })
-// })
+router.put('/update/:id', (req, res) => {
 
-router.put('/update', (req, res) => {
-  // thankfully since we're using mongoose
-  // we don't have to find and update separately
-  // there's a method in mongoose just for that
-  // `findByIdAndUpdate` http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate
-  var id = req.body
-  var formData = req.body.veg
-  var photo = result.secure_url
-  formData.photo = photo
+  var vegId = req.body.id
+  console.log(req.body)
 
-  Supplier.findByIdAndUpdate(req.body.id, {$push: {vegetables: formData.id }},
-  {safe: true, upsert: true},
-  function(err, model) {
-      console.log(err);
-  })
-  .then(() => res.redirect(`/vegetable/${req.params.id}`))
-  .catch(err => console.log(err))
-  // after update is done, redirect back to resto id
-  // this redirection can go to anywhere as long as you have the routes with you
+  Vegetable.findById(vegId)
+    .then((veg) => {
+
+      veg.set({
+        name: req.body.name,
+        price: req.body.price,
+        quantity: req.body.quantity
+      })
+      veg.save()
+        .then(
+          (result) => res.redirect(`/vegetable/table/${veg.owner}`),
+          () => console.log('ERROR!!')
+        )
+
+    })
+
 })
 
-router.get('/table/:suppID',(req,res) => {
+router.get('/table/:suppID', (req, res) => {
   const suppId = req.params.suppID
   Supplier.findById(suppId)
-  .then((data) => {
-    res.render('vegetables/table', { vegetables: data.vegetables, suppID: req.body.id})
-  })
-  .catch(err => {
-    console.log(err)
-  })
-})
-
-router.put('/update/:suppID', function (req, res) {
-  // let vegOwnerId = req.params.suppID
-  // console.log(vegOwnerId) //supplier ID
-  // console.log(req.body.id) //vege ID in supplier
-  // Supplier.findById(vegOwnerId).then(output => console.log(output.vegetables))
-
+    .populate('vegetables')
+    .then((data) => {
+      console.log('get!', data)
+      res.render('vegetables/table', {
+        vegetables: data.vegetables,
+        suppID: req.body.id
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
 })
 
 
-router.post('/', upload.single('myFile'), function (req, res) {
+router.post('/', upload.single('myFile'), function(req, res) {
   // console.log(req.file.path)
-  cloudinary.uploader.upload(req.file.path, function (result) {
+  cloudinary.uploader.upload(req.file.path, function(result) {
 
     var id = req.body
     var formData = req.body.veg
     var photo = result.secure_url
     formData.photo = photo
-
-    //{ txtName: 'aa', txtPrice: '1', txtQuantity: '1' }
 
     const newVege = new Vegetable()
     newVege.name = formData.txtName
@@ -106,8 +89,14 @@ router.post('/', upload.single('myFile'), function (req, res) {
     newVege.owner = req.body.id
     newVege.save()
       .then((vege) => {
-        Supplier.findByIdAndUpdate(req.body.id, {$push: {vegetables: vege}},
-          {safe: true, upsert: true},
+        Supplier.findByIdAndUpdate(req.body.id, {
+            $push: {
+              vegetables: vege
+            }
+          }, {
+            safe: true,
+            upsert: true
+          },
           function(err, model) {
             if (err) console.log(err);
             res.redirect('/admin/view')

@@ -12,7 +12,6 @@
         <th scope="col">Address</th>
         <th scope="col">Unit</th>
         <th scope="col">Postal code</th>
-        {{!-- <th scope="col"></th> --}}
         <th scope="col"></th>
       </tr>
     </thead>
@@ -28,20 +27,14 @@
         <td>{{ supp.address }}</td>
         <td>{{ supp.unit }}</td>
         <td>{{ supp.postalcode }}</td>
-        {{!-- <td><a href="/supplier/{{ supp.id }}" class="btn">Edit</a></td> --}}
         <td>
-          {{!-- <a href="/vegetable/new" class="btn">Add Vegetable</a> --}}
           <form class="" action="/vegetable/new" method="post">
             <input type="hidden" name="id" value="{{supp.id}}">
             <button type="submit" name="button" href="/vegetable/new" class="btn btn-warning">Add Vegetable</button>
           </form>
 
-          {{!-- <form class="" action="/vegetable/table" method="post"> --}}
-            {{!-- <input type="hidden" name="id" value="{{supp.id}}"> --}}
             <a href="/vegetable/table/{{supp.id}}"><button type="button" class="btn btn-warning">View Vegetable</button></a>
-          {{!-- </form> --}}
         </td>
-        {{!-- how to pass the id over? /{{ supp.id }} --}}
       </tr>
     </tbody>
 
@@ -51,4 +44,3 @@
 </div>
 </div>
 </div>
-{{!-- <a class="btn btn-primary" href="/components/new" role="button">Add</a> --}}

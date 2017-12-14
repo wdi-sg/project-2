@@ -12,19 +12,19 @@ const customerSchema = new Schema({
   type: String
 })
 
-customerSchema.pre('save', function (next) {
+customerSchema.pre('save', function(next) {
   var customer = this
   customer.slug = customer.name.toLowerCase().split(' ').join('-')
 
   bcrypt.hash(customer.password, 10)
-  .then(hash => {
-    customer.password = hash
-    console.log('pre save flow', customer)
-    next()
-  })
+    .then(hash => {
+      customer.password = hash
+      console.log('pre save flow', customer)
+      next()
+    })
 })
 
-customerSchema.methods.validPassword = function (plainPassword, callback) {
+customerSchema.methods.validPassword = function(plainPassword, callback) {
   bcrypt.compare(plainPassword, this.password, callback)
 }
 
