@@ -19,7 +19,7 @@
       <div class="collapse navbar-collapse"  id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link text-white" href="/">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link active text-white" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="/category" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -37,21 +37,21 @@
         <ul class="navbar-nav">
           {{#if user}}
           <li class="nav-item">
-            <a class="nav-link text-white mr-2" href="/template/new">Add New Template</a>
+            <a class="nav-link active text-white mr-2" href="/template/new">Add New Template</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white mr-2" href="/profile/">{{ user.name }}</a>
+            <a class="nav-link active text-white mr-2" href="/profile/">{{ user.name }}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="/logout">Logout</a>
+            <a class="nav-link active text-white" href="/logout">Logout</a>
           </li>
 
           {{else}}
           <li class="nav-item">
-            <a class="nav-link text-white mr-2" href="/register">Register</a>
+            <a class="nav-link active text-white mr-2" href="/register">Register</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white mr-2" href="/login">Login</a>
+            <a class="nav-link active text-white mr-2" href="/login">Login</a>
           </li>
 
           {{/if}}
@@ -60,11 +60,11 @@
     </nav>
 
 
-    <div class="container">
+    <div class="container mb-4">
       {{{ body }}}
     </div>
     <footer class="bd-footer text-muted">
-      <div class="container-fluid p-3 p-md-5">
+      <div class="container-fluid p-3 p-md-4">
         <p class="text-center">Designed and built by <a href="https://github.com/Siya-ng" target="_blank" rel="noopener">@siya</a>, and <a href="http://getbootstrap.com/" target="_blank">Bootstrap 4</a> </p>
       </div>
     </footer>

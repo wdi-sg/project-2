@@ -6,9 +6,21 @@ nav {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,102,203, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E")
 }
 
-.bg-info, .btn-info {
+.navlink:hover , .nav-item:hover {
+  background-color: rgba(26,116,107, 0.2);
+}
+
+.bg-info {
   background-color: #26a69a !important;
 }
+.btn-info {
+  background-color: #26a69a !important;
+}
+.btn-info:hover, .btn-info:focus, .btn-info:active {
+  background-color: #1a746b !important;
+  border-color: #1a746b !important;
+}
+
 .text-info {
   color: #26a69a !important;
 }
@@ -33,5 +45,3 @@ h6 {
 footer {
   background-color: #e9e9e9;
 }
-@media (max-width: 575px) {
-  
