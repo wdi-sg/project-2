@@ -21,6 +21,10 @@ body, html {
     height: 100%;
 }
 
+.listings {
+  max-height: 1px;
+}
+
 
 .main {
     margin-top: 30px;

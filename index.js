@@ -4,7 +4,7 @@ require('dotenv').config({ silent: true })
 const dbUrl =
 process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/project'
 
-const port = process.env.PORT || 9000
+const port = process.env.PORT || 9100
 
 // Installing all modules
 const express = require('express')

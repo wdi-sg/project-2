@@ -15,19 +15,18 @@
   <button type="submit" name="button">Submit</button>
 </div>
 </form>
-
 <h2>All listings</h2>
 <div class="row equal">
   {{#each listings as |listo|}}
   <div class="col-4">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">{{ listo.description }}</h4>
+        <h4 class="card-title">{{ listo.title }}</h4>
         <p class="card-text">
           <div class="text-center">
             <img src="{{listo.photos}}" class="img-thumbnail" width="100px" max-height="100px">
           </div>
-          {{ listo.title }}
+          {{ listo.description }}
         </p>
       </div>
       {{#if listo.dealt}}
@@ -36,6 +35,9 @@
       </div>
       <a href="listings/requests/{{listo._id}}" data-id = "{{listo.author}}" class="btn btn-primary btn-lg btn-dark disabled" role="button">Request trade!</a>
       {{else}}
+      <div class="alert alert-success" role="alert">
+      DEAL IS STILL OPEN
+      </div>
       <a href="listings/requests/{{listo._id}}" data-id = "{{listo.author}}" class="btn btn-primary btn-lg btn-dark" role="button">Request trade!</a>
       {{/if}}
     </div>
