@@ -9,6 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
+
   <body>
 
 {{!-- ---------------------------------------------------------------- --}}
@@ -17,49 +18,56 @@
     <nav class="white" role="navigation">
       <div class="container">
         <div class="nav-wrapper">
-          <div id="logo-container">
-            <a href="/"><img width="50" class="icon hide-on-med-and-down" src="/assets/img/logo.png"></a>
-            <a href="/" class="brand-logo black-text">Fat Pocket</a>
+          <div id="logo-container" class="left hide-on-med-and-down">
+            <ul class="hide-on-med-and-down">
+              {{!-- <li><a href="/" class="brand-logo black-text">Fat Pocket</a></li> --}}
+              <li><a href="/"><img width="50" src="/assets/img/logo.png"></a></li>
+            </ul>
           </div>
 
           <div id="menu-container">
-          <ul id='dropdown1' class='dropdown-content'>
-            <li><a class="nav-link black-text" href="/fixed-deposit">Fixed Deposit</a></li>
-            <li><a class="nav-link black-text" href="/savings-account">Savings Account (Under Construction!)</a></li>
-          </ul>
+            <ul id='dropdown1' class='dropdown-content'>
+              <li><a class="nav-link black-text" href="/fixed-deposit">Fixed Deposit</a></li>
+              <li><a class="nav-link black-text" href="/savings-account">Savings Account (Under Construction!)</a></li>
+            </ul>
 
-          <ul class="left hide-on-med-and-down">
-            <li><a class='dropdown-button black-text' href='#' data-activates='dropdown1'>Bank Account</a></li>
-            <li><a class="nav-link black-text" href="#">Credit Card (Coming Soon!)</a></li>
-            <li><a class="nav-link black-text" href="#">Investment (Coming Soon!)</a></li>
-          </ul>
 
-          <ul class="right hide-on-med-and-down">
+            <ul class="hide-on-med-and-down">
+              <li><a class='dropdown-button black-text' href='#' data-activates='dropdown1'>Bank Account</a></li>
+              <li><a class="nav-link black-text" href="#">Credit Card (Coming Soon!)</a></li>
+              <li><a class="nav-link black-text" href="#">Investment (Coming Soon!)</a></li>
+            </ul>
 
-            {{#if user}}
+            <ul class="right hide-on-med-and-down">
 
-              <li><a class="nav-link black-text" href="/logout">Logout</a></li>
-              <li><a class="nav-link black-text" href="/profile">{{user.name}}</a></li>
+              {{#if user}}
 
-            {{else}}
+                <li><a class="nav-link black-text" href="/logout">Logout</a></li>
+                <li><a class="nav-link black-text" href="/profile">{{user.name}}</a></li>
 
-              <li><a class="nav-link black-text" href="/login">Login</a></li>
-              <li><a class="nav-link black-text" href="/register">Register</a></li>
+              {{else}}
 
-            {{/if}}
+                <li><a class="nav-link black-text" href="/login">Login</a></li>
+                <li><a class="nav-link black-text" href="/register">Register</a></li>
 
-          </ul>
+              {{/if}}
+
+            </ul>
 
         </div>
+
       </div>
-    </nav>
-  </div>
+    </div>
+  </nav>
+</div>
+
 
 {{!-- ---------------------------------------------------------------- --}}
 
       {{{ body }}}
 
 {{!-- ---------------------------------------------------------------- --}}
+
 
     <footer class="page-footer #e3f2fd blue">
       <div class="container">
