@@ -24,14 +24,14 @@ router.post('/register', (req, res) => {
 
   newUser.save()
   .then(
-    user => res.redirect('/'),
+    user => res.redirect('/users/login'),
     err => res.send(err)
   )
 })
 
 router.post('/login', (req, res) =>{
   passport.authenticate('user-local', {
-    successRedirect: '/',
+    successRedirect: '/route',
     failureRedirect: '/users/login'
   })(req, res)
 })
