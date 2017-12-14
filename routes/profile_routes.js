@@ -41,11 +41,11 @@ router.post("/", (req, res) => {
 		// console.log(JSON.stringify(response, null, 2))
 		var big5Data = response["personality"]
 		var newPersonality = new Big5({
-			openness: big5Data[0].percentile,
-			conscientiousness: big5Data[1].percentile,
-			extraversion: big5Data[2].percentile,
-			agreeableness: big5Data[3].percentile,
-			emotionalRange: big5Data[4].percentile,
+			openness: Math.round(big5Data[0].percentile * 100) / 100,
+			conscientiousness: Math.round(big5Data[1].percentile * 100) / 100,
+			extraversion: Math.round(big5Data[2].percentile * 100) / 100,
+			agreeableness: Math.round(big5Data[3].percentile * 100) / 100,
+			emotionalRange: Math.round(big5Data[4].percentile * 100) / 100,
 			created_at: new Date (),
 			owner: req.body.user
 		})
@@ -79,11 +79,11 @@ router.put("/:id", (req, res) => {
 		// console.log(big5Data)
 
 		var personality = {
-			openness: big5Data[0].percentile,
-			conscientiousness: big5Data[1].percentile,
-			extraversion: big5Data[2].percentile,
-			agreeableness: big5Data[3].percentile,
-			emotionalRange: big5Data[4].percentile,
+			openness: Math.round(big5Data[0].percentile * 100) / 100,
+			conscientiousness: Math.round(big5Data[1].percentile * 100) / 100,
+			extraversion: Math.round(big5Data[2].percentile * 100) / 100,
+			agreeableness: Math.round(big5Data[3].percentile * 100) / 100,
+			emotionalRange: Math.round(big5Data[4].percentile *100) / 100,
 			created_at: new Date ()
 		}
 

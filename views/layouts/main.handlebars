@@ -4,30 +4,33 @@
 <head>
   <meta charset="utf-8">
   <title>Project 2</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 </head>
 
 <body>
-  <div>
-    <nav>
-      <div class="nav-wrapper #ff9800 orange">
-        <a href="#" class="brand-logo">Welcome {{ user.name }}</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          {{#if user}}
-            <li><a href="/">Home</a></li>
-            <li><a href="/profile">Profile</a></li>
-            <li><a href="/logout">Logout</a></li>
-          {{else}}
-            {{!-- hides the below <li> --}}
-            <li><a href="/register">Register</a></li>
-            <li><a href="/login"> Login </a></li>
-          {{/if}}
-        </ul>
-      </div>
-  </div>
-
-  {{{ body }}}
-
+  <nav>
+    <div class="nav-wrapper orange">
+      <a href="#" class="brand-logo">Welcome {{ user.name }}</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        {{#if user}}
+          <li><a href="/">Home</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/logout">Logout</a></li>
+        {{else}}
+          {{!-- hides the below <li> --}}
+          <li><a href="/register">Register</a></li>
+          <li><a href="/login"> Login </a></li>
+        {{/if}}
+      </ul>
+    </div>
+  </nav>
+  <main>
+    {{{ body }}}
+  </main>
+  <footer class="page-footer orange center-align">
+    by William Tan
+  </footer>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   {{!-- <canvas id="myChart" width="1" height="1"></canvas> --}}
