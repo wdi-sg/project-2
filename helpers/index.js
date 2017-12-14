@@ -19,10 +19,10 @@ const hasLoggedOut = (req, res, next) => {
 }
 
 const findCurrentQuote = () => {
-  var startOfToday = moment().startOf('day')
+  // var startOfToday = moment().startOf('day')
+  var random = Math.floor(Math.random() * 11) + 1
   var currentHour = moment().hour()
   var timeEvent
-
   if (currentHour >= 0 && currentHour <= 12) timeEvent = 1
   if (currentHour >= 12 && currentHour <= 18) timeEvent = 2
   if (currentHour >= 18 && currentHour <= 24) timeEvent = 3
@@ -33,7 +33,7 @@ const findCurrentQuote = () => {
   //   publishedAt: {
   //     $gte: startOfToday
   //   }
-  })
+  }).skip(random)
   // .sort({publishedAt: 1})
   .limit(1)
   .then(quote => {
