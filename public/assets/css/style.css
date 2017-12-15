@@ -23,4 +23,6 @@ h3 {
   color: white;
 }
 
-.
+.textWhite {
+  color: white !important;
+}
