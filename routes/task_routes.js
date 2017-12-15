@@ -72,6 +72,7 @@ router.put('/:id/complete', (req, res)=>{
       var Members = task.fridge.members
       Members.forEach((member)=>{
         console.log(member.phoneNumber)
+
         client.messages
         .create({
           to: `+65${member.phoneNumber}`,
@@ -109,7 +110,7 @@ router.post('/', (req,res)=>{
           .create({
             to: `+65${member.phoneNumber}`,
             from: '+17173882453 ',
-            body: `${task.fridge.name} has wants to ${task.details}`,
+            body: `${task.fridge.name} wants to ${task.details}`,
           })
           .then((message) => console.log(message.sid));
         })
