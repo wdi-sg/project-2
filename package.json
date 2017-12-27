@@ -1,8 +1,8 @@
 {
-  "name": "project-2",
+  "name": "wdi-project-2",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/wdi-sg/project-2.git",
-  "author": "Prima Aulia Gusta <primaulia@gmail.com>",
+  "repository": "https://github.com/limjiechao/project-2",
+  "author": "Lim Jiechao <jiechao.lim@gmail.com>",
   "license": "MIT"
 }
