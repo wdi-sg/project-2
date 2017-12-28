@@ -1,0 +1,17 @@
+<form method="post" action="/smartsearch">
+  {{#each list}}
+    {{indivItem}}
+
+    {{#each indivResult}}
+      <div>
+        {{name}}, {{latitude}}, {{longitude}}
+      </div>
+    {{/each}}
+
+    <br><br>
+  {{/each}}
+
+  <div>
+    <input type="submit" value="SMART SEARCH">
+  </div>
+</form>

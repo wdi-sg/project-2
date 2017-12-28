@@ -2,7 +2,17 @@
   "name": "project-2",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/wdi-sg/project-2.git",
-  "author": "Prima Aulia Gusta <primaulia@gmail.com>",
-  "license": "MIT"
+  "repository": "https://github.com/chongct/project-2.git",
+  "author": "Chong Ching Tong <chongchingtong@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^4.13.7",
+    "yelp-fusion": "^2.0.3"
+  }
 }
