@@ -3,9 +3,10 @@ const dbConfig = require('../config/dbConfig');
 const apiKey = dbConfig.apiKey;
 const client = yelp.client(apiKey);
 
-const List = require('../models/list');
+// const List = require('../models/list');
 // const searchResult = require('../helpers/search');
 const analyzeResult = require('../helpers/analysis');
+var displayArray = [];
 
 // home page
 exports.home = (req, res) => {
@@ -16,8 +17,7 @@ exports.home = (req, res) => {
 exports.search = (req, res) => {
   var itemArray = [];
   var resultArray = [];
-  var displayArray = [];
-  for (var index = 0; index < 2; index++) {
+  for (var index = 0; index < 3; index++) {
     itemArray.push(req.body["entry" + index]);
   }
 
@@ -25,12 +25,15 @@ exports.search = (req, res) => {
     res.render('result', {'list': array});
   };
 
+  // search API
   itemArray.forEach(function(element) {
     client.search({
       location: 'Singapore',
-      limit: 5,
+      limit: 10,
       term: element
     }).then(response => {
+
+      // push to array
       var result = response.jsonBody.businesses;
       console.log("1");
       // console.log(result);
@@ -48,6 +51,8 @@ exports.search = (req, res) => {
       });
       resultArray = [];
     }).then(() => {
+
+      // callback function, asynchronous problem addressed by if statement
       console.log("2");
       // console.log(displayArray);
       if (displayArray.length === itemArray.length) {
@@ -57,67 +62,66 @@ exports.search = (req, res) => {
       console.log(e);
     });
   });
-
-
-
-
-  // var searchArray = [];
-  // for (var index = 0; index < 2; index++) {
-  //   searchArray.push(req.body["entry" + index]);
-  // }
-  // searchResult(req, res);
-  //
-  // setTimeout(function() {
-  //   List.find({indivItem: {$in: searchArray}}, (err, list) => {
-  //     if (err) console.log(err);
-  //     var convertList = [];
-  //     list.forEach(function(item) {
-  //       convertList.push({
-  //         indivItem: item.indivItem
-  //       });
-  //     });
-  //     // console.log("1");
-  //     console.log(convertList);
-  //     console.log(typeof convertList[0]);
-  //     console.log(typeof convertList[2]);
-  //     if (convertList[0] == convertList[2]) {
-  //       console.log("same");
-  //     } else {
-  //       console.log("no");
-  //     }
-  //     var filteredList = convertList.filter(function(item, pos) {
-  //       // console.log(item);
-  //       // console.log(pos);
-  //       return convertList.indexOf(item) == pos;
-  //     });
-  //     // console.log("2");
-  //     // console.log(filteredList);
-  //     res.render('result', {'list': filteredList});
-  //   });
-  // }, 4000);
 };
 
-// display results
-exports.result = (req, res) => {
-  var array = ["restaurant", "pen"];
-  var objectResult = {};
-  for (var index = 0; index < 2; index++) {
-    console.log(array[index]);
-    List.findOne({indivItem: array[index]}, (err, list) => {
-      if (err) console.log(err);
-      objectResult["list" + index] = list;
-      console.log(objectResult);
-    });
-  }
-  console.log(objectResult);
-  setTimeout(function() {
-    console.log("2");
-    res.render('result', objectResult);
-  }, 2000);
-
-};
+// exports.result = (req, res) => {
+//   var array = ["restaurant", "pen"];
+//   var objectResult = {};
+//   for (var index = 0; index < 2; index++) {
+//     console.log(array[index]);
+//     List.findOne({indivItem: array[index]}, (err, list) => {
+//       if (err) console.log(err);
+//       objectResult["list" + index] = list;
+//       console.log(objectResult);
+//     });
+//   }
+//   console.log(objectResult);
+//   setTimeout(function() {
+//     console.log("2");
+//     res.render('result', objectResult);
+//   }, 2000);
+// };
 
 // smart search for entire list
-exports.smartSearch = (req, res) => {
-  analyzeResult();
+exports.analyze = (req, res) => {
+  var analyzeArray = [];
+  var displayAnalyzeArray = [];
+  for (var index = 0; index < displayArray.length; index++) {
+    displayArray[index].indivResult.forEach(function(i) {
+      // console.log("test1");
+      if (index + 1 < displayArray.length) {
+        displayArray[index + 1].indivResult.forEach(function(j) {
+          // console.log("test2");
+          // var analyzeString = analyzeResult(i, j);
+          if (analyzeResult(i, j)) {
+            analyzeArray.forEach(function(element) {
+              var res = element.result.name.split("-");
+              if (i.name === res[1]) {
+                console.log(i.name);
+                analyzeArray.push({
+                  result: {
+                    name: element.result.name + "-" + j.name
+                  }
+                });
+              }
+            });
+            analyzeArray.push({
+              result: {
+                name: i.name + "-" + j.name
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+  // console.log(analyzeArray);
+  analyzeArray.forEach(function(element) {
+    var res = element.result.name.split("-");
+    if (res.length === displayArray.length) {
+      console.log(element);
+      displayAnalyzeArray.push(element);
+    }
+  });
+  res.render('analyze', {'list': displayAnalyzeArray});
 };

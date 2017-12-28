@@ -1,5 +1,4 @@
-
-//
+// not in use
 //
 // const List = require('../models/list');
 //

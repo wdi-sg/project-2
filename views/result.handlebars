@@ -1,17 +1,15 @@
-<form method="post" action="/smartsearch">
-  {{#each list}}
-    {{indivItem}}
+{{#each list}}
+  {{indivItem}}
 
-    {{#each indivResult}}
-      <div>
-        {{name}}, {{latitude}}, {{longitude}}
-      </div>
-    {{/each}}
-
-    <br><br>
+  {{#each indivResult}}
+    <div>
+      {{name}}, {{latitude}}, {{longitude}}
+    </div>
   {{/each}}
 
-  <div>
-    <input type="submit" value="SMART SEARCH">
-  </div>
-</form>
+  <br><br>
+{{/each}}
+
+<div>
+  <a class="button is-primary" href="/analyze">ANALYZE</a>
+</div>

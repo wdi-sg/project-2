@@ -6,7 +6,6 @@ const homeController = require('../controllers/homeController.js');
 
 router.get('/', homeController.home);
 router.post('/search', homeController.search);
-router.get('/result', homeController.result);
-router.post('/smartsearch', homeController.smartSearch);
+router.get('/analyze', homeController.analyze);
 
 module.exports = router;
