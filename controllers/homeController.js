@@ -4,7 +4,7 @@ const apiKey = dbConfig.apiKey;
 const client = yelp.client(apiKey);
 
 // const List = require('../models/list');
-// const searchResult = require('../helpers/search');
+// const search = require('../helpers/search');
 const analyzeResult = require('../helpers/analysis');
 var displayArray = [];
 
@@ -16,8 +16,11 @@ exports.home = (req, res) => {
 // search result for individual fields
 exports.search = (req, res) => {
   var itemArray = [];
-  var resultArray = [];
-  for (var index = 0; index < 3; index++) {
+  var location = 'Singapore';
+  var inputField = Object.keys(req.body).length - 1;
+
+  // get input data
+  for (var index = 0; index < inputField; index++) {
     itemArray.push(req.body["entry" + index]);
   }
 
@@ -25,62 +28,53 @@ exports.search = (req, res) => {
     res.render('result', {'list': array});
   };
 
-  // search API
-  itemArray.forEach(function(element) {
-    client.search({
-      location: 'Singapore',
-      limit: 10,
-      term: element
-    }).then(response => {
+  client.search({
+    location: location,
+    limit: 5,
+    term: req.body.entry0
+  }).then(response => {
+    // search to get rough location
+    location = response.jsonBody.businesses[0].location.address1;
+  }).then(() => {
 
-      // push to array
-      var result = response.jsonBody.businesses;
-      console.log("1");
-      // console.log(result);
-      result.forEach(function(business) {
-        resultArray.push({
-          name: business.name,
-          latitude: business.coordinates.latitude,
-          longitude: business.coordinates.longitude
+    // search API
+    itemArray.forEach(function(element) {
+      client.search({
+        location: location,
+        limit: 5,
+        term: element
+      }).then(response => {
+
+        // push to array
+        var result = response.jsonBody.businesses;
+        var resultArray = [];
+        console.log("1");
+        // console.log(result);
+        result.forEach(function(business) {
+          resultArray.push({
+            name: business.name,
+            latitude: business.coordinates.latitude,
+            longitude: business.coordinates.longitude
+          });
         });
-      });
-      // console.log(resultArray);
-      displayArray.push({
-        indivItem: element,
-        indivResult: resultArray
-      });
-      resultArray = [];
-    }).then(() => {
+        displayArray.push({
+          indivItem: element,
+          indivResult: resultArray
+        });
+      }).then(() => {
 
-      // callback function, asynchronous problem addressed by if statement
-      console.log("2");
-      // console.log(displayArray);
-      if (displayArray.length === itemArray.length) {
-        displayResults(displayArray);
-      }
-    }).catch(e => {
-      console.log(e);
+        // callback function, asynchronous problem addressed by if statement
+        console.log("2");
+        // console.log(displayArray);
+        if (displayArray.length === itemArray.length) {
+          displayResults(displayArray);
+        }
+      }).catch(e => {
+        console.log(e);
+      });
     });
   });
 };
-
-// exports.result = (req, res) => {
-//   var array = ["restaurant", "pen"];
-//   var objectResult = {};
-//   for (var index = 0; index < 2; index++) {
-//     console.log(array[index]);
-//     List.findOne({indivItem: array[index]}, (err, list) => {
-//       if (err) console.log(err);
-//       objectResult["list" + index] = list;
-//       console.log(objectResult);
-//     });
-//   }
-//   console.log(objectResult);
-//   setTimeout(function() {
-//     console.log("2");
-//     res.render('result', objectResult);
-//   }, 2000);
-// };
 
 // smart search for entire list
 exports.analyze = (req, res) => {
@@ -96,7 +90,7 @@ exports.analyze = (req, res) => {
           if (analyzeResult(i, j)) {
             analyzeArray.forEach(function(element) {
               var res = element.result.name.split("-");
-              if (i.name === res[1]) {
+              if (i.name === res[res.length - 1]) {
                 console.log(i.name);
                 analyzeArray.push({
                   result: {
@@ -115,6 +109,8 @@ exports.analyze = (req, res) => {
       }
     });
   }
+
+  // check for elements which are present for all search fields
   // console.log(analyzeArray);
   analyzeArray.forEach(function(element) {
     var res = element.result.name.split("-");

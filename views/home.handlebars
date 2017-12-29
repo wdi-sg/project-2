@@ -1,26 +1,43 @@
 <form method="post" action="search">
-  <div class="field">
-    <label class="label">First Item</label>
-    <div class="control">
-      <input class="input" type="text" name="entry0" placeholder="eg. Restaurant">
+  <div class="inputfield">
+    <div class="field is-horizontal"  id="field0">
+      <div class="field-label is-normal">
+        <label class="label">Item 1</label>
+      </div>
+
+      <div class="field-body">
+        <div class="field">
+          <div class="control" id="control0">
+            <input class="input" type="text" name="entry0" id="input0" placeholder="eg. Restaurant">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal"  id="field1">
+      <div class="field-label is-normal">
+        <label class="label">Item 2</label>
+      </div>
+
+      <div class="field-body">
+        <div class="field">
+          <div class="control" id="control1">
+            <input class="input" type="text" name="entry1" id="input1" placeholder="eg. Bookstore">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="field">
-    <label class="label">Second Item</label>
-    <div class="control">
-      <input class="input" type="text" name="entry1" placeholder="eg. Bookstore">
+  <div class="field is-horizontal">
+    <div class="field-label">
     </div>
-  </div>
-
-  <div class="field">
-    <label class="label">Third Item</label>
-    <div class="control">
-      <input class="input" type="text" name="entry2">
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <button class="button is-primary">Submit</button>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div class="control">
-    <button class="button is-primary">Submit</button>
   </div>
 </form>

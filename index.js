@@ -5,7 +5,6 @@ const app = express();
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const path = require('path');
-const yelp = require('yelp-fusion');
 const port = 3000;
 
 const routes = require('./routes/routes');

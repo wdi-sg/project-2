@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="has-navbar-fixed-top">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,21 +10,29 @@
 
 </head>
 <body>
+  <nav class="navbar is-fixed-top is-light" role="navigation" aria-label="main navigation">
+    <button class="button navbar-burger" data-target="navMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-  <nav class="navbar is-light" role="navigation" aria-label="main navigation">
-    <div class="navbar-menu">
+    <div class="navbar-menu" id="navMenu">
       <div class="navbar-end">
         <a class="navbar-item" href="/">Home</a>
       </div>
     </div>
   </nav>
 
-  {{{body}}}
+  <div class="container">
+    {{{body}}}
+  </div>
 
   <script
   src="https://code.jquery.com/jquery-3.2.1.js"
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   crossorigin="anonymous"></script>
+  <script src="javascript/main.js"></script>
 
 </body>
 </html>
