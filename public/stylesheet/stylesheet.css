@@ -1,0 +1,47 @@
+/* home page */
+.text{
+  padding: 20px;
+}
+.title{
+  margin: 10px 0px;
+}
+form{
+  border: 2px solid rgb(255, 215, 0);
+  padding: 20px;
+  margin-top: 10px;
+  height: 570px;
+}
+.button{
+  margin-top: 20px;
+}
+
+/* result page */
+.result-container{
+  padding: 20px;
+  margin: 20px;
+}
+.result-title{
+  text-align: center;
+}
+.grid-container{
+  display: grid;
+  grid-template: auto / 25% 25% 25% 25%;
+  align-items: stretch;
+  grid-gap: 10px 10px;
+}
+.grid-container > div{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.grid-container > div:nth-of-type(odd){
+  background-color: rgb(219, 219, 219);
+}
+
+/* responsive design */
+@media only screen and (max-width: 1023px) {
+  form{
+    height: 900px;
+  }
+}

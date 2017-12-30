@@ -32,7 +32,7 @@ $(document).ready(function() {
         addLogic = false;
       }
     }
-    if (addLogic === true) {
+    if (addLogic === true && counter < 10) {
       addInput(counter);
     }
 
@@ -45,7 +45,7 @@ $(document).ready(function() {
   var addInput = function(index) {
     $(".inputfield").append("<div class='field is-horizontal' id=field" + index + "></div>");
     $("#field" + index).append("<div class='field-label is-normal'></div>");
-    $("#field" + index).children().append("<label class=label>Item " + (index + 1) + "</label>").hide().fadeIn(800);
+    $("#field" + index).children().append("<label class=label>Priority " + (index + 1) + "</label>").hide().fadeIn(800);
 
     $("#field" + index).append("<div class=field-body></div>");
     $("#field" + index).children(".field-body").append("<div class=field></div>");

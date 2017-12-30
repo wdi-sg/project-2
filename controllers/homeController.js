@@ -6,7 +6,7 @@ const client = yelp.client(apiKey);
 // const List = require('../models/list');
 // const search = require('../helpers/search');
 const analyzeResult = require('../helpers/analysis');
-var displayArray = [];
+var displayedArray = [];
 
 // home page
 exports.home = (req, res) => {
@@ -16,6 +16,7 @@ exports.home = (req, res) => {
 // search result for individual fields
 exports.search = (req, res) => {
   var itemArray = [];
+  var displayArray = [];
   var location = 'Singapore';
   var inputField = Object.keys(req.body).length - 1;
 
@@ -34,14 +35,15 @@ exports.search = (req, res) => {
     term: req.body.entry0
   }).then(response => {
     // search to get rough location
-    location = response.jsonBody.businesses[0].location.address1;
+    location = response.jsonBody.businesses[0].location.address1 + ", " + response.jsonBody.businesses[0].location.country;
+    console.log(location);
   }).then(() => {
 
     // search API
     itemArray.forEach(function(element) {
       client.search({
         location: location,
-        limit: 5,
+        limit: 8,
         term: element
       }).then(response => {
 
@@ -54,11 +56,14 @@ exports.search = (req, res) => {
           resultArray.push({
             name: business.name,
             latitude: business.coordinates.latitude,
-            longitude: business.coordinates.longitude
+            longitude: business.coordinates.longitude,
+            address1: business.location.address1,
+            address2: business.location.address2,
+            link: business.url
           });
         });
         displayArray.push({
-          indivItem: element,
+          indivItem: element.toUpperCase(),
           indivResult: resultArray
         });
       }).then(() => {
@@ -67,7 +72,9 @@ exports.search = (req, res) => {
         console.log("2");
         // console.log(displayArray);
         if (displayArray.length === itemArray.length) {
+          displayedArray = displayArray;
           displayResults(displayArray);
+          displayArray = [];
         }
       }).catch(e => {
         console.log(e);
@@ -78,46 +85,6 @@ exports.search = (req, res) => {
 
 // smart search for entire list
 exports.analyze = (req, res) => {
-  var analyzeArray = [];
-  var displayAnalyzeArray = [];
-  for (var index = 0; index < displayArray.length; index++) {
-    displayArray[index].indivResult.forEach(function(i) {
-      // console.log("test1");
-      if (index + 1 < displayArray.length) {
-        displayArray[index + 1].indivResult.forEach(function(j) {
-          // console.log("test2");
-          // var analyzeString = analyzeResult(i, j);
-          if (analyzeResult(i, j)) {
-            analyzeArray.forEach(function(element) {
-              var res = element.result.name.split("-");
-              if (i.name === res[res.length - 1]) {
-                console.log(i.name);
-                analyzeArray.push({
-                  result: {
-                    name: element.result.name + "-" + j.name
-                  }
-                });
-              }
-            });
-            analyzeArray.push({
-              result: {
-                name: i.name + "-" + j.name
-              }
-            });
-          }
-        });
-      }
-    });
-  }
-
-  // check for elements which are present for all search fields
-  // console.log(analyzeArray);
-  analyzeArray.forEach(function(element) {
-    var res = element.result.name.split("-");
-    if (res.length === displayArray.length) {
-      console.log(element);
-      displayAnalyzeArray.push(element);
-    }
-  });
+  var displayAnalyzeArray = analyzeResult(displayedArray);
   res.render('analyze', {'list': displayAnalyzeArray});
 };

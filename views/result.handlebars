@@ -1,15 +1,21 @@
 {{#each list}}
-  {{indivItem}}
-
-  {{#each indivResult}}
-    <div>
-      {{name}}, {{latitude}}, {{longitude}}
+  <div class="result-container">
+    <div class="result-title is-size-3">
+      {{indivItem}}
     </div>
-  {{/each}}
 
-  <br><br>
+    <div class="grid-container">
+      {{#each indivResult}}
+        <div>
+          <a href={{link}}><p>{{name}}</p></a>
+          <p>{{address1}}</p>
+          <p>{{address2}}</p>
+        </div>
+      {{/each}}
+    </div>
+  </div>
 {{/each}}
 
 <div>
-  <a class="button is-primary" href="/analyze">ANALYZE</a>
+  <a class="button is-primary" href="/analyze">Analyze</a>
 </div>
