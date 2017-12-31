@@ -1,0 +1,508 @@
+body{
+    font: 15px/1.5 Arial, Helvetica,sans-serif;
+    padding:0;
+    margin:0;
+    background-color:#f4f4f4;
+  }
+  
+  /* ----- GLOBAL ----- */
+  .container{
+    width:80%;
+    margin:auto;
+    overflow:hidden;
+  }
+  
+  ul {
+    margin:0;
+    padding:0;
+  }
+  
+  .button1 {
+    height:38px;
+    background: #f1b50d;
+    border:0;
+    padding-left: 20px;
+    padding-right:20px;
+    color:#ffffff;
+  }
+  
+  /* HEADER **/
+  header{
+    background:#35424a;
+    color:#ffffff;
+    padding-top:30px;
+    min-height:70px;
+  }
+  
+  header a {
+    color:#ffffff;
+    text-decoration:none;
+    text-transform: uppercase;
+    font-size:16px;
+  }
+  
+  header li {
+    display:inline;
+    padding: 0 20px 0 20px;
+  }
+  
+  header #branding {
+    float:left;
+  }
+  
+  header #branding h1 {
+    margin:0;
+  }
+  
+  header nav {
+    float:right;
+    margin-top:10px;
+  }
+  
+  header .highlight, header .current a{
+    color:#f1b50d;
+    font-weight:bold;
+  }
+  
+  header a:hover{
+    color:#cccccc;
+    font-weight:bold;
+  }
+  
+  
+  
+  .search {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    z-index: 1;
+  }
+   
+   
+  .search i {
+    color: #dbb075;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 2px; 
+  }
+   
+   
+  .field-toggle {
+    position: relative;
+    top: 30px;
+    right: 15px;
+    display: none;
+    height: 50px;
+  }
+   
+   
+  .search-form {
+    padding-left: 10px;
+    height: 40px;
+    font-size: 18px;
+    color: #818285;
+    font-weight: 300;
+    outline: none;
+    border: 1px solid #dbb075;
+    margin-top: 20px;
+    border-radius: 4px;
+  }
+  
+  
+  /* MAIN*/
+  #main {
+    min-height:400px;
+    background:url('../img/abstract.jpg') no-repeat 0 -400px;
+    text-align:center;
+    color:#ffffff;
+  }
+  
+  #main h1 {
+    margin-top:100px;
+    font-size:55px;
+    margin-bottom:10px;
+  }
+  
+  #main p {
+    font-size:20px;
+  }
+  
+  
+  
+  
+  /* SUBSCRIBE NEWSLETTER */
+  #subscribe {
+    padding:15px;
+    color:#ffffff;
+    background:#35424a
+  }
+  
+  #subscribe h1 {
+    float:left;
+  }
+  
+  #subscriber form {
+    float:right;
+    margin-top:15px;
+  }
+  
+  #subscribe input[type="email"] {
+    padding:4px;
+    height:25px;
+    width:250px;
+  }
+  
+  /* BOXES */
+  #boxes {
+    margin-top:20px;
+  }
+  
+  #boxes .box {
+    float:left;
+    text-align: center;
+    width:30%;
+    padding:12px;
+  }
+  
+  
+  
+  /* FEATURES */
+  #features h2 {
+    font-size:35px;
+    margin:0;
+    padding-bottom:10px;
+  }
+  
+  #features p {
+    color:#888;
+    margin:0;
+    margin-bottom:40px;
+  }
+  
+  #features .fa {
+    font-size:60px;
+    color:#56a79a;
+  }
+  
+  
+  
+  /* INFO */
+  #info{
+    background:#333 url('../img/info-bg.jpg') no-repeat;
+    color:#fff;
+  }
+  
+  #info h2 {
+    font-size:35px;
+    margin:0;
+    padding-bottom:10px;
+  }
+  
+  #info ul {
+    list-style:none;
+    padding:0;
+  }
+  
+  #info li {
+    line-height:2em;
+    font-size:20px;
+  }
+  
+  #boxes .box img {
+    width:90px;
+  }
+  
+  
+  /* ----- Contact Us ----- */
+  
+  #contactus {
+    background: #fff;
+    padding: 2em;
+  }
+  
+  #contactus header {
+      text-align: center;
+  }
+  
+  
+  
+  
+  
+  
+  
+   
+  .bottom > address { 
+    line-height: 22px; 
+    margin-bottom: 40px; 
+  }
+   
+   
+  .form-control { 
+    border: 1px solid #d99c4e; 
+    font-weight: 300;
+    outline: none;
+    box-shadow: none;
+    height: 40px;
+  }
+  
+  .form-control:hover,    
+  .form-control:focus{
+    border-color: #d29948;
+    outline: none;
+    box-shadow: none;
+  }
+   
+   
+  .btn-submit {
+    width: 100%;
+    background-color: #d89b4e;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    margin-top: 5px;
+    border-bottom: 3px solid #a56617;
+    box-shadow: none;
+    padding: 10px;
+  }
+   
+   
+  .btn-submit:hover,   
+  .btn-submit:focus{
+    color: #fff;
+    outline: none;
+    box-shadow: none;
+    opacity: .8;
+  }
+  
+  
+
+  
+  /* ----- Signup – Create Account ----- */
+  #signup {
+    position: relative;
+    margin: 5% auto;
+    width: 800px;
+    height: 500px;
+    background: #FFF;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  } 
+ 
+
+  #signup h1 {
+      margin: 0.8em;
+      padding-bottom: 1em;
+      font-weight: 300;
+      font-size: 26px;
+  }
+
+  .right {
+    position: absolute;
+    top: 0;
+    left: 480px;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 400px;
+    height: 400px;
+  }
+
+
+/* ----- Login ----- */
+
+#login h1 {
+    margin: 1.2em;
+    padding-bottom: 1em;
+    font-weight: 300;
+    font-size: 26px;
+  }
+  
+  .left {
+    position: absolute;
+    top: 0;
+    right: 420px;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 400px;
+    height: 500px;
+    background-color: rgb(250, 232, 186);
+  }
+
+
+  input[type="text"],
+  input[type="password"] {
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    padding: 4px;
+    width: 220px;
+    height: 32px;
+    border: none;
+    border-bottom: 1px solid #AAA;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    transition: 0.2s ease;
+  }
+
+
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    border-bottom: 2px solid #16a085;
+    color: #16a085;
+    transition: 0.2s ease;
+  }
+
+
+  input[type="submit"] {
+    margin-top: 0.8em;
+    width: 120px;
+    height: 32px;
+    background: #16a085;
+    border: none;
+    border-radius: 2px;
+    color: #FFF;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: 0.1s ease;
+    cursor: pointer;
+  }
+
+
+  input[type="submit"]:hover,
+  input[type="submit"]:focus {
+    opacity: 0.8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    transition: 0.1s ease;
+    }
+
+
+  input[type="submit"]:active {
+    opacity: 1;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    transition: 0.1s ease;
+  }
+
+
+ .container-icons {
+    margin-bottom: 20px;
+    width: 220px;
+    height: 36px;
+    border: none;
+    border-radius: 2px;
+    color: rgb(20, 18, 18);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    transition: 0.2s ease;
+    cursor: pointer;
+  } 
+
+
+
+  
+  
+  /* ----- Social Media Icons ----- */
+  .fa {
+    padding: 9px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    margin: 0.3em;
+    border-radius: 50%;
+  }
+  
+  .fa:hover {
+    opacity: 0.7;
+  }
+  
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+  
+  .fa-twitter {
+    background: #55ACEE;
+    color: white;
+  }
+  
+  .fa-google {
+    background: #dd4b39;
+    color: white;
+  }
+  
+  .fa-linkedin {
+    background: #007bb5;
+    color: white;
+  }
+  
+  .fa-youtube {
+    background: #bb0000;
+    color: white;
+  }
+  
+  .fa-instagram {
+    background: #125688;
+    color: white;
+  }
+  
+   
+
+  
+  #footer {
+    padding:20px;
+    margin-top:20px;
+    background-color:#eeb416;
+    color: #fff;
+    text-align: center;
+  }
+  
+  #footer a:link {
+    text-decoration: none;
+  }
+  
+  #footer a:hover {
+    text-decoration: underline; 
+  }
+  
+  
+  
+  
+  /* Media Queries */
+  @media(max-width: 768px){
+    header #branding,
+    header nav,
+    header nav li,
+    #newsletter h1,
+    #newsletter form,
+    #boxes .box,
+    article#main-col,
+    aside#sidebar{
+      float:none;
+      text-align:center;
+      width:100%;
+    }
+  
+    header{
+      padding-bottom:20px;
+    }
+  
+    #showcase h1{
+      margin-top:40px;
+    }
+  
+    #newsletter button, .quote button{
+      display:block;
+      width:100%;
+    }
+  
+    #newsletter form input[type="email"], .quote input, .quote textarea{
+      width:100%;
+      margin-bottom:5px;
+    }
+  }
+  
