@@ -1,0 +1,62 @@
+.boardElement {
+  border: 2px solid black;
+}
+
+.left {
+  display: flex;
+}
+
+.editHover {
+  background: #ffcc80;
+}
+
+.projectTitle {
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card {
+  padding: 2px;
+}
+
+.chatMessage {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+.chat {
+}
+
+.chatWrapper {
+  height: 600px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+}
+
+/*#create,
+#review {
+  display: inline-block;
+  width: 30%;
+}
+
+#return {
+  width: 30%;
+}
+
+.left {
+  display: flex;
+  width: 100%;
+}*/

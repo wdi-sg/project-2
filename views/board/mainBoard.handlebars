@@ -1,0 +1,138 @@
+
+<div class="row">
+
+  {{#if user.project}}
+
+  <div class="mainBoard">
+
+    <div class="col s9 row">
+      <div class="projectTitle">
+        <h4>Project: {{user.project}}</h4>
+        <!-- Modal Trigger -->
+        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Create New Task</a>
+      </div>
+      <div class="left col s12">
+        <div id="create" class="boardElement col s6 row">
+          <h5>Plan/Build:</h5>
+          {{#each tasks as |task|}}
+          {{#if task.isCreate}}
+          <div class="col s6" id={{task.id}}>
+            <div class="card yellow lighten-3 z-depth-3 taskItem">
+              <h5 class="inline-editable">Task: {{task.name}}</h5>
+              <p class="inline-editable">{{task.description}}</p>
+              <p class="inline-editable">Assigned to: {{task.assigned}}</p>
+              <!-- <p>Start: {{task.start}}</p> -->
+              <p class="inline-editable">Required: {{task.dateSlug}}</p>
+              <!-- <p>Projected End: {{task.projectedEnd}}</p> -->
+              <button type="button" name="delButton" class="delBtn btn waves-effect waves-light">Delete</button>
+            </div>
+          </div>
+          {{/if}}
+          {{/each}}
+        </div>
+
+        <div id="review" class="boardElement col s6 row">
+          <h5>Review/Test:</h5>
+          {{#each tasks as |task|}}
+          {{#if task.isReview}}
+          <div class="col s6" id={{task.id}}>
+            <div class="card yellow lighten-3 z-depth-3 taskItem">
+              <h5 class="inline-editable">Task: {{task.name}}</h5>
+              <p class="inline-editable">{{task.description}}</p>
+              <p class="inline-editable">Assigned to: {{task.assigned}}</p>
+              <!-- <p>Start: {{task.start}}</p> -->
+              <p class="inline-editable">Required: {{task.dateSlug}}</p>
+              <!-- <p>Projected End: {{task.projectedEnd}}</p> -->
+              <button type="button" name="delButton" class="delBtn btn waves-effect waves-light">Delete</button>
+            </div>
+          </div>
+          {{/if}}
+          {{/each}}
+        </div>
+
+      </div>
+
+      <div class="col s12">
+        <div id="return" class="boardElement col s12 row">
+          <h5>Backlog/Return:</h5>
+          {{#each tasks as |task|}}
+          {{#if task.isReturn}}
+          <div class="col s3" id={{task.id}}>
+            <div class="card yellow lighten-3 z-depth-3 taskItem">
+              <h5 class="inline-editable">Task: {{task.name}}</h5>
+              <p class="inline-editable">{{task.description}}</p>
+              <p class="inline-editable">Assigned to: {{task.assigned}}</p>
+              <!-- <p>Start: {{task.start}}</p> -->
+              <p>Required: {{task.dateSlug}}</p>
+              <!-- <p>Projected End: {{task.projectedEnd}}</p> -->
+              <button type="button" name="delButton" class="delBtn btn waves-effect waves-light" id="{{user.projectId}}">Delete</button>
+            </div>
+          </div>
+          {{/if}}
+          {{/each}}
+        </div>
+      </div>
+
+    </div> <!-- end of visual board -->
+
+    <div class="col s3"> <!-- Chat and new task -->
+      <h5>Chat</h5>
+      <div class="chatWrapper">
+        <div class="chat">
+          <ul id="messages">
+            {{#each messages as |message|}}
+            <li class="flow-text chatMessage"><strong>{{message.author}}:</strong> {{message.content}}</li>
+            {{/each}}
+          </ul>
+          <form id="message">
+            <input type="hidden" id="userName" value="{{user.name}}">
+            <input type="hidden" id="userProject" value="{{user.project}}">
+            <input type="hidden" id="userProjectId" value="{{user.projectId}}">
+            <input id="m" placeholder="Message (press enter to send)" autocomplete="off" type="text">
+          </form>
+        </div>
+      </div>
+
+      <!-- Modal Structure -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <form action="/board" id="createTask">
+            <h4>Create a new task</h4>
+            <input type="hidden" id="taskUser" value="{{user.name}}">
+            <input type="hidden" id="taskProject" value="{{user.project}}">
+            <input type="hidden" id="taskProjectId" value="{{user.projectId}}">
+            <label for="name">Task Name:</label>
+            <input type="text" id="taskName">
+            <br>
+            <label for="description">Description:</label>
+            <textarea id="taskDescription" class="materialize-textarea"></textarea>
+            <br>
+            <label for="currentUser">Assign to:</label>
+            <input type="text" id="taskAssigned">
+            <br>
+            <!-- <label for="startDate">Start Date:</label>
+            <input type="date" id="taskStart">
+            <br> -->
+            <label for="endDate">Required Date:</label>
+            <input type="date" id="taskEnd">
+            <!-- <br>
+            <label for="projectedEnd">Projected End Date:</label>
+            <input type="date" id="projectedEnd"> -->
+            <button type="submit" name="button" class="modal-action modal-close btn waves-effect waves-green">Create a new task</button>
+          </form>
+        </div>
+        <!-- <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div> -->
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+    <div class="createTask">
+
+  {{/if}}
+
+</div>

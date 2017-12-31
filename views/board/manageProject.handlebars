@@ -1,0 +1,50 @@
+
+<div class="container">
+  {{#if user.project}}
+  <h4>Current Project: {{user.project}}</h4>
+
+  <h5>Project Members:</h5>
+  <blockquote>
+    {{#each users as |users|}}
+    <p>{{users.name}}</p>
+    {{/each}}
+  </blockquote>
+
+  <h5>Leave Project</h5>
+  <form action="/manageProject/?_method=DELETE" method="post">
+    <button type="submit" name="button" class="btn red">Leave</button>
+  </form>
+
+
+  {{else}}
+  <div class="card-panel teal lighten-2">
+    <h4>You don't have a project! <br> Join an existing project or create your own.</h4>
+  </div>
+  <h5>List of avaliable projects:</h5>
+  <blockquote>
+    {{#each projects as |project|}}
+      <p><strong>{{project.name}}:</strong> {{project.id}}</p>
+    {{/each}}
+  </blockquote>
+  <form action="/manageProject/?_method=PUT" method="post">
+    <label for="name">Project Name:</label>
+    <input type="text" name="project[id]" placeholder="enter project Id to join">
+    <button type="submit" name="button" class="btn">Join Project</button>
+  </form>
+
+  <h4>Create a new project</h4>
+  <form action="/manageProject" method="post">
+    <label for="name">Project Name:</label>
+    <input type="text" name="project[name]" placeholder="project name">
+    <br>
+    <label for="startDate">Project Start Date:</label>
+    <input type="date" name="project[startDate]" value="">
+    <br>
+    <label for="endDate">Project End Date:</label>
+    <input type="date" name="project[endDate]" value="">
+    <br>
+    <button type="submit" name="button" class="btn">Create Project</button>
+  </form>
+  {{/if}}
+  <br>
+</div>

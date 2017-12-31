@@ -1,65 +1,59 @@
-# Your Project Name
+# Team Task Manager
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+Link to site:
+http://159.89.194.112/
 
-## Getting Started
+The Team Task Manager is to help teams be agile even when working offsite. The task board list all tasks for the project in real time and any edits are reflected onto all team members.
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+In addition, the Team Task Manager comes with inbuilt communication tools.
 
-### Prerequisites
+## How to use the Team Task manager
 
-What is needed to install and run the project, how do we install them
+1. Register/login to an account.
+2. Join/Create a team at "/manageProject"
+3. View the Task Board at "/board"
+4. Create tasks on the board by pressing the "Create New Task" button
+5. Delete task by clicking on the delete button on the Task card
+6. Move task around by clicking on the task and clicking another section.
 
-```
-Code example
-```
+## Setting up the project
 
-### How to Use
+1. Create .env file in main directory - add SESSION_SECRET
+2. yarn install - to install dependencies
+3. ensure mongodb is up and running on your local machine
 
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+### Stack
 
+Node, Express, Handlebars, MongoDB
 
-```
-Code example
-```
+## ERD
 
-More steps...
+1. Projects
+2. Tasks
+3. Users
+4. Messages
 
-```
-until finished
-```
+<img src="./public/images/erd.png" alt="ERD" width="500"/>
 
+## Screenshot
 
-## Tests
+The bulk of the website is on the Sprint board.
 
-Did you write automated tests? If so, how do we run them.
+<img src="./public/images/sprintBoard.png" alt="Sprintboard Screenshot" width="800"/>
 
+## List of Routes
 
-```
-Code example
-```
+* Login
+* Register
+* Index (shows guide on how to use)
+* Profile (shows list of task)
+* Manage Project (allows creating, joining, and leaving projects)
+* Task Board (shows the task management board)
 
-## Live Version
+## Hosting
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+Hosted on DigitalOcean.
 
-## Built With
-
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
-
-## Workflow
-
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
-
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+* Ubuntu 16.04.3 x64
+* NGINX (reverse proxy)
+* pm2 (node process manager)
