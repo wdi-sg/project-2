@@ -4,7 +4,6 @@ const apiKey = dbConfig.apiKey;
 const client = yelp.client(apiKey);
 
 // const List = require('../models/list');
-// const search = require('../helpers/search');
 const analyzeResult = require('../helpers/analysis');
 var displayedArray = [];
 
@@ -86,5 +85,32 @@ exports.search = (req, res) => {
 // smart search for entire list
 exports.analyze = (req, res) => {
   var displayAnalyzeArray = analyzeResult(displayedArray);
-  res.render('analyze', {'list': displayAnalyzeArray});
+  var displaySortedArray = [];
+
+  displayAnalyzeArray.forEach(function(element) {
+    var sortedArray = [];
+    var name = element.result.name.split("=");
+    var latitude = element.result.latitude.split("=");
+    var longitude = element.result.longitude.split("=");
+    var address1 = element.result.address1.split("=");
+    var address2 = element.result.address2.split("=");
+
+    for (var index = 0; index < name.length; index++) {
+      var sortedObject = {
+        name: name[index],
+        latitude: latitude[index],
+        longitude: longitude[index],
+        address1: address1[index],
+        address2: address2[index]
+      };
+
+      // array for one match
+      sortedArray.push({'sortedobject': sortedObject});
+    }
+    // array for many matches
+    // console.log(sortedArray);
+    displaySortedArray.push({'sortedlist': sortedArray});
+  });
+  // console.log(displaySortedArray);
+  res.render('analyze', {'list': displaySortedArray});
 };

@@ -1,4 +1,12 @@
-{{#each list}}
-  {{result.name}}, {{result.latitude}}, {{result.longitude}}
-  <br>
-{{/each}}
+<div class="grid-container">
+  {{#each list}}
+    <div>
+      {{#each sortedlist}}
+        <p>{{sortedobject.name}}</p>
+        <p>{{sortedobject.address1}}</p>
+        <p>{{sortedobject.address2}}</p>
+        <br>
+      {{/each}}
+    </div>
+  {{/each}}
+</div>

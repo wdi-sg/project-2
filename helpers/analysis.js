@@ -22,19 +22,27 @@ var analyzeResult = function(displayedArray) {
 
             // check if the element is already included
             analyzeArray.forEach(function(element) {
-              var res = element.result.name.split("-");
+              var res = element.result.name.split("=");
               if (i.name === res[res.length - 1]) {
-                console.log(i.name);
+                // console.log(i.name);
                 analyzeArray.push({
                   result: {
-                    name: element.result.name + "-" + j.name
+                    name: element.result.name + "=" + j.name,
+                    latitude: element.result.latitude + "=" + j.latitude,
+                    longitude: element.result.longitude + "=" + j.longitude,
+                    address1: element.result.address1 + "=" + j.address1,
+                    address2: element.result.address2 + "=" + j.address2
                   }
                 });
               }
             });
             analyzeArray.push({
               result: {
-                name: i.name + "-" + j.name
+                name: i.name + "=" + j.name,
+                latitude: i.latitude + "=" + j.latitude,
+                longitude: i.longitude + "=" + j.longitude,
+                address1: i.address1 + "=" + j.address1,
+                address2: i.address2 + "=" + j.address2
               }
             });
           }
@@ -46,9 +54,9 @@ var analyzeResult = function(displayedArray) {
   // check for elements which are present for all search fields
   // console.log(analyzeArray);
   analyzeArray.forEach(function(element) {
-    var res = element.result.name.split("-");
+    var res = element.result.name.split("=");
     if (res.length === displayedArray.length) {
-      console.log(element);
+      // console.log(element);
       displayAnalyzeArray.push(element);
     }
   });
