@@ -47,6 +47,10 @@ https://smrtdelaytracker.herokuapp.com/
 
 ## Workflow
 
+ERD as per below:
+
+![](https://raw.githubusercontent.com/strisen/project-2/master/public/wireframes/erd.png)
+
 Initial Wireframes as per below:
 
 ![](https://raw.githubusercontent.com/strisen/project-2/master/public/wireframes/mainframe.png)
