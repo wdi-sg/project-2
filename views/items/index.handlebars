@@ -1,0 +1,11 @@
+{{#if success_msg}}
+<div class="alert alert-success"> {{ success_msg }} </div>
+{{/if}}
+
+
+{{#each items}}
+
+  <a href="/items/show/{{_id}}">{{ name }}</a>
+  <br><br><br>
+
+{{/each}}
