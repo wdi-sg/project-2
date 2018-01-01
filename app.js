@@ -68,7 +68,6 @@ mongoose.connect('mongodb://localhost/bookstore', { useMongoClient : true })
 //Routes
 const index = require('./routes/routes.js')
 
-
 app.use('/', index)
 
 

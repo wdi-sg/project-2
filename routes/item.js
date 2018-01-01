@@ -38,44 +38,41 @@ router.get('/new', (req, res)=>{
   res.render('items/create')
 })
 
-//You can save it into your database like this..
-  router.post('/new', (req, res)=>{
-    let items = new Item()
 
-    // books.author = req.body.author // dropdown for author
-    req.checkBody('firstname', 'Dont leave first name field empty').notEmpty()
-    req.checkBody('lastname', 'Dont leave last name field empty').notEmpty()
-    req.checkBody('price', 'Hey! Fill in the form with a number').isNumeric()
-    req.checkBody('dob', 'Add authors date of birth').notEmpty()
-    req.checkBody('country', 'Add country').notEmpty()
-    req.checkBody('gender', 'Add gender').notEmpty()
-
-
-
-    let validationError = req.validationErrors()
-    console.log(validationError);
-
-    if(validationError){
-      res.render('items/create', { 'errors' : validationError })
-    } else{
-          //Items Information
-          items.name = req.body.name
-          items.total_stock = req.body.total_stock
-          items.price = req.body.price
-          // items.author = author._id //Manual entering of author
-
-          items.save((error)=>{
-            if(error) console.log(error)
-            req.flash('success_msg', "Successfully created")
-
-            res.redirect('/items')
-          })
-    }
-
-
-
-  console.log(req.body)
-})
+//saving into databsae..
+//   router.post('/new', (req, res)=>{
+//     let items = new Item()
+//
+//     // books.author = req.body.author // dropdown for author
+//     req.checkBody('name', 'Fill in the name field').notEmpty()
+//     req.checkBody('price', 'Fill in the price field. Must be a number').isNumeric().notEmpty()
+//     req.checkBody('total_stock', 'Fill in the stock field').notEmpty()
+//
+//
+//     let validationError = req.validationErrors()
+//     console.log(validationError);
+//
+//     if(validationError){
+//       res.render('items/create', { 'errors' : validationError })
+//     } else{
+//           //Items Information
+//           items.name = req.body.name
+//           items.price = req.body.price
+//           items.total_stock = req.body.total_stock
+//           // items.author = author._id //Manual entering of author
+//
+//           items.save((error)=>{
+//             if(error) console.log(error)
+//             req.flash('success_msg', "Successfully created")
+//
+//             res.redirect('/items')
+//           })
+//     }
+//
+//
+//
+//   console.log(req.body)
+// })
 
 
 // Find books, check value of authors, check if the information in authors matches, and then send me book
