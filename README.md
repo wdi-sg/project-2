@@ -57,4 +57,4 @@ The authentication is necessary to facilitate the implementation of an annouceme
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+* Twitter API Documentation & Forums
