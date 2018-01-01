@@ -1,11 +1,11 @@
 {{#each list}}
   <div class="result-container">
     <div class="result-title is-size-3">
-      {{indivItem}}
+      {{item}}
     </div>
 
     <div class="grid-container">
-      {{#each indivResult}}
+      {{#each result}}
         <div>
           <a href={{link}}><p>{{name}}</p></a>
           <p>{{address1}}</p>
@@ -15,8 +15,3 @@
     </div>
   </div>
 {{/each}}
-
-<div>
-  <a class="button is-primary" href="/analyze">Analyze</a>
-  <a class="button is-primary" href="/save">Analyze and Save</a>
-</div>

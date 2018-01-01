@@ -1,12 +1,18 @@
-<div class="grid-container">
-  {{#each list}}
-    <div>
-      {{#each sortedlist}}
-        <p>{{sortedobject.name}}</p>
-        <p>{{sortedobject.address1}}</p>
-        <p>{{sortedobject.address2}}</p>
-        <br>
-      {{/each}}
-    </div>
-  {{/each}}
+<div class="result-container">
+  <div class="result-title is-size-3">
+    {{search}}
+  </div>
+
+  <div class="grid-container">
+    {{#each list}}
+      <div>
+        {{#each sortedlist}}
+          <p>{{name}}</p>
+          <p>{{address1}}</p>
+          <p>{{address2}}</p>
+          <br>
+        {{/each}}
+      </div>
+    {{/each}}
+  </div>
 </div>

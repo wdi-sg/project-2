@@ -5,3 +5,7 @@ exports.login = (req, res) => {
 exports.register = (req, res) => {
   res.render('register');
 };
+
+exports.user = (req, res) => {
+  res.render('home');
+};

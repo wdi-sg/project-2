@@ -1,20 +1,26 @@
+// API
 const yelp = require('yelp-fusion');
 const dbConfig = require('../config/dbConfig');
 const apiKey = dbConfig.apiKey;
 const client = yelp.client(apiKey);
 
-// const List = require('../models/list');
-const analyzeResult = require('../helpers/analysis');
+const sortResult = require('../helpers/analysis');
+var itemArray = [];
 var displayedArray = [];
+
+// models
+const SearchList = require('../models/searchList');
+const AnalyzedList = require('../models/analyzedList');
+
 
 // home page
 exports.home = (req, res) => {
   res.render('home');
 };
 
+
 // search result for individual fields
 exports.search = (req, res) => {
-  var itemArray = [];
   var displayArray = [];
   var location = 'Singapore';
   var inputField = Object.keys(req.body).length - 1;
@@ -24,6 +30,7 @@ exports.search = (req, res) => {
     itemArray.push(req.body["entry" + index]);
   }
 
+  // function to render search results page
   var displayResults = function(array) {
     res.render('result', {'list': array});
   };
@@ -69,11 +76,11 @@ exports.search = (req, res) => {
 
         // callback function, asynchronous problem addressed by if statement
         console.log("2");
-        // console.log(displayArray);
         if (displayArray.length === itemArray.length) {
           displayedArray = displayArray;
           displayResults(displayArray);
           displayArray = [];
+          // console.log(displayedArray);
         }
       }).catch(e => {
         console.log(e);
@@ -82,35 +89,31 @@ exports.search = (req, res) => {
   });
 };
 
-// smart search for entire list
+
+// analyze results for entire list
 exports.analyze = (req, res) => {
-  var displayAnalyzeArray = analyzeResult(displayedArray);
-  var displaySortedArray = [];
+  var displaySortedArray = sortResult(displayedArray);
+  console.log(displaySortedArray);
+  res.render('analyze', {'search': itemArray.join(", ").toUpperCase(), 'list': displaySortedArray});
+};
 
-  displayAnalyzeArray.forEach(function(element) {
-    var sortedArray = [];
-    var name = element.result.name.split("=");
-    var latitude = element.result.latitude.split("=");
-    var longitude = element.result.longitude.split("=");
-    var address1 = element.result.address1.split("=");
-    var address2 = element.result.address2.split("=");
 
-    for (var index = 0; index < name.length; index++) {
-      var sortedObject = {
-        name: name[index],
-        latitude: latitude[index],
-        longitude: longitude[index],
-        address1: address1[index],
-        address2: address2[index]
-      };
-
-      // array for one match
-      sortedArray.push({'sortedobject': sortedObject});
-    }
-    // array for many matches
-    // console.log(sortedArray);
-    displaySortedArray.push({'sortedlist': sortedArray});
+// save and analyze results
+exports.save = (req, res) => {
+  // save results to database
+  displayedArray.forEach(function(element) {
+    SearchList.create({
+      item: element.indivItem,
+      result: element.indivResult
+    });
   });
-  // console.log(displaySortedArray);
-  res.render('analyze', {'list': displaySortedArray});
+
+  // analyze results
+  var displaySortedArray = sortResult(displayedArray);
+
+  AnalyzedList.create({
+    item: itemArray.join(", ").toUpperCase(),
+    result: displaySortedArray
+  });
+  res.render('analyze', {'search': itemArray.join(", ").toUpperCase(), 'list': displaySortedArray});
 };

@@ -1,18 +1,16 @@
-# Where is the Nearest?
+# Multi Business Locator
 
-This is a new search engine which looks for multiple local businesses, such as restaurants, bookstores etc. Enter them in the search fields in decreasing order of priority.
+This is a new search engine which looks for multiple local businesses, such as restaurants, bookstores etc, simultaneously. Enter them in the search fields in decreasing order of priority.
 
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #2: Building Your First Full-stack Application
 
 ## Getting Started
 
-### Wireframes
-
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+**Link to Site:**
 
 ### Prerequisites
 
-What is needed to install and run the project, how do we install them
+After cloning the project, run `yarn install` in command line to install the required dependencies listed in package.json.
 
 ```
 Code example
@@ -43,25 +41,28 @@ Did you write automated tests? If so, how do we run them.
 Code example
 ```
 
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
-
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+* HTML, CSS and JavaScript
+* CSS framework [Bulma](https://bulma.io/)
+* [jQuery](http://jquery.com/)
+* API and data by [Yelp](https://www.yelp.com.sg/singapore)
 
 ## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+### Models
 
-## Authors
+### Entity Relationship Diagram (ERD)
 
-Did you collaborate with others on this project, list them here
+### Wireframes
 
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+
+
+### User Stories
+
+* As a user without a registered account, I want to be able to perform searches so that I can decide if I should sign up for an account.
+* As a user without a registered account, I also want to be able to have my results analyzed so that I can decide if I should sign up for an account.
+* As a user with a registered account, in addition to the benefits a user without a registered account is able to enjoy, I want to be able to save my search results and analyzed results so that I can refer to them in the future.
 
 ## Acknowledgments
 
