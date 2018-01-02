@@ -5,8 +5,6 @@ const apiKey = dbConfig.apiKey;
 const client = yelp.client(apiKey);
 
 const sortResult = require('../helpers/analysis');
-var itemArray = [];
-var displayedArray = [];
 
 // models
 const SearchList = require('../models/searchList');
@@ -21,6 +19,7 @@ exports.home = (req, res) => {
 
 // search result for individual fields
 exports.search = (req, res) => {
+  var itemArray = [];
   var displayArray = [];
   var location = 'Singapore';
   var inputField = Object.keys(req.body).length - 1;
@@ -31,8 +30,8 @@ exports.search = (req, res) => {
   }
 
   // function to render search results page
-  var displayResults = function(array) {
-    res.render('result', {'list': array});
+  var displayResults = function(displayArray, itemArray, displaySortedArray) {
+    res.render('result', {'searchList': displayArray, 'search': itemArray.join(", ").toUpperCase(), 'analyzedList': displaySortedArray});
   };
 
   client.search({
@@ -74,27 +73,19 @@ exports.search = (req, res) => {
         });
       }).then(() => {
 
-        // callback function, asynchronous problem addressed by if statement
+        // callback function, asynchronous problem addressed by promise and checking with if statement
         console.log("2");
         if (displayArray.length === itemArray.length) {
-          displayedArray = displayArray;
-          displayResults(displayArray);
-          displayArray = [];
-          // console.log(displayedArray);
+          var displaySortedArray = sortResult(displayArray);
+          // console.log(itemArray);
+          // console.log(displaySortedArray);
+          displayResults(displayArray, itemArray, displaySortedArray);
         }
       }).catch(e => {
         console.log(e);
       });
     });
   });
-};
-
-
-// analyze results for entire list
-exports.analyze = (req, res) => {
-  var displaySortedArray = sortResult(displayedArray);
-  console.log(displaySortedArray);
-  res.render('analyze', {'search': itemArray.join(", ").toUpperCase(), 'list': displaySortedArray});
 };
 
 

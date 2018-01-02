@@ -5,7 +5,7 @@
 .title{
   margin: 10px 0px;
 }
-.search{
+.search-form{
   border: 2px solid rgb(255, 215, 0);
   padding: 20px;
   margin-top: 10px;
@@ -16,10 +16,6 @@
 }
 
 /* result page */
-.result-container{
-  padding: 20px;
-  margin: 20px;
-}
 .result-title{
   text-align: center;
   margin: 10px 0;
@@ -38,6 +34,9 @@
 }
 .grid-container > div:nth-of-type(odd){
   background-color: rgb(219, 219, 219);
+}
+.analyzedresult-container{
+  display: none;
 }
 
 /* responsive design */

@@ -9,7 +9,6 @@ const userController = require('../controllers/userController.js');
 // routes available without login
 router.get('/', homeController.home);
 router.post('/search', homeController.search);
-router.get('/analyze', homeController.analyze);
 
 // user authentication
 router.get('/login', authController.login);

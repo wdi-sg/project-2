@@ -4,59 +4,56 @@ This is a new search engine which looks for multiple local businesses, such as r
 
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #2: Building Your First Full-stack Application
 
-## Getting Started
 
-**Link to Site:**
+## Getting Started
 
 ### Prerequisites
 
-After cloning the project, run `yarn install` in command line to install the required dependencies listed in package.json.
+Install Node.js and npm from <https://nodejs.org/en/>.
 
-```
-Code example
-```
+Install Yarn through Homebrew package manager using the command `brew install yarn`.
 
 ### How to Use
 
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+After cloning the project, run `yarn install` in command line to install the required dependencies listed in package.json.
 
+Connect to database hosted on mlab and create a ./config/dbConfig.js file to store the URL.
 
-```
-Code example
-```
+Request an API key from [Yelp](https://www.yelp.com.sg/singapore).
 
-More steps...
-
-```
-until finished
-```
-
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
+---
 
 ## Built With
 
 * HTML, CSS and JavaScript
 * CSS framework [Bulma](https://bulma.io/)
 * [jQuery](http://jquery.com/)
+* Node.js, Yarn, Express, Handlebars
 * API and data by [Yelp](https://www.yelp.com.sg/singapore)
+* MongoDB and Mongoose
+
+---
 
 ## Workflow
 
 ### Models
 
+![alt text](https://github.com/chongct/project-2/blob/master/images/models.png "Models")
+
 ### Entity Relationship Diagram (ERD)
+
+![alt text](https://github.com/chongct/project-2/blob/master/images/entity-relationship-diagram.png "ERD")
 
 ### Wireframes
 
+The first four images show the wireframe templates used throughout the site.
+The last flow chart shows the routes that link the website pages.
 
+![alt text](https://github.com/chongct/project-2/blob/master/images/wireframe-search.png "Wireframe (Search feature)")
+
+![alt text](https://github.com/chongct/project-2/blob/master/images/wireframe-login.png "Wireframe (Login feature)")
+
+![alt text](https://github.com/chongct/project-2/blob/master/images/wireframe-routes.png "Wireframe (Routes)")
 
 ### User Stories
 
@@ -64,6 +61,16 @@ Code example
 * As a user without a registered account, I also want to be able to have my results analyzed so that I can decide if I should sign up for an account.
 * As a user with a registered account, in addition to the benefits a user without a registered account is able to enjoy, I want to be able to save my search results and analyzed results so that I can refer to them in the future.
 
+---
+
+## Areas to Improve on
+* Database CRUD
+* Authentication
+* Website pages design
+* Deployment on Heroku
+
+---
+
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+* Family and friends for the inspirations and testing
