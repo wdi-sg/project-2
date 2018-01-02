@@ -23,6 +23,33 @@ As a User, I want to
 
 ## Wireframes
 
+### Login Page
+<img src="/public/readme_img/Wireframe-01.jpg" width="600">
+
+### Signup Page
+<img src="/public/readme_img/Wireframe-02.jpg" width="600">
+
+### Home Page
+<img src="/public/readme_img/Wireframe-03.jpg" width="600">
+
+### Full Review Page
+<img src="/public/readme_img/Wireframe-04.jpg" width="600">
+
+### Profile Page - Review
+<img src="/public/readme_img/Wireframe-05.jpg" width="600">
+
+### Profile Page - Bookmark
+<img src="/public/readme_img/Wireframe-06.jpg" width="600">
+
+### Add Review Page
+<img src="/public/readme_img/Wireframe-07.jpg" width="600">
+
+### Edit Review Page
+<img src="/public/readme_img/Wireframe-08.jpg" width="600">
+
+### Bookmark Modal
+<img src="/public/readme_img/Wireframe-09.jpg" width="600">
+
 ## Built With
 
 * HTML5
