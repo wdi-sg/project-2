@@ -1,18 +1,28 @@
+// models
 const SearchList = require('../models/searchList');
 const AnalyzedList = require('../models/analyzedList');
+const User = require('../models/user');
 
-exports.results = (req, res) => {
-  SearchList.find({}, (err, result) => {
+// read results from database
+exports.result = (req, res) => {
+  SearchList.find({}, (err, searchResult) => {
     if (err) console.log(err);
-    // console.log(result);
-    res.render('savedResults', {'list': result});
+
+    AnalyzedList.find({}, (err, analyzedResult) => {
+      if (err) console.log(err);
+
+      res.render('savedResults', {'searchList': searchResult, 'analyzedList': analyzedResult});
+    });
   });
 };
 
-exports.analysis = (req, res) => {
-  AnalyzedList.find({}, (err, result) => {
+exports.profile = (req, res) => {
+  User.findOne({username: req.params.id}, (err, result) => {
     if (err) console.log(err);
-    console.log(result);
-    res.render('savedAnalysis', {'list': result});
+    res.render('profile', result);
   });
+};
+
+exports.access = (req, res) => {
+  res.send("Please login first");
 };

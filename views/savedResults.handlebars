@@ -1,5 +1,12 @@
-{{#each list}}
-  <div class="result-container">
+<div class="tabs">
+  <ul>
+    <li class="is-active search"><a>Search Results</a></li>
+    <li class="analyze"><a>Analyzed Results</a></li>
+  </ul>
+</div>
+
+<div class="searchresult-container">
+  {{#each searchList}}
     <div class="result-title is-size-3">
       {{item}}
     </div>
@@ -13,5 +20,26 @@
         </div>
       {{/each}}
     </div>
-  </div>
-{{/each}}
+  {{/each}}
+</div>
+
+<div class="analyzedresult-container">
+  {{#each analyzedList}}
+    <div class="result-title is-size-3">
+      {{item}}
+    </div>
+
+    <div class="grid-container">
+      {{#each result}}
+        <div>
+          {{#each sortedlist}}
+            <p>{{name}}</p>
+            <p>{{address1}}</p>
+            <p>{{address2}}</p>
+            <br>
+          {{/each}}
+        </div>
+      {{/each}}
+    </div>
+  {{/each}}
+</div>

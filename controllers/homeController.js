@@ -4,11 +4,9 @@ const dbConfig = require('../config/dbConfig');
 const apiKey = dbConfig.apiKey;
 const client = yelp.client(apiKey);
 
+// external functions
 const sortResult = require('../helpers/analysis');
-
-// models
-const SearchList = require('../models/searchList');
-const AnalyzedList = require('../models/analyzedList');
+const saveResult = require('../helpers/save');
 
 
 // home page
@@ -29,17 +27,12 @@ exports.search = (req, res) => {
     itemArray.push(req.body["entry" + index]);
   }
 
-  // function to render search results page
-  var displayResults = function(displayArray, itemArray, displaySortedArray) {
-    res.render('result', {'searchList': displayArray, 'search': itemArray.join(", ").toUpperCase(), 'analyzedList': displaySortedArray});
-  };
-
+  // search to get rough location
   client.search({
     location: location,
     limit: 5,
     term: req.body.entry0
   }).then(response => {
-    // search to get rough location
     location = response.jsonBody.businesses[0].location.address1 + ", " + response.jsonBody.businesses[0].location.country;
     console.log(location);
   }).then(() => {
@@ -76,35 +69,18 @@ exports.search = (req, res) => {
         // callback function, asynchronous problem addressed by promise and checking with if statement
         console.log("2");
         if (displayArray.length === itemArray.length) {
+          // analyze results
           var displaySortedArray = sortResult(displayArray);
-          // console.log(itemArray);
-          // console.log(displaySortedArray);
-          displayResults(displayArray, itemArray, displaySortedArray);
+
+          // render or display results
+          res.render('result', {'searchList': displayArray, 'search': itemArray.join(", ").toUpperCase(), 'analyzedList': displaySortedArray});
+
+          // save results to database
+          saveResult(displayArray, itemArray, displaySortedArray);
         }
       }).catch(e => {
         console.log(e);
       });
     });
   });
-};
-
-
-// save and analyze results
-exports.save = (req, res) => {
-  // save results to database
-  displayedArray.forEach(function(element) {
-    SearchList.create({
-      item: element.indivItem,
-      result: element.indivResult
-    });
-  });
-
-  // analyze results
-  var displaySortedArray = sortResult(displayedArray);
-
-  AnalyzedList.create({
-    item: itemArray.join(", ").toUpperCase(),
-    result: displaySortedArray
-  });
-  res.render('analyze', {'search': itemArray.join(", ").toUpperCase(), 'list': displaySortedArray});
 };

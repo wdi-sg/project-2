@@ -17,8 +17,8 @@ router.get('/register', authController.register);
 router.post('/register', authController.user);
 
 // routes available with login
-router.get('/save', homeController.save);
-router.get('/result', userController.results);
-router.get('/analysis', userController.analysis);
+router.get('/profile', userController.access);
+router.get('/profile/:id', userController.profile);
+router.get('/result', userController.result);
 
 module.exports = router;

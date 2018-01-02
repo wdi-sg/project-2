@@ -69,15 +69,15 @@ $(document).ready(function() {
   $(".search").on("click", function() {
     $(".searchresult-container").fadeIn(800).css("display", "block");
     $(".analyzedresult-container").fadeOut(800).css("display", "none");
-    $(".search").addClass(".is-active");
-    $(".analyze").removeClass(".is-active");
+    $(".search").addClass("is-active");
+    $(".analyze").removeClass("is-active");
   });
 
 
   $(".analyze").on("click", function() {
     $(".searchresult-container").fadeOut(800).css("display", "none");
     $(".analyzedresult-container").fadeIn(800).css("display", "block");
-    $(".search").removeClass(".is-active");
-    $(".analyze").addClass(".is-active");
+    $(".search").removeClass("is-active");
+    $(".analyze").addClass("is-active");
   });
 });

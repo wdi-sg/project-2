@@ -1,5 +1,5 @@
 <div class="text">
-  <p class="is-size-2 is-size-3-touch has-text-dark title">Register an Account</p>
+  <p class="is-size-2 is-size-3-touch has-text-dark title">Profile</p>
 </div>
 
 <form method="post" action="/register">
@@ -10,7 +10,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control is-expanded has-icons-left">
-          <input class="input" type="text" name="firstName" placeholder="First">
+          <input class="input" type="text" name="firstName" value={{firstName}}>
           <span class="icon is-small is-left">
             <i class="fa fa-user"></i>
           </span>
@@ -18,7 +18,7 @@
       </div>
       <div class="field">
         <p class="control is-expanded has-icons-left">
-          <input class="input" type="text" name="lastName" placeholder="Last">
+          <input class="input" type="text" name="lastName" value={{lastName}}>
           <span class="icon is-small is-left">
             <i class="fa fa-user"></i>
           </span>
@@ -34,7 +34,7 @@
     <div class="field-body">
       <div class="field">
         <div class="control has-icons-left">
-          <input class="input" type="email" name="email" placeholder="abc@email.com">
+          <input class="input" type="email" name="email" value={{email}}>
           <span class="icon is-small is-left">
             <i class="fa fa-envelope"></i>
           </span>
@@ -50,7 +50,7 @@
     <div class="field-body">
       <div class="field">
         <div class="control">
-          <input class="input" type="text" name="username">
+          <input class="input" type="text" name="username" value={{username}}>
         </div>
       </div>
     </div>
@@ -88,7 +88,7 @@
     <div class="field-body">
       <div class="field">
         <div class="control">
-          <button class="button is-primary">Register</button>
+          <button class="button is-primary">Change details</button>
         </div>
       </div>
     </div>
