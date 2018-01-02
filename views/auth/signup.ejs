@@ -1,0 +1,37 @@
+<% include ../partials/header %>
+
+  <h1>Signup Page</h1>
+
+  <form action="/signup" method="POST">
+
+    <label>Name</label>
+    <div>
+      <input type="text" name="firstname" placeholder="Firstname">
+      <input type="text" name="lastname" placeholder="Lastname">
+    </div>
+
+    <div>
+      <label>Username</label>
+      <input type="text" name="username" placeholder="Username">
+    </div>
+
+    <div>
+      <label>Email</label>
+      <input type="email" name="email" placeholder="Email">
+    </div>
+
+    <div>
+      <label>Password</label>
+      <input type="password" name="password" placeholder="Password">
+    </div>
+
+    <div>
+      <label>Confirm Password</label>
+      <input type="password" name="passwordConfirm" placeholder="Confirm Password">
+    </div>
+
+    <button class="waves-effect waves-light btn" type=submit>Sign Up</button>
+
+  </form>
+
+  <% include ../partials/footer %>

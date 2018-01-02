@@ -1,65 +1,43 @@
-# Your Project Name
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 2: Yummy Thoughts
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
-
-## Getting Started
-
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
-
-### Prerequisites
-
-What is needed to install and run the project, how do we install them
-
-```
-Code example
-```
-
-### How to Use
-
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
-
-
-```
-Code example
-```
-
-More steps...
-
-```
-until finished
-```
-
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
+This is a food review site for users to share yummy food and give their thoughts.
 
 ## Live Version
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+## User stories
+As a User, I want to
+* have my own profile so I can store my personal stuff.
+* write reviews so I can share my experience of the food I tried with other users.
+* update my review so I can edit it and maybe give a better opinion in the future.
+* bookmark other user's review so I can have a list for where to eat next.
+* see a gallery of food photos so I can glance through and choose the food for review faster.
+* have a link for the location so I can go straight to google map for the direction.
+* leave comments on other's review so I can voice my support or against to the review.
+* view other user's profile so I can view their reviews and bookmarks.
+
+## Flowchart
+<img src="/public/readme_img/Flowchart.jpg">
+
+## ERD
+<img src="/public/readme_img/ERD.jpg">
+
+## Wireframes
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
+* HTML5
+* CSS3
+* Javascript
+* jQuery
+* Node
+* Express
+* MongoDB
+* Mongoose
+* Cloudinary
+* Materialize
+* mLab
+* Heroku Cloud Server
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
-
-## Workflow
-
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
-
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+## Future Developments
 
 ## Acknowledgments
-
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
