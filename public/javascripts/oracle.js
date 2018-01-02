@@ -1,0 +1,448 @@
+/*
+
+# Hexagram Routine
+
+1. Go through three rounds of Line Routine to the obtain a line.
+	- Only stalks sorted in fours are used for the next round.
+2. Obtain six lines to form a hexagram.
+
+# Line Routine
+
+Do this routine thrice to obtain a line in the hexagram.
+
+1. Split into two piles.
+
+2. Take one out from right pile.
+
+3. (a) Sort each pile into fours and set aside the remainder.
+   (b) If the pile can be sorted into fours without leftovers, then remainder is 4.
+
+4. (a) Add up and set aside the following:
+		- remainder from left pile, 
+		- remainder from right pile, and
+		- the one taken out in step 2.
+
+   (b) They should add up to:
+		- 9 or 5 in the first round, or
+		- 8 or 4 in the second and round.
+
+Gather the sorted fours and use them for the next round.
+
+## After three rounds of Line Routine
+
+1. (a) Count the sets of sorted fours remaining to get determine the line obtained.
+   (b) There should be 6, 7, 8 or 9 sets of sorted fours.
+
+2. Check that stalks aside from all three rounds and the sorted fours add up to 49 stalks.
+
+
+*/
+
+// Data Structure for the Divination Record
+var divination = {
+	query: String,
+	date: Date,
+	data: {
+		raw: {
+			line1: {
+				split1: { left: Number, right: Number },
+				split2: { left: Number, right: Number },
+				split3: { left: Number, right: Number }
+			},
+			line2: {
+				split1: { left: Number, right: Number },
+				split2: { left: Number, right: Number },
+				split3: { left: Number, right: Number }
+			},
+			line3: {
+				split1: { left: Number, right: Number },
+				split2: { left: Number, right: Number },
+				split3: { left: Number, right: Number }
+			},
+			line4: {
+				split1: { left: Number, right: Number },
+				split2: { left: Number, right: Number },
+				split3: { left: Number, right: Number }
+			},
+			line5: {
+				split1: { left: Number, right: Number },
+				split2: { left: Number, right: Number },
+				split3: { left: Number, right: Number }
+			},
+			line6: {
+				split1: { left: Number, right: Number },
+				split2: { left: Number, right: Number },
+				split3: { left: Number, right: Number }
+			}
+		},
+		hexagram: {
+			name: String,
+			number: Number,
+			array: [Number, Number, Number, Number, Number, Number],
+			string: String,
+			object: {
+				line1: Number,
+				line2: Number,
+				line3: Number,
+				line4: Number,
+				line5: Number,
+				line6: Number
+			}
+		}
+	},
+	result: {
+
+	}
+}
+
+$(document).ready(function() {
+
+	// Sets the where to record the data from splitting the stalks
+	var rawData = divination.data.raw;
+
+	class Stalks {
+		// The Book of Changes states, "The number (of stalks) that represents the totality of development is fifty." Hence, even though only up to 49 stalks is used, the constant is declared below as a nod to tradition.
+		static total() { return 50; }
+		// The Book of Changes continues, "…of which forty-nine are used". So one is taken out from fifty and the rest are used.
+		static inUse() { return Stalks.total() - 1; }
+
+		constructor() {
+			// This is the stalks left after the completion of each round and passed to the next. It is initialized as forty-nine for the first round.
+			this.remainingStalks = Stalks.inUse();
+			// This sets the maximum number stalks available for spliting. Two is taken out because the right pile must always have at least two stalks, one to represent Earth and one Mankind.
+			this.stalksToSplit = this.remainingStalks - 2;
+			// This sets the starting position of the gap in the stalks and the slider handle
+			this.gapPosition = Math.floor(this.remainingStalks / 2);
+		}
+	}
+
+	// 1. Load yarrow stalks from the previous round, if any.
+	// 2. For the first round of each hexagram line, it's simply `Stalks.inUse`, i.e. 49.
+	function initializeStalks(stalksLastRound) {
+		for (let stalk = 1; stalk <= stalksLastRound; stalk++) {
+			// Generate random number for CSS `padding-top` to be inserted to each `div` containing the yarrow stalk image.
+			let stalkPadding = Math.floor(Math.random() * 20);
+			let stalkDisplay = '<div id="position-' + stalk + '" class="stalk-position" style="padding-top: ' + stalkPadding + 'px;"><img id="stalk-'+ stalk +'" class="stalk" src="/images/yarrow_stalk.svg"></div>';
+			// Append required number of yarrow stalks with randomized CSS `padding-top`.
+			$('#stalks-container').append(stalkDisplay);
+			// Insert a gap at where the slider's default position will be to prevent the stalks on the right of the gap from closing the gap when the user is sliding or hovering over the stalks.
+			if (stalk == round.gapPosition) {
+				$('#stalks-container').append('<div class="gap"></div>');
+			}
+		}
+	}
+
+	// Ensures a constant number of elements (i.e., row stalks plus one gap) and hence smoother "animation" and better capture of `hover` and `click` events.
+	function maintainTheGap(newGapPosition) {
+		// If gap exists gap among the stalks, remove old gap before inserting new gap.
+		let doesGapExist = ($('#stalks-container').has(".gap").length);
+		if (doesGapExist == 1) {
+			// Removes old gap from the prior position.
+			$('.gap').remove();
+			// Inserts a new gap at the new position hovered over.
+			$('#position-' + newGapPosition).after('<div id="gap-'+ newGapPosition + '" class="gap"></div>');
+			// Set new slider handle position from new gap.
+			$('#slider-bar').slider('value', newGapPosition);
+		}
+	}
+
+	function detectHover() {
+		$('.stalk-position').hover(function(event) {
+			// Grabs the `id` number of the stalk that is hovered over.
+			let hoveredStalk = event.target.id.split('-')[1];
+			/*
+			1. Prevents a gap from being added to the last and last second stalk on the right side.
+			2. This is because the right pile must have at least 2 stalks as one of it will be set aside, leaving only one to form the right pile.
+			*/
+			if (hoveredStalk != round.remainingStalks && hoveredStalk != round.remainingStalks - 1) {
+				maintainTheGap(hoveredStalk);
+			}
+		});
+	}
+
+	
+	// Initializes and appends the slider below the yarrow stalks
+	function initializeSlider(maximumValue, handlePositon) {
+		$('#has-slider-bar').append('<div id="slider-bar"></div>');
+		$('#slider-bar').slider({
+			orientation: 'horizontal',
+			step: 1,
+			min: 1,
+			max: maximumValue,
+			value: handlePositon,
+			animate: "fast",
+			// Captures the value from sliding handle as soon as it changes and inserts a gap the yarrow stalks at the same position.
+			slide: function(event, ui) {
+				// Take the value from the sliding handle.
+				let gapFromSlider = ui.value;
+				maintainTheGap(gapFromSlider);
+			}
+		});
+	}
+
+	// Tracks the progress of divination. 
+	class Progress {
+		constructor() {
+			this.current = {
+				// Both starts from 1. 
+				round: 1,
+				line: 1
+			}
+		}
+		nextRound() {
+			// Increases `currentRound` by 1 spliting and recording.
+			this.current.round++
+			// Checks if all three rounds to obtain a line are completed.
+		}
+		nextLine() {
+			if (this.current.round == 4) {
+				// Reset `currentRound` to 1
+				this.current.round = 1;
+				// Increase `currentLine` by 1 to continue to the next line
+				this.current.line++;
+				// If `currentLine` is 7, the hexagram is completed.
+				if (this.current.line == 7) {
+					// Reset `currentLine` to 1
+					this.current.line = 1;
+					alert('Hexagram obtained.');
+				}
+			}
+		}	
+	}
+
+	function captureSplit() {
+		let splitHere;
+
+		// Event listener for click on `Split` button
+		$('#is-split-button').click(function(event) {
+			// Prevents page from default reloading behavior
+			event.preventDefault();
+			// Get value from slider handle position
+			let handlePosition = $('#slider-bar').slider('value');
+			// Get and value of the slider handle.
+			splitHere = handlePosition;
+			splitAndSort(splitHere);
+		});
+
+		// Event listener for click on gap between left and right pile
+		$('#stalks-container').click(function(event) {
+			// Get `id` attribute of what was clicked in the stalks.
+			let clickedElement = event.target.id;
+			// Checks that the user is clicking on the gap.
+			if (clickedElement.split('-')[0] == 'gap'){
+				// If so, get the number portion of the `id` attribute and convert to `Number`.
+				splitHere = Number(clickedElement.split('-')[1]);
+				splitAndSort(splitHere);
+			} else {
+				// Otherwise, do nothing and return.
+				return;
+			}
+		});
+	}
+
+	function splitIntoPiles(splitPosition, progress, record) {
+		// Left pile, representing Heaven, is stalks on the left of the split.
+		let leftPile = Number(splitPosition);
+		// Right pile, representing Earth, is stalks on the right of the split. One stalk will be taken out later, representing Mankind, before sorting into fours.
+		let rightPile = Number(round.remainingStalks - splitPosition);
+
+		// Record result to `divination.data.raw`
+		record['line' + progress.current.line]['split' + progress.current.round].left = leftPile;
+		record['line' + progress.current.line]['split' + progress.current.round].right = rightPile;
+
+		let twoPiles = {
+			left: leftPile,
+			right: rightPile
+		};
+
+		return twoPiles;
+	}
+
+	function determineRemainder(twoPiles) {
+		let leftRemainder, rightRemainder;
+
+		leftRemainder = (twoPiles.left % 4) == 0 ? leftRemainder = 4 : leftRemainder = (twoPiles.left % 4);
+		rightRemainder= ((twoPiles.right - 1) % 4) == 0 ? rightRemainder = 4 : rightRemainder = ((twoPiles.right - 1) % 4);
+
+		let twoRemainders = {
+			left: leftRemainder,
+			right: rightRemainder
+		};
+
+		return twoRemainders;
+	}
+
+	function sortIntoFours(twoPiles, twoRemainders) {	 
+		let leftSetsOfFours = (twoPiles.left - twoRemainders.left) / 4;
+		let rightSetsOfFours = ((twoPiles.right - 1) - twoRemainders.right) / 4;
+		
+		let setsOfFour = {
+			left: leftSetsOfFours,
+			right: rightSetsOfFours,
+			total: leftSetsOfFours + rightSetsOfFours
+		}
+
+		return setsOfFour;
+	}
+
+	function endOfRound(twoRemainders, setsOfFour, progress) {
+		let stalksTakenOut = twoRemainders.left + twoRemainders.right + 1;
+		let remainingStalks = round.remainingStalks - stalksTakenOut;
+		let line;
+
+		if (progress.current.round == 4) {
+			line = setsOfFour.total;
+			console.log('Line: ' + line);
+			divination.data.hexagram.array[progress.current.line - 1] = line;
+			console.log(divination.data.hexagram.array);
+		}
+
+		let data = {
+			stalks: {
+				remaining: remainingStalks,
+				takenOut: stalksTakenOut
+			},
+			line: line
+		}
+
+		return data;
+	}
+
+	function deriveData(hexagramArray) {
+		// Convert to binary string
+		// Convert to object
+		// Find hexagram name
+		// Find hexagram number
+		// Attach API parameters
+	}
+
+	var progress = new Progress();
+	var round = new Stalks();
+	initializeStalks(round.remainingStalks);
+	detectHover();
+	initializeSlider(round.stalksToSplit, round.gapPosition);
+	captureSplit();
+
+	function splitAndSort(split) {
+		console.log(progress);
+		var piles = splitIntoPiles(split, progress,rawData);
+		var remainders = determineRemainder(piles);
+		var fours = sortIntoFours(piles,remainders);
+		progress.nextRound();
+		var result = endOfRound(remainders, fours, progress);
+		prepareNextRound(result);
+		progress.nextLine();
+		// console.log('Left and Right Piles');
+		// console.log(piles);
+		// console.log('Left and Right Remainders');
+		// console.log(remainders);
+		// console.log('Left and Right Sets of Fours');
+		// console.log(fours);
+		// console.log('Result at End of Round One');
+		// console.log(result);
+		// console.log('Updated Progress');
+		// console.log(progress);
+	}
+
+	function prepareNextRound(result) {
+
+		if (progress.current.round == 4) {
+			round = new Stalks()
+		} else {
+			round.remainingStalks = result.stalks.remaining;
+			round.stalksToSplit = round.remainingStalks - 2
+			round.gapPosition = Math.floor(round.remainingStalks / 2);
+		}
+
+		$('#stalks-container').empty();
+		initializeStalks(round.remainingStalks);
+		$('slider-bar').slider('destroy');
+		// $('slider-bar').slider('option', 'max', round.stalksToSplit);
+		initializeSlider(round.stalksToSplit, round.gapPosition);
+		detectHover()
+	}
+
+
+	class Hexagram {
+		constructor(array) {
+			this.array = array;
+			this.line1 = array[0];
+			this.line2 = array[1];
+			this.line3 = array[2];
+			this.line4 = array[3];
+			this.line5 = array[4];			
+			this.line6 = array[5];
+		}
+		string() {
+			let hexagramString = "";
+			for (let line = 0; line < this.array.length; line++) {
+				switch (this.array[line]) {
+					case 6:
+					case 8:
+						hexagramString += 2;
+						break;
+				    case 7:
+				    case 9:
+						hexagramString += 1;
+						break;
+				}
+			}
+			return hexagramString;
+		}
+		object() {
+			let object = {
+				line1: this.line1,
+				line2: this.line2,
+				line3: this.line3,
+				line4: this.line4,
+				line5: this.line5,
+				line6: this.line6
+			};
+
+			return object;
+		}
+		name() {
+			let name;
+			for (let key in dictionary) {
+				if (this.string() == key) {
+					number = dictionary[key].name;
+				}
+			}
+			return name;
+		}
+		number() {
+			let number;
+			for (let key in dictionary) {
+				if (this.string() == key) {
+					number = dictionary[key].number;
+				}
+			}
+			return number;
+		}
+	}
+
+	// $('.stalk-position').each(function(index, object){
+		// console.log(index);
+		// console.log(object);
+	// });
+
+	function removeStalks() {
+		let lastStalkPosition = $('.stalk-position').last().attr('id').split('-')[1];
+		let stalksToRemove = lastStalkPosition - result.stalks.takenOut;
+
+		for (let stalk = lastStalkPosition; stalk < lastStalkPosition - stalksToRemove; stalk--) {
+			$('position-' + stalk).remove()
+		}
+
+		// Recenter gap
+	}
+
+	function addStalks() {
+		let lastStalkPosition = $('.stalk-position').last().attr('id').split('-')[1];
+		let stalksToAdd = Stalks.inUse() - lastStalkPosition;
+
+		for (let stalk = lastStalkPosition; stalk <= Stalk.InUse(); stalk++) {
+			$('stalks-container').append();
+		}
+	}
+});

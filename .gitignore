@@ -88,5 +88,7 @@ typings/
 # dotenv environment variables file
 .env
 
+# MongoDB configuration file
+config/db-config-actual.js
 
 # End of https://www.gitignore.io/api/node,macos

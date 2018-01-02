@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>Oracle of Changes</title>
+		
+		<!-- Font Awesome Icons from CDN -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<!-- Bulma Minified CSS from CDN -->
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css"> -->
+
+		<!-- Bulma 0.6.1 CSS from local folder -->
+		<link rel="stylesheet" href="/bower_components/bulma/css/bulma.css">
+
+		<!-- Customizations to Bulma CSS -->
+		<!-- <link rel="stylesheet" type="text/css" href="/stylesheets/bulma-customized.css"> -->
+
+		<!-- jQuery UI v1.12.1 from CDN -->
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+		
+		<!-- jQuery UI v1.12.1 from local folder -->
+		<link rel="stylesheet" type="text/css" href="/jquery-ui-1.12.1/jquery-ui.css">
+
+		<!-- Yarrow Stalk Oracle CSS -->
+		<link rel="stylesheet" type="text/css" href="/stylesheets/oracle.css">
+	</head>
+	<body>
+
+	<!-- START: Navigation Bar & Burger -->
+	<nav id="navbar" class="navbar is-fixed-top is-light">
+		<div id="specialShadow" class="special-shadow"></div>
+		<div class="container">
+			<div class="navbar-brand is-fixed-top">
+				<a class="navbar-item" href="/">
+					<img src="/images/navbar_brand.svg">
+				</a>
+				<div id="navbarBurger" class="navbar-burger" data-target="navMenu">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<div class="navbar-menu" id="navMenu">
+				<div class="navbar-start">
+					<a class="navbar-item" href="/consult">Consult</a>
+					<a class="navbar-item" href="#">Records</a>
+					<a class="navbar-item" href="#">Reference</a>
+				</div>
+				<div class="navbar-end">
+					<a class="navbar-item" href="/signin">
+						<span class="icon">
+							<i class="fa fa-sign-in"></i>
+						</span>
+						Sign in
+					</a>
+					<a class="navbar-item" href="/signup">
+						<span class="icon">
+							<i class="fa fa-user-plus"></i>
+						</span>
+						Sign up
+					</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<!-- END: Navigation Bar & Burger -->
+
+	{{{body}}}
+
+	<!-- START: Footer -->
+	<footer class="footer">
+		<div class="container">
+			<div class="level">
+				<div class="level-item is-one-third">
+					<div class="content has-text-centered">
+						<p><strong>Oracle of Changes</strong><br>by Lim Jiechao
+					</div>
+				</div>
+				<div class="level-item is-one-third">
+					<div class="columns is-mobile is-centered">
+						<div class="column is-narrow">
+							<a href="https://github.com/limjiechao/project-2">
+								<span class="icon" style="color: #222222;">
+									<i class="fa fa-lg fa-github"></i>
+								</span>
+							</a>
+						</div>
+						<div class="column is-narrow">
+							<a href="https://twitter.com/jiechaolim" target="_blank">
+								<span class="icon" style="color: #55acee;">
+									<i class="fa fa-lg fa-twitter"></i>
+								</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="level-item is-one-third has-text-centered">
+					<div class="content">
+						<p class="heading">Made with:</p>
+						<h6>
+							<a href="http://ctext.org/">
+								<img src="/images/ctp_banner.svg" alt="Made with Chinese Text Project" width="160">
+							</a>
+						</h6>
+						<h6>
+							<a href="https://bulma.io">
+								<img src="https://bulma.io/images/made-with-bulma.png" alt="Made with Bulma" width="160">
+							</a>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- END: Footer -->
+
+	<!-- Load jQuery from CDN -->
+	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+	<!-- Load jQuery UI from CDN for Slider Widget -->
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<!-- Load jQuery UI from local folder for Slider Widget -->
+	<!-- <script src="/jquery-ui-1.12.1/jquery-ui.js"></script> -->
+
+	<!-- Customizations to Bulma CSS -->
+	<script type="text/javascript" src="/javascripts/bulma-customized.js"></script>
+
+	</body>
+</html>

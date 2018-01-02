@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="20" height="810" viewBox="0, 0, 20, 810" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <clipPath id="Clip_1">
+      <path d="M20,5 L20,805 L20,805 C19.173,809.279 13.526,809.822 10,810 C4.477,810 0,807.761 0,805 L0,5 L20,5 z"/>
+    </clipPath>
+    <filter id="InnerShadow_2">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+      <feOffset dx="-6" dy="1" result="offsetblur"/>
+      <feFlood flood-color="#000000"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <clipPath id="Clip_3">
+      <path d="M10,0 C15.523,0 20,2.239 20,5 C20,7.761 15.523,10 10,10 C4.477,10 0,7.761 0,5 C0,2.239 4.477,0 10,0 z"/>
+    </clipPath>
+    <filter id="InnerShadow_4">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+      <feOffset dx="-6" dy="1" result="offsetblur"/>
+      <feFlood flood-color="#000000"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+  </defs>
+  <g id="Yarrow_Stalk">
+    <g id="Yarrow_Stalk">
+      <g id="Stem">
+        <path d="M20,5 L20,805 L20,805 C19.173,809.279 13.526,809.822 10,810 C4.477,810 0,807.761 0,805 L0,5 L20,5 z" fill="#FFB168"/>
+        <path d="M-17,-7 L37,-7 L37,822 L-17,822 z M20,5 L0,5 L0,805 C0,807.761 4.477,810 10,810 C13.526,809.822 19.173,809.279 20,805 L20,805 L20,5 z" clip-path="url(#Clip_1)" filter="url(#InnerShadow_2)" fill="rgba(0,0,0,0.75)"/>
+      </g>
+      <g id="Top">
+        <path d="M10,10 C4.477,10 0,7.761 0,5 C0,2.239 4.477,0 10,0 C15.523,0 20,2.239 20,5 C20,7.761 15.523,10 10,10 z" fill="#FFB168"/>
+        <path d="M-17,-12 L37,-12 L37,22 L-17,22 z M10,0 C4.477,0 0,2.239 0,5 C0,7.761 4.477,10 10,10 C15.523,10 20,7.761 20,5 C20,2.239 15.523,0 10,0 z" clip-path="url(#Clip_3)" filter="url(#InnerShadow_4)" fill="rgba(0,0,0,0.75)"/>
+      </g>
+    </g>
+  </g>
+</svg>
