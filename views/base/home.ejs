@@ -5,11 +5,11 @@
 
     <div class="card item">
       <a href="/review">
-      <div class="card-image">
-        <img src="/img/chicken.jpg">
-        <span class="rating">5.0</span>
-      </div>
-    </a>
+        <div class="card-image">
+          <img src="/img/chicken.jpg">
+          <span class="rating">5.0</span>
+        </div>
+      </a>
       <div class="card-content">
         <p>Hello World</p>
       </div>
@@ -94,7 +94,35 @@
         <p>Hello World</p>
       </div>
     </div>
-  </div>
+
+    <div class="card item">
+      <div class="card-image">
+        <img src="/img/viet.jpg">
+        <span class="rating">5.0</span>
+      </div>
+      <div class="card-content">
+        <p>Hello World</p>
+      </div>
+    </div>
+
+    <% data.forEach(function(item) { %>
+      <div class="card item">
+        <div class="card-image">
+          <a href="/review/<%= item._id %>">
+            <!-- need to change the src for image -->
+            <img src="/img/chicken.jpg">
+            <span class="rating"><%= item.rating.overall %></span>
+          </a>
+        </div>
+        <div class="card-content">
+          <p>
+            <%= item.title %>
+          </p>
+        </div>
+      </div>
+      <% }); %>
+
+
 
   </div>
   <% include ../partials/footer %>

@@ -16,7 +16,7 @@ module.exports.login = function(req, res) {
 module.exports.loginPost = function(req, res) {
 
 
-  req.flash('green', 'Welcome John Doe');
+  req.flash('green', 'Welcome User');
   res.render('base/profile');
 };
 

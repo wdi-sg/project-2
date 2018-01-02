@@ -16,7 +16,7 @@ const ReviewSchema = new Schema({
     quality: Number,
     quantity: Number,
     price: Number,
-    total: Number
+    overall: String
   },
   userId: {
     type: Schema.Types.ObjectId,

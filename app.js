@@ -38,6 +38,7 @@ app.use(session({
 app.use(flash());
 app.use(function (req, res, next) {
   res.locals.messages = messages(req, res);
+  res.locals.user = req.user || 'johndoe';
   next();
 });
 

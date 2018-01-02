@@ -19,7 +19,7 @@ const extraController = require('../controllers/extraController');
 // ===============  base route  ===============
 router.get('/', baseController.home);
 router.get('/profile/', baseController.profile);
-router.get('/review/', baseController.review);
+router.get('/review/:id', baseController.review);
 
 
 // ===============  auth route  ===============
@@ -32,7 +32,7 @@ router.post('/signup', authController.signupPost);
 
 // ===============  review route  ===============
 router.get('/review/add', reviewController.add);
-router.post('/review/add', upload.single('photo'), reviewController.addPost);
+router.post('/review/add/:id', upload.single('photo'), reviewController.addPost);
 router.get('/review/edit/', reviewController.edit);
 router.post('/review/edit', reviewController.editPost);
 router.delete('/review/delete', reviewController.delete);
