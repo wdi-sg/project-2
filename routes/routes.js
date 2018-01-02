@@ -40,7 +40,7 @@ router.delete('/review/delete', reviewController.delete);
 
 // ===============  bookmark route  ===============
 router.post('/bookmark/add', bookmarkController.add);
-router.post('/bookmark/edit', bookmarkController.edit);
+// router.post('/bookmark/edit', bookmarkController.edit);
 router.delete('/bookmark/delete', bookmarkController.delete);
 
 

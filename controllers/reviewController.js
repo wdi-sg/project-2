@@ -17,11 +17,17 @@ module.exports.addPost = function(req, res) {
 
 
 module.exports.edit = function(req, res) {
+
+// place reviewid in href
+// find reviewid send to page
+
   res.render('review/edit');
 };
 
 
 module.exports.editPost = function(req, res) {
+
+
   req.flash("green", "Review successfully edited");
   res.redirect('/review');
 };
