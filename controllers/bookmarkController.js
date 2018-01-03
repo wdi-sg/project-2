@@ -14,14 +14,17 @@ module.exports.add = function(req, res) {
     userId: req.body.userId,
     reviewId: req.params.id
   });
-
+newBookmark.save(function(err) {
+  if (err) throw err;
+  console.log(newBookmark);
+    req.flash('light-blue', 'Bookmark added');
+    res.redirect('/fullreview/' + req.params.id);
+});
   // add to db
   // let newBookmark = new Bookmark({
   //
   // })
-console.log(newBookmark);
-  req.flash('light-blue', 'Bookmark added');
-  res.redirect('/fullreview/' + req.params.id);
+
 };
 
 
