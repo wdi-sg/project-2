@@ -35,7 +35,7 @@ router.get('/review/add', reviewController.add);
 router.post('/review/add/:id', upload.single('photo'), reviewController.addPost);
 router.get('/review/edit/:id', reviewController.edit);
 router.post('/review/edit/:id', reviewController.editPost);
-router.delete('/review/delete', reviewController.delete);
+router.delete('/review/delete/:id', reviewController.delete);
 
 
 // ===============  bookmark route  ===============

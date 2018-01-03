@@ -31,7 +31,8 @@ let autocomplete = new google.maps.places.Autocomplete(input, options);
 google.maps.event.addDomListener(window, 'load', initialize);
 
 
-$('.delete-button').on('click', function(e) {
+// delete for bookmark
+$('.delete-bookmark').on('click', function(e) {
   e.preventDefault();
 
   $.ajax({
@@ -44,8 +45,26 @@ $('.delete-button').on('click', function(e) {
     error: function(err) {
 console.log(err);
     }
-  })
-})
+  });
+});
+
+
+// delete for review
+$('.delete-review').on('click', function(e) {
+  e.preventDefault();
+
+  $.ajax({
+    url: $(this).attr('href'),
+    type: 'DELETE',
+    success: function(data) {
+      console.log(data);
+      window.location.href = '/';
+    },
+    error: function(err) {
+      console.log(err);
+    }
+  });
+});
 
 
 

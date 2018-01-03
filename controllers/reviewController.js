@@ -41,7 +41,7 @@ console.log(newReview);
 newReview.save(function(err) {
   if (err) throw err;
   req.flash("green", "Review successfully created");
-  res.redirect('/profile');
+  res.redirect('/profile/5a4b9184d3eb105a222cc3dc');
 });
 
 };
@@ -85,5 +85,9 @@ Review.findByIdAndUpdate(req.params.id, { $set: {
 
 
 module.exports.delete = function(req, res) {
+  Review.findByIdAndRemove(req.params.id, function(err, data) {
+    if (err) throw err;
+    console.log(data);
   res.sendStatus(200);
+});
 };
