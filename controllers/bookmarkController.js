@@ -1,3 +1,5 @@
+const Bookmark = require('../models/bookmark');
+
 module.exports.add = function(req, res) {
   // place reviewid on bookmark link
   // title
@@ -7,9 +9,12 @@ module.exports.add = function(req, res) {
   // reviewid
 
   // add to db
-
+  // let newBookmark = new Bookmark({
+  //
+  // })
+console.log(req.body);
   req.flash('light-blue', 'Bookmark added');
-  res.redirect('/review');
+  res.redirect('/fullreview/' + req.params.id);
 };
 
 

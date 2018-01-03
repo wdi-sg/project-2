@@ -107,15 +107,18 @@
   <!-- modal for bookmark -->
   <div id="modal1" class="modal">
     <div class="modal-content">
-      <form action="/bookmark/add" method="POST">
+      <form action="/bookmark/add/<%= data._id %>" method="POST">
+        <input type="hidden" name="userId" value="<%= data.userId._id %>">
+        <input type="hidden" name="photo" value="<%= data.photo %>">
+
         <div>
           <label for="title">Title</label>
-          <input id="title" type="text" name="title">
+          <input id="title" type="text" name="title" value="<%= data.title %>">
         </div>
 
         <div>
           <label for="location">Location</label>
-          <input id="location" type="text" name="location" value="Chicken Rice Store, Singapore">
+          <input id="location" type="text" name="location" value="<%= data.location %>">
         </div>
 
         <div class="modal-footer">
