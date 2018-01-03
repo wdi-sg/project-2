@@ -33,8 +33,8 @@ router.post('/signup', authController.signupPost);
 // ===============  review route  ===============
 router.get('/review/add', reviewController.add);
 router.post('/review/add/:id', upload.single('photo'), reviewController.addPost);
-router.get('/review/edit/', reviewController.edit);
-router.post('/review/edit', reviewController.editPost);
+router.get('/review/edit/:id', reviewController.edit);
+router.post('/review/edit/:id', reviewController.editPost);
 router.delete('/review/delete', reviewController.delete);
 
 

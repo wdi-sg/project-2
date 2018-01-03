@@ -28,7 +28,7 @@ module.exports.review = function(req, res) {
 Review.findById(req.params.id).populate('userId').exec(function(err, result) {
   if (err) throw err;
   // console.log(result);
-    res.render('base/review', {data: result});
+    res.render('base/fullreview', {data: result});
 });
 
 

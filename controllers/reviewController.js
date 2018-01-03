@@ -19,8 +19,6 @@ let quantity = parseInt(req.body.quantity);
 let price = parseInt(req.body.price);
 let overall = helper.getOverall(quality, quantity, price);
 
-
-
 let newReview = new Review({
   title: req.body.title,
   review: req.body.review,
@@ -49,19 +47,36 @@ newReview.save(function(err) {
 
 
 module.exports.edit = function(req, res) {
-
-// place reviewid in href
 // find reviewid send to page
-
-  res.render('review/edit');
+Review.findById(req.params.id, function(err, result) {
+  if (err) throw err;
+  res.render('review/edit', {data: result});
+});
 };
 
 
 module.exports.editPost = function(req, res) {
 
+let quality = parseInt(req.body.quality);
+let quantity = parseInt(req.body.quantity);
+let price = parseInt(req.body.price);
+let overall = helper.getOverall(quality, quantity, price);
 
+Review.findByIdAndUpdate(req.params.id, { $set: {
+  title: req.body.title,
+  location: req.body.location,
+  review: req.body.review,
+  rating: {
+    quality: quality,
+    quantity: quantity,
+    price: price,
+    overall: overall
+  }
+}}, function(err) {
   req.flash("green", "Review successfully edited");
-  res.redirect('/review');
+  res.redirect('/fullreview/' + req.params.id);
+});
+
 };
 
 

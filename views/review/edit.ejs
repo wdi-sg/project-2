@@ -2,34 +2,36 @@
 
 <h1>Edit Review Page</h1>
 
-<form action="/review/edit" method="POST">
+<form action="/review/edit/<%= data._id %>" method="POST">
 
   <div>
     <label for="title">Title</label>
-    <input id="title" type="text" name="title" value="Chicken Rice very nice">
+    <input id="title" type="text" name="title" value="<%= data.title%>">
   </div>
 
 <div>
     <label for="location">Location</label>
-    <input id="location" type="text" name="location" value="Singapore">
+    <input id="location" type="text" name="location" value="<%= data.location %>">
   </div>
 
 
 <div>
     <label for="review">Review</label>
-    <textarea id="review" class="materialize-textarea" name="review">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam reiciendis, atque id quasi fuga quam beatae repudiandae error ea suscipit voluptatem accusamus earum impedit vel, ab optio possimus nesciunt eius.</textarea>
+    <textarea id="review" class="materialize-textarea" name="review"><%= data.review %></textarea>
   </div>
 
 
 <div class="row">
   <div class="input-field col s6">
 <select name="quality">
-  <option value="" disabled>Choose your option</option>
-  <option value="1">1 Star (Not so nice)</option>
-  <option value="2">2 Star</option>
-  <option value="3" selected>3 Star</option>
-  <option value="2">4 Star</option>
-  <option value="3">5 Star (Delicious)</option>
+<% for (var i = 0; i <= 5; i++) { %>
+  <% if (i == 0) { %>
+    <option value="" disabled>Choose your option</option>
+  <% } else if (i == data.rating.quality) { %>
+    <option value="<%= i %>" selected><%= i %> Star</option>
+  <% } else { %>
+    <option value="<%= i %>"><%= i %> Star</option>
+  <% } } %>
 </select>
 <label>Quality</label>
 </div>
@@ -38,12 +40,14 @@
 <div class="row">
   <div class="input-field col s6">
 <select name="quantity">
-  <option value="" disabled>Choose your option</option>
-  <option value="1">1 Star (A little bit)</option>
-  <option value="2">2 Star</option>
-  <option value="3" selected>3 Star</option>
-  <option value="2">4 Star</option>
-  <option value="3">5 Star (Mountain high)</option>
+  <% for (var i = 0; i <= 5; i++) { %>
+    <% if (i == 0) { %>
+      <option value="" disabled>Choose your option</option>
+    <% } else if (i == data.rating.quantity) { %>
+      <option value="<%= i %>" selected><%= i %> Star</option>
+    <% } else { %>
+      <option value="<%= i %>"><%= i %> Star</option>
+    <% } } %>
 </select>
 <label>Quantity</label>
 </div>
@@ -52,12 +56,14 @@
 <div class="row">
   <div class="input-field col s6">
 <select name="price">
-  <option value="" disabled>Choose your option</option>
-  <option value="1">1 Star (Very pricey)</option>
-  <option value="2">2 Star</option>
-  <option value="3" selected>3 Star</option>
-  <option value="2">4 Star</option>
-  <option value="3">5 Star (Affordable)</option>
+  <% for (var i = 0; i <= 5; i++) { %>
+    <% if (i == 0) { %>
+      <option value="" disabled>Choose your option</option>
+    <% } else if (i == data.rating.price) { %>
+      <option value="<%= i %>" selected><%= i %> Star</option>
+    <% } else { %>
+      <option value="<%= i %>"><%= i %> Star</option>
+    <% } } %>
 </select>
 <label>Price</label>
 </div>
