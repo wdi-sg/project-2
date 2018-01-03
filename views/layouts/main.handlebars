@@ -13,10 +13,10 @@
 		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css"> -->
 
 		<!-- Bulma 0.6.1 CSS from local folder -->
-		<link rel="stylesheet" href="/bower_components/bulma/css/bulma.css">
+		<link rel="stylesheet" href="/bulma-master/css/bulma.css">
 
 		<!-- Customizations to Bulma CSS -->
-		<!-- <link rel="stylesheet" type="text/css" href="/stylesheets/bulma-customized.css"> -->
+		<link rel="stylesheet" type="text/css" href="/stylesheets/bulma-customized.css">
 
 		<!-- jQuery UI v1.12.1 from CDN -->
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -47,16 +47,16 @@
 				<div class="navbar-start">
 					<a class="navbar-item" href="/consult">Consult</a>
 					<a class="navbar-item" href="#">Records</a>
-					<a class="navbar-item" href="#">Reference</a>
+					<!-- <a class="navbar-item" href="#">Reference</a> -->
 				</div>
 				<div class="navbar-end">
-					<a class="navbar-item" href="/signin">
+					<a class="navbar-item modal-button" data-target="signin" href="#">
 						<span class="icon">
 							<i class="fa fa-sign-in"></i>
 						</span>
 						Sign in
 					</a>
-					<a class="navbar-item" href="/signup">
+					<a class="navbar-item modal-button" data-target="signup" href="#">
 						<span class="icon">
 							<i class="fa fa-user-plus"></i>
 						</span>
@@ -69,6 +69,117 @@
 	<!-- END: Navigation Bar & Burger -->
 
 	{{{body}}}
+
+	<!-- START: Sign In Modal -->
+	<div id="signin" class="modal">
+		<div class="modal-background"></div>
+		<div class="modal-card">
+			<header class="modal-card-head">
+				<p class="modal-card-title">Sign in</p>
+				<button class="delete"></button>
+			</header>
+			<form method="post" action="/signin">
+			<section class="modal-card-body">
+				<div class="form">
+					<div class="field">
+						<label class="label">Email</label>
+						<p class="control has-icons-left">
+							<input class="input" type="email" placeholder="Email">
+							<span class="icon is-small is-left">
+								<i class="fa fa-envelope"></i>
+							</span>
+						</p>
+					</div>
+					<div class="field">
+						<label class="label">Password</label>
+						<p class="control has-icons-left">
+							<input class="input" type="password" placeholder="Password">
+							<span class="icon is-small is-left">
+								<i class="fa fa-lock"></i>
+							</span>
+						</p>
+					</div>
+					<div class="field">
+						<p class="control">
+							<button class="button is-success is-fullwidth" type="submit">
+								Sign in
+							</button>
+						</p>
+					</div>
+					<div class="field">
+						<button class="button is-link is-fullwidth">
+							Sign in with Twitter
+						</button>
+					</div>
+				</div>
+			</section>
+			</form>
+			<footer class="modal-card-foot">
+				<div class="content">
+					<p>Or <a href="/signup" class="is-link">create an account</a></p>
+				</div>	
+			</footer>
+		</div>
+	</div>
+	<!-- END: Sign In Modal -->
+	
+	<!-- START: Sign Up Modal -->
+	<div id="signup" class="modal">
+		<div class="modal-background"></div>
+		<div class="modal-card">
+			<header class="modal-card-head">
+				<p class="modal-card-title">Sign up</p>
+				<button class="delete"></button>
+			</header>
+			<form method="post" action="/signup">
+			<section class="modal-card-body">
+				<div class="field">
+					<label class="label">First Name</label>
+					<div class="control">
+						<input class="input" type="text" placeholder="First name">
+					</div>
+				</div>
+				<div class="field">
+					<label class="label">Last Name</label>
+					<div class="control">
+						<input class="input" type="text" placeholder="Last name">
+					</div>
+				</div>
+				<div class="field">
+					<label class="label">Email</label>
+					<div class="control has-icons-left">
+						<input class="input" type="email" placeholder="Email">
+						<span class="icon is-small is-left">
+							<i class="fa fa-envelope"></i>
+						</span>
+					</div>
+				</div>
+				<div class="field">
+					<label class="label">Password</label>
+					<p class="control has-icons-left">
+						<input class="input" type="password" placeholder="Password">
+						<span class="icon is-small is-left">
+							<i class="fa fa-lock"></i>
+						</span>
+					</p>
+				</div>
+				<div class="field">
+					<p class="control">
+						<button class="button is-success is-fullwidth" type="submit">
+							Sign up
+						</button>
+					</p>
+				</div>
+			</section>
+			</form>
+			<footer class="modal-card-foot">
+				<div class="content">
+					<p>Or <a href="/signin" class="is-link">sign in to your account</a></p>
+				</div>
+			</footer>
+		</div>
+	</div>
+	<!-- END: Sign In Modal -->
 
 	<!-- START: Footer -->
 	<footer class="footer">
@@ -116,6 +227,8 @@
 		</div>
 	</footer>
 	<!-- END: Footer -->
+
+
 
 	<!-- Load jQuery from CDN -->
 	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>

@@ -36,9 +36,13 @@ until finished
 
 <!-- What did you use to build it, list the technologies, plugins, gems, packages etc. -->
 
-- [Bulma v0.6.1](https://bulma.io) 
-- [jQuery UI v1.12.1](https://jqueryui.com)
-- [jQuery](http://jquery.com/)
+- [Bulma v0.6.1](https://bulma.io) for the overall styling
+- [jQuery UI v1.12.1](https://jqueryui.com) for the slider bar widget
+- [Node.js](https://nodejs.org/)
+- [jQuery](http://jquery.com/) for coding the yarrow stalk oracle
+- JavaScript
+- CSS
+- HTML
 
 ## Workflow
 
@@ -83,16 +87,28 @@ The yarrow stalks will resize to fit the width on smaller screens.
 
 ### User Stories
 
-As a user of the Oracle of Changes
+As a casual user of the Oracle of Changes, I
+- want to try the traditional yarrow stalk oracle without having to follow complicated instructions and physical equipment.
+- want to try the yarrow stalk oracle without having to create an account
+- do not want to be bogged down by the repetitive, lengthly, and mistakes prone procedure of the yarrow stalk oracle.
 
-<!-- ## Authors -->
-
-<!-- Did you collaborate with others on this project, list them here -->
-
-<!-- - **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName) -->
+As a serious/committed user of the Oracle of Changes, I
+- want to regularly consult the traditional yarrow stalk oracle without the hefty time commitment (typically 20 to 30 minutes to obtain a hexagram).
+- want to conveniently refer to reliable sources for divination texts.
+- want reliable Chinese-English correspondence of divination texts at my fingertips.
+- want a clean, core experience stripped of all the kitsch and clichéd design commonly associated with all things fortune-telling and Chinese.
+- 
 
 ## Acknowledgments
 
 - [Chinese Text Project](http://ctext.org/)
-  <!-- - Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2). -->
-
+- [Bulma.io](https://bulma.io) for making possible the following JavaScript interactivity:
+	- Navigation burger button toggle and animation effect 
+		- "Burger-button-transforms-to-and-from-close-button"
+	- Navigation burger menu dropdown effect,
+	- Navigation bar scrolling effects, including:
+		- "Conceal-while-scrolling-down",
+		- "Reveal-while-scrolling-up", and 
+		- "Cast-shadow-when-visible-and-fade-out-when-top-is-reached"
+	- Modal toggle
+- [Russell W. Cottrell, M.D.](http://www.russellcottrell.com/md/me.shtm) for his innovative [Virtual Yarrow Stalks](http://www.russellcottrell.com/VirtualYarrowStalks/). Instead of relying on the coin toss method or a random number generator, Dr. Cottrell's Virtual Yarrow Stalks featured a brilliant workaround by simply laying the yarrow stalks in a neat row across the screen with an inserted gap to simulate the split. This, I believe, is the best possible virtual counterpart to the physical spliting of yarrow stalks by hand. Dr. Cottrell's Virtual Yarrow Stalks subtantially replicates the traditional yarrow stalk method by intelligently adapting to the constraints of the new medium. Additionally, unlike the coin toss method, this allows uneven probabilities of obtaining lines 6, 7, 8, and 9 to be retained.

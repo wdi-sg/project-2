@@ -1,6 +1,13 @@
 'use strict';
 
+// ===============================================
+// The following implementation was borrowed from:
+// - https://bulma.io/lib/main.js?v=201712281510
+// ===============================================
+
 document.addEventListener('DOMContentLoaded', function () {
+
+	var rootEl = document.documentElement;
 
 	// ===============================================
 	// # START: Navigation Bar Burger
@@ -45,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	// - Shadow disappears upon hitting the top
 	// ==============================================
 
-	var rootEl = document.documentElement;
 	var navbarEl = document.getElementById('navbar');
 	var navbarBurger = document.getElementById('navbarBurger');
 	var specialShadow = document.getElementById('specialShadow');
@@ -154,4 +160,65 @@ document.addEventListener('DOMContentLoaded', function () {
 	// # END: Navigation Bar Scrolling Effect
 	// ======================================
 
+	// ===============
+	// # START: Modals
+	// ===============
+
+	// Functions
+
+	function getAll(selector) {
+		return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
+	}
+
+
+	var $dropdowns = getAll('.dropdown:not(.is-hoverable)');
+	function closeDropdowns() {
+		$dropdowns.forEach(function ($el) {
+			$el.classList.remove('is-active');
+		});
+	}
+
+	// Modals
+
+	var $modals = getAll('.modal');
+	var $modalButtons = getAll('.modal-button');
+	var $modalCloses = getAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button');
+
+	if ($modalButtons.length > 0) {
+		$modalButtons.forEach(function ($el) {
+			$el.addEventListener('click', function () {
+				var target = $el.dataset.target;
+				var $target = document.getElementById(target);
+				rootEl.classList.add('is-clipped');
+				$target.classList.add('is-active');
+			});
+		});
+	}
+
+	if ($modalCloses.length > 0) {
+		$modalCloses.forEach(function ($el) {
+			$el.addEventListener('click', function () {
+				closeModals();
+			});
+		});
+	}
+
+	document.addEventListener('keydown', function (event) {
+		var e = event || window.event;
+		if (e.keyCode === 27) {
+			closeModals();
+			closeDropdowns();
+		}
+	});
+
+	function closeModals() {
+		rootEl.classList.remove('is-clipped');
+		$modals.forEach(function ($el) {
+			$el.classList.remove('is-active');
+		});
+	}
+
+	// =============
+	// # END: Modals
+	// =============
 });

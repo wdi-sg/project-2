@@ -9,8 +9,8 @@ const oracleController = require('../controllers/oracle-controller')
 router.get('/', homeController.index);
 
 // User Authentication
-router.get('/signin', authController.signin)
-router.get('/signup', authController.signup);
+router.post('/signin', authController.signin)
+router.post('/signup', authController.signup);
 router.get('/signout', authController.signout);
 
 // Divination

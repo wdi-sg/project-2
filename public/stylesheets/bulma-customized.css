@@ -12,3 +12,11 @@
 	-webkit-transform-origin: center top;
 					transform-origin: center top;
 }
+
+.modal {
+	z-index: 40;
+}
+
+.modal-card {
+	max-width: 400px;
+}
