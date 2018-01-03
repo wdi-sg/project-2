@@ -3,7 +3,8 @@ require('../config/cloudinary');
 
 // =============== require module ===============
 const Review = require('../models/review');
-const getDate = require('../helpers/date');
+const helper = require('../helpers/helperFunction');
+
 
 module.exports.add = function(req, res) {
   res.render('review/add');
@@ -16,8 +17,8 @@ module.exports.addPost = function(req, res) {
 let quality = parseInt(req.body.quality);
 let quantity = parseInt(req.body.quantity);
 let price = parseInt(req.body.price);
-let overall = (quality + quantity + price) / 3;
-overall = overall.toFixed(1);
+let overall = helper.getOverall(quality, quantity, price);
+
 
 
 let newReview = new Review({
@@ -25,7 +26,7 @@ let newReview = new Review({
   review: req.body.review,
   photo: req.file.filename,
   location: req.body.location,
-  date: getDate,
+  date: helper.getDate(),
   rating: {
     quality: quality,
     quantity: quantity,

@@ -24,10 +24,10 @@ module.exports.profile = function(req, res) {
 module.exports.review = function(req, res) {
 // place reviewid on review home page individual review
 // find reviewid send to full review page
-console.log(req.params.id);
+// console.log(req.params.id);
 Review.findById(req.params.id).populate('userId').exec(function(err, result) {
   if (err) throw err;
-  console.log(result);
+  // console.log(result);
     res.render('base/review', {data: result});
 });
 

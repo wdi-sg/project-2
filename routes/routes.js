@@ -19,7 +19,7 @@ const extraController = require('../controllers/extraController');
 // ===============  base route  ===============
 router.get('/', baseController.home);
 router.get('/profile/', baseController.profile);
-router.get('/review/:id', baseController.review);
+router.get('/fullreview/:id', baseController.review);
 
 
 // ===============  auth route  ===============
