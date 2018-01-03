@@ -1,5 +1,7 @@
 const Review = require('../models/review');
 const User = require('../models/user');
+const Bookmark = require('../models/bookmark');
+
 
 
 module.exports.home = function(req, res) {
@@ -16,9 +18,21 @@ console.log(result);
 module.exports.profile = function(req, res) {
 
 // place userid at navbar
+Review.find({userId: req.params.id}, function(err, review) {
+  if (err) throw err;
+  Bookmark.find({userId: req.params.id}, function(err, bookmark) {
+    if (err) throw err;
+    console.log(review, bookmark);
+    res.render('base/profile', {
+      review: review,
+      bookmark: bookmark
+    });
+
+  });
+});
 // find userid and send info to profile page
 
-  res.render('base/profile');
+  // res.render('base/profile');
 };
 
 module.exports.review = function(req, res) {

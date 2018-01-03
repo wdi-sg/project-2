@@ -18,7 +18,7 @@ const extraController = require('../controllers/extraController');
 
 // ===============  base route  ===============
 router.get('/', baseController.home);
-router.get('/profile/', baseController.profile);
+router.get('/profile/:id', baseController.profile);
 router.get('/fullreview/:id', baseController.review);
 
 

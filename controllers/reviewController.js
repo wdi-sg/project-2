@@ -6,9 +6,11 @@ const Review = require('../models/review');
 const helper = require('../helpers/helperFunction');
 
 
+
 module.exports.add = function(req, res) {
   res.render('review/add');
 };
+
 
 
 module.exports.addPost = function(req, res) {
@@ -42,8 +44,8 @@ newReview.save(function(err) {
   res.redirect('/profile');
 });
 
-
 };
+
 
 
 module.exports.edit = function(req, res) {
@@ -53,6 +55,7 @@ Review.findById(req.params.id, function(err, result) {
   res.render('review/edit', {data: result});
 });
 };
+
 
 
 module.exports.editPost = function(req, res) {
@@ -78,6 +81,7 @@ Review.findByIdAndUpdate(req.params.id, { $set: {
 });
 
 };
+
 
 
 module.exports.delete = function(req, res) {

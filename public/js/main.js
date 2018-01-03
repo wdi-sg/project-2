@@ -13,6 +13,8 @@ $('select').material_select();
 // css modal
 $('.modal').modal();
 
+$('#review').trigger('autoresize');
+
 
 // google maps autocomplete
 function initialize() {

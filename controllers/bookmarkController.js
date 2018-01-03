@@ -7,12 +7,19 @@ module.exports.add = function(req, res) {
   // photo
   // userid
   // reviewid
+  let newBookmark = new Bookmark({
+    title: req.body.title,
+    location: req.body.location,
+    photo: req.body.photo,
+    userId: req.body.userId,
+    reviewId: req.params.id
+  });
 
   // add to db
   // let newBookmark = new Bookmark({
   //
   // })
-console.log(req.body);
+console.log(newBookmark);
   req.flash('light-blue', 'Bookmark added');
   res.redirect('/fullreview/' + req.params.id);
 };
