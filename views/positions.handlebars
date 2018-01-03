@@ -1,0 +1,64 @@
+<br>
+<strong>Positions Taken </strong>
+<br>
+<form action="/positions" method="post">
+  <label for="name">Name</label>
+  <input type="text" name="position[name]" placeholder="">
+
+  <label for="ticker">Ticker Symbol</label>
+  <input type="text" name="position[ticker]" placeholder="">
+
+  <label for="units">Unit Quantity</label>
+  <input type="number" name="position[units]" placeholder="">
+
+  <label for="price">Price</label>
+  <input type="number" name="position[price]" placeholder="USD">
+
+  <label for="buyDate">Buy Date</label>
+  <input type="date" name="position[buyDate]" placeholder="dd/mm/yyyy">
+
+  
+
+
+  <br>
+  
+
+
+  <br>
+  <label for="closingPrice">Closing price</label>
+  <input type="number" name="position[closingPrice]" placeholder="USD">
+
+  <button type="submit"  name="button">Buy</button>
+
+</form>
+
+
+<table >
+ 
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Ticker</th>
+      <th>Buy date</th>
+      <th>Sell date </th>
+      <th>Units owned</th>
+      <th>Price</th>
+      <th>Amount Invested <br> (USD)</th>
+      <th>Closing Price</th>
+      <th>Current Price <br> (USD)</th>
+
+    </tr>
+
+  </thead>
+
+
+    <tr>
+
+      <th>Total Value</th>
+     
+    </tr>
+  
+
+</table>
+
+<a href="/summary">Portfolio Summary</a>

@@ -1,6 +1,6 @@
-# Your Project Name
+# Stock Tracker Ripoff that isn't named yet
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+This is a stock tracker app that is still WIP. When finished, it can double as a real time stock tracker cum stock trading simulator to help users better keep in touch with the market and better manage their trading portfolios.
 
 ## Getting Started
 
@@ -8,11 +8,13 @@ Provide instructions here about how to get your project running on our local mac
 
 ### Prerequisites
 
-What is needed to install and run the project, how do we install them
+Download this and then install whatever dependencies using yarn. Then start the server
 
 ```
-Code example
+$ yarn install
+$ nodemon
 ```
+It is recommended that you use nodemon to run the server.
 
 ### How to Use
 
@@ -51,7 +53,15 @@ What did you use to build it, list the technologies, plugins, gems, packages etc
 
 ## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+The below wireframes detail the homepage,summary page, positions page, registration page and login page, in that order.
+
+
+Entity Relationship Diagram (Subject to change)
+
+
+## User Stories
+
+This app seeks to help investors track their investments in real time, with the help of the API Alpha Vantage, which gives real time updates on share prices. (WIP not implemented yet) Users will have to create an account, and upon creation of their accounts, they can begin to input the shares that they have bought. The positions that they have taken will be stored, and can be condensed into a summary detailing their total profits and losses. The app can also double as a trading simulator for shares until the user feels confident enough to trade with real money.
 
 ## Authors
 
