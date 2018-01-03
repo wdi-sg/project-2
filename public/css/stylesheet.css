@@ -42,11 +42,11 @@ img {
   padding: 0 5px;
 }
 
-.like-box {
+/* .like-box {
   display: inline-block;
   border: 1px solid black;
   padding: 1px 10px;
-}
+} */
 
 .delete-bookmark {
     color: black;

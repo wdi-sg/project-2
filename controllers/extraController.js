@@ -1,7 +1,28 @@
+const Review = require('../models/review');
+
 module.exports.like = function(req, res) {
-  // find review db for username if no then create
-  // if yes flash use that they can only like once
-  res.redirect('base/review');
+
+let isFound = false;
+
+  Review.findById(req.params.id, function(err, review) {
+    review.like.forEach(function(item) {
+      if (item === req.query.user) {
+        isFound = true;
+      }
+    });
+
+    if (isFound) {
+      req.flash('red', 'User has liked the review');
+      res.redirect('/fullreview/' + req.params.id);
+    } else {
+      Review.findByIdAndUpdate(req.params.id, { $push: { like: req.query.user }}, function(err, data) {
+        if (err) throw err;
+        req.flash('blue', 'Likey likey!!');
+        res.redirect('/fullreview/' + req.params.id);
+      });
+    }
+  });
+
 };
 
 

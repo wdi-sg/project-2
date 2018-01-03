@@ -68,5 +68,8 @@ $('.delete-review').on('click', function(e) {
 
 
 
+
+
+
 // end of document ready
 });

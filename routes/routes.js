@@ -45,7 +45,7 @@ router.delete('/bookmark/delete/:id', bookmarkController.delete);
 
 
 // ===============  extra route  ===============
-router.get('/extra/like', extraController.like);
+router.get('/extra/like/:id', extraController.like);
 router.post('/extra/write', extraController.write);
 router.delete('/extra/delete', extraController.delete);
 

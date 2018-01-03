@@ -15,6 +15,7 @@ module.exports.add = function(req, res) {
 
 module.exports.addPost = function(req, res) {
   // cloudinary.uploader.upload(req.file.path, function(result) {
+  // result.secure_url
   // });
 let quality = parseInt(req.body.quality);
 let quantity = parseInt(req.body.quantity);
@@ -33,6 +34,7 @@ let newReview = new Review({
     price: price,
     overall: overall
   },
+  // change to login user id
   userId: '5a4b9184d3eb105a222cc3dc'
 });
 
@@ -41,6 +43,7 @@ console.log(newReview);
 newReview.save(function(err) {
   if (err) throw err;
   req.flash("green", "Review successfully created");
+  // change to the login user id
   res.redirect('/profile/5a4b9184d3eb105a222cc3dc');
 });
 
