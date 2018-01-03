@@ -13,6 +13,8 @@ $('select').material_select();
 // css modal
 $('.modal').modal();
 
+
+// trigger for textarea
 $('#review').trigger('autoresize');
 
 
@@ -27,6 +29,23 @@ let input = document.getElementById('location');
 let autocomplete = new google.maps.places.Autocomplete(input, options);
 }
 google.maps.event.addDomListener(window, 'load', initialize);
+
+
+$('.delete-button').on('click', function(e) {
+  e.preventDefault();
+
+  $.ajax({
+    url: $(this).attr('href'),
+    type: 'DELETE',
+    success: function(data) {
+      console.log(data);
+      window.location.reload();
+    },
+    error: function(err) {
+console.log(err);
+    }
+  })
+})
 
 
 

@@ -23,6 +23,11 @@ newBookmark.save(function(err) {
 
 
 module.exports.delete = function(req, res) {
+  Bookmark.findByIdAndRemove(req.params.id, function(err, data) {
+    if (err) throw err;
+    console.log(data);
+      res.sendStatus(200);
+  });
   // find bookmarkid and delete
-  res.sendStatus(200);
+
 };
