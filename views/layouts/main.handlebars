@@ -4,43 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PP2 | Home</title>
+    <title>| D-Poap |</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="/stylesheet/style.css" />
+    <link rel="stylesheet" href="/stylesheet/kube.css">
+    <link rel="stylesheet" href="/stylesheet/style.css">
 </head>
 
 <body>
-<header>
-    <div class="container">
-        <div id="branding">
-        <h1><span class="highlight">Logo</span>Here</h1>
-        </div>
-    
-        <nav>
-            <ul>
-                <li class="current"><a href="index.html">Home</a></li>
-                <li><a href="index.html">About</a></li>
-                <li><a href="index.html">Sign Up</a></li>
-                <li><a href="loginsignup.handlebars">Login</a></li>
-            </ul>
+    <div id="wrapper">
+        <header class="logo" id="logone">
+            <h2>D-Poap</h2>
+                <nav id="breadcrumbs-custom-separator" class="breadcrumbs">
+                    <ul>
+                        <li class="current"><a href="/">Home</a></li>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/report">Report</a></li>
+                        <li><a href="/events">Events</a></li>
+                    </ul>
+                </nav>
 
-        <div class="search">
-            <form role="form">
-                <i class="fa fa-search"></i>
-                    <div class="field-toggle">
-                    <input type="text" class="search-form" autocomplete="off" placeholder="Search">
-                </div>
-            </form>
-        </nav>
+
+    <section id="social-icons">
+        <ul class="icons">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-linkedin"></a>
+            <a href="#" class="fa fa-instagram"></a>
+        </ul>
+    <section>
     </div>
 </header>
+
+  
+
+
+{{#if errors}}
+    {{#each errors as |e|}}
+        <div class="alert alert-danger alert-dismissable fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong>
+            {{e.msg}}
+        </div>
+    {{/each}}
+{{/if}}
+
+
+
+{{#if alerts.error}}
+    {{#each alerts.error as |msg|}}
+        <div class="alert alert-danger alert-dismissable fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong>
+            {{msg}}
+        </div>
+    {{/each}}
+{{/if}}
+
+
+
+{{#if alerts.success}}
+    {{#each alerts.success as |s|}}
+        <div class="alert alert-success alert-dismissable fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong>
+            {{s}}
+        </div>
+    {{/each}}
+{{/if}}
+
 
 
 {{{body}}}
 
 
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="assets/js/kube.js"></script>
+  
+  </body>
 </html>

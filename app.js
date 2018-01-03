@@ -15,14 +15,12 @@ const path = require('path') // working with public file and directory path
 // Set Port ======================================================================================
 const flash = require('connect-flash')
 const passport = require('passport')
-const port = process.env.PORT || 3005
+const port = process.env.PORT || 3010
 
 const dbConfig = require('./config/dbConfig')
 
 // Models - Routes
-const routes = require('./routes/routes')
-const User = require('./models/user')
-const loginsignup = require('./routes/routes')
+const routes = require('./routes/routes')   // const is defined, cannot be re-assigned
 
 // Configuration ================================================================================
 
@@ -44,12 +42,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')));  // Store all HTML in view folders
 app.engine('handlebars', exphbs({ defaultLayout: 'main'})); 
 app.set('view engine', 'handlebars');
-
-
-app.get('/login', function(req, res) {
-  res.sendFile(path.join(__dirname+'/loginsignup.html'))
-});
-
 
 
 // ----- Express Session -----
@@ -101,8 +93,6 @@ app.use(expressValidator({
 
 // Routes ===========================================================================================
 app.use('/', routes);
-app.use('/loginsignup', routes)
-
 
 app.listen(port, () => {
   console.log('express-connected');

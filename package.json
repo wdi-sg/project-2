@@ -13,6 +13,7 @@
     "express-messages": "^1.0.1",
     "express-session": "^1.15.6",
     "express-validator": "^4.3.0",
+    "kube": "^1.5.3",
     "method-override": "^2.3.10",
     "mongodb": "^3.0.1",
     "mongoose": "^4.13.8",

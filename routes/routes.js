@@ -6,35 +6,38 @@ const passport = require("../helpers/passportinfo");
 const isLoggedIn = require("../helpers/loginBlock");
 
 const baseController = require("../controllers/homeController")
-// const AuthController = require("../controllers/AuthController")
+const AuthController = require("../controllers/AuthController")
 
 
-//----- Home auth acess -------
-router.get('/', baseController.index)
+// ----- Pages -----
+router.get('/', function (req, res) {
+    res.render('home');
+});
 
+router.get('/events', function (req, res) {
+    res.render('users/events');
+});
 
-// ----- Login Page -----
 router.get('/login', function (req, res) {
-    res.render('users/loginsignup');
+    res.render('users/login');
+});
+
+router.get('/report', function (req, res) {
+    res.render('users/report');
+});
+
+router.get('/reset', function (req, res) {
+    res.render('users/reset');
 });
 
 
-router.post('/users/loginsignup',
+router.post('/users/login',
   passport.authenticate("local", {
       sucessRedirect: "/",
-      failureRedirect: "/users/loginsignup",
+      failureRedirect: "/users/login",
       failureFlash: "Invalid email and/or Password",
       successFlash: "You are logged in"
   }))
-
-
-
-// ----- Set Up Routes -----
-// router.get('/auth/register', authController.register) //register route
-// router.post('/auth/register', authController.signup) //register post route
-// router.get('/auth/logout', authController.logout)
-
-
 
 
 
