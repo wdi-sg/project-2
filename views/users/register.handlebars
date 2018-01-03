@@ -1,0 +1,47 @@
+<h1> Make your mornings better with Buzz </h1>
+<div class="row">
+  <div class="col-7 container-fluid">
+    <img src="/assets/pictures/rsz_empty_bus_seats.jpg" class="img-thumbnail" alt="Available bus seats">
+  </div>
+  <div class="col-5">
+    <h3> Register </h3>
+    <form action="/users/register" method="post">
+      <input type="hidden" name="user[type]" value="users">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="name">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="user[name]" placeholder="How we address you">
+          </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="email">Email</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" name="user[email]" aria-describedby="emailHelp" placeholder="email@domain.com">
+            <small id="emailHelp" class="form-text text-muted">Your particulars are used only by Buzz and its partner companies.</small>
+          </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="password">Password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" name="user[password]" placeholder="min. 8 characters">
+          </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="mobile">Mobile (+65)</label>
+          <div class="col-sm-10">
+            <input type="tel" class="form-control" name="user[mobile]" placeholder="91234567">
+          </div>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input text-muted" checked>
+          I would like to subscribe to Buzz's mailing list.
+          <small id="emailHelp" class="form-text text-muted">We limit our email frequencies and unsubscribing is one-click away.</small>
+        </label>
+ </div>
+        <button class="btn btn-success my-2 my-sm-0" type="submit" name="button">Register</button>
+        &nbsp; <a href="/users/login"> Already have an account? </a>
+    </form>
+  </div>
+</div>
+<br>

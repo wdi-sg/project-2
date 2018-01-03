@@ -1,0 +1,50 @@
+<h1> Help Buzz help you </h1>
+<div class="row">
+  <div class="col-8">
+    <div id="map"></div>
+  </div>
+  <div class="col-4">
+    <div id="floating-panel">
+      {{#if user}}
+      <p> See which routes are available! Type the address of your start and end <strong>buildings</strong>, and select the autocomplete suggestions that appear. Click the button to proceed. </p>
+      <form action="/route" method="post" class="checkRoute">
+        <label for="Start location"><b>Start bldg: </b></label>
+        <br>
+        <input type="hidden" id="user" value="{{user}}">
+        <input type="text" name="start" id="field1" size="35" placeholder="Building name/Address/Postal code">
+        <br>
+        <label for="End location"><b>End bldg: </b></label>
+        <br>
+        <input type="text" name="end" id="field2" size="35" placeholder="Building name/Address/Postal code">
+        <br>
+        <label for="Arrival time (24-hour format)"><b>Reach by: </b></label>
+        <br>
+        <select id="time" name="time">
+          <option value="6.0">06:00 AM</option>
+          <option value="6.5">06:30 AM</option>
+          <option value="7.0">07:00 AM</option>
+          <option value="7.5">07:30 AM</option>
+          <option value="8.0">08:00 AM</option>
+          <option value="8.5">08:30 AM</option>
+          <option value="9.0">09:00 AM</option>
+          <option value="9.5">09:30 AM</option>
+          <option value="10.0">10:00 AM</option>
+          <option value="10.5">10:30 AM</option>
+          <option value="11.0">11:00 AM</option>
+          <option value="11.5">11:30 AM</option>
+        </select>
+        <br>
+        <button type="submit" name="button" class="btn btn-primary" id="check">Check available routes</button>
+        <p id="databaseResponse"> </p>
+      </form>
+      {{else}}
+      <p>To use this feature, please <a href="/users/login">log in </a> so that we can track your interest in specific routes. </p>
+      {{/if}}
+    </div>
+  </div>
+</div>
+<br>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBGZHiiqZ9lmXUvxe5h-v-gCHC1lnZl5c&callback=initMap&language=en&region=SG&libraries=places"
+  async defer></script>
+<script src="/assets/js/mapscript.js"></script>
