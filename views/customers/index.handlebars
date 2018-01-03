@@ -5,6 +5,22 @@
 
 {{#each customers}}
 
+{{ _id }}
+
+
+
   <a href="/customers/show/{{_id}}">{{ firstName }} {{ lastName}}</a>
 
 {{/each}}
+
+
+<div class="customerBox">
+  <p class="customerDetails">Unique ID: {{ _id }}</p>
+  <p class="customerDetails">Full Name: {{ firstName}} {{ lastName}}</p>
+  <p class="customerDetails">Room Number: {{ roomNumber}}</p>
+  <p class="customerDetails">4-digit Passcode: {{ passcode }}</p>
+  <p class="customerDetails">Trip Date: {{ tripStart }} - {{ tripEnd }}</p>
+</div>
+
+<!-- This is the original, edit here and paste over to layouts/customers.handlebars -->
+<!-- There is another one in layouts/customers.handlebars -->

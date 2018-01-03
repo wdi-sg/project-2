@@ -34,6 +34,7 @@ router.get('/', (req, res)=>{
 //   })
 // })
 
+// get request of '/new' sends the user to routes/items/create
 router.get('/new', (req, res)=>{
   res.render('items/create')
 })
@@ -59,7 +60,6 @@ router.get('/new', (req, res)=>{
 //           items.name = req.body.name
 //           items.price = req.body.price
 //           items.total_stock = req.body.total_stock
-//           // items.author = author._id //Manual entering of author
 //
 //           items.save((error)=>{
 //             if(error) console.log(error)
