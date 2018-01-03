@@ -1,0 +1,79 @@
+<% include ../partials/header %>
+
+  <h1>Add Review Page</h1>
+
+  <form action="/review/add" enctype="multipart/form-data" method="POST">
+
+    <div>
+      <label for="title">Title</label>
+      <input id="title" type="text" name="title">
+    </div>
+
+  <div>
+      <label for="location">Location</label>
+      <input id="location" type="text" name="location">
+    </div>
+
+
+  <div>
+      <label for="review">Review</label>
+      <textarea id="review" class="materialize-textarea" name="review"></textarea>
+    </div>
+
+
+<div class="row">
+    <div class="input-field col s6">
+  <select name="quality">
+    <option value="" disabled selected>Choose your option</option>
+    <option value="1">1 Star (Not so nice)</option>
+    <option value="2">2 Star</option>
+    <option value="3">3 Star</option>
+    <option value="2">4 Star</option>
+    <option value="3">5 Star (Delicious)</option>
+  </select>
+  <label>Quality</label>
+</div>
+</div>
+
+<div class="row">
+    <div class="input-field col s6">
+  <select name="quantity">
+    <option value="" disabled selected>Choose your option</option>
+    <option value="1">1 Star (A little bit)</option>
+    <option value="2">2 Star</option>
+    <option value="3">3 Star</option>
+    <option value="2">4 Star</option>
+    <option value="3">5 Star (Mountain high)</option>
+  </select>
+  <label>Quantity</label>
+</div>
+</div>
+
+<div class="row">
+    <div class="input-field col s6">
+  <select name="price">
+    <option value="" disabled selected>Choose your option</option>
+    <option value="1">1 Star (Very pricey)</option>
+    <option value="2">2 Star</option>
+    <option value="3">3 Star</option>
+    <option value="2">4 Star</option>
+    <option value="3">5 Star (Affordable)</option>
+  </select>
+  <label>Price</label>
+</div>
+</div>
+
+
+    <div class="file-field input-field col s12">
+      <div class="btn">
+        <span>Photo</span>
+        <input type="file" name="photo">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path" type="text" placeholder="Upload your photo">
+      </div>
+    </div>
+<button type="submit" class="waves-effect waves-light btn">Add Review</button>
+  </form>
+
+  <% include ../partials/footer %>

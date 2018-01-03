@@ -1,0 +1,104 @@
+<% include ../partials/header %>
+
+  <h1>Review Page</h1>
+
+  <h5>Review by <strong>John Doe</strong><span class="right"><a class="modal-trigger" href="#modal1"><i class="material-icons icon-spacing">bookmark</i></a><a href="/review/edit"><i class="material-icons icon-spacing">edit</i></a><i class="material-icons icon-spacing">delete</i></span></h5>
+
+
+  <div class="row">
+    <div class="col s4">
+      <img src="/img/chicken.jpg" alt="">
+    </div>
+
+
+    <div class="col s8">
+
+      <h4 class="review-title">Hello World</h4>
+      <p class="review-para">January 1, 2018</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur nostrum accusantium nulla vero quia, repellendus, ea. Rerum a voluptate omnis veritatis ut deserunt, eligendi harum maxime, corrupti quisquam deleniti saepe.</p>
+      <div class="divider"></div>
+
+      <h4>Rating</h4>
+      <div class="row center-align">
+        <div class="col s4">
+          <h5>Quality</h5>
+          <i class="material-icons checked">star</i>
+          <i class="material-icons checked">star</i>
+          <i class="material-icons checked">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+        </div>
+
+        <div class="col s4">
+          <h5>Quantity</h5>
+          <i class="material-icons checked">star</i>
+          <i class="material-icons checked">star</i>
+          <i class="material-icons checked">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+        </div>
+
+        <div class="col s4">
+          <h5>Price</h5>
+          <i class="material-icons checked">star</i>
+          <i class="material-icons checked">star</i>
+          <i class="material-icons checked">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+        </div>
+      </div>
+
+      <div class="row center-align">
+        <div class="col s6 offset-s3">
+          <h4>Overall</h4>
+          <h4 class="rating-box orange">3.0</h4>
+        </div>
+      </div>
+      <div class="divider"></div>
+
+      <h4>Location</h4>
+      <h5>Serangoon Central, Ministry Of Food, Singapore</h5>
+      <div class="divider"></div>
+
+      <h4>Comments</h4>
+      <div class="comment-holder">
+        <p><strong class="blue-text">John Doe </strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis quia perferendis incidunt voluptates deserunt, nostrum, illum suscipit non eum distinctio laborum. Praesentium eum dolorum aliquid quisquam
+          labore, voluptates ea consequuntur.</p>
+        <p><strong class="blue-text">John Doe </strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis quia perferendis incidunt voluptates deserunt, nostrum, illum suscipit non eum distinctio laborum. Praesentium eum dolorum aliquid quisquam
+          labore, voluptates ea consequuntur.</p>
+      </div>
+
+      <form action="/extra/write" method="POST">
+        <input type="text" name="comment" placeholder="Write a comment">
+        <button class="waves-effect waves-light btn right" type="submit"><i class="material-icons right">send</i>Submit</button>
+      </form>
+
+      <!-- end of 2nd col -->
+    </div>
+    <!-- end of row -->
+  </div>
+
+
+  <!-- modal for bookmark -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <form action="/bookmark/add" method="POST">
+        <div>
+          <label for="title">Title</label>
+          <input id="title" type="text" name="title">
+        </div>
+
+        <div>
+          <label for="location">Location</label>
+          <input id="location" type="text" name="location" value="Chicken Rice Store, Singapore">
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="modal-action modal-close waves-effect waves-light btn">Save Bookmark</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <% include ../partials/footer %>

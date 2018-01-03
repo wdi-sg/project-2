@@ -1,0 +1,16 @@
+<% include ../partials/header %>
+
+<h1>Login Page</h1>
+<h1>Welcome to Foodzania</h1>
+<p>This is a place for people to share good food</p>
+<form action="/login" method="POST">
+<label>Username</label>
+<input type="text" name="username" required>
+<label>Password</label>
+<input type="password" name="password" required>
+<button type="submit" class="waves-effect waves-light btn">Login</button>
+
+</form>
+<h3>If you dont have an account</h3>
+<a href="/signup" class="waves-effect waves-light btn">Sign Up</a>
+<% include ../partials/footer %>
