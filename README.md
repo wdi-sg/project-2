@@ -103,12 +103,14 @@ As a serious/committed user of the Oracle of Changes, I
 
 - [Chinese Text Project](http://ctext.org/)
 - [Bulma.io](https://bulma.io) for making possible the following JavaScript interactivity:
-	- Navigation burger button toggle and animation effect 
-		- "Burger-button-transforms-to-and-from-close-button"
+	- Navigation burger button toggle and animation effect:
+		- Burger button toggles to close `✕` button and vice versa.
 	- Navigation burger menu dropdown effect,
 	- Navigation bar scrolling effects, including:
-		- "Conceal-while-scrolling-down",
-		- "Reveal-while-scrolling-up", and 
-		- "Cast-shadow-when-visible-and-fade-out-when-top-is-reached"
+		- Slide up to conceal while scrolling down the page,
+		- Slide down to reveal while scrolling up the page, and 
+		- Cast shadow when it is visible and fade out when top is reached
 	- Modal toggle
-- [Russell W. Cottrell, M.D.](http://www.russellcottrell.com/md/me.shtm) for his innovative [Virtual Yarrow Stalks](http://www.russellcottrell.com/VirtualYarrowStalks/). Instead of relying on the coin toss method or a random number generator, Dr. Cottrell's Virtual Yarrow Stalks featured a brilliant workaround by simply laying the yarrow stalks in a neat row across the screen with an inserted gap to simulate the split. This, I believe, is the best possible virtual counterpart to the physical spliting of yarrow stalks by hand. Dr. Cottrell's Virtual Yarrow Stalks subtantially replicates the traditional yarrow stalk method by intelligently adapting to the constraints of the new medium. Additionally, unlike the coin toss method, this allows uneven probabilities of obtaining lines 6, 7, 8, and 9 to be retained.
+- [Russell W. Cottrell, M.D.](http://www.russellcottrell.com/md/me.shtm) for his innovative [Virtual Yarrow Stalks](http://www.russellcottrell.com/VirtualYarrowStalks/). Instead of the coin toss method or relying on a random number generator, Dr. Cottrell's Virtual Yarrow Stalks features a brilliant workaround by simply laying the yarrow stalks in a neat row across the screen with an inserted gap to simulate the split. I believe this is the best possible virtual counterpart to the physical spliting of yarrow stalks by hand. Dr. Cottrell's Virtual Yarrow Stalks substantially replicates the traditional yarrow stalk method by intelligently adapting to the constraints of the new medium. Additionally, unlike the coin toss method, this allows uneven probabilities of obtaining lines 6, 7, 8, and 9 to be retained[^1].
+
+[^1]: Probabilities of obtaining lines 6, 7, 8, and 9 through the yarrow stalks are 6.25%, 31.25%, 43.75%, 18.75% respectively.
