@@ -221,4 +221,28 @@ document.addEventListener('DOMContentLoaded', function () {
 	// =============
 	// # END: Modals
 	// =============
+
+	// =======================================================
+	// The following is my custom extension of the code above
+	// 
+	// - Bottom link of sign up modal toggles the sign in form
+	// - Bottom link of sign in modal toggles the sign up form 
+	// =======================================================
+
+	var $toggleOtherForm = getAll('.toggle-other-form');
+	console.log($toggleOtherForm);
+	if ($toggleOtherForm.length > 0) {
+		$toggleOtherForm.forEach(function($el) {
+			$el.addEventListener('click', function() {
+				var target = $el.dataset.target;
+				console.log($el)
+				var $target = document.getElementById(target);
+				closeModals();
+				rootEl.classList.add('is-clipped');
+				$target.classList.add('is-active');
+			});
+		});
+	}
+	// $toggleOtherForm.addEventListener('click', function($el) {
+	// });
 });

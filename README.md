@@ -36,10 +36,10 @@ until finished
 
 <!-- What did you use to build it, list the technologies, plugins, gems, packages etc. -->
 
-- [Bulma v0.6.1](https://bulma.io) for the overall styling
-- [jQuery UI v1.12.1](https://jqueryui.com) for the slider bar widget
 - [Node.js](https://nodejs.org/)
-- [jQuery](http://jquery.com/) for coding the yarrow stalk oracle
+- [Bulma v0.6.1](https://bulma.io) (overall styling)
+- [jQuery UI v1.12.1](https://jqueryui.com) (slider bar widget)
+- [jQuery](http://jquery.com/) (yarrow stalk oracle)
 - JavaScript
 - CSS
 - HTML
@@ -94,10 +94,10 @@ As a casual user of the Oracle of Changes, I
 
 As a serious/committed user of the Oracle of Changes, I
 - want to regularly consult the traditional yarrow stalk oracle without the hefty time commitment (typically 20 to 30 minutes to obtain a hexagram).
+- want the divination result to be automatically generated from the hexagram obtained from the oracle
 - want to conveniently refer to reliable sources for divination texts.
 - want reliable Chinese-English correspondence of divination texts at my fingertips.
-- want a clean, core experience stripped of all the kitsch and clichéd design commonly associated with all things fortune-telling and Chinese.
-- 
+- want a clean, streamlined experience stripped of all the kitsch and clichéd design commonly associated with all things fortune-telling and Chinese.
 
 ## Acknowledgments
 
