@@ -54,6 +54,8 @@ What did you use to build it, list the technologies, plugins, gems, packages etc
 ## Workflow
 
 The below wireframes detail the homepage,summary page, positions page, registration page and login page, in that order.
+
+
 ![alt text](https://github.com/empludo/project-2/blob/master/images/homepage.png )
 
 ![alt text](https://github.com/empludo/project-2/blob/master/images/summary.png )
