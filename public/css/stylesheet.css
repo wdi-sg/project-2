@@ -38,16 +38,37 @@ img {
   color: orange;
 }
 
-.rating-box {
-  display: inline-block;
-  padding: 5px 10px;
-  margin: 0;
-}
-
 .icon-spacing {
   padding: 0 5px;
 }
 
+.like-box {
+  display: inline-block;
+  border: 1px solid black;
+  padding: 1px 10px;
+}
+
+.delete-button {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-width: 100%;
+    padding: 0 5px;
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.delete-button:hover {
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
+}
+
+.card-image {
+  position: relative;
+}
 
 
 

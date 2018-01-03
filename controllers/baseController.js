@@ -5,45 +5,44 @@ const Bookmark = require('../models/bookmark');
 
 
 module.exports.home = function(req, res) {
-Review.find({}, function(err, result) {
-if (err) throw err;
-console.log(result);
-    res.render('base/home', {data: result});
-});
-  // find review and send to home
-
-
+  Review.find({}, function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    res.render('base/home', {
+      data: result
+    });
+  });
 };
+
+
 
 module.exports.profile = function(req, res) {
-
-// place userid at navbar
-Review.find({userId: req.params.id}, function(err, review) {
-  if (err) throw err;
-  Bookmark.find({userId: req.params.id}, function(err, bookmark) {
+  Review.find({
+    userId: req.params.id
+  }, function(err, review) {
     if (err) throw err;
-    console.log(review, bookmark);
-    res.render('base/profile', {
-      review: review,
-      bookmark: bookmark
+    Bookmark.find({
+      userId: req.params.id
+    }, function(err, bookmark) {
+      if (err) throw err;
+      console.log(review, bookmark);
+      res.render('base/profile', {
+        review: review,
+        bookmark: bookmark
+      });
     });
-
   });
-});
-// find userid and send info to profile page
-
-  // res.render('base/profile');
 };
 
+
+
 module.exports.review = function(req, res) {
-// place reviewid on review home page individual review
-// find reviewid send to full review page
-// console.log(req.params.id);
-Review.findById(req.params.id).populate('userId').exec(function(err, result) {
-  if (err) throw err;
-  // console.log(result);
-    res.render('base/fullreview', {data: result});
-});
+  Review.findById(req.params.id).populate('userId').exec(function(err, result) {
+    if (err) throw err;
+    res.render('base/fullreview', {
+      data: result
+    });
+  });
 
 
 };
