@@ -21,7 +21,7 @@ node.js
 
 * HTML, CSS, Javascript
 * [jQuery](https://jquery.com/)
-* [Bootstrap] (https://getbootstrap.com/)
+* [Bootstrap](https://getbootstrap.com/)
 
 ---
 
