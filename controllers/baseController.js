@@ -7,7 +7,8 @@ const Bookmark = require('../models/bookmark');
 module.exports.home = function(req, res) {
   Review.find({}, function(err, result) {
     if (err) throw err;
-    console.log(result);
+    // console.log(result);
+    // console.log(req.user);
     res.render('base/home', {
       data: result
     });
@@ -25,7 +26,7 @@ module.exports.profile = function(req, res) {
       userId: req.params.id
     }, function(err, bookmark) {
       if (err) throw err;
-      console.log(review, bookmark);
+      // console.log(review, bookmark);
       res.render('base/profile', {
         review: review,
         bookmark: bookmark

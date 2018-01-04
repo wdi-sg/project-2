@@ -1,7 +1,10 @@
 const User = require('../models/user');
-
+const bcrypt = require('bcrypt');
+const passport = require('passport');
+const saltRounds = 10;
 
 module.exports.logout = function(req, res) {
+  req.logout();
   req.flash('green', 'See you again');
   res.redirect('/login');
 };
@@ -13,11 +16,13 @@ module.exports.login = function(req, res) {
 };
 
 
-module.exports.loginPost = function(req, res) {
-
-// change the user
-  req.flash('green', 'Welcome User');
-  res.redirect('/');
+module.exports.loginPost = function(req, res, next) {
+  passport.authenticate('local', {
+      successRedirect: '/',
+      failureRedirect: '/login',
+      failureFlash:  true,
+      successFlash: 'Welcome'
+    })(req, res, next);
 };
 
 
@@ -44,23 +49,26 @@ module.exports.signupPost = function(req, res) {
     });
   } else {
 
-    console.log(req.body);
-    User.create({
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
-      },
-      function(err, saved) {
-        if (err) throw err;
-        console.log(saved);
-        req.flash('green', req.body.username + ' has been created');
-        res.redirect('/login');
-      });
+let newUser = new User({
+  firstname: req.body.firstname,
+  lastname: req.body.lastname,
+  username: req.body.username,
+  email: req.body.email,
+  password: req.body.password
+});
 
-  }
+  bcrypt.hash(newUser.password, saltRounds, function(err, hash) {
+    if (err) throw err;
+  newUser.password = hash;
+  console.log(newUser);
+  newUser.save(function(err, saved) {
+    if (err) throw err;
+    console.log(saved);
+    req.flash('green', req.body.username + ' has been created');
+    res.redirect('/login');
+  });
+});
 
-
+}
 
 };

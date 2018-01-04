@@ -8,7 +8,7 @@ const multer = require('multer');
 const session = require('express-session');
 const messages = require('express-messages');
 const PORT = process.env.PORT || 3000;
-
+const passport = require('./config/passport');
 const app = express();
 
 
@@ -34,18 +34,23 @@ app.use(session({
 }));
 
 
+// =============== express validator =============== look into it again ===============
+app.use(validator());
+
+
+// =============== passport ===============
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 // =============== express messages ===============
 app.use(flash());
 app.use(function (req, res, next) {
   res.locals.messages = messages(req, res);
-  res.locals.user = req.user || 'johndoe';
+  res.locals.user = req.user || null;
   next();
 });
-
-
-// =============== express validator =============== look into it again ===============
-app.use(validator());
-
 
 // =============== routes ===============
 app.use('/', routes);

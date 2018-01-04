@@ -15,7 +15,6 @@ const extraController = require('../controllers/extraController');
 // =============== local module ===============
 
 
-
 // ===============  base route  ===============
 router.get('/', baseController.home);
 router.get('/profile/:id', baseController.profile);

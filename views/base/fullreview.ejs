@@ -1,7 +1,9 @@
 <% include ../partials/header %>
 
   <h1>Review Page</h1>
-
+<%  if (user) { %>
+    <h1><%= user.username %></h1>
+<%  } %>
   <h5>Review by <strong><%= data.userId.firstname %> <%= data.userId.lastname %></strong>
     <span class="right">
       <a class="modal-trigger" href="#modal1"><i class="material-icons icon-spacing">bookmark</i></a>
