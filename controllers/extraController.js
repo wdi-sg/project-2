@@ -1,6 +1,7 @@
 const Review = require('../models/review');
 const ObjectId = require('mongoose').Types.ObjectId;
 
+
 module.exports.like = function(req, res) {
 
 let isFound = false;
@@ -28,8 +29,7 @@ let isFound = false;
 
 
 module.exports.write = function(req, res) {
-// review id
-  req.params.id
+
   Review.findByIdAndUpdate(req.params.id, { $push: { comments: {
     username: req.body.username,
     comment: req.body.comment
@@ -37,29 +37,19 @@ module.exports.write = function(req, res) {
     if (err) throw err;
     console.log(data);
       req.flash('blue', 'Added comment');
-      res.redirect('/fullreview/' + req.params.id)
-  })
-  // add user and comment to db
-  // reload with jquery
+      res.sendStatus(200);
+  });
 
-
-  // res.sendStatus(200);
-
-  // res.redirect('/review');
 };
 
 
 module.exports.delete = function(req, res) {
 
-
-
   Review.findByIdAndUpdate(req.query.reviewId, { $pull: { comments: { _id: req.params.id }}}, function(err, data) {
     if (err) throw err;
     console.log(data);
+    req.flash('red', 'Removed comment')
       res.sendStatus(200);
-  })
-// jquery the delete with commentid
-  // find commentid then delete
-  // jquery to reload
+  });
 
 };

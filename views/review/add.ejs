@@ -6,24 +6,24 @@
 
     <div>
       <label for="title">Title</label>
-      <input id="title" type="text" name="title">
+      <input id="title" type="text" name="title" required>
     </div>
 
   <div>
       <label for="location">Location</label>
-      <input id="location" type="text" name="location">
+      <input id="location" type="text" name="location" required>
     </div>
 
 
   <div>
       <label for="review">Review</label>
-      <textarea id="review" class="materialize-textarea" name="review"></textarea>
+      <textarea id="review" class="materialize-textarea" name="review" required></textarea>
     </div>
 
 
 <div class="row">
     <div class="input-field col s6">
-  <select name="quality">
+  <select name="quality" required>
     <option value="" disabled selected>Choose your option</option>
     <option value="1">1 Star (Not so nice)</option>
     <option value="2">2 Star</option>
@@ -37,7 +37,7 @@
 
 <div class="row">
     <div class="input-field col s6">
-  <select name="quantity">
+  <select name="quantity" required>
     <option value="" disabled selected>Choose your option</option>
     <option value="1">1 Star (A little bit)</option>
     <option value="2">2 Star</option>
@@ -51,7 +51,7 @@
 
 <div class="row">
     <div class="input-field col s6">
-  <select name="price">
+  <select name="price" required>
     <option value="" disabled selected>Choose your option</option>
     <option value="1">1 Star (Very pricey)</option>
     <option value="2">2 Star</option>
@@ -67,7 +67,7 @@
     <div class="file-field input-field col s12">
       <div class="btn">
         <span>Photo</span>
-        <input type="file" name="photo">
+        <input type="file" name="photo" required>
       </div>
       <div class="file-path-wrapper">
         <input class="file-path" type="text" placeholder="Upload your photo">

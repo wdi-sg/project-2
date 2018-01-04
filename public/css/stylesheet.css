@@ -30,6 +30,11 @@ label {
   margin-top: 0;
 }
 
+.card-content h6 {
+  margin: 0;
+font-weight: 700;
+}
+
 img {
   width: 100%;
 }
@@ -42,11 +47,12 @@ img {
   padding: 0 5px;
 }
 
-/* .like-box {
+.rating-box {
   display: inline-block;
-  border: 1px solid black;
-  padding: 1px 10px;
-} */
+  padding: 2px 15px;
+  margin-top: -5px;
+}
+
 .delete-comment {
       color: black;
       background-color: rgba(255, 255, 255, 0.5);

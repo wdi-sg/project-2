@@ -14,45 +14,47 @@ module.exports.add = function(req, res) {
 
 
 module.exports.addPost = function(req, res) {
-  // cloudinary.uploader.upload(req.file.path, function(result) {
-  // result.secure_url
-  // });
-let quality = parseInt(req.body.quality);
-let quantity = parseInt(req.body.quantity);
-let price = parseInt(req.body.price);
-let overall = helper.getOverall(quality, quantity, price);
+  cloudinary.uploader.upload(req.file.path, function(photo) {
 
-let newReview = new Review({
-  title: req.body.title,
-  review: req.body.review,
-  photo: req.file.filename,
-  location: req.body.location,
-  date: helper.getDate(),
-  rating: {
-    quality: quality,
-    quantity: quantity,
-    price: price,
-    overall: overall
-  },
-  // change to login user id
-  userId: '5a4b9184d3eb105a222cc3dc'
-});
+  let quality = parseInt(req.body.quality);
+  let quantity = parseInt(req.body.quantity);
+  let price = parseInt(req.body.price);
+  let overall = helper.getOverall(quality, quantity, price);
 
-console.log(newReview);
+  let newReview = new Review({
+    title: req.body.title,
+    review: req.body.review,
+    photo:   photo.secure_url,
+    location: req.body.location,
+    date: helper.getDate(),
+    rating: {
+      quality: quality,
+      quantity: quantity,
+      price: price,
+      overall: overall
+    },
+    // change to login user id
+    userId: '5a4b9184d3eb105a222cc3dc'
+  });
 
-newReview.save(function(err) {
-  if (err) throw err;
-  req.flash("green", "Review successfully created");
-  // change to the login user id
-  res.redirect('/profile/5a4b9184d3eb105a222cc3dc');
-});
+  console.log(newReview);
+
+  newReview.save(function(err) {
+    if (err) throw err;
+    req.flash("green", "Review successfully created");
+    // change to the login user id
+    res.redirect('/profile/5a4b9184d3eb105a222cc3dc');
+  });
+
+  });
+
 
 };
 
 
 
 module.exports.edit = function(req, res) {
-// find reviewid send to page
+
 Review.findById(req.params.id, function(err, result) {
   if (err) throw err;
   res.render('review/edit', {data: result});

@@ -23,7 +23,7 @@
             <div class="col s4">
               <!-- need to change the img src -->
               <a href="/fullreview/<%= item._id %>">
-              <img src="/img/chicken.jpg" alt="">
+              <img src="<%= item.photo %>" alt="">
           </a>
             </div>
             <div class="col s8">
@@ -48,7 +48,7 @@
             <div class="col s12 m6">
               <div class="card-image">
                 <a href="/fullreview/<%= bookmark[i].reviewId %>">
-                <img src="/img/chicken.jpg">
+                <img src="<%= bookmark[i].photo %>">
               </a>
                 <!-- corner -->
                 <a href="/bookmark/delete/<%= bookmark[i]._id %>" class="delete-bookmark">X</a>
@@ -63,7 +63,7 @@
               <div class="col s12 m6">
                 <div class="card-image">
                   <a href="/fullreview/<%= bookmark[i+1].reviewId %>">
-                  <img src="/img/viet.jpg">
+                  <img src="<%= bookmark[i+1].photo %>">
                 </a>
                   <!-- corner -->
                   <a href="/bookmark/delete/<%= bookmark[i+1]._id %>" class="delete-bookmark">X</a>

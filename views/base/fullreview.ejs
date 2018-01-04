@@ -14,7 +14,7 @@
   <div class="row">
     <div class="col s4">
       <!-- need to change the img src -->
-      <img src="/img/chicken.jpg" alt="">
+      <img src="<%= data.photo %>" alt="">
       <div class="center-align">
       <a class="waves-effect waves-light btn like-button" href="/extra/like/<%= data._id %>?username=<%= data.userId.username %>">
         <i class="material-icons">thumb_up</i><span class="like-number"> <%= data.like.length %> </span> Like</a>
@@ -84,7 +84,7 @@
       <%  }); %>
       </div>
 
-      <form action="/extra/write/<%= data._id%>" method="POST">
+      <form id="comment-form" action="/extra/write/<%= data._id%>" method="POST">
         <input type="hidden" name="username" value="<%= data.userId.username %>">
         <input type="text" name="comment" placeholder="Write a comment" autocomplete="off" required>
         <button class="waves-effect waves-light btn right" type="submit"><i class="material-icons right">send</i>Submit</button>

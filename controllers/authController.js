@@ -15,9 +15,9 @@ module.exports.login = function(req, res) {
 
 module.exports.loginPost = function(req, res) {
 
-
+// change the user
   req.flash('green', 'Welcome User');
-  res.render('base/profile');
+  res.redirect('/');
 };
 
 
