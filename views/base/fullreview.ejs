@@ -1,14 +1,14 @@
 <% include ../partials/header %>
 
   <h1>Review Page</h1>
-<%  if (user) { %>
-    <h1><%= user.username %></h1>
-<%  } %>
   <h5>Review by <strong><%= data.userId.firstname %> <%= data.userId.lastname %></strong>
     <span class="right">
-      <a class="modal-trigger" href="#modal1"><i class="material-icons icon-spacing">bookmark</i></a>
+    <%  if (user._id.toString() !== data.userId._id.toString()) { %>
+        <a class="modal-trigger" href="#modal1"><i class="material-icons icon-spacing">bookmark</i></a>
+    <%  } else { %>
       <a href="/review/edit/<%= data._id %>"><i class="material-icons icon-spacing">edit</i></a>
       <a href="/review/delete/<%= data._id %>" class="delete-review"><i class="material-icons icon-spacing">delete</i></a>
+  <%  } %>
     </span>
   </h5>
 
@@ -18,7 +18,7 @@
       <!-- need to change the img src -->
       <img src="<%= data.photo %>" alt="">
       <div class="center-align">
-      <a class="waves-effect waves-light btn like-button" href="/extra/like/<%= data._id %>?username=<%= data.userId.username %>">
+      <a class="waves-effect waves-light btn like-button" href="/extra/like/<%= data._id %>?username=<%= user.username %>">
         <i class="material-icons">thumb_up</i><span class="like-number"> <%= data.like.length %> </span> Like</a>
     </div>
     </div>
@@ -87,7 +87,7 @@
       </div>
 
       <form id="comment-form" action="/extra/write/<%= data._id%>" method="POST">
-        <input type="hidden" name="username" value="<%= data.userId.username %>">
+        <input type="hidden" name="username" value="<%= user.username %>">
         <input type="text" name="comment" placeholder="Write a comment" autocomplete="off" required>
         <button class="waves-effect waves-light btn right" type="submit"><i class="material-icons right">send</i>Submit</button>
       </form>
@@ -102,7 +102,7 @@
   <div id="modal1" class="modal">
     <div class="modal-content">
       <form action="/bookmark/add/<%= data._id %>" method="POST">
-        <input type="hidden" name="userId" value="<%= data.userId._id %>">
+        <input type="hidden" name="userId" value="<%= user._id %>">
         <input type="hidden" name="photo" value="<%= data.photo %>">
 
         <div>
@@ -112,7 +112,7 @@
 
         <div>
           <label for="location">Location</label>
-          <input id="location" type="text" name="location" value="<%= data.location %>">
+          <input id="location" type="text" name="location" value="<%= data.location %>" disabled>
         </div>
 
         <div class="modal-footer">

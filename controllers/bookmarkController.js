@@ -8,11 +8,22 @@ module.exports.add = function(req, res) {
     userId: req.body.userId,
     reviewId: req.params.id
   });
-newBookmark.save(function(err) {
-  if (err) throw err;
-  console.log(newBookmark);
-    req.flash('light-blue', 'Bookmark added');
-    res.redirect('/fullreview/' + req.params.id);
+
+  Bookmark.findOne({reviewId: req.params.id}, function(err, result) {
+    if (err) throw err;
+    if (result) {
+      req.flash('red', 'Bookmark has be added');
+      res.redirect('/fullreview/' + req.params.id);
+    } else {
+      newBookmark.save(function(err) {
+        if (err) throw err;
+        console.log(newBookmark);
+          req.flash('light-blue', 'Bookmark added');
+          res.redirect('/fullreview/' + req.params.id);
+
+  });
+}
+
 });
 };
 

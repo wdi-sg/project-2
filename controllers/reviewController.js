@@ -34,7 +34,7 @@ module.exports.addPost = function(req, res) {
       overall: overall
     },
     // change to login user id
-    userId: '5a4b9184d3eb105a222cc3dc'
+    userId: req.user._id
   });
 
   console.log(newReview);
@@ -43,7 +43,7 @@ module.exports.addPost = function(req, res) {
     if (err) throw err;
     req.flash("green", "Review successfully created");
     // change to the login user id
-    res.redirect('/profile/5a4b9184d3eb105a222cc3dc');
+    res.redirect('/profile/' + req.user._id);
   });
 
   });
