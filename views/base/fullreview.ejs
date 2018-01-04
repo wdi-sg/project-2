@@ -1,6 +1,6 @@
 <% include ../partials/header %>
 
-  <h1>Review Page</h1>
+
   <h5>Review by <strong><%= data.userId.firstname %> <%= data.userId.lastname %></strong>
     <span class="right">
     <%  if (user._id.toString() !== data.userId._id.toString()) { %>
@@ -85,12 +85,12 @@
       <div>
         <%  data.comments.forEach(function(item) { %>
           <%  if (data.userId.username == user.username) { %>
-            <a href="/extra/delete/<%= item._id %>?reviewId=<%= data._id %>" class="delete-comment right">X</a>
+            <a href="/extra/delete/<%= item._id %>?reviewId=<%= data._id %>" class="delete-comment right"><i class="material-icons">close</i></a>
             <p><strong class="blue-text"><%= item.username %> </strong>
               <%= item.comment %>
             </p>
             <%  } else if (item.username == user.username){ %>
-              <a href="/extra/delete/<%= item._id %>?reviewId=<%= data._id %>" class="delete-comment right">X</a>
+              <a href="/extra/delete/<%= item._id %>?reviewId=<%= data._id %>" class="delete-comment right"><i class="material-icons">close</i></a>
               <p><strong class="blue-text"><%= item.username %> </strong>
                 <%= item.comment %>
               </p>
@@ -110,6 +110,7 @@
 
       <!-- end of 2nd col -->
     </div>
+
     <!-- end of row -->
   </div>
 

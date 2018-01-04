@@ -1,68 +1,60 @@
 <% include ../partials/header %>
-
-  <h1>Add Review Page</h1>
+<div class="row">
+  <div class="col s10 offset-s1">
+  <h1 class="center-align">Add Review</h1>
 
   <form action="/review/add/5a4b9184d3eb105a222cc3dc" enctype="multipart/form-data" method="POST">
 
-    <div>
+    <div class="col s12">
       <label for="title">Title</label>
-      <input id="title" type="text" name="title" required>
+      <input id="title" type="text" name="title" placeholder="Name the dish" required>
     </div>
 
-  <div>
+  <div class="col s12">
       <label for="location">Location</label>
       <input id="location" type="text" name="location" required>
     </div>
 
-
-  <div>
+  <div class="col s12">
       <label for="review">Review</label>
-      <textarea id="review" class="materialize-textarea" name="review" required></textarea>
+      <textarea id="review" class="materialize-textarea" name="review" placeholder="Share your thoughts" required></textarea>
     </div>
 
-
-<div class="row">
-    <div class="input-field col s6">
+    <div class="input-field col s8">
   <select name="quality" required>
-    <option value="" disabled selected>Choose your option</option>
-    <option value="1">1 Star (Not so nice)</option>
+    <option value="" disabled>Choose your option</option>
+    <option value="1">1 Star (Bland)</option>
     <option value="2">2 Star</option>
-    <option value="3">3 Star</option>
+    <option value="3" selected>3 Star</option>
     <option value="4">4 Star</option>
-    <option value="5">5 Star (Delicious)</option>
+    <option value="5">5 Star (Tasty)</option>
   </select>
   <label>Quality</label>
 </div>
-</div>
 
-<div class="row">
-    <div class="input-field col s6">
+    <div class="input-field col s8">
   <select name="quantity" required>
-    <option value="" disabled selected>Choose your option</option>
-    <option value="1">1 Star (A little bit)</option>
+    <option value="" disabled>Choose your option</option>
+    <option value="1">1 Star (Little)</option>
     <option value="2">2 Star</option>
-    <option value="3">3 Star</option>
+    <option value="3" selected>3 Star</option>
     <option value="4">4 Star</option>
-    <option value="5">5 Star (Mountain high)</option>
+    <option value="5">5 Star (Plenty)</option>
   </select>
   <label>Quantity</label>
 </div>
-</div>
 
-<div class="row">
-    <div class="input-field col s6">
+    <div class="input-field col s8">
   <select name="price" required>
-    <option value="" disabled selected>Choose your option</option>
-    <option value="1">1 Star (Very pricey)</option>
+    <option value="" disabled>Choose your option</option>
+    <option value="1">1 Star (Overpriced)</option>
     <option value="2">2 Star</option>
-    <option value="3">3 Star</option>
+    <option value="3" selected>3 Star</option>
     <option value="4">4 Star</option>
-    <option value="5">5 Star (Affordable)</option>
+    <option value="5">5 Star (Reasonable)</option>
   </select>
   <label>Price</label>
 </div>
-</div>
-
 
     <div class="file-field input-field col s12">
       <div class="btn">
@@ -73,7 +65,13 @@
         <input class="file-path" type="text" placeholder="Upload your photo">
       </div>
     </div>
+
+  <div class="col s12">
 <button type="submit" class="waves-effect waves-light btn">Add Review</button>
+</div>
   </form>
 
+
+</div>
+</div>
   <% include ../partials/footer %>

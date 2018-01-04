@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
+    User.findOne({ username: { $regex: username, $options: 'i' }}, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Incorrect username' });

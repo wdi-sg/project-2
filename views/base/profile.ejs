@@ -1,14 +1,11 @@
 <% include ../partials/header %>
-
-  <h1>Profile Page</h1>
-
+<h3><%= profile.firstname %> <%= profile.lastname %></h3>
   <div class="row">
     <div class="col s3">
       <img src="/img/sb.jpg">
-      <h2><%= profile.firstname %> <%= profile.lastname %></h2>
-      <h3><%= profile.username %></h3>
+      <h5><%= profile.username %></h5>
       <% if (profile._id.toString() == user._id.toString()) { %>
-      <a href="/review/add" class="waves-effect waves-light btn">Write a review</a>
+      <a href="/review/add" class="waves-effect waves-light btn"><i class="material-icons">create</i> review</a>
     <% } %>
     </div>
 
@@ -54,7 +51,7 @@
               </a>
                 <!-- corner -->
                 <% if (profile._id.toString() == user._id.toString()) { %>
-                <a href="/bookmark/delete/<%= bookmark[i]._id %>" class="delete-bookmark">X</a>
+                <a href="/bookmark/delete/<%= bookmark[i]._id %>" class="delete-bookmark"><i class="material-icons">close</i></a>
                 <% } %>
               </div>
               <div class="card-content">
@@ -71,7 +68,7 @@
                 </a>
                   <!-- corner -->
                   <% if (profile._id.toString() == user._id.toString()) { %>
-                  <a href="/bookmark/delete/<%= bookmark[i+1]._id %>" class="delete-bookmark">X</a>
+                  <a href="/bookmark/delete/<%= bookmark[i+1]._id %>" class="delete-bookmark"><i class="material-icons">close</i></a>
                   <% } %>
                 </div>
                 <div class="card-content">

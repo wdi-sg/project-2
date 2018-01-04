@@ -2,6 +2,14 @@ label {
   font-size: 1rem !important;
 }
 
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: ghostwhite;
+
+}
+
 .rating {
   color: black;
   background-color: rgba(255, 255, 255, 0.5);
@@ -88,8 +96,40 @@ img {
   position: relative;
 }
 
+.min-height {
+  min-height: 100vh;
+}
+
+
+#messages {
+  position: fixed;
+  top: 8%;
+  left: 78%;
+  z-index: 5;
+}
+
+.login-box {
+  border: 1px solid black;
+  padding-bottom: 25px !important;
+  margin: 2rem;
+}
+.signup-box {
+  border: 1px solid black;
+  padding-bottom: 25px !important;
+  margin: 2rem;
+}
+
+.like-box {
+  border: 1px solid black;
+}
+
 .pac-container {
     z-index: 1004 !important;
+}
+
+.page-footer {
+  padding-top: 0 !important;
+  margin-top: 2rem;
 }
 
 .masonry {
