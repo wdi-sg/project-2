@@ -39,6 +39,20 @@
   display: none;
 }
 
+/* flash messages */
+.notification{
+  opacity: 0.4;
+}
+.flash{
+  position: absolute;
+  width: 100%;
+}
+.user{
+  position: absolute;
+  right: 0;
+  padding: 0 20px;
+}
+
 /* responsive design */
 @media only screen and (max-width: 1023px) {
   form{

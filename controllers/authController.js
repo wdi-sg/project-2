@@ -19,3 +19,9 @@ exports.user = (req, res) => {
   });
   res.redirect('/');
 };
+
+exports.logout = (req, res) => {
+  req.logout();
+  req.flash('error', 'You are now logged out!');
+  res.redirect('/login');
+};

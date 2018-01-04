@@ -80,4 +80,14 @@ $(document).ready(function() {
     $(".search").removeClass("is-active");
     $(".analyze").addClass("is-active");
   });
+
+
+  // event listener for flash messages
+  $(".delete").on("click", function() {
+    $(".flash").fadeOut(800);
+  });
+
+  setTimeout(function() {
+    $(".flash").fadeOut(800);
+  }, 2000);
 });

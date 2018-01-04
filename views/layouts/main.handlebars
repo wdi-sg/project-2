@@ -20,13 +20,45 @@
 
     <div class="navbar-menu" id="navMenu">
       <div class="navbar-end">
-        <a class="navbar-item" href="/">Home</a>
-        <a class="navbar-item" href="/result">Saved Results</a>
-        <a class="navbar-item" href="/profile">Profile</a>
-        <a class="navbar-item" href="/login">Login</a>
+        {{#if currentUser}}
+          <a class="navbar-item" href="/">Home</a>
+          <a class="navbar-item" href="/result">Saved Results</a>
+          <a class="navbar-item" href="/profile">Profile</a>
+          <a class="navbar-item" href="/logout">Logout</a>
+        {{else}}
+          <a class="navbar-item" href="/">Home</a>
+          <a class="navbar-item" href="/login">Login</a>
+          <a class="navbar-item" href="/register">Register</a>
+        {{/if}}
       </div>
     </div>
   </nav>
+
+  <div class="flash">
+    {{#if alerts.success}}
+      {{#each alerts.success as |success|}}
+        <div class="notification is-success">
+          <button class="delete"></button>
+          <strong>{{success}}</strong>
+        </div>
+      {{/each}}
+    {{/if}}
+
+    {{#if alerts.error}}
+      {{#each alerts.error as |error|}}
+        <div class="notification is-danger">
+          <button class="delete"></button>
+          <strong>{{error}}</strong>
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+
+  <div class="user">
+    {{#if currentUser}}
+      <p class="is-size-5 is-size-5-touch has-text-dark">Welcome {{currentUser.firstName}} {{currentUser.lastName}}</p>
+    {{/if}}
+  </div>
 
   <div class="container">
     {{{body}}}

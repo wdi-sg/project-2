@@ -23,17 +23,6 @@ Request an API key from [Yelp](https://www.yelp.com.sg/singapore).
 
 ---
 
-## Built With
-
-* HTML, CSS and JavaScript
-* CSS framework [Bulma](https://bulma.io/)
-* [jQuery](http://jquery.com/)
-* Node.js, Yarn, Express, Handlebars
-* API and data by [Yelp](https://www.yelp.com.sg/singapore)
-* MongoDB and Mongoose
-
----
-
 ## Workflow
 
 ### Models
@@ -60,6 +49,17 @@ The last flow chart shows the routes that link the website pages.
 * As a user without a registered account, I want to be able to perform searches so that I can decide if I should sign up for an account.
 * As a user without a registered account, I also want to be able to have my results analyzed so that I can decide if I should sign up for an account.
 * As a user with a registered account, in addition to the benefits a user without a registered account is able to enjoy, I want to be able to save my search results and analyzed results so that I can refer to them in the future.
+
+---
+
+## Built With
+
+* HTML, CSS and JavaScript
+* CSS framework [Bulma](https://bulma.io/)
+* [jQuery](http://jquery.com/)
+* Node.js, Yarn, Express, Handlebars
+* API and data by [Yelp](https://www.yelp.com.sg/singapore)
+* MongoDB and Mongoose
 
 ---
 

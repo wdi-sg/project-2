@@ -16,13 +16,10 @@ exports.result = (req, res) => {
   });
 };
 
+// showing user information
 exports.profile = (req, res) => {
   User.findOne({username: req.params.id}, (err, result) => {
     if (err) console.log(err);
     res.render('profile', result);
   });
-};
-
-exports.access = (req, res) => {
-  res.send("Please login first");
 };
