@@ -5,9 +5,11 @@
   <div class="row">
     <div class="col s3">
       <img src="/img/sb.jpg">
-      <h2><%= user.firstname %> <%= user.lastname %></h2>
-      <h3><%= user.username %></h3>
+      <h2><%= profile.firstname %> <%= profile.lastname %></h2>
+      <h3><%= profile.username %></h3>
+      <% if (profile._id.toString() == user._id.toString()) { %>
       <a href="/review/add" class="waves-effect waves-light btn">Write a review</a>
+    <% } %>
     </div>
 
 
@@ -51,7 +53,9 @@
                 <img src="<%= bookmark[i].photo %>">
               </a>
                 <!-- corner -->
+                <% if (profile._id.toString() == user._id.toString()) { %>
                 <a href="/bookmark/delete/<%= bookmark[i]._id %>" class="delete-bookmark">X</a>
+                <% } %>
               </div>
               <div class="card-content">
                 <h4 class="review-title"><%= bookmark[i].title %></h4>
@@ -66,7 +70,9 @@
                   <img src="<%= bookmark[i+1].photo %>">
                 </a>
                   <!-- corner -->
+                  <% if (profile._id.toString() == user._id.toString()) { %>
                   <a href="/bookmark/delete/<%= bookmark[i+1]._id %>" class="delete-bookmark">X</a>
+                  <% } %>
                 </div>
                 <div class="card-content">
                   <h4 class="review-title"><%= bookmark[i+1].title %></h4>

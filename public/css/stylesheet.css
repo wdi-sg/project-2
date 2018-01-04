@@ -88,10 +88,9 @@ img {
   position: relative;
 }
 
-
-
-
-
+.pac-container {
+    z-index: 1004 !important;
+}
 
 .masonry {
   margin: 1.5em 0;

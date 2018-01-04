@@ -18,18 +18,17 @@ module.exports.home = function(req, res) {
 
 
 module.exports.profile = function(req, res) {
-  Review.find({
-    userId: req.params.id
-  }, function(err, review) {
+  Review.find({userId: req.params.id}, function(err, review) {
     if (err) throw err;
-    Bookmark.find({
-      userId: req.params.id
-    }, function(err, bookmark) {
+    Bookmark.find({userId: req.params.id}, function(err, bookmark) {
       if (err) throw err;
-      // console.log(review, bookmark);
-      res.render('base/profile', {
-        review: review,
-        bookmark: bookmark
+      User.findById(req.params.id, function(err, user) {
+        if (err) throw err;
+        res.render('base/profile', {
+          review: review,
+          bookmark: bookmark,
+          profile: user
+      });
       });
     });
   });
