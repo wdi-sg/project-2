@@ -37,7 +37,8 @@ module.exports.profile = function(req, res) {
 
 
 module.exports.review = function(req, res) {
-  Review.findById(req.params.id).populate('userId').exec(function(err, result) {
+  Review.findById(req.params.id).populate('userId').populate('comments.userId').exec(function(err, result) {
+    console.log(result);
     if (err) throw err;
     res.render('base/fullreview', {
       data: result

@@ -16,7 +16,7 @@
       <!-- need to change the img src -->
       <img src="/img/chicken.jpg" alt="">
       <div class="center-align">
-      <a class="waves-effect waves-light btn like-button" href="/extra/like/<%= data._id %>?userid=<%= data.userId._id %>">
+      <a class="waves-effect waves-light btn like-button" href="/extra/like/<%= data._id %>?username=<%= data.userId.username %>">
         <i class="material-icons">thumb_up</i><span class="like-number"> <%= data.like.length %> </span> Like</a>
     </div>
     </div>
@@ -75,16 +75,17 @@
       <h5><a href="https://www.google.com/maps/search/?api=1&query=<%= data.location %>" target="_blank"><%= data.location %></a></h5>
       <div class="divider"></div>
 
+<!-- writing comment -->
       <h4>Comments</h4>
-      <div class="comment-holder">
-        <p><strong class="blue-text">John Doe </strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis quia perferendis incidunt voluptates deserunt, nostrum, illum suscipit non eum distinctio laborum. Praesentium eum dolorum aliquid quisquam
-          labore, voluptates ea consequuntur.</p>
-        <p><strong class="blue-text">John Doe </strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis quia perferendis incidunt voluptates deserunt, nostrum, illum suscipit non eum distinctio laborum. Praesentium eum dolorum aliquid quisquam
-          labore, voluptates ea consequuntur.</p>
+      <div>
+      <%  data.comments.forEach(function(item) { %>
+          <p><strong class="blue-text"><%= item.username %> </strong> <%= item.comment %></p>
+      <%  }); %>
       </div>
 
-      <form action="/extra/write/" method="POST">
-        <input type="text" name="comment" placeholder="Write a comment">
+      <form action="/extra/write/<%= data._id%>" method="POST">
+        <input type="hidden" name="username" value="<%= data.userId.username %>">
+        <input type="text" name="comment" placeholder="Write a comment" autocomplete="off">
         <button class="waves-effect waves-light btn right" type="submit"><i class="material-icons right">send</i>Submit</button>
       </form>
 

@@ -7,7 +7,7 @@ let isFound = false;
 
   Review.findById(req.params.id, function(err, review) {
     review.like.forEach(function(item) {
-      if (item.equals(req.query.userid)) {
+      if (item === req.query.username) {
         isFound = true;
       }
     });
@@ -16,7 +16,7 @@ let isFound = false;
       req.flash('red', 'User has liked the review');
       res.redirect('/fullreview/' + req.params.id);
     } else {
-      Review.findByIdAndUpdate(req.params.id, { $push: { like: req.query.userid }}, function(err, data) {
+      Review.findByIdAndUpdate(req.params.id, { $push: { like: req.query.username }}, function(err, data) {
         if (err) throw err;
         req.flash('blue', 'Likey likey!!');
         res.redirect('/fullreview/' + req.params.id);
@@ -28,15 +28,24 @@ let isFound = false;
 
 
 module.exports.write = function(req, res) {
-
-  // jquery the page
+// review id
+  req.params.id
+  Review.findByIdAndUpdate(req.params.id, { $push: { comments: {
+    username: req.body.username,
+    comment: req.body.comment
+  }}}, function(err, data) {
+    if (err) throw err;
+    console.log(data);
+      req.flash('blue', 'Added comment');
+      res.redirect('/fullreview/' + req.params.id)
+  })
   // add user and comment to db
   // reload with jquery
 
-  req.flash('blue', 'Added comment');
+
   // res.sendStatus(200);
 
-  res.redirect('/review');
+  // res.redirect('/review');
 };
 
 
