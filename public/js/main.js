@@ -69,6 +69,25 @@ $('.delete-review').on('click', function(e) {
 
 
 
+// delete for comments
+$('.delete-comment').on('click', function(e) {
+  e.preventDefault();
+
+  $.ajax({
+    url: $(this).attr('href'),
+    type: 'DELETE',
+    success: function(data) {
+      console.log(data);
+      window.location.reload();
+    },
+    error: function(err) {
+      console.log(err);
+    }
+  });
+});
+
+
+
 
 
 // end of document ready

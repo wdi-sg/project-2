@@ -47,6 +47,18 @@ img {
   border: 1px solid black;
   padding: 1px 10px;
 } */
+.delete-comment {
+      color: black;
+      background-color: rgba(255, 255, 255, 0.5);
+      color: rgba(0, 0, 0, 0.2);
+      padding: 0 5px;
+}
+
+.delete-comment:hover {
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
+}
+
 
 .delete-bookmark {
     color: black;

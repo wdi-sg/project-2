@@ -79,13 +79,14 @@
       <h4>Comments</h4>
       <div>
       <%  data.comments.forEach(function(item) { %>
+          <a href="/extra/delete/<%= item._id %>?reviewId=<%= data._id %>" class="delete-comment right">X</a>
           <p><strong class="blue-text"><%= item.username %> </strong> <%= item.comment %></p>
       <%  }); %>
       </div>
 
       <form action="/extra/write/<%= data._id%>" method="POST">
         <input type="hidden" name="username" value="<%= data.userId.username %>">
-        <input type="text" name="comment" placeholder="Write a comment" autocomplete="off">
+        <input type="text" name="comment" placeholder="Write a comment" autocomplete="off" required>
         <button class="waves-effect waves-light btn right" type="submit"><i class="material-icons right">send</i>Submit</button>
       </form>
 
