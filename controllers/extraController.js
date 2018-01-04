@@ -1,4 +1,5 @@
 const Review = require('../models/review');
+const ObjectId = require('mongoose').Types.ObjectId;
 
 module.exports.like = function(req, res) {
 
@@ -6,7 +7,7 @@ let isFound = false;
 
   Review.findById(req.params.id, function(err, review) {
     review.like.forEach(function(item) {
-      if (item === req.query.user) {
+      if (item.equals(req.query.userid)) {
         isFound = true;
       }
     });
@@ -15,7 +16,7 @@ let isFound = false;
       req.flash('red', 'User has liked the review');
       res.redirect('/fullreview/' + req.params.id);
     } else {
-      Review.findByIdAndUpdate(req.params.id, { $push: { like: req.query.user }}, function(err, data) {
+      Review.findByIdAndUpdate(req.params.id, { $push: { like: req.query.userid }}, function(err, data) {
         if (err) throw err;
         req.flash('blue', 'Likey likey!!');
         res.redirect('/fullreview/' + req.params.id);

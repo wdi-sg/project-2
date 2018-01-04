@@ -7,9 +7,15 @@ const ReviewSchema = new Schema({
   photo: String,
   location: String,
   date: String,
-  like: [String],
+  like: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }],
   comment: [{
-    username: String,
+    username: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
     comment: String
   }],
   rating: {
