@@ -22,13 +22,13 @@
       <div id="review">
         <%  review.forEach(function(item) { %>
           <div class="row">
-            <div class="col s4">
+            <div class="col s5">
               <!-- need to change the img src -->
               <a href="/fullreview/<%= item._id %>">
               <img src="<%= item.photo %>" alt="">
           </a>
             </div>
-            <div class="col s8">
+            <div class="col s7">
               <h4 class="review-title"><%= item.title %></h4>
               <p class="review-para">
                 <%= item.date %>

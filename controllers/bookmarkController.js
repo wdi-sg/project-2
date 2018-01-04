@@ -1,6 +1,9 @@
 const Bookmark = require('../models/bookmark');
 
 module.exports.add = function(req, res) {
+
+let isFound = false;
+
   let newBookmark = new Bookmark({
     title: req.body.title,
     location: req.body.location,
@@ -9,9 +12,14 @@ module.exports.add = function(req, res) {
     reviewId: req.params.id
   });
 
-  Bookmark.findOne({reviewId: req.params.id}, function(err, result) {
+  Bookmark.find({userId: req.body.userId}, function(err, result) {
     if (err) throw err;
-    if (result) {
+    result.forEach(function(item) {
+      if (item.reviewId.equals(req.params.id)) {
+        isFound = true;
+      }
+    });
+    if (isFound) {
       req.flash('red', 'Bookmark has be added');
       res.redirect('/fullreview/' + req.params.id);
     } else {
@@ -20,10 +28,8 @@ module.exports.add = function(req, res) {
         console.log(newBookmark);
           req.flash('light-blue', 'Bookmark added');
           res.redirect('/fullreview/' + req.params.id);
-
   });
 }
-
 });
 };
 

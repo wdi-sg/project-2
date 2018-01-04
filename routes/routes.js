@@ -13,12 +13,12 @@ const extraController = require('../controllers/extraController');
 
 
 // =============== local module ===============
-
+const helper = require('../helpers/helperFunction');
 
 // ===============  base route  ===============
-router.get('/', baseController.home);
-router.get('/profile/:id', baseController.profile);
-router.get('/fullreview/:id', baseController.review);
+router.get('/', helper.hasLogged, baseController.home);
+router.get('/profile/:id', helper.ensureAuthenticated, baseController.profile);
+router.get('/fullreview/:id', helper.ensureAuthenticated, baseController.review);
 
 
 // ===============  auth route  ===============
@@ -30,9 +30,9 @@ router.post('/signup', authController.signupPost);
 
 
 // ===============  review route  ===============
-router.get('/review/add', reviewController.add);
+router.get('/review/add', helper.ensureAuthenticated, reviewController.add);
 router.post('/review/add/:id', upload.single('photo'), reviewController.addPost);
-router.get('/review/edit/:id', reviewController.edit);
+router.get('/review/edit/:id', helper.ensureAuthenticated, reviewController.edit);
 router.post('/review/edit/:id', reviewController.editPost);
 router.delete('/review/delete/:id', reviewController.delete);
 
