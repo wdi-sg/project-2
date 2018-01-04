@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
@@ -42,6 +43,7 @@ app.use(flash());
 app.use((req, res, next) => {
   // passing flash messages to alerts to render in handlebars
   res.locals.alerts = req.flash();
+  // console.log(res.locals.alerts);
   // getting the user details obtained through passport
   res.locals.currentUser = req.user;
   next();

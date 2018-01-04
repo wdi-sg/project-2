@@ -2,7 +2,7 @@
   <p class="is-size-2 is-size-3-touch has-text-dark title">Profile</p>
 </div>
 
-<form method="post" action="/register">
+<form method="post" action="/profile/{{currentUser._id}}">
   <div class="field is-horizontal">
     <div class="field-label is-normal">
       <label class="label">Name:</label>
@@ -63,7 +63,7 @@
     <div class="field-body">
       <div class="field">
         <div class="control">
-          <input class="input" type="text" name="password1">
+          <input class="input" type="password" name="password">
         </div>
       </div>
     </div>
@@ -76,7 +76,7 @@
     <div class="field-body">
       <div class="field">
         <div class="control">
-          <input class="input" type="text" name="password2">
+          <input class="input" type="password" name="password-confirm">
         </div>
       </div>
     </div>
@@ -88,7 +88,7 @@
     <div class="field-body">
       <div class="field">
         <div class="control">
-          <button class="button is-primary">Change details</button>
+          <button class="button is-primary">Save changes</button>
         </div>
       </div>
     </div>

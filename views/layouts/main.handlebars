@@ -7,7 +7,7 @@
   <title>Multi Business Locator</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
-  <link rel="stylesheet" type="text/css" href="stylesheet/stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheet/stylesheet.css">
 
 </head>
 <body>
@@ -22,8 +22,8 @@
       <div class="navbar-end">
         {{#if currentUser}}
           <a class="navbar-item" href="/">Home</a>
-          <a class="navbar-item" href="/result">Saved Results</a>
-          <a class="navbar-item" href="/profile">Profile</a>
+          <a class="navbar-item" href="/result/{{currentUser._id}}">Saved Results</a>
+          <a class="navbar-item" href="/profile/{{currentUser._id}}">Profile</a>
           <a class="navbar-item" href="/logout">Logout</a>
         {{else}}
           <a class="navbar-item" href="/">Home</a>
@@ -77,7 +77,7 @@
   src="https://code.jquery.com/jquery-3.2.1.js"
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   crossorigin="anonymous"></script>
-  <script src="javascript/main.js"></script>
+  <script src="/javascript/main.js"></script>
 
 </body>
 </html>

@@ -19,15 +19,18 @@ router.post('/login',
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
-    successFlash: 'Welcome',
+    successFlash: 'Welcome!',
     failureFlash: true
   }));
 router.get('/register', authController.register);
-router.post('/register', authController.user);
+router.post('/register', authController.signup);
 router.get('/logout', authController.logout);
 
 // routes available with login
-router.get('/profile', isLoggedIn, userController.profile);
-router.get('/result', isLoggedIn, userController.result);
+router.get('/profile/:id', isLoggedIn, userController.profile);
+router.post('/profile/:id', isLoggedIn, userController.change);
+router.get('/result/:id', isLoggedIn, userController.result);
+router.delete('/delete/search/:id', isLoggedIn, userController.deleteSearch);
+router.delete('/delete/analyzed/:id', isLoggedIn, userController.deleteAnalyzed);
 
 module.exports = router;

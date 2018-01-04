@@ -7,6 +7,10 @@ const searchListSchema = new Schema({
   },
   result: {
     type: Array
+  },
+  username: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
 });
 

@@ -14,9 +14,10 @@ passport.deserializeUser(function(id, done) {
 });
 
 passport.use(new LocalStrategy({
+  // parameters name found in form
   usernameField:  'username',
   passwordField: 'password'
-},function(username, password, done) {
+}, function(username, password, done) {
   User.findOne({username: username}, function(err, user) {
     if (err) {return done(err);}
     if (!user) {

@@ -75,8 +75,10 @@ exports.search = (req, res) => {
           // render or display results
           res.render('result', {'searchList': displayArray, 'search': itemArray.join(", ").toUpperCase(), 'analyzedList': displaySortedArray});
 
-          // save results to database
-          saveResult(displayArray, itemArray, displaySortedArray);
+          // save results to database only when logged in
+          if (res.locals.currentUser) {
+            saveResult(displayArray, itemArray, displaySortedArray, res.locals.currentUser._id);
+          }
         }
       }).catch(e => {
         console.log(e);

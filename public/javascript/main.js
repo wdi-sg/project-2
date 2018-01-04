@@ -1,3 +1,4 @@
+// navbar javascript
 document.addEventListener('DOMContentLoaded', function () {
 
   // Get all "navbar-burger" elements
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
 
 $(document).ready(function() {
   // event listener to add more input fields
@@ -89,5 +91,39 @@ $(document).ready(function() {
 
   setTimeout(function() {
     $(".flash").fadeOut(800);
-  }, 2000);
+  }, 5000);
+
+
+  // ajax request to handle delete request from anchor tags
+  $('.delete-search').on('click', function(e) {
+    var id = $(this).data("id");
+    $("#" + id).fadeOut(800);
+
+    $.ajax({
+      url: '/delete/search/' + id,
+      type: 'delete',
+      success: function(data) {
+        console.log(data);
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    });
+  });
+
+  $('.delete-analyzed').on('click', function(e) {
+    var id = $(this).data("id");
+    $("#" + id).fadeOut(800);
+
+    $.ajax({
+      url: '/delete/analyzed/' + id,
+      type: 'delete',
+      success: function(data) {
+        console.log(data);
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    });
+  });
 });

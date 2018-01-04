@@ -59,7 +59,8 @@ The last flow chart shows the routes that link the website pages.
 * [jQuery](http://jquery.com/)
 * Node.js, Yarn, Express, Handlebars
 * API and data by [Yelp](https://www.yelp.com.sg/singapore)
-* MongoDB and Mongoose
+* Passport.js, Bcrypt, Flash messages
+* MongoDB and Mongoose, hosted on mLab
 
 ---
 
@@ -68,6 +69,7 @@ The last flow chart shows the routes that link the website pages.
 * Authentication
 * Website pages design
 * Deployment on Heroku
+* Search logic
 
 ---
 

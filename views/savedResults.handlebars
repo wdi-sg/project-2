@@ -7,39 +7,45 @@
 
 <div class="searchresult-container">
   {{#each searchList}}
-    <div class="result-title is-size-3">
-      {{item}}
-    </div>
+    <div id="{{_id}}">
+      <div class="result-title is-size-3">
+        {{item}}
+        <a class="delete delete-search" data-id="{{_id}}"></a>
+      </div>
 
-    <div class="grid-container">
-      {{#each result}}
-        <div>
-          <a href={{link}}><p>{{name}}</p></a>
-          <p>{{address1}}</p>
-          <p>{{address2}}</p>
-        </div>
-      {{/each}}
+      <div class="grid-container">
+        {{#each result}}
+          <div>
+            <a href={{link}}><p>{{name}}</p></a>
+            <p>{{address1}}</p>
+            <p>{{address2}}</p>
+          </div>
+        {{/each}}
+      </div>
     </div>
   {{/each}}
 </div>
 
 <div class="analyzedresult-container">
   {{#each analyzedList}}
-    <div class="result-title is-size-3">
-      {{item}}
-    </div>
+    <div id="{{_id}}">
+      <div class="result-title is-size-3">
+        {{item}}
+        <a class="delete delete-analyzed" data-id="{{_id}}"></a>
+      </div>
 
-    <div class="grid-container">
-      {{#each result}}
-        <div>
-          {{#each sortedlist}}
-            <p>{{name}}</p>
-            <p>{{address1}}</p>
-            <p>{{address2}}</p>
-            <br>
-          {{/each}}
-        </div>
-      {{/each}}
+      <div class="grid-container">
+        {{#each result}}
+          <div>
+            {{#each sortedlist}}
+              <p>{{name}}</p>
+              <p>{{address1}}</p>
+              <p>{{address2}}</p>
+              <br>
+            {{/each}}
+          </div>
+        {{/each}}
+      </div>
     </div>
   {{/each}}
 </div>
