@@ -9,6 +9,7 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
+const expressValidator = require('express-validator');
 const port = 3000;
 
 const routes = require('./routes/routes');
@@ -24,7 +25,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static('public'));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
@@ -48,6 +48,26 @@ app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   next();
 });
+
+// express validation
+app.use(expressValidator({
+  errorFormatter: (param, msg, value) => {
+    console.log(param);
+    let namespace = param.split('.'),
+    root = namespace.shift(),
+    formParam = root;
+
+    while(namespace.length) {
+      formParam += '['+ namespace.shift() + ']';
+    }
+
+    return {
+      param: formParam,
+      msg: msg,
+      value: value
+    };
+  }
+}));
 
 // routes
 app.use('/', routes);

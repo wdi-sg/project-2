@@ -53,6 +53,11 @@
   padding: 0 20px;
 }
 
+/* registration form */
+#firstNamePrompt, #lastNamePrompt, #emailPrompt, #usernamePrompt, #passwordPrompt, #passwordConfirmPrompt{
+  visibility: hidden;
+}
+
 /* responsive design */
 @media only screen and (max-width: 1023px) {
   form{

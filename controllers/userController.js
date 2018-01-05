@@ -34,24 +34,38 @@ exports.profile = (req, res) => {
 // update user information to database, user
 // use mongoose save method instead of update method as mongoose middleware to hash password is only invoked on save method
 exports.change = (req, res) => {
-  User.findOne({_id: req.params.id}, (err, result) => {
-    // console.log(result);
-    if (err) console.log(err);
+  // express validator to check profile form fields
+  req.checkBody('firstName', 'First name cannot be empty.').notEmpty();
+  req.checkBody('lastName', 'Last name cannot be empty.').notEmpty();
+  req.checkBody('email', 'Email cannot be empty.').notEmpty();
+  req.checkBody('username', 'Username cannot be empty.').notEmpty();
+  req.checkBody('password', 'Password cannot be empty.').notEmpty();
+  req.checkBody('passwordConfirm', 'Confirm your password again.').notEmpty();
+  req.checkBody('password', 'Passwords entered are not the same.').equals(req.body.passwordConfirm);
 
-    result.firstName = req.body.firstName;
-    result.lastName = req.body.lastName;
-    result.email = req.body.email;
-    result.username = req.body.username;
-    result.password = req.body.password;
-    // validate password and cannot be empty field
-
-    result.save((err, updatedResult) => {
+  let errors = req.validationErrors();
+  if (errors) {
+    res.render('profile', {'errors': errors});
+  } else {
+    User.findOne({_id: req.params.id}, (err, result) => {
+      // console.log(result);
       if (err) console.log(err);
-      // console.log(updatedResult);
-      req.flash('success', 'Credentials saved.');
-      res.redirect('/profile/' + req.params.id);
+
+      result.firstName = req.body.firstName;
+      result.lastName = req.body.lastName;
+      result.email = req.body.email;
+      result.username = req.body.username;
+      result.password = req.body.password;
+      // validate password and cannot be empty field
+
+      result.save((err, updatedResult) => {
+        if (err) console.log(err);
+        // console.log(updatedResult);
+        req.flash('success', 'Credentials saved.');
+        res.redirect('/profile/' + req.params.id);
+      });
     });
-  });
+  }
 };
 
 

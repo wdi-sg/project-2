@@ -35,6 +35,7 @@
   </nav>
 
   <div class="flash">
+    <!-- from flash messages -->
     {{#if alerts.success}}
       {{#each alerts.success as |success|}}
         <div class="notification is-success">
@@ -50,6 +51,18 @@
           <button class="delete"></button>
           <strong>{{error}}</strong>
         </div>
+      {{/each}}
+    {{/if}}
+
+    <!-- from express validator -->
+    {{#if errors}}
+      {{#each errors as |e|}}
+        {{#if @first}}
+          <div class="notification is-danger">
+            <button class="delete"></button>
+            <strong>{{e.msg}}</strong>
+          </div>
+        {{/if}}
       {{/each}}
     {{/if}}
   </div>
@@ -78,6 +91,7 @@
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   crossorigin="anonymous"></script>
   <script src="/javascript/main.js"></script>
+  <script src="/javascript/validation.js"></script>
 
 </body>
 </html>

@@ -59,7 +59,7 @@ The last flow chart shows the routes that link the website pages.
 * [jQuery](http://jquery.com/)
 * Node.js, Yarn, Express, Handlebars
 * API and data by [Yelp](https://www.yelp.com.sg/singapore)
-* Passport.js, Bcrypt, Flash messages
+* Passport.js, Bcrypt, Flash messages, Express validator
 * MongoDB and Mongoose, hosted on mLab
 
 ---
