@@ -65,8 +65,6 @@ The last flow chart shows the routes that link the website pages.
 ---
 
 ## Areas to Improve on
-* Database CRUD
-* Authentication
 * Website pages design
 * Deployment on Heroku
 * Search logic

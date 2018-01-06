@@ -15,7 +15,7 @@
 
       <div class="grid-container">
         {{#each result}}
-          <div>
+          <div class="grid-result">
             <a href={{link}}><p>{{name}}</p></a>
             <p>{{address1}}</p>
             <p>{{address2}}</p>
@@ -36,15 +36,60 @@
 
       <div class="grid-container">
         {{#each result}}
-          <div>
-            {{#each sortedlist}}
-              <p>{{name}}</p>
-              <p>{{address1}}</p>
-              <p>{{address2}}</p>
-              <br>
-            {{/each}}
-          </div>
+          {{#each tier0}}
+            <div class="grid-result tier0">
+              {{#each sortedlist}}
+                <p>{{name}}</p>
+                <p>{{address1}}</p>
+                <p>{{address2}}</p>
+                <br>
+              {{/each}}
+            </div>
+          {{/each}}
+
+          {{#each tier1}}
+            <div class="nodisplay tier1">
+              {{#each sortedlist}}
+                <p>{{name}}</p>
+                <p>{{address1}}</p>
+                <p>{{address2}}</p>
+                <br>
+              {{/each}}
+            </div>
+          {{/each}}
+
+          {{#each tier2}}
+            <div class="nodisplay tier2">
+              {{#each sortedlist}}
+                <p>{{name}}</p>
+                <p>{{address1}}</p>
+                <p>{{address2}}</p>
+                <br>
+              {{/each}}
+            </div>
+          {{/each}}
+
+          {{#each tier3}}
+            <div class="nodisplay tier3">
+              {{#each sortedlist}}
+                <p>{{name}}</p>
+                <p>{{address1}}</p>
+                <p>{{address2}}</p>
+                <br>
+              {{/each}}
+            </div>
+          {{/each}}
         {{/each}}
+      </div>
+
+      <div class="arrow">
+        <span class="icon">
+          <i class="fa fa-shield fa-rotate-90" data-arrow="{{_id}}"></i>
+          <i class="fa fa-shield fa-rotate-270" data-arrow="{{_id}}"></i>
+        </span>
+      </div>
+      <div>
+        <p class="tier-container">Relative distance: <span class="tier">Nearest</span></p>
       </div>
     </div>
   {{/each}}

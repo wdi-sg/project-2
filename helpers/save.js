@@ -2,8 +2,8 @@
 const SearchList = require('../models/searchList');
 const AnalyzedList = require('../models/analyzedList');
 
-// create results into database, searchList and analyzedList
-var saveResult = function(displayArray, itemArray, displaySortedArray, userId) {
+// create results into databases, searchList and analyzedList
+exports.saveResultAll = function(displayArray, itemArray, displaySortedObject, userId) {
   displayArray.forEach(function(element) {
     SearchList.create({
       item: element.indivItem,
@@ -14,9 +14,18 @@ var saveResult = function(displayArray, itemArray, displaySortedArray, userId) {
 
   AnalyzedList.create({
     item: itemArray.join(", ").toUpperCase(),
-    result: displaySortedArray,
+    result: displaySortedObject,
     username: userId
   });
 };
 
-module.exports = saveResult;
+// create results into database, searchList only
+exports.saveResult = function(displayArray, userId) {
+  displayArray.forEach(function(element) {
+    SearchList.create({
+      item: element.indivItem,
+      result: element.indivResult,
+      username: userId
+    });
+  });
+};

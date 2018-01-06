@@ -6,7 +6,7 @@ const client = yelp.client(apiKey);
 
 // external functions
 const sortResult = require('../helpers/analysis');
-const saveResult = require('../helpers/save');
+const saveData = require('../helpers/save');
 
 
 // home page
@@ -69,15 +69,21 @@ exports.search = (req, res) => {
         // callback function, asynchronous problem addressed by promise and checking with if statement
         console.log("2");
         if (displayArray.length === itemArray.length) {
-          // analyze results
-          var displaySortedArray = sortResult(displayArray);
 
-          // render or display results
-          res.render('result', {'searchList': displayArray, 'search': itemArray.join(", ").toUpperCase(), 'analyzedList': displaySortedArray});
+          if (itemArray.length > 1) {
+            // analyze results
+            var displaySortedObject = sortResult(displayArray);
 
-          // save results to database only when logged in
-          if (res.locals.currentUser) {
-            saveResult(displayArray, itemArray, displaySortedArray, res.locals.currentUser._id);
+            // render or display results
+            res.render('result', {'searchList': displayArray, 'search': itemArray.join(", ").toUpperCase(), 'analyzedList': displaySortedObject});
+
+            // save results to database only when logged in
+            if (res.locals.currentUser) {
+              saveData.saveResultAll(displayArray, itemArray, displaySortedObject, res.locals.currentUser._id);
+            }
+          } else if (itemArray.length === 1){
+            res.render('result', {'searchList': displayArray});
+            saveData.saveResult(displayArray, res.locals.currentUser._id);
           }
         }
       }).catch(e => {
