@@ -95,7 +95,7 @@ $(document).ready(function() {
 
   setTimeout(function() {
     $(".flash").fadeOut(800);
-  }, 5000);
+  }, 1500);
 
 
   // ajax request to handle delete request from anchor tags
