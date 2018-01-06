@@ -7,10 +7,9 @@ body {
   min-height: 100vh;
   flex-direction: column;
   background-color: ghostwhite;
-
 }
 
-.rating {
+.rating-card {
   color: black;
   background-color: rgba(255, 255, 255, 0.5);
   position: absolute;
@@ -40,7 +39,7 @@ body {
 
 .card-content h6 {
   margin: 0;
-font-weight: 700;
+  font-weight: 700;
 }
 
 img {
@@ -61,11 +60,15 @@ img {
   margin-top: -5px;
 }
 
+.rating-star i {
+  margin: -3px;
+}
+
 .delete-comment {
-      color: black;
-      background-color: rgba(255, 255, 255, 0.5);
-      color: rgba(0, 0, 0, 0.2);
-      padding: 0 5px;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.2);
+  padding: 0 5px;
 }
 
 .delete-comment:hover {
@@ -73,18 +76,15 @@ img {
   color: rgba(0, 0, 0, 1);
 }
 
-
 .delete-bookmark {
-    color: black;
-    background-color: rgba(255, 255, 255, 0.5);
-    color: rgba(0, 0, 0, 0.2);
-    position: absolute;
-    top: 0;
-    right: 0;
-    max-width: 100%;
-    padding: 0 5px;
-    font-size: 24px;
-    font-weight: 300;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 100%;
+  padding: 0 5px;
 }
 
 .delete-bookmark:hover {
@@ -100,7 +100,6 @@ img {
   min-height: 100vh;
 }
 
-
 #messages {
   position: fixed;
   top: 8%;
@@ -113,18 +112,15 @@ img {
   padding-bottom: 25px !important;
   margin: 2rem;
 }
+
 .signup-box {
   border: 1px solid black;
   padding-bottom: 25px !important;
   margin: 2rem;
 }
 
-.like-box {
-  border: 1px solid black;
-}
-
 .pac-container {
-    z-index: 1004 !important;
+  z-index: 1004 !important;
 }
 
 .page-footer {
@@ -177,9 +173,9 @@ img {
 }
 
 @media only screen and (min-width: 1100px) {
-    .masonry {
-        -moz-column-count: 4;
-        -webkit-column-count: 4;
-        column-count: 4;
-    }
+  .masonry {
+    -moz-column-count: 4;
+    -webkit-column-count: 4;
+    column-count: 4;
+  }
 }

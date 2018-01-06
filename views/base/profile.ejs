@@ -17,7 +17,7 @@
       </ul>
 
       <div id="review">
-        <%  review.forEach(function(item) { %>
+        <%  review.reverse().forEach(function(item) { %>
           <div class="row">
             <div class="col s5">
               <!-- need to change the img src -->
@@ -42,7 +42,7 @@
 
 
       <div id="bookmark">
-        <%  for (var i = 0; i < bookmark.length; i += 2) { %>
+        <%  for (var i = bookmark.length - 1; i >= 0; i -= 2) { %>
           <div class="row">
             <div class="col s12 m6">
               <div class="card-image">
@@ -60,20 +60,20 @@
               </div>
             </div>
 
-            <% if (bookmark[i+1] != null) { %>
+            <% if (bookmark[i-1] != null) { %>
               <div class="col s12 m6">
                 <div class="card-image">
-                  <a href="/fullreview/<%= bookmark[i+1].reviewId %>">
-                  <img src="<%= bookmark[i+1].photo %>">
+                  <a href="/fullreview/<%= bookmark[i-1].reviewId %>">
+                  <img src="<%= bookmark[i-1].photo %>">
                 </a>
                   <!-- corner -->
                   <% if (profile._id.toString() == user._id.toString()) { %>
-                  <a href="/bookmark/delete/<%= bookmark[i+1]._id %>" class="delete-bookmark"><i class="material-icons">close</i></a>
+                  <a href="/bookmark/delete/<%= bookmark[i-1]._id %>" class="delete-bookmark"><i class="material-icons">close</i></a>
                   <% } %>
                 </div>
                 <div class="card-content">
-                  <h4 class="review-title"><%= bookmark[i+1].title %></h4>
-                  <h5 class="review-date"><%= bookmark[i+1].location %></h5>
+                  <h4 class="review-title"><%= bookmark[i-1].title %></h4>
+                  <h5 class="review-date"><%= bookmark[i-1].location %></h5>
                 </div>
               </div>
               <% } %>
