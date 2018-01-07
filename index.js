@@ -13,11 +13,12 @@ const expressValidator = require('express-validator');
 const port = process.env.PORT || 3000;
 
 const routes = require('./routes/routes');
-const dbConfig = require('./config/dbConfig');
+// const dbConfig = require('./config/dbConfig');
+require('dotenv').config();
 
 // database configuration
 mongoose.Promise = global.Promise;
-mongoose.connect(dbConfig.urlLive, {useMongoClient: true})
+mongoose.connect(process.env.DB_URL, {useMongoClient: true})
 .then(() => {console.log("----Mongoose ok----")}, (err) => {console.log(err)});
 
 app.use(cookieParser());
