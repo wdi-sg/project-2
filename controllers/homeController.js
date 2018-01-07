@@ -1,7 +1,8 @@
 // API
+require('dotenv').config();
+
 const yelp = require('yelp-fusion');
-const dbConfig = require('../config/dbConfig');
-const apiKey = dbConfig.apiKey;
+const apiKey = process.env.API_KEY;
 const client = yelp.client(apiKey);
 
 // external functions
