@@ -64,6 +64,10 @@ img {
   margin: -3px;
 }
 
+.bookmark {
+  top: -0.4rem !important;
+}
+
 #errors i {
   background-color: rgba(255, 255, 255, 0.2);
   color: white;

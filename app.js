@@ -6,6 +6,7 @@ const express = require('express');
 const validator = require('express-validator');
 const multer = require('multer');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session); // https://github.com/jdesboeufs/connect-mongo
 const messages = require('express-messages');
 const PORT = process.env.PORT || 3000;
 const passport = require('./config/passport');
@@ -31,6 +32,7 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
+  store: new MongoStore({ url: database.url })
 }));
 
 
@@ -58,7 +60,7 @@ app.use('/', routes);
 
 // =============== mongoose ===============
 mongoose.Promise = global.Promise;
-mongoose.connect(database.url, {useMongoClient: true}).then(function() {
+mongoose.connect(database.url).then(function() {
   console.log('Mongoose running..');
 }).catch(function(err) {
   console.log('Error with Mongo', err);
