@@ -1,0 +1,18 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-1">
+      <a href="/trip/new" class="btn btn-primary">New Trip</a>
+      <br>
+      <br>
+      <a href="/auth/logout" class="btn btn-danger">Logout</a>
+    </div>
+    <div class="col-sm-7 mx-auto">
+      <h4>List of Trips</h4>
+      {{#each results}}
+      <a href="/trip/main?id={{_id}}">{{tripName}}</a>
+      <br>
+      {{/each}}
+    </div>
+  </div>
+</div>

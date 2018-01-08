@@ -1,0 +1,35 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-1">
+      <a href="/home" class="btn btn-danger">Back</a>
+    </div>
+    <div class="col-sm-7 mx-auto">
+      <div class="tripDetails">
+      Trip Name : {{results.tripName}}<br>
+      Country : {{results.country}}<br>
+      City : {{results.city}}<br>
+      Date From : {{results.dateFrom}}<br>
+      Date To : {{results.dateTo}}<br>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-7 mx-auto">
+      <br>
+      <!-- <div id="map"></div> -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-7 mx-auto">
+      <br>
+      <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+      <!-- <div id="map"></div> -->
+    </div>
+  </div>
+</div>
+
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9low9dmdmIMtPdB294IA1W1rjJPaufC8&callback=initMap"></script> -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9low9dmdmIMtPdB294IA1W1rjJPaufC8&libraries=places&callback=initAutocomplete" async defer></script>

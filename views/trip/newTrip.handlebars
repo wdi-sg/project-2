@@ -1,0 +1,38 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-1">
+      <a href="/home" class="btn btn-danger">Back</a>
+    </div>
+    <div class="col-sm-7 mx-auto">
+      <form method="post" action="/trip/new">
+        <div class="form-group">
+          <h5>Give your trip a name!</h5>
+          <input class="form-control" type="text" name="tripName" placeholder="Trip Name">
+        </div>
+        <br>
+        <div class="form-group">
+          <h5>Where are you going ?</h5>
+          <input class="form-control" type="text" name="country" placeholder="Country">
+          <input class="form-control" type="text" name="city" placeholder="City">
+        </div>
+        <br>
+        <div class="form-group">
+          <h5>How long will your trip be?</h5>
+          <div class="form-inline">
+            <label>From :</label>
+            &nbsp;<input class="form-control" type="date" name="dateFrom" placeholder="From">
+          </div>
+          <div class="form-inline">
+            <label>To :</label>
+            &nbsp;<input class="form-control" type="date" name="dateTo" placeholder="To">
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-info" type="reset">Reset</button>
+          <button class="btn btn-success" type="submit">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
