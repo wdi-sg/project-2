@@ -33,3 +33,10 @@ module.exports.ensureAuthenticated = function(req, res, next) {
     res.redirect('/login');
   }
 };
+
+
+module.exports.randomPhoto = function() {
+  // random a number
+  // pick the img base on the number
+  // return the img
+};

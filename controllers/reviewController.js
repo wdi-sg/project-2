@@ -14,39 +14,55 @@ module.exports.add = function(req, res) {
 
 
 module.exports.addPost = function(req, res) {
-  cloudinary.uploader.upload(req.file.path, function(photo) {
 
-  let quality = parseInt(req.body.quality);
-  let quantity = parseInt(req.body.quantity);
-  let price = parseInt(req.body.price);
-  let overall = helper.getOverall(quality, quantity, price);
+  req.checkBody('title', 'Title is required').notEmpty();
+  req.checkBody('review', 'Review is required').notEmpty();
+  req.checkBody('location', 'Location is required').notEmpty();
+  req.checkBody('photo', 'Please upload a photo').notEmpty();
+  req.checkBody('quality', 'Rating for quality is required').notEmpty();
+  req.checkBody('quantity', 'Rating for quantity is required').notEmpty();
+  req.checkBody('price', 'Rating for price is required').notEmpty();
 
-  let newReview = new Review({
-    title: req.body.title,
-    review: req.body.review,
-    photo:   photo.secure_url,
-    location: req.body.location,
-    date: helper.getDate(),
-    rating: {
-      quality: quality,
-      quantity: quantity,
-      price: price,
-      overall: overall
-    },
-    // change to login user id
-    userId: req.user._id
-  });
+  let errors = req.validationErrors();
 
-  console.log(newReview);
+  if (errors) {
+    res.render('review/add', {errors: errors});
+  }
 
-  newReview.save(function(err) {
-    if (err) throw err;
-    req.flash("green", "Review successfully created");
-    // change to the login user id
-    res.redirect('/profile/' + req.user._id);
-  });
 
-  });
+
+  // cloudinary.uploader.upload(req.file.path, function(photo) {
+  //
+  // let quality = parseInt(req.body.quality);
+  // let quantity = parseInt(req.body.quantity);
+  // let price = parseInt(req.body.price);
+  // let overall = helper.getOverall(quality, quantity, price);
+  //
+  // let newReview = new Review({
+  //   title: req.body.title,
+  //   review: req.body.review,
+  //   photo:   photo.secure_url,
+  //   location: req.body.location,
+  //   date: helper.getDate(),
+  //   rating: {
+  //     quality: quality,
+  //     quantity: quantity,
+  //     price: price,
+  //     overall: overall
+  //   },
+  //   userId: req.user._id
+  // });
+  //
+  // console.log(newReview);
+  //
+  // newReview.save(function(err) {
+  //   if (err) throw err;
+  //   req.flash("green", "Review successfully created");
+  //   // change to the login user id
+  //   res.redirect('/profile/' + req.user._id);
+  // });
+  //
+  // });
 
 
 };

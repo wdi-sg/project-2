@@ -26,6 +26,3 @@ const ReviewSchema = new Schema({
 
 
 module.exports = mongoose.model('Review', ReviewSchema);
-
-// search for location on map
-// https://www.google.com/maps/search/?api=1&query=

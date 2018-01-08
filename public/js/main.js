@@ -111,6 +111,10 @@ $(document).ready(function() {
   });
 
 
+$('#errors').on('click', 'i', function() {
+  $(this).parent().remove();
+});
+
 
 
 
