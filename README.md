@@ -7,6 +7,10 @@ This is a new search engine which looks for multiple local businesses, such as r
 
 ## Getting Started
 
+### Link to application
+
+<https://chongct-project2.herokuapp.com/>
+
 ### Prerequisites
 
 Install Node.js and npm from <https://nodejs.org/en/>.
@@ -17,7 +21,9 @@ Install Yarn through Homebrew package manager using the command `brew install ya
 
 After cloning the project, run `yarn install` in command line to install the required dependencies listed in package.json.
 
-Connect to database hosted on mlab and create a ./config/dbConfig.js file to store the URL.
+Create a .env file to store environment-specific variables.
+
+Connect to a database hosted on mlab and obtain the URI.
 
 Request an API key from [Yelp](https://www.yelp.com.sg/singapore).
 
@@ -66,7 +72,6 @@ The last flow chart shows the routes that link the website pages.
 
 ## Areas to Improve on
 * Website pages design
-* Deployment on Heroku
 * Search logic
 
 ---

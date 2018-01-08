@@ -6,7 +6,7 @@ const apiKey = process.env.API_KEY;
 const client = yelp.client(apiKey);
 
 // external functions
-const sortResult = require('../helpers/analysis');
+const analysis = require('../helpers/analysis');
 const saveData = require('../helpers/save');
 
 
@@ -73,7 +73,7 @@ exports.search = (req, res) => {
 
           if (itemArray.length > 1) {
             // analyze results
-            var displaySortedObject = sortResult(displayArray);
+            var displaySortedObject = analysis.sortResult(displayArray);
 
             // render or display results
             res.render('result', {'searchList': displayArray, 'search': itemArray.join(", ").toUpperCase(), 'analyzedList': displaySortedObject});

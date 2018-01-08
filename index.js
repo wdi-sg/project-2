@@ -18,7 +18,7 @@ require('dotenv').config();
 
 // database configuration
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.DB_URL, {useMongoClient: true})
+mongoose.connect(process.env.DB_URI, {useMongoClient: true})
 .then(() => {console.log("----Mongoose ok----")}, (err) => {console.log(err)});
 
 app.use(cookieParser());
@@ -47,6 +47,7 @@ app.use((req, res, next) => {
   // console.log(res.locals.alerts);
   // getting the user details obtained through passport
   res.locals.currentUser = req.user;
+  // console.log(res.locals.currentUser);
   next();
 });
 

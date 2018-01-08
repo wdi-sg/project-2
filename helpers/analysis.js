@@ -1,10 +1,10 @@
 // analyze distance between two locations
-var analyzeDistance = function(i, j) {
-  if ((Math.abs(i.latitude - j.latitude)) < 0.005 && (Math.abs(i.longitude - j.longitude)) < 0.005) {
+var analyzeDistance = function(firstLoc, secondLoc) {
+  if ((Math.abs(firstLoc.latitude - secondLoc.latitude)) < 0.005 && (Math.abs(firstLoc.longitude - secondLoc.longitude)) < 0.005) {
     return 0;
-  } else if ((Math.abs(i.latitude - j.latitude)) < 0.01 && (Math.abs(i.longitude - j.longitude)) < 0.01) {
+  } else if ((Math.abs(firstLoc.latitude - secondLoc.latitude)) < 0.01 && (Math.abs(firstLoc.longitude - secondLoc.longitude)) < 0.01) {
     return 1;
-  } else if ((Math.abs(i.latitude - j.latitude)) < 0.02 && (Math.abs(i.longitude - j.longitude)) < 0.02) {
+  } else if ((Math.abs(firstLoc.latitude - secondLoc.latitude)) < 0.02 && (Math.abs(firstLoc.longitude - secondLoc.longitude)) < 0.02) {
     return 2;
   } else {
     return 3;
@@ -13,30 +13,33 @@ var analyzeDistance = function(i, j) {
 
 
 // join two analyzed locations together
-var joinLocation = function(array, i, j) {
+var joinLocation = function(array, firstLoc, secondLoc) {
+  // console.log(firstLoc);
+  // console.log(secondLoc);
   // check if the element is already included
   array.forEach(function(element) {
     var res = element.result.name.split("=");
-    if (i.name === res[res.length - 1]) {
-      // console.log(i.name);
+    // console.log(res);
+    if (firstLoc.name === res[res.length - 1]) {
       array.push({
         result: {
-          name: element.result.name + "=" + j.name,
-          latitude: element.result.latitude + "=" + j.latitude,
-          longitude: element.result.longitude + "=" + j.longitude,
-          address1: element.result.address1 + "=" + j.address1,
-          address2: element.result.address2 + "=" + j.address2
+          name: element.result.name + "=" + secondLoc.name,
+          latitude: element.result.latitude + "=" + secondLoc.latitude,
+          longitude: element.result.longitude + "=" + secondLoc.longitude,
+          address1: element.result.address1 + "=" + secondLoc.address1,
+          address2: element.result.address2 + "=" + secondLoc.address2
         }
       });
     }
+    // console.log(array);
   });
   array.push({
     result: {
-      name: i.name + "=" + j.name,
-      latitude: i.latitude + "=" + j.latitude,
-      longitude: i.longitude + "=" + j.longitude,
-      address1: i.address1 + "=" + j.address1,
-      address2: i.address2 + "=" + j.address2
+      name: firstLoc.name + "=" + secondLoc.name,
+      latitude: firstLoc.latitude + "=" + secondLoc.latitude,
+      longitude: firstLoc.longitude + "=" + secondLoc.longitude,
+      address1: firstLoc.address1 + "=" + secondLoc.address1,
+      address2: firstLoc.address2 + "=" + secondLoc.address2
     }
   });
 };
@@ -57,26 +60,26 @@ var analyzeResult = function(displayedArray) {
 
   for (var index = 0; index < displayedArray.length; index++) {
     // iterate through 2 adjacent arrays
-    displayedArray[index].indivResult.forEach(function(i) {
+    displayedArray[index].indivResult.forEach(function(firstLoc) {
       // console.log("test1");
       if (index + 1 < displayedArray.length) {
-        displayedArray[index + 1].indivResult.forEach(function(j) {
+        displayedArray[index + 1].indivResult.forEach(function(secondLoc) {
           // console.log("test2");
           // var analyzeString = analyzeResult(i, j);
 
           // check for distance
-          switch (analyzeDistance(i, j)) {
+          switch (analyzeDistance(firstLoc, secondLoc)) {
             case 0:
-              joinLocation(analyzeArray0, i, j);
+              joinLocation(analyzeArray0, firstLoc, secondLoc);
               break;
             case 1:
-              joinLocation(analyzeArray1, i, j);
+              joinLocation(analyzeArray1, firstLoc, secondLoc);
               break;
             case 2:
-              joinLocation(analyzeArray2, i, j);
+              joinLocation(analyzeArray2, firstLoc, secondLoc);
               break;
             case 3:
-              joinLocation(analyzeArray3, i, j);
+              joinLocation(analyzeArray3, firstLoc, secondLoc);
               break;
           }
         });
@@ -116,7 +119,7 @@ var analyzeResult = function(displayedArray) {
 
 
 // sort analyzed results to display on page
-var sortResult = function(displayedArray) {
+exports.sortResult = function(displayedArray) {
   var displayAnalyzeObject = analyzeResult(displayedArray);
   var displaySortedObject = {
     tier0: [],
@@ -156,4 +159,5 @@ var sortResult = function(displayedArray) {
   return displaySortedObject;
 };
 
-module.exports = sortResult;
+// refactor code
+// module.exports = sortResult;

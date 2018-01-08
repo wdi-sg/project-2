@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const passport = require('../helpers/passportInfo');
-const isLoggedIn = require('../helpers/loginBlock');
+const loginBlock = require('../helpers/loginBlock');
 
 // controllers file
 const homeController = require('../controllers/homeController.js');
@@ -27,10 +27,10 @@ router.post('/register', authController.signup);
 router.get('/logout', authController.logout);
 
 // routes available with login
-router.get('/profile/:id', isLoggedIn, userController.profile);
-router.post('/profile/:id', isLoggedIn, userController.change);
-router.get('/result/:id', isLoggedIn, userController.result);
-router.delete('/delete/search/:id', isLoggedIn, userController.deleteSearch);
-router.delete('/delete/analyzed/:id', isLoggedIn, userController.deleteAnalyzed);
+router.get('/profile/:id', loginBlock.isLoggedIn, userController.profile);
+router.post('/profile/:id', loginBlock.isLoggedIn, userController.change);
+router.get('/result/:id', loginBlock.isLoggedIn, userController.result);
+router.delete('/delete/search/:id', loginBlock.isLoggedIn, userController.deleteSearch);
+router.delete('/delete/analyzed/:id', loginBlock.isLoggedIn, userController.deleteAnalyzed);
 
 module.exports = router;
