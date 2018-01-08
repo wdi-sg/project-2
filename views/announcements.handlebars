@@ -1,0 +1,33 @@
+<div class="banner">
+
+  <!-- Announcement display -->
+  <div class="pure-u-1-1 scroll lwindow">
+    {{#each announcements}}
+        <h3>{{content}}</em></h3>
+        <div>Posted by <strong>{{postedBy}}</strong> on  {{datePosted}}
+          <span>
+            ( <a href="/edit/{{_id}}">Edit</a> |
+            <a href="#" class="delete" id="{{_id}}" data-id="{{_id}}">Delete</a> )
+          </span>
+        </div>
+    {{/each }}
+  </div>
+  <br><br>
+
+  <!-- Announcement maker -->
+  <div class="pure-u-1-2">
+    <!-- User delete tester -->
+<!-- <a href="#" class="delete" id="{{currentUser._id}}" data-id="{{currentUser._id}}">Delete Me!</a> -->
+    <!-- End of tester -->
+    <form class="pure-form pure-form-aligned" action="/create" method="post">
+      <div>
+        <!-- <label>Announcement: </label> -->
+        <textarea class="form-control" name="content" placeholder="Make your announcement here"></textarea>
+      </div>
+      <div>
+        <br>
+        <input type="submit" class="btn btn-success">
+      </div>
+    </form>
+  </div>
+</div>

@@ -25,7 +25,7 @@ const ewLineStations = require('./helpers/ewLineStations')
 const circleLineStations = require('./helpers/circleLineStations')
 const neLineStations = require('./helpers/neLineStations')
 const dtLineStations = require('./helpers/dtLineStations')
-
+require('dotenv').config()
 
 mongoose.Promise = global.Promise
 mongoose.connect(dbConfig.urllive, {useMongoClient : true})
@@ -37,7 +37,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 app.use(session({
-  secret: 'project2traindelaytracker',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
 }))
@@ -158,6 +158,9 @@ io.on('connection', function(socket){
             {socket.ewtweet = ewTweets;
             socket.emit('loadewtweets', {tweet: socket.ewtweet})
             ewTweets = [];}
+            else {
+              socket.emit('loadewok')
+            }
           }
           else if(nsChecker.indexOf(true)>=0){
             // console.log('ns')
@@ -166,6 +169,9 @@ io.on('connection', function(socket){
             {socket.nstweet = nsTweets;
             socket.emit('loadnstweets', {tweet: socket.nstweet})
             nsTweets = [];}
+            else {
+              socket.emit('loadnsok')
+            }
           }
           else if(neChecker.indexOf(true)>=0){
             // console.log('ne')
@@ -174,6 +180,9 @@ io.on('connection', function(socket){
             {socket.netweet = neTweets;
             socket.emit('loadnetweets', {tweet: socket.netweet})
             neTweets = [];}
+            else {
+              socket.emit('loadneok')
+            }
           }
           else if(dtChecker.indexOf(true)>=0){
             // console.log('dt')
@@ -182,6 +191,9 @@ io.on('connection', function(socket){
             {socket.dttweet = dtTweets;
             socket.emit('loaddttweets', {tweet: socket.dttweet})
             dtTweets = [];}
+            else {
+              socket.emit('loaddtok')
+            }
           }
           else if(circleChecker.indexOf(true)>=0){
             // console.log('circle')
@@ -190,6 +202,9 @@ io.on('connection', function(socket){
             {socket.circletweet = circleTweets;
             socket.emit('loadcircletweets', {tweet: socket.circletweet})
             circleTweets = [];}
+            else {
+              socket.emit('loadcircleok')
+            }
           }
           else{
             newTweets.push(newTweet)

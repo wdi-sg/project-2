@@ -3,7 +3,7 @@
  * Most of these are inherited from Base, but I want to change a few.
  */
 body {
-    color: #526066;
+    background-color: #C7CCDB;
 }
 
 h2, h3 {
@@ -22,10 +22,13 @@ p {
  */
 .l-content {
     margin: 0 auto;
+    cursor: default;
+    padding-top: 20px;
 }
 
 .l-box {
     padding: 0.5em 2em;
+    background-color: #C7CCDB;
 }
 
 /*
@@ -38,6 +41,10 @@ p {
 
 .pure-menu-link {
     padding: .5em .7em;
+}
+
+a.pure-menu-link{
+  text-decoration: none;
 }
 
 
@@ -55,63 +62,75 @@ p {
     text-align: center;
     height: 200px;
     width: 100%;
-    margin-bottom: 3em;
+    /*margin-bottom: 3em;*/
     display: table;
+    margin: 0 auto;
+    background-color: #767B91;
+    /*background-color: #ddd;*/
 }
 
     .banner-head {
         display: table-cell;
         vertical-align: middle;
         margin-bottom: 0;
-        font-size: 2em;
         color: black;
-        font-weight: 500;
+        font-weight: 200;
         text-shadow: 0 1px 1px black;
     }
 
+.window {
+  overflow: auto;
+  height: 130px;
+  font-size: 20px;
+  /*border: 1px solid #ddd;*/
+}
 
+.lwindow {
+  overflow: auto;
+  height: 600px;
+}
 
 /*
- * -- PRICING TABLE WRAPPER --
- * This element wraps up all the pricing table elements
+ * -- line TABLE WRAPPER --
+ * This element wraps up all the line table elements
  */
- .pricing-tables,
+ .line-tables,
  .information {
     max-width: 980px;
     margin: 0 auto;
  }
-.pricing-tables {
-    margin-bottom: 3.125em;
+.line-tables {
+    margin-bottom: 1em;
     text-align: center;
 }
 
 /*
- * -- PRICING TABLE  --
- * Every pricing table has the .pricing-table class
+ * -- line TABLE  --
+ * Every line table has the .line-table class
  */
-.pricing-table {
+.line-table {
     border: 1px solid #ddd;
     margin: 0 0.5em 2em;
-    padding: 0 0 3em;
+    /*padding: 0 0 1em;*/
 }
 
 /*
- * -- PRICING TABLE HEADER COLORS --
- * Choose a different color based on the type of pricing table.
+ * -- line TABLE HEADER COLORS --
+ * Choose a different color based on the type of line table.
  */
-.pricing-table-free .pricing-table-header {
+.line-table-free .line-table-header {
     background: #519251;
 }
 
-.pricing-table-biz .pricing-table-header {
+.line-table-display .line-table-header {
     background: #2c4985;
 }
 
 /*
- * -- PRICING TABLE HEADER --
+ * -- line TABLE HEADER --
  * By default, a header is black/white, and has some styles for its <h2> name.
  */
-.pricing-table-header {
+.line-table-header {
     background: #111;
     color: #fff;
 }
@@ -140,7 +159,7 @@ p {
   background: pink
 }
 
-    .pricing-table-header h2 {
+    .line-table-header h2 {
         margin: 0;
         padding-top: 2em;
         font-size: 1em;
@@ -150,15 +169,15 @@ p {
 
 
 /*
- * -- PRICING TABLE PRICE --
+ * -- line TABLE PRICE --
  * Styles for the price and the corresponding <span>per month</span>
  */
-.pricing-table-price {
+.line-table-price {
     font-size: 6em;
     margin: 0.2em 0 0;
     font-weight: 100;
 }
-    .pricing-table-price span {
+    .line-table-price span {
         display: block;
         text-transform: uppercase;
         font-size: 0.2em;
@@ -168,13 +187,11 @@ p {
         *color: #fff;
     }
 
-
-
 /*
- * -- PRICING TABLE LIST --
- * Each pricing table has a <ul> which is denoted by the .pricing-table-list class
+ * -- line TABLE LIST --
+ * Each line table has a <ul> which is denoted by the .line-table-list class
  */
-.pricing-table-list {
+.line-table-list {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -183,10 +200,10 @@ p {
 
 
 /*
- * -- PRICING TABLE LIST ELEMENTS --
- * Styles for the individual list elements within each pricing table
+ * -- line TABLE LIST ELEMENTS --
+ * Styles for the individual list elements within each line table
  */
-.pricing-table-list li {
+.line-table-list li {
     padding: 0.8em 0;
     background: #f7f7f7;
     border-bottom: 1px solid #e7e7e7;
@@ -194,8 +211,8 @@ p {
 
 
 /*
- * -- PRICING TABLE BUTTON --
- * Styles for the "Choose" button at the bottom of a pricing table.
+ * -- line TABLE BUTTON --
+ * Styles for the "Choose" button at the bottom of a line table.
  * This inherits from Pure Button.
  */
 .button-choose {
@@ -227,14 +244,14 @@ p {
 /*
  * -- TABLET MEDIA QUERIES --
  * On tablets, we want to slightly adjust the size of the banner
- * text and add some vertical space between the various pricing tables
+ * text and add some vertical space between the various line tables
  */
 @media(min-width: 767px) {
 
     .banner-head {
         font-size: 4em;
     }
-    .pricing-table {
+    .line-table {
         margin-bottom: 0;
     }
 
@@ -246,7 +263,7 @@ p {
  */
 @media (min-width: 480px) {
     .banner {
-        height: 400px;
+        height: 100px;
     }
     .banner-head {
         font-size: 3em;
