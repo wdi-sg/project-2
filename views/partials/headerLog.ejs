@@ -14,10 +14,9 @@
 <%- messages('./partials/messages', locals) %>
 
 <% if (typeof errors !== 'undefined') { %>
-  <ul>
+  <ul id="errors">
     <% errors.forEach(function(error) { %>
-      <li><%= error.msg %></li>
-      <br>
+      <li><%= error.msg %><i class="material-icons right">close</i></li>
   <% }); %>
   </ul>
 <% } %>

@@ -62,7 +62,6 @@ module.exports.addPost = function(req, res) {
 
     });
   }
-
 };
 
 

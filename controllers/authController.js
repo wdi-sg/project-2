@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+const helper = require('../helpers/helperFunction')
 const saltRounds = 10;
 
 module.exports.logout = function(req, res) {
@@ -10,10 +11,12 @@ module.exports.logout = function(req, res) {
 };
 
 
+
 module.exports.login = function(req, res) {
 
   res.render('auth/login');
 };
+
 
 
 module.exports.loginPost = function(req, res, next) {
@@ -26,9 +29,11 @@ module.exports.loginPost = function(req, res, next) {
 };
 
 
+
 module.exports.signup = function(req, res) {
   res.render('auth/signup');
 };
+
 
 
 module.exports.signupPost = function(req, res) {
@@ -37,7 +42,6 @@ module.exports.signupPost = function(req, res) {
   req.checkBody('lastname', 'Lastname is required').notEmpty();
   req.checkBody('username', 'Username is required').notEmpty();
   req.checkBody('email', 'Email is required').notEmpty();
-  req.checkBody('email', 'Enter a valid email').isEmail();
   req.checkBody('password', 'Password is required').notEmpty();
   req.checkBody('passwordConfirm', 'Password does not match').equals(req.body.password);
 
@@ -45,7 +49,8 @@ module.exports.signupPost = function(req, res) {
 
   if (errors) {
     res.render('auth/signup', {
-      errors: errors
+      errors: errors,
+      data: req.body
     });
   } else {
 
@@ -54,7 +59,8 @@ let newUser = new User({
   lastname: req.body.lastname,
   username: req.body.username,
   email: req.body.email,
-  password: req.body.password
+  password: req.body.password,
+  profilePic: helper.randomProfile()
 });
 
   bcrypt.hash(newUser.password, saltRounds, function(err, hash) {
@@ -64,7 +70,7 @@ let newUser = new User({
   newUser.save(function(err, saved) {
     if (err) throw err;
     console.log(saved);
-    req.flash('green', req.body.username + ' has been created');
+    req.flash('green', 'User has been created');
     res.redirect('/login');
   });
 });

@@ -4,6 +4,7 @@ module.exports.getOverall = function(quality, quantity, price) {
 };
 
 
+
 module.exports.hasLogged = function(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
@@ -12,6 +13,7 @@ module.exports.hasLogged = function(req, res, next) {
     res.redirect('/login');
   }
 };
+
 
 
 module.exports.ensureAuthenticated = function(req, res, next) {
@@ -24,19 +26,21 @@ module.exports.ensureAuthenticated = function(req, res, next) {
 };
 
 
-module.exports.randomPhoto = function() {
-  // random a number
-  // pick the img base on the number
-  // return the img
-};
 
 module.exports.getDate = function() {
   let monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   let date = new Date();
   let calMonth = date.getMonth();
-  month = monthName[month];
+  calMonth = monthName[calMonth];
   let calDate = date.getDate();
   let calYear = date.getFullYear();
   let reviewDate = calMonth + ' ' + calDate + ', ' + calYear;
   return reviewDate;
 };
+
+
+
+module.exports.randomProfile = function() {
+let random = Math.floor((Math.random() * 9) + 1);
+  return '/img/profile/profile-0' + random + '.jpg';
+}

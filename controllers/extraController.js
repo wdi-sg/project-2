@@ -2,6 +2,7 @@ const Review = require('../models/review');
 const ObjectId = require('mongoose').Types.ObjectId;
 
 
+
 module.exports.like = function(req, res) {
 
 let isFound = false;
@@ -24,8 +25,8 @@ let isFound = false;
       });
     }
   });
-
 };
+
 
 
 module.exports.write = function(req, res) {
@@ -39,8 +40,8 @@ module.exports.write = function(req, res) {
       req.flash('blue', 'Added comment');
       res.sendStatus(200);
   });
-
 };
+
 
 
 module.exports.delete = function(req, res) {
@@ -51,5 +52,4 @@ module.exports.delete = function(req, res) {
     req.flash('red', 'Removed comment')
       res.sendStatus(200);
   });
-
 };

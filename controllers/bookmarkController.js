@@ -1,8 +1,10 @@
 const Bookmark = require('../models/bookmark');
 
+
+
 module.exports.add = function(req, res) {
 
-let isFound = false;
+  let isFound = false;
 
   let newBookmark = new Bookmark({
     title: req.body.title,
@@ -12,7 +14,9 @@ let isFound = false;
     reviewId: req.params.id
   });
 
-  Bookmark.find({userId: req.body.userId}, function(err, result) {
+  Bookmark.find({
+    userId: req.body.userId
+  }, function(err, result) {
     if (err) throw err;
     result.forEach(function(item) {
       if (item.reviewId.equals(req.params.id)) {
@@ -26,25 +30,19 @@ let isFound = false;
       newBookmark.save(function(err) {
         if (err) throw err;
         console.log(newBookmark);
-          req.flash('light-blue', 'Bookmark added');
-          res.redirect('/fullreview/' + req.params.id);
+        req.flash('light-blue', 'Bookmark added');
+        res.redirect('/fullreview/' + req.params.id);
+      });
+    }
   });
-}
-});
 };
 
-
-// module.exports.edit = function(req, res) {
-//   res.redirect('base/profile');
-// };
 
 
 module.exports.delete = function(req, res) {
   Bookmark.findByIdAndRemove(req.params.id, function(err, data) {
     if (err) throw err;
     console.log(data);
-      res.sendStatus(200);
+    res.sendStatus(200);
   });
-  // find bookmarkid and delete
-
 };
