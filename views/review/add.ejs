@@ -12,55 +12,108 @@
   <div class="col s10 offset-s1">
   <h1 class="center-align">Add Review</h1>
 
-  <form action="/review/add/5a4b9184d3eb105a222cc3dc" enctype="multipart/form-data" method="POST">
+  <form action="/review/add/<%= user._id %>" enctype="multipart/form-data" method="POST">
 
     <div class="col s12">
       <label for="title">Title</label>
+  <% if (typeof data != 'undefined') { %>
+    <input id="title" type="text" name="title" placeholder="Name the dish" value="<%= data.title %>">
+  <% } else { %>
       <input id="title" type="text" name="title" placeholder="Name the dish">
+  <%  } %>
     </div>
 
   <div class="col s12">
       <label for="location">Location</label>
+      <% if (typeof data != 'undefined') { %>
+      <input id="location" type="text" name="location" value="<%= data.location %>">
+      <% } else { %>
       <input id="location" type="text" name="location">
+      <%  } %>
     </div>
 
   <div class="col s12">
       <label for="review">Review</label>
-      <textarea id="review" class="materialize-textarea" name="review" placeholder="Share your thoughts"></textarea>
+      <% if (typeof data != 'undefined') { %>
+      <textarea id="review" class="materialize-textarea" name="review" placeholder="Share your thoughts"><%= data.review %></textarea>
+      <% } else { %>
+        <textarea id="review" class="materialize-textarea" name="review" placeholder="Share your thoughts"></textarea>
+        <%  } %>
+
+
     </div>
 
     <div class="input-field col s8">
   <select name="quality">
+    <% if (typeof data != 'undefined') { %>
+      <% for (var i = 0; i <= 5; i++) { %>
+        <% if (!data.quality && i == 0) { %>
+          <option value="" disabled selected>Choose your option</option>
+        <% } else if (i == 0) { %>
+          <option value="" disabled>Choose your option</option>
+      <%  } else if (i == data.quality) { %>
+          <option value="<%= i %>" selected><%= i %> Star</option>
+        <% } else { %>
+          <option value="<%= i %>"><%= i %> Star</option>
+        <% } } %>
+        <% } else { %>
     <option value="" disabled selected>Choose your option</option>
     <option value="1">1 Star (Bland)</option>
     <option value="2">2 Star</option>
-    <option value="3" >3 Star</option>
+    <option value="3">3 Star</option>
     <option value="4">4 Star</option>
     <option value="5">5 Star (Tasty)</option>
+    <%  } %>
   </select>
   <label>Quality</label>
 </div>
 
     <div class="input-field col s8">
   <select name="quantity">
+    <% if (typeof data != 'undefined') { %>
+      <% for (var i = 0; i <= 5; i++) { %>
+        <% if (!data.quantity && i == 0) { %>
+          <option value="" disabled selected>Choose your option</option>
+        <% } else if (i == 0) { %>
+          <option value="" disabled>Choose your option</option>
+      <%  } else if (i == data.quantity) { %>
+          <option value="<%= i %>" selected><%= i %> Star</option>
+        <% } else { %>
+          <option value="<%= i %>"><%= i %> Star</option>
+        <% } } %>
+        <% } else { %>
     <option value="" disabled selected>Choose your option</option>
     <option value="1">1 Star (Little)</option>
     <option value="2">2 Star</option>
-    <option value="3" >3 Star</option>
+    <option value="3">3 Star</option>
     <option value="4">4 Star</option>
     <option value="5">5 Star (Plenty)</option>
+    <%  } %>
   </select>
   <label>Quantity</label>
 </div>
 
     <div class="input-field col s8">
   <select name="price">
-    <option value="" disabled selected>Choose your option</option>
-    <option value="1">1 Star (Overpriced)</option>
-    <option value="2">2 Star</option>
-    <option value="3" >3 Star</option>
-    <option value="4">4 Star</option>
-    <option value="5">5 Star (Reasonable)</option>
+    <% if (typeof data != 'undefined') { %>
+      <% for (var i = 0; i <= 5; i++) { %>
+        <% if (!data.price && i == 0) { %>
+          <option value="" disabled selected>Choose your option</option>
+        <% } else if (i == 0) { %>
+          <option value="" disabled>Choose your option</option>
+      <%  } else if (i == data.price) { %>
+          <option value="<%= i %>" selected><%= i %> Star</option>
+        <% } else { %>
+          <option value="<%= i %>"><%= i %> Star</option>
+        <% } } %>
+        <% } else { %>
+          <option value="" disabled selected>Choose your option</option>
+          <option value="1">1 Star (Overpriced)</option>
+          <option value="2">2 Star</option>
+          <option value="3">3 Star</option>
+          <option value="4">4 Star</option>
+          <option value="5">5 Star (Reasonable)</option>
+    <%  } %>
   </select>
   <label>Price</label>
 </div>
@@ -71,7 +124,7 @@
         <input type="file" name="photo">
       </div>
       <div class="file-path-wrapper">
-        <input class="file-path" type="text" placeholder="Upload your photo">
+          <input class="file-path" type="text" placeholder="Upload your photo">
       </div>
     </div>
 

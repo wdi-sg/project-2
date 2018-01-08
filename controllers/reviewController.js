@@ -16,20 +16,19 @@ module.exports.add = function(req, res) {
 module.exports.addPost = function(req, res) {
 
   req.checkBody('title', 'Title is required').notEmpty();
-  req.checkBody('review', 'Review is required').notEmpty();
   req.checkBody('location', 'Location is required').notEmpty();
+  req.checkBody('review', 'Review is required').notEmpty();
   req.checkBody('quality', 'Rating for quality is required').notEmpty();
   req.checkBody('quantity', 'Rating for quantity is required').notEmpty();
   req.checkBody('price', 'Rating for price is required').notEmpty();
   // req.checkBody('photo', 'Please upload a photo').notEmpty();
 
   let errors = req.validationErrors();
-
   if (errors) {
-    res.send(req.body)
-    // res.render('review/add', {
-    //   errors: errors
-    // });
+    res.render('review/add', {
+      errors: errors,
+      data: req.body
+    });
   } else {
     cloudinary.uploader.upload(req.file.path, function(photo) {
 
@@ -50,7 +49,7 @@ module.exports.addPost = function(req, res) {
           price: price,
           overall: overall
         },
-        userId: req.user._id
+        userId: req.params.id
       });
 
       console.log(newReview);
@@ -63,11 +62,6 @@ module.exports.addPost = function(req, res) {
 
     });
   }
-
-
-
-
-
 
 };
 
