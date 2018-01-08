@@ -1,6 +1,8 @@
-// API
+// dependencies
 require('dotenv').config();
+const asyncP = require('async-promises');
 
+// API
 const yelp = require('yelp-fusion');
 const apiKey = process.env.API_KEY;
 const client = yelp.client(apiKey);
@@ -28,29 +30,19 @@ exports.search = (req, res) => {
     itemArray.push(req.body["entry" + index]);
   }
 
-  // search to get rough location
-  client.search({
-    location: location,
-    limit: 5,
-    term: req.body.entry0
-  }).then(response => {
-    location = response.jsonBody.businesses[0].location.address1 + ", " + response.jsonBody.businesses[0].location.country;
-    console.log(location);
-  }).then(() => {
-
-    // search API
-    itemArray.forEach(function(element) {
+  // asynchronous approach
+  return asyncP.each(itemArray, (entry) => {
+    // console.log(itemArray);
+    return new Promise((resolve) => {
+      console.log("1");
       client.search({
         location: location,
         limit: 8,
-        term: element
+        term: entry
       }).then(response => {
-
-        // push to array
+        // push results to array
         var result = response.jsonBody.businesses;
         var resultArray = [];
-        console.log("1");
-        // console.log(result);
         result.forEach(function(business) {
           resultArray.push({
             name: business.name,
@@ -62,34 +54,36 @@ exports.search = (req, res) => {
           });
         });
         displayArray.push({
-          indivItem: element.toUpperCase(),
+          indivItem: entry.toUpperCase(),
           indivResult: resultArray
         });
-      }).then(() => {
-
-        // callback function, asynchronous problem addressed by promise and checking with if statement
-        console.log("2");
-        if (displayArray.length === itemArray.length) {
-
-          if (itemArray.length > 1) {
-            // analyze results
-            var displaySortedObject = analysis.sortResult(displayArray);
-
-            // render or display results
-            res.render('result', {'searchList': displayArray, 'search': itemArray.join(", ").toUpperCase(), 'analyzedList': displaySortedObject});
-
-            // save results to database only when logged in
-            if (res.locals.currentUser) {
-              saveData.saveResultAll(displayArray, itemArray, displaySortedObject, res.locals.currentUser._id);
-            }
-          } else if (itemArray.length === 1){
-            res.render('result', {'searchList': displayArray});
-            saveData.saveResult(displayArray, res.locals.currentUser._id);
-          }
-        }
-      }).catch(e => {
-        console.log(e);
+        // console.log(resultArray);
+        resolve();
       });
     });
+  }).then(() => {
+    // waiting for results and checking with if statement
+    console.log("2");
+    if (displayArray.length === itemArray.length) {
+
+      if (itemArray.length > 1) {
+        // analyze results
+        console.log(displayArray);
+        var displaySortedArray = analysis.sortResult(displayArray);
+
+        // render or display results
+        res.render('result', {'searchList': displayArray, 'search': itemArray.join(", ").toUpperCase(), 'analyzedList': displaySortedArray});
+
+        // save results to database only when logged in
+        if (res.locals.currentUser) {
+          saveData.saveResultAll(displayArray, itemArray, displaySortedArray, res.locals.currentUser._id);
+        }
+      } else if (itemArray.length === 1) {
+        res.render('result', {'searchList': displayArray});
+        if (res.locals.currentUser) {
+          saveData.saveResult(displayArray, res.locals.currentUser._id);
+        }
+      }
+    }
   });
 };

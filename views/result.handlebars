@@ -1,8 +1,28 @@
 <div class="tabs">
   <ul>
-    <li class="search is-active"><a>Search Results</a></li>
-    <li class="analyze"><a>Analyzed Results</a></li>
+    <li class="analyze is-active"><a>Analyzed Results</a></li>
+    <li class="search"><a>Search Results</a></li>
   </ul>
+</div>
+
+<div class="analyzedresult-container">
+  <div class="result-title is-size-3">
+    {{search}}
+  </div>
+
+  <div class="grid-container">
+    {{#each analyzedList}}
+      <div>
+        {{#each sortedList}}
+          <p>{{name}}</p>
+          <p>{{address1}}</p>
+          <p>{{address2}}</p>
+          <br>
+        {{/each}}
+        {{range}}
+      </div>
+    {{/each}}
+  </div>
 </div>
 
 <div class="searchresult-container">
@@ -13,7 +33,7 @@
 
     <div class="grid-container">
       {{#each indivResult}}
-        <div class="grid-result">
+        <div>
           <a href={{link}}><p>{{name}}</p></a>
           <p>{{address1}}</p>
           <p>{{address2}}</p>
@@ -21,66 +41,4 @@
       {{/each}}
     </div>
   {{/each}}
-</div>
-
-<div class="analyzedresult-container">
-  <div class="result-title is-size-3">
-    {{search}}
-  </div>
-
-  <div class="grid-container">
-    {{#each analyzedList.tier0}}
-      <div class="grid-result tier0">
-        {{#each sortedlist}}
-          <p>{{name}}</p>
-          <p>{{address1}}</p>
-          <p>{{address2}}</p>
-          <br>
-        {{/each}}
-      </div>
-    {{/each}}
-
-    {{#each analyzedList.tier1}}
-      <div class="nodisplay tier1">
-        {{#each sortedlist}}
-          <p>{{name}}</p>
-          <p>{{address1}}</p>
-          <p>{{address2}}</p>
-          <br>
-        {{/each}}
-      </div>
-    {{/each}}
-
-    {{#each analyzedList.tier2}}
-      <div class="nodisplay tier2">
-        {{#each sortedlist}}
-          <p>{{name}}</p>
-          <p>{{address1}}</p>
-          <p>{{address2}}</p>
-          <br>
-        {{/each}}
-      </div>
-    {{/each}}
-
-    {{#each analyzedList.tier3}}
-      <div class="nodisplay tier3">
-        {{#each sortedlist}}
-          <p>{{name}}</p>
-          <p>{{address1}}</p>
-          <p>{{address2}}</p>
-          <br>
-        {{/each}}
-      </div>
-    {{/each}}
-  </div>
-
-  <div class="arrow">
-    <span class="icon">
-      <i class="fa fa-shield fa-rotate-90"></i>
-      <i class="fa fa-shield fa-rotate-270"></i>
-    </span>
-  </div>
-  <div>
-    <p class="tier-container">Relative distance: <span class="tier">Nearest</span></p>
-  </div>
 </div>

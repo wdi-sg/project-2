@@ -1,29 +1,8 @@
 <div class="tabs">
   <ul>
-    <li class="is-active search"><a>Search Results</a></li>
-    <li class="analyze"><a>Analyzed Results</a></li>
+    <li class="is-active analyze"><a>Analyzed Results</a></li>
+    <li class="search"><a>Search Results</a></li>
   </ul>
-</div>
-
-<div class="searchresult-container">
-  {{#each searchList}}
-    <div id="{{_id}}">
-      <div class="result-title is-size-3">
-        {{item}}
-        <a class="delete delete-search" data-id="{{_id}}"></a>
-      </div>
-
-      <div class="grid-container">
-        {{#each result}}
-          <div class="grid-result">
-            <a href={{link}}><p>{{name}}</p></a>
-            <p>{{address1}}</p>
-            <p>{{address2}}</p>
-          </div>
-        {{/each}}
-      </div>
-    </div>
-  {{/each}}
 </div>
 
 <div class="analyzedresult-container">
@@ -36,60 +15,37 @@
 
       <div class="grid-container">
         {{#each result}}
-          {{#each tier0}}
-            <div class="grid-result tier0">
-              {{#each sortedlist}}
-                <p>{{name}}</p>
-                <p>{{address1}}</p>
-                <p>{{address2}}</p>
-                <br>
-              {{/each}}
-            </div>
-          {{/each}}
-
-          {{#each tier1}}
-            <div class="nodisplay tier1">
-              {{#each sortedlist}}
-                <p>{{name}}</p>
-                <p>{{address1}}</p>
-                <p>{{address2}}</p>
-                <br>
-              {{/each}}
-            </div>
-          {{/each}}
-
-          {{#each tier2}}
-            <div class="nodisplay tier2">
-              {{#each sortedlist}}
-                <p>{{name}}</p>
-                <p>{{address1}}</p>
-                <p>{{address2}}</p>
-                <br>
-              {{/each}}
-            </div>
-          {{/each}}
-
-          {{#each tier3}}
-            <div class="nodisplay tier3">
-              {{#each sortedlist}}
-                <p>{{name}}</p>
-                <p>{{address1}}</p>
-                <p>{{address2}}</p>
-                <br>
-              {{/each}}
-            </div>
-          {{/each}}
+          <div>
+            {{#each sortedList}}
+              <p>{{name}}</p>
+              <p>{{address1}}</p>
+              <p>{{address2}}</p>
+              <br>
+            {{/each}}
+            {{range}}
+          </div>
         {{/each}}
       </div>
+    </div>
+  {{/each}}
+</div>
 
-      <div class="arrow">
-        <span class="icon">
-          <i class="fa fa-shield fa-rotate-90" data-arrow="{{_id}}"></i>
-          <i class="fa fa-shield fa-rotate-270" data-arrow="{{_id}}"></i>
-        </span>
+<div class="searchresult-container">
+  {{#each searchList}}
+    <div id="{{_id}}">
+      <div class="result-title is-size-3">
+        {{item}}
+        <a class="delete delete-search" data-id="{{_id}}"></a>
       </div>
-      <div>
-        <p class="tier-container">Relative distance: <span class="tier">Nearest</span></p>
+
+      <div class="grid-container">
+        {{#each result}}
+          <div>
+            <a href={{link}}><p>{{name}}</p></a>
+            <p>{{address1}}</p>
+            <p>{{address2}}</p>
+          </div>
+        {{/each}}
       </div>
     </div>
   {{/each}}

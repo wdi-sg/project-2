@@ -27,7 +27,7 @@
   grid-gap: 10px 10px;
   grid-auto-flow: row;
 }
-.grid-result{
+.grid-container > div{
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -36,24 +36,11 @@
 .grid-container > div:nth-of-type(odd){
   background-color: rgb(219, 219, 219);
 }
-.analyzedresult-container{
+.searchresult-container{
   display: none;
 }
 .nodisplay{
   display: none;
-}
-.arrow{
-  display: flex;
-  justify-content: center;
-}
-.fa{
-  margin: 0 20px;
-}
-.tier-container{
-  text-align: center;
-}
-i:hover{
-  cursor: pointer;
 }
 
 /* flash messages */

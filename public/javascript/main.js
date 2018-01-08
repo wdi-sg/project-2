@@ -1,7 +1,4 @@
 $(document).ready(function() {
-  var analyzedListTier = {default: 0};
-
-
   // event listener to add more input fields
   $(document).on("keyup", function() {
     var counter = $("form input").length;
@@ -102,85 +99,6 @@ $(document).ready(function() {
         console.log(data);
       }
     });
-  });
-
-
-  // toggling through analyzed results list
-  var showDistance = function(tier) {
-    switch(tier) {
-      case 0:
-        return "Nearest";
-        break;
-      case 1:
-        return "Near";
-        break;
-      case 2:
-        return "Far";
-        break;
-      case 3:
-        return "Furthest";
-        break;
-    }
-  };
-
-  // back button
-  $(".fa-rotate-90").on("click", function() {
-    var id = $(this).data("arrow");
-    // console.log(id);
-    if (!id) {
-      if (analyzedListTier.default > 0) {
-        $(".tier" + analyzedListTier.default).addClass("nodisplay");
-        $(".tier" + analyzedListTier.default).removeClass("grid-result");
-        analyzedListTier.default -= 1;
-        $(".tier" + analyzedListTier.default).addClass("grid-result");
-        $(".tier" + analyzedListTier.default).removeClass("nodisplay");
-      }
-      // console.log(analyzedListTier.default);
-      $(".tier").text(showDistance(analyzedListTier.default));
-    } else {
-      if (!analyzedListTier[id]) {
-        analyzedListTier[id] = 0;
-      }
-      if (analyzedListTier[id] > 0) {
-        $("#" + id + " .tier" + analyzedListTier[id]).addClass("nodisplay");
-        $("#" + id + " .tier" + analyzedListTier[id]).removeClass("grid-result");
-        analyzedListTier[id] -= 1;
-        $("#" + id + " .tier" + analyzedListTier[id]).addClass("grid-result");
-        $("#" + id + " .tier" + analyzedListTier[id]).removeClass("nodisplay");
-      }
-      console.log(analyzedListTier);
-      $("#" + id + " .tier").text(showDistance(analyzedListTier[id]));
-    }
-  });
-
-  // forward button
-  $(".fa-rotate-270").on("click", function() {
-    var id = $(this).data("arrow");
-    // console.log(id);
-    if (!id) {
-      if (analyzedListTier.default < 3) {
-        $(".tier" + analyzedListTier.default).addClass("nodisplay");
-        $(".tier" + analyzedListTier.default).removeClass("grid-result");
-        analyzedListTier.default += 1;
-        $(".tier" + analyzedListTier.default).addClass("grid-result");
-        $(".tier" + analyzedListTier.default).removeClass("nodisplay");
-      }
-      // console.log(analyzedListTier.default);
-      $(".tier").text(showDistance(analyzedListTier.default));
-    } else {
-      if (!analyzedListTier[id]) {
-        analyzedListTier[id] = 0;
-      }
-      if (analyzedListTier[id] < 3) {
-        $("#" + id + " .tier" + analyzedListTier[id]).addClass("nodisplay");
-        $("#" + id + " .tier" + analyzedListTier[id]).removeClass("grid-result");
-        analyzedListTier[id] += 1;
-        $("#" + id + " .tier" + analyzedListTier[id]).addClass("grid-result");
-        $("#" + id + " .tier" + analyzedListTier[id]).removeClass("nodisplay");
-      }
-      console.log(analyzedListTier);
-      $("#" + id + " .tier").text(showDistance(analyzedListTier[id]));
-    }
   });
 
 
