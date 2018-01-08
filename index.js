@@ -2,11 +2,13 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
+const expressValidator = require('express-validator')
 const mongoose = require('mongoose')
 const path = require('path')
-const cookieParser = require('cookie-parser');
-const passport = require('passport');
-const fs = require('fs');
+const cookieParser = require('cookie-parser')
+const passport = require('passport')
+const flash = require('connect-flash')
+const fs = require('fs')
 
 const port = process.env.PORT || 3000
 
@@ -17,7 +19,7 @@ const app = express()
 
 //==================== Config ====================
 mongoose.Promise = global.Promise
-mongoose.connect(dbConfig.url, {
+mongoose.connect(dbConfig.urlLocal, {
   useMongoClient: true
 }).then (
   () => {
@@ -41,15 +43,42 @@ app.set('view engine', 'handlebars')
 app.use(session({
   secret: 'tripcollabsecretsession!!!',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false
 }))
 
 app.use(passport.initialize())
 app.use(passport.session())
 
+//==================== Flash Messages for express ====================
+app.use(flash());
+app.use((req, res, next) => {
+  // before every route, attach the flash messages and current user to res.locals
+  res.locals.alerts = req.flash();
+  res.locals.currentUser = req.user;
+  next();
+});
+
+//==================== Express Validator ====================
+app.use(expressValidator({
+  errorFormatter : (param, msg, value) => {
+      let namespace = param.split('.'),
+      root = namespace.shift(),
+      formParam = root
+
+        while(namespace.length){
+          formParam += '['+ namespace.shift()+ ']'
+        }
+
+        return {
+          param : formParam,
+          msg : msg,
+          value : value
+        }
+    }
+}))
+
 //==================== Routes ====================
 app.use('/',routes)
-
 
 app.listen(port, () => {
   console.log('---Server Started---')

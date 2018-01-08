@@ -1,4 +1,4 @@
 module.exports = {
-  "url" : "mongodb://localhost/tripcollab",
+  "urlLocal" : "mongodb://localhost/tripcollab",
   "urlLive" : ""
 }

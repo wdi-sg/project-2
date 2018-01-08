@@ -1,6 +1,6 @@
 body {
-    font-family: Merriweather, 'Helvetica Neue', Arial, sans-serif
-    background-color: #222;
+    font-family: Merriweather, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #808080;
 }
 
 .navbar-brand, .navbar-brand:hover{
@@ -24,7 +24,6 @@ body {
 .fa-bars {
   color: #FFF;
 }
-
 
 section {
   padding: 100px 0px;
@@ -53,6 +52,92 @@ hr {
   border-color: #fff;
 }
 
+.formStyle {
+  background-color: #FFF;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 30px;
+}
+/********** Styles for Maps  **********/
+#map {
+  height: 400px;
+  width: 100%;
+}
+
+/* #map {
+  height: 100%;
+} */
+
+#description {
+  font-family: Merriweather, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+#infowindow-content .title {
+  font-weight: bold;
+}
+
+#infowindow-content {
+  display: none;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
+
+.pac-card {
+  margin: 10px 10px 0 0;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  font-family: Merriweather, 'Helvetica Neue', Arial, sans-serif;
+}
+
+#pac-container {
+  padding-bottom: 12px;
+  margin-right: 12px;
+}
+
+.pac-controls {
+  display: inline-block;
+  padding: 5px 11px;
+}
+
+.pac-controls label {
+  font-family: Merriweather, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Merriweather, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  /* margin-left: 12px; */
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 400px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+#title {
+  color: #fff;
+  background-color: #4d90fe;
+  font-size: 25px;
+  font-weight: 500;
+  padding: 6px 12px;
+}
+#target {
+  width: 345px;
+}
+/********** End Styles for Maps  **********/
 /*Blue - #286DA8  */
 /*Pink - #CD5360 */
 /*Brown - #B37D4E */
