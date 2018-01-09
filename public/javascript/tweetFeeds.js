@@ -42,9 +42,7 @@ $(document).ready(function(){
       // console.log('meow')
       allDisplay.show()
     }
-  }, 3000)
-
-
+  }, 2000)
 
   // aw = document.getElementById('announce')
   aw = document.querySelector('.scroll')
