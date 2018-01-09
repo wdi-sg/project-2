@@ -6,6 +6,7 @@ const isLoggedIn = require('../helpers/loginBlock')
 const homeController = require('../controllers/homeController')
 const authController = require('../controllers/authController')
 const tripController = require('../controllers/tripController')
+const locationController = require('../controllers/locationController')
 
 //==================== index ====================
 router.get('/', homeController.index)
@@ -27,6 +28,9 @@ router.get('/auth/logout', authController.logout)
 router.get('/trip/new', isLoggedIn, tripController.new)
 router.post('/trip/new', isLoggedIn, tripController.create)
 router.get('/trip/main', isLoggedIn, tripController.main)
+
+//==================== Trip Control ====================
+router.post('/location/new', isLoggedIn, locationController.create)
 
 //==================== 404 ====================
 router.get('*', authController.fourZeroFour)

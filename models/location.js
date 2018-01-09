@@ -5,7 +5,7 @@ const locationSchema = new Schema ({
   locationName : {
     type : String
   },
-  latitue : {
+  latitude : {
     type : Number
   },
   longitude : {
