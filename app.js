@@ -4,6 +4,7 @@ const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
 const expressValidator = require('express-validator')
 const methodOverride = require('method-override')
 const mongoose = require('mongoose')
@@ -40,6 +41,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
+  store: new MongoStore({ url: dbConfig.urllive })
 }))
 
 // Passport
