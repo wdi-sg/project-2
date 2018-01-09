@@ -22,10 +22,15 @@ const Twit = require('twit')
 const tweet = require('./helpers/twitter')
 const moment = require('moment-timezone')
 const nsLineStations = require('./helpers/nsLineStations')
+const nsLine = require('./helpers/nsLine')
 const ewLineStations = require('./helpers/ewLineStations')
+const ewLine = require('./helpers/ewLine')
 const circleLineStations = require('./helpers/circleLineStations')
+const circleLine = require('./helpers/circleLine')
 const neLineStations = require('./helpers/neLineStations')
+const neLine = require('./helpers/neLine')
 const dtLineStations = require('./helpers/dtLineStations')
+const dtLine = require('./helpers/dtLine')
 require('dotenv').config()
 
 mongoose.Promise = global.Promise
@@ -120,22 +125,62 @@ io.on('connection', function(socket){
         // console.log("Ignoring Retweets")
         }
         else {
-
           getLocalDate(data.statuses[i].created_at)
           // console.log(data.statuses[i])
           let textCheck = data.statuses[i].full_text
           // console.log(textCheck)
-          let ewChecker = [];
-          let nsChecker = [];
-          let neChecker = [];
-          let dtChecker = [];
-          let circleChecker = [];
-
+          let ewChecker = [], ewSChecker = [];
+          let nsChecker = [], nsSChecker = [];
+          let neChecker = [], neSChecker = [];
+          let dtChecker = [], dtSChecker = [];
+          let circleChecker = [], circleSChecker = [];
+          // TBR
           function lineCheck(station, checker){
             for (let a=0; a < station.length; a++){
               checker.push(textCheck.includes(station[a]))
             }
           }
+          // End of TBR
+
+          function newLineCheck(){
+            // For EW Line Check
+            for (let a = 0; a < ewLineStations.length; a++){
+              ewChecker.push(textCheck.includes(ewLineStations[a]))
+            }
+            for (let a = 0; a < ewLine.length; a++){
+              ewSChecker.push(textCheck.includes(ewLine[a]))
+            }
+            // For NS Line Check
+            for (let a = 0; a < nsLineStations.length; a++){
+              nsChecker.push(textCheck.includes(nsLineStations[a]))
+            }
+            for (let a = 0; a < nsLine.length; a++){
+              nsSChecker.push(textCheck.includes(nsLine[a]))
+            }
+            // For NE Line Check
+            for (let a = 0; a < neLineStations.length; a++){
+              neChecker.push(textCheck.includes(neLineStations[a]))
+            }
+            for (let a = 0; a < neLine.length; a++){
+              neSChecker.push(textCheck.includes(neLine[a]))
+            }
+            // For DT Line Check
+            for (let a = 0; a < dtLineStations.length; a++){
+              dtChecker.push(textCheck.includes(dtLineStations[a]))
+            }
+            for (let a = 0; a < dtLine.length; a++){
+              dtSChecker.push(textCheck.includes(dtLine[a]))
+            }
+            // For CC Line Check
+            for (let a = 0; a < circleLineStations.length; a++){
+              circleChecker.push(textCheck.includes(circleLineStations[a]))
+            }
+            for (let a = 0; a < circleLine.length; a++){
+              circleSChecker.push(textCheck.includes(circleLine[a]))
+            }
+          }
+
+          newLineCheck()
           // lineCheck(ewLineStations)
           // console.log(ewChecker)
 
@@ -145,44 +190,50 @@ io.on('connection', function(socket){
             tweetId: data.statuses[i].id,
             tweetDate: fromDate
           }
-          lineCheck(ewLineStations, ewChecker)
-          lineCheck(nsLineStations, nsChecker)
-          lineCheck(neLineStations, neChecker)
-          lineCheck(dtLineStations, dtChecker)
-          lineCheck(circleLineStations, circleChecker)
+          // lineCheck(ewLineStations, ewChecker)
+          // lineCheck(nsLineStations, nsChecker)
+          // lineCheck(neLineStations, neChecker)
+          // lineCheck(dtLineStations, dtChecker)
+          // lineCheck(circleLineStations, circleChecker)
           // console.log(lineCheck(ewLineStations, ewChecker))
           //
           // console.log(ewChecker.indexOf(true))
 
-          if(ewChecker.indexOf(true)>=0 && nsChecker.indexOf(true)<0){
+          if(ewChecker.indexOf(true)>=0 && nsSChecker.indexOf(true)<0 && circleSChecker.indexOf(true)<0 && neSChecker.indexOf(true)<0 && dtSChecker.indexOf(true)<0){
             // console.log('ew')
+            // allChecker['ew'] = ewChecker
+            // console.log(allChecker)
+            // allChecker = {}
+            // console.log(ewLineStations)
+            // console.log(textCheck.includes(ewLine))
+            // console.log(ewSChecker)
             ewTweets.push(newTweet)
             socket.ewtweet = ewTweets;
             socket.emit('loadewtweets', {tweet: socket.ewtweet})
             ewTweets = [];
           }
-          if(nsChecker.indexOf(true)>=0){
+          if(nsChecker.indexOf(true)>=0 && ewSChecker.indexOf(true)<0 && circleSChecker.indexOf(true)<0 && neSChecker.indexOf(true)<0 && dtSChecker.indexOf(true)<0){
             // console.log('ns')
             nsTweets.push(newTweet)
             socket.nstweet = nsTweets;
             socket.emit('loadnstweets', {tweet: socket.nstweet})
             nsTweets = [];
           }
-          if(neChecker.indexOf(true)>=0){
+          if(neChecker.indexOf(true)>=0 && nsSChecker.indexOf(true)<0 && circleSChecker.indexOf(true)<0 && ewSChecker.indexOf(true)<0 && dtSChecker.indexOf(true)<0){
             // console.log('ne')
             neTweets.push(newTweet)
             socket.netweet = neTweets;
             socket.emit('loadnetweets', {tweet: socket.netweet})
             neTweets = [];
           }
-          if(dtChecker.indexOf(true)>=0){
+          if(dtChecker.indexOf(true)>=0 && nsSChecker.indexOf(true)<0 && circleSChecker.indexOf(true)<0 && neSChecker.indexOf(true)<0 && ewSChecker.indexOf(true)<0){
             // console.log('dt')
             dtTweets.push(newTweet)
             socket.dttweet = dtTweets;
             socket.emit('loaddttweets', {tweet: socket.dttweet})
             dtTweets = [];
           }
-          if(circleChecker.indexOf(true)>=0){
+          if(circleChecker.indexOf(true)>=0 && nsSChecker.indexOf(true)<0 && ewSChecker.indexOf(true)<0 && neSChecker.indexOf(true)<0 && dtSChecker.indexOf(true)<0){
             // console.log('circle')
             circleTweets.push(newTweet)
             socket.circletweet = circleTweets;

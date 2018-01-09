@@ -8,11 +8,44 @@ $(document).ready(function(){
   let circle = $('#circle')
   let others = $('#others')
   let aw;
-  let okDisplay = $('.okDisplay')
+  let ewDisplay = $('#ewOk')
+  let nsDisplay = $('#nsOk')
+  let neDisplay = $('#neOk')
+  let dtDisplay = $('#dtOk')
+  let circleDisplay = $('#circleOk')
+  let allDisplay = $('#allOk')
 
-  // setTimeout(function(){
-  //   okDisplay.show()
-  // }, 2000)
+
+  setTimeout(function(){
+    // okDisplay.show()
+    if(document.getElementById("ew").getElementsByTagName("li").length < 2){
+      // console.log('meow')
+      ewDisplay.show()
+    }
+    if(document.getElementById("ns").getElementsByTagName("li").length < 2){
+      // console.log('meow')
+      nsDisplay.show()
+    }
+    if(document.getElementById("ne").getElementsByTagName("li").length < 2){
+      // console.log('meow')
+      neDisplay.show()
+    }
+    if(document.getElementById("dt").getElementsByTagName("li").length < 2){
+      // console.log('meow')
+      dtDisplay.show()
+    }
+    if(document.getElementById("circle").getElementsByTagName("li").length < 2){
+      // console.log('meow')
+      circleDisplay.show()
+    }
+    if(document.getElementById("others").getElementsByTagName("li").length < 2){
+      // console.log('meow')
+      allDisplay.show()
+    }
+  }, 3000)
+
+
+
   // aw = document.getElementById('announce')
   aw = document.querySelector('.scroll')
   aw.scrollTop = aw.scrollHeight;
