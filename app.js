@@ -3,7 +3,7 @@ const path = require('path');
 const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const express = require('express');
-const validator = require('express-validator');
+const expressValidator = require('express-validator');
 const multer = require('multer');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session); // https://github.com/jdesboeufs/connect-mongo
@@ -37,7 +37,23 @@ app.use(session({
 
 
 // =============== express validator =============== look into it again ===============
-app.use(validator());
+app.use(expressValidator({
+customValidators: {
+    isImage: function(value, filename) {
+
+        var extension = (path.extname(filename)).toLowerCase();
+        switch (extension) {
+            case '.jpg':
+                return '.jpg';
+            case '.jpeg':
+                return '.jpeg';
+            case  '.png':
+                return '.png';
+            default:
+                return false;
+        }
+    }
+}}));
 
 
 // =============== passport ===============

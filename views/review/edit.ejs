@@ -7,59 +7,59 @@
 <form action="/review/edit/<%= data._id %>" method="POST">
 
   <div class="col s12">
-    <label for="title">Title</label>
-    <input id="title" type="text" name="title" value="<%= data.title%>">
-  </div>
+<label for="title">Title</label>
+<input id="title" type="text" name="title" value="<%= data.title %>">
+</div>
 
 <div class="col s12">
-    <label for="location">Location</label>
-    <input id="location" type="text" name="location" value="<%= data.location %>">
-  </div>
+<label for="location">Location</label>
+<input id="location" type="text" name="location" value="<%= data.location %>">
+</div>
 
 <div class="col s12">
-    <label for="review">Review</label>
-    <textarea id="review" class="materialize-textarea" name="review"><%= data.review %></textarea>
-  </div>
+<label for="review">Review</label>
+<textarea id="review" class="materialize-textarea" name="review"><%= data.review %></textarea>
+</div>
 
-  <div class="input-field col s8">
+<div class="input-field col s8">
 <select name="quality">
 <% for (var i = 0; i <= 5; i++) { %>
-  <% if (i == 0) { %>
-    <option value="" disabled>Choose your option >> (1 star) = Bland, (5 star) = Tasty</option>
-  <% } else if (i == data.rating.quality) { %>
-    <option value="<%= i %>" selected><%= i %> Star</option>
-  <% } else { %>
-    <option value="<%= i %>"><%= i %> Star</option>
-  <% } } %>
+<% if (i == 0) { %>
+<option value="" disabled>Choose your option >> (1 star) = Bland, (5 star) = Tasty</option>
+<% } else if (i == data.rating.quality) { %>
+<option value="<%= i %>" selected><%= i %> Star</option>
+<% } else { %>
+<option value="<%= i %>"><%= i %> Star</option>
+<% } } %>
 </select>
 <label>Quality</label>
 </div>
 
-  <div class="input-field col s8">
+<div class="input-field col s8">
 <select name="quantity">
-  <% for (var i = 0; i <= 5; i++) { %>
-    <% if (i == 0) { %>
-      <option value="" disabled>Choose your option >> (1 star) = Little, (5 star) = Plenty</option>
-    <% } else if (i == data.rating.quantity) { %>
-      <option value="<%= i %>" selected><%= i %> Star</option>
-    <% } else { %>
-      <option value="<%= i %>"><%= i %> Star</option>
-    <% } } %>
+<% for (var i = 0; i <= 5; i++) { %>
+<% if (i == 0) { %>
+  <option value="" disabled>Choose your option >> (1 star) = Little, (5 star) = Plenty</option>
+<% } else if (i == data.rating.quantity) { %>
+  <option value="<%= i %>" selected><%= i %> Star</option>
+<% } else { %>
+  <option value="<%= i %>"><%= i %> Star</option>
+<% } } %>
 </select>
 <label>Quantity</label>
 </div>
 
 
-  <div class="input-field col s8">
+<div class="input-field col s8">
 <select name="price">
-  <% for (var i = 0; i <= 5; i++) { %>
-    <% if (i == 0) { %>
-      <option value="" disabled>Choose your option >> (1 star) = Overpriced, (5 star) = Reasonable</option>
-    <% } else if (i == data.rating.price) { %>
-      <option value="<%= i %>" selected><%= i %> Star</option>
-    <% } else { %>
-      <option value="<%= i %>"><%= i %> Star</option>
-    <% } } %>
+<% for (var i = 0; i <= 5; i++) { %>
+<% if (i == 0) { %>
+  <option value="" disabled>Choose your option >> (1 star) = Overpriced, (5 star) = Reasonable</option>
+<% } else if (i == data.rating.price) { %>
+  <option value="<%= i %>" selected><%= i %> Star</option>
+<% } else { %>
+  <option value="<%= i %>"><%= i %> Star</option>
+<% } } %>
 </select>
 <label>Price</label>
 </div>

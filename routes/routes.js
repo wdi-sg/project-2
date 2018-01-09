@@ -15,6 +15,7 @@ const extraController = require('../controllers/extraController');
 // =============== local module ===============
 const helper = require('../helpers/helperFunction');
 
+
 // ===============  base route  ===============
 router.get('/', helper.hasLogged, baseController.home);
 router.get('/profile/:id', helper.ensureAuthenticated, baseController.profile);
