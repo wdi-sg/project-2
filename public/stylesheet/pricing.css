@@ -90,6 +90,15 @@ a.pure-menu-link{
   height: 600px;
 }
 
+.okDisplay {
+  display: none;
+  font-size: 40px;
+  height: 200px;
+  width: auto;
+  text-align: center;
+  vertical-align: middle;
+}
+
 /*
  * -- line TABLE WRAPPER --
  * This element wraps up all the line table elements

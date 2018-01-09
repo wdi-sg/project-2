@@ -109,7 +109,7 @@ function getLocalDate(date){
 io.on('connection', function(socket){
   console.log('Socket Connection Active')
 
-  let query = 'Smrt OR SMRT OR smrt train delay OR fault OR disruption, -press, -parody, '
+  let query = 'Smrt OR SMRT OR smrt train OR track delay OR fault OR disruption OR , -press, -parody, '
 
     tweet.get('search/tweets', {q: query, count: 50, tweet_mode:'extended', result_type:'recent'}, function(err, data, res){
       if(err)(console.log(err))
@@ -135,7 +135,7 @@ io.on('connection', function(socket){
             }
           }
           // lineCheck(ewLineStations)
-          // console.log(checker)
+          // console.log(ewChecker)
 
           let newTweet = {
             tweetUser: '@' + data.statuses[i].user.screen_name,
@@ -150,63 +150,44 @@ io.on('connection', function(socket){
           lineCheck(circleLineStations, circleChecker)
           // console.log(lineCheck(ewLineStations, ewChecker))
           //
-          // console.log(dtChecker.indexOf(true))
-          if(ewChecker.indexOf(true)>=0){
+          // console.log(ewChecker.indexOf(true))
+
+          if(ewChecker.indexOf(true)>=0 && nsChecker.indexOf(true)<0){
             // console.log('ew')
             ewTweets.push(newTweet)
-            if(ewTweets != [])
-            {socket.ewtweet = ewTweets;
+            socket.ewtweet = ewTweets;
             socket.emit('loadewtweets', {tweet: socket.ewtweet})
-            ewTweets = [];}
-            else {
-              socket.emit('loadewok')
-            }
+            ewTweets = [];
           }
-          else if(nsChecker.indexOf(true)>=0){
+          if(nsChecker.indexOf(true)>=0){
             // console.log('ns')
             nsTweets.push(newTweet)
-            if(nsTweets != [])
-            {socket.nstweet = nsTweets;
+            socket.nstweet = nsTweets;
             socket.emit('loadnstweets', {tweet: socket.nstweet})
-            nsTweets = [];}
-            else {
-              socket.emit('loadnsok')
-            }
+            nsTweets = [];
           }
-          else if(neChecker.indexOf(true)>=0){
+          if(neChecker.indexOf(true)>=0){
             // console.log('ne')
             neTweets.push(newTweet)
-            if(neTweets != [])
-            {socket.netweet = neTweets;
+            socket.netweet = neTweets;
             socket.emit('loadnetweets', {tweet: socket.netweet})
-            neTweets = [];}
-            else {
-              socket.emit('loadneok')
-            }
+            neTweets = [];
           }
-          else if(dtChecker.indexOf(true)>=0){
+          if(dtChecker.indexOf(true)>=0){
             // console.log('dt')
             dtTweets.push(newTweet)
-            if(dtTweets != [])
-            {socket.dttweet = dtTweets;
+            socket.dttweet = dtTweets;
             socket.emit('loaddttweets', {tweet: socket.dttweet})
-            dtTweets = [];}
-            else {
-              socket.emit('loaddtok')
-            }
+            dtTweets = [];
           }
-          else if(circleChecker.indexOf(true)>=0){
+          if(circleChecker.indexOf(true)>=0){
             // console.log('circle')
             circleTweets.push(newTweet)
-            if(circleTweets != [])
-            {socket.circletweet = circleTweets;
+            socket.circletweet = circleTweets;
             socket.emit('loadcircletweets', {tweet: socket.circletweet})
-            circleTweets = [];}
-            else {
-              socket.emit('loadcircleok')
-            }
+            circleTweets = [];
           }
-          else{
+          if(ewChecker.indexOf(true)<0 && nsChecker.indexOf(true)<0 && neChecker.indexOf(true)<0 && dtChecker.indexOf(true)<0 && circleChecker.indexOf(true)<0){
             newTweets.push(newTweet)
             socket.tweet = newTweets;
             socket.emit('loadtweets', {tweet: socket.tweet})
