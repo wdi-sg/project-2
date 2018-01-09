@@ -1,10 +1,36 @@
 <div class="tabs">
   <ul>
-    <li class="is-active analyze"><a>Analyzed Results</a></li>
-    <li class="search"><a>Search Results</a></li>
+    <li class="is-active saved"><a>Saved Combinations</a></li>
+    <li class="analyze"><a>Locations with Close Proximity</a></li>
+    <li class="search"><a>Searched Locations</a></li>
   </ul>
 </div>
 
+<!-- saved combinations -->
+<div class="savedresult-container">
+  {{#each savedList}}
+    <div id="{{_id}}">
+      <div class="result-title is-size-3">
+        {{item}}
+      </div>
+
+      <div class="grid-container">
+        {{#each result}}
+          <div>
+            {{#each sortedList}}
+              <p>{{name}}</p>
+              <p>{{address1}}</p>
+              <p>{{address2}}</p>
+              <br>
+            {{/each}}
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+<!-- analyzed results -->
 <div class="analyzedresult-container">
   {{#each analyzedList}}
     <div id="{{_id}}">
@@ -30,6 +56,7 @@
   {{/each}}
 </div>
 
+<!-- search results -->
 <div class="searchresult-container">
   {{#each searchList}}
     <div id="{{_id}}">

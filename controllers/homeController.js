@@ -68,7 +68,7 @@ exports.search = (req, res) => {
 
       if (itemArray.length > 1) {
         // analyze results
-        console.log(displayArray);
+        // console.log(displayArray);
         var displaySortedArray = analysis.sortResult(displayArray);
 
         // render or display results

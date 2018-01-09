@@ -1,6 +1,7 @@
 // models
 const SearchList = require('../models/searchList');
 const AnalyzedList = require('../models/analyzedList');
+const SavedList = require('../models/savedList');
 const User = require('../models/user');
 
 
@@ -16,7 +17,13 @@ exports.result = (req, res) => {
     .exec((err, analyzedResult) => {
       if (err) console.log(err);
 
-      res.render('savedResults', {'searchList': searchResult, 'analyzedList': analyzedResult});
+      SavedList.find({username: req.params.id})
+      .populate('username')
+      .exec((err, savedResult) => {
+        if (err) console.log(err);
+
+        res.render('savedResults', {'searchList': searchResult, 'analyzedList': analyzedResult, 'savedList': savedResult});
+      });
     });
   });
 };
@@ -85,5 +92,29 @@ exports.deleteAnalyzed = (req, res) => {
   AnalyzedList.remove(query, (err) => {
     if (err) console.log(err);
     console.log("deleted from analyzedList");
+  });
+};
+
+
+// create, save combinations which user chooses
+exports.saveAnalyzed = (req, res) => {
+  // console.log(req.params.id);
+  // console.log(req.body);
+  SavedList.findOne({username: req.params.id, item: req.body.item}, (err, data) => {
+    if (err) console.log(err);
+    if (data) {
+      data.result.push({'sortedList': req.body.sortedList, 'range': req.body.range});
+
+      data.save((err, updatedData) => {
+        if (err) console.log(err);
+        console.log(updatedData);
+      });
+    } else {
+      SavedList.create({
+        item: req.body.item,
+        result: {'sortedList': req.body.sortedList, 'range': req.body.range},
+        username: req.params.id
+      });
+    }
   });
 };

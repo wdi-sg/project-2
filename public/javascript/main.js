@@ -45,16 +45,36 @@ $(document).ready(function() {
   $(".search").on("click", function() {
     $(".searchresult-container").fadeIn(800).css("display", "block");
     $(".analyzedresult-container").fadeOut(800).css("display", "none");
+    $(".savedresult-container").fadeOut(800).css("display", "none");
     $(".search").addClass("is-active");
     $(".analyze").removeClass("is-active");
+    $(".saved").removeClass("is-active");
+
+    $(".search-container").fadeIn(800).css("display", "block");
+    $(".analyzed-container").fadeOut(800).css("display", "none");
   });
 
 
   $(".analyze").on("click", function() {
     $(".searchresult-container").fadeOut(800).css("display", "none");
     $(".analyzedresult-container").fadeIn(800).css("display", "block");
+    $(".savedresult-container").fadeOut(800).css("display", "none");
     $(".search").removeClass("is-active");
     $(".analyze").addClass("is-active");
+    $(".saved").removeClass("is-active");
+
+    $(".search-container").fadeOut(800).css("display", "none");
+    $(".analyzed-container").fadeIn(800).css("display", "block");
+  });
+
+
+  $(".saved").on("click", function() {
+    $(".searchresult-container").fadeOut(800).css("display", "none");
+    $(".analyzedresult-container").fadeOut(800).css("display", "none");
+    $(".savedresult-container").fadeIn(800).css("display", "block");
+    $(".search").removeClass("is-active");
+    $(".analyze").removeClass("is-active");
+    $(".saved").addClass("is-active");
   });
 
 
@@ -70,6 +90,7 @@ $(document).ready(function() {
 
   // ajax request to handle delete request from anchor tags
   $(".delete-search").on("click", function(e) {
+    e.preventDefault();
     var id = $(this).data("id");
     $("#" + id).fadeOut(800);
 
@@ -85,7 +106,9 @@ $(document).ready(function() {
     });
   });
 
+
   $(".delete-analyzed").on("click", function(e) {
+    e.preventDefault();
     var id = $(this).data("id");
     $("#" + id).fadeOut(800);
 
@@ -99,6 +122,45 @@ $(document).ready(function() {
         console.log(data);
       }
     });
+  });
+
+
+  // ajax request to handle post request when user chooses combinations to save
+  $(".analyzedsave").on("click", function(e) {
+    // obtaining information from rendered page
+    e.preventDefault();
+    var user = $(this).data("id");
+    var range = $(this).data("range");
+    // console.log(range);
+    var indivArray = $(this).children("p");
+    var locationArray = [];
+    // console.log(indivArray[0].innerText);
+    for (var element = 0; element < (indivArray.length / 3); element++) {
+      var location = {
+        name: indivArray[element * 3].innerText,
+        address1: indivArray[element * 3 + 1].innerText,
+        address2: indivArray[element * 3 + 2].innerText,
+      };
+      locationArray.push(location);
+    }
+    // console.log(locationArray);
+    var search = ($(this).parent().prev()[0].innerText);
+
+    $.ajax({
+      url: '/save/analyzed/' + user,
+      type: 'post',
+      data: {'item': search, 'sortedList': locationArray, 'range': range},
+      success: function(data) {
+        console.log(data);
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    });
+
+    $(this).children("i").css("display", "none");
+    $(this).append("<span class='icon has-text-success'></span>");
+    $(this).children("span").append("<i class='fa fa-check-square'></i>");
   });
 
 

@@ -32,5 +32,6 @@ router.post('/profile/:id', loginBlock.isLoggedIn, userController.change);
 router.get('/result/:id', loginBlock.isLoggedIn, userController.result);
 router.delete('/delete/search/:id', userController.deleteSearch);
 router.delete('/delete/analyzed/:id', userController.deleteAnalyzed);
+router.post('/save/analyzed/:id', userController.saveAnalyzed);
 
 module.exports = router;

@@ -32,15 +32,16 @@
   flex-direction: column;
   text-align: center;
   justify-content: center;
+  align-items: center;
 }
 .grid-container > div:nth-of-type(odd){
   background-color: rgb(219, 219, 219);
 }
-.searchresult-container{
+.searchresult-container, .analyzedresult-container, .search-container{
   display: none;
 }
-.nodisplay{
-  display: none;
+.analyzedsave:hover{
+  cursor: pointer;
 }
 
 /* flash messages */
