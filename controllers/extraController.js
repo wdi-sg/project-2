@@ -36,7 +36,6 @@ module.exports.write = function(req, res) {
     comment: req.body.comment
   }}}, function(err, data) {
     if (err) throw err;
-    console.log(data);
       req.flash('blue', 'Added comment');
       res.sendStatus(200);
   });
@@ -48,7 +47,6 @@ module.exports.delete = function(req, res) {
 
   Review.findByIdAndUpdate(req.query.reviewId, { $pull: { comments: { _id: req.params.id }}}, function(err, data) {
     if (err) throw err;
-    console.log(data);
     req.flash('red', 'Removed comment')
       res.sendStatus(200);
   });

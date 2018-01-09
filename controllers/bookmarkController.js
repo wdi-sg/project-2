@@ -29,7 +29,6 @@ module.exports.add = function(req, res) {
     } else {
       newBookmark.save(function(err) {
         if (err) throw err;
-        console.log(newBookmark);
         req.flash('light-blue', 'Bookmark added');
         res.redirect('/fullreview/' + req.params.id);
       });

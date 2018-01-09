@@ -66,10 +66,8 @@ let newUser = new User({
   bcrypt.hash(newUser.password, saltRounds, function(err, hash) {
     if (err) throw err;
   newUser.password = hash;
-  console.log(newUser);
   newUser.save(function(err, saved) {
     if (err) throw err;
-    console.log(saved);
     req.flash('green', 'User has been created');
     res.redirect('/login');
   });

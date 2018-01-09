@@ -25,8 +25,7 @@ module.exports.addPost = function(req, res) {
   req.checkBody('quantity', 'Rating for quantity is required').notEmpty();
   req.checkBody('price', 'Rating for price is required').notEmpty();
   req.checkBody('photo', 'Please upload a photo').isImage(gotPhoto);
-  console.log(gotPhoto);
-console.log(req.body);
+
   let errors = req.validationErrors();
   if (errors) {
     res.render('review/add', {
