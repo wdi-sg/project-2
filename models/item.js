@@ -7,7 +7,7 @@ const itemSchema = new Schema({
     required: true // This field MUST be filled in
   },
   price : {
-    type: Number, //price must be a number
+    type: String, //price must be a number
     required: true
   },
   total_stock : {

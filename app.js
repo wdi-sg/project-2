@@ -55,7 +55,7 @@ app.use(express.static(path.join(__dirname, 'public'))); // this means all stati
 //This inits the promise
 mongoose.Promise = global.Promise
 //Promises return either success(In this case, it's then) or failure(In this case, err)
-mongoose.connect('mongodb://localhost/bookstore', { useMongoClient : true })
+mongoose.connect('mongodb://localhost/items', { useMongoClient : true })
 .then(
   ()=>{
     console.log(" -- mongoose ok -- ")
@@ -67,7 +67,6 @@ mongoose.connect('mongodb://localhost/bookstore', { useMongoClient : true })
 
 //Routes
 const index = require('./routes/routes')
-// const index = require('./routes/routes.js')
 
 app.use('/', index)
 

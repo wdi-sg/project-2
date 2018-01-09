@@ -1,26 +1,73 @@
-{{#if success_msg}}
-<div class="alert alert-success"> {{ success_msg }} </div>
-{{/if}}
+<div class="container mainCont">
+
+  <div class="leftCont">
+    <div class="leftTitles">
+      Customers
+      &nbsp;<input type="text" placeholder="Search..">
+    </div>
+
+    <div class="leftView">
+      {{#if success_msg}}
+      <div class="alert alert-success"> {{ success_msg }} </div>
+      {{/if}}
 
 
-{{#each customers}}
+      {{#each customers}}
+        <div class="customerBox">
+          <p>Unique ID: {{ _id }}</p>
+          <p>Full Name: {{ firstName}} {{ lastName}}</p>
+          <p>Room Number: {{ roomNumber}}</p>
+          <p>4-digit Passcode: {{ passcode }}</p>
+          <p>Trip Start: {{ tripStart }}</p>
+          <p>Trip End: {{ tripEnd }}</p>
+        </div>
+      {{/each}}
 
-{{ _id }}
+
+      <!-- This is the original, edit here and paste over to layouts/customers.handlebars -->
+      <!-- There is another one in layouts/customers.handlebars -->
+
+    </div>
+  </div>
 
 
+  <div class="rightCont">
+    <div class="rightTitles">
+      Add Customer
+    </div>
+    <div class="rightView">
 
-  <a href="/customers/show/{{_id}}">{{ firstName }} {{ lastName}}</a>
 
-{{/each}}
+      <form action="/customers" method="post">
+
+        <label for="firstName">First Name</label><br>
+        <input type="text" name="firstName" value="" placeholder="First Name">
+        <br><br><br>
+
+        <label for="lastName">Last Name</label><br>
+        <input type="text" name="lastName" value="" placeholder="Last Name">
+        <br><br><br>
+
+        <label for="roomNumber">Room Number</label><br>
+        <input type="text" name="roomNumber" value="" placeholder="01">
+        <br><br><br>
+
+        <label for="passcode">4-digit Passcode</label><br>
+        <input type="text" name="passcode" value="" placeholder="1234">
+        <br><br><br>
 
 
-<div class="customerBox">
-  <p class="customerDetails">Unique ID: {{ _id }}</p>
-  <p class="customerDetails">Full Name: {{ firstName}} {{ lastName}}</p>
-  <p class="customerDetails">Room Number: {{ roomNumber}}</p>
-  <p class="customerDetails">4-digit Passcode: {{ passcode }}</p>
-  <p class="customerDetails">Trip Date: {{ tripStart }} - {{ tripEnd }}</p>
-</div>
+        <label for="tripStart">Trip Start Date</label><br>
+        <input type="date" name="tripStart" value="">
+        <br><br><br>
 
-<!-- This is the original, edit here and paste over to layouts/customers.handlebars -->
-<!-- There is another one in layouts/customers.handlebars -->
+        <label for="tripEnd">Trip End Date</label><br>
+        <input type="date" name="tripEnd" value="">
+        <br><br><br>
+
+      <!-- Still have to input all the items purchased and total price when viewing customers  -->
+
+        <input type="submit" name="submit"/>
+      </form>
+    </div>
+  </div>

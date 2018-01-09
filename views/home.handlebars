@@ -1,2 +1,47 @@
-THIS IS HOME <br>
-Default Home Index
+<div class="container mainCont">
+
+  <div class="leftCont">
+    <div class="leftTitles">
+      Items List
+      &nbsp;<input type="text" placeholder="Search..">
+    </div>
+
+    <div class="leftView">
+
+        {{#each items}}
+          <div class="itemBox">
+            <img src="/style/img/placeholder.png">
+            <p>{{ name }}</p>
+            <p>SGD${{ price}}</p>
+            <button type="submit" class="btn btn-default addOrderBtn" data-name="{{ name }}" data-price="{{ price }}" data-id="{{ _id }}">Add To Cart</button>
+          </div>
+        {{/each}}
+
+    </div>
+  </div>  <!-- End leftCont -->
+
+  <div class="rightCont">
+    <div class="rightTitles">
+      Order
+    </div>
+    <div class="rightView">
+      <form action="/palceholder/new" method="post">
+
+        <!-- Customer Dropdown -->
+        <select>
+          {{#each customers}}
+            <option value="volvo">{{ firstName}} {{lastName}}</option>
+          {{/each}}
+        </select>
+
+        <!-- Item Div -->
+        <div class="itemList">
+        </div>
+
+
+        <br>
+        <input type="submit" name="Place Order"/>
+        <!-- <input class="addQuantity" type="number" value="1" min="0"> -->
+      </form>
+    </div>
+  </div>

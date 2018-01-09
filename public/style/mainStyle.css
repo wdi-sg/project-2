@@ -40,8 +40,9 @@ footer {
 
 .customerBox {
   background-color: #D7CEC7;
-  width: 97%;
-  margin: 5px auto;
+  height: 150px;
+  width: 95%;
+  margin: 10px auto;
   padding: 5px;
   color: #76323F;
   font-size: 14px;
@@ -52,18 +53,26 @@ footer {
   border-radius: 10px;
 }
 
-span.custInfo{
-  color: #000000;
-  font-size: 16px;
-}
 
 
-.titles{
+.leftTitles{
   text-align: left;
   color: #FFF;
   font-size: 20px;
   background-color: #76323F;
   padding: 5px 0 5px 15px;
+  width: 100%;
+  height: 40px;
+}
+
+.rightTitles{
+  text-align: left;
+  color: #FFF;
+  font-size: 20px;
+  background-color: #76323F;
+  padding: 5px 0 5px 15px;
+  width: 100%;
+  height: 40px;
 }
 
 
@@ -75,17 +84,21 @@ span.custInfo{
 }
 
 .rightView{
+  display: flex;
   background-color: #565656;
-  height: 78vh;
+  min-height: 78vh;
   width: 300px;
-  margin-left: 10px;
+  /* flex-wrap: wrap; */
 }
 
 .leftView{
+  display: flex;
   background-color: #565656;
-  height: 78vh;
+  min-height: 78vh;
   width: 750px;
   margin-right: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
 
 }
 
@@ -113,4 +126,46 @@ a:visited {
 
 a{
 
+}
+
+
+.itemBox{
+  min-width: 160px;
+  min-height: 160px;
+  text-align: center;
+  background-color: #D7CEC7;
+  margin: 5px;
+  padding: 5px;
+  color: #76323F;
+  font-size: 14px;
+  /* flex: 1; */
+
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border: 3px solid #fff;
+  border-radius: 10px;
+  flex-wrap: wrap;
+}
+
+.leftCont{
+  width: 750px;
+  margin-right: 15px;
+}
+
+.rightCont{
+  width: 300px;
+  margin-left: 15px;
+}
+
+.addQuantity{
+  /* This is the width of the number input inside order's singleitem */
+  width: 3em;
+}
+
+.singleItem{
+  /* This defo has to change */
+  border: 3px solid #000;
+  background-color: white;
+  width: 200px;
+  height: 100px;
 }
