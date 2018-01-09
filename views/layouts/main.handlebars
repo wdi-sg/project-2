@@ -30,6 +30,35 @@
       </ul>
   </div>
 
+  {{#if errors}}
+      {{#each errors as |e|}}
+          <div class="alert alert-danger alert-dismissable fade in">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong>Error!</strong> {{e.msg}}
+          </div>
+      {{/each}}
+  {{/if}}
+
+
+  {{#if alerts.error}}
+        {{#each alerts.error as |msg|}}
+        <div class="alert alert-danger alert-dismissable fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> {{msg}}
+        </div>
+
+        {{/each}}
+    {{/if}}
+
+  {{#if alerts.success}}
+      {{#each alerts.success as |msg|}}
+          <div class="alert alert-success alert-dismissable fade in">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong>Success!</strong> {{msg}}
+          </div>
+      {{/each}}
+  {{/if}}
+
   {{{ body }}}
 
 </body>

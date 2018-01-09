@@ -20,7 +20,7 @@ exports.create = (req, res) => {
   console.log(errors);
   if(errors){
     req.flash('errorMessage', 'Could not create announcement')
-    res.redirect('/home')
+    res.redirect('/announce')
   }
   else{
     Announcement.create({
@@ -29,7 +29,7 @@ exports.create = (req, res) => {
     }, (err, createdAnnouncement) => {
       if(err){
         req.flash('error', 'Could not create announcement')
-        req.redirect('home', { user: req.user })
+        req.redirect('/announce', { user: req.user })
       }
       else{
           res.redirect('/announce')
@@ -61,8 +61,8 @@ exports.postedit = (req, res) => {
 
 exports.delete = (req, res) => {
   let id = { _id : req.params.id }
-  let uid = { _id : req.user.id }
-  console.log(uid)
+  // let uid = { _id : req.user.id }
+  // console.log(uid)
   Announcement.deleteOne(id, (err, result) => {
     if(err){
       return err
@@ -71,14 +71,14 @@ exports.delete = (req, res) => {
       res.sendStatus(200)
     }
   })
-  User.deleteOne(uid, (err, result) => {
-    if(err){
-      return err
-    }
-    else{
-      res.sendStatus(200)
-    }
-  })
+  // User.deleteOne(uid, (err, result) => {
+  //   if(err){
+  //     return err
+  //   }
+  //   else{
+  //     res.sendStatus(200)
+  //   }
+  // })
 }
 
 exports.announce = (req, res) => {

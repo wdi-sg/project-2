@@ -195,9 +195,6 @@ io.on('connection', function(socket){
           // lineCheck(neLineStations, neChecker)
           // lineCheck(dtLineStations, dtChecker)
           // lineCheck(circleLineStations, circleChecker)
-          // console.log(lineCheck(ewLineStations, ewChecker))
-          //
-          // console.log(ewChecker.indexOf(true))
 
           if(ewChecker.indexOf(true)>=0 && nsSChecker.indexOf(true)<0 && circleSChecker.indexOf(true)<0 && neSChecker.indexOf(true)<0 && dtSChecker.indexOf(true)<0){
             // console.log('ew')

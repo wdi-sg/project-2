@@ -7,9 +7,9 @@ require('dotenv').config()
 // Twitter Login Auth
 
 passport.use(new TwitterStrategy({
-    consumerKey: process.env.TWITTER_CONSUMER_KEY,
-    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-    callbackURL: process.env.TWITTER_CALLBACK_URL_LIVE
+    consumerKey: process.env.LOCAL_CONSUMER_KEY,
+    consumerSecret: process.env.LOCAL_CONSUMER_SECRET,
+    callbackURL: process.env.TWITTER_CALLBACK_URL_LOCAL
   },
   function(token, tokenSecret, profile, done) {
 
