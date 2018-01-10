@@ -89,7 +89,6 @@ $(document).ready(function() {
         console.log(err);
       }
     });
-
   });
 
 
@@ -111,11 +110,10 @@ $(document).ready(function() {
   });
 
 
+// remove error messages
 $('#errors').on('click', 'i', function() {
   $(this).parent().remove();
 });
-
-
 
 
 

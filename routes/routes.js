@@ -34,13 +34,12 @@ router.post('/signup', authController.signupPost);
 router.get('/review/add', helper.ensureAuthenticated, reviewController.add);
 router.post('/review/add/:id', upload.single('photo'), reviewController.addPost);
 router.get('/review/edit/:id', helper.ensureAuthenticated, reviewController.edit);
-router.post('/review/edit/:id', reviewController.editPost);
+router.put('/review/edit/:id', reviewController.editPost);
 router.delete('/review/delete/:id', reviewController.delete);
 
 
 // ===============  bookmark route  ===============
 router.post('/bookmark/add/:id', bookmarkController.add);
-// router.post('/bookmark/edit', bookmarkController.edit);
 router.delete('/bookmark/delete/:id', bookmarkController.delete);
 
 
@@ -49,6 +48,8 @@ router.get('/extra/like/:id', extraController.like);
 router.post('/extra/write/:id', extraController.write);
 router.delete('/extra/delete/:id', extraController.delete);
 
+
+// ===============  404 error route  ===============
 router.get('*', baseController.error);
 
 

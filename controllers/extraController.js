@@ -1,10 +1,8 @@
 const Review = require('../models/review');
-const ObjectId = require('mongoose').Types.ObjectId;
 
 
 
 module.exports.like = function(req, res) {
-
 let isFound = false;
 
   Review.findById(req.params.id, function(err, review) {
@@ -30,7 +28,6 @@ let isFound = false;
 
 
 module.exports.write = function(req, res) {
-
   Review.findByIdAndUpdate(req.params.id, { $push: { comments: {
     username: req.body.username,
     comment: req.body.comment
@@ -44,7 +41,6 @@ module.exports.write = function(req, res) {
 
 
 module.exports.delete = function(req, res) {
-
   Review.findByIdAndUpdate(req.query.reviewId, { $pull: { comments: { _id: req.params.id }}}, function(err, data) {
     if (err) throw err;
     req.flash('red', 'Removed comment')

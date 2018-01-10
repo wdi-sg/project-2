@@ -1,15 +1,14 @@
 <% include ../partials/header %>
+
 <h3><%= profile.firstname %> <%= profile.lastname %></h3>
   <div class="row">
     <div class="col s3">
-
       <img src="<%= profile.profilePic %>">
       <h5><%= profile.username %></h5>
       <% if (profile._id.toString() == user._id.toString()) { %>
       <a href="/review/add" class="waves-effect waves-light btn"><i class="material-icons">create</i> review</a>
     <% } %>
     </div>
-
 
     <div class="col s9">
       <ul class="tabs">
@@ -22,7 +21,6 @@
         <%  review.reverse().forEach(function(item) { %>
           <div class="row">
             <div class="col s5">
-              <!-- need to change the img src -->
               <a href="/fullreview/<%= item._id %>">
               <img src="<%= item.photo %>" alt="">
           </a>

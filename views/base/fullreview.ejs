@@ -1,6 +1,5 @@
 <% include ../partials/header %>
 
-
   <h5>Review by <strong><%= data.userId.firstname %> <%= data.userId.lastname %></strong>
     <span class="right">
     <%  if (user._id.toString() !== data.userId._id.toString()) { %>
@@ -12,7 +11,6 @@
     </span>
   </h5>
 
-
   <div class="row">
     <div class="col s4">
       <img src="<%= data.photo %>" alt="">
@@ -22,10 +20,7 @@
       </div>
     </div>
 
-
-
     <div class="col s8">
-
       <h4 class="review-title"><%= data.title%></h4>
       <p class="review-para">
         <%= data.date %>
@@ -34,8 +29,8 @@
         <%= data.review %>
       </p>
       <div class="divider"></div>
-
       <h4>Rating</h4>
+
       <div class="row center-align">
         <div class="col s4 rating-star">
           <h5>Quality</h5>
@@ -83,22 +78,21 @@
       <!-- writing comment -->
       <h4>Comments</h4>
       <div>
-        <%  data.comments.forEach(function(item) { %>
-          <%  if (data.userId.username == user.username) { %>
+        <% data.comments.forEach(function(item) { %>
+          <% if (data.userId.username == user.username) { %>
             <a href="/extra/delete/<%= item._id %>?reviewId=<%= data._id %>" class="delete-comment right"><i class="material-icons">close</i></a>
             <p><strong class="blue-text"><%= item.username %> </strong>
               <%= item.comment %>
             </p>
-            <%  } else if (item.username == user.username){ %>
+            <% } else if (item.username == user.username){ %>
               <a href="/extra/delete/<%= item._id %>?reviewId=<%= data._id %>" class="delete-comment right"><i class="material-icons">close</i></a>
               <p><strong class="blue-text"><%= item.username %> </strong>
                 <%= item.comment %>
               </p>
-              <%    } else { %>
+              <% } else { %>
                 <p><strong class="blue-text"><%= item.username %> </strong>
                   <%= item.comment %>
                 </p>
-
                 <% } }); %>
       </div>
 

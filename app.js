@@ -10,6 +10,7 @@ const MongoStore = require('connect-mongo')(session); // https://github.com/jdes
 const messages = require('express-messages');
 const PORT = process.env.PORT || 3000;
 const passport = require('./config/passport');
+const methodOverride = require('method-override');
 const app = express();
 require('dotenv').config();
 
@@ -58,7 +59,6 @@ customValidators: {
 
 
 // =============== passport ===============
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -71,6 +71,10 @@ app.use(function (req, res, next) {
   res.locals.googleApi = process.env.GOOGLE_API;
   next();
 });
+
+
+// =============== method override ===============
+app.use(methodOverride('_method'))
 
 
 // =============== routes ===============

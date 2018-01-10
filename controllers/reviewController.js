@@ -14,9 +14,7 @@ module.exports.add = function(req, res) {
 
 
 module.exports.addPost = function(req, res) {
-
   let gotPhoto = typeof req.file !== "undefined" ? req.file.originalname : '';
-
 
   req.checkBody('title', 'Title is required').notEmpty();
   req.checkBody('location', 'Location is required').notEmpty();
@@ -54,12 +52,12 @@ module.exports.addPost = function(req, res) {
         },
         userId: req.params.id
       });
+
       newReview.save(function(err) {
         if (err) throw err;
         req.flash("green", "Review successfully created");
         res.redirect('/profile/' + req.user._id);
       });
-
     });
   }
 };
@@ -67,7 +65,6 @@ module.exports.addPost = function(req, res) {
 
 
 module.exports.edit = function(req, res) {
-
   Review.findById(req.params.id, function(err, result) {
     if (err) {
       res.render('base/404');
@@ -82,7 +79,6 @@ module.exports.edit = function(req, res) {
 
 
 module.exports.editPost = function(req, res) {
-
     let quality = parseInt(req.body.quality);
     let quantity = parseInt(req.body.quantity);
     let price = parseInt(req.body.price);
@@ -104,7 +100,6 @@ module.exports.editPost = function(req, res) {
       req.flash("green", "Review successfully edited");
       res.redirect('/fullreview/' + req.params.id);
     });
-
 };
 
 
