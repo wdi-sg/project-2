@@ -9,8 +9,9 @@
     </div>
     <div class="col-sm-7 mx-auto">
       <h4>List of Trips</h4>
+      <br>
       {{#each results}}
-      <a href="/trip/main?id={{_id}}">{{tripName}}</a>
+      <a class="btn btn-outline-dark btn-lg btn-block" href="/trip/main?id={{_id}}">{{tripName}}</a>
       <br>
       {{/each}}
     </div>

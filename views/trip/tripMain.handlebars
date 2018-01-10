@@ -3,14 +3,14 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-2">
-      <a href="/home" class="btn btn-info">Manage Trips</a>
+      <a href="/home" class="btn btn-info">Trips</a>
     </div>
     <div class="col-sm-10">
       <div class="tripDetails">
       <input type="hidden" id="tripId" value="{{results._id}}">
       Trip Name : {{results.tripName}}<br>
       Country : {{results.country}}<br>
-      City : {{results.city}}<br>
+      {{#if results.city}}City : {{results.city}}<br>{{/if}}
       Date From : {{results.dateFrom}}<br>
       Date To : {{results.dateTo}}<br>
       </div>
@@ -32,6 +32,7 @@
     </div>
     <!-- List of Locations -->
     <div class="col-sm-4 mx-auto">
+      {{#if results2}}
       <br>
       Location List
         <form method="post" action="/location/delete">
@@ -42,15 +43,66 @@
         </div>
         {{/each}}
         <br>
-        {{#if results2}}
         <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-        {{/if}}
         </form>
+        {{/if}}
     </div>
   </div>
+  <!--Itinerary-->
+  {{#if results2}}
+  <div class="row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-10">
+      <br>
+      <h5>Itinerary</h5>
+      <form method="post" action="/location/delete">
+      <fieldset disabled>
+        <label for="daysSelect">Day</label>
+        <select class="form-control" name="daysSelect">
+        </select>
+        <label for="timesSelect">Time</label>
+        <select class="form-control" name="timesSelect">
+          <option value="00:00">00:00 (12:00 midnight)</option>
+          <option value="01:00">01:00 (1:00 am)</option>
+          <option value="02:00">02:00 (2:00 am)</option>
+          <option value="03:00">03:00 (3:00 am)</option>
+          <option value="04:00">04:00 (4:00 am)</option>
+          <option value="05:00">05:00 (5:00 am)</option>
+          <option value="06:00">06:00 (6:00 am)</option>
+          <option value="07:00">07:00 (7:00 am)</option>
+          <option value="08:00">08:00 (8:00 am)</option>
+          <option value="09:00">09:00 (9:00 am)</option>
+          <option value="10:00">10:00 (10:00 am)</option>
+          <option value="11:00">11:00 (11:00 am)</option>
+          <option value="12:00" selected>12:00 (12:00 pm)</option>
+          <option value="13:00">13:00 (1:00 pm)</option>
+          <option value="14:00">14:00 (2:00 pm)</option>
+          <option value="15:00">15:00 (3:00 pm)</option>
+          <option value="16:00">16:00 (4:00 pm)</option>
+          <option value="17:00">17:00 (5:00 pm)</option>
+          <option value="18:00">18:00 (6:00 pm)</option>
+          <option value="19:00">19:00 (7:00 pm)</option>
+          <option value="20:00">20:00 (8:00 pm)</option>
+          <option value="21:00">21:00 (9:00 pm)</option>
+          <option value="22:00">22:00 (10:00 pm)</option>
+          <option value="23:00">23:00 (11:00 pm)</option>
+          <option value="24:00">24:00 (12:00 midnight)</option>
+        </select>
+        <label for="locationsSelect">Locations</label>
+        <select class="form-control" name="locationsSelect">
+          {{#each results2}}
+          <option value="{{locationName}}">{{locationName}}</option>
+          {{/each}}
+        </select>
+        <br>
+        <button class="btn btn-success btn-sm float-right" type="submit">Add</button>
+      </fieldset>
+      </form>
+    </div>
+  </div>
+  {{/if}}
 </div>
 
-<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9low9dmdmIMtPdB294IA1W1rjJPaufC8&callback=initMap"></script> -->
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9low9dmdmIMtPdB294IA1W1rjJPaufC8&libraries=places&callback=initAutocomplete" async defer></script> -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9low9dmdmIMtPdB294IA1W1rjJPaufC8&libraries=places"></script>
 <script src="/javascript/script.js"></script>

@@ -6,8 +6,9 @@ exports.new = (req,res) => {
 }
 
 exports.create = (req,res) => {
+  console.log(req.body.countrySelect)
   req.checkBody('tripName', 'Trip Name cannot be empty').notEmpty()
-  req.checkBody('country', 'Country cannot be empty').notEmpty()
+  req.checkBody('countrySelect', 'Country cannot be empty').notEmpty()
   req.checkBody('dateFrom', 'Starting Date cannot be empty').notEmpty()
   req.checkBody('dateTo', 'End Date cannot be empty').notEmpty()
   let errors = req.validationErrors()
@@ -17,7 +18,7 @@ exports.create = (req,res) => {
   else {
     Trip.create({
       tripName : req.body.tripName,
-      country : req.body.country,
+      country : req.body.countrySelect,
       city : req.body.city,
       dateFrom : req.body.dateFrom,
       dateTo : req.body.dateTo,
@@ -66,3 +67,24 @@ exports.main = (req,res) => {
     res.redirect('/home')
   }
 }
+
+// function daysBetween(startDate, endDate){
+//   let d1 = new Date(startDate);
+//   let d2 = new Date(endDate);
+//   return (d2-d1)/(1000*3600*24);
+// }
+//
+// function datesBetween(startDate, endDate){
+//   let dates = []
+//   let currentDate = startDate
+//   let addDays = function(days) {
+//     let date = new Date(this.valueOf());
+//     date.setDate(date.getDate() + days);
+//     return date;
+//   };
+//   while (currentDate <= endDate) {
+//     dates.push(currentDate);
+//     currentDate = addDays.call(currentDate, 1);
+//   }
+//   return dates;
+// }
