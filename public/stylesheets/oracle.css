@@ -3,7 +3,7 @@
 }
 
 #stalks-container {
-	display: inline-flex;
+	display: flex;
 	padding: 1rem;
 }
 
@@ -14,6 +14,85 @@
 
 .stalk-container-is-centered {
 	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.display-data {
+	width: 100%;
+	text-align: center;
+	border: none;
+	background: none;
+	padding: 0;
+	margin: 0;
+}
+
+.table-is-centered {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.has-query-field {
+	min-width: 500px;
+}
+
+.centers-query-section {
+	display: flex;
 	flex-direction: row;
 	justify-content: center;
+}
+
+.is-query-field {
+	text-align: center;
+}
+
+#Line-1, #Line-2, #Line-3, #Line-4, #Line-5, #Line-6 {
+	font-weight: bolder;
+}
+
+@media only screen and (min-width: 415px) and (max-width: 540px) {
+	.has-query-field {
+		min-width: 100%;
+	}
+}
+@media only screen and (min-width: 376px) and (max-width: 414px) {
+	.stalk {
+		max-width: 7px;
+	}
+	.gap {
+		width: 12px;
+	}
+	.has-query-field {
+		min-width: 100%;
+	}
+}
+
+
+@media only screen and (min-width: 321px) and (max-width: 375px) {
+	.stalk {
+		max-width: 7px;
+	}
+	.gap {
+		width: 12px;
+	}
+	.has-query-field {
+		min-width: 100%;
+	}
+}
+
+
+@media only screen and (max-width: 320px) {
+	#brand {
+		max-width: 80%;
+	}
+	.stalk {
+		max-width: 5px;
+	}
+	.gap {
+		width: 12px;
+	}
+	.has-query-field {
+		min-width: 100%;
+	}
 }

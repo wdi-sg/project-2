@@ -1,42 +1,4 @@
-/*
-
-# Hexagram Routine
-
-1. Go through three rounds of Line Routine to the obtain a line.
-	- Only stalks sorted in fours are used for the next round.
-2. Obtain six lines to form a hexagram.
-
-# Line Routine
-
-Do this routine thrice to obtain a line in the hexagram.
-
-1. Split into two piles.
-
-2. Take one out from right pile.
-
-3. (a) Sort each pile into fours and set aside the remainder.
-   (b) If the pile can be sorted into fours without leftovers, then remainder is 4.
-
-4. (a) Add up and set aside the following:
-		- remainder from left pile, 
-		- remainder from right pile, and
-		- the one taken out in step 2.
-
-   (b) They should add up to:
-		- 9 or 5 in the first round, or
-		- 8 or 4 in the second and round.
-
-Gather the sorted fours and use them for the next round.
-
-## After three rounds of Line Routine
-
-1. (a) Count the sets of sorted fours remaining to get determine the line obtained.
-   (b) There should be 6, 7, 8 or 9 sets of sorted fours.
-
-2. Check that stalks aside from all three rounds and the sorted fours add up to 49 stalks.
-
-
-*/
+// Note: See the bottom on how a hexagram from the yarrow stalk oracle is obtained
 
 // Data Structure for the Divination Record
 var divination = {
@@ -81,16 +43,12 @@ var divination = {
 			array: [Number, Number, Number, Number, Number, Number],
 			string: String,
 			object: {
-				line1: Number,
-				line2: Number,
-				line3: Number,
-				line4: Number,
-				line5: Number,
-				line6: Number
+				line1: Number, line2: Number, line3: Number,
+				line4: Number, line5: Number, line6: Number
 			}
 		}
 	},
-	result: {
+	reference: {
 
 	}
 }
@@ -139,11 +97,15 @@ $(document).ready(function() {
 		if (doesGapExist == 1) {
 			// Removes old gap from the prior position.
 			$('.gap').remove();
-			// Inserts a new gap at the new position hovered over.
-			$('#position-' + newGapPosition).after('<div id="gap-'+ newGapPosition + '" class="gap"></div>');
-			// Set new slider handle position from new gap.
-			$('#slider-bar').slider('value', newGapPosition);
+			// // Inserts a new gap at the new position hovered over.
+			// $('#position-' + newGapPosition).after('<div id="gap-'+ newGapPosition + '" class="gap"></div>');
+			// // Set new slider handle position from new gap.
+			// $('#slider-bar').slider('value', newGapPosition);
 		}
+		// Inserts a new gap at the new position hovered over.
+		$('#position-' + newGapPosition).after('<div id="gap-'+ newGapPosition + '" class="gap"></div>');
+		// Set new slider handle position from new gap.
+		$('#slider-bar').slider('value', newGapPosition);
 	}
 
 	function detectHover() {
@@ -160,7 +122,7 @@ $(document).ready(function() {
 		});
 	}
 
-	
+
 	// Initializes and appends the slider below the yarrow stalks
 	function initializeSlider(maximumValue, handlePositon) {
 		$('#has-slider-bar').append('<div id="slider-bar"></div>');
@@ -180,11 +142,11 @@ $(document).ready(function() {
 		});
 	}
 
-	// Tracks the progress of divination. 
+	// Tracks the progress of divination.
 	class Progress {
 		constructor() {
 			this.current = {
-				// Both starts from 1. 
+				// Both starts from 1.
 				round: 1,
 				line: 1
 			}
@@ -204,10 +166,13 @@ $(document).ready(function() {
 				if (this.current.line == 7) {
 					// Reset `currentLine` to 1
 					this.current.line = 1;
-					alert('Hexagram obtained.');
+					$('#stalks-container').off();
+					$('#is-submit-prompt').removeClass('is-invisible');
+					$('#is-split-button').prop('disabled', true);
+					$('#is-submit-button').prop('disabled', false);
 				}
 			}
-		}	
+		}
 	}
 
 	function captureSplit() {
@@ -272,10 +237,10 @@ $(document).ready(function() {
 		return twoRemainders;
 	}
 
-	function sortIntoFours(twoPiles, twoRemainders) {	 
+	function sortIntoFours(twoPiles, twoRemainders) {
 		let leftSetsOfFours = (twoPiles.left - twoRemainders.left) / 4;
 		let rightSetsOfFours = ((twoPiles.right - 1) - twoRemainders.right) / 4;
-		
+
 		let setsOfFour = {
 			left: leftSetsOfFours,
 			right: rightSetsOfFours,
@@ -290,9 +255,9 @@ $(document).ready(function() {
 		let remainingStalks = round.remainingStalks - stalksTakenOut;
 		let line;
 
-		if (progress.current.round == 4) {
+		if (progress.current.round == 3) {
 			line = setsOfFour.total;
-			console.log('Line: ' + line);
+			console.log('Obtained line ' + line);
 			divination.data.hexagram.array[progress.current.line - 1] = line;
 			console.log(divination.data.hexagram.array);
 		}
@@ -308,28 +273,36 @@ $(document).ready(function() {
 		return data;
 	}
 
-	function deriveData(hexagramArray) {
-		// Convert to binary string
-		// Convert to object
-		// Find hexagram name
-		// Find hexagram number
-		// Attach API parameters
-	}
 
-	var progress = new Progress();
-	var round = new Stalks();
-	initializeStalks(round.remainingStalks);
-	detectHover();
-	initializeSlider(round.stalksToSplit, round.gapPosition);
-	captureSplit();
+	function prepareNextRound(result) {
+
+		if (progress.current.round == 4) {
+			round = new Stalks()
+			addStalks();
+		} else {
+			round.remainingStalks = result.stalks.remaining;
+			round.stalksToSplit = round.remainingStalks - 2
+			round.gapPosition = Math.floor(round.remainingStalks / 2);
+			removeStalks(round.remainingStalks, round.gapPosition);
+		}
+
+		// $('#stalks-container').empty();
+		// initializeStalks(round.remainingStalks);
+		// $('slider-bar').slider('option', 'max', round.stalksToSplit);
+		$('slider-bar').slider('destroy');
+		initializeSlider(round.stalksToSplit, round.gapPosition);
+		detectHover();
+	}
 
 	function splitAndSort(split) {
 		console.log(progress);
 		var piles = splitIntoPiles(split, progress,rawData);
 		var remainders = determineRemainder(piles);
 		var fours = sortIntoFours(piles,remainders);
-		progress.nextRound();
 		var result = endOfRound(remainders, fours, progress);
+		updateTable(progress, piles, result);
+		progress.nextRound();
+
 		prepareNextRound(result);
 		progress.nextLine();
 		// console.log('Left and Right Piles');
@@ -338,30 +311,54 @@ $(document).ready(function() {
 		// console.log(remainders);
 		// console.log('Left and Right Sets of Fours');
 		// console.log(fours);
-		// console.log('Result at End of Round One');
-		// console.log(result);
+		console.log('Result at End of Round');
+		console.log(result);
 		// console.log('Updated Progress');
 		// console.log(progress);
 	}
 
-	function prepareNextRound(result) {
+	function removeStalks(remainingStalks, recenteredGap) {
+		let lastStalkPosition = Number($('.stalk-position').last().attr('id').split('-')[1]);
+		// let stalksToRemove = result.stalks.takenOut;
 
-		if (progress.current.round == 4) {
-			round = new Stalks()
-		} else {
-			round.remainingStalks = result.stalks.remaining;
-			round.stalksToSplit = round.remainingStalks - 2
-			round.gapPosition = Math.floor(round.remainingStalks / 2);
+		// Remove the stalk one by one from the last stalk on the right until only the stalks for the next round are left
+		for (let stalk = lastStalkPosition; stalk > remainingStalks; stalk--) {
+			$('#position-' + stalk).remove()
 		}
-
-		$('#stalks-container').empty();
-		initializeStalks(round.remainingStalks);
-		$('slider-bar').slider('destroy');
-		// $('slider-bar').slider('option', 'max', round.stalksToSplit);
-		initializeSlider(round.stalksToSplit, round.gapPosition);
-		detectHover()
+		// Recenter gap among the remaining stalks
+		maintainTheGap(recenteredGap);
 	}
 
+	function addStalks() {
+		let lastStalkPosition = Number($('.stalk-position').last().attr('id').split('-')[1]);
+		let nextStalkPosition = lastStalkPosition + 1;
+		let stalksToAdd = Stalks.inUse() - lastStalkPosition;
+		for (let stalk = nextStalkPosition; stalk <= Stalks.inUse(); stalk++) {
+			// Generate random number for CSS `padding-top` to be inserted to each `div` containing the yarrow stalk image.
+			let stalkPadding = Math.floor(Math.random() * 20);
+			let stalkDisplay = '<div id="position-' + stalk + '" class="stalk-position" style="padding-top: ' + stalkPadding + 'px;"><img id="stalk-'+ stalk +'" class="stalk" src="/images/yarrow_stalk.svg"></div>';
+			// Append required number of yarrow stalks with randomized CSS `padding-top`.
+			$('#stalks-container').append(stalkDisplay);
+		}
+		// Recenter gap
+		maintainTheGap(round.gapPosition);
+	}
+
+	function updateTable(progress, piles, result) {
+		let line = progress.current.line;
+		let round = progress.current.round;
+		let left = piles.left;
+		let right = piles.right;
+		let value = result.line;
+		console.log(line)
+		console.log(round)
+		$('#L' + line + '-S' + round + '-L').val(left);
+		$('#L' + line + '-S' + round + '-R').val(right);
+
+		if (round == 3) {
+			$('#Line-' + line).val(value);
+		}
+	}
 
 	class Hexagram {
 		constructor(array) {
@@ -370,24 +367,12 @@ $(document).ready(function() {
 			this.line2 = array[1];
 			this.line3 = array[2];
 			this.line4 = array[3];
-			this.line5 = array[4];			
+			this.line5 = array[4];
 			this.line6 = array[5];
 		}
 		string() {
-			let hexagramString = "";
-			for (let line = 0; line < this.array.length; line++) {
-				switch (this.array[line]) {
-					case 6:
-					case 8:
-						hexagramString += 2;
-						break;
-				    case 7:
-				    case 9:
-						hexagramString += 1;
-						break;
-				}
-			}
-			return hexagramString;
+			let string = this.array.join("");
+			return string;
 		}
 		object() {
 			let object = {
@@ -419,30 +404,81 @@ $(document).ready(function() {
 			}
 			return number;
 		}
-	}
-
-	// $('.stalk-position').each(function(index, object){
-		// console.log(index);
-		// console.log(object);
-	// });
-
-	function removeStalks() {
-		let lastStalkPosition = $('.stalk-position').last().attr('id').split('-')[1];
-		let stalksToRemove = lastStalkPosition - result.stalks.takenOut;
-
-		for (let stalk = lastStalkPosition; stalk < lastStalkPosition - stalksToRemove; stalk--) {
-			$('position-' + stalk).remove()
-		}
-
-		// Recenter gap
-	}
-
-	function addStalks() {
-		let lastStalkPosition = $('.stalk-position').last().attr('id').split('-')[1];
-		let stalksToAdd = Stalks.inUse() - lastStalkPosition;
-
-		for (let stalk = lastStalkPosition; stalk <= Stalk.InUse(); stalk++) {
-			$('stalks-container').append();
+		binary() {
+			let array = this.array.map(function(line) {
+				switch (line) {
+					case 6:
+					case 8:
+						return 2;
+					case 7:
+					case 9:
+						return 1;
+				}
+			});
+			let string = array.join("");
+			return string;
 		}
 	}
+
+	function deriveData(hexagramArray) {
+		// Find hexagram name
+		// Find hexagram number
+		// Attach API parameters
+	}
+
+	function startQuery(){
+		if (!$('#query-field').val()) {
+			$('#query-field').val('?');
+		}
+		let query = $('#query-field').val();
+		$('#contains-query-field').hide();
+		$('#insert-query-here').append('<div id="contains-query" class="tile is-parent is-vertical"><p class="subtitle is-size-2 has-text-weight-light has-text-centered">' + query + '</p></div>')
+	}
+
+	$('#start-divination').click(startQuery);
+	var progress = new Progress();
+	var round = new Stalks();
+	initializeStalks(round.remainingStalks);
+	detectHover();
+	initializeSlider(round.stalksToSplit, round.gapPosition);
+	captureSplit();
 });
+
+/*
+
+# Hexagram Routine
+
+1. Go through three rounds of Line Routine to obtain a line.
+	- Only stalks sorted in fours are used for the next round.
+2. Obtain six lines to form a hexagram.
+
+# Line Routine
+
+Do this routine thrice to obtain a line in the hexagram.
+
+1. Split into two piles.
+
+2. Take one out from right pile.
+
+3. (a) Sort each pile into fours and set aside the remainder.
+   (b) If the pile can be sorted into fours without leftovers, then remainder is 4.
+
+4. (a) Add up and set aside the following:
+		- remainder from left pile,
+		- remainder from right pile, and
+		- the one taken out in step 2.
+
+   (b) They should add up to:
+		- 9 or 5 in the first round, or
+		- 8 or 4 in the second and round.
+
+Gather the sorted fours and use them for the next round.
+
+## After three rounds of Line Routine
+
+1. (a) Count the sets of sorted fours remaining to get determine the line obtained.
+   (b) There should be 6, 7, 8 or 9 sets of sorted fours.
+
+2. Check that stalks aside from all three rounds and the sorted fours add up to 49 stalks.
+
+*/

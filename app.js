@@ -15,8 +15,9 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const port = process.env.PORT || 3000;
 
-const routes = require('./routes/routes'); // Change to `db-config.js` before commiting to Github
+const routes = require('./routes/routes');
 const dbConfig = require('./config/db-config-actual.js');
+const sessionConfig = require('./config/session-config-actual.js');
 
 // Middlewares
 mongoose.Promise = global.Promise;
@@ -33,6 +34,33 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.engine('handlebars', expressHandlebars({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+
+// Create session
+app.use(session({
+	name: 'oracle-of-changes',
+	secret: sessionConfig.secret,
+	resave: false,
+	saveUninitialized: true,
+	cookie: { 
+		// secure: true,
+		maxAge: 604800000 // 7 days in milliseconds
+	}
+}));
+
+// Initialize Passport and restore authentication state, if any, from the session
+app.use(passport.initialize());
+// Get Passport tp piggy back off the Express's session to store data for authenticated users 
+app.use(passport.session());
+
+// Use connect-flash for flash messages stored in session
+app.use(flash());
+
+app.use((req, res, next) => {
+	// Before every route, attach the flash messages and current user to res.locals
+	res.locals.alerts =  req.flash();
+	res.locals.currentuser =  req.user;
+	next();
+});
 
 // Validator for Express
 app.use(expressValidator({

@@ -1,3 +1,3 @@
 module.exports = {
-	'url': /* Insert MongoDB URI */
+	'url': '' // Insert MongoDB URI
 }

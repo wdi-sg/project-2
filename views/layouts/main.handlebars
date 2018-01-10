@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
+
 		<title>Oracle of Changes</title>
-		
+
 		<!-- Font Awesome Icons from CDN -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -20,7 +20,7 @@
 
 		<!-- jQuery UI v1.12.1 from CDN -->
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-		
+
 		<!-- jQuery UI v1.12.1 from local folder -->
 		<link rel="stylesheet" type="text/css" href="/jquery-ui-1.12.1/jquery-ui.css">
 
@@ -30,11 +30,11 @@
 	<body>
 
 	<!-- START: Navigation Bar & Burger -->
-	<nav id="navbar" class="navbar is-fixed-top is-light">
+	<nav id="navbar" class="navbar is-fixed-top is-transparent">
 		<div id="specialShadow" class="special-shadow"></div>
 		<div class="container">
-			<div class="navbar-brand is-fixed-top">
-				<a class="navbar-item" href="/">
+			<div class="navbar-brand">
+				<a id="brand" class="navbar-item" href="/">
 					<img src="/images/navbar_brand.svg">
 				</a>
 				<div id="navbarBurger" class="navbar-burger" data-target="navMenu">
@@ -46,22 +46,36 @@
 			<div class="navbar-menu" id="navMenu">
 				<div class="navbar-start">
 					<a class="navbar-item" href="/consult">Consult</a>
-					<a class="navbar-item" href="#">Records</a>
-					<!-- <a class="navbar-item" href="#">Reference</a> -->
+					<!-- Show "Records" if signed in-->
+					{{#if currentuser }}
+					<a class="navbar-item" href="/records">Records</a>
+					{{else}}
+					{{/if}}
 				</div>
 				<div class="navbar-end">
-					<a class="navbar-item modal-button" data-target="signin" href="#">
+					<!-- Show "Sign out" button if signed in -->
+					{{#if currentuser}}
+					<a class="navbar-item modal-button" data-target="signout" href="/signout">
+						<span class="icon">
+							<i class="fa fa-sign-out"></i>
+						</span>
+						Sign out
+					</a>
+					<!-- If signed out, show "Sign in" and Sign up" buttons -->
+					{{else}}
+					<a class="navbar-item modal-button" data-target="signin">
 						<span class="icon">
 							<i class="fa fa-sign-in"></i>
 						</span>
 						Sign in
 					</a>
-					<a class="navbar-item modal-button" data-target="signup" href="#">
+					<a class="navbar-item modal-button" data-target="signup">
 						<span class="icon">
 							<i class="fa fa-user-plus"></i>
 						</span>
 						Sign up
 					</a>
+					{{/if}}
 				</div>
 			</div>
 		</div>
@@ -84,7 +98,7 @@
 					<div class="field">
 						<label class="label">Email</label>
 						<p class="control has-icons-left">
-							<input class="input" type="email" placeholder="Email">
+							<input class="input first-field" type="email" name="in_email" placeholder="Email">
 							<span class="icon is-small is-left">
 								<i class="fa fa-envelope"></i>
 							</span>
@@ -93,7 +107,7 @@
 					<div class="field">
 						<label class="label">Password</label>
 						<p class="control has-icons-left">
-							<input class="input" type="password" placeholder="Password">
+							<input class="input" type="password" name="in_password" placeholder="Password">
 							<span class="icon is-small is-left">
 								<i class="fa fa-lock"></i>
 							</span>
@@ -107,22 +121,22 @@
 						</p>
 					</div>
 					<div class="field">
-						<button class="button is-link is-fullwidth">
+						<a class="button is-info is-fullwidth" href="/twitter">
 							Sign in with Twitter
-						</button>
+						</a>
 					</div>
 				</div>
 			</section>
 			</form>
 			<footer class="modal-card-foot">
 				<div class="content">
-					<p>Or <a href="#" class="is-link toggle-other-form" data-target="signup">create an account</a></p>
+					<p>Or <a class="is-info toggle-other-form" data-target="signup">create an account</a></p>
 				</div>
 			</footer>
 		</div>
 	</div>
 	<!-- END: Sign In Modal -->
-	
+
 	<!-- START: Sign Up Modal -->
 	<div id="signup" class="modal">
 		<div class="modal-background"></div>
@@ -136,19 +150,19 @@
 				<div class="field">
 					<label class="label">First Name</label>
 					<div class="control">
-						<input class="input" type="text" placeholder="First name">
+						<input class="input first-field" type="text" name="up_firstname" placeholder="First name">
 					</div>
 				</div>
 				<div class="field">
 					<label class="label">Last Name</label>
 					<div class="control">
-						<input class="input" type="text" placeholder="Last name">
+						<input class="input" type="text" name="up_lastname" placeholder="Last name">
 					</div>
 				</div>
 				<div class="field">
 					<label class="label">Email</label>
 					<div class="control has-icons-left">
-						<input class="input" type="email" placeholder="Email">
+						<input class="input" type="email" name="up_email" placeholder="Email">
 						<span class="icon is-small is-left">
 							<i class="fa fa-envelope"></i>
 						</span>
@@ -157,7 +171,16 @@
 				<div class="field">
 					<label class="label">Password</label>
 					<p class="control has-icons-left">
-						<input class="input" type="password" placeholder="Password">
+						<input class="input" type="password" name="up_password" placeholder="Password">
+						<span class="icon is-small is-left">
+							<i class="fa fa-lock"></i>
+						</span>
+					</p>
+				</div>
+				<div class="field">
+					<label class="label">Confirm Password</label>
+					<p class="control has-icons-left">
+						<input class="input" type="password" name="up_confirm_password" placeholder="Confirm Password">
 						<span class="icon is-small is-left">
 							<i class="fa fa-lock"></i>
 						</span>
@@ -172,7 +195,7 @@
 				</div>
 				<div class="field">
 					<p class="control">
-						<a class="button is-info is-fullwidth" href="#">
+						<a class="button is-info is-fullwidth" href="/twitter">
 							Sign up with Twitter
 						</a>
 					</p>

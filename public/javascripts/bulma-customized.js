@@ -191,6 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				var $target = document.getElementById(target);
 				rootEl.classList.add('is-clipped');
 				$target.classList.add('is-active');
+				activateFirstTextField(target); // Customization
 			});
 		});
 	}
@@ -223,26 +224,68 @@ document.addEventListener('DOMContentLoaded', function () {
 	// =============
 
 	// =======================================================
-	// The following is my custom extension of the code above
+	// My custom extensions from the above code 
 	// 
 	// - Bottom link of sign up modal toggles the sign in form
 	// - Bottom link of sign in modal toggles the sign up form 
 	// =======================================================
 
 	var $toggleOtherForm = getAll('.toggle-other-form');
-	console.log($toggleOtherForm);
+
 	if ($toggleOtherForm.length > 0) {
 		$toggleOtherForm.forEach(function($el) {
 			$el.addEventListener('click', function() {
 				var target = $el.dataset.target;
-				console.log($el)
 				var $target = document.getElementById(target);
 				closeModals();
 				rootEl.classList.add('is-clipped');
 				$target.classList.add('is-active');
+				activateFirstTextField(target);
 			});
 		});
 	}
-	// $toggleOtherForm.addEventListener('click', function($el) {
-	// });
+
+	// ==============================================
+	// Set focus on the first text field in each form
+	// ==============================================
+
+	function activateFirstTextField(target){
+		$('#' + target).find('.first-field').focus();
+	}
+
+	// if ($firstTextField.length > 0) {
+	// 	$firstTextField.forEach(function($el) {
+	// 		$el.addEventListener
+	// 	});
+	// }
+
+	// ==============================================================
+	// Load sign up or sign in modal if relevant hash is found in URL
+	// ==============================================================
+
+	function loadModalFromURL() {
+		// Remove `#` from the hash string
+		let hash = window.location.hash.substring(1);
+
+		// Check if `hash` has a value, i.e., URL has hash
+		if (hash) {
+			// Toggle the modal called by the hash
+			$('#' + hash).addClass('is-active');
+			// Set the focus on the first text field in the form modal
+			activateFirstTextField(hash);
+			//  Remove `#signup` or `signin` from after adding `.is-active` CSS class
+			removeHashFromURL();
+		}
+
+	}
+
+	loadModalFromURL();
+
+	// ====================================
+	// Remove substrings after `#` from URL
+	// ====================================
+
+	function removeHashFromURL() {
+		history.pushState("", document.title, window.location.pathname + window.location.search);
+	}
 });
