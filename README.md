@@ -1,65 +1,81 @@
-# Your Project Name
+# Multi Business Locator
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+This is a new search engine which looks for multiple local businesses, such as restaurants, bookstores etc, simultaneously. Enter them in the search fields in decreasing order of priority.
+
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #2: Building Your First Full-stack Application
+
 
 ## Getting Started
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+### Link to application
+
+<https://chongct-project2.herokuapp.com/>
 
 ### Prerequisites
 
-What is needed to install and run the project, how do we install them
+Install Node.js and npm from <https://nodejs.org/en/>.
 
-```
-Code example
-```
+Install Yarn through Homebrew package manager using the command `brew install yarn`.
 
 ### How to Use
 
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+After cloning the project, run `yarn install` in command line to install the required dependencies listed in package.json.
 
+Create a .env file to store environment-specific variables.
 
-```
-Code example
-```
+Connect to a database hosted on mlab and obtain the URI.
 
-More steps...
+Request an API key from [Yelp](https://www.yelp.com.sg/singapore).
 
-```
-until finished
-```
-
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
-
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
-
-## Built With
-
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+---
 
 ## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+### Models
 
-## Authors
+![alt text](https://github.com/chongct/project-2/blob/master/images/models.png "Models")
 
-Did you collaborate with others on this project, list them here
+### Entity Relationship Diagram (ERD)
 
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+![alt text](https://github.com/chongct/project-2/blob/master/images/entity-relationship-diagram.png "ERD")
+
+### Wireframes
+
+The first four images show the wireframe templates used throughout the site.
+The last flow chart shows the routes that link the website pages.
+
+![alt text](https://github.com/chongct/project-2/blob/master/images/wireframe-search.png "Wireframe (Search feature)")
+
+![alt text](https://github.com/chongct/project-2/blob/master/images/wireframe-login.png "Wireframe (Login feature)")
+
+![alt text](https://github.com/chongct/project-2/blob/master/images/wireframe-routes.png "Wireframe (Routes)")
+
+### User Stories
+
+* As a user without a registered account, I want to be able to perform searches so that I can decide if I should sign up for an account.
+* As a user without a registered account, I also want to be able to have my results analyzed so that I can decide if I should sign up for an account.
+* As a user with a registered account, in addition to the benefits a user without a registered account is able to enjoy, I want to be able to save my search results and analyzed results so that I can refer to them in the future.
+
+---
+
+## Built With
+
+* HTML, CSS and JavaScript
+* CSS framework [Bulma](https://bulma.io/)
+* [jQuery](http://jquery.com/)
+* Node.js, Yarn, Express, Handlebars
+* API and data by [Yelp](https://www.yelp.com.sg/singapore)
+* Passport.js, Bcrypt, Flash messages, Express validator
+* MongoDB and Mongoose, hosted on mLab
+
+---
+
+## Areas to Improve on
+* Website pages design
+* Google Maps API
+
+---
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+* Family and friends for the inspirations and testing

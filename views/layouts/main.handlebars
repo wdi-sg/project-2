@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" class="has-navbar-fixed-top">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Multi Business Locator</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheet/stylesheet.css">
+
+</head>
+<body>
+  <nav class="navbar is-fixed-top is-light" role="navigation" aria-label="main navigation">
+    <button class="button navbar-burger" data-target="navMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="navbar-menu" id="navMenu">
+      <div class="navbar-end">
+        {{#if currentUser}}
+          <a class="navbar-item" href="/">Home</a>
+          <a class="navbar-item" href="/result/{{currentUser._id}}">Saved Results</a>
+          <a class="navbar-item" href="/profile/{{currentUser._id}}">Profile</a>
+          <a class="navbar-item" href="/logout">Logout</a>
+        {{else}}
+          <a class="navbar-item" href="/">Home</a>
+          <a class="navbar-item" href="/login">Login</a>
+          <a class="navbar-item" href="/register">Register</a>
+        {{/if}}
+      </div>
+    </div>
+  </nav>
+
+  <div class="flash">
+    <!-- from flash messages -->
+    {{#if alerts.success}}
+      {{#each alerts.success as |success|}}
+        <div class="notification is-success">
+          <button class="delete"></button>
+          <strong>{{success}}</strong>
+        </div>
+      {{/each}}
+    {{/if}}
+
+    {{#if alerts.error}}
+      {{#each alerts.error as |error|}}
+        <div class="notification is-danger">
+          <button class="delete"></button>
+          <strong>{{error}}</strong>
+        </div>
+      {{/each}}
+    {{/if}}
+
+    <!-- from express validator -->
+    {{#if errors}}
+      {{#each errors as |e|}}
+        {{#if @first}}
+          <div class="notification is-danger">
+            <button class="delete"></button>
+            <strong>{{e.msg}}</strong>
+          </div>
+        {{/if}}
+      {{/each}}
+    {{/if}}
+  </div>
+
+  <div class="user">
+    {{#if currentUser}}
+      <p class="is-size-5 is-size-5-touch has-text-dark">Welcome {{currentUser.firstName}} {{currentUser.lastName}}</p>
+    {{/if}}
+  </div>
+
+  <div class="container">
+    {{{body}}}
+  </div>
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        Created by <a href="https://github.com/chongct">chongct</a>.
+        API by <a href="https://www.yelp.com.sg/singapore">Yelp</a>.
+      </p>
+    </div>
+  </footer>
+
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+  <script src="/javascript/main.js"></script>
+  <script src="/javascript/validation.js"></script>
+
+</body>
+</html>

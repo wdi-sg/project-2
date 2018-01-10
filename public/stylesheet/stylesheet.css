@@ -1,0 +1,83 @@
+/* home page */
+.text{
+  padding: 20px;
+}
+.title{
+  margin: 10px 0px;
+}
+.search-form{
+  border: 2px solid rgb(255, 215, 0);
+  padding: 20px;
+  margin-top: 10px;
+  height: 570px;
+}
+.button{
+  margin-top: 20px;
+}
+
+/* result page */
+.result-title{
+  text-align: center;
+  margin: 10px 0;
+}
+.grid-container{
+  display: grid;
+  grid-template: auto / 25% 25% 25% 25%;
+  align-items: stretch;
+  grid-gap: 10px 10px;
+  grid-auto-flow: row;
+}
+.grid-container > div{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.grid-container > div:nth-of-type(odd){
+  background-color: rgb(219, 219, 219);
+}
+.searchresult-container, .analyzedresult-container, .search-container{
+  display: none;
+}
+.analyzedsave:hover{
+  cursor: pointer;
+}
+
+/* flash messages */
+.notification{
+  opacity: 0.4;
+}
+.flash{
+  position: absolute;
+  width: 100%;
+}
+.user{
+  position: absolute;
+  right: 0;
+  padding: 0 20px;
+}
+
+/* registration form */
+#firstNamePrompt, #lastNamePrompt, #emailPrompt, #usernamePrompt, #passwordPrompt, #passwordConfirmPrompt{
+  visibility: hidden;
+}
+
+/* responsive design */
+@media only screen and (max-width: 1023px) {
+  .search-form{
+    height: 900px;
+  }
+  .user{
+    position: relative;
+    top: 15px;
+    text-align: right;
+  }
+  .container{
+    margin-top: 10px;
+  }
+  .grid-container{
+    display: grid;
+    grid-template: auto / 50% 50%;
+  }
+}

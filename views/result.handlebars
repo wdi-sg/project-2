@@ -1,0 +1,49 @@
+<div class="tabs">
+  <ul>
+    <li class="analyze is-active"><a>Locations with Close Proximity</a></li>
+    <li class="search"><a>Searched Locations</a></li>
+  </ul>
+</div>
+
+<!-- analyzed results -->
+<div class="analyzed-container">
+  <div class="result-title is-size-3">
+    {{search}}
+  </div>
+
+  <div class="grid-container">
+    {{#each analyzedList}}
+      <div {{#if ../currentUser}} class="analyzedsave" data-id="{{../currentUser._id}}" {{/if}} data-range="{{range}}">
+        {{#each sortedList}}
+          <p>{{name}}</p>
+          <p>{{address1}}</p>
+          <p>{{address2}}</p>
+          <br>
+        {{/each}}
+        <!-- {{range}} -->
+        {{#if ../currentUser}}
+          <i class="fa fa-bookmark" aria-hidden="true" ></i>
+        {{/if}}
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+<!-- search results -->
+<div class="search-container">
+  {{#each searchList}}
+    <div class="result-title is-size-3">
+      {{indivItem}}
+    </div>
+
+    <div class="grid-container">
+      {{#each indivResult}}
+        <div>
+          <a href={{link}}><p>{{name}}</p></a>
+          <p>{{address1}}</p>
+          <p>{{address2}}</p>
+        </div>
+      {{/each}}
+    </div>
+  {{/each}}
+</div>
