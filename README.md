@@ -1,51 +1,76 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #2: Oracle of Changes
 
+## Live Version
+
+[Oracle of Changes](https://oracleofchanges.herokuapp.com) on Heroku
 <!-- This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects. -->
 
 ## Getting Started
-
 <!-- Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first. -->
 
 ### Prerequisites
-
 <!-- What is needed to install and run the project, how do we install them -->
+It is assumed you have Node.js and Yarn installed.
+
+Clone this project to a local machine or server. Then install the node modules as follows:
 
 ```
-Code example
+yarn install
 ```
+
+#### Sign in with Twitter
+
+For sign in with Twitter to work via `passport-twitter` package, register an application with Twitter at [Twitter Application Management](https://apps.twitter.com) to get a consumer key (API Key) and consumer secret (API Secret) and provide the actual callback URL. Then, add these to `config/twitter-config.js`.
+
+#### MongoDB
+
+Add the URL of your database to `config/db-config`.
 
 ### How to Use
 
-<!-- A step by step guide on how to install and use the project, for example if this is a game, how do we play it. -->
+1. Sign up for a local account, or sign in with Twitter. You will be signed in automatically after successfully creating an account or redirecting back from Twitter.
+2. Press Consult on the navigation bar to head to the Yarrow Stalk Oracle.
+3. Type in your query, then press Start.
+4. Follow your instinct and click on the gap between the stalks to split it.
+5. Three splits are needed to obtain a line, and six lines are needed to form a hexagram.
+6. Once completed, press Submit to receive full divination result, complete with the relevant text from the Book of Changes and the Forest of Changes, supplemented with English translation whenever available.
 
-```
-Code example
-```
-
-<!-- More steps... -->
-
-```
-until finished
-```
-
-## Live Version
-
-<!-- Where is this deployed online (github pages, heroku etc), give us the link and any access details we need. -->
+The sorting into fours and taking out of remainders after each split is automatically taken care of. The raw divination data is captured in the table, with every line obtained shown in the last column.
 
 ## Built With
 
 <!-- What did you use to build it, list the technologies, plugins, gems, packages etc. -->
 
+## Technologies
 - [Node.js](https://nodejs.org/)
-- [Bulma v0.6.1](https://bulma.io) (overall styling)
-- [jQuery UI v1.12.1](https://jqueryui.com) (slider bar widget)
-- [jQuery](http://jquery.com/) (yarrow stalk oracle)
+- [MongoDB](https://www.mongodb.com)
+- [Mongoose](http://mongoosejs.com/index.html)
+- [Heroku](https://www.heroku.com)
+- [mLabs](https://mlab.com)
+- [jQuery](http://jquery.com/)
 - JavaScript
 - CSS
 - HTML
 
-## Workflow
+## Node Packages
+- `bcrypt`
+- `body-parser`
+- `connect-flash`
+- `cookie-parser`
+- `express`
+- `express-handlebars`
+- `express-session`
+- `express-validator`
+- `mongoose:`
+- `passport`
+- `passport-local`
+- `passport-twitter`
 
+## CSS Framework
+- [Bulma v0.6.1](https://bulma.io)
+<!-- - [noUiSlider](https://refreshless.com/nouislider/) -->
+
+## Workflow
 <!-- Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here. -->
 
 ### Wireframes
@@ -70,7 +95,7 @@ Desktop and laptop users can hover their mouse cursors over the yarrow stalks an
 
 ![Consult page for bigger viewports](./documentation/wireframes/04_consult.png)
 
-The slider bar below the yarrow stalks is primarily intended for smartphone and tablet users as they will not be able to hover over the stalk and precisely choose where the spilt the stalks. With the slider bar, smartphone and tablet users will be able to split the stalk with the same precision as desktop and laptop users. 
+The slider bar below the yarrow stalks is primarily intended for smartphone and tablet users as they will not be able to hover over the stalk and precisely choose where the spilt the stalks. With the slider bar, smartphone and tablet users will be able to split the stalk with the same precision as desktop and laptop users.
 
 The yarrow stalks will resize to fit the width on smaller screens.
 
@@ -101,17 +126,17 @@ As a serious/committed user of the Oracle of Changes, I
 
 ## Acknowledgments
 
-- [Chinese Text Project](http://ctext.org/)
+- [Chinese Text Project](http://ctext.org/) API for providing the texts of the Book of Changes and Forest of Changes
 - [Bulma.io](https://bulma.io), apart from providing the CSS framework, for making possible the following JavaScript interactivity:
 	- Navigation burger button toggle and animation effect:
 		- Burger button toggles to close `✕` button and vice versa.
 	- Navigation burger menu dropdown effect,
 	- Navigation bar scrolling effects, including:
 		- Slide up to conceal while scrolling down the page,
-		- Slide down to reveal while scrolling up the page, and 
+		- Slide down to reveal while scrolling up the page, and
 		- Cast shadow when it is visible and fade out when top is reached
 	- Modal toggle
 - [Russell W. Cottrell, M.D.](http://www.russellcottrell.com/md/me.shtm) for his innovative [Virtual Yarrow Stalks](http://www.russellcottrell.com/VirtualYarrowStalks/).
-	- Instead of the coin toss method or relying on a random number generator, Dr. Cottrell's Virtual Yarrow Stalks features a brilliant workaround by simply laying the yarrow stalks in a neat row across the screen with an inserted gap to simulate the split. 
+	- Instead of the coin toss method or relying on a random number generator, Dr. Cottrell's Virtual Yarrow Stalks features a brilliant workaround by simply laying the yarrow stalks in a neat row across the screen with an inserted gap to simulate the split.
 	- I believe this is the best possible virtual counterpart to the physical spliting of yarrow stalks by hand. Dr. Cottrell's Virtual Yarrow Stalks substantially replicates the traditional yarrow stalk method by intelligently adapting to the constraints of the new medium.
 	- Additionally, unlike the coin toss method, this allows the uneven probabilities (6.25%, 31.25%, 43.75%, 18.75% respectively) of obtaining lines 6, 7, 8, and 9 to be retained.
