@@ -1,12 +1,40 @@
 <section class="section">
     <div class="container">
         <div class="content">
-            <p class="text">{{json.query}}</p>
-            <p id="hexagram" class="text">{{json.hexagram.original.number}}</p>
-            <p id="hexagram" class="text">{{json.hexagram.original.name.english}}</p>
-            <p id="hexagram" class="text">{{json.hexagram.resultant.number}}</p>
-            <p id="hexagram" class="text">{{json.hexagram.resultant.name.english}}</p>
-            <p id="result" class="text"></p>
+
+            <h1 class="title is-size-1">{{output.query}}</h1>
+
+            <h3 class="title is-size-3">Original Hexagram</h3>
+
+            <h2 class="title is-size-5"> Hexagram Number {{output.json.hexagram.original.number}}</h2>
+            {{#each output.json.hexagram.original.name}}
+            <p>{{this}}</p>
+            {{/each}}
+
+            {{#if output.json.hexagram.resultant}}
+            <h2 class="title is-size-3">Resultant Hexagram</h2>
+            {{/if}}
+
+            <p>{{output.json.hexagram.resultant.number}}</p>
+            {{#each output.json.hexagram.resultant.name}}
+            <p>{{this}}</p>
+            {{/each}}
+        </div>
+        <div id="reference" class="content">
+            <h1 class="title is-size-3">Reference</h1>
+            <ul>
+                {{#each output.json.text.yijing.entry}}
+                <li><a id="yijing-{{@key}}-{{@root.output.json.text.yijing.index}}" class="api" href="{{@root.output.json.text.yijing.url}}{{@root.output.json.text.yijing.urn}}/{{this}}">Yijing</a></li>
+                {{/each}}
+
+                {{#each output.json.text.yilin.entry}}
+                <li><a id="yilin-{{@key}}-{{@root.output.json.text.yilin.index}}" class="api" href="{{@root.output.json.text.yilin.url}}{{@root.output.json.text.yilin.urn}}/{{this}}">Yilin</a></li>
+                {{/each}}
+
+                {{#each output.json.parallel.entry}}
+                <li><a id="{{@key}}-{{@index}}" href="{{@root.output.json.parallel.url}}{{this}}">English</a></li>
+                {{/each}}
+            </ul>
         </div>
     </div>
 </section>
