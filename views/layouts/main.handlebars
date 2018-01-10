@@ -45,9 +45,10 @@
 			</div>
 			<div class="navbar-menu" id="navMenu">
 				<div class="navbar-start">
-					<a class="navbar-item" href="/consult">Consult</a>
-					<!-- Show "Records" if signed in-->
 					{{#if currentuser }}
+					<!-- Show "Consult" if signed in -->
+					<a class="navbar-item" href="/consult">Consult</a>
+					<!-- Show "Records" if signed in -->
 					<a class="navbar-item" href="/records">Records</a>
 					{{else}}
 					{{/if}}

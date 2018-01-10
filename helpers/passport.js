@@ -4,7 +4,7 @@ var TwitterStrategy = require('passport-twitter').Strategy;
 const User = require('../models/user');
 const twitter = require('../config/twitter-config-actual.js');
 
-// `serializeUser(…)` determines, which data of the user object should be stored in the session. 
+// `serializeUser(…)` determines, which data of the user object should be stored in the session.
 // Result of the serializeUser method is attached to the session as `req.session.passport.user = {…}`
 passport.serializeUser(function(user, done) {
 	console.log('Serializing User:');
@@ -14,7 +14,7 @@ passport.serializeUser(function(user, done) {
 	done(null, id);
 });
 
-// First argument of `deserializeUser(…)` corresponds to the key of the user object that was given to the done function of `serializeUser(…).` The whole object is retrieved with help of the key. 
+// First argument of `deserializeUser(…)` corresponds to the key of the user object that was given to the done function of `serializeUser(…).` The whole object is retrieved with help of the key.
 // The key here is the `user._id` (key can be any key of the user object i.e. name, email etc). In `deserializeUser(…)` that key is matched with the in-memory array or database etc.
 // Fetched object is attached to the request object as `req.user`
 passport.deserializeUser(function(id ,done) {
@@ -31,8 +31,8 @@ passport.deserializeUser(function(id ,done) {
 
 passport.use(new LocalStrategy({
 		// Enter the name attribute of the respective field as in the sign in form
-		usernameField: 'in_email',
-		passwordField: 'in_password',
+		usernameField: 'up_email',
+		passwordField: 'up_password',
 		passReqToCallback: true,
 	},
 	function(req, email, password, done) {
