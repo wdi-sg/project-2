@@ -31,6 +31,7 @@ router.get('/trip/main', isLoggedIn, tripController.main)
 
 //==================== Trip Control ====================
 router.post('/location/new', isLoggedIn, locationController.create)
+router.get('/location/getAllForTrip', isLoggedIn, locationController.getAllForTrip)
 
 //==================== 404 ====================
 router.get('*', authController.fourZeroFour)

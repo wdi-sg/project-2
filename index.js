@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser')
 const passport = require('passport')
 const flash = require('connect-flash')
 const fs = require('fs')
+const MongoStore = require('connect-mongo')(session)
 
 const port = process.env.PORT || 3000
 
@@ -43,7 +44,10 @@ app.set('view engine', 'handlebars')
 app.use(session({
   secret: 'tripcollabsecretsession!!!',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: new MongoStore({
+    url : dbConfig.urlLocal
+  })
 }))
 
 app.use(passport.initialize())

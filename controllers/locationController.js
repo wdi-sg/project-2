@@ -1,8 +1,6 @@
 const Location = require('../models/location')
 
 exports.create = (req,res) => {
-
-  console.log("locationControl start")
   Location.create(req.body, (err, trip) => {
     if (err) {
       console.log(err)
@@ -13,6 +11,20 @@ exports.create = (req,res) => {
       req.flash('success', 'Location added')
       res.end('{"success" : "Location added", "status" : 200}')
       // res.redirect('/trip/main')
+    }
+  }) //end err
+}
+
+exports.getAllForTrip = (req,res) => {
+  Location.find({
+    tripId: req.query.id
+  }).exec((err, trip) => {
+    if (err) {
+      console.log(err)
+      res.end('{"error" : "getAllForTrip", "status" : 200}')
+    } else {
+      res.send(trip)
+      res.end('{"success" : "getAllForTrip", "status" : 200}')
     }
   }) //end err
 }
