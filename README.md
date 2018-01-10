@@ -1,8 +1,12 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 2: Yummy Thoughts
 
+## Overview
+
 This is a food review site for users to share yummy food and give their thoughts.
 
 ## Live Version
+
+https://yummythoughts.herokuapp.com/
 
 ## User stories
 As a User, I want to
@@ -50,6 +54,8 @@ As a User, I want to
 ### Bookmark Modal
 <img src="/public/readme_img/Wireframe-09.jpg" width="600">
 
+## Features
+
 ## Built With
 
 * HTML5
@@ -63,7 +69,7 @@ As a User, I want to
 * Cloudinary
 * Materialize
 * mLab
-* Heroku Cloud Server
+* Heroku
 
 ## Future Developments
 
