@@ -1,5 +1,7 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #2: Oracle of Changes
 
+<p align="center"><img src="./public/images/navbar_brand.svg"/></p>
+
 ## Live Version
 
 [Oracle of Changes](https://oracleofchanges.herokuapp.com) on Heroku
@@ -12,7 +14,7 @@
 <!-- What is needed to install and run the project, how do we install them -->
 It is assumed you have Node.js and Yarn installed.
 
-Clone this project to a local machine or server. Then install the node modules as follows:
+Clone this project to a local machine or server. Then install the node modules:
 
 ```
 yarn install
@@ -20,19 +22,31 @@ yarn install
 
 #### Sign in with Twitter
 
-For sign in with Twitter to work via `passport-twitter` package, register an application with Twitter at [Twitter Application Management](https://apps.twitter.com) to get a consumer key (API Key) and consumer secret (API Secret) and provide the actual callback URL. Then, add these to `config/twitter-config.js`.
+For sign in with Twitter to work via `passport-twitter` node package:
+1. Register an application with Twitter at [Twitter Application Management](https://apps.twitter.com) to receive a consumer key (API Key) and a consumer secret (API Secret).
+2. Provide the actual callback URL to Twitter.
+3. Lastly, add these to `config/twitter-config.js`.
 
 #### MongoDB
 
 Add the URL of your database to `config/db-config`.
 
-### How to Use
+### How to Use the Oracle of Changes
 
-1. Sign up for a local account, or sign in with Twitter. You will be signed in automatically after successfully creating an account or redirecting back from Twitter.
+1. Sign up for a local account, or sign up with Twitter. You will be signed in after successfully creating an account or authentication with Twitter.
 2. Press Consult on the navigation bar to head to the Yarrow Stalk Oracle.
+
+<p align="center"><img src="./documentation/readme/1.gif"/></p>
+
 3. Type in your query, then press Start.
 4. Follow your instinct and click on the gap between the stalks to split it.
+
+<p align="center"><img src="./documentation/readme/2.gif"/></p>
+
 5. Three splits are needed to obtain a line, and six lines are needed to form a hexagram.
+
+<p align="center"><img src="./documentation/readme/3.gif"/></p>
+
 6. Once completed, press Submit to receive full divination result, complete with the relevant text from the Book of Changes and the Forest of Changes, supplemented with English translation whenever available.
 
 The sorting into fours and taking out of remainders after each split is automatically taken care of. The raw divination data is captured in the table, with every line obtained shown in the last column.
