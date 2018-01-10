@@ -13,6 +13,7 @@ const passport = require('./config/passport');
 const app = express();
 require('dotenv').config();
 
+
 // =============== local module ===============
 // const database = require('./config/database');
 const routes = require('./routes/routes');
@@ -70,6 +71,7 @@ app.use(function (req, res, next) {
   res.locals.googleApi = process.env.GOOGLE_API;
   next();
 });
+
 
 // =============== routes ===============
 app.use('/', routes);

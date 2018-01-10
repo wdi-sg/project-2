@@ -1,6 +1,7 @@
-const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+
+const User = require('../models/user');
 const helper = require('../helpers/helperFunction')
 const saltRounds = 10;
 
@@ -36,7 +37,6 @@ module.exports.signup = function(req, res) {
 
 
 module.exports.signupPost = function(req, res) {
-
   req.checkBody('firstname', 'Firstname is required').notEmpty();
   req.checkBody('lastname', 'Lastname is required').notEmpty();
   req.checkBody('username', 'Username is required').notEmpty();
@@ -52,7 +52,6 @@ module.exports.signupPost = function(req, res) {
       data: req.body
     });
   } else {
-
 let newUser = new User({
   firstname: req.body.firstname,
   lastname: req.body.lastname,
@@ -71,7 +70,5 @@ let newUser = new User({
     res.redirect('/login');
   });
 });
-
 }
-
 };

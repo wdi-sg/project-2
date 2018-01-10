@@ -1,15 +1,15 @@
 <% include ../partials/header %>
-  <div class="masonry">
 
+  <div class="masonry">
     <% data.reverse().forEach(function(item) { %>
       <div class="card item">
         <div class="card-image">
           <a href="/fullreview/<%= item._id %>">
-            <!-- need to change the src for image -->
             <img src="<%= item.photo %>">
             <span class="rating-card"><%= item.rating.overall %></span>
           </a>
         </div>
+
         <div class="card-content">
           <h6>
             <%= item.title %>
@@ -17,6 +17,6 @@
         </div>
       </div>
       <% }); %>
-
   </div>
+  
   <% include ../partials/footer %>

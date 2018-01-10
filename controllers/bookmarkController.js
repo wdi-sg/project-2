@@ -3,7 +3,6 @@ const Bookmark = require('../models/bookmark');
 
 
 module.exports.add = function(req, res) {
-
   let isFound = false;
 
   let newBookmark = new Bookmark({
@@ -23,6 +22,7 @@ module.exports.add = function(req, res) {
         isFound = true;
       }
     });
+    
     if (isFound) {
       req.flash('red', 'Bookmark has be added');
       res.redirect('/fullreview/' + req.params.id);
@@ -34,6 +34,7 @@ module.exports.add = function(req, res) {
       });
     }
   });
+
 };
 
 
