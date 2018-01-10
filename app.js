@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const app = express();
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 // const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const expressHandlebars = require('express-handlebars');
@@ -22,7 +23,7 @@ const sessionConfig = require('./config/session-config-actual.js');
 // Middlewares
 mongoose.Promise = global.Promise;
 mongoose.connect(
-	dbConfig.url, 
+	dbConfig.url,
 	{ useMongoClient: true }).then(
 		() => { console.log('>>> Mongoose   Ready <<<'); },
 		(err) => { console.log(err) }
@@ -41,7 +42,11 @@ app.use(session({
 	secret: sessionConfig.secret,
 	resave: false,
 	saveUninitialized: true,
-	cookie: { 
+	store: new MongoStore({
+		url : dbConfig.url,
+		ttl: 14 * 24 * 60 * 60,
+		autoRemove: 'native' }),
+	cookie: {
 		// secure: true,
 		maxAge: 604800000 // 7 days in milliseconds
 	}
@@ -49,7 +54,7 @@ app.use(session({
 
 // Initialize Passport and restore authentication state, if any, from the session
 app.use(passport.initialize());
-// Get Passport tp piggy back off the Express's session to store data for authenticated users 
+// Get Passport tp piggy back off the Express's session to store data for authenticated users
 app.use(passport.session());
 
 // Use connect-flash for flash messages stored in session

@@ -79,7 +79,7 @@ The sorting into fours and taking out of remainders after each split is automati
 - `passport`
 - `passport-local`
 - `passport-twitter`
-<!-- - `connect-mongo` -->
+- `connect-mongo`
 <!-- - `async` -->
 
 ### CSS Framework
