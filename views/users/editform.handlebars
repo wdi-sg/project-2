@@ -12,14 +12,20 @@ Edit
               <input type="text" name="name" value="{{ dog.name }}" placeholder="Name">
               <input type="text" name="breed" value="{{ dog.breed }}" placeholder="Breed">
               <input type="date" name="dob" value="{{ dog.dob }}" placeholder="Date of Birth">
-              <input type="number" name="weight" value="{{ dog.weight }}" placeholder="Weight (kg)">
+
+              <select name="size">
+                <option value="size">Size</option>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+              </select>
 
               <select name="gender">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
 
-             <select name="temper">
+             <select name="temperament">
                 <option value="temper">Temperament</option>
                 <option value="Active">Active</option>
                 <option value="Agressive">Aggressive</option>
@@ -38,7 +44,7 @@ Edit
                   <button class="button outline">Submit</button>
               </div><br>
 
-          
+
          </form>
     </div>
 </div>

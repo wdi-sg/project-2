@@ -8,12 +8,16 @@ const passport = require("../helpers/passportInfo");
 const isLoggedIn = require("../helpers/loginBlock");
 
 const baseController = require("../controllers/homeController")
-const AuthController = require("../controllers/AuthController")
+const AuthController = require("../controllers/authController")
 
 
 
 // ----- Pages -----
+
 router.get('/', function (req, res) {
+    // see the current user
+    // currentuser
+    // return res.send(req.user)
     res.render('home');
 });
 
@@ -22,58 +26,32 @@ router.post ('/users/contactus', function (req, res) {
 });
 
 
+router.get('/report', function (req, res) {
+    res.render('users/report');
+});
 
-// ----- Read Database -----
-router.get('/welcome', function (req, res) {
 
-  Dog.find({}, function (error, dogs){
-    if(error) {
-      console.log(error);
-      return;
-    }
-
-    res.render('users/welcome', { allDogs: dogs });
-    console.log(dogs)
-  });
+router.post ('/users/report', function (req, res) {
+    res.send ('Report OK');
 });
 
 
 
-
-// ----- Edit Form / Database -----
-router.get('/editform/:id', function (req, res) {
-
-  Dog.findById(req.params.id, function (error, dogs){
-    if(error) {
-      console.log(error);
-      return;
-    }
-    res.render('users/editform', {dog: dogs});
-    // res.send(dogs);
-    // console.log(dogs);
-    //
-    // res.render('users/editform', { allDogs: dogs });
-    // console.log(dogs)
-  });
+router.get('/forgot', function (req, res) {
+    res.render('users/forgot');
 });
 
 
 
-
-
-
+router.get('/new', function (req, res) {
+    res.render('dogs/new');
+});
 
 
 
 router.post ('/users/login', function (req, res) {
-    res.send ('Welcome');
+    res.send ('login');
 });
-
-
-router.get('/about', function (req, res) {
-    res.render('users/about');
-});
-
 
 
 
@@ -81,6 +59,20 @@ router.get('/login', function (req, res) {
     res.render('users/login');
 });
 
+
+router.post('/users/login',
+  passport.authenticate("local", {
+      sucessRedirect: "/",
+      failureRedirect: "/users/login",
+      failureFlash: "Invalid email and/or Password",
+      successFlash: "You are logged in"
+  }))
+
+
+
+//   router.get('/signup', authController.signup) //register route
+//   router.post('/signup', authController.signup) //register post route
+//   router.get('/logout', authController.logout)
 
 
 
@@ -105,29 +97,20 @@ router.post('/search', function (req, res) {
 
 
 
-router.get('/report', function (req, res) {
-    res.render('users/report');
+// ----- Read Database -----
+
+router.get('/welcome', function (req, res) {
+
+  Dog.find({}, function (error, dogs){
+    if(error) {
+      console.log(error);
+      return;
+    }
+
+    res.render('users/welcome', { allDogs: dogs });
+    console.log(dogs)
+  });
 });
-
-router.post ('/users/report', function (req, res) {
-    res.send ('Report OK');
-});
-
-
-
-
-
-router.get('/forgot', function (req, res) {
-    res.render('users/forgot');
-});
-
-
-
-router.get('/new', function (req, res) {
-    res.render('dogs/new');
-});
-
-
 
 
 
@@ -156,6 +139,20 @@ router.post ('/users/signup', function (req, res) {
 });
 
 
+// ----- Deletion -----
+
+router.delete('/delete/:id', function(req, res) {
+  // res.send(`im here ${req.params.id}`)
+  console.log(req.params.id);
+
+  Dog.remove({"_id": req.params.id}, function (error, docs) {
+
+    if (error) return error;
+    console.log(docs);
+    res.redirect('/welcome');
+  });
+});
+
 
 
 // Database – Create Dog Details
@@ -171,31 +168,20 @@ router.post('/dogs/new', function (req, res) {
     entry.breed = req.body.breed
     entry.dob = req.body.dob
     entry.gender = req.body.gender
-
+    entry.size = req.body.size
+    entry.temperament = req.body.temperament
+    // entry.user = // this should be the user id
+                 // how can we get the user id without typing it
+                 // in the form?
     console.log(entry);
 
 
     Dog.create(entry, (err) => {
       if(err) console.log(err)
-      res.send('Success');
+      res.send('welcome');
     });
 });
 
 
 
 module.exports = router;
-
-
-
-// router.post('/users/login',
-//   passport.authenticate("local", {
-//       sucessRedirect: "/",
-//       failureRedirect: "/users/login",
-//       failureFlash: "Invalid email and/or Password",
-//       successFlash: "You are logged in"
-//   }))
-
-
-//   router.get('/auth/register', AuthController.register) //register route
-//   router.post('/auth/register', AuthController.signup) //register post route
-//   router.get('/auth/logout', AuthController.logout)

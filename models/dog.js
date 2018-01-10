@@ -24,8 +24,8 @@ const dogSchema = new Schema ({
               required: [true, "Required"]
     },
 
-    weight: {
-              type: Number,
+    size: {
+              type: String,
               required: [true, "Required"]
     },
 
@@ -34,6 +34,9 @@ const dogSchema = new Schema ({
               required: [true, "Required"]
     }
 
+    // user: {
+    //
+    // }
   });
 
 

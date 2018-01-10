@@ -32,8 +32,8 @@ exports.signup = (req, res) => {
     req.checkBody('password', 'Password Required').notEmpty()
     req.checkBody('password2', 'Password Required').notEmpty()
     req.checkBody('password', 'Password is not equal to password 2').equals(req.body.password2)
-  
-  
+
+
     let errors = req.validationErrors()
     console.log(errors);
 
@@ -41,19 +41,20 @@ exports.signup = (req, res) => {
         res.render('users/signup', { errors : errors})
 
         } else {
-  
+
     User.create({
         firstname : req.body.firstname,
         lastname : req.body.lastname,
         email : req.body.email,
         password: req.body.password,
     }, (err, createdUser) => {
-  
+
         if(err) {
           req.flash('error', 'Could not create user account');
           res.redirect('/signup');
         }
         else {
+
 
 // Send user to auth page of profile
     passport.authenticate('local', {

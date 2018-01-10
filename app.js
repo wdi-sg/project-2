@@ -12,6 +12,11 @@ const exphbs = require('express-handlebars')
 const path = require('path') // working with public file and directory path
 
 
+
+// const dogsCtrl = require("./controllers/dogs")
+// app.use("/dogs", dogsCtrl);
+
+
 // Set Port ======================================================================================
 const flash = require('connect-flash')
 const passport = require('passport')
@@ -90,8 +95,10 @@ app.use(expressValidator({
     }
   }));
 
+  app.use(methodOverride('_method'));
 
-// Routes ===========================================================================================
+
+// Routes ==================================================================================
 app.use('/', routes);
 
 app.listen(port, () => {

@@ -21,7 +21,7 @@
 
                     <nav id="breadcrumbs-custom-separator" class="breadcrumbs">
                         <ul class="floatright">
-                            
+
                             <li><a href="/">Home</a></li>
                             <li><a href="/login">Login</a></li>
                             <li><a href="/signup">Sign Up</a></li>
@@ -40,30 +40,30 @@
     </div>
 
 
+
 <div class="container" id="item-content">
     <h4>Welcome – Manage your Dogs</h4>
+      <button class="button outline">Log Out</button>
+
 
       <div class="dog_list">
-        {{#each allDogs}}        
+        {{#each allDogs}}
         <a href="/editform/{{this._id}}">
- 
+
           <div class="container-photo">
               <div class="w3-card-4" style="width:50%">
                   <h3>{{this.name}}</h3>
                     <img src="/img/chihuahua.png" style="width:100%">
-                        <div class="w3-container w3-center">
-                    <p>Breed: {{this.breed}} / Gender: {{this.gender}}</p>
-                    </div>
-                    <div class="card-action">
-                  <a href="#">This is a link</a>
+
+                <div class="w3-container w3-center">
+
+                <form method="post" action="/delete/{{_id}}?_method=DELETE">
+                    <p>Breed: {{this.breed}} &nbsp <button type="submit">Delete</button></p>
+
                 </div>
               </div>
           </div>
-        </a>
+        </form>
        {{/each}}
   </div>
-</div>
-
-<div>
-  <button class="button outline">Logout</button>
 </div>

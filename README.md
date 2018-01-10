@@ -4,7 +4,7 @@ DoAP is a website designed for the dog-owners / lovers to post photographs of th
 
 General public can report dog-fouling by uploading photograph and provide details for the relevant department to investigate. This is to promote and encourage social community engagement to help maintain better surrounding and environment. 
 
-Link: 
+Link: https://p2emjys.herokuapp.com
 
 ---
 ## Getting Started / Installation
@@ -33,8 +33,6 @@ $ nodemon
 
 ![wireframe-form](https://user-images.githubusercontent.com/31798170/34469467-7faadcde-ef5a-11e7-8b1d-0e5868b4accf.png)
 
-
-### Flowchart / Sitemap
 
 ### Mockup
 
