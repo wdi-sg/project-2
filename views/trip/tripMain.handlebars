@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-2">
-      <a href="/home" class="btn btn-danger">Back</a>
+      <a href="/home" class="btn btn-info">Manage Trips</a>
     </div>
     <div class="col-sm-10">
       <div class="tripDetails">
@@ -33,13 +33,19 @@
     <!-- List of Locations -->
     <div class="col-sm-4 mx-auto">
       <br>
-      List of Locations to Visit
+      Location List
+        <form method="post" action="/location/delete">
         {{#each results2}}
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="{{id}}" id="{{id}}">
+          <input class="form-check-input" name="locations" type="checkbox" value="{{id}}" id="{{id}}">
           <label class="form-check-label" for="{{id}}">&nbsp;{{locationName}}</label>
         </div>
         {{/each}}
+        <br>
+        {{#if results2}}
+        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+        {{/if}}
+        </form>
     </div>
   </div>
 </div>

@@ -28,3 +28,26 @@ exports.getAllForTrip = (req,res) => {
     }
   }) //end err
 }
+
+exports.delete = (req,res) => {
+  let locations = req.body.locations
+  if (locations != null) {
+    if (Array.isArray(locations)) {
+      for (var id of locations) {
+        Location.findByIdAndRemove(id, err => {
+          if (err) console.log(err)
+        })
+      }
+    } //End isArray
+    else {
+      Location.findByIdAndRemove(locations, err => {
+        if (err) console.log(err)
+      })
+    }
+    req.flash('success', 'Locations removed')
+  } //End null check
+  else {
+    req.flash('error', 'Select locations to remove')
+  }
+  res.redirect(req.headers.referer)
+}
