@@ -20,7 +20,7 @@ const app = express()
 
 //==================== Config ====================
 mongoose.Promise = global.Promise
-mongoose.connect(dbConfig.urlLocal, {
+mongoose.connect(dbConfig.urlLive, {
   useMongoClient: true
 }).then (
   () => {
@@ -46,7 +46,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   store: new MongoStore({
-    url : dbConfig.urlLocal
+    url : dbConfig.urlLive
   })
 }))
 
