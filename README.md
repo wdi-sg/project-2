@@ -13,7 +13,7 @@ node.js
 ---
 
 ## Live Version
-*Not Deployed Yet*
+[https://tripcollab-dk.herokuapp.com/](https://tripcollab-dk.herokuapp.com/)
 
 ---
 
@@ -22,6 +22,7 @@ node.js
 * HTML, CSS, Javascript
 * [jQuery](https://jquery.com/)
 * [Bootstrap](https://getbootstrap.com/)
+* [Google Maps APIs](https://developers.google.com/maps/)
 
 ---
 
