@@ -1,5 +1,6 @@
 const Item = require('../models/item')
 const Customer = require('../models/customer')
+const OrderedItems = require('../models/ordereditems')
 
 
 //Index Homepage
@@ -36,5 +37,8 @@ exports.items = (req, res)=>{
 
 exports.order = (req, res)=>{
   console.log(req.body);
-  // res.redirect('/')
+
+  OrderedItems.create(req.body.object)
+  // res.render('home')
+  // res.render('home', {'items' : items})
 }

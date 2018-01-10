@@ -28,9 +28,9 @@
       <form action="/order" method="post">
 
         <!-- Customer Dropdown -->
-        <select>
+        <select id="custSelectDropdown">
           {{#each customers}}
-            <option value="volvo">{{ firstName}} {{lastName}}</option>
+            <option placeholder="hello" value="{{ _id }}">{{ firstName }} {{ lastName }}</option>
           {{/each}}
         </select>
 
