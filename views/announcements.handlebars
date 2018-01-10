@@ -1,30 +1,33 @@
-<div class="banner">
-
+<div class="bannerA">
+  <div class="l-content">
+  <div class="pure-u-1 pure-u-md-1-2">
   <!-- Announcement display -->
-  <div class="pure-u-1-1 scroll lwindow">
+
+    <ul class="line-table-list scroll announceWindow">
     {{#each announcements}}
+        <li class="announceDisplay">
         <h3>{{content}}</em></h3>
-        <div>Posted by <strong>{{postedBy}}</strong> on  {{datePosted}}
+        Posted by <strong>{{postedBy}}</strong><br>{{datePosted}}
           <span>
-            ( <a href="/edit/{{_id}}">Edit</a> |
-            <a href="#" class="delete" id="{{_id}}" data-id="{{_id}}">Delete</a> )
+            <a href="/edit/{{_id}}"> &nbsp;<i class="far fa-edit"></i></a> &nbsp;|
+            <a href="#" class="delete" id="{{_id}}" data-id="{{_id}}"> &nbsp;<i class="far fa-trash-alt"></i></a>
           </span>
-        </div>
+        </li>
     {{/each }}
+    </ul>
   </div>
-  <br><br>
+  </div>
 
   <!-- Announcement maker -->
-  <div class="pure-u-1-2">
-    <form class="pure-form pure-form-aligned" action="/create" method="post">
-      <div>
-        <!-- <label>Announcement: </label> -->
-        <textarea class="form-control" name="content" placeholder="Make your announcement here"></textarea>
-      </div>
-      <div>
-        <br>
-        <input type="submit" class="btn btn-success">
-      </div>
-    </form>
-  </div>
+
+  <form class="pure-form spaceTop" action="/create" method="post">
+      <fieldset>
+          <textarea class="form-control fillIn" name="content" placeholder="Make your announcement here"></textarea>
+
+          <button type="submit" class="button-large pure-button"><i class="far fa-hand-point-right"></i> Submit</button>
+      </fieldset>
+  </form>
 </div>
+<script>
+  window.scrollTo(0, document.body.scrollHeight)
+</script>

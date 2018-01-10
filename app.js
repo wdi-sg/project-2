@@ -113,12 +113,13 @@ function getLocalDate(date){
 
 // End of Date Conversion
 
+// Start of Twitter in Sockets
 io.on('connection', function(socket){
-  console.log('Socket Connection Active')
+  console.log('--- Socket Connection Active ---')
 
   let query = 'Smrt OR SMRT OR smrt train OR track delay OR fault OR disruption OR , -press, -parody, '
 
-    tweet.get('search/tweets', {q: query, count: 50, tweet_mode:'extended', result_type:'recent'}, function(err, data, res){
+    tweet.get('search/tweets', {q: query, count: 50, tweet_mode:'extended', result_type:'reverse'}, function(err, data, res){
       if(err)(console.log(err))
       for(let i=0; i<data.statuses.length; i++){
         if(data.statuses[i].retweeted_status){
@@ -141,7 +142,7 @@ io.on('connection', function(socket){
             }
           }
           // End of TBR
-
+          // Check for ForEach implementation instead
           function newLineCheck(){
             // For EW Line Check
             for (let a = 0; a < ewLineStations.length; a++){
@@ -251,7 +252,7 @@ io.on('connection', function(socket){
   // End of Twitter Functions
 
   socket.on('disconnect', function(data){
-    console.log('Socket Connection Dropped');
+    console.log('--- Socket Connection Dropped ---');
   });
 
 })

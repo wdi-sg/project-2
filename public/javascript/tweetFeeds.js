@@ -51,14 +51,12 @@ $(document).ready(function(){
   // if($('#others li').length == 0){
   //   console.log('meep')
   // }
-
   socket.on('loadewtweets', function(data){
     // console.log(data.tweet)
     // Make the original property of tbr be hidden, only to be shown after ~3s of loading.
-    // let okDisplayRemover = document.querySelector('#ewOk')
-    // okDisplayRemover.remove()
+    ewDisplay.remove()
     $.each(data.tweet, function(i, tweet){
-      ew.append('<li class="tweet"><strong>'+tweet.tweetUser+'</strong><br>'+tweet.tweetContent+'<br><strong>'+tweet.tweetDate+'</strong></li>')
+      ew.append('<li class="tweet"><strong>'+tweet.tweetUser+' · '+tweet.tweetDate+'</strong><br>'+tweet.tweetContent+'</li>')
       // console.log(data.tweet)
     })
   })
@@ -66,9 +64,9 @@ $(document).ready(function(){
   socket.on('loadnstweets', function(data){
     // console.log(data.tweet)
     // let okDisplayRemover = document.querySelector('#nsOk')
-    // okDisplayRemover.remove()
+    nsDisplay.remove()
     $.each(data.tweet, function(i, tweet){
-      ns.append('<li class="tweet"><strong>'+tweet.tweetUser+'</strong><br>'+tweet.tweetContent+'<br><strong>'+tweet.tweetDate+'</strong></li>')
+      ns.append('<li class="tweet"><strong>'+tweet.tweetUser+' · '+tweet.tweetDate+'</strong><br>'+tweet.tweetContent+'</li>')
       // console.log(data.tweet)
     })
   })
@@ -76,9 +74,9 @@ $(document).ready(function(){
   socket.on('loadnetweets', function(data){
     // console.log(data.tweet)
     // let okDisplayRemover = document.querySelector('#neOk')
-    // okDisplayRemover.remove()
+    neDisplay.remove()
     $.each(data.tweet, function(i, tweet){
-      ne.append('<li class="tweet"><strong>'+tweet.tweetUser+'</strong><br>'+tweet.tweetContent+'<br><strong>'+tweet.tweetDate+'</strong></li>')
+      ne.append('<li class="tweet"><strong>'+tweet.tweetUser+' · '+tweet.tweetDate+'</strong><br>'+tweet.tweetContent+'</li>')
       // console.log(data.tweet)
     })
       // ne.append('<li class="tweet"><strong> All OK! </strong></li>')
@@ -87,9 +85,9 @@ $(document).ready(function(){
   socket.on('loaddttweets', function(data){
     // console.log(data.tweet)
     // let okDisplayRemover = document.querySelector('#dtOk')
-    // okDisplayRemover.remove()
+    dtDisplay.remove()
     $.each(data.tweet, function(i, tweet){
-      dt.append('<li class="tweet"><strong>'+tweet.tweetUser+'</strong><br>'+tweet.tweetContent+'<br><strong>'+tweet.tweetDate+'</strong></li>')
+      dt.append('<li class="tweet"><strong>'+tweet.tweetUser+' · '+tweet.tweetDate+'</strong><br>'+tweet.tweetContent+'</li>')
       // console.log(data.tweet)
     })
   })
@@ -101,17 +99,17 @@ $(document).ready(function(){
   socket.on('loadcircletweets', function(data){
     // console.log(data.tweet)
     // let okDisplayRemover = document.querySelector('#circleOk')
-    // okDisplayRemover.remove()
+    circleDisplay.remove()
     $.each(data.tweet, function(i, tweet){
-      circle.append('<li class="tweet"><strong>'+tweet.tweetUser+'</strong><br>'+tweet.tweetContent+'<br><strong>'+tweet.tweetDate+'</strong></li>')
+      circle.append('<li class="tweet"><strong>'+tweet.tweetUser+' · '+tweet.tweetDate+'</strong><br>'+tweet.tweetContent+'</li>')
       // console.log(data.tweet)
     })
   })
 
   socket.on('loadtweets', function(data){
-    // console.log(data.tweet)
+    allDisplay.remove()
     $.each(data.tweet, function(i, tweet){
-      others.append('<li class="tweet"><strong>'+tweet.tweetUser+'</strong><br>'+tweet.tweetContent+'<br><strong>'+tweet.tweetDate+'</strong></li>')
+      others.append('<li class="tweet"><strong>'+tweet.tweetUser+' · '+tweet.tweetDate+'</strong><br>'+tweet.tweetContent+'</li>')
       // console.log(data.tweet)
     })
   })
@@ -130,7 +128,7 @@ $(document).ready(function(){
         location.reload();
       },
       error : function(data){
-        alert("fail")
+        console.log('Announcement does not exist.')
       }
     })
   })

@@ -4,6 +4,12 @@
  */
 body {
     background-color: #C7CCDB;
+    font-family: 'Orbitron', sans-serif;
+}
+
+h1 {
+  padding-bottom: 20px;
+  letter-spacing: 0.1em;
 }
 
 h2, h3 {
@@ -31,12 +37,17 @@ p {
     background-color: #C7CCDB;
 }
 
+.alert-connect {
+  margin-bottom: 0px;
+}
+
 /*
  * -- MENU STYLES --
  * Make the menu have a very faint box-shadow.
  */
 .pure-menu {
     box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+    background-color: #1A1B41
 }
 
 .pure-menu-link {
@@ -45,9 +56,34 @@ p {
 
 a.pure-menu-link{
   text-decoration: none;
+  color: white;
 }
 
+a.pure-menu-heading{
+  text-decoration: none;
+  color: white;
+}
 
+.mainDisplay:hover {
+  background-color: #1A1B41
+}
+
+.mainDisplay:visited {
+  background-color: #1A1B41
+}
+
+.itemsDisplay:hover {
+  background-color: #5D5F71
+}
+
+.itemsDisplay:visited {
+  background-color: #5D5F71
+}
+
+.nameDisplay {
+  color: white;
+  cursor: default;
+}
 /*
  * -- BANNER --
  * The top banner with the headings. By using a combination
@@ -60,34 +96,64 @@ a.pure-menu-link{
     background-size: cover;
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://24.media.tumblr.com/ccb268832580ac12951828a1c179de69/tumblr_mo2xbk8JUK1st5lhmo1_1280.jpg', sizingMethod='scale');*/
     text-align: center;
-    height: 200px;
+    height: 130px;
     width: 100%;
     /*margin-bottom: 3em;*/
     display: table;
     margin: 0 auto;
     background-color: #767B91;
+    cursor: default;
     /*background-color: #ddd;*/
 }
 
-    .banner-head {
-        display: table-cell;
-        vertical-align: middle;
-        margin-bottom: 0;
-        color: black;
-        font-weight: 200;
-        text-shadow: 0 1px 1px black;
-    }
+.bannerA {
+  text-align: center;
+  height: 200px;
+  width: 100%;
+  /*margin-bottom: 3em;*/
+  display: table;
+  margin: 0 auto;
+}
+
+.bannerW {
+  text-align: center;
+  height: 90vh;
+  width: 100vw;
+  /*margin-bottom: 3em;*/
+  display: table;
+  margin: 0 auto;
+}
+
+.banner-head {
+    display: table-cell;
+    vertical-align: middle;
+    margin-bottom: 0;
+    color: black;
+    font-weight: 300;
+    text-shadow: 0 1px 1px black;
+}
+
+.bannerWindow {
+  overflow: auto;
+  height: 130px;
+  font-size: 20px;
+}
 
 .window {
   overflow: auto;
   height: 130px;
   font-size: 20px;
+  border: 1px solid #ddd;
+  border-radius: 0 0 25px 25px;
   /*border: 1px solid #ddd;*/
 }
 
-.lwindow {
+.announceWindow {
   overflow: auto;
   height: 600px;
+  margin-top: 50px;
+  border: 2px solid black;
+  border-radius: 25px;
 }
 
 .okDisplay {
@@ -118,7 +184,7 @@ a.pure-menu-link{
  * Every line table has the .line-table class
  */
 .line-table {
-    border: 1px solid #ddd;
+    /*border: 1px solid #ddd;*/
     margin: 0 0.5em 2em;
     /*padding: 0 0 1em;*/
 }
@@ -133,6 +199,7 @@ a.pure-menu-link{
 
 .line-table-display .line-table-header {
     background: #2c4985;
+    border-radius: 25px 25px 0 0;
 }
 
 /*
@@ -142,6 +209,10 @@ a.pure-menu-link{
 .line-table-header {
     background: #111;
     color: #fff;
+}
+
+.lineAlign {
+  margin-bottom: 20px
 }
 
 #ewline {
@@ -168,25 +239,19 @@ a.pure-menu-link{
   background: pink
 }
 
-    .line-table-header h2 {
-        margin: 0;
-        padding-top: 2em;
-        font-size: 1em;
-        font-weight: normal;
-
-    }
-
-
 /*
- * -- line TABLE PRICE --
- * Styles for the price and the corresponding <span>per month</span>
+ * -- line TABLE name --
+ * Styles for the name and the corresponding <span>per month</span>
  */
-.line-table-price {
-    font-size: 6em;
+.line-table-name {
+    font-size: 5em;
     margin: 0.2em 0 0;
     font-weight: 100;
+    font-family: 'Orbitron', sans-serif;
+    display: inline-block;
+    /*padding-top: 20px;*/
 }
-    .line-table-price span {
+    .line-table-name span {
         display: block;
         text-transform: uppercase;
         font-size: 0.2em;
@@ -196,10 +261,6 @@ a.pure-menu-link{
         *color: #fff;
     }
 
-/*
- * -- line TABLE LIST --
- * Each line table has a <ul> which is denoted by the .line-table-list class
- */
 .line-table-list {
     list-style-type: none;
     margin: 0;
@@ -214,10 +275,14 @@ a.pure-menu-link{
  */
 .line-table-list li {
     padding: 0.8em 0;
-    background: #f7f7f7;
+    background: #C7CCDB;
     border-bottom: 1px solid #e7e7e7;
+    font-family: 'Orbitron', sans-serif;
 }
 
+.announceDisplay {
+  border: 1px solid #e7e7e7;
+}
 
 /*
  * -- line TABLE BUTTON --
@@ -248,6 +313,17 @@ a.pure-menu-link{
         color: #ddd;
     }
 
+.spaceTop{
+  padding-top: 20px;
+}
+
+.fillIn {
+  width: 400px;
+}
+
+.button-large {
+    font-size: 175%;
+}
 
 
 /*
@@ -258,7 +334,7 @@ a.pure-menu-link{
 @media(min-width: 767px) {
 
     .banner-head {
-        font-size: 4em;
+        font-size: 3em;
     }
     .line-table {
         margin-bottom: 0;
@@ -270,11 +346,21 @@ a.pure-menu-link{
  * -- PHONE MEDIA QUERIES --
  * On phones, we want to reduce the height and font-size of the banner further
  */
-@media (min-width: 480px) {
+@media (max-width: 600px) {
     .banner {
         height: 100px;
     }
     .banner-head {
         font-size: 3em;
     }
+    .aHead {
+      font-size: 0.7em;
+    }
+    .fillIn {
+      width: 300px;
+    }
+    /*.line-table-name {
+      display: inline;
+    }*/
+
 }

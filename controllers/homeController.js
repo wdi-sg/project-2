@@ -14,12 +14,11 @@ exports.home = (req, res) => {
 }
 
 exports.create = (req, res) => {
-  req.checkBody('content', 'Content field is empty or too long.').notEmpty().isLength({ max: 50})
+  req.checkBody('content', 'Content field is too long.').isLength({ max: 80})
 
   let errors = req.validationErrors()
   console.log(errors);
   if(errors){
-    req.flash('errorMessage', 'Could not create announcement')
     res.redirect('/announce')
   }
   else{
@@ -28,7 +27,6 @@ exports.create = (req, res) => {
       postedBy : req.user.displayName
     }, (err, createdAnnouncement) => {
       if(err){
-        req.flash('error', 'Could not create announcement')
         req.redirect('/announce', { user: req.user })
       }
       else{

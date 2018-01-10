@@ -28,7 +28,7 @@ router.get('/auth/twitter', passport.authenticate('twitter'))
 router.get('/auth/twitter/callback',
   passport.authenticate('twitter', { successRedirect: '/home',
                                      failureRedirect: '/',
-                                     successFlash: 'Welcome!' }));
+                                     successFlash: 'Welcome to the SMRT Delay Tracker!' }));
 
 // Announcements Page
 router.get('/announce', isLoggedIn, HomeController.announce)
