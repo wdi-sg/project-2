@@ -9,6 +9,9 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const expressValidator = require('express-validator')
 const app = express()
+const port = process.env.PORT || 3000;
+
+require('dotenv').config();
 
 app.use(session({
   secret: 'WINTERMUTE1',
@@ -55,7 +58,7 @@ app.use(express.static(path.join(__dirname, 'public'))); // this means all stati
 //This inits the promise
 mongoose.Promise = global.Promise
 //Promises return either success(In this case, it's then) or failure(In this case, err)
-mongoose.connect('mongodb://localhost/items', { useMongoClient : true })
+mongoose.connect(process.env.DB_URI, { useMongoClient : true })
 .then(
   ()=>{
     console.log(" -- mongoose ok -- ")
@@ -71,6 +74,6 @@ const index = require('./routes/routes')
 app.use('/', index)
 
 
-app.listen(3000, 'localhost', ()=>{
+app.listen(port, ()=> {
   console.log(" - -  A p p  r e a d y  - - ")
 })
