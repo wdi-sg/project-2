@@ -2,9 +2,9 @@
 
 This is a stock tracker app that is still WIP. When finished, it can double as a real time stock tracker cum stock trading simulator to help users better keep in touch with the market and better manage their trading portfolios.
 
-## Getting Started
+## Live version
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+https://personalinvestor.herokuapp.com/
 
 ### Prerequisites
 
@@ -85,4 +85,3 @@ Did you collaborate with others on this project, list them here
 ## Acknowledgments
 
 * Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
