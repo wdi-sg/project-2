@@ -1,6 +1,5 @@
 /*
- * -- BASE STYLES --
- * Most of these are inherited from Base, but I want to change a few.
+-- BASE STYLES --
  */
 body {
     background-color: #C7CCDB;
@@ -86,31 +85,22 @@ a.pure-menu-heading{
 }
 /*
  * -- BANNER --
- * The top banner with the headings. By using a combination
- * of `display: table;` and `display: table-cell;`, we can
- * vertically center the text.
  */
 
 .banner {
-    /*background: transparent url('http://24.media.tumblr.com/ccb268832580ac12951828a1c179de69/tumblr_mo2xbk8JUK1st5lhmo1_1280.jpg') 0 0 no-repeat fixed;
-    background-size: cover;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://24.media.tumblr.com/ccb268832580ac12951828a1c179de69/tumblr_mo2xbk8JUK1st5lhmo1_1280.jpg', sizingMethod='scale');*/
     text-align: center;
     height: 130px;
     width: 100%;
-    /*margin-bottom: 3em;*/
     display: table;
     margin: 0 auto;
     background-color: #767B91;
     cursor: default;
-    /*background-color: #ddd;*/
 }
 
 .bannerA {
   text-align: center;
   height: 200px;
   width: 100%;
-  /*margin-bottom: 3em;*/
   display: table;
   margin: 0 auto;
 }
@@ -119,7 +109,6 @@ a.pure-menu-heading{
   text-align: center;
   height: 90vh;
   width: 100vw;
-  /*margin-bottom: 3em;*/
   display: table;
   margin: 0 auto;
 }
@@ -134,9 +123,12 @@ a.pure-menu-heading{
 }
 
 .bannerWindow {
-  overflow: auto;
   height: 130px;
   font-size: 20px;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .window {
@@ -145,7 +137,6 @@ a.pure-menu-heading{
   font-size: 20px;
   border: 1px solid #ddd;
   border-radius: 0 0 25px 25px;
-  /*border: 1px solid #ddd;*/
 }
 
 .announceWindow {
@@ -165,9 +156,12 @@ a.pure-menu-heading{
   vertical-align: middle;
 }
 
+.loginRequest:hover {
+  text-decoration: none;
+}
+
 /*
  * -- line TABLE WRAPPER --
- * This element wraps up all the line table elements
  */
  .line-tables,
  .information {
@@ -181,17 +175,13 @@ a.pure-menu-heading{
 
 /*
  * -- line TABLE  --
- * Every line table has the .line-table class
  */
 .line-table {
-    /*border: 1px solid #ddd;*/
     margin: 0 0.5em 2em;
-    /*padding: 0 0 1em;*/
 }
 
 /*
  * -- line TABLE HEADER COLORS --
- * Choose a different color based on the type of line table.
  */
 .line-table-free .line-table-header {
     background: #519251;
@@ -204,7 +194,6 @@ a.pure-menu-heading{
 
 /*
  * -- line TABLE HEADER --
- * By default, a header is black/white, and has some styles for its <h2> name.
  */
 .line-table-header {
     background: #111;
@@ -241,7 +230,6 @@ a.pure-menu-heading{
 
 /*
  * -- line TABLE name --
- * Styles for the name and the corresponding <span>per month</span>
  */
 .line-table-name {
     font-size: 5em;
@@ -286,8 +274,6 @@ a.pure-menu-heading{
 
 /*
  * -- line TABLE BUTTON --
- * Styles for the "Choose" button at the bottom of a line table.
- * This inherits from Pure Button.
  */
 .button-choose {
     border: 1px solid #ccc;
@@ -328,8 +314,6 @@ a.pure-menu-heading{
 
 /*
  * -- TABLET MEDIA QUERIES --
- * On tablets, we want to slightly adjust the size of the banner
- * text and add some vertical space between the various line tables
  */
 @media(min-width: 767px) {
 
@@ -344,7 +328,6 @@ a.pure-menu-heading{
 
 /*
  * -- PHONE MEDIA QUERIES --
- * On phones, we want to reduce the height and font-size of the banner further
  */
 @media (max-width: 600px) {
     .banner {
@@ -359,8 +342,4 @@ a.pure-menu-heading{
     .fillIn {
       width: 300px;
     }
-    /*.line-table-name {
-      display: inline;
-    }*/
-
 }

@@ -9,28 +9,9 @@
   <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
   <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
   <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
-  <link rel="stylesheet" href="/stylesheet/pricing.css">
+  <link rel="stylesheet" href="/stylesheet/tracker.css">
 </head>
 <body>
-
-  {{#if errors}}
-      {{#each errors as |e|}}
-          <div class="alert alert-danger alert-dismissable fade in">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong>Error!</strong> {{e.msg}}
-          </div>
-      {{/each}}
-  {{/if}}
-
-  {{#if alerts.error}}
-        {{#each alerts.error as |msg|}}
-        <div class="alert alert-danger alert-dismissable fade in">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Error!</strong> {{msg}}
-        </div>
-
-        {{/each}}
-    {{/if}}
 
   {{#if alerts.success}}
       {{#each alerts.success as |msg|}}

@@ -1,5 +1,4 @@
 const passport = require('../helpers/ppInformation')
-const LocalUser = require('../models/localuser');
 
 exports.login = (req, res) => {
   res.render('auth/login')
