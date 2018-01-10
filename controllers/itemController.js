@@ -10,7 +10,6 @@ exports.index = (req, res)=>{
     // console.log(items)
     if(err) return err
 
-    console.log("hello! item controller here")
     res.render('items/index', {'items' : items})
   })
 }
@@ -45,8 +44,6 @@ exports.new = (req, res)=>{
         items.save((error)=>{
           if(error) console.log(error)
           req.flash('success_msg', "Successfully created")
-
-          console.log('test1 here1')
 
           res.redirect('/items')
         })

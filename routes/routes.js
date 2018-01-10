@@ -23,7 +23,8 @@ router.get('/items', itemController.index) //Item page
 router.post('/items', itemController.new) // item new post
 router.post('/items', itemController.update)
 
-
+// =========== Homepage ==========
+router.post('/order', homeController.order)
 
 // ITEM AND STOCK SHOULD BE THE SAME THING. CHANGE IT, DONT BE AN IDIOT
 

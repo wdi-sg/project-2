@@ -10,7 +10,7 @@ $(".addOrderBtn").on("click", function() {
 
   //itemList is inside home.handlebars
   $( ".itemList" ).append( "<div class='singleItem' id=" + id + "></div>" );
-  $( "#" + id ).append(name);
+  $( "#" + id ).append("<p>" + name + "</p>");
   $( "#" + id ).append("<p>SGD$: " + price + "</p>");
   $( "#" + id ).append('<input class="addQuantity" type="number" value="1" min="0"><br><br>');
 
@@ -23,7 +23,19 @@ $(".addOrderBtn").on("click", function() {
 });
 
 
+$("#mainOrderBtn").on("click", function() {
+  // console.log($(".itemList").children("div"));
+  // $(".itemList").children()
 
+  $(".itemList").children("div").each(function() {
+    console.log($(this).attr("id"));
+  })
+
+  $(".addQuantity").each(function() {
+    console.log($(this).val());
+  })
+
+});
 
 
 

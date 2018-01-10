@@ -7,11 +7,11 @@ exports.index = (req, res)=>{
 
   // res.send('books/index')
   Item.find({},(err, items)=>{
-    console.log(items)
+    // console.log(items)
     if(err) return err
 
     Customer.find({},(err, customers)=>{
-      console.log(customers)
+      // console.log(customers)
       if(err) return err
 
       res.render('home', {'items' : items, 'customers' : customers})
@@ -32,4 +32,9 @@ exports.customers = (req, res)=>{
 exports.items = (req, res)=>{
   res.render('items/index')
   //This should render views/items/index.handlebars
+}
+
+exports.order = (req, res)=>{
+  console.log(req.body);
+  // res.redirect('/')
 }
