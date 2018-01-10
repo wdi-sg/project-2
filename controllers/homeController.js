@@ -9,7 +9,7 @@ exports.index = (req, res)=>{
 exports.positions = (req, res)=>{
 	Position.find({},function(err,result){
 		if(err) throw err
-			console.log(result)
+			// console.log(result)
 		res.render('positions',{position:result})
 	})
 
@@ -42,7 +42,7 @@ exports.create = (req, res)=>{
 		if(err) throw err
     Position.find({},function(err,result){
         if(err) throw err
-        console.log(result)
+        // console.log(result)
         res.redirect('/positions');
   })
 
@@ -52,6 +52,25 @@ exports.create = (req, res)=>{
 //       console.log(result)
 //       res.render('positions', {position:result});
 // });
+}
+exports.remove= (req,res)=>{
+  Position.findByIdAndRemove(req.params.id, function(err){
+    if (err) throw err
+    res.redirect('/positions')
+  })
+}
+
+
+
+//Updates page
+exports.update = (req, res)=>{
+  Position.findById(req.params.id, function(err, result) {
+    // return res.send(result)
+    // if(err) console.log(err)
+    // console.log(result);
+      res.render('update', {data: result})
+  });
+
 }
 
 

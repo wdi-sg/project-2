@@ -15,6 +15,8 @@ router.get('/summary', homeController.summary)
 
 router.get('/users/login', authController.login)
 router.get('/users/register', authController.register)
+router.get('/update/:id', homeController.update)
+router.get('/positions/:id',homeController.remove)
 
 //To create positions
 router.post('/positions/new',homeController.create)

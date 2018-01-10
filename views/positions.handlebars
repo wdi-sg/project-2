@@ -33,7 +33,7 @@
 </form>
 
 
-<table >
+<table class = 'positiontable'>
  
   <thead>
     <tr>
@@ -43,7 +43,7 @@
       <th>Sell date </th>
       <th>Units owned</th>
       <th>Price</th>
-      <th>Amount Invested <br> (USD)</th>
+      <th>Amount Earned (Lost) <br> (USD)</th>
       <th>Closing Price</th>
       <th>Current Price <br> (USD)</th>
 
@@ -52,7 +52,7 @@
   </thead>
 
 {{#each position}}
-  <tbody>
+  <tbody class='positiontable'>
     <tr>
       <td>{{ name }}</td>
       <td>{{ ticker }}</td>
@@ -61,24 +61,38 @@
 
       <td>{{ units }}</td>
       <td>{{ price }}</td>
-      <td>{{ amountInvested }}</td>
+      <td>{{ amountEarned }}</td>
       <td>{{ closingPrice }}</td>
 
-      <td>{{ currentMarketValue }}</td>
-      <td>  <form
-          class="form-inline deleteForm"
-          action="/positions/{{ id }}?_method=PUT"
-          method="post"
-        >
-          <a href="/positions/{{ id }}" class="btn btn-primary">Update</a>
+      <td>{{ currentPrice }}</td>
+      <td>
 
-          &nbsp;
-          <a href="/positions/{{ id }}" class="btn btn-secondary" >Sell</a>
+        <!-- <form
+          class="deleteForm"
+          action="/positions/{{ _id }}?_method=PUT"
+          method="delete"
+        > -->
+          <!-- <a href="/positions/remove?id={{_id}}" class="btn btn-primary">Sell</a> -->
+          <a href="/positions/{{_id}}" class="btn btn-primary">Sell</a>
 
           <br>
           <input type="hidden" name="posiId" value="{{id}}">
 
-        </form>
+        <!-- </form> -->
+
+        <!-- <form
+            class="deleteForm"
+            action="/positions/{{ _id }}?_method=PUT"
+            method="post"
+          >
+            <a href="/update/{{ _id }}" class="btn btn-primary">Sell</a>
+
+
+
+            <br>
+            <input type="hidden" name="posiId" value="{{id}}">
+
+          </form> -->
               </td>
 
     </tr>

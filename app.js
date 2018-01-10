@@ -17,6 +17,8 @@ const port = process.env.PORT || 3000
 const routes = require('./routes/routes')
 const dbConfig = require('./config/dbConfig')
 
+//method override
+app.use(methodOverride('_method'))
 //db Configuration
 mongoose.Promise = global.Promise
 mongoose.connect(dbConfig.url, { useMongoClient : true })
@@ -44,5 +46,5 @@ app.use('/', routes)
 
 
 app.listen(port, ()=>{
-    console.log('express-connected');    
+    console.log('express-connected');
 })
