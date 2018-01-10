@@ -1,4 +1,8 @@
 // $(document).ready(function() {
+//     $('').attr("href");
+//     $('#reference').contents();
+//     $('').
+//     $('').
 //     let hexagram = $('#hexagram').text();
 //
 //     function retrieveAPIIngredients() {

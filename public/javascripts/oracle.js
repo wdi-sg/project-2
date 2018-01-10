@@ -295,7 +295,7 @@ $(document).ready(function() {
 	}
 
 	function splitAndSort(split) {
-		console.log(progress);
+		// console.log(progress);
 		var piles = splitIntoPiles(split, progress,rawData);
 		var remainders = determineRemainder(piles);
 		var fours = sortIntoFours(piles,remainders);
@@ -311,8 +311,8 @@ $(document).ready(function() {
 		// console.log(remainders);
 		// console.log('Left and Right Sets of Fours');
 		// console.log(fours);
-		console.log('Result at End of Round');
-		console.log(result);
+		// console.log('Result at End of Round');
+		// console.log(result);
 		// console.log('Updated Progress');
 		// console.log(progress);
 	}
@@ -350,8 +350,8 @@ $(document).ready(function() {
 		let left = piles.left;
 		let right = piles.right;
 		let value = result.line;
-		console.log(line)
-		console.log(round)
+		// console.log(line)
+		// console.log(round)
 		$('#L' + line + '-S' + round + '-L').val(left);
 		$('#L' + line + '-S' + round + '-R').val(right);
 
@@ -420,28 +420,36 @@ $(document).ready(function() {
 		}
 	}
 
-	function deriveData(hexagramArray) {
-		// Find hexagram name
-		// Find hexagram number
-		// Attach API parameters
-	}
-
 	function startQuery(){
+        // If query field is empty, insert `?`
 		if (!$('#query-field').val()) {
 			$('#query-field').val('?');
 		}
+
 		let query = $('#query-field').val();
+		// Hide input form and Start button
 		$('#contains-query-field').hide();
+        // Render user's query as the title in the hero object
 		$('#insert-query-here').append('<div id="contains-query" class="tile is-parent is-vertical"><p class="subtitle is-size-2 has-text-weight-light has-text-centered">' + query + '</p></div>')
+
+        // Enable Split button
+		$('#is-split-button').prop('disabled', false);
+        // Enable event listeners for both the stalks and slider
+		captureSplit();
 	}
 
+    // Start with the stalks and Split button disabled until user presses Start button
+	$('#stalks-container').off();
+	$('#is-split-button').prop('disabled', true);
 	$('#start-divination').click(startQuery);
+    // Initialize progress tracker and stalks
 	var progress = new Progress();
 	var round = new Stalks();
 	initializeStalks(round.remainingStalks);
+    // Detect hover over the stalks
 	detectHover();
+    // Initialize slider
 	initializeSlider(round.stalksToSplit, round.gapPosition);
-	captureSplit();
 });
 
 /*

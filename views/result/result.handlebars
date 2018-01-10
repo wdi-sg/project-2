@@ -4,21 +4,24 @@
 
             <h1 class="title is-size-1">{{output.query}}</h1>
 
-            <h3 class="title is-size-3">Original Hexagram</h3>
+            <h3 class="title is-size-3 has-text-grey has-text-weight-light">Original</h3>
+            <p class="title is-size-5 has-text-weight-light">Hexagram {{output.json.hexagram.original.number}}</p>
 
-            <h2 class="title is-size-5"> Hexagram Number {{output.json.hexagram.original.number}}</h2>
-            {{#each output.json.hexagram.original.name}}
-            <p>{{this}}</p>
-            {{/each}}
+            <h1 class="title is-size-1">{{output.json.hexagram.original.name.chinese}}</h1>
+            <h4 class="subtitle">{{output.json.hexagram.original.name.pinyin}}</h4>
+
+            <h3>{{output.json.hexagram.original.name.english}}</h3>
 
             {{#if output.json.hexagram.resultant}}
-            <h2 class="title is-size-3">Resultant Hexagram</h2>
+            <h3 class="title is-size-3 has-text-grey has-text-weight-light">Resultant</h3>
             {{/if}}
+            <p class="title is-size-5 has-text-weight-light"> Hexagram {{output.json.hexagram.resultant.number}}</p>
 
-            <p>{{output.json.hexagram.resultant.number}}</p>
-            {{#each output.json.hexagram.resultant.name}}
-            <p>{{this}}</p>
-            {{/each}}
+            <h1 class="title is-size-1">{{output.json.hexagram.resultant.name.chinese}}</h1>
+            <h4 class="subtitle">{{output.json.hexagram.resultant.name.pinyin}}</h4>
+
+            <h3>{{output.json.hexagram.resultant.name.english}}</h3>
+
         </div>
         <div id="reference" class="content">
             <h1 class="title is-size-3">Reference</h1>
@@ -28,7 +31,7 @@
                 {{/each}}
 
                 {{#each output.json.text.yilin.entry}}
-                <li><a id="yilin-{{@key}}-{{@root.output.json.text.yilin.index}}" class="api" href="{{@root.output.json.text.yilin.url}}{{@root.output.json.text.yilin.urn}}/{{this}}">Yilin</a></li>
+                <li><a id="yilin-{{@root.output.json.text.yilin.index}}" class="api" href="{{@root.output.json.text.yilin.url}}{{@root.output.json.text.yilin.urn}}/{{this}}">Yilin</a></li>
                 {{/each}}
 
                 {{#each output.json.parallel.entry}}
