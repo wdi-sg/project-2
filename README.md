@@ -1,6 +1,6 @@
-# Stock Tracker Ripoff that isn't named yet
+# Personal Stock Tracker
 
-This is a stock tracker app that is still WIP. When finished, it can double as a real time stock tracker cum stock trading simulator to help users better keep in touch with the market and better manage their trading portfolios.
+This is a stock tracker app that can double as a real time stock tracker cum stock trading simulator to help users better keep in touch with the market and better manage their trading portfolios.
 
 ## Live version
 
