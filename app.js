@@ -11,7 +11,7 @@ const messages = require('express-messages');
 const PORT = process.env.PORT || 3000;
 const passport = require('./config/passport');
 const app = express();
-require('dotenv').config()
+require('dotenv').config();
 
 // =============== local module ===============
 // const database = require('./config/database');
@@ -67,6 +67,7 @@ app.use(flash());
 app.use(function (req, res, next) {
   res.locals.messages = messages(req, res);
   res.locals.user = req.user || null;
+  res.locals.googleApi = process.env.GOOGLE_API;
   next();
 });
 
