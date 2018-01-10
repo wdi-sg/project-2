@@ -12,20 +12,21 @@ function initMap() {
     url: "/location/getAllForTrip?id="+$("#tripId").val(),
     type: "GET",
     success: function(data) {
-      console.log(data)
-      // Start loading Maps
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
-        center: {lat: data[0].latitude, lng: data[0].longitude}
-      });
-      for (var i = 0; i < data.length; i++) {
-        var data2 = data[i]
-        var coor = new google.maps.LatLng(data2.latitude, data2.longitude);
-        var marker = new google.maps.Marker({
-          position: coor,
-          map: map,
-          title: data.locationName
+      if (data.length > 0) {
+        // Start loading Maps
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: {lat: data[0].latitude, lng: data[0].longitude}
         });
+        for (var i = 0; i < data.length; i++) {
+          var data2 = data[i]
+          var coor = new google.maps.LatLng(data2.latitude, data2.longitude);
+          var marker = new google.maps.Marker({
+            position: coor,
+            map: map,
+            title: data.locationName
+          });
+        }
       }
       // var marker = new google.maps.Marker({
       //   position: uluru,
