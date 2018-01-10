@@ -1,5 +1,5 @@
 const Position = require('../models/position')
-// const User = require('../models/user');
+const User = require('../models/user');
 
 //Index Home page
 exports.index = (req, res)=>{
@@ -24,17 +24,32 @@ exports.home = (req, res)=>{
 
     res.render('home')
 }
-
+//Users page
+// exports.create = (req,res)=>{
+//   let newUser = new User({
+//     name: req.body.name,
+//     email:req.body.email,
+//     password:req.body.password
+//   })
+//   newUser.save(function(err){
+//     if(err) throw err
+//     User.find({},function(err,result){
+//         if(err) throw err
+//         // console.log(result)
+//         res.redirect('/');
+//   })
+//
+//   })
+// }
 //Positions page
 exports.create = (req, res)=>{
 	let newPosition = new Position({
-		name: req.body.name,
+		  name: req.body.name,
   		ticker:  req.body.ticker,
   		units: req.body.units,
   		price: req.body.price,
   		buyDate: req.body.buyDate,
-  		sellDate: null,
-  		closingPrice: req.body.closingPrice
+  		
 
 	})
 

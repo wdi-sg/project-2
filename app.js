@@ -17,6 +17,8 @@ const port = process.env.PORT || 3000
 const routes = require('./routes/routes')
 const dbConfig = require('./config/dbConfig')
 
+var AlphaVantageAPI = require('alpha-vantage-cli').AlphaVantageAPI
+
 //method override
 app.use(methodOverride('_method'))
 //db Configuration
@@ -43,6 +45,7 @@ app.use(expressValidator())
 app.use(flash());
 //Routes
 app.use('/', routes)
+
 
 
 app.listen(port, ()=>{

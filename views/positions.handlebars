@@ -18,15 +18,8 @@
   <input type="date" name="buyDate" placeholder="dd/mm/yyyy">
 
 
-
-
-  <br>
-
-
-
-  <br>
-  <label for="closingPrice">Closing price</label>
-  <input type="text" name="closingPrice" placeholder="USD">
+  <!-- <label for="closingPrice">Closing price</label>
+  <input type="text" name="closingPrice" placeholder="USD"> -->
 
   <button type="submit"  name="button">Buy</button>
 
@@ -40,12 +33,12 @@
       <th>Name</th>
       <th>Ticker</th>
       <th>Buy date</th>
-      <th>Sell date </th>
       <th>Units owned</th>
-      <th>Price</th>
-      <th>Amount Earned (Lost) <br> (USD)</th>
-      <th>Closing Price</th>
-      <th>Current Price <br> (USD)</th>
+      <th>Price Bought</th>
+      <th>Total Sum Invested <br> (USD)</th>
+      <th>Current Share Price <br> (USD)</th>
+      <th>Total Market Value <br> (USD)</th>
+      <th>Amount Earned (Lost) <br> (USD)</th>
 
     </tr>
 
@@ -57,14 +50,13 @@
       <td>{{ name }}</td>
       <td>{{ ticker }}</td>
       <td>{{ buyDate }}</td>
-      <td>{{ sellDate }}</td>
 
       <td>{{ units }}</td>
-      <td>{{ price }}</td>
-      <td>{{ amountEarned }}</td>
-      <td>{{ closingPrice }}</td>
-
-      <td>{{ currentPrice }}</td>
+      <td>${{ price }}</td>
+      <td>${{ sumInvested }}</td>
+      <td>${{ currentPrice }}</td>
+      <td>${{ currentMarketValue }}</td>
+      <td>${{ amountEarned }}</td>
       <td>
 
         <!-- <form
@@ -72,8 +64,8 @@
           action="/positions/{{ _id }}?_method=PUT"
           method="delete"
         > -->
-          <!-- <a href="/positions/remove?id={{_id}}" class="btn btn-primary">Sell</a> -->
-          <a href="/positions/{{_id}}" class="btn btn-primary">Sell</a>
+          <!-- <a href="/positions/remove?id={{_id}}" >Sell</a> -->
+          <a href="/positions/{{_id}}" >Sell</a>
 
           <br>
           <input type="hidden" name="posiId" value="{{id}}">
