@@ -69,10 +69,13 @@ module.exports.addPost = function(req, res) {
 module.exports.edit = function(req, res) {
 
   Review.findById(req.params.id, function(err, result) {
-    if (err) throw err;
+    if (err) {
+      res.render('base/404');
+    } else {
     res.render('review/edit', {
       data: result
     });
+  }
   });
 };
 

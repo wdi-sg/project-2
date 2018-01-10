@@ -49,5 +49,7 @@ router.get('/extra/like/:id', extraController.like);
 router.post('/extra/write/:id', extraController.write);
 router.delete('/extra/delete/:id', extraController.delete);
 
+router.get('*', baseController.error);
+
 
 module.exports = router;

@@ -1,139 +1,159 @@
 <% include ../partials/header %>
 
-<% if (typeof errors !== 'undefined') { %>
-  <ul id="errors">
-    <% errors.forEach(function(error) { %>
-      <li><%= error.msg %><i class="material-icons right">close</i></li>
-  <% }); %>
-  </ul>
-<% } %>
+  <% if (typeof errors !== 'undefined') { %>
+    <ul id="errors">
+      <% errors.forEach(function(error) { %>
+        <li>
+          <%= error.msg %><i class="material-icons right">close</i></li>
+        <% }); %>
+    </ul>
+    <% } %>
+
 
 <div class="row">
-  <div class="col s10 offset-s1">
-  <h1 class="center-align">Add Review</h1>
+    <div class="col s10 offset-s1">
+    <h1 class="center-align">Add Review</h1>
 
-  <form action="/review/add/<%= user._id %>" enctype="multipart/form-data" method="POST">
+<form action="/review/add/<%= user._id %>" enctype="multipart/form-data" method="POST">
 
+  <!-- when there is error, data will be stored -->
+  <% if (typeof data != 'undefined') { %>
     <div class="col s12">
       <label for="title">Title</label>
-  <% if (typeof data != 'undefined') { %>
-    <input id="title" type="text" name="title" placeholder="Name the dish" value="<%= data.title %>">
-  <% } else { %>
-      <input id="title" type="text" name="title" placeholder="Name the dish">
-  <%  } %>
+      <input id="title" type="text" name="title" placeholder="Name the dish" value="<%= data.title %>">
     </div>
 
-  <div class="col s12">
+    <div class="col s12">
       <label for="location">Location</label>
-      <% if (typeof data != 'undefined') { %>
       <input id="location" type="text" name="location" value="<%= data.location %>">
-      <% } else { %>
-      <input id="location" type="text" name="location">
-      <%  } %>
     </div>
 
-  <div class="col s12">
+    <div class="col s12">
       <label for="review">Review</label>
-      <% if (typeof data != 'undefined') { %>
       <textarea id="review" class="materialize-textarea" name="review" placeholder="Share your thoughts"><%= data.review %></textarea>
-      <% } else { %>
-        <textarea id="review" class="materialize-textarea" name="review" placeholder="Share your thoughts"></textarea>
-        <%  } %>
-
-
     </div>
 
-    <div class="input-field col s8">
-  <select name="quality">
-    <% if (typeof data != 'undefined') { %>
-      <% for (var i = 0; i <= 5; i++) { %>
-        <% if (!data.quality && i == 0) { %>
-          <option value="" disabled selected>Choose your option >> (1 star) = Bland, (5 star) = Tasty</option>
-        <% } else if (i == 0) { %>
-          <option value="" disabled>Choose your option >> (1 star) = Bland, (5 star) = Tasty</option>
-      <%  } else if (i == data.quality) { %>
-          <option value="<%= i %>" selected><%= i %> Star</option>
-        <% } else { %>
-          <option value="<%= i %>"><%= i %> Star</option>
-        <% } } %>
-        <% } else { %>
-    <option value="" disabled selected>Choose your option >> (1 star) = Bland, (5 star) = Tasty</option>
-    <option value="1">1 Star</option>
-    <option value="2">2 Star</option>
-    <option value="3">3 Star</option>
-    <option value="4">4 Star</option>
-    <option value="5">5 Star</option>
-    <%  } %>
-  </select>
+<div class="input-field col s8">
+  <select name="quality" class="icons">
+        <% for (var i = 0; i <= 5; i++) { %>
+          <% if (!data.quality && i == 0) { %>
+          <option value="" disabled selected>Choose your option</option>
+          <% } else if (i == 0) { %>
+          <option value="" disabled>Choose your option</option>
+        <%  } else if (i == data.quality) { %>
+          <option value="<%= i %>" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle" selected><%= i %> Star</option>
+          <% } else { %>
+          <option value="<%= i %>" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle"><%= i %> Star</option>
+          <% } } %>
+      </select>
   <label>Quality</label>
 </div>
 
-    <div class="input-field col s8">
+<div class="input-field col s8">
   <select name="quantity">
-    <% if (typeof data != 'undefined') { %>
-      <% for (var i = 0; i <= 5; i++) { %>
-        <% if (!data.quantity && i == 0) { %>
-          <option value="" disabled selected>Choose your option >> (1 star) = Little, (5 star) = Plenty</option>
-        <% } else if (i == 0) { %>
-          <option value="" disabled>Choose your option >> (1 star) = Little, (5 star) = Plenty</option>
-      <%  } else if (i == data.quantity) { %>
-          <option value="<%= i %>" selected><%= i %> Star</option>
-        <% } else { %>
-          <option value="<%= i %>"><%= i %> Star</option>
-        <% } } %>
-        <% } else { %>
-    <option value="" disabled selected>Choose your option >> (1 star) = Little, (5 star) = Plenty</option>
-    <option value="1">1 Star</option>
-    <option value="2">2 Star</option>
-    <option value="3">3 Star</option>
-    <option value="4">4 Star</option>
-    <option value="5">5 Star</option>
-    <%  } %>
-  </select>
+        <% for (var i = 0; i <= 5; i++) { %>
+          <% if (!data.quantity && i == 0) { %>
+          <option value="" disabled selected>Choose your option</option>
+          <% } else if (i == 0) { %>
+          <option value="" disabled>Choose your option</option>
+        <%  } else if (i == data.quantity) { %>
+          <option value="<%= i %>" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle" selected><%= i %> Star</option>
+          <% } else { %>
+          <option value="<%= i %>" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle"><%= i %> Star</option>
+          <% } } %>
+      </select>
   <label>Quantity</label>
 </div>
 
-    <div class="input-field col s8">
+<div class="input-field col s8">
   <select name="price">
-    <% if (typeof data != 'undefined') { %>
-      <% for (var i = 0; i <= 5; i++) { %>
-        <% if (!data.price && i == 0) { %>
-          <option value="" disabled selected>Choose your option >> (1 star) = Overpriced, (5 star) = Reasonable</option>
-        <% } else if (i == 0) { %>
-          <option value="" disabled>Choose your option >> (1 star) = Overpriced, (5 star) = Reasonable</option>
-      <%  } else if (i == data.price) { %>
-          <option value="<%= i %>" selected><%= i %> Star</option>
-        <% } else { %>
-          <option value="<%= i %>"><%= i %> Star</option>
-        <% } } %>
-        <% } else { %>
-          <option value="" disabled selected>Choose your option >> (1 star) = Overpriced, (5 star) = Reasonable</option>
-          <option value="1">1 Star</option>
-          <option value="2">2 Star</option>
-          <option value="3">3 Star</option>
-          <option value="4">4 Star</option>
-          <option value="5">5 Star</option>
-    <%  } %>
-  </select>
+        <% for (var i = 0; i <= 5; i++) { %>
+          <% if (!data.price && i == 0) { %>
+            <option value="" disabled selected>Choose your option</option>
+          <% } else if (i == 0) { %>
+            <option value="" disabled>Choose your option</option>
+        <%  } else if (i == data.price) { %>
+            <option value="<%= i %>" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle" selected><%= i %> Star</option>
+          <% } else { %>
+            <option value="<%= i %>" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle"><%= i %> Star</option>
+          <% } } %>
+      </select>
   <label>Price</label>
 </div>
 
-    <div class="file-field input-field col s12">
-      <div class="btn">
-        <span>Photo</span>
-        <input type="file" name="photo" accept="image/*">
-      </div>
-      <div class="file-path-wrapper">
-            <input class="file-path" type="text" placeholder="Upload your photo">
-      </div>
-    </div>
+<% } else { %>
+
+  <!-- the add review page by default -->
+  <div class="col s12">
+    <label for="title">Title</label>
+    <input id="title" type="text" name="title" placeholder="Name the dish">
+  </div>
 
   <div class="col s12">
-<button type="submit" class="waves-effect waves-light btn">Add Review</button>
+    <label for="location">Location</label>
+    <input id="location" type="text" name="location">
+  </div>
+
+  <div class="col s12">
+    <label for="review">Review</label>
+    <textarea id="review" class="materialize-textarea" name="review" placeholder="Share your thoughts"></textarea>
+  </div>
+
+<div class="input-field col s8">
+  <select name="quality" class="icons">
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1" data-icon="/img/faces/icon-01.jpg" class="circle">1 Star</option>
+      <option value="2" data-icon="/img/faces/icon-02.jpg" class="circle">2 Star</option>
+      <option value="3" data-icon="/img/faces/icon-03.jpg" class="circle">3 Star</option>
+      <option value="4" data-icon="/img/faces/icon-04.jpg" class="circle">4 Star</option>
+      <option value="5" data-icon="/img/faces/icon-05.jpg" class="circle">5 Star</option>
+    </select>
+  <label>Quality</label>
 </div>
+
+<div class="input-field col s8">
+  <select name="quantity">
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle">1 Star</option>
+      <option value="2" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle">2 Star</option>
+      <option value="3" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle">3 Star</option>
+      <option value="4" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle">4 Star</option>
+      <option value="5" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle">5 Star</option>
+    </select>
+  <label>Quantity</label>
+</div>
+
+<div class="input-field col s8">
+  <select name="price">
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle">1 Star</option>
+      <option value="2" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle">2 Star</option>
+      <option value="3" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle">3 Star</option>
+      <option value="4" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle">4 Star</option>
+      <option value="5" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle">5 Star</option>
+    </select>
+  <label>Price</label>
+</div>
+<% } %>
+
+  <!-- file upload and submit button remain where the rest of the form change -->
+  <div class="file-field input-field col s12">
+    <div class="btn">
+      <span>Photo</span>
+      <input type="file" name="photo" accept="image/*">
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path" type="text" placeholder="Upload your photo">
+    </div>
+  </div>
+
+  <div class="col s12">
+    <button type="submit" class="waves-effect waves-light btn">Add Review</button>
+  </div>
   </form>
 
-
-</div>
-</div>
-  <% include ../partials/footer %>
+  <!-- ending for column -->
+  </div>
+  <!-- ending for row -->
+  </div>
+      <% include ../partials/footer %>

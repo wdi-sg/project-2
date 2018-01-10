@@ -11,7 +11,7 @@ const messages = require('express-messages');
 const PORT = process.env.PORT || 3000;
 const passport = require('./config/passport');
 const app = express();
-
+require('dotenv').config()
 
 // =============== local module ===============
 const database = require('./config/database');

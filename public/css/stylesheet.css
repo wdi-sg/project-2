@@ -9,16 +9,20 @@ body {
   background-color: ghostwhite;
 }
 
+.tabs {
+  background-color: blue;
+}
+
 .rating-card {
-  color: black;
-  background-color: rgba(255, 255, 255, 0.5);
+  color: #00838f;
+  background-color: rgba(255, 255, 255, 0.8);
   position: absolute;
   top: 0;
   right: 0;
   max-width: 100%;
   padding: 0 5px;
   font-size: 24px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .card-content {
@@ -69,6 +73,7 @@ img {
 }
 
 .logo {
+  font-family: 'Pacifico', cursive;
   font-size: 2rem;
 }
 
@@ -122,7 +127,11 @@ img {
 }
 
 .min-height {
-  min-height: 100vh;
+  min-height: 90vh;
+}
+
+.error-oops {
+  margin-top: -2rem;
 }
 
 #messages {
@@ -130,6 +139,11 @@ img {
   top: 8%;
   left: 78%;
   z-index: 5;
+}
+
+.error-margin {
+  margin-top: 3rem;
+  font-size: 15rem;
 }
 
 .login-box {
@@ -152,6 +166,8 @@ img {
   padding-top: 0 !important;
   margin-top: 2rem;
 }
+
+/* landing page masonry layout */
 
 .masonry {
   margin: 1.5em 0;
