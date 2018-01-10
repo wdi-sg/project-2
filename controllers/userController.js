@@ -83,6 +83,7 @@ exports.deleteSearch = (req, res) => {
   SearchList.remove(query, (err) => {
     if (err) console.log(err);
     console.log("deleted from searchList");
+    res.sendStatus(200);
   });
 };
 
@@ -92,6 +93,7 @@ exports.deleteAnalyzed = (req, res) => {
   AnalyzedList.remove(query, (err) => {
     if (err) console.log(err);
     console.log("deleted from analyzedList");
+    res.sendStatus(200);
   });
 };
 
@@ -101,6 +103,7 @@ exports.deleteSaved = (req, res) => {
   SavedList.remove(query, (err) => {
     if (err) console.log(err);
     console.log("deleted from savedList");
+    res.sendStatus(200);
   });
 };
 
@@ -112,13 +115,26 @@ exports.saveAnalyzed = (req, res) => {
   SavedList.findOne({username: req.params.id, item: req.body.item}, (err, data) => {
     if (err) console.log(err);
     if (data) {
-      data.result.push({'sortedList': req.body.sortedList, 'range': req.body.range});
+      // add to database if entry is already in database
 
-      data.save((err, updatedData) => {
-        if (err) console.log(err);
-        console.log(updatedData);
-      });
+      // check to see if combination is already present
+      var logic = false;
+      for (var index = 0; index < data.result.length; index++) {
+        if (data.result[index].range == req.body.range) {
+          logic = true;
+        }
+      }
+      console.log(logic);
+      if (!logic) {
+        data.result.push({'sortedList': req.body.sortedList, 'range': req.body.range});
+
+        data.save((err, updatedData) => {
+          if (err) console.log(err);
+          console.log(updatedData);
+        });
+      }
     } else {
+      // create list if entry is not in database
       SavedList.create({
         item: req.body.item,
         result: {'sortedList': req.body.sortedList, 'range': req.body.range},
@@ -126,6 +142,7 @@ exports.saveAnalyzed = (req, res) => {
       });
     }
   });
+  res.sendStatus(200);
 };
 
 
@@ -156,6 +173,6 @@ exports.updateAnalyzed = (req, res) => {
         console.log(updatedData);
       });
     }
-
   });
+  res.sendStatus(200);
 };
