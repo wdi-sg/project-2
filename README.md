@@ -1,6 +1,6 @@
 # Project 2: DoAP
 
-DoAP is a website designed for the dog-owners / lovers to post photographs of their pets and basic information. Also possible to check for any future social events. 
+DoAP is a website designed for the dog-owners / lovers to post photographs of their pets and basic information. 
 
 General public can report dog-fouling by uploading photograph and provide details for the relevant department to investigate. This is to promote and encourage social community engagement to help maintain better surrounding and environment. 
 

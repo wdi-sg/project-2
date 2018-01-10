@@ -43,27 +43,26 @@
 
 <div class="container" id="item-content">
     <h4>Welcome – Manage your Dogs</h4>
-      <button class="button outline">Log Out</button>
-
+      <!-- <button class="button outline">Log Out</button> -->
 
       <div class="dog_list">
         {{#each allDogs}}
         <a href="/editform/{{this._id}}">
+        </div>
 
           <div class="container-photo">
               <div class="w3-card-4" style="width:50%">
-                  <h3>{{this.name}}</h3>
-                    <img src="/img/chihuahua.png" style="width:100%">
+                <h3>{{this.name}}</h3>
+                   <img src="/img/chihuahua.png" style="width:100%">
 
-                <div class="w3-container w3-center">
+                <input type="submit" name="edit_submit" value="Edit" <a href="/:id/edit"</a>
 
-                <form method="post" action="/delete/{{_id}}?_method=DELETE">
-                    <p>Breed: {{this.breed}} &nbsp <button type="submit">Delete</button></p>
+                  <form method="post" action="/delete/{{_id}}?_method=DELETE">
+                    <input type="submit" name="delete" value="Delete">
+                  </form>
 
-                </div>
               </div>
           </div>
-        </form>
+        </div>
        {{/each}}
-  </div>
-</div>
+

@@ -1,7 +1,4 @@
-Edit
-{{ dog.name }}
 <!-- Dogs Data -->
-
 
 <div id="dog-info">
     <div class="dogs">
@@ -20,12 +17,12 @@ Edit
                 <option value="large">Large</option>
               </select>
 
-              <select name="gender">
+              <select name="gender" value="{{ dog.gender }}">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
 
-             <select name="temperament">
+             <select name="temperament" value="{{ dog.temperament }}">
                 <option value="temper">Temperament</option>
                 <option value="Active">Active</option>
                 <option value="Agressive">Aggressive</option>
@@ -37,14 +34,17 @@ Edit
                 <option value="Submissive">Submissive</option>
               </select>
 
+              {{ dog.name }}
+              {{ dog.breed}}
+              {{ dog.dob}}
+              {{ dog.gender}}
+              {{ dog.size}}
+              {{ dog.temperament}}
 
               <div class="img-btn">
-                <input type="file" multiple name="text" placeholder="Upload Image">
-                    <br/><br/>
-                  <button class="button outline">Submit</button>
-              </div><br>
-
-
+                <input type="file" multiple name="text" placeholder="Upload Image"><br/><br/>
+                <input type="submit" name="doginfo_submit" value="Submit">
+              </div>
          </form>
     </div>
 </div>

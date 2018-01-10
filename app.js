@@ -13,10 +13,6 @@ const path = require('path') // working with public file and directory path
 
 
 
-// const dogsCtrl = require("./controllers/dogs")
-// app.use("/dogs", dogsCtrl);
-
-
 // Set Port ======================================================================================
 const flash = require('connect-flash')
 const passport = require('passport')
@@ -26,6 +22,8 @@ const dbConfig = require('./config/dbConfig')
 
 // Models - Routes
 const routes = require('./routes/routes')   // const is defined, cannot be re-assigned
+
+
 
 // Configuration ================================================================================
 
@@ -97,6 +95,7 @@ app.use(expressValidator({
 
   app.use(methodOverride('_method'));
 
+  
 
 // Routes ==================================================================================
 app.use('/', routes);

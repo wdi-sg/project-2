@@ -49,6 +49,12 @@ router.get('/new', function (req, res) {
 
 
 
+router.post('/new', function (req, res) {
+    res.send('/welcome');
+});
+
+
+
 router.post ('/users/login', function (req, res) {
     res.send ('login');
 });
@@ -58,6 +64,15 @@ router.post ('/users/login', function (req, res) {
 router.get('/login', function (req, res) {
     res.render('users/login');
 });
+
+
+
+router.get('/editform', function (req, res) {
+    res.render('users/editform');
+});
+
+
+
 
 
 router.post('/users/login',
@@ -137,6 +152,73 @@ router.post ('/users/signup', function (req, res) {
       res.send (entry);
     });
 });
+
+
+
+// ----- Edit / Update-----
+
+router.get ('/:id/edit', function(req, res) {
+  res.send(`edit ok ${req.params.id}`);
+  // console log(req.params.id);
+  //
+  // Dog.edit({"_id": req.params.id}, function (error, docs) {
+  //
+  //   if (error) return error;
+  //   console.log(docs);
+  //   res.redirect('/welcome');
+  // });
+});
+
+
+
+// router.get('/:id/edit', function (req, res) {
+  
+//       let name = parseInt(req.body.name);
+//       let breed = parseInt(req.body.breed);
+//       let dob = parseInt(req.body.dob);
+//       let gender = parseInt(req.body.gender);
+//       let size = parseInt(req.body.size);
+//       let temperament = parseInt(req.body.temperament);
+
+// Dog.findByIdAndUpdate(req.params.id, {
+//     $set: {
+//         name: req.body.name,
+//         breed: req.body.name,
+//         dob: req.body.dob,
+//         gender: req.body.gender,
+//         size: req.body.size,
+//         temperament: req.body.temperament
+//         }
+//     }, function(error) {
+//         req.flash("Edited");
+//         res.redirect('/welcome' + req.params.id);
+// });
+
+
+router.get('/:dog_id/', function (req, res) {
+
+    Dog.findById({"_id": req.params.id}, function (err, dog) {
+        if (err) {
+            res.send(err);
+        }
+        dog.name = req.body.name;
+        dog.breed = req.body.breed;
+        dog.dob = req.body.dob;
+        dog.gender = req.body.gender;
+        dog.temperament = req.body.temperament
+       
+        dog.save(function (err) {
+            if (err) {  
+                res.send(err);
+            } else {
+            res.send({ message: 'Updated!' });
+            }      
+        });
+    });
+});
+
+
+
 
 
 // ----- Deletion -----
