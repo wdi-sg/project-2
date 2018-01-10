@@ -17,11 +17,6 @@ $(document).ready(function() {
   // trigger for textarea
   $('#review').trigger('autoresize');
 
-  $(document).keydown(function(e){
-      if(e.keyCode == 13) {
-        e.preventDefault();
-      }
-    });
 
   // google maps autocomplete
   function initialize() {

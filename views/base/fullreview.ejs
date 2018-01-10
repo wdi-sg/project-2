@@ -5,7 +5,7 @@
     <span class="right">
     <%  if (user._id.toString() !== data.userId._id.toString()) { %>
         <a class="modal-trigger" href="#modal1"><i class="material-icons icon-spacing">bookmark_border</i><sup class="bookmark">Bookmark</sup></a>
-    <%  } else { %>
+  <% } else { %>
       <a href="/review/edit/<%= data._id %>"><i class="material-icons icon-spacing">edit</i></a>
       <a href="/review/delete/<%= data._id %>" class="delete-review"><i class="material-icons icon-spacing">delete</i></a>
   <%  } %>
