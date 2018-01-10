@@ -1,32 +1,32 @@
 <br>
 <strong>Positions Taken </strong>
 <br>
-<form action="/positions" method="post">
+<form action="/positions/new" method="post">
   <label for="name">Name</label>
-  <input type="text" name="position[name]" placeholder="">
+  <input type="text" name="name" placeholder="">
 
   <label for="ticker">Ticker Symbol</label>
-  <input type="text" name="position[ticker]" placeholder="">
+  <input type="text" name="ticker" placeholder="">
 
   <label for="units">Unit Quantity</label>
-  <input type="number" name="position[units]" placeholder="">
+  <input type="number" name="units" placeholder="">
 
   <label for="price">Price</label>
-  <input type="number" name="position[price]" placeholder="USD">
+  <input type="text" name="price" placeholder="USD">
 
   <label for="buyDate">Buy Date</label>
-  <input type="date" name="position[buyDate]" placeholder="dd/mm/yyyy">
+  <input type="date" name="buyDate" placeholder="dd/mm/yyyy">
 
-  
+
 
 
   <br>
-  
+
 
 
   <br>
   <label for="closingPrice">Closing price</label>
-  <input type="number" name="position[closingPrice]" placeholder="USD">
+  <input type="text" name="closingPrice" placeholder="USD">
 
   <button type="submit"  name="button">Buy</button>
 
@@ -51,13 +51,47 @@
 
   </thead>
 
+{{#each position}}
+  <tbody>
+    <tr>
+      <td>{{ name }}</td>
+      <td>{{ ticker }}</td>
+      <td>{{ buyDate }}</td>
+      <td>{{ sellDate }}</td>
+
+      <td>{{ units }}</td>
+      <td>{{ price }}</td>
+      <td>{{ amountInvested }}</td>
+      <td>{{ closingPrice }}</td>
+
+      <td>{{ currentMarketValue }}</td>
+      <td>  <form
+          class="form-inline deleteForm"
+          action="/positions/{{ id }}?_method=PUT"
+          method="post"
+        >
+          <a href="/positions/{{ id }}" class="btn btn-primary">Update</a>
+
+          &nbsp;
+          <a href="/positions/{{ id }}" class="btn btn-secondary" >Sell</a>
+
+          <br>
+          <input type="hidden" name="posiId" value="{{id}}">
+
+        </form>
+              </td>
+
+    </tr>
+  </tbody>
+  {{/each}}
+
 
     <tr>
 
       <th>Total Value</th>
      
     </tr>
-  
+ 
 
 </table>
 

@@ -32,7 +32,13 @@ app.set('view engine', 'handlebars')
 
 app.use(session({ secret: 'cogitoergoest', resave: false,
   saveUninitialized: true })); // session secret
-
+//passport
+app.use(passport.initialize());
+app.use(passport.session());
+//express validator
+app.use(expressValidator())
+//flash messages middleware
+app.use(flash());
 //Routes
 app.use('/', routes)
 
