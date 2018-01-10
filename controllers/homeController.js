@@ -10,7 +10,6 @@ exports.home = (req, res) => {
     if(err) return err
     res.render('home', { user : req.user, 'announcements' : announcements })
   })
-    // res.render('home', { user : req.user, 'announcements' : announcements })
 }
 
 exports.create = (req, res) => {
@@ -59,8 +58,6 @@ exports.postedit = (req, res) => {
 
 exports.delete = (req, res) => {
   let id = { _id : req.params.id }
-  // let uid = { _id : req.user.id }
-  // console.log(uid)
   Announcement.deleteOne(id, (err, result) => {
     if(err){
       return err
@@ -69,14 +66,6 @@ exports.delete = (req, res) => {
       res.sendStatus(200)
     }
   })
-  // User.deleteOne(uid, (err, result) => {
-  //   if(err){
-  //     return err
-  //   }
-  //   else{
-  //     res.sendStatus(200)
-  //   }
-  // })
 }
 
 exports.announce = (req, res) => {
