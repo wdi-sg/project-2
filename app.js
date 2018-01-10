@@ -15,7 +15,7 @@ const path = require('path') // working with public file and directory path
 // Set Port ======================================================================================
 const flash = require('connect-flash')
 const passport = require('passport')
-const port = process.env.PORT || 3010
+const port = process.env.PORT || 3012
 
 const dbConfig = require('./config/dbConfig')
 
@@ -26,10 +26,10 @@ const routes = require('./routes/routes')   // const is defined, cannot be re-as
 
 // ----- Connect to Database -----
 mongoose.Promise = global.Promise
-mongoose.connect(dbConfig.url, { 
-  useMongoClient : true }).then(() => { 
-    console.log("-- Mongoose ok ---")}, 
-    (err) =>{ console.log(err) });
+mongoose.connect(dbConfig.url, {
+  useMongoClient : true }).then(() => {
+    console.log("-- Mongoose ok ---")},
+    (err) => { console.log(err) });
 
 
 // ------ Set Up Express Application / Body-Parser Middleware -----
@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // ----- Set Static Path to Public Folder / View Engine -----
 app.use(express.static(path.join(__dirname, 'public')));  // Store all HTML in view folders
-app.engine('handlebars', exphbs({ defaultLayout: 'main'})); 
+app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 
@@ -49,7 +49,7 @@ app.use(session({
     secret: 'pp2',
     resave: false,
     saveUninitialized: true
-  })); 
+  }));
 
 
 // ----- Passport -----
@@ -77,11 +77,11 @@ app.use(expressValidator({
         let namespace = param.split('.')
         , root    = namespace.shift()
         , formParam = root;
-  
+
       while(namespace.length) {
         formParam += '[' + namespace.shift() + ']';
       }
-  
+
       return {
         param : formParam,
         msg   : msg,
@@ -97,8 +97,3 @@ app.use('/', routes);
 app.listen(port, () => {
   console.log('express-connected');
 })
-
-
-module.exports = app;
-
-

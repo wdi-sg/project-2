@@ -1,16 +1,13 @@
-# Project 2: D-Poap
+# Project 2: DoAP
 
-D-Poap is a website designed for the dog-owners / lovers to check for social events as well to share information about pet-caring. 
+DoAP is a website designed for the dog-owners / lovers to post photographs of their pets and basic information. Also possible to check for any future social events. 
 
 General public can report dog-fouling by uploading photograph and provide details for the relevant department to investigate. This is to promote and encourage social community engagement to help maintain better surrounding and environment. 
 
-Website Link: http://localhost:3010/
+Link: 
 
 ---
-## Getting Started
----
-
-### Installation
+## Getting Started / Installation
 
 Install the dependencies and start the server.
 ```sh
@@ -19,17 +16,14 @@ $ nodemon
 ```
 ---
 ## Work Flow
----
 
 ### User Stories
 
 ![user stories](https://user-images.githubusercontent.com/31798170/34513245-4bd5b3ea-f0a2-11e7-93c5-c61edfb76abe.png)
 
-
 ### ERD
 
-![erd](https://user-images.githubusercontent.com/31798170/34512348-d8e397f8-f09c-11e7-90f1-d30c58d600c0.png)
-
+![erd](https://user-images.githubusercontent.com/31798170/34729452-ac7e1454-f597-11e7-8120-8f523155d826.png)
 
 ### Wireframe
 
@@ -39,28 +33,30 @@ $ nodemon
 
 ![wireframe-form](https://user-images.githubusercontent.com/31798170/34469467-7faadcde-ef5a-11e7-8b1d-0e5868b4accf.png)
 
----
 
-### Visuals
+### Flowchart / Sitemap
+
+### Mockup
 
 ![mockup - landing page](https://user-images.githubusercontent.com/31798170/34513296-9de50352-f0a2-11e7-9e3b-454f74aa729b.jpg)
-
 
 ![mockup - contact us](https://user-images.githubusercontent.com/31798170/34513312-accdea78-f0a2-11e7-9e4b-a31396e2c98b.jpg)
 
 ![mockup - sign up](https://user-images.githubusercontent.com/31798170/34513329-bbfb4e8c-f0a2-11e7-96c5-e3b3d6d7b723.jpg)
 
+---
+## Built With / Technology
 
-### Built With / Technology
-
-Front-end: HTML, CSS, Kube
-Back-end: Express, Node.js, Mongoose, Passport
+* Front-end: HTML, CSS, Javascript, jQuery
+* Back-end: Express, Node.js, Mongoose, MongoDB, Passport
+* CSS Framework: Kube, Materialize
 
 ---
 
 ## Deployment & Versioning
 
 * Github
+* Heroku
 
 ---
 
@@ -74,7 +70,6 @@ Back-end: Express, Node.js, Mongoose, Passport
 
 ## Acknowledgments
 
-Image Sources:
-*  Burst by Spotify, Pexels, Pixabay, Unsplash, Vecteezy
+* Image Sources: Burst by Spotify, Pexels, Pixabay, Unsplash, Vecteezy
 
----
+
