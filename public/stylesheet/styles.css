@@ -1,0 +1,73 @@
+body {
+    font-family: Merriweather, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #FFF;
+}
+
+.navbar-brand, .navbar-brand:hover{
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #FFF;
+}
+
+#mainNav {
+  background-color: #222;
+}
+
+#mainNavCollapse>ul>li>a {
+  color: #DDD;
+}
+
+#mainNavCollapse>ul>li>a:hover {
+  color: #FFF;
+}
+
+.fa-bars {
+  color: #FFF;
+}
+
+section {
+  padding: 100px 0px;
+  color: #FFF;
+}
+
+#intro1 {
+  background-color: #286DA8;
+}
+
+#intro2 {
+  background-color: #CD5360;
+}
+
+#intro3 {
+  background-color: #B37D4E;
+}
+
+#intro4 {
+  background-color: #438496;
+}
+
+hr {
+  max-width: 100px;
+  border-width: 3px;
+  border-color: #fff;
+}
+
+.formStyle {
+  background-color: #FFF;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 30px;
+}
+/********** Styles for Maps  **********/
+#map {
+  height: 400px;
+  width: 100%;
+}
+
+#placesSearch {
+  width: 6%;
+}
+/********** End Styles for Maps  **********/
+/*Blue - #286DA8  */
+/*Pink - #CD5360 */
+/*Brown - #B37D4E */
+/*Green - #438496 */
