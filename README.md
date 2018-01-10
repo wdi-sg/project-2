@@ -1,4 +1,4 @@
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #2:
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #2
 
 <p align="center"><img src="./public/images/navbar_brand.svg" style="max-width:60%;"/></p>
 
@@ -55,7 +55,7 @@ The sorting into fours and taking out of remainders after each split is automati
 
 <!-- What did you use to build it, list the technologies, plugins, gems, packages etc. -->
 
-## Technologies
+### Technologies
 - [Node.js](https://nodejs.org/)
 - [MongoDB](https://www.mongodb.com)
 - [Mongoose](http://mongoosejs.com/index.html)
@@ -66,7 +66,7 @@ The sorting into fours and taking out of remainders after each split is automati
 - CSS
 - HTML
 
-## Node Packages
+### Node Packages
 - `bcrypt`
 - `body-parser`
 - `connect-flash`
@@ -79,8 +79,10 @@ The sorting into fours and taking out of remainders after each split is automati
 - `passport`
 - `passport-local`
 - `passport-twitter`
+<!-- - `connect-mongo` -->
+<!-- - `async` -->
 
-## CSS Framework
+### CSS Framework
 - [Bulma v0.6.1](https://bulma.io)
 <!-- - [noUiSlider](https://refreshless.com/nouislider/) -->
 
