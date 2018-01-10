@@ -31,8 +31,8 @@ passport.deserializeUser(function(id ,done) {
 
 passport.use(new LocalStrategy({
 		// Enter the name attribute of the respective field as in the sign in form
-		usernameField: 'up_email',
-		passwordField: 'up_password',
+		usernameField: 'email',
+		passwordField: 'password',
 		passReqToCallback: true,
 	},
 	function(req, email, password, done) {

@@ -17,13 +17,13 @@ exports.signout = (req, res) => {
 // `/signup` Route
 exports.signup = (req, res) => {
 	console.log(req.body);
-	req.checkBody('up_firstname', 'Please enter your first name').notEmpty();
-	req.checkBody('up_lastname', 'Please enter your last name').notEmpty();
-	req.checkBody('up_email', 'Please enter an email address').notEmpty();
-	req.checkBody('up_password', 'Please enter a password').notEmpty();
-	req.checkBody('up_confirm_password', 'Please confirm your password').notEmpty();
-	if (req.body.up_confirm_password) {
-		req.checkBody('up_password', 'You did not enter the same password').equals(req.body.up_confirm_password);
+	req.checkBody('firstname', 'Please enter your first name').notEmpty();
+	req.checkBody('lastname', 'Please enter your last name').notEmpty();
+	req.checkBody('email', 'Please enter an email address').notEmpty();
+	req.checkBody('password', 'Please enter a password').notEmpty();
+	req.checkBody('confirm_password', 'Please confirm your password').notEmpty();
+	if (req.body.confirm_password) {
+		req.checkBody('password', 'You did not enter the same password').equals(req.body.confirm_password);
 	}
 
 	let errors = req.validationErrors();
@@ -36,10 +36,10 @@ exports.signup = (req, res) => {
 		User.create({
 			auth: 'local',
 			local: {
-				firstname: req.body.up_firstname,
-				lastname: req.body.up_lastname,
-				email: req.body.up_email,
-				password: req.body.up_password	
+				firstname: req.body.firstname,
+				lastname: req.body.lastname,
+				email: req.body.email,
+				password: req.body.password
 			},
 			twitter: {}
 		}, (err, createdUser) => {
