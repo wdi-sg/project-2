@@ -70,11 +70,11 @@ exports.show = (req, res)=>{
     .exec((err, orderedItems)=>{
       console.log(orderedItems);
       if(err) return err
-      res.send({
-        customer,
-        orderedItems
-      })
-      // res.render('customers/show', {'customer' : customer, 'orderedItems' : orderedItems})
+      // res.send({
+      //   customer,
+      //   orderedItems
+      // })
+      res.render('customers/show', {'customer' : customer, 'orderedItems' : orderedItems})
     })
   })
 }
