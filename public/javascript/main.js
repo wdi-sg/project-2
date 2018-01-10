@@ -23,6 +23,17 @@ $(".addOrderBtn").on("click", function() {
 });
 
 
+// ====== Date and time function ======
+var dateTime = function() {
+  var d = new Date();
+  var day = d.getDate();
+  var month = d.getMonth() + 1;
+  var year = d.getFullYear();
+  var hour = d.getHours();
+  var min = d.getMinutes();
+  return hour + ":" + min + ", " + day + "/" + month + "/" + year
+}
+
 
 // ====== MAIN ORDER BUTTON ======
 $("#mainOrderBtn").on("click", function() {
@@ -52,10 +63,8 @@ $("#mainOrderBtn").on("click", function() {
     orderedItemsObj["item_id"] = idArray[i];
     orderedItemsObj["quantity"] = quantityArray[i];
     orderedItemsObj["customer_id"] = custSelectValue;
-    // console.log(idArray[i])
-    // console.log(quantityArray[i]);
-    // console.log(custSelectValue);
-    // console.log(orderedItemsObj);
+    orderedItemsObj["dateOfPurchase"] = dateTime;
+    
     orderedItemsArray.push(orderedItemsObj);
     // console.log(orderedItemsArray);
 
@@ -78,8 +87,6 @@ console.log(orderedItemsArray[0].customer_id);
   });
 
 });
-
-
 
 
 

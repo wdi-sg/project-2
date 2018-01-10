@@ -1,33 +1,6 @@
 <div class="container mainCont">
 
 
-  <!-- Modal -->
-<div id="custInfo" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        {{#if customers}}
-        <h4 class="modal-title">{{ firstName }} {{ lastName }} Details</h4>
-      </div>
-
-      <div class="modal-body">
-        <p>Room Number: {{ roomNumber }}</p>
-        <p>4-digit Passcode: {{ passcode }}</p>
-        <p>Trip Start: {{ tripStart }}</p>
-        <p>Trip End: {{ tripEnd }}</p>
-      </div>
-      {{/if}}
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div> <!-- End Modal -->
-
-
   <div class="leftCont">
     <div class="leftTitles">
       Customers
@@ -42,19 +15,9 @@
 
       {{#each customers}}
         <div class="customerBox">
-          <p>Unique ID: {{ _id }}</p>
-          <p>Full Name: {{ firstName}} {{ lastName}}</p>
-          <p>Room Number: {{ roomNumber}}</p>
-          <p>4-digit Passcode: {{ passcode }}</p>
-          <p>Trip Start: {{ tripStart }}</p>
-          <p>Trip End: {{ tripEnd }}</p>
-          <button type="button" class="btn" data-toggle="modal" data-target="#custInfo">View More</button>
-
+          <a href="/customers/{{ _id }}">{{ firstName }} {{ lastName }}</a>
         </div>
       {{/each}}
-
-
-      <!-- This is the original, edit here and paste over to layouts/customers.handlebars -->
       <!-- There is another one in layouts/customers.handlebars -->
 
     </div>

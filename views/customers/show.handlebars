@@ -1,0 +1,21 @@
+
+
+<div class="customerBox">
+  <p>Unique ID: {{ customer._id }}</p>
+
+  <p>First Name: {{ customer.firstName }}</p>
+  <p>Last Name: {{ customer.lastName }}</p>
+
+  <p>Room Number: {{ customer.roomNumber }}</p>
+  <p>4-digit Passcode: {{ customer.passcode }}</p>
+  <p>Trip Date: {{ customer.tripStart }} - {{ customer.tripEnd }}</p>
+
+{{#each orderedItems}}
+
+<p>{{ item_id.name }}</p>
+<p>{{ item_id.price }}</p>
+
+
+{{/each}}
+
+</div>

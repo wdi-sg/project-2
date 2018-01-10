@@ -2,6 +2,7 @@ const MongoClient = require('mongodb').MongoClient
 const ObjectId = require('mongodb').ObjectID
 
 const Customer = require('../models/customer')
+const OrderedItems = require('../models/ordereditems')
 
 
 //Index Homepage
@@ -56,4 +57,24 @@ exports.new = (req, res)=>{
           res.redirect('/customers')
         })
   }
+}
+
+exports.show = (req, res)=>{
+  Customer.findOne({_id : req.params.id},(err, customer)=>{
+    if(err) return err
+    console.log("-----------------------");
+
+
+    OrderedItems.find({customer_id : req.params.id})
+    .populate('item_id')
+    .exec((err, orderedItems)=>{
+      console.log(orderedItems);
+      if(err) return err
+      res.send({
+        customer,
+        orderedItems
+      })
+      // res.render('customers/show', {'customer' : customer, 'orderedItems' : orderedItems})
+    })
+  })
 }

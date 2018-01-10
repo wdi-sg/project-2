@@ -15,6 +15,7 @@ router.get('/', homeController.index)
 // ========== Customers ==========
 router.get('/customers', customerController.index)
 router.post('/customers', customerController.new)
+router.get('/customers/:id', customerController.show)
 
 
 

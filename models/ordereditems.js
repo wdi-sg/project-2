@@ -12,6 +12,9 @@ const orderedItemsSchema = new Schema({
   },
   quantity : {
     type: Number
+  },
+  dateOfPurchase : {
+    type: String
   }
 
 })
