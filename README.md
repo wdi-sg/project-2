@@ -1,6 +1,6 @@
 <img src="img/logo.png" width="100px">
 # POS System
-[Click here for a link to the application](https://knownopear.github.io/UNDEPLOYED/)
+[Click here for a link to the application](https://pointofsales-speed.herokuapp.com/)
 
 
 
