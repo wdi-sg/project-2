@@ -125,31 +125,14 @@ $(document).ready(function() {
   });
 
 
-  // ajax request to handle post request when user chooses combinations to save
-  $(".analyzedsave").on("click", function(e) {
-    // obtaining information from rendered page
+  $(".delete-saved").on("click", function(e) {
     e.preventDefault();
-    var user = $(this).data("id");
-    var range = $(this).data("range");
-    // console.log(range);
-    var indivArray = $(this).children("p");
-    var locationArray = [];
-    // console.log(indivArray[0].innerText);
-    for (var element = 0; element < (indivArray.length / 3); element++) {
-      var location = {
-        name: indivArray[element * 3].innerText,
-        address1: indivArray[element * 3 + 1].innerText,
-        address2: indivArray[element * 3 + 2].innerText,
-      };
-      locationArray.push(location);
-    }
-    // console.log(locationArray);
-    var search = ($(this).parent().prev()[0].innerText);
+    var id = $(this).data("id");
+    $("#" + id).fadeOut(800);
 
     $.ajax({
-      url: '/save/analyzed/' + user,
-      type: 'post',
-      data: {'item': search, 'sortedList': locationArray, 'range': range},
+      url: '/delete/saved/' + id,
+      type: 'delete',
       success: function(data) {
         console.log(data);
       },
@@ -157,10 +140,69 @@ $(document).ready(function() {
         console.log(data);
       }
     });
+  });
 
-    $(this).children("i").css("display", "none");
-    $(this).append("<span class='icon has-text-success'></span>");
-    $(this).children("span").append("<i class='fa fa-check-square'></i>");
+
+  // ajax request to handle post request when user chooses combinations to save
+  $(".analyzedsave").on("click", function(e) {
+    e.preventDefault();
+    var user = $(this).data("id");
+    var range = $(this).data("range");
+    // console.log(range);
+    var search = ($(this).parent().prev()[0].innerText);
+
+    if ($(this).hasClass("saved")) {
+      // if a particular combination has been saved
+      $.ajax({
+        url: '/update/analyzed/' + user,
+        type: 'post',
+        data: {'item': search, 'range': range},
+        success: function(data) {
+          console.log(data);
+        },
+        error: function(data) {
+          console.log(data);
+        }
+      });
+
+      $(this).children("span").remove();
+      $(this).append("<span class='icon has-text-danger'></span>");
+      $(this).children("span").append("<i class='fa fa-ban'></i>");
+      $(this).removeClass("saved");
+    } else {
+      // if a particular combination has not been saved
+      // obtaining information from rendered page
+      var indivArray = $(this).children("p");
+      var locationArray = [];
+      // console.log(indivArray[0].innerText);
+      for (var element = 0; element < (indivArray.length / 3); element++) {
+        var location = {
+          name: indivArray[element * 3].innerText,
+          address1: indivArray[element * 3 + 1].innerText,
+          address2: indivArray[element * 3 + 2].innerText,
+        };
+        locationArray.push(location);
+      }
+      // console.log(locationArray);
+
+      $.ajax({
+        url: '/save/analyzed/' + user,
+        type: 'post',
+        data: {'item': search, 'sortedList': locationArray, 'range': range},
+        success: function(data) {
+          console.log(data);
+        },
+        error: function(data) {
+          console.log(data);
+        }
+      });
+
+      $(this).children("i").css("display", "none");
+      $(this).children("span").remove();
+      $(this).append("<span class='icon has-text-success'></span>");
+      $(this).children("span").append("<i class='fa fa-check-square'></i>");
+      $(this).addClass("saved");
+    }
   });
 
 

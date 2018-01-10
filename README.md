@@ -72,7 +72,7 @@ The last flow chart shows the routes that link the website pages.
 
 ## Areas to Improve on
 * Website pages design
-* Search logic
+* Google Maps API
 
 ---
 

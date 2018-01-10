@@ -95,6 +95,15 @@ exports.deleteAnalyzed = (req, res) => {
   });
 };
 
+exports.deleteSaved = (req, res) => {
+  let query = {_id: req.params.id};
+  // console.log(query);
+  SavedList.remove(query, (err) => {
+    if (err) console.log(err);
+    console.log("deleted from savedList");
+  });
+};
+
 
 // create, save combinations which user chooses
 exports.saveAnalyzed = (req, res) => {
@@ -116,5 +125,37 @@ exports.saveAnalyzed = (req, res) => {
         username: req.params.id
       });
     }
+  });
+};
+
+
+// update or delete combinations which user chooses
+exports.updateAnalyzed = (req, res) => {
+  SavedList.findOne({username: req.params.id, item: req.body.item}, (err, data) => {
+    if (err) console.log(err);
+    console.log(data);
+
+    // delete entry completely if there is only one saved result
+    if (data.result.length === 1 && data.result[0].range == req.body.range) {
+      SavedList.remove({item: req.body.item}, (err) => {
+        if (err) console.log(err);
+        console.log("item deleted");
+      });
+    } else {
+      // splice the result if there is more than one saved result
+      var spliceIndex;
+      for (var index = 0; index < data.result.length; index++) {
+        if (data.result[index].range == req.body.range) {
+          spliceIndex = index;
+        }
+      }
+      data.result.splice(spliceIndex, 1);
+
+      data.save((err, updatedData) => {
+        if (err) console.log(err);
+        console.log(updatedData);
+      });
+    }
+
   });
 };
