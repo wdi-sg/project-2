@@ -1,65 +1,73 @@
-# Your Project Name
+# Project 2: DoAP
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+DoAP is a website designed for the dog-owners / lovers to post photographs of their pets and basic information. 
 
-## Getting Started
+General public can report dog-fouling by uploading photograph and provide details for the relevant department to investigate. This is to promote and encourage social community engagement to help maintain better surrounding and environment. 
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+Link: https://p2emjys.herokuapp.com
 
-### Prerequisites
+---
+## Getting Started / Installation
 
-What is needed to install and run the project, how do we install them
-
+Install the dependencies and start the server.
+```sh
+$ yarn install
+$ nodemon
 ```
-Code example
-```
+---
+## Work Flow
 
-### How to Use
+### User Stories
 
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+![user stories](https://user-images.githubusercontent.com/31798170/34513245-4bd5b3ea-f0a2-11e7-93c5-c61edfb76abe.png)
 
+### ERD
 
-```
-Code example
-```
+![erd](https://user-images.githubusercontent.com/31798170/34729452-ac7e1454-f597-11e7-8120-8f523155d826.png)
 
-More steps...
+### Wireframe
 
-```
-until finished
-```
+![wireframe](https://user-images.githubusercontent.com/31798170/34469465-7264461e-ef5a-11e7-8d84-6d7802e84b31.png)
 
+### Wireframe – Login Form
 
-## Tests
-
-Did you write automated tests? If so, how do we run them.
+![wireframe-form](https://user-images.githubusercontent.com/31798170/34469467-7faadcde-ef5a-11e7-8b1d-0e5868b4accf.png)
 
 
-```
-Code example
-```
+### Mockup
 
-## Live Version
+![mockup - landing page](https://user-images.githubusercontent.com/31798170/34513296-9de50352-f0a2-11e7-9e3b-454f74aa729b.jpg)
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+![mockup - contact us](https://user-images.githubusercontent.com/31798170/34513312-accdea78-f0a2-11e7-9e4b-a31396e2c98b.jpg)
 
-## Built With
+![mockup - sign up](https://user-images.githubusercontent.com/31798170/34513329-bbfb4e8c-f0a2-11e7-96c5-e3b3d6d7b723.jpg)
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
+---
+## Built With / Technology
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+* Front-end: HTML, CSS, Javascript, jQuery
+* Back-end: Express, Node.js, Mongoose, MongoDB, Passport
+* CSS Framework: Kube, Materialize
 
-## Workflow
+---
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+## Deployment & Versioning
 
-## Authors
+* Github
+* Heroku
 
-Did you collaborate with others on this project, list them here
+---
 
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+## Possible Improvement / Scalable Areas
+
+* Able to shop online for pet waste pick-up items.
+
+* Able to book appointments for the vet clinics and grooming places.
+
+---
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+* Image Sources: Burst by Spotify, Pexels, Pixabay, Unsplash, Vecteezy
+
 
