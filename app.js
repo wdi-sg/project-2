@@ -14,7 +14,7 @@ const app = express();
 require('dotenv').config()
 
 // =============== local module ===============
-const database = require('./config/database');
+// const database = require('./config/database');
 const routes = require('./routes/routes');
 
 
@@ -32,7 +32,7 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
-  store: new MongoStore({ url: database.url })
+  store: new MongoStore({ url: process.env.DB_URL })
 }));
 
 
@@ -76,7 +76,7 @@ app.use('/', routes);
 
 // =============== mongoose ===============
 mongoose.Promise = global.Promise;
-mongoose.connect(database.url).then(function() {
+mongoose.connect(process.env.DB_URL).then(function() {
   console.log('Mongoose running..');
 }).catch(function(err) {
   console.log('Error with Mongo', err);
