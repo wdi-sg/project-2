@@ -1,6 +1,3 @@
-
-
-
 $(document).ready(function() {
     var reference = document.querySelectorAll('.api');
     console.log(reference);
@@ -61,12 +58,6 @@ $(document).ready(function() {
         })
     });
 
-//     $('').attr("href");
-//     $('#reference').contents();
-//     $('').
-//     $('').
-//     let hexagram = $('#hexagram').text();
-//
     function retrieveAPIIngredients() {
         return Promise.resolve($.ajax({
             url: '/result/' + hexagram,
@@ -85,36 +76,8 @@ $(document).ready(function() {
             }
         }));
     }
-//
-//     let ingredients = retrieveAPIIngredients();
-//     console.log(ingredients);
-//
-//     //
-//     for (text in ingredients.text) {
-//         for (entry in text.entry) {
-//
-//         }
-//     }
-//
-//     function callAPI() {
-//
-//         return Promise.resolve($.ajax({
-//             url: yijing.chinese.url + yijing.chinese.urn + '/' + yijing.chinese.entry[entryName],
-//             type: 'GET',
-//             success: function(json) {
-//                 return json;
-//             },
-//             error: function(xhr) {
-//                 console.log("An error occured…");
-//                 console.log('`xhr.status`: ');
-//                 console.log(xhr.status);
-//                 console.log('`xhr.statusText`');
-//                 console.log(xhr.statusText);
-//             }
-//         }));
-//     }
-// });
 
+//  Example of AJAX request through jquery
 // $.ajax({
 //     url: '/delete/' + id,
 //     type: 'GET',

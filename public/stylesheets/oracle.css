@@ -5,6 +5,7 @@
 #stalks-container {
 	display: flex;
 	padding: 1rem;
+	height: 360px;
 }
 
 .gap {
@@ -65,6 +66,7 @@
 		min-width: 100%;
 	}
 }
+
 @media only screen and (min-width: 415px) and (max-width: 477px) {
 	.stalk {
 		max-width: 7px;
@@ -79,6 +81,7 @@
 		min-width: 100%;
 	}
 }
+
 @media only screen and (min-width: 376px) and (max-width: 414px) {
 	.stalk {
 		max-width: 7px;
@@ -94,7 +97,6 @@
 	}
 }
 
-
 @media only screen and (min-width: 321px) and (max-width: 375px) {
 	.stalk {
 		max-width: 6px;
@@ -109,7 +111,6 @@
 		min-width: 100%;
 	}
 }
-
 
 @media only screen and (max-width: 320px) {
 	#brand {

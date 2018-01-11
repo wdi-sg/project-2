@@ -25,11 +25,11 @@ yarn install
 For sign in with Twitter to work via `passport-twitter` node package:
 1. Register an application with Twitter at [Twitter Application Management](https://apps.twitter.com) to receive a consumer key (API Key) and a consumer secret (API Secret).
 2. Provide the actual callback URL to Twitter.
-3. Lastly, add these to `config/twitter-config.js`.
+3. Lastly, add these to `config/config.js`.
 
 #### MongoDB
 
-Add the URL of your database to `config/db-config`.
+Add the URL of your database to `config/config.js`.
 
 ### How to Use the Oracle of Changes
 

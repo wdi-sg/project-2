@@ -75,7 +75,9 @@ const reference = {
 	},
 	indexForYilin: function(originalHexagramNumber, resultantHexagramNumber) {
 		let yilinIndex;
-		if (resultantHexagramNumber > originalHexagramNumber) {
+		if (resultantHexagramNumber == originalHexagramNumber) {
+			yilinIndex = 0;
+		} else if (resultantHexagramNumber > originalHexagramNumber) {
 		  yilinIndex = resultantHexagramNumber - 1;
 		  console.log('Position in Yilin array:');
 		  console.log(yilinIndex);
