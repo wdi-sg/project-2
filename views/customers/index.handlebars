@@ -1,68 +1,65 @@
 <div class="container mainCont">
 
-
   <div class="leftCont">
     <div class="leftTitles">
       Customers
-      &nbsp;<input type="text" placeholder="Search..">
     </div>
 
     <div class="leftView">
       {{#if success_msg}}
-      <div class="alert alert-success"> {{ success_msg }} </div>
+        <div class="alert alert-success"> {{ success_msg }} </div>
       {{/if}}
-
 
       {{#each customers}}
         <div class="customerBox">
           <a href="/customers/{{ _id }}">{{ firstName }} {{ lastName }}</a>
+          <button type="button" class="deleteBtn" id="{{ _id }}">Delete</button>
         </div>
       {{/each}}
-      <!-- There is another one in layouts/customers.handlebars -->
-
     </div>
   </div>
 
 
   <div class="rightCont">
     <div class="rightTitles">
-      Add Customer
+      Add New Customer
     </div>
     <div class="rightView">
+      <form class ="rightViewForm" action="/customers" method="post">
 
+        <div class="addCustFormField" name="firstName">
+          <label for="firstName">First Name</label><br>
+          <input type="text" name="firstName" value="" placeholder="First Name">
+        </div>
 
-      <form action="/customers" method="post">
+        <div class="addCustFormField" name="lastName">
+          <label for="lastName">Last Name</label><br>
+          <input type="text" name="lastName" value="" placeholder="Last Name">
+        <div>
 
-        <label for="firstName">First Name</label><br>
-        <input type="text" name="firstName" value="" placeholder="First Name">
-        <br><br><br>
+        <div class="addCustFormField" name="roomNumber">
+          <label for="roomNumber">Room Number</label><br>
+          <input type="text" name="roomNumber" value="" placeholder="01">
+        </div>
 
-        <label for="lastName">Last Name</label><br>
-        <input type="text" name="lastName" value="" placeholder="Last Name">
-        <br><br><br>
+        <div class="addCustFormField" name="passcode">
+          <label for="passcode">4-digit Passcode</label><br>
+          <input type="text" name="passcode" value="" placeholder="1234">
+        </div>
 
-        <label for="roomNumber">Room Number</label><br>
-        <input type="text" name="roomNumber" value="" placeholder="01">
-        <br><br><br>
+        <div class="addCustFormField" name="tripStart">
+          <label for="tripStart">Trip Start Date</label><br>
+          <input type="date" name="tripStart" value="">
+        </div>
 
-        <label for="passcode">4-digit Passcode</label><br>
-        <input type="text" name="passcode" value="" placeholder="1234">
-        <br><br><br>
+        <div class="addCustFormField" name="tripEnd">
+          <label for="tripEnd">Trip End Date</label><br>
+          <input type="date" name="tripEnd" value="">
+        </div>
 
-
-        <label for="tripStart">Trip Start Date</label><br>
-        <input type="date" name="tripStart" value="">
-        <!-- <input type="text" class="datepicker" name="tripStart"> -->
-        <br><br><br>
-
-        <label for="tripEnd">Trip End Date</label><br>
-        <input type="date" name="tripEnd" value="">
-        <!-- <input type="text" class="datepicker" name="tripEnd"> -->
-        <br><br><br>
-
-      <!-- Still have to input all the items purchased and total price when viewing customers  -->
-
-        <input type="submit" name="submit"/>
+        <div class="addCustFormField" name="submitBtn">
+          <input type="submit" name="submit"/>
+        </div>
       </form>
     </div>
   </div>

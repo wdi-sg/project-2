@@ -79,3 +79,10 @@ exports.update = (req, res)=>{
     })
   }
 }
+
+exports.delete = (req, res)=>{
+  Item.remove({_id : req.params.id}, (err)=>{
+    console.log(err)
+    res.sendStatus(200);
+  })
+}

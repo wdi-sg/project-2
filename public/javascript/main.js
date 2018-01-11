@@ -8,18 +8,14 @@ $(".addOrderBtn").on("click", function() {
   var price = $(this).data("price");
   var id = $(this).data("id");
 
-  //itemList is inside home.handlebars
-  $( ".itemList" ).append( "<div class='singleItem' id=" + id + "></div>" );
-  $( "#" + id ).append("<p>" + name + "</p>");
-  $( "#" + id ).append("<p>SGD$: " + price + "</p>");
-  $( "#" + id ).append('<input class="addQuantity" type="number" value="1" min="0"><br><br>');
+// SOME DOPE ES6 FEATURE FOR DELETING
+  $( ".itemList" ).append( `<div class='singleItem' id=${id}>
+  <span> ${name} </span> &nbsp; <button type='button' class='deleteCartItemBtn'>Delete</button>
+  <p>SGD$: ${price} </p>
+  <input class='addQuantity' type='number' value='1' min='0'>
+  &nbsp;
 
-    // This is how it looks like
-    // <div class="singleItem" id="unique ID of item">
-    // name
-    // <p>SGD$: price</p>
-    // <input class="addQuantity" type="number" value="1" min="0">
-    // <br><br>
+  </div>`);
 });
 
 
@@ -64,7 +60,6 @@ $("#mainOrderBtn").on("click", function() {
     orderedItemsObj["quantity"] = quantityArray[i];
     orderedItemsObj["customer_id"] = custSelectValue;
     orderedItemsObj["dateOfPurchase"] = dateTime;
-    // orderdItemsObj["quantity"] *
 
     orderedItemsArray.push(orderedItemsObj);
     // console.log(orderedItemsArray);
@@ -88,5 +83,57 @@ console.log(orderedItemsArray[0].customer_id);
   });
 
 });
+
+// ====== DELETE BUTTON CUSTOMER ======
+$(".itemList").on("click", 'button', function(){
+  console.log($(this));
+  $(this).parent().remove();
+})
+
+
+// $(".addOrderBtn").on("click", 'button', function(){
+//   console.log("test");
+//   $(this).parent().remove();
+// })
+
+
+// ====== DELETE BUTTON CUSTOMER ======
+$(".deleteCustBtn").on("click", function(){
+  var id = $(this).attr("id");
+  $(this).parent().remove();
+
+  $.ajax({
+    url: '/customer/delete/' + id,
+    type: 'delete',
+    success: function(data) {
+      console.log(data);
+    },
+    error: function(data){
+      console.log(data);
+    }
+  });
+});
+
+// ====== DELETE ITEM CUSTOMER ======
+$(".deleteItemBtn").on("click", function(){
+  var id = $(this).attr("id");
+  $(this).parent().remove();
+
+
+  $.ajax({
+    url: '/item/delete/' + id,
+    type: 'delete',
+    success: function(data) {
+      console.log(data);
+    },
+    error: function(data){
+      console.log(data);
+    }
+  });
+});
+
+
+
+
 
 }); // End document.ready

@@ -16,6 +16,7 @@ router.get('/', homeController.index)
 router.get('/customers', customerController.index)
 router.post('/customers', customerController.new)
 router.get('/customers/:id', customerController.show)
+router.delete('/customer/delete/:id', customerController.delete)
 
 
 
@@ -23,6 +24,7 @@ router.get('/customers/:id', customerController.show)
 router.get('/items', itemController.index) //Item page
 router.post('/items', itemController.new) // item new post
 router.post('/items', itemController.update)
+router.delete('/item/delete/:id', itemController.delete)
 
 // =========== Homepage ==========
 router.post('/order', homeController.order)

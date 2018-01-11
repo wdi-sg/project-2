@@ -11,7 +11,6 @@ exports.index = (req, res)=>{
     console.log(customers)
     if(err) return err
 
-    console.log("hello! customer controller here")
     res.render('customers/index', {'customers' : customers})
   })
 }
@@ -61,12 +60,10 @@ exports.new = (req, res)=>{
 
 exports.show = (req, res)=>{
   var totalPrice = 0;
-  var perOrderPrice = 0;
+  var perOrderPrice = [];
 
   Customer.findOne({_id : req.params.id},(err, customer)=>{
     if(err) return err
-    console.log("-----------------------")
-
 
     OrderedItems.find({customer_id : req.params.id})
     .populate('item_id')
@@ -75,19 +72,12 @@ exports.show = (req, res)=>{
 
       if(err) return err
 
-
-
-      orderedItems.forEach(function(perItem){
-        let price = parseFloat(perItem.item_id.price);
-        let quantity = parseFloat(perItem.quantity);
-        perOrderPrice = price * quantity;
-      })
-
       orderedItems.forEach(function(item){
         // turn string into number
         let price = parseFloat(item.item_id.price);
         let quantity = parseFloat(item.quantity);
         totalPrice += price * quantity;
+        //perOrderPrice.push({orderPrice: price * quantity});
 
       });
 
@@ -98,7 +88,18 @@ exports.show = (req, res)=>{
       // })
       // === Can delete later on
 
-      res.render('customers/show', {'customer' : customer, 'orderedItems' : orderedItems, 'totalPrice' : totalPrice, 'perOrderPrice' : perOrderPrice})
+      totalPrice = totalPrice.toFixed(2);
+      res.render('customers/show', {'customer' : customer, 'orderedItems' : orderedItems, 'totalPrice' : totalPrice})
     })
+  })
+}
+
+
+
+exports.delete = (req, res)=>{
+  Customer.remove({_id : req.params.id}, (err)=>{
+    console.log(err)
+    console.log(req.params.id);
+    res.sendStatus(200);
   })
 }

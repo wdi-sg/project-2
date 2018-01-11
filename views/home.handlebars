@@ -3,10 +3,12 @@
   <div class="leftCont">
     <div class="leftTitles">
       Items List
-      &nbsp;<input type="text" placeholder="Search..">
     </div>
 
     <div class="leftView">
+      {{#if success_msg}}
+        <div class="alert alert-success"> {{ success_msg }} </div>
+      {{/if}}
 
         {{#each items}}
           <div class="itemBox">
@@ -18,28 +20,28 @@
         {{/each}}
 
     </div>
-  </div>  <!-- End leftCont -->
+  </div>
 
   <div class="rightCont">
     <div class="rightTitles">
-      Order
+      Add New Order
     </div>
     <div class="rightView">
-      <form action="/order" method="post">
+      <form class ="rightViewForm" action="/order" method="post">
 
         <!-- Customer Dropdown -->
-        <select id="custSelectDropdown">
-          {{#each customers}}
-            <option placeholder="hello" value="{{ _id }}">{{ firstName }} {{ lastName }}</option>
-          {{/each}}
-        </select>
+        <div class="custSelectDropdownDiv">
+          <select id="custSelectDropdown">
+            {{#each customers}}
+              <option placeholder="hello" value="{{ _id }}">{{ firstName }} {{ lastName }}</option>
+            {{/each}}
+            </select>
+        </div>
 
         <!-- Item Div -->
         <div class="itemList">
         </div>
 
-
-        <br>
         <input type="submit" name="Place Order" id="mainOrderBtn">
         <!-- <input class="addQuantity" type="number" value="1" min="0"> -->
       </form>
