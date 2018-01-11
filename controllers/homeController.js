@@ -16,8 +16,10 @@ exports.index = (req, res)=>{
 }
 
 exports.positions = (req, res) => {
+
   var array = [];
-  Position.find({}, function(err, result) {
+  // Position.find({}, function(err, result) {
+    Position.find({user: req.user._id}, function(err, result) {
     if (err) throw err;
 
 
@@ -27,7 +29,7 @@ exports.positions = (req, res) => {
         .then(intradayData => {
           console.log(entry.ticker);
           console.log(intradayData[0].Close);
-          array.push({currentPrice: intradayData[0].Close});
+          array.push({tickerName: entry.ticker, currentPrice: intradayData[0].Close});
           resolve();
         })
       });
@@ -136,19 +138,21 @@ exports.create = (req, res)=>{
   		units: req.body.units,
   		price: req.body.price,
   		buyDate: req.body.buyDate,
-
+      // user: '5a57182860fc9d7406609b92'
+      user: req.user._id
 
 	})
 
 	newPosition.save(function(err){
 		if(err) throw err
-    Position.find({},function(err,result){
-        if(err) throw err
+    // Position.find({},function(err,result){
+    //     if(err) throw err
+
         // console.log(result)
         res.redirect('/positions');
   })
 
-	})
+	// })
 //   Position.find({},function(err,result){
 //       if(err) throw err
 //       console.log(result)
@@ -165,15 +169,15 @@ exports.remove= (req,res)=>{
 
 
 //Updates page
-exports.update = (req, res)=>{
-  Position.findById(req.params.id, function(err, result) {
-    // return res.send(result)
-    // if(err) console.log(err)
-    // console.log(result);
-      res.render('update', {data: result})
-  });
-
-}
+// exports.update = (req, res)=>{
+//   Position.findById(req.params.id, function(err, result) {
+//     // return res.send(result)
+//     // if(err) console.log(err)
+//     // console.log(result);
+//       res.render('update', {data: result})
+//   });
+//
+// }
 
 //Calling API for current price
 // var AlphaVantageAPI = require('alpha-vantage-cli').AlphaVantageAPI;

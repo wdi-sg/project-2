@@ -50,7 +50,7 @@ app.use((req, res, next) => {
   // render alerts in views pages
   res.locals.alerts = req.flash();
 
-  res.locals.currentUser = req.user;
+  res.locals.user = req.user;
 
   next();
 });
