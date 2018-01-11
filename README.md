@@ -1,6 +1,6 @@
 # Multi Business Locator
 
-This is a new search engine which looks for multiple local businesses, such as restaurants, bookstores etc, simultaneously. Enter them in the search fields in decreasing order of priority.
+This is a new search engine which looks for multiple local businesses, such as restaurants, bookstores etc, simultaneously.
 
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #2: Building Your First Full-stack Application
 
@@ -50,7 +50,9 @@ The last flow chart shows the routes that link the website pages.
 
 ![alt text](https://github.com/chongct/project-2/blob/master/images/wireframe-login.png "Wireframe (Login feature)")
 
-![alt text](https://github.com/chongct/project-2/blob/master/images/wireframe-routes.png "Wireframe (Routes)")
+### Flowchart
+
+![alt text](https://github.com/chongct/project-2/blob/master/images/flowchart.png "Flowchart")
 
 ### User Stories
 
