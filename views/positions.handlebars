@@ -44,24 +44,24 @@
 
   </thead>
 
+    <tbody class='positiontable'>
+      {{#each position}}
 
-{{#each position}}
-  <tbody class='positiontable'>
-    <tr>
-      <td>{{ name }}</td>
-      <td>{{ ticker }}</td>
-      <td>{{ buyDate }}</td>
+      <tr>
+        <td>{{ name }}</td>
+        <td>{{ ticker }}</td>
+        <td>{{ buyDate }}</td>
 
-      <td>{{ units }}</td>
-      <td>${{ price }}</td>
-      <td>${{ sumInvested }}</td>
+        <td>{{ units }}</td>
+        <td>${{ price }}</td>
+        <td>${{ sumInvested }}</td>
 
-      <td>${{#each ../priceArray }}
-          {{currentPrice}}
-        {{/each}}</td>
-      <td>${{ currentMarketValue }}</td>
-      <td>${{ amountEarned }}</td>
-      <td>
+        <td>${{#each ../priceArray }}
+            {{currentPrice}}
+            {{/each}}</td>
+        <td>${{ currentMarketValue }}</td>
+        <td>${{ amountEarned }}</td>
+        <td>
 
 
         <!-- <form

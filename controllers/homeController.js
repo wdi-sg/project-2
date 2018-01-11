@@ -3,7 +3,7 @@ const User = require('../models/user');
 
 var AlphaVantageAPI = require('alpha-vantage-cli').AlphaVantageAPI;
 
-var yourApiKey = 'WMIBV3Q29V0HHRV9';
+var yourApiKey = process.env.DB_APIKEY;
 
 var alphaVantageAPI = new AlphaVantageAPI(yourApiKey, 'compact', true);
 var intradayData

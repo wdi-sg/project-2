@@ -13,6 +13,7 @@ const io = require("socket.io")(server)
 const flash = require('connect-flash')
 const passport = require('passport')
 const port = process.env.PORT || 3000
+require('dotenv').config()
 
 const routes = require('./routes/routes')
 const dbConfig = require('./config/dbConfig')

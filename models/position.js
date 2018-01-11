@@ -10,10 +10,10 @@ const positionSchema = new Schema({
   price: Number,
   buyDate: String,
 
-  user: [{
+  user: {
   type: Schema.Types.ObjectId,
   ref: 'User'
-}]
+}
 })
 
 //Calculate total $$$ invested per position
