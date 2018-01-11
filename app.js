@@ -22,9 +22,9 @@ const port = process.env.PORT || 3013
 
 const dbConfig = require('./config/dbConfig')
 
-// Models - Routes
-const routes = require('./routes/routes')   // const is defined, cannot be re-assigned
 
+// Models - Routes ================================================================================
+const routes = require('./routes/routes')   // const is defined, cannot be re-assigned
 
 
 // Configuration ================================================================================
@@ -65,7 +65,6 @@ app.use(session({
   }
 }));
 
-
 // ----- Passport -----
 app.use(passport.initialize());
 app.use(passport.session());
@@ -103,7 +102,6 @@ app.use(expressValidator({
   }));
 
   app.use(methodOverride('_method'));
-
 
 
 // Routes ==================================================================================

@@ -33,35 +33,32 @@ exports.signup = (req, res) => {
       req.checkBody('passwordRetype', 'Password entered does not match').equals(req.body.password);
     }
 
-
     let errors = req.validationErrors()
     console.log(errors);
 
         if (errors) {
-        res.render('users/signup', { errors : errors, data: req.body
+            res.render('users/signup', { errors : errors, data: req.body
         });
 
         } else {
 
-    User.create({
-        firstname : req.body.firstname,
-        lastname : req.body.lastname,
-        email : req.body.email,
-        password: req.body.password
-        }, (error, createdUser) => {
+        User.create({
+            firstname : req.body.firstname,
+            lastname : req.body.lastname,
+            email : req.body.email,
+            password: req.body.password
+            }, (error, createdUser) => {
 
         if (error) {
-          console.log(error)
-          req.flash('error', 'Could not create user account');
-          res.redirect('/users/signup');
-
+            console.log(error)
+            req.flash('error', 'Could not create user account');
+            res.redirect('/users/signup');
 
         } else {
-
-        passport.authenticate('local', {
-        successRedirect: '/',
-        successFlash: 'Account created and logged in'})(req, res);
-        }
+            passport.authenticate('local', {
+            successRedirect: '/',
+            successFlash: 'Account created and logged in'})(req, res);
+            }
         })
     }
   }

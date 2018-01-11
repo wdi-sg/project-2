@@ -1,10 +1,10 @@
 # Project 2: DoAP
 
-DoAP is a website designed for the dog-owners / lovers to post photographs of their pets and basic information.
+DoAP is a website designed for the dog-owners / lovers to post photographs of their dog pets.
 
 General public can report dog-fouling by uploading photograph and provide details for the relevant department to investigate. This is to promote and encourage social community engagement to help maintain better surrounding and environment.
 
-Link: https://p2emjys.herokuapp.com
+Link: https://p2-doap.herokuapp.com
 
 ---
 ## Getting Started / Installation
@@ -36,18 +36,16 @@ $ nodemon
 
 ### Mockup
 
-![mockup - landing page](https://user-images.githubusercontent.com/31798170/34513296-9de50352-f0a2-11e7-9e3b-454f74aa729b.jpg)
+![mockup - sign up](https://user-images.githubusercontent.com/31798170/34829156-b9fcd7da-f71a-11e7-8086-5c82082f9bd5.jpg)
 
-![mockup - contact us](https://user-images.githubusercontent.com/31798170/34513312-accdea78-f0a2-11e7-9e4b-a31396e2c98b.jpg)
-
-![mockup - sign up](https://user-images.githubusercontent.com/31798170/34513329-bbfb4e8c-f0a2-11e7-96c5-e3b3d6d7b723.jpg)
+![mockup - contact us](https://user-images.githubusercontent.com/31798170/34832281-718d1686-f724-11e7-9456-86902964568e.jpg)
 
 ---
 ## Built With / Technology
 
 * Front-end: HTML, CSS, Javascript, jQuery
 * Back-end: Express, Node.js, Mongoose, MongoDB, Passport
-* CSS Framework: Kube, Materialize
+* CSS Framework: Kube
 
 ---
 
@@ -61,7 +59,6 @@ $ nodemon
 ## Possible Improvement / Scalable Areas
 
 * Able to shop online for pet waste pick-up items.
-
 * Able to book appointments for the vet clinics and grooming places.
 
 ---
@@ -69,4 +66,3 @@ $ nodemon
 ## Acknowledgments
 
 * Image Sources: Burst by Spotify, Pexels, Pixabay, Unsplash, Vecteezy
-* Github

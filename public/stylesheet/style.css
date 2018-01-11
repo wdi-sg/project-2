@@ -45,11 +45,6 @@ header nav {
   margin-top: 8px;
 }
 
-header .current a {
-  color: #167faf;
-  font-weight: bold;
-}
-
 header a:hover {
   color: #a5a0a0;
   font-weight: bold;
@@ -162,28 +157,6 @@ header a:hover {
 }
 
 
-/* Content-Two ==========================*/
-
-#content-two {
-  background: #ede9ce;
-  color: #333;
-  padding-bottom: 2em;
-  width: 100%;
-  height: 50em;
-  /* background-image: url("/img/dog-foul.png"); */
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-#content-three {
-  background: #e6ecec;
-  color: #333;
-  padding-bottom: 2em;
-  width: 100%;
-  height: 50em;
-}
-
-
 /* Dog Info ==========================  */
 
 #dog-info {
@@ -195,7 +168,7 @@ header a:hover {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   background-size: cover;
-  background-image: url("/img/dog-info2.png");
+  background-image: url("/img/dog-info.png");
   background-position-x: 12em;
 }
 
@@ -418,8 +391,7 @@ select {
 
 #subscribe {
   text-align: center;
-  padding: 1em;
-  background-image: url() 
+  padding: 1em;  
 }
 
 #subscribe div {
@@ -442,7 +414,6 @@ select {
   background-color: transparent;
   color: darkgrey;
 }
-
 
 /* Contact Us ==========================*/
 
@@ -513,7 +484,6 @@ footer span.fa {
 }
 
 
-
 /* Media Queries ========================== */
 
 @media all and (min-widht: 50em) {
@@ -521,14 +491,4 @@ footer span.fa {
   .icons ul {
     width: auto;
   }
-
-  /* #breadcrumbs-custom-separator {
-
-  }
-  .search {
-
-  }
-  .icons #social-icons {
-    
-  } */
 }
