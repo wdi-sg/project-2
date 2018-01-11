@@ -13,6 +13,10 @@ img {
   width: 100%;
 }
 
+strong {
+  font-weight: bold;
+}
+
 
 /* body & main */
 
@@ -81,6 +85,12 @@ img {
 
 .icon-spacing {
   padding: 0 5px;
+}
+
+.overall-box {
+  padding-left: 3px;
+  margin-right: 5px;
+  border-radius: 5px;
 }
 
 .rating-box {
