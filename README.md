@@ -1,5 +1,7 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 2: Yummy Thoughts
 
+<img src="/public/readme_img/ss1.png">
+
 This is a food review site for users to share yummy food and give their thoughts.
 
 As a user, you can contribute by creating reviews based on tasty food that you have tried.
@@ -16,36 +18,21 @@ As a User, I want to
 * write reviews so I can share my experience of the food I tried with other users.
 * update my review so I can edit it and maybe give a better opinion in the future.
 * bookmark other user's review so I can have a list for where to eat next.
-* see a gallery of food photos so I can glance through and choose the food for review faster.
-* have a link for the location so I can go straight to google map for the direction.
+* see a collection of photos so I can have a quick glance and choose the reviews that I am more interested in.
 * leave comments on other's review so I can voice my support or against to the review.
-* view other user's profile so I can view their reviews and bookmarks.
+* view other user's profile so I can look at reviews based on specific user.
 
 ## How to use
-
-### at the landing page, log in if you have an account
-  <img src="/public/readme_img/ss1.png" width="600">
-
-### if not, sign up as a user with your particulars
-  <img src="/public/readme_img/ss2.png" width="600">
-
-### once logged in, you will see all the reviews on the homepage
-  <img src="/public/readme_img/ss3.png" width="600">
-
-### click on the photo to view the full review
-
-#### if you created the review, you can edit or delete it
-  <img src="/public/readme_img/ss4.png" width="600">
-
-#### else you can bookmark the review for view later
-  <img src="/public/readme_img/ss5.png" width="600">
-
-### contribute by writing review
-  <img src="/public/readme_img/ss6.png" width="600">
-
-### at profile page, you can view your own reviews and bookmarks
-  <img src="/public/readme_img/ss7.png" width="600">
-
+* at the landing page, log in if you have an account
+* if not, sign up for an account
+* once logged in, you will see all the reviews on the homepage
+* click on the photo to see the full review of that food item
+* any user can give a Like or leave comments on the full review page
+* if you created the review, you can edit or delete it
+* else you can only bookmark the review
+* at profile page, you can view your own reviews and bookmarks
+* and a button that takes you to write your awesome food review
+* your contribution will be added to the homepage
 
 ## Flowchart
 <img src="/public/readme_img/Flowchart.jpg">
@@ -86,13 +73,11 @@ As a User, I want to
 
 ### Cloudinary
 * users upload their images to the cloud.
-* URL of image will be placed in src attribute of <img> tag
 
 ### Google Maps API - Place autocomplete
-* a pick list of place predictions supplied as the user enters the search query
+* dropdown list that provide place predictions as the user enters the search query
 
 ## Built With
-
 * HTML5
 * CSS3
 * Javascript
@@ -107,8 +92,14 @@ As a User, I want to
 * Heroku
 
 ## Future Developments
+* a friend/follow list at profile page that has links to different user's profile
+* making it a responsive web design
+* include a search bar that can search based on different criteria eg. username, title of review
+* including google maps to show the location of the restaurant in the full review page
+* use more than one strategy to login
 
 ## Acknowledgments
+
 ### Masonry Layout - Pinterest style column layout
 http://w3bits.com/css-masonry/
 

@@ -39,11 +39,10 @@ $(document).ready(function() {
       url: $(this).attr('href'),
       type: 'DELETE',
       success: function(data) {
-        console.log(data);
         window.location.reload();
       },
       error: function(err) {
-        console.log(err);
+        if (err) throw err;
       }
     });
   });
@@ -57,11 +56,10 @@ $(document).ready(function() {
       url: $(this).attr('href'),
       type: 'DELETE',
       success: function(data) {
-        console.log(data);
         window.location.href = '/';
       },
       error: function(err) {
-        console.log(err);
+        if (err) throw err;
       }
     });
   });
@@ -82,11 +80,10 @@ $(document).ready(function() {
         comment: comment
       },
       success: function(data) {
-        console.log(data);
         window.location.reload();
       },
       error: function(err) {
-        console.log(err);
+        if (err) throw err;
       }
     });
   });
@@ -100,11 +97,10 @@ $(document).ready(function() {
       url: $(this).attr('href'),
       type: 'DELETE',
       success: function(data) {
-        console.log(data);
         window.location.reload();
       },
       error: function(err) {
-        console.log(err);
+        if (err) throw err;
       }
     });
   });
