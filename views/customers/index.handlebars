@@ -1,0 +1,68 @@
+<div class="container mainCont">
+
+
+  <div class="leftCont">
+    <div class="leftTitles">
+      Customers
+      &nbsp;<input type="text" placeholder="Search..">
+    </div>
+
+    <div class="leftView">
+      {{#if success_msg}}
+      <div class="alert alert-success"> {{ success_msg }} </div>
+      {{/if}}
+
+
+      {{#each customers}}
+        <div class="customerBox">
+          <a href="/customers/{{ _id }}">{{ firstName }} {{ lastName }}</a>
+        </div>
+      {{/each}}
+      <!-- There is another one in layouts/customers.handlebars -->
+
+    </div>
+  </div>
+
+
+  <div class="rightCont">
+    <div class="rightTitles">
+      Add Customer
+    </div>
+    <div class="rightView">
+
+
+      <form action="/customers" method="post">
+
+        <label for="firstName">First Name</label><br>
+        <input type="text" name="firstName" value="" placeholder="First Name">
+        <br><br><br>
+
+        <label for="lastName">Last Name</label><br>
+        <input type="text" name="lastName" value="" placeholder="Last Name">
+        <br><br><br>
+
+        <label for="roomNumber">Room Number</label><br>
+        <input type="text" name="roomNumber" value="" placeholder="01">
+        <br><br><br>
+
+        <label for="passcode">4-digit Passcode</label><br>
+        <input type="text" name="passcode" value="" placeholder="1234">
+        <br><br><br>
+
+
+        <label for="tripStart">Trip Start Date</label><br>
+        <input type="date" name="tripStart" value="">
+        <!-- <input type="text" class="datepicker" name="tripStart"> -->
+        <br><br><br>
+
+        <label for="tripEnd">Trip End Date</label><br>
+        <input type="date" name="tripEnd" value="">
+        <!-- <input type="text" class="datepicker" name="tripEnd"> -->
+        <br><br><br>
+
+      <!-- Still have to input all the items purchased and total price when viewing customers  -->
+
+        <input type="submit" name="submit"/>
+      </form>
+    </div>
+  </div>

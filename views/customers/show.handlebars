@@ -1,0 +1,36 @@
+
+
+<div class="customerBox">
+
+  <div>
+    <h3>====== Details ======</h3>
+    <br>
+    <p>Unique ID: {{ customer._id }}</p>
+    <p>First Name: {{ customer.firstName }}</p>
+    <p>Last Name: {{ customer.lastName }}</p>
+    <p>Room Number: {{ customer.roomNumber }}</p>
+    <p>4-digit Passcode: {{ customer.passcode }}</p>
+    <p>Trip Start: {{ customer.tripStart }}</p>
+    <p>Trip End: {{ customer.tripEnd }}</p>
+</div>
+
+<br><br>
+
+<div>
+  <h3>====== Orders ======</h3>
+  <br>
+  {{#each orderedItems}}
+    <p>Date of Purchase: {{ dateOfPurchase }}</p>
+    <p>{{ item_id.name }}</p>
+    <p>SGD$: {{ item_id.price }}</p>
+    <p>Quantity: {{ quantity }}</p>
+    <script></script>
+
+    <p> --- </p>
+  {{/each}}
+  <p> Per order price: {{ perOrderPrice }} </p>
+
+  <p>Total price: {{ totalPrice }}</p>
+</div>
+
+</div>

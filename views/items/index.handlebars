@@ -1,0 +1,82 @@
+<div class="container mainCont">
+
+  <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{ name }}</h4>
+      </div>
+
+      <div class="modal-body">
+        <img src="/style/img/placeholder.png">
+        <p>Name: {{ name }}</p>
+        <p>Price: {{ price}}</p>
+        <p>Total Stock: {{ total_stock }}</p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Update</button>
+      </div>
+    </div>
+
+  </div>
+</div> <!-- End Modal -->
+
+  <div class="leftCont">
+    <div class="leftTitles">
+      Items and Stock
+      &nbsp;<input type="text" placeholder="Search..">
+    </div>
+
+    <div class="leftView">
+
+
+      {{#if success_msg}}
+      <div class="alert alert-success"> {{ success_msg }} </div>
+      {{/if}}
+
+
+      {{#each items}}
+        <div class="itemBox">
+          <img src="/style/img/placeholder.png">
+          <p>Name: {{ name }}</p>
+          <p>Price: {{ price}}</p>
+          <p>Total Stock: {{ total_stock }}</p>
+          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Update Item</button>
+        </div>
+      {{/each}}
+
+
+    </div>
+  </div>  <!-- End of leftCont -->
+
+
+  <div class="rightCont">
+    <div class="rightTitles">
+      Add Item
+    </div>
+    <div class="rightView">
+
+
+      <form action="/items" method="post">
+
+        <label for="name">Name</label><br>
+        <input type="text" name="name" value="" placeholder="Item Name">
+      <br><br><br>
+
+        <label for="price">Price per item</label><br>
+        <input type="text" name="price" value="" placeholder="S$1.99">
+        <br><br><br>
+
+        <label for="total_stock">Total Stock</label><br>
+        <input type="text" name="total_stock" value="" placeholder="">
+        <br><br><br>
+
+        <input type="submit" name="submit"/>
+      </form>
+    </div>
+  </div>
