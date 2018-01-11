@@ -38,7 +38,7 @@
       <th>Total Sum Invested <br> (USD)</th>
       <th>Current Share Price <br> (USD)</th>
       <th>Total Market Value <br> (USD)</th>
-      <th>Amount Earned (Lost) <br> (USD)</th>
+      <th>Amount Earned/Lost <br> (USD)</th>
 
     </tr>
 
@@ -64,32 +64,13 @@
         <td>
 
 
-        <!-- <form
-          class="deleteForm"
-          action="/positions/{{ _id }}?_method=PUT"
-          method="delete"
-        > -->
-          <!-- <a href="/positions/remove?id={{_id}}" >Sell</a> -->
+
           <a href="/positions/{{_id}}" >Sell</a>
 
           <br>
           <input type="hidden" name="posiId" value="{{id}}">
 
-        <!-- </form> -->
 
-        <!-- <form
-            class="deleteForm"
-            action="/positions/{{ _id }}?_method=PUT"
-            method="post"
-          >
-            <a href="/update/{{ _id }}" class="btn btn-primary">Sell</a>
-
-
-
-            <br>
-            <input type="hidden" name="posiId" value="{{id}}">
-
-          </form> -->
               </td>
 
     </tr>
@@ -100,7 +81,7 @@
     <tr>
 
       <th>Total Value</th>
-     
+      {{currentMarketValue.total}}
     </tr>
  
 

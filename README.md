@@ -18,42 +18,45 @@ It is recommended that you use nodemon to run the server.
 
 ### How to Use
 
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+Create an account by going to the register page, then log in at the log in page.
+
+Subsequently, click on the 'Stock Positions' tab to take you to the page. Key in the stock name, ticker symbol, buy date, quantity bought and price bought. The app will then track the current price of the stock as well as how much you gained and lost from it, and provide you with a summary of your stock portfolio.
+
+
+
+
+
+## API
+
+The API is taken from AlphaVantage. A package called 'alpha-vantage-cli' is used to help get the latest prices of the stocks. Documentation for the package can be found here: https://www.npmjs.com/package/alpha-vantage-cli
 
 
 ```
-Code example
-```
-
-More steps...
-
-```
-until finished
+alphaVantageAPI.getIntradayData(entry.ticker, '1min')
+.then(intradayData => {
+  console.log(entry.ticker);
+  console.log(intradayData[0].Close);
 ```
 
 
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
-
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
+* HTML, CSS and JavaScript
+* Bulma
+* Handlebars
+* Node.js
+* Express
+* API and data by Alpha Vantage
+* Passport.js, Bcrypt, Flash messages, Express validator
+* MongoDB and Mongoose, hosted on mLab
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+
+
 
 ## Workflow
 
-The below wireframes detail the homepage,summary page, positions page, registration page and login page, in that order.
+The below wireframes detail the homepage, summary page, positions page, registration page and login page, in that order.
 
 
 ![alt text](https://github.com/empludo/project-2/blob/master/images/homepage.png )
@@ -67,7 +70,7 @@ The below wireframes detail the homepage,summary page, positions page, registrat
 ![alt text](https://github.com/empludo/project-2/blob/master/images/login.png )
 
 
-Entity Relationship Diagram (Subject to change)
+Entity Relationship Diagram
 
 ![alt text](https://github.com/empludo/project-2/blob/master/images/erd.png )
 
@@ -84,4 +87,4 @@ Did you collaborate with others on this project, list them here
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+* The entire WDI 13 class for helping out.
