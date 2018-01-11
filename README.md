@@ -23,7 +23,11 @@ $ nodemon
 
 ### ERD
 
-![erd](https://user-images.githubusercontent.com/31798170/34729452-ac7e1454-f597-11e7-8120-8f523155d826.png)
+![erd](https://user-images.githubusercontent.com/31798170/34835477-e600e94c-f72f-11e7-9fae-ebe7d4483e9b.png)
+
+### Flowchart
+
+![flowchart](https://user-images.githubusercontent.com/31798170/34835298-5fa8d8be-f72f-11e7-8951-9bc8b14f6ac0.png)
 
 ### Wireframe
 
@@ -36,9 +40,9 @@ $ nodemon
 
 ### Mockup
 
-![mockup - sign up](https://user-images.githubusercontent.com/31798170/34829156-b9fcd7da-f71a-11e7-8086-5c82082f9bd5.jpg)
-
-![mockup - contact us](https://user-images.githubusercontent.com/31798170/34832281-718d1686-f724-11e7-9456-86902964568e.jpg)
+![mockup - landing page](https://user-images.githubusercontent.com/31798170/34835083-c69afc38-f72e-11e7-8f9d-733d90cd7874.jpg)
+![mockup - sign up](https://user-images.githubusercontent.com/31798170/34835102-d5427c48-f72e-11e7-9edc-50ded89a0ac9.jpg)
+![mockup - contact us](https://user-images.githubusercontent.com/31798170/34835051-b72214c6-f72e-11e7-9edd-c05bef42ae57.jpg)
 
 ---
 ## Built With / Technology
