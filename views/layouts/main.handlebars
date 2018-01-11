@@ -6,13 +6,13 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
   <body>
 
       <nav
        class="navbar is-dark" role="navigation" aria-label="main navigation"
-        
+
       >
         <div class="navbar-brand">
 
@@ -25,16 +25,34 @@
             <a class="navbar-item" href="/">Home</a>
             <a class="navbar-item" href="/summary">Summary</a>
             <a class="navbar-item" href="/positions">Stock Positions</a>
-   
+
           </div>
 
           <div class="navbar-end">
             <a class="navbar-item" href="/users/register">Register</a>
             <a class="navbar-item" href="/users/login">Login</a>
-    
+
           </div>
         </div>
       </nav>
+      {{#if alerts.success}}
+      {{#each alerts.success as |success|}}
+        <div class="notification is-success">
+          <button class="delete"></button>
+          <strong>Success!</strong> {{success}}
+        </div>
+      {{/each}}
+    {{/if}}
+
+      {{#if alerts.error}}
+            {{#each alerts.error as |error|}}
+            <div class="notification is-danger">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Error!</strong> {{error}}
+            </div>
+            {{/each}}
+        {{/if}}
+
       <div >
         {{{ body }}}
       </div>
@@ -54,6 +72,6 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js" charset="utf-8"></script>
-    
+
   </body>
 </html>

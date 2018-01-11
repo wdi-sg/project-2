@@ -26,7 +26,7 @@
 </form>
 
 
-<table class = 'positiontable'>
+<table class = 'table is-hoverable'>
  
   <thead>
     <tr>
@@ -44,6 +44,7 @@
 
   </thead>
 
+
 {{#each position}}
   <tbody class='positiontable'>
     <tr>
@@ -54,10 +55,14 @@
       <td>{{ units }}</td>
       <td>${{ price }}</td>
       <td>${{ sumInvested }}</td>
-      <td>${{ currentPrice }}</td>
+
+      <td>${{#each ../priceArray }}
+          {{currentPrice}}
+        {{/each}}</td>
       <td>${{ currentMarketValue }}</td>
       <td>${{ amountEarned }}</td>
       <td>
+
 
         <!-- <form
           class="deleteForm"

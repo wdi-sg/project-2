@@ -21,11 +21,11 @@ positionSchema.virtual('sumInvested').get(function () {
   return this.price * this.units
 })
 //Get current price of Stock
-var AlphaVantageAPI = require('alpha-vantage-cli').AlphaVantageAPI;
-
-var yourApiKey = 'WMIBV3Q29V0HHRV9';
-var alphaVantageAPI = new AlphaVantageAPI(yourApiKey, 'compact', true);
-var intradayData
+// var AlphaVantageAPI = require('alpha-vantage-cli').AlphaVantageAPI;
+//
+// var yourApiKey = 'WMIBV3Q29V0HHRV9';
+// var alphaVantageAPI = new AlphaVantageAPI(yourApiKey, 'compact', true);
+// var intradayData
 
 // alphaVantageAPI.getIntradayData(this.ticker, '1min')
 //     .then(intradayData => {
@@ -35,18 +35,19 @@ var intradayData
 //     .catch(err => {
 //         console.error(err);
 //     });
-    positionSchema.virtual('currentPrice').get(function(){
-        alphaVantageAPI.getIntradayData(this.ticker, '1min')
-          .then(intradayData => {
-            console.log("Intraday data:");
-            console.log(intradayData[0].Close);
-          })
-
-          .catch(err => {
-              console.error(err);
-          });
-
-    })
+    // positionSchema.virtual('currentPrice').get(function(){
+    //     alphaVantageAPI.getIntradayData(this.ticker, '1min')
+    //       .then(intradayData => {
+    //         console.log("Intraday data:");
+    //         console.log(intradayData[0].Close);
+    //         return intradayData[0].Close
+    //       })
+    //
+    //       .catch(err => {
+    //           console.error(err);
+    //       });
+    //
+    // })
     positionSchema.virtual('currentMarketValue').get(function () {
       return this.currentPrice * this.units
     })

@@ -12,14 +12,15 @@ exports.register = (req, res) => {
 //post Register
 exports.signup = (req, res) => {
   // express validator to check registration form fields
-  req.checkBody('firstName', 'First name cannot be empty.').notEmpty()
+  req.checkBody('name', 'First name cannot be empty.').notEmpty()
   req.checkBody('email', 'Email cannot be empty.').notEmpty()
   req.checkBody('password', 'Password cannot be empty.').notEmpty()
   // req.checkBody('password', 'Passwords entered are not the same.').equals(req.body.passwordConfirm);
 
   let errors = req.validationErrors();
   if (errors) {
-    res.render('users/register', {errors: errors});
+    req.flash('error', 'Error cannot create account');
+    res.render('users/register');
   } else {
     // create account in database, user
     User.create({
@@ -27,16 +28,15 @@ exports.signup = (req, res) => {
       email: req.body.email,
       password: req.body.password
     }, (err, createdUser) => {
-      if (err) {
-        req.flash('error', 'Error cannot create account');
-        res.redirect('/register');
-      } else {
+      if (err) throw err;
         // after account successfully created, authenticate user
-        passport.authenticate('local', {
-          successRedirect: '/',
-          successFlash: 'Account creation successful!',
-        })(req, res);
-      }
-    });
-  }
-};
+        req.flash('success', 'Account created');
+        res.redirect('/');
+        // passport.authenticate('local', {
+        //   successRedirect: '/',
+        //   successFlash: 'Account creation successful!',
+        // })(req, res);
+        // res.send('OK');
+      });
+    }
+  };

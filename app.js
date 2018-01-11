@@ -42,7 +42,18 @@ app.use(passport.session());
 //express validator
 app.use(expressValidator())
 //flash messages middleware
+// flash messages middleware
 app.use(flash());
+
+app.use((req, res, next) => {
+  // render alerts in views pages
+  res.locals.alerts = req.flash();
+
+  res.locals.currentUser = req.user;
+
+  next();
+});
+
 //Routes
 app.use('/', routes)
 

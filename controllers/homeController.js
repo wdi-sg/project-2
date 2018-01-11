@@ -1,19 +1,106 @@
 const Position = require('../models/position')
 const User = require('../models/user');
 
+var AlphaVantageAPI = require('alpha-vantage-cli').AlphaVantageAPI;
+
+var yourApiKey = 'WMIBV3Q29V0HHRV9';
+
+var alphaVantageAPI = new AlphaVantageAPI(yourApiKey, 'compact', true);
+var intradayData
+
+const asyncP = require('async-promises');
+
 //Index Home page
 exports.index = (req, res)=>{
     res.render('home')
 }
 
-exports.positions = (req, res)=>{
-	Position.find({},function(err,result){
-		if(err) throw err
-			// console.log(result)
-		res.render('positions',{position:result})
-	})
+exports.positions = (req, res) => {
+  var array = [];
+  Position.find({}, function(err, result) {
+    if (err) throw err;
 
-}
+
+    return asyncP.each(result, (entry) => {
+      return new Promise((resolve) => {
+        alphaVantageAPI.getIntradayData(entry.ticker, '1min')
+        .then(intradayData => {
+          console.log(entry.ticker);
+          console.log(intradayData[0].Close);
+          array.push({currentPrice: intradayData[0].Close});
+          resolve();
+        })
+      });
+    }).then(() => {
+      console.log("2");
+      console.log(array);
+      if (array.length == result.length) {
+        res.render('positions', {position: result, priceArray: array})
+      }
+    });
+  });
+};
+
+// exports.positions = (req, res)=>{
+// 	Position.find({},function(err,result){
+// 		if(err) throw err;
+//     result.forEach(function(item) {
+//       alphaVantageAPI.getIntradayData(item.ticker, '1min')
+//       .then(intradayData => {
+//         console.log("1")
+//         console.log("Intraday data:");
+//         console.log(intradayData[0].Close);
+        // return intradayData[0].Close;
+
+        // res.render('positions',{position:result, currentPrice: intradayData[0].Close})
+    //
+    //   })
+    // })
+			// console.log(result)
+		// res.render('positions',{position:result})
+//   Position.find({},function(err,result){
+// 		if(err) throw err
+// 			// console.log(result)
+// let tickerArray = [];
+// tickerArray = result.map(function(item) {
+//   alphaVantageAPI.getIntradayData(item.ticker, '1min', function(intradayData) {
+//     return intradayData[0].Close;
+//   })
+    // .then(intradayData => {
+    //   console.log("Intraday data:");
+    //   console.log(intradayData[0].Close);
+
+// });
+// });
+// console.log(tickerArray);
+//
+//
+// 		res.render('positions',{position:result})
+//   })
+//   var alphaVantageAPI = new AlphaVantageAPI(yourApiKey, 'compact', true);
+// //   var intradayData;
+//
+// // Position.findOne({ticker: 'AAPL'},function(err,result){
+// //   alphaVantageAPI.getIntradayData(result.ticker, '1min')
+// //     .then(intradayData => {
+// //       console.log("Intraday data:");
+// //       console.log(intradayData[0].Close);
+// //       res.render('positions', {currentPrice: intradayData[0].Close});
+// //     })
+// //
+// //     .catch(err => {
+// //         console.error(err);
+// //       })
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// }
 
 exports.summary = (req, res)=>{
   res.render('summary')
@@ -49,7 +136,7 @@ exports.create = (req, res)=>{
   		units: req.body.units,
   		price: req.body.price,
   		buyDate: req.body.buyDate,
-  		
+
 
 	})
 
@@ -87,6 +174,26 @@ exports.update = (req, res)=>{
   });
 
 }
+
+//Calling API for current price
+// var AlphaVantageAPI = require('alpha-vantage-cli').AlphaVantageAPI;
+//
+// var yourApiKey = 'WMIBV3Q29V0HHRV9';
+// var alphaVantageAPI = new AlphaVantageAPI(yourApiKey, 'compact', true);
+// var intradayData;
+//
+//
+//     alphaVantageAPI.getIntradayData(this.ticker, '1min')
+//       .then(intradayData => {
+//         console.log("Intraday data:");
+//         console.log(intradayData[0].Close);
+//         return intradayData[0].Close
+//       })
+//
+//       .catch(err => {
+//           console.error(err);
+//         })
+
 
 
 
