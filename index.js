@@ -26,8 +26,21 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+// app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+var hbs = exphbs.create({
+  defaultLayout: 'main',
+  helpers: {
+    listItem: function(from, to, context, options) {
+      var item = "";
+      for (var index = from; index < to; index++) {
+        item = item + options.fn(context[index]);
+      }
+      return item;
+    }
+  }
+});
+app.engine('handlebars', hbs.engine);
 
 // passport
 app.use(session({

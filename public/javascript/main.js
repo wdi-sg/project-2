@@ -253,6 +253,12 @@ $(document).ready(function() {
       });
     });
   }
+
+
+  // tabs responsive design
+  if ($(window).width() < 1023) {
+    $(".tabs").addClass("is-small");
+  }
 });
 
 

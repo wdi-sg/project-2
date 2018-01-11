@@ -12,20 +12,22 @@
   </div>
 
   <div class="grid-container">
-    {{#each analyzedList}}
-      <div {{#if ../currentUser}} class="analyzedsave" data-id="{{../currentUser._id}}" {{/if}} data-range="{{range}}">
-        {{#each sortedList}}
-          <p>{{name}}</p>
-          <p>{{address1}}</p>
-          <p>{{address2}}</p>
-          <br>
-        {{/each}}
-        <!-- {{range}} -->
-        {{#if ../currentUser}}
-          <i class="fa fa-floppy-o" aria-hidden="true" ></i>
-        {{/if}}
-      </div>
-    {{/each}}
+    {{#if analyzedList}}
+      {{#listItem 0 20 analyzedList}}
+        <div {{#if ../currentUser}} class="analyzedsave" data-id="{{../currentUser._id}}" {{/if}} data-range="{{range}}">
+          {{#each sortedList}}
+            <p>{{name}}</p>
+            <p>{{address1}}</p>
+            <p>{{address2}}</p>
+            <br>
+          {{/each}}
+          <!-- {{range}} -->
+          {{#if ../currentUser}}
+            <i class="fa fa-floppy-o fa-lg" aria-hidden="true" ></i>
+          {{/if}}
+        </div>
+      {{/listItem}}
+    {{/if}}
   </div>
 </div>
 
