@@ -26,6 +26,7 @@ $(document).ready(function() {
 
         let citation;
         console.log('Name of part of Book of Changes:');
+        console.log(citation);
 
         $.ajax({
             url: url,
