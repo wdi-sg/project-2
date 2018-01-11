@@ -1,6 +1,6 @@
 const User = require('../models/user');
 
-// ----- Home Index -----
+// ----- Home -----
 exports.index = (req, res) => {
     res.render('home')
 }

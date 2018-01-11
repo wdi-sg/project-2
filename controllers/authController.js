@@ -2,15 +2,15 @@ const passport = require('../helpers/passportInfo')
 const User = require('../models/user');
 
 
-//------ Get Register Page -----
+//------ Get Sign Up Page -----
 exports.register = (req, res) => {
-    res.render("auth/register")
+    res.render("users/signup")
 };
 
 
 //------ Get Login Page -----
 exports.login = (req, res) => {
-    res.render("auth/login")
+    res.render("users/login")
 };
 
 
@@ -18,27 +18,28 @@ exports.login = (req, res) => {
 exports.logout = (req, res) => {
     req.logout()
     req.flash("You are logged out!")
-    redirect("auth/login")
+    redirect("/users/login")
 };
 
-
-// ----- Post Sign Up -----
+// ----- Sign Up Fields (POST) -----
 exports.signup = (req, res) => {
 
-    req.checkBody('firstname', 'First Name Required').notEmpty()
-    req.checkBody('lastname', 'Last Name Required').notEmpty()
-    req.checkBody('email', 'Email Required').notEmpty()
-    req.checkBody('email', 'Email Required').isEmail()
-    req.checkBody('password', 'Password Required').notEmpty()
-    req.checkBody('password2', 'Password Required').notEmpty()
-    req.checkBody('password', 'Password is not equal to password 2').equals(req.body.password2)
+    req.checkBody('firstname', 'First Name Required').notEmpty();
+    req.checkBody('lastname', 'Last Name Required').notEmpty();
+    req.checkBody('email', 'Email Required').notEmpty();
+    req.checkBody('password', 'Password Required').notEmpty();
+    req.checkBody('passwordRetype', 'Retype Password').notEmpty();
+    if (req.body.passwordRetype) {
+      req.checkBody('passwordRetype', 'Password entered does not match').equals(req.body.password);
+    }
 
 
     let errors = req.validationErrors()
     console.log(errors);
 
-        if(errors){
-        res.render('users/signup', { errors : errors})
+        if (errors) {
+        res.render('users/signup', { errors : errors, data: req.body
+        });
 
         } else {
 
@@ -46,23 +47,21 @@ exports.signup = (req, res) => {
         firstname : req.body.firstname,
         lastname : req.body.lastname,
         email : req.body.email,
-        password: req.body.password,
-    }, (err, createdUser) => {
+        password: req.body.password
+        }, (error, createdUser) => {
 
-        if(err) {
+        if (error) {
+          console.log(error)
           req.flash('error', 'Could not create user account');
-          res.redirect('/signup');
-        }
-        else {
+          res.redirect('/users/signup');
 
 
-// Send user to auth page of profile
-    passport.authenticate('local', {
+        } else {
+
+        passport.authenticate('local', {
         successRedirect: '/',
-        successFlash: 'Account created and logged in'
-        })(req, res);
+        successFlash: 'Account created and logged in'})(req, res);
         }
         })
     }
   }
-

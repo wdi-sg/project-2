@@ -419,6 +419,7 @@ select {
 #subscribe {
   text-align: center;
   padding: 1em;
+  background-image: url() 
 }
 
 #subscribe div {
@@ -515,6 +516,19 @@ footer span.fa {
 
 /* Media Queries ========================== */
 
-@media (min-width: 700px) {
- 
+@media all and (min-widht: 50em) {
+
+  .icons ul {
+    width: auto;
+  }
+
+  /* #breadcrumbs-custom-separator {
+
+  }
+  .search {
+
+  }
+  .icons #social-icons {
+    
+  } */
 }

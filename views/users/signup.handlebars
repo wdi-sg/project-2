@@ -14,13 +14,14 @@
 
                     <nav id="breadcrumbs-custom-separator" class="breadcrumbs">
                         <ul class="floatright">
-                            
+
                             <li><a href="/">Home</a></li>
                             <li><a href="/login">Login</a></li>
                             <li class="current"><a href="/signup">Sign Up</a></li>
                             <li><a href="/welcome">Welcome</a></li>
                             <li><a href="/new">Dogs</a></li>
                             <li><a href="/report">Report</a></li>
+                            <li><a href="/logout">Logout</a></li>
 
                             <div class="search">
                             <a href="/search"><i class="fa fa-search"></i></a>
@@ -32,20 +33,20 @@
         </header>
     </div>
 
+
 <div id="signup">
     <div class="signup-left">
         <h1>Sign Up</h1>
 
-        <form action="/users/signup" method="post">
+        <form method="post" action="/users/signup">
             <input type="text" name="firstname" placeholder="First Name">
             <input type="text" name="lastname" placeholder="Last Name">
             <input type="email" name="email" placeholder="E-mail">
             <input type="password" name="password" placeholder="Password">
-            <input type="password" name="password2" placeholder="Retype Password">
+            <input type="password" name="passwordRetype" placeholder="Retype Password">
             <input type="submit" name="signup_submit" value="Submit">
 
             <p>Already have an account?<br/><a href="/login">Login</a></p>
         </form>
     </div>
 </div>
-

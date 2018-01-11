@@ -1,6 +1,5 @@
 {{!-- Landing Page --}}
 
-
 <div id="wrapper">
     <header>
         <section>
@@ -21,6 +20,7 @@
                             <li><a href="/welcome">Welcome</a></li>
                             <li><a href="/new">Dogs</a></li>
                             <li><a href="/report">Report</a></li>
+                            <li><a href="/logout">Logout</a></li>
 
                             <div class="search">
                             <a href="/search"><i class="fa fa-search"></i></a>
@@ -36,13 +36,9 @@
 <section id="content-one" class="doglook">
     <div class="doglook-content">
         <h2>Dogs are one of the most common pets in the world.</h2>
-        <a href="#content-two" class="btn">Read More</a>
-
-
-
+        <a href="#content-four" class="btn">Read More</a>
     </div>
 </section>
-
 
 
 <section id="content-two">
@@ -54,7 +50,6 @@
 </section>
 
 
-
 <section id="subscribe">
     <form action="/users/subscribe" method="post">
         <h3>Newsletter</h3>
@@ -64,7 +59,6 @@
         </div>
     </form>
 </section>
-
 
 
 
@@ -87,12 +81,9 @@
 
             <div class="row-message">
                 <textarea name="message" placeholder="Message"></textarea>
-            </div>
-            <br/>
+            </div><br/>
 
-            <button class="button outline">Send</button>
-            <br/>
-            <br/>
+            <input type="submit" name="send" value="Send"><br/>
             <div class="contact-info">
                 <p><i class="fa fa-envelope"></i><a href="mailto:someone@example.com">email@doap.com</a></p>
                 <p><i class="fa fa-phone"></i>+65 3456 7890</p>
@@ -102,14 +93,9 @@
 </section>
 
 
-
-<!-- Footer -->
-
 <footer>
-
-    <a href="https://github.com/emjys/project-2"><strong>D-Poap</strong></a>
+    <a href="https://github.com/emjys/project-2"><strong>DoAP</strong></a>
     &nbsp&copy 2017 &nbsp | &nbsp All Rights Reserved &nbsp | &nbsp
 
     <a href="/" class="page-scroll">Back to Top<span class="fa fa-angle-up"></span></a>
-
 </footer>

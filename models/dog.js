@@ -30,13 +30,14 @@ const dogSchema = new Schema ({
     },
 
     temperament: {
-              type: String,
-              required: [true, "Required"]
-    }
+                  type: String,
+                  required: [true, "Required"]
+    },
 
-    // user: {
-    //
-    // }
+    user: {
+       type: Schema.Types.ObjectId,
+       ref: 'User'
+    }
   });
 
 

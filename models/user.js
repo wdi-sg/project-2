@@ -30,6 +30,7 @@ const userSchema = new Schema ({
   });
 
 
+
 // Middleware - Hash Password =====================================================
 
 userSchema.pre('save', function(next) {
@@ -58,7 +59,6 @@ userSchema.pre('save', function(next) {
   userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
   };
-
 
 
 const User = mongoose.model('User', userSchema);

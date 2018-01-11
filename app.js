@@ -4,13 +4,15 @@ const cookieParser = require('cookie-parser') // read cookie file for auth
 const express = require('express')
 const app = express() // init App
 const session = require('express-session') // connect flash to display message (encrypt)
+
+const MongoStore = require('connect-mongo')(session);
 const expressValidator = require('express-validator') // validate form
 const methodOverride = require('method-override'); // access PUT / DELETE
+const bcrypt = require('bcrypt')
 
 const mongoose = require('mongoose') // write to database using schema
 const exphbs = require('express-handlebars')
 const path = require('path') // working with public file and directory path
-
 
 
 // Set Port ======================================================================================
@@ -49,10 +51,19 @@ app.set('view engine', 'handlebars');
 
 // ----- Express Session -----
 app.use(session({
-    secret: 'pp2',
-    resave: false,
-    saveUninitialized: true
-  }));
+  name: 'doap',
+  secret: 'pp2',
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore ({
+    url: dbConfig.url,
+    ttl: 14 * 24 * 60 * 60,
+    autoRemove: 'native'
+  }),
+  cookie: {
+    maxAge: 14 * 24 * 60 * 60 * 1000
+  }
+}));
 
 
 // ----- Passport -----
@@ -66,12 +77,10 @@ app.use(flash());
 
 // Global Variances ==============================================================================
 app.use((req, res, next) => {
-    // before every route, attach the flash messages and current user to res.locals
     res.locals.alerts = req.flash();
     res.locals.currentUser = req.user;
     next();
   });
-
 
 
 // Express Validator ==============================================================================
@@ -95,7 +104,7 @@ app.use(expressValidator({
 
   app.use(methodOverride('_method'));
 
-  
+
 
 // Routes ==================================================================================
 app.use('/', routes);
