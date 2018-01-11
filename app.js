@@ -17,13 +17,12 @@ const passport = require('passport');
 const port = process.env.PORT || 3000;
 
 const routes = require('./routes/routes');
-const dbConfig = require('./config/db-config-actual.js');
-const sessionConfig = require('./config/session-config-actual.js');
+const config = require('./config/config.js');
 
 // Middlewares
 mongoose.Promise = global.Promise;
 mongoose.connect(
-	dbConfig.url,
+	config.mongodb.url,
 	{ useMongoClient: true }).then(
 		() => { console.log('>>> Mongoose   Ready <<<'); },
 		(err) => { console.log(err) }
@@ -39,11 +38,11 @@ app.set('view engine', 'handlebars');
 // Create session
 app.use(session({
 	name: 'oracle-of-changes',
-	secret: sessionConfig.secret,
+	secret: config.session.secret,
 	resave: false,
 	saveUninitialized: true,
 	store: new MongoStore({
-		url : dbConfig.url,
+		url : config.mongodb.url,
 		ttl: 14 * 24 * 60 * 60,
 		autoRemove: 'native' }),
 	cookie: {

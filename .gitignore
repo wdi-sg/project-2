@@ -88,13 +88,7 @@ typings/
 # dotenv environment variables file
 .env
 
-# MongoDB configuration file
-# config/db-config-actual.js
-
-# Session secret configuration file
-# config/session-config-actual.js
-
-# Twitter consumer key and consumer secret
-# config/twitter-config-actual.js
+# Configuration file
+# config/config.js
 
 # End of https://www.gitignore.io/api/node,macos

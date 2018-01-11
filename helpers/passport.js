@@ -2,7 +2,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 const User = require('../models/user');
-const twitter = require('../config/twitter-config-actual.js');
+const config = require('../config/config.js');
 
 // `serializeUser(…)` determines, which data of the user object should be stored in the session.
 // Result of the serializeUser method is attached to the session as `req.session.passport.user = {…}`
@@ -59,9 +59,9 @@ passport.use(new LocalStrategy({
 ));
 
 passport.use(new TwitterStrategy({
-		consumerKey: twitter.consumerKey,
-		consumerSecret: twitter.consumerSecret,
-		callbackURL: twitter.callbackURL
+		consumerKey: config.twitter.consumerKey,
+		consumerSecret: config.twitter.consumerSecret,
+		callbackURL: config.twitter.callbackURL
 	},
 	function(token, tokenSecret, profile, cb) {
 		console.log('In Twitter strategy');
