@@ -8,7 +8,6 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const passport = require('passport')
 const flash = require('connect-flash')
-const fs = require('fs')
 const MongoStore = require('connect-mongo')(session)
 
 const port = process.env.PORT || 3000
@@ -37,7 +36,14 @@ app.use(bodyParser.urlencoded({extended : true}))
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.engine('handlebars', exphbs({defaultLayout:'main'}))
+app.engine('handlebars', exphbs({
+  defaultLayout:'main',
+  helpers: {
+    incre: function(value) {
+      return parseInt(value) + 1;
+    }
+  }
+}))
 app.set('view engine', 'handlebars')
 
 //==================== Session ====================

@@ -4,15 +4,40 @@
   <div class="row">
     <div class="col-sm-2">
       <a href="/home" class="btn btn-info">Trips</a>
+      <br>
+      <br>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Delete Trip</button>
     </div>
     <div class="col-sm-10">
+
+      <!-- Modal for deleting trip -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Confirmation</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">Are you sure you want to delete this trip?</div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <form method="post" action="/trip/delete">
+                <input type="hidden" id="tripId" name="tripId" value="{{results._id}}">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="tripDetails">
-      <input type="hidden" id="tripId" value="{{results._id}}">
       Trip Name : {{results.tripName}}<br>
       Country : {{results.country}}<br>
       {{#if results.city}}City : {{results.city}}<br>{{/if}}
-      Date From : {{results.dateFrom}}<br>
-      Date To : {{results.dateTo}}<br>
+      Date From : {{dateObj.dateFromUTC}}<br>
+      Date To : {{dateObj.dateToUTC}}<br>
       </div>
     </div>
   </div>
@@ -48,7 +73,7 @@
         {{/if}}
     </div>
   </div>
-  <!--Itinerary-->
+  <!--Create Itinerary-->
   {{#if results2}}
   <div class="row">
     <div class="col-sm-2">
@@ -56,51 +81,67 @@
     <div class="col-sm-10">
       <br>
       <h5>Itinerary</h5>
-      <form method="post" action="/location/delete">
-      <fieldset disabled>
-        <label for="daysSelect">Day</label>
-        <select class="form-control" name="daysSelect">
-        </select>
-        <label for="timesSelect">Time</label>
-        <select class="form-control" name="timesSelect">
-          <option value="00:00">00:00 (12:00 midnight)</option>
-          <option value="01:00">01:00 (1:00 am)</option>
-          <option value="02:00">02:00 (2:00 am)</option>
-          <option value="03:00">03:00 (3:00 am)</option>
-          <option value="04:00">04:00 (4:00 am)</option>
-          <option value="05:00">05:00 (5:00 am)</option>
-          <option value="06:00">06:00 (6:00 am)</option>
-          <option value="07:00">07:00 (7:00 am)</option>
-          <option value="08:00">08:00 (8:00 am)</option>
-          <option value="09:00">09:00 (9:00 am)</option>
-          <option value="10:00">10:00 (10:00 am)</option>
-          <option value="11:00">11:00 (11:00 am)</option>
-          <option value="12:00" selected>12:00 (12:00 pm)</option>
-          <option value="13:00">13:00 (1:00 pm)</option>
-          <option value="14:00">14:00 (2:00 pm)</option>
-          <option value="15:00">15:00 (3:00 pm)</option>
-          <option value="16:00">16:00 (4:00 pm)</option>
-          <option value="17:00">17:00 (5:00 pm)</option>
-          <option value="18:00">18:00 (6:00 pm)</option>
-          <option value="19:00">19:00 (7:00 pm)</option>
-          <option value="20:00">20:00 (8:00 pm)</option>
-          <option value="21:00">21:00 (9:00 pm)</option>
-          <option value="22:00">22:00 (10:00 pm)</option>
-          <option value="23:00">23:00 (11:00 pm)</option>
-          <option value="24:00">24:00 (12:00 midnight)</option>
-        </select>
-        <label for="locationsSelect">Locations</label>
-        <select class="form-control" name="locationsSelect">
-          {{#each results2}}
-          <option value="{{locationName}}">{{locationName}}</option>
-          {{/each}}
-        </select>
-        <br>
+      <form method="post" action="/itinerary/new">
+        <input type="hidden" id="tripId2" name="tripId2" value="{{results._id}}">
+      <!-- <fieldset disabled> -->
+        <div class="form-group">
+          <label for="dateTimeInput">Date and Time</label>
+          <input class="form-control" type="datetime-local" name="dateTimeInput" id="dateTimeInput" placeholder="Date & Time" min="{{dateObj.dateFrom}}" max="{{dateObj.dateTo}}">
+        </div>
+        <div class="form-group">
+          <label for="locationsSelect">Locations</label>
+          <select class="form-control" name="locationsSelect" id="locationsSelect">
+            <option value="">Select a location...</option>
+            {{#each results2}}
+            <option value="{{locationName}}">{{locationName}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="remarksTextArea">Remarks</label>
+          <textarea class="form-control" name="remarksTextArea" id="remarksTextArea" rows="3"></textarea>
+        </div>
         <button class="btn btn-success btn-sm float-right" type="submit">Add</button>
-      </fieldset>
+      <!-- </fieldset> -->
       </form>
     </div>
   </div>
+  <!-- Show Itinerary-->
+  <br>
+  {{#if results3}}
+  <div class="row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-10">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date & Time</th>
+            <th scope="col">Location</th>
+            <th scope="col">Remarks</th>
+            <th scope="col">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each results3}}
+          <tr>
+            <th scope="row">{{incre @index}}</th>
+            <td>{{date}}</td>
+            <td>{{locationName}}</td>
+            <td>{{remarks}}</td>
+            <td><form method="post" action="/itinerary/delete">
+              <input type="hidden" name="itineraryId" value="{{id}}">
+              <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
+            </form>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {{/if}}
   {{/if}}
 </div>
 
