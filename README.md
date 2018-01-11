@@ -23,22 +23,27 @@ As a User, I want to
 
 ## How to use
 
-1. at the landing page, log in if you have an account
-2. if not, sign up as a user with your particulars
-3. once logged in, you will see all the reviews on the homepage
-4. click on the photo to view the full review
-* if you created the review, you can edit or delete it
-* else you can bookmark the review for view later
-5. at profile page, you can view your own reviews and bookmarks
-6. contribute by writing review
-* your review will be added to the homepage
-
+### at the landing page, log in if you have an account
   <img src="/public/readme_img/ss1.png" width="600">
+
+### if not, sign up as a user with your particulars
   <img src="/public/readme_img/ss2.png" width="600">
+
+### once logged in, you will see all the reviews on the homepage
   <img src="/public/readme_img/ss3.png" width="600">
+
+### click on the photo to view the full review
+
+#### if you created the review, you can edit or delete it
   <img src="/public/readme_img/ss4.png" width="600">
+
+#### else you can bookmark the review for view later
   <img src="/public/readme_img/ss5.png" width="600">
+
+### contribute by writing review
   <img src="/public/readme_img/ss6.png" width="600">
+
+### at profile page, you can view your own reviews and bookmarks
   <img src="/public/readme_img/ss7.png" width="600">
 
 
