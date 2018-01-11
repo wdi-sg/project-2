@@ -1,57 +1,82 @@
-# Your Project Name
+# Personal Stock Tracker
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+This is a stock tracker app that can double as a real time stock tracker cum stock trading simulator to help users better keep in touch with the market and better manage their trading portfolios.
 
-## Getting Started
+## Live version
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+https://personalinvestor.herokuapp.com/
 
 ### Prerequisites
 
-What is needed to install and run the project, how do we install them
+Download this and then install whatever dependencies using yarn. Then start the server
 
 ```
-Code example
+$ yarn install
+$ nodemon
 ```
+It is recommended that you use nodemon to run the server.
 
 ### How to Use
 
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+Create an account by going to the register page, then log in at the log in page.
+
+Subsequently, click on the 'Stock Positions' tab to take you to the page. Key in the stock name, ticker symbol, buy date, quantity bought and price bought. The app will then track the current price of the stock as well as how much you gained and lost from it, and provide you with a summary of your stock portfolio.
+
+
+
+
+
+## API
+
+The API is taken from AlphaVantage. A package called 'alpha-vantage-cli' is used to help get the latest prices of the stocks. Documentation for the package can be found here: https://www.npmjs.com/package/alpha-vantage-cli
 
 
 ```
-Code example
-```
-
-More steps...
-
-```
-until finished
+alphaVantageAPI.getIntradayData(entry.ticker, '1min')
+.then(intradayData => {
+  console.log(entry.ticker);
+  console.log(intradayData[0].Close);
 ```
 
 
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
-
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
+* HTML, CSS and JavaScript
+* Bulma
+* Handlebars
+* Node.js
+* Express
+* API and data by Alpha Vantage
+* Passport.js, Bcrypt, Flash messages, Express validator
+* MongoDB and Mongoose, hosted on mLab
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+
+
 
 ## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+The below wireframes detail the homepage, summary page, positions page, registration page and login page, in that order.
+
+
+![alt text](https://github.com/empludo/project-2/blob/master/images/homepage.png )
+
+![alt text](https://github.com/empludo/project-2/blob/master/images/summary.png )
+
+![alt text](https://github.com/empludo/project-2/blob/master/images/positions.png )
+
+![alt text](https://github.com/empludo/project-2/blob/master/images/register.png )
+
+![alt text](https://github.com/empludo/project-2/blob/master/images/login.png )
+
+
+Entity Relationship Diagram
+![alt text](https://github.com/empludo/project-2/blob/master/images/erd.png )
+
+
+## User Stories
+
+This app seeks to help investors track their investments in real time, with the help of the API Alpha Vantage, which gives real time updates on share prices. (WIP not implemented yet) Users will have to create an account, and upon creation of their accounts, they can begin to input the shares that they have bought. The positions that they have taken will be stored, and can be condensed into a summary detailing their total profits and losses. The app can also double as a trading simulator for shares until the user feels confident enough to trade with real money.
 
 ## Authors
 
@@ -61,5 +86,4 @@ Did you collaborate with others on this project, list them here
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+* The entire WDI 13 class for helping out.

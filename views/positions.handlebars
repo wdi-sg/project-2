@@ -1,0 +1,90 @@
+<br>
+<strong>{{user.name}}'s Positions Taken </strong>
+<br>
+<form action="/positions/new" method="post">
+  <label for="name">Name</label>
+  <input type="text" name="name" placeholder="">
+
+  <label for="ticker">Ticker Symbol</label>
+  <input type="text" name="ticker" placeholder="">
+
+  <label for="units">Unit Quantity</label>
+  <input type="number" name="units" placeholder="">
+
+  <label for="price">Price</label>
+  <input type="text" name="price" placeholder="USD">
+
+  <label for="buyDate">Buy Date</label>
+  <input type="date" name="buyDate" placeholder="dd/mm/yyyy">
+
+
+  <!-- <label for="closingPrice">Closing price</label>
+  <input type="text" name="closingPrice" placeholder="USD"> -->
+
+  <button type="submit"  name="button">Buy</button>
+
+</form>
+
+
+<table class = 'table is-hoverable'>
+ 
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Ticker</th>
+      <th>Buy date</th>
+      <th>Units owned</th>
+      <th>Price Bought</th>
+      <th>Total Sum Invested <br> (USD)</th>
+      <th>Current Share Price <br> (USD)</th>
+      <th>Total Market Value <br> (USD)</th>
+      <th>Amount Earned/Lost <br> (USD)</th>
+
+    </tr>
+
+  </thead>
+
+    <tbody class='positiontable'>
+      {{#each position}}
+
+      <tr>
+        <td>{{ name }}</td>
+        <td>{{ ticker }}</td>
+        <td>{{ buyDate }}</td>
+
+        <td>{{ units }}</td>
+        <td>${{ price }}</td>
+        <td>${{ sumInvested }}</td>
+
+        <td>${{#each ../priceArray }}
+            {{currentPrice}}
+            {{/each}}</td>
+        <td>${{ currentMarketValue }}</td>
+        <td>${{ amountEarned }}</td>
+        <td>
+
+
+
+          <a href="/positions/{{_id}}" >Sell</a>
+
+          <br>
+          <input type="hidden" name="posiId" value="{{id}}">
+
+
+              </td>
+
+    </tr>
+  </tbody>
+  {{/each}}
+
+
+    <tr>
+
+      <th>Total Value</th>
+      {{currentMarketValue.total}}
+    </tr>
+ 
+
+</table>
+
+<a href="/summary">Portfolio Summary</a>
