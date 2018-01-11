@@ -48,7 +48,7 @@ app.use(session({
 		autoRemove: 'native' }),
 	cookie: {
 		// secure: true,
-		maxAge: 604800000 // 7 days in milliseconds
+		maxAge: 14 * 24 * 60 * 60 * 1000 // 14 days in milliseconds
 	}
 }));
 

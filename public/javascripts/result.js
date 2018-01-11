@@ -8,15 +8,55 @@ $(document).ready(function() {
         let url = link.getAttribute('href');
         console.log('API URL: ');
         console.log(url);
-        let arrayPosition = link.getAttribute('id').split("-")[1]
+
+        let arrayPosition = link.getAttribute('id').substr(link.getAttribute('id').length - 1);
         console.log('Position in array');
         console.log(arrayPosition);
-        // console.log(document.querySelectorAll(a[href]));
-        // if (chapter.getElementsByClassName('line').length != 6) {
-        // 	console.log(chapter.getElementsByClassName('line').length)
-        // }
-        console.log(link.children.length)
+
+        let whichBook = link.getAttribute('id').split("-")[0];
+        console.log('Source of text:');
+        console.log(whichBook);
+
+        let whichPart = link.getAttribute('id').split("-")[1];
+        console.log('Which part of the Book of Changes:');
+        console.log(whichPart);
+
+        let citation;
+        console.log('Name of part of Book of Changes:');
+
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function(json) {
+                let retrieved = json.fulltext[arrayPosition];
+                console.log(retrieved);
+
+                if (whichBook == 'yijing') {
+                    if (whichPart == 'classic') {
+                        citation = "《周易》：";
+                    } else if (whichPart == 'image') {
+                        citation = "《周易·象傳》：";
+                    } else if (whichPart == 'judgment') {
+                        citation = "《周易·彖傳》：";
+                    }
+                } else if (whichBook == 'yilin') {
+                    citation = "《焦氏易林》：";
+                }
+                console.log(citation);
+
+                $('#retrieved-text').append('<h4 class="is-size-6">' + citation +'</h4>')
+                $('#retrieved-text').append('<p class=" is-size-4">' + retrieved + '</p');
+            },
+            error: function() {
+                console.log("An error occured…");
+                console.log('`xhr.status`: ');
+                console.log(xhr.status);
+                console.log('`xhr.statusText`');
+                console.log(xhr.statusText);
+            }
+        })
     });
+
 //     $('').attr("href");
 //     $('#reference').contents();
 //     $('').
