@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Train Delay Tracker</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+  <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheet/tracker.css">
+</head>
+<body>
+
+  {{#if alerts.success}}
+    {{#each alerts.success as |msg|}}
+      <div class="alert alert-success alert-dismissable fade in alert-connect">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> {{msg}}
+      </div>
+    {{/each}}
+  {{/if}}
+
+  <div class="pure-menu pure-menu-horizontal pure-menu-scrollable">
+    <a href="/" class="pure-menu-heading mainDisplay"><i class="fas fa-home"></i></a>
+    <ul class="pure-menu-list">
+      {{#if currentUser}}
+        <li class="pure-menu-item nameDisplay">Welcome, {{ currentUser.displayName }}</li>
+        <li class="pure-menu-item"><a href="/announce" class="pure-menu-link itemsDisplay"><i class="fas fa-bullhorn"></i> &nbsp;Announcements</a></li>
+      {{/if}}
+
+      <!-- <li class="pure-menu-item"><a href="/home" class="pure-menu-link itemsDisplay"><i class="fas fa-train"></i> &nbsp;Delay Tracker</a></li> -->
+
+      {{#unless currentUser}}
+        <li class="pure-menu-item"><a href="/auth/twitter" class="pure-menu-link itemsDisplay"><i class="fab fa-twitter"></i> Login with Twitter</a></li>
+      {{/unless}}
+
+      {{#if currentUser}}
+        <li class="pure-menu-item"><a href="/auth/logout" class="pure-menu-link itemsDisplay">Logout</a></li>
+      {{/if}}
+    </ul>
+  </div>
+
+  {{{ body }}}
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/javascript/tweetFeeds.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.3/js/all.js"></script>
+
+</html>

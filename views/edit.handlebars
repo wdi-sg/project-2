@@ -1,0 +1,12 @@
+<div class="bannerA">
+  <form action="/edit/{{announcements._id}}" method="post" class="pure-form spaceTop">
+    <fieldset>
+      <div>
+        <label><h3>Please edit the announcement below:</h3></label>
+      </div>
+      <textarea class="form-control fillIn" name="content">{{announcements.content}}</textarea>
+
+      <button type="submit" class="button-large pure-button"><i class="far fa-hand-point-right"></i> Submit</button>
+     </fieldset>
+  </form>
+</div>

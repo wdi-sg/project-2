@@ -1,0 +1,93 @@
+<div class="banner">
+  <!-- Announcement display -->
+  {{#if announcements}}
+    <div class="pure-u-1-1 banner-head scroll bannerWindow">
+      {{#each announcements}}
+      {{#if @last}}
+          <div class="aHead" id="{{_id}}">{{content}}</div>
+      {{/if}}
+      {{/each }}
+    </div>
+  {{/if }}
+</div>
+
+
+<!-- Start of Line Tables -->
+<div class="l-content">
+  <div class="line-tables pure-g">
+    <div class="pure-u-1 pure-u-md-1-2 lineAlign">
+      <div class="line-table line-table-display">
+        <div class="line-table-header" id="ewline">
+          <span class="line-table-name">EW Line</span>
+        </div>
+        <ul class="line-table-list window" id="ew">
+          <li class="okDisplay" id="ewOk"><strong> All OK! </strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pure-u-1 pure-u-md-1-2 lineAlign">
+      <div class="line-table line-table-display">
+        <div class="line-table-header" id="nsline">
+          <span class="line-table-name">NS Line</span>
+        </div>
+        <ul class="line-table-list window" id="ns">
+          <li class="okDisplay" id="nsOk"><strong> All OK! </strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pure-u-1 pure-u-md-1-2 lineAlign">
+      <div class="line-table line-table-display">
+        <div class="line-table-header" id="neline">
+          <span class="line-table-name">NE Line</span>
+        </div>
+        <ul class="line-table-list window" id="ne">
+          <li class="okDisplay" id="neOk"><strong> All OK! </strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pure-u-1 pure-u-md-1-2 lineAlign">
+      <div class="line-table line-table-display">
+        <div class="line-table-header" id="dtline">
+          <span class="line-table-name">DT Line</span>
+        </div>
+        <ul class="line-table-list window" id="dt">
+          <li class="okDisplay" id="dtOk"><strong> All OK! </strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pure-u-1 pure-u-md-1-2 lineAlign">
+      <div class="line-table line-table-display">
+        <div class="line-table-header" id="cline">
+          <span class="line-table-name">CC Line</span>
+        </div>
+        <ul class="line-table-list window" id="circle">
+          <li class="okDisplay" id="circleOk"><strong> All OK! </strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pure-u-1 pure-u-md-1-2 lineAlign">
+      <div class="line-table line-table-display">
+        <div class="line-table-header" id="random">
+          <span class="line-table-name">Others</span>
+        </div>
+        <ul class="line-table-list window" id="others">
+          <li class="okDisplay" id="allOk"><strong> All OK! </strong></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <!-- End of pure flex boxes -->
+</div>
+<!-- End of line-tables -->
+
+<div class="footer l-box">
+  <p>
+    Train Delay Reports are consolidated here based on Twitter Standard Search API.
+  </p>
+</div>

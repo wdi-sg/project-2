@@ -1,0 +1,349 @@
+/*
+-- BASE STYLES --
+ */
+body {
+    background-color: #C7CCDB;
+    font-family: 'Orbitron', sans-serif;
+}
+
+h1 {
+  padding-bottom: 20px;
+  letter-spacing: 0.1em;
+}
+
+h2, h3 {
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+p {
+    line-height: 1.6em;
+}
+
+
+/*
+ * -- Layout Styles --
+ */
+.l-content {
+    margin: 0 auto;
+    cursor: default;
+    padding-top: 20px;
+}
+
+.l-box {
+    padding: 0.5em 2em;
+    background-color: #C7CCDB;
+}
+
+.alert-connect {
+  margin-bottom: 0px;
+}
+
+/*
+ * -- MENU STYLES --
+ * Make the menu have a very faint box-shadow.
+ */
+.pure-menu {
+    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+    background-color: #1A1B41
+}
+
+.pure-menu-link {
+    padding: .5em .7em;
+}
+
+a.pure-menu-link{
+  text-decoration: none;
+  color: white;
+}
+
+a.pure-menu-heading{
+  text-decoration: none;
+  color: white;
+}
+
+.mainDisplay:hover {
+  background-color: #1A1B41
+}
+
+.mainDisplay:visited {
+  background-color: #1A1B41
+}
+
+.itemsDisplay:hover {
+  background-color: #5D5F71
+}
+
+.itemsDisplay:visited {
+  background-color: #5D5F71
+}
+
+.nameDisplay {
+  color: white;
+  cursor: default;
+}
+/*
+ * -- BANNER --
+ */
+
+.banner {
+    text-align: center;
+    height: 130px;
+    width: 100%;
+    display: table;
+    margin: 0 auto;
+    background-color: #767B91;
+    cursor: default;
+}
+
+.bannerA {
+  text-align: center;
+  height: 200px;
+  width: 100%;
+  display: table;
+  margin: 0 auto;
+}
+
+.bannerW {
+  text-align: center;
+  height: 90vh;
+  width: 100vw;
+  display: table;
+  margin: 0 auto;
+}
+
+.banner-head {
+    display: table-cell;
+    vertical-align: middle;
+    margin-bottom: 0;
+    color: black;
+    font-weight: 300;
+    text-shadow: 0 1px 1px black;
+}
+
+.bannerWindow {
+  height: 130px;
+  font-size: 20px;
+}
+
+/*.aHead {
+  display: none;
+}*/
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.window {
+  overflow: auto;
+  height: 130px;
+  font-size: 20px;
+  border: 1px solid #ddd;
+  border-radius: 0 0 25px 25px;
+}
+
+.announceWindow {
+  overflow: auto;
+  height: 600px;
+  margin-top: 50px;
+  border: 2px solid black;
+  border-radius: 25px;
+}
+
+.okDisplay {
+  display: none;
+  font-size: 40px;
+  height: 130px;
+  width: auto;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.loginRequest:hover {
+  text-decoration: none;
+}
+
+/*
+ * -- line TABLE WRAPPER --
+ */
+ .line-tables,
+ .information {
+    max-width: 980px;
+    margin: 0 auto;
+ }
+.line-tables {
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+/*
+ * -- line TABLE  --
+ */
+.line-table {
+    margin: 0 0.5em 2em;
+}
+
+/*
+ * -- line TABLE HEADER COLORS --
+ */
+.line-table-free .line-table-header {
+    background: #519251;
+}
+
+.line-table-display .line-table-header {
+    background: #2c4985;
+    border-radius: 25px 25px 0 0;
+}
+
+/*
+ * -- line TABLE HEADER --
+ */
+.line-table-header {
+    background: #111;
+    color: #fff;
+}
+
+.lineAlign {
+  margin-bottom: 20px
+}
+
+#ewline {
+  background: green
+}
+
+#nsline {
+  background: red
+}
+
+#neline {
+  background: #9900AB
+}
+
+#cline {
+  background: #FA9F1B
+}
+
+#dtline {
+  background: #035FC6
+}
+
+#random {
+  background: pink
+}
+
+/*
+ * -- line TABLE name --
+ */
+.line-table-name {
+    font-size: 5em;
+    margin: 0.2em 0 0;
+    font-weight: 100;
+    font-family: 'Orbitron', sans-serif;
+    display: inline-block;
+    /*padding-top: 20px;*/
+}
+    .line-table-name span {
+        display: block;
+        text-transform: uppercase;
+        font-size: 0.2em;
+        padding-bottom: 2em;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.5);
+        *color: #fff;
+    }
+
+.line-table-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+
+/*
+ * -- line TABLE LIST ELEMENTS --
+ * Styles for the individual list elements within each line table
+ */
+.line-table-list li {
+    padding: 0.8em 0;
+    background: #C7CCDB;
+    border-bottom: 1px solid #e7e7e7;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.announceDisplay {
+  border: 1px solid #e7e7e7;
+}
+
+/*
+ * -- line TABLE BUTTON --
+ */
+.button-choose {
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #333;
+    border-radius: 2em;
+    font-weight: bold;
+    position: relative;
+    bottom: -1.5em;
+}
+
+.information-head {
+    color: black;
+    font-weight: 500;
+}
+
+.footer {
+    background: #111;
+    color: #888;
+    text-align: center;
+}
+    .footer a {
+        color: #ddd;
+    }
+
+.spaceTop{
+  padding-top: 20px;
+}
+
+.fillIn {
+  width: 400px;
+}
+
+.button-large {
+    font-size: 175%;
+}
+
+
+/*
+ * -- TABLET MEDIA QUERIES --
+ */
+@media(min-width: 767px) {
+
+    .banner-head {
+        font-size: 3em;
+    }
+    .line-table {
+        margin-bottom: 0;
+    }
+
+}
+
+/*
+ * -- PHONE MEDIA QUERIES --
+ */
+@media (max-width: 600px) {
+    .banner {
+        height: 100px;
+    }
+    .banner-head {
+        font-size: 3em;
+    }
+    .aHead {
+      font-size: 0.7em;
+    }
+    .fillIn {
+      width: 300px;
+    }
+}

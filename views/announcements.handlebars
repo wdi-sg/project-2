@@ -1,0 +1,33 @@
+<div class="bannerA">
+  <div class="l-content">
+    <div class="pure-u-1 pure-u-md-1-2">
+      <!-- Announcement display -->
+
+      <ul class="line-table-list scroll announceWindow">
+        {{#each announcements}}
+          <li class="announceDisplay">
+          <h3>{{content}}</h3>Posted by <strong>{{postedBy}}</strong><br>{{datePosted}}
+            <span>
+              <a href="/edit/{{_id}}"> &nbsp;<i class="far fa-edit"></i></a> &nbsp;|
+              <a href="#" class="delete" id="{{_id}}" data-id="{{_id}}"> &nbsp;<i class="far fa-trash-alt"></i></a>
+            </span>
+          </li>
+        {{/each }}
+      </ul>
+    </div>
+  </div>
+
+  <!-- Announcement maker -->
+
+  <form class="pure-form spaceTop" action="/create" method="post">
+    <fieldset>
+        <textarea class="form-control fillIn" name="content" placeholder="Make your announcement here"></textarea>
+        <button type="submit" class="button-large pure-button"><i class="far fa-hand-point-right"></i> Submit</button>
+    </fieldset>
+  </form>
+</div>
+
+<!-- To scroll to bottom of page for mobile  -->
+<script>
+  window.scrollTo(0, document.body.scrollHeight)
+</script>
