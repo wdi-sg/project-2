@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>Name of Show: {{ show.name }}</h2>
+  
+    <h3>Update</h3>
+
+    <form action="/addtvshows/{{ show.id }}?_method=PUT" method="post">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea" type="text" name="name" placeholder="Game of Throws"></textarea>
+          <label for="name">Name</label>
+          <button class="btn waves-effect" type="submit">Submit<i class="material-icons right">send</i></button>
+        </div>
+      </div>
+    </form>
+
+  <h3>Delete</h3>
+    <form action="/addtvshows/{{ show.id }}?_method=DELETE" method="post">
+      <button class="btn waves-effect" type="delete" name="button">Delete<i class="material-icons right">delete</i>
+    </form>
+
+</div>

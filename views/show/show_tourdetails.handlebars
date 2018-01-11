@@ -1,0 +1,105 @@
+<div class="container">
+
+  <div class="row">
+    <h3 class="tourname">{{ data.name }}</h3>
+
+    <div class="slider">
+      <ul class="slides">
+        <li>
+          <img src={{ data.pictureurl3 }} >
+          <div class="caption center-align">
+            <h3>Experience the magic</h3>
+          </div>
+        </li>
+        <li>
+          <img src={{ data.pictureurl2 }}>
+          <div class="caption left-align">
+            <h3>Go all the way</h3>
+            <h5 class="light grey-text text-lighten-3">to your real fantasy</h5>
+          </div>
+        </li>
+        <li>
+          <img src={{ data.pictureurl1 }}>
+          <div class="caption right-align">
+            <h3>Wanderlust.</h3>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <ul id="tourdetails">
+      <li>{{ data.overview }}</li><br>
+      <li>{{ data.highlights }}</li><br>
+      <li>USD${{ data.price }} per person</li>
+    </ul>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="row" id="addcart">
+    <form action="/show/tourdetails/{{data.slug}}" method="post">
+
+      <ul>
+        <div class="col s4 offset-s3 white" style="border-radius:10px;color:black;">
+          <h5>Available Dates</h5>
+          <input type="text" name="datechosen" value="Click here to choose" class="datepicker" style="text-align:center;" >
+        </div>
+      </ul>
+
+      <div class="col s3">
+        <br>
+        <button class="btn waves-effect" type="submit" name="action">Add to Cart<i class="material-icons right">send</i>
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="row">
+    <h3 class="tourname">Reviews</h3>
+
+  <div class="col s6">
+    <ul>
+      {{#each reviews as |review|}}
+      <li id="reviewtitle">{{ review.title }}</li>
+      <li id="reviewdes">{{ review.description }}</li>
+      <li>~{{ review.author.name }}</li>
+      <br>
+      {{/each}}
+    </ul>
+  </div>
+
+  <div class="col s1">
+  </div>
+
+  <div class="col s5">
+    <form action="/review/add" method="post">
+
+      <h5>Add Review</h5>
+      <input type="hidden" name="tourId" value="{{ data.id }}">
+      <input type="hidden" name="userId" value="{{ user.id }}">
+      <input type="hidden" name="slug" value="{{ data.slug }}">
+
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="title" class="materialize-textarea" type="text" name="title" placeholder="Best Trip Ever"></textarea>
+          <label for="title">Title</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="description" class="materialize-textarea" type="text" name="description" placeholder="Fun"></textarea>
+          <label for="description">Description</label>
+        </div>
+      </div>
+
+      <button class="btn waves-effect" type="submit">Submit<i class="material-icons right">send</i></button>
+
+    </form>
+  </div>
+  </div>
+</div>

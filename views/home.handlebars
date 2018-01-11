@@ -1,0 +1,12 @@
+<div class="container">
+
+  <div class="carousel">
+    {{#each showlist as |showlist|}}
+      <a class="carousel-item" href="/show/{{showlist.slug}}"><img src= {{ showlist.showpic }} height="330" style="border-radius:20px;"></a>
+    {{/each}}
+  </div>
+
+  <h3>Tour Locations</h3>
+  <div id="map"></div>
+
+</div>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Fantasy Tours</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=IM+Fell+Double+Pica|Ruthie" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/css/materialize.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+    <script>UPLOADCARE_PUBLIC_KEY = '8ca25847559a0fdd22e0'</script>
+    <audio id="my_audio" src="/audio/song.mp3" loop="loop"></audio>
+  </head>
+  <body>
+    <ul id="dropdown1" class="dropdown-content">
+      <li><a href="/addtvshows">Add TV Shows</a></li>
+      <li class="divider"></li>
+      <li><a href="/addtours">Add Tours</a></li>
+    </ul>
+    <ul id="dropdown2" class="dropdown-content">
+      <li><a href='/logout'>Logout</a></li>
+    </ul>
+
+    <nav>
+      <div class="nav-wrapper grey darken-4">
+        <div class="container">
+          <a href='/' class="brand-logo">Fantasy Tours</a>
+
+          <ul class="right hide-on-med-and-down">
+            {{#if user}}
+            <li><a class="dropdown-button" data-activates="dropdown1"><i class="material-icons right">add</i></a></li>
+            <li><a href='/{{ user.slug }}/cart'><i class="material-icons">shopping_cart</i></a></li>
+            <li class="username"><a class="dropdown-button" data-activates="dropdown2" style="font-family:'Ruthie'">{{ user.name }}<i class="material-icons right">arrow_drop_down</i></a></li>
+            {{else}}
+            <li><a href="/login">Login</a></li>
+            <li><a href='/register'>Register</a></li>
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <br>
+    <br>
+
+    {{{ body }}}
+
+    <br>
+    <br>
+
+    <footer class="page-footer grey darken-4">
+      <div class="container">
+        <div class="row">
+          <div class="col s6">
+            <h5 class="white-text">About</h5>
+            <p class="grey-text text-lighten-4">
+              Founded in 89 BC by Aegon Targaryen, Fantasy Tours© is a leading specialist tour operator featuring stunning locations from some of the biggest TV and film brands
+            </p>
+          </div>
+          <div class="col s1">
+          </div>
+          <div class="col s3">
+            <h5 class="white-text">Head Office</h5>
+            <p class="grey-text text-lighten-4">
+            89 Wildling Avenue<br>
+            New York, NY 10007<br>
+            Tel: 1-800-FAT-TOUR<br>
+            </p>
+          </div>
+          <div class="col s2">
+            <h5 class="white-text">Social</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/">Facebook</a></li>
+              <li><a class="grey-text text-lighten-3" href="https://github.com/">GitHub</a></li>
+              <li><a class="grey-text text-lighten-3" href="https://twitter.com/">Twitter</a></li>
+              <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAg_Egj7ORFG6-gfNZrf9wd-DB_4pqDq0o&callback=initMap"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/js/materialize.js"></script>
+    <script type="text/javascript" src="/js/frontend.js"></script>
+    <script src="https://ucarecdn.com/libs/widget/3.1.4/uploadcare.full.min.js" charset="utf-8"></script>
+  </body>
+</html>
