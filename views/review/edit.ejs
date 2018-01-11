@@ -1,0 +1,73 @@
+<% include ../partials/header %>
+
+  <div class="row">
+    <div class="col s10 offset-s1">
+      <h1 class="center-align">Edit Review</h1>
+
+<form action="/review/edit/<%= data._id %>?_method=PUT" method="POST">
+
+  <div class="col s12">
+    <label for="title">Title</label>
+    <input id="title" type="text" name="title" value="<%= data.title %>">
+  </div>
+
+  <div class="col s12">
+    <label for="location">Location</label>
+    <input id="location" type="text" name="location" value="<%= data.location %>">
+  </div>
+
+  <div class="col s12">
+    <label for="review">Review</label>
+    <textarea id="review" class="materialize-textarea" name="review"><%= data.review %></textarea>
+  </div>
+
+<div class="input-field col s8">
+  <select name="quality">
+  <% for (var i = 0; i <= 5; i++) { %>
+    <% if (i == 0) { %>
+      <option value="" disabled>Choose your option</option>
+  <% } else if (i == data.rating.quality) { %>
+      <option value="<%= i %>" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle" selected><%= i %> Star</option>
+    <% } else { %>
+      <option value="<%= i %>" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle"><%= i %> Star</option>
+    <% } } %>
+</select>
+  <label>Quality</label>
+</div>
+
+<div class="input-field col s8">
+  <select name="quantity">
+  <% for (var i = 0; i <= 5; i++) { %>
+    <% if (i == 0) { %>
+      <option value="" disabled>Choose your option</option>
+  <% } else if (i == data.rating.quantity) { %>
+      <option value="<%= i %>" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle" selected><%= i %> Star</option>
+    <% } else { %>
+      <option value="<%= i %>" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle"><%= i %> Star</option>
+    <% } } %>
+</select>
+  <label>Quantity</label>
+</div>
+
+<div class="input-field col s8">
+  <select name="price">
+  <% for (var i = 0; i <= 5; i++) { %>
+    <% if (i == 0) { %>
+      <option value="" disabled>Choose your option</option>
+  <% } else if (i == data.rating.price) { %>
+      <option value="<%= i %>" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle" selected><%= i %> Star</option>
+    <% } else { %>
+      <option value="<%= i %>" data-icon="/img/faces/icon-0<%= i %>.jpg" class="circle"><%= i %> Star</option>
+    <% } } %>
+</select>
+  <label>Price</label>
+</div>
+
+        <div class="col s12">
+          <button type="submit" class="waves-effect waves-light btn">Save</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+<% include ../partials/footer %>

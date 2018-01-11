@@ -1,0 +1,260 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: ghostwhite;
+}
+
+label {
+  font-size: 1rem !important;
+}
+
+img {
+  width: 100%;
+}
+
+strong {
+  font-weight: bold;
+}
+
+
+/* body & main */
+
+.min-height {
+  min-height: 90vh;
+}
+
+.page-footer {
+  padding-top: 0 !important;
+  margin-top: 2rem;
+}
+
+
+/* home page */
+
+.logo {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
+}
+.rating-card {
+  color: #00838f;
+  background-color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 100%;
+  padding: 0 5px;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.card-content {
+  padding: 10px !important;
+}
+
+.card-content h6 {
+  margin: 0;
+  font-weight: 700;
+}
+
+.card-image {
+  position: relative;
+}
+
+
+/* profile page */
+
+.tabs {
+  margin-bottom: 10px;
+}
+
+
+/* review page */
+
+.checked {
+  color: orange;
+}
+
+.review-title {
+  margin: 0;
+}
+
+.review-para {
+  margin-top: 0;
+}
+
+.icon-spacing {
+  padding: 0 5px;
+}
+
+.overall-box {
+  padding-left: 3px;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+
+.rating-box {
+  display: inline-block;
+  padding: 2px 15px;
+  margin-top: -5px;
+}
+
+.rating-star i {
+  margin: -3px;
+}
+
+.bookmark {
+  top: -0.4rem !important;
+}
+
+.delete-comment {
+  color: black;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.2);
+  padding: 0 5px;
+}
+
+.delete-comment:hover {
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
+}
+
+.delete-bookmark {
+  color: black;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 100%;
+  padding: 0 5px;
+}
+
+.delete-bookmark:hover {
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
+}
+
+
+/* google api */
+
+.pac-container {
+  z-index: 1004 !important;
+}
+
+
+/* error & messages */
+
+.error-margin {
+  margin-top: 3rem;
+  font-size: 15rem;
+}
+
+.error-oops {
+  margin-top: -2rem;
+}
+
+#errors i {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+#errors i:hover {
+  cursor: pointer;
+  color: black;
+}
+
+#errors li {
+  margin-bottom: 5px;
+  background-color: #e53935;
+  color: white;
+  padding: 5px 5px 5px 20px;
+}
+
+#messages {
+  position: fixed;
+  top: 8%;
+  left: 78%;
+  z-index: 5;
+}
+
+
+/* login & signup */
+
+.login-box {
+  border: 1px solid black;
+  background-color: rgb(248, 248, 255);
+  border-radius: 5px;
+  padding-bottom: 25px !important;
+  margin: 2rem;
+}
+
+.signup-box {
+  border: 1px solid black;
+  background-color: rgb(248, 248, 255);
+  border-radius: 5px;
+  padding-bottom: 25px !important;
+  margin: 2rem;
+}
+
+.bg-image {
+  background-image: url('/img/food_festival.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+
+/* home page masonry layout */
+
+.masonry {
+  margin: 1.5em 0;
+  padding: 0;
+  -moz-column-gap: 1.5em;
+  -webkit-column-gap: 1.5em;
+  column-gap: 1.5em;
+  font-size: .85em;
+}
+
+.item {
+  display: inline-block;
+  background: #fff;
+  margin: 0 0 1.5em;
+  width: 100%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-shadow: 2px 2px 4px 0 #ccc;
+}
+
+@media only screen and (min-width: 400px) {
+  .masonry {
+    -moz-column-count: 1;
+    -webkit-column-count: 1;
+    column-count: 1;
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .masonry {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .masonry {
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-count: 3;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  .masonry {
+    -moz-column-count: 4;
+    -webkit-column-count: 4;
+    column-count: 4;
+  }
+}

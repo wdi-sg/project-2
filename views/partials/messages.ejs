@@ -1,0 +1,7 @@
+<div id="messages">
+<% Object.keys(messages).forEach(function (type) { %>
+  <% messages[type].forEach(function (message) { %>
+    <span class="new badge <%= type %>" data-badge-caption=""><%= message %></span>
+  <% }) %>
+<% }) %>
+</div>

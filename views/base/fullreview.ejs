@@ -1,0 +1,137 @@
+<% include ../partials/header %>
+
+  <h5>Review by <strong><%= data.userId.firstname %> <%= data.userId.lastname %></strong>
+    <span class="right">
+    <%  if (user._id.toString() !== data.userId._id.toString()) { %>
+        <a class="modal-trigger" href="#modal1"><i class="material-icons icon-spacing">bookmark_border</i><sup class="bookmark">Bookmark</sup></a>
+  <% } else { %>
+      <a href="/review/edit/<%= data._id %>"><i class="material-icons icon-spacing">edit</i></a>
+      <a href="/review/delete/<%= data._id %>" class="delete-review"><i class="material-icons icon-spacing">delete</i></a>
+  <%  } %>
+    </span>
+  </h5>
+
+  <div class="row">
+    <div class="col s4">
+      <img src="<%= data.photo %>" alt="">
+      <div class="center-align">
+        <a class="waves-effect waves-light btn like-button" href="/extra/like/<%= data._id %>?username=<%= user.username %>">
+        <i class="material-icons">thumb_up</i><span class="like-number"> <%= data.like.length %> </span> Like</a>
+      </div>
+    </div>
+
+    <div class="col s8">
+      <h4 class="review-title"><%= data.title%></h4>
+      <p class="review-para">
+        <%= data.date %>
+      </p>
+      <p>
+        <%= data.review %>
+      </p>
+      <div class="divider"></div>
+      <h4>Rating</h4>
+
+      <div class="row center-align">
+        <div class="col s4 rating-star">
+          <h5>Quality</h5>
+          <% for (var i = 0; i < 5; i++) { %>
+            <% if (i < data.rating.quality) { %>
+              <i class="material-icons checked">star</i>
+              <% } else { %>
+                <i class="material-icons">star</i>
+                <% } } %>
+        </div>
+
+        <div class="col s4 rating-star">
+          <h5>Quantity</h5>
+          <% for (var i = 0; i < 5; i++) { %>
+            <% if (i < data.rating.quantity) { %>
+              <i class="material-icons checked">star</i>
+              <% } else { %>
+                <i class="material-icons">star</i>
+                <% } } %>
+        </div>
+
+        <div class="col s4 rating-star">
+          <h5>Price</h5>
+          <% for (var i = 0; i < 5; i++) { %>
+            <% if (i < data.rating.price) { %>
+              <i class="material-icons checked">star</i>
+              <% } else { %>
+                <i class="material-icons">star</i>
+                <% } } %>
+        </div>
+      </div>
+
+      <div class="row center-align">
+        <div class="col s6 offset-s3">
+          <h4>Overall</h4>
+          <h4 class="rating-box orange"><%= data.rating.overall %></h4>
+        </div>
+      </div>
+      <div class="divider"></div>
+
+      <h4>Location</h4>
+      <h5><a href="https://www.google.com/maps/search/?api=1&query=<%= data.location %>" target="_blank"><%= data.location %></a></h5>
+      <div class="divider"></div>
+
+      <!-- writing comment -->
+      <h4>Comments</h4>
+      <div>
+        <% data.comments.forEach(function(item) { %>
+          <% if (data.userId.username == user.username) { %>
+            <a href="/extra/delete/<%= item._id %>?reviewId=<%= data._id %>" class="delete-comment right"><i class="material-icons">close</i></a>
+            <p><strong class="blue-text"><%= item.username %> </strong>
+              <%= item.comment %>
+            </p>
+            <% } else if (item.username == user.username){ %>
+              <a href="/extra/delete/<%= item._id %>?reviewId=<%= data._id %>" class="delete-comment right"><i class="material-icons">close</i></a>
+              <p><strong class="blue-text"><%= item.username %> </strong>
+                <%= item.comment %>
+              </p>
+              <% } else { %>
+                <p><strong class="blue-text"><%= item.username %> </strong>
+                  <%= item.comment %>
+                </p>
+                <% } }); %>
+      </div>
+
+      <form id="comment-form" action="/extra/write/<%= data._id%>" method="POST">
+        <input type="hidden" name="username" value="<%= user.username %>">
+        <input type="text" name="comment" placeholder="Write a comment" autocomplete="off" required>
+        <button class="waves-effect waves-light btn right" type="submit"><i class="material-icons right">send</i>Submit</button>
+      </form>
+
+      <!-- end of 2nd col -->
+    </div>
+
+    <!-- end of row -->
+  </div>
+
+
+  <!-- modal for bookmark -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <form action="/bookmark/add/<%= data._id %>" method="POST">
+        <input type="hidden" name="userId" value="<%= user._id %>">
+        <input type="hidden" name="photo" value="<%= data.photo %>">
+
+        <div>
+          <label for="title">Title</label>
+          <input id="title" type="text" name="title" value="<%= data.title %>">
+        </div>
+
+        <div>
+          <label for="location">Location</label>
+          <input id="location" type="text" name="location" value="<%= data.location %>">
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="modal-action modal-close waves-effect waves-light btn">Save Bookmark</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <% include ../partials/footer %>

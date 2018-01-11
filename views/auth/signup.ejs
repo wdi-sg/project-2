@@ -1,0 +1,65 @@
+<% include ../partials/headerLog %>
+
+  <div class="row">
+    <div class="signup-box col s10 offset-s1">
+      <h1 class="center-align">Signup Page</h1>
+
+      <form action="/signup" method="POST">
+
+        <div class="col s10 offset-s1">
+          <label>Name</label>
+        </div>
+
+        <div class="col s5 offset-s1">
+          <% if (typeof data != 'undefined') { %>
+            <input type="text" name="firstname" placeholder="Firstname" value="<%= data.firstname %>">
+            <% } else { %>
+              <input type="text" name="firstname" placeholder="Firstname">
+              <% } %>
+        </div>
+
+        <div class="col s5">
+          <% if (typeof data != 'undefined') { %>
+            <input type="text" name="lastname" placeholder="Lastname" value="<%= data.lastname %>">
+            <% } else { %>
+              <input type="text" name="lastname" placeholder="Lastname">
+              <% } %>
+        </div>
+
+        <div class="col s10 offset-s1">
+          <label>Username</label>
+          <% if (typeof data != 'undefined') { %>
+          <input type="text" name="username" placeholder="Username" value="<%= data.username %>">
+          <% } else { %>
+            <input type="text" name="username" placeholder="Username">
+            <% } %>
+        </div>
+
+        <div class="col s10 offset-s1">
+          <label>Email</label>
+          <% if (typeof data != 'undefined') { %>
+          <input type="email" name="email" placeholder="Email" value="<%= data.email %>">
+          <% } else { %>
+          <input type="email" name="email" placeholder="Email">
+          <% } %>
+        </div>
+
+        <div class="col s10 offset-s1">
+          <label>Password</label>
+          <input type="password" name="password" placeholder="Password">
+        </div>
+
+        <div class="col s10 offset-s1">
+          <label>Confirm Password</label>
+          <input type="password" name="passwordConfirm" placeholder="Confirm Password">
+        </div>
+
+        <div class="center-align">
+          <button class="waves-effect waves-light btn" type=submit>Sign Up</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+  
+  <% include ../partials/footerLog %>
