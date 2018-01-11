@@ -149,7 +149,7 @@ $(document).ready(function() {
     var user = $(this).data("id");
     var range = $(this).data("range");
     // console.log(range);
-    var search = ($(this).parent().prev()[0].innerText);
+    var search = $(this).parent().prev()[0].innerText;
 
     if ($(this).hasClass("saved")) {
       // if a particular combination has been saved
@@ -203,6 +203,31 @@ $(document).ready(function() {
       $(this).children("span").append("<i class='fa fa-check-square'></i>");
       $(this).addClass("saved");
     }
+  });
+
+
+  // ajax request to handle request when user deletes saved combinations
+  $(".analyzeddelete").on("click", function(e) {
+    e.preventDefault();
+    var user = $(this).data("id");
+    var range = $(this).data("range");
+    var searchTerm = $(this).parent().prev()[0].innerText;
+    // additional spacing due to anchor tag
+    var search = searchTerm.slice(0, searchTerm.length - 1);
+
+    $.ajax({
+      url: '/update/analyzed/' + user,
+      type: 'post',
+      data: {'item': search, 'range': range},
+      success: function(data) {
+        console.log(data);
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    });
+
+    $(this).fadeOut(800);
   });
 
 

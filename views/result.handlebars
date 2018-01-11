@@ -22,7 +22,7 @@
         {{/each}}
         <!-- {{range}} -->
         {{#if ../currentUser}}
-          <i class="fa fa-bookmark" aria-hidden="true" ></i>
+          <i class="fa fa-floppy-o" aria-hidden="true" ></i>
         {{/if}}
       </div>
     {{/each}}
@@ -42,6 +42,7 @@
           <a href={{link}}><p>{{name}}</p></a>
           <p>{{address1}}</p>
           <p>{{address2}}</p>
+          <img src="{{image}}" alt="Image not available">
         </div>
       {{/each}}
     </div>

@@ -42,6 +42,7 @@ exports.search = (req, res) => {
       }).then(response => {
         // push results to array
         var result = response.jsonBody.businesses;
+        // console.log(result);
         var resultArray = [];
         result.forEach(function(business) {
           resultArray.push({
@@ -50,7 +51,8 @@ exports.search = (req, res) => {
             longitude: business.coordinates.longitude,
             address1: business.location.address1,
             address2: business.location.address2,
-            link: business.url
+            link: business.url,
+            image: business.image_url
           });
         });
         displayArray.push({

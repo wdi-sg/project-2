@@ -40,7 +40,7 @@
 .searchresult-container, .analyzedresult-container, .search-container{
   display: none;
 }
-.analyzedsave:hover{
+.analyzedsave:hover, .analyzeddelete:hover{
   cursor: pointer;
 }
 

@@ -7,25 +7,25 @@ const User = require('../models/user');
 
 // read results from database, searchList and analyzedList
 exports.result = (req, res) => {
-  SearchList.find({username: req.params.id})
+  // SearchList.find({username: req.params.id})
+  // .populate('username')
+  // .exec((err, searchResult) => {
+  //   if (err) console.log(err);
+
+  AnalyzedList.find({username: req.params.id})
   .populate('username')
-  .exec((err, searchResult) => {
+  .exec((err, analyzedResult) => {
     if (err) console.log(err);
 
-    AnalyzedList.find({username: req.params.id})
+    SavedList.find({username: req.params.id})
     .populate('username')
-    .exec((err, analyzedResult) => {
+    .exec((err, savedResult) => {
       if (err) console.log(err);
 
-      SavedList.find({username: req.params.id})
-      .populate('username')
-      .exec((err, savedResult) => {
-        if (err) console.log(err);
-
-        res.render('savedResults', {'searchList': searchResult, 'analyzedList': analyzedResult, 'savedList': savedResult});
-      });
+      res.render('savedResults', {'analyzedList': analyzedResult, 'savedList': savedResult});
     });
   });
+  // });
 };
 
 
@@ -149,6 +149,8 @@ exports.saveAnalyzed = (req, res) => {
 // update or delete combinations which user chooses
 exports.updateAnalyzed = (req, res) => {
   SavedList.findOne({username: req.params.id, item: req.body.item}, (err, data) => {
+    // console.log(req.params.id);
+    // console.log(req.body.item);
     if (err) console.log(err);
     console.log(data);
 

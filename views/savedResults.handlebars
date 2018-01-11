@@ -2,7 +2,7 @@
   <ul>
     <li class="is-active saved"><a>Saved Combinations</a></li>
     <li class="analyze"><a>Locations with Close Proximity</a></li>
-    <li class="search"><a>Searched Locations</a></li>
+    <!-- <li class="search"><a>Searched Locations</a></li> -->
   </ul>
 </div>
 
@@ -17,13 +17,14 @@
 
       <div class="grid-container">
         {{#each result}}
-          <div>
+          <div class="analyzeddelete" data-id="{{../../currentUser._id}}" data-range="{{range}}">
             {{#each sortedList}}
               <p>{{name}}</p>
               <p>{{address1}}</p>
               <p>{{address2}}</p>
               <br>
             {{/each}}
+            <i class="fa fa-trash" aria-hidden="true" ></i>
           </div>
         {{/each}}
       </div>
@@ -57,8 +58,8 @@
   {{/each}}
 </div>
 
-<!-- search results -->
-<div class="searchresult-container">
+<!-- search results removed temporarily-->
+<!-- <div class="searchresult-container">
   {{#each searchList}}
     <div id="{{_id}}">
       <div class="result-title is-size-3">
@@ -77,4 +78,4 @@
       </div>
     </div>
   {{/each}}
-</div>
+</div> -->
