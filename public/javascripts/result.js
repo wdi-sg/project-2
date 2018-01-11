@@ -9,15 +9,18 @@ $(document).ready(function() {
         console.log('API URL: ');
         console.log(url);
 
-        let arrayPosition = link.getAttribute('id').substr(link.getAttribute('id').length - 1);
+        let id = link.getAttribute('id');
+        let arrayPosition
+        id.split('-').length == 3 ? arrayPosition = id.split('-')[2] : arrayPosition = id.split('-')[1];
+
         console.log('Position in array');
         console.log(arrayPosition);
 
-        let whichBook = link.getAttribute('id').split("-")[0];
+        let whichBook = id.split("-")[0];
         console.log('Source of text:');
         console.log(whichBook);
 
-        let whichPart = link.getAttribute('id').split("-")[1];
+        let whichPart = id.split("-")[1];
         console.log('Which part of the Book of Changes:');
         console.log(whichPart);
 
