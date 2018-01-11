@@ -37,7 +37,6 @@ $ nodemon
 
 ![wireframe-form](https://user-images.githubusercontent.com/31798170/34469467-7faadcde-ef5a-11e7-8b1d-0e5868b4accf.png)
 
-
 ### Mockup
 
 ![mockup - landing page](https://user-images.githubusercontent.com/31798170/34835083-c69afc38-f72e-11e7-8f9d-733d90cd7874.jpg)
