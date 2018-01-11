@@ -104,5 +104,5 @@ As a User, I want to
 http://w3bits.com/css-masonry/
 
 ### Vector Images from Freepik
-* <a href='https://www.freepik.com/free-vector/set-of-fruit-characters-with-variety-of-facial-expressions_1113023.htm'>Fruit Characters designed by Freepik</a>
-* <a href='https://www.freepik.com/free-vector/flat-pack-of-expressive-emoticons_1001216.htm'>Expressive Emoticons designed by Freepik</a>
+* <a href='https://www.freepik.com/free-vector/set-of-fruit-characters-with-variety-of-facial-expressions_1113023.htm'>Fruit Characters</a>
+* <a href='https://www.freepik.com/free-vector/flat-pack-of-expressive-emoticons_1001216.htm'>Expressive Emoticons</a>
