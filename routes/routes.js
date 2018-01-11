@@ -9,15 +9,15 @@ const Announcement = require('../models/announcement')
 
 
 // Main Page
-router.get('/', HomeController.index)
+// router.get('/', HomeController.index)
 
-// Tracker Page
-router.get('/home', isLoggedIn, HomeController.home)
+// Main / Tracker Page
+router.get('/', HomeController.home)
 
-router.post('/create', HomeController.create)
-router.get('/edit/:id', HomeController.getedit)
-router.post('/edit/:id', HomeController.postedit)
-router.delete('/delete/:id', HomeController.delete)
+router.post('/create', isLoggedIn, HomeController.create)
+router.get('/edit/:id', isLoggedIn, HomeController.getedit)
+router.post('/edit/:id', isLoggedIn, HomeController.postedit)
+router.delete('/delete/:id', isLoggedIn, HomeController.delete)
 
 // Login
 router.get('/auth/login', AuthController.login)
@@ -26,9 +26,9 @@ router.get('/auth/login', AuthController.login)
 router.get('/auth/twitter', passport.authenticate('twitter'))
 
 router.get('/auth/twitter/callback',
-  passport.authenticate('twitter', { successRedirect: '/home',
-                                     failureRedirect: '/',
-                                     successFlash: 'Welcome to the SMRT Delay Tracker!' }));
+  passport.authenticate('twitter', { successRedirect : '/',
+                                     failureRedirect : '/',
+                                     successFlash : 'Welcome to the SMRT Delay Tracker!' }))
 
 // Announcements Page
 router.get('/announce', isLoggedIn, HomeController.announce)

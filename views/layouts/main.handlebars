@@ -14,28 +14,31 @@
 <body>
 
   {{#if alerts.success}}
-      {{#each alerts.success as |msg|}}
-          <div class="alert alert-success alert-dismissable fade in alert-connect">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> {{msg}}
-          </div>
-      {{/each}}
+    {{#each alerts.success as |msg|}}
+      <div class="alert alert-success alert-dismissable fade in alert-connect">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> {{msg}}
+      </div>
+    {{/each}}
   {{/if}}
 
-    <div class="pure-menu pure-menu-horizontal pure-menu-scrollable">
-      <a href="/" class="pure-menu-heading mainDisplay"><i class="fas fa-home"></i></a>
-      <ul class="pure-menu-list">
-          {{#if currentUser}}
-          <li class="pure-menu-item nameDisplay">Welcome, {{ currentUser.displayName }}</li>
-          <li class="pure-menu-item"><a href="/announce" class="pure-menu-link itemsDisplay"><i class="fas fa-bullhorn"></i> &nbsp;Announcements</a></li>
-          {{/if}}
-          <li class="pure-menu-item"><a href="/home" class="pure-menu-link itemsDisplay"><i class="fas fa-train"></i> &nbsp;Delay Tracker</a></li>
-          {{#unless currentUser}}
-          <li class="pure-menu-item"><a href="/auth/twitter" class="pure-menu-link itemsDisplay"><i class="fab fa-twitter"></i> Login with Twitter</a></li>
-          {{/unless}}
-          {{#if currentUser}}
-          <li class="pure-menu-item"><a href="/auth/logout" class="pure-menu-link itemsDisplay">Logout</a></li>
-          {{/if}}
-      </ul>
+  <div class="pure-menu pure-menu-horizontal pure-menu-scrollable">
+    <a href="/" class="pure-menu-heading mainDisplay"><i class="fas fa-home"></i></a>
+    <ul class="pure-menu-list">
+      {{#if currentUser}}
+        <li class="pure-menu-item nameDisplay">Welcome, {{ currentUser.displayName }}</li>
+        <li class="pure-menu-item"><a href="/announce" class="pure-menu-link itemsDisplay"><i class="fas fa-bullhorn"></i> &nbsp;Announcements</a></li>
+      {{/if}}
+
+      <!-- <li class="pure-menu-item"><a href="/home" class="pure-menu-link itemsDisplay"><i class="fas fa-train"></i> &nbsp;Delay Tracker</a></li> -->
+
+      {{#unless currentUser}}
+        <li class="pure-menu-item"><a href="/auth/twitter" class="pure-menu-link itemsDisplay"><i class="fab fa-twitter"></i> Login with Twitter</a></li>
+      {{/unless}}
+
+      {{#if currentUser}}
+        <li class="pure-menu-item"><a href="/auth/logout" class="pure-menu-link itemsDisplay">Logout</a></li>
+      {{/if}}
+    </ul>
   </div>
 
   {{{ body }}}

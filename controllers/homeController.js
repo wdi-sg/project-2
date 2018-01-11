@@ -1,35 +1,30 @@
-const User = require('../models/user')
 const Announcement = require('../models/announcement')
-
-exports.index = (req, res) => {
-    res.render('welcome', { user : req.user })
-}
 
 exports.home = (req, res) => {
   Announcement.find({}, (err, announcements) => {
-    if(err) return err
+    if (err) return err
     res.render('home', { user : req.user, 'announcements' : announcements })
   })
 }
 
 exports.create = (req, res) => {
-  req.checkBody('content', 'Content field is too long.').isLength({ max: 80})
+  req.checkBody('content', 'Content field is too long.').isLength({ max: 80 })
 
   let errors = req.validationErrors()
-  console.log(errors);
-  if(errors){
+  console.log(errors)
+  if (errors) {
     res.redirect('/announce')
   }
-  else{
+  else {
     Announcement.create({
       content : req.body.content,
       postedBy : req.user.displayName
     }, (err, createdAnnouncement) => {
-      if(err){
+      if (err) {
         req.redirect('/announce', { user: req.user })
       }
-      else{
-          res.redirect('/announce')
+      else {
+        res.redirect('/announce')
       }
     })
   }
@@ -37,10 +32,8 @@ exports.create = (req, res) => {
 
 exports.getedit = (req, res) => {
   let id = { _id : req.params.id }
-  console.log(id)
-
   Announcement.findOne(id, (err, announcements) => {
-    if(err) return err
+    if (err) return err
     res.render('edit', { user : req.user, 'announcements' : announcements })
   })
 }
@@ -50,19 +43,18 @@ exports.postedit = (req, res) => {
   let formcontent = req.body.content
 
   Announcement.updateOne(id, {$set: {content: formcontent}}, (err, data) => {
-    if(err) return err
-
-    res.redirect("/announce")
+    if (err) return err
+    res.redirect('/announce')
   })
 }
 
 exports.delete = (req, res) => {
   let id = { _id : req.params.id }
   Announcement.deleteOne(id, (err, result) => {
-    if(err){
+    if (err) {
       return err
     }
-    else{
+    else {
       res.sendStatus(200)
     }
   })
