@@ -64,7 +64,7 @@ $("#mainOrderBtn").on("click", function() {
     orderedItemsObj["quantity"] = quantityArray[i];
     orderedItemsObj["customer_id"] = custSelectValue;
     orderedItemsObj["dateOfPurchase"] = dateTime;
-    orderdItemsObj["quantity"] * 
+    // orderdItemsObj["quantity"] *
 
     orderedItemsArray.push(orderedItemsObj);
     // console.log(orderedItemsArray);
@@ -88,10 +88,5 @@ console.log(orderedItemsArray[0].customer_id);
   });
 
 });
-
-
-
-
-
 
 }); // End document.ready

@@ -38,7 +38,7 @@ exports.items = (req, res)=>{
 exports.order = (req, res)=>{
 
   OrderedItems.create(req.body.object)
-  
+
   res.redirect('/')
   // res.render('home', {'items' : items})
 }
