@@ -127,6 +127,10 @@ a.pure-menu-heading{
   font-size: 20px;
 }
 
+/*.aHead {
+  display: none;
+}*/
+
 ::-webkit-scrollbar {
   display: none;
 }
