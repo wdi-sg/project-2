@@ -1,4 +1,4 @@
 node_modules
 *.zip
 .env
-config
+dbConfig.js
