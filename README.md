@@ -8,7 +8,6 @@ Giving your thoughts, ratings and upload the photo of the mouth-watering food.
 Reviews are consolidated in one page for all to view. If you like what you see, you can save it as a bookmark and maybe try it sometime soon. Have fun sharing!
 
 ## Live Version
-
 https://yummythoughts.herokuapp.com/
 
 ## User stories
@@ -22,15 +21,25 @@ As a User, I want to
 * leave comments on other's review so I can voice my support or against to the review.
 * view other user's profile so I can view their reviews and bookmarks.
 
-## How to user
-1. sign up as a user with your particulars
-2. log in with your username and password
+## How to use
+
+1. at the landing page, log in if you have an account
+  <img src="/public/readme_img/ss1.png" width="500">
+2. if not, sign up as a user with your particulars
+  <img src="/public/readme_img/ss2.png" width="500">
 3. once logged in, you will see all the reviews on the homepage
-4. click on the photo the see the full review
-   * if you created the review, you can edit or delete it
-   * else you can bookmark the review
+  <img src="/public/readme_img/ss3.png" width="500">
+4. click on the photo to view the full review
+  * if you created the review, you can edit or delete it
+  <img src="/public/readme_img/ss4.png" width="500">
+  * else you can bookmark the review for view later
+  <img src="/public/readme_img/ss5.png" width="500">
 5. at profile page, you can view your own reviews and bookmarks
+  <img src="/public/readme_img/ss6.png" width="500">
 6. contribute by writing review
+  <img src="/public/readme_img/ss7.png" width="500">
+  * your review will be added to the homepage
+
 
 ## Flowchart
 <img src="/public/readme_img/Flowchart.jpg">

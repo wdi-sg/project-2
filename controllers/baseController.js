@@ -47,7 +47,7 @@ module.exports.review = function(req, res) {
   Review.findById(req.params.id).populate('userId').populate('comments.userId').exec(function(err, result) {
     if (err || result == null){
       res.render('base/404');
-    } else {
+    } else {  
     res.render('base/fullreview', {
       data: result
     });
