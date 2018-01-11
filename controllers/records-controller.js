@@ -355,5 +355,5 @@ exports.result = (req, res) => {
 	console.log(result);
 	// END: Retreive ingredients to make API calls and pass it to the page rendered
 
-	res.render('result/result', { output: { json: result, query: req.body.query, date: queryDate } });
+	res.render('result/result', { output: { json: result, string: hexagramString, query: req.body.query, date: queryDate } });
 }

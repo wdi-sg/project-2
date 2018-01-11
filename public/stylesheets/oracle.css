@@ -51,7 +51,30 @@
 	font-weight: bolder;
 }
 
-@media only screen and (min-width: 415px) and (max-width: 540px) {
+@media only screen and (min-width: 478px) and (max-width: 560px) {
+	.stalk {
+		max-width: 8px;
+	}
+	#stalks-container {
+		height: 290px;
+	}
+	.gap {
+		width: 24px;
+	}
+	.has-query-field {
+		min-width: 100%;
+	}
+}
+@media only screen and (min-width: 415px) and (max-width: 477px) {
+	.stalk {
+		max-width: 7px;
+	}
+	#stalks-container {
+		height: 260px;
+	}
+	.gap {
+		width: 22px;
+	}
 	.has-query-field {
 		min-width: 100%;
 	}
@@ -60,8 +83,11 @@
 	.stalk {
 		max-width: 7px;
 	}
+	#stalks-container {
+		height: 260px;
+	}
 	.gap {
-		width: 12px;
+		width: 20px;
 	}
 	.has-query-field {
 		min-width: 100%;
@@ -71,10 +97,13 @@
 
 @media only screen and (min-width: 321px) and (max-width: 375px) {
 	.stalk {
-		max-width: 7px;
+		max-width: 6px;
+	}
+	#stalks-container {
+		height: 225px;
 	}
 	.gap {
-		width: 12px;
+		width: 18px;
 	}
 	.has-query-field {
 		min-width: 100%;
@@ -89,8 +118,11 @@
 	.stalk {
 		max-width: 5px;
 	}
+	#stalks-container {
+		height: 195px;
+	}
 	.gap {
-		width: 12px;
+		width: 16px;
 	}
 	.has-query-field {
 		min-width: 100%;
