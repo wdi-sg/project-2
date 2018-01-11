@@ -1,6 +1,6 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #2
 
-<p align="center"><img src="./public/images/navbar_brand.svg" style="max-width:60%;"/></p>
+<p align="center"><img src="./public/images/navbar_brand.svg"/></p>
 
 ## Live Version
 
@@ -88,6 +88,14 @@ The sorting into fours and taking out of remainders after each split is automati
 
 ## Workflow
 <!-- Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here. -->
+
+### Use Cases
+
+<p align="center"><img src="./documentation/readme/chart.svg"/></p>
+
+### Entity Relationship Diagram
+
+<p align="center"><img src="./documentation/readme/erd.svg"/></p>
 
 ### Wireframes
 
