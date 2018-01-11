@@ -1,4 +1,4 @@
-# POS System
+# POS Application
 
 [CLICK HERE](https://guarded-thicket-64693.herokuapp.com/)
 
@@ -68,7 +68,9 @@ What I set for myself to do is an app in which I could track the details such as
 **These are bits of code that I found interesting**
 
 
-```  $( ".itemList" ).append( `<div class='singleItem' id=${id}>
+```  
+
+$( ".itemList" ).append( `<div class='singleItem' id=${id}>
   <span> ${name} </span> &nbsp; <button type='button' class='deleteCartItemBtn'>Delete</button>
   <p>SGD$: ${price} </p>
   <input class='addQuantity' type='number' value='1' min='0'>
@@ -76,7 +78,9 @@ What I set for myself to do is an app in which I could track the details such as
 
   </div>`);
 });
+
 ```
+
 If we just do an append with normal jquery, it cannot be the target of class-specific functions. This ES6 workaround worked.
 
 
@@ -90,7 +94,7 @@ If we just do an append with normal jquery, it cannot be the target of class-spe
 The wireframe design
 
 * Color Scheme
-<img src="readmestuff/color.png" width="512px">
+<img src="readmestuff/color.PNG" width="512px">
 
 
 
@@ -127,6 +131,16 @@ Smaller ERD
 ### Things I have learnt
 * I need better time and project management
 * Everything that can go wrong, will
+
+
+
+---
+
+
+
+### Lastly
+Thanks, my classmates from WDI-13
+:bow:
 
 
 
