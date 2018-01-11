@@ -75,7 +75,7 @@ The sorting into fours and taking out of remainders after each split is automati
 - `express-handlebars`
 - `express-session`
 - `express-validator`
-- `mongoose:`
+- `mongoose`
 - `passport`
 - `passport-local`
 - `passport-twitter`

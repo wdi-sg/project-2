@@ -52,6 +52,55 @@
 	font-weight: bolder;
 }
 
+#hexagram-diagram {
+	margin: auto;
+	display: grid;
+	grid-template-areas:
+		"value-6 image-6"
+		"value-5 image-5"
+		"value-4 image-4"
+		"value-3 image-3"
+		"value-2 image-2"
+		"value-1 image-1";
+	grid-template-columns: 2rem 15rem;
+	grid-template-rows: repeat(6, 3.6rem);
+	max-width: 18rem;
+	grid-gap: 0.1rem;
+}
+
+.value-1 { grid-area: value-1; }
+.value-2 { grid-area: value-2; }
+.value-3 { grid-area: value-3; }
+.value-4 { grid-area: value-4; }
+.value-5 { grid-area: value-5; }
+.value-6 { grid-area: value-6; }
+
+.image-1 { grid-area: image-1; }
+.image-2 { grid-area: image-2; }
+.image-3 { grid-area: image-3; }
+.image-4 { grid-area: image-4; }
+.image-5 { grid-area: image-5; }
+.image-6 { grid-area: image-6; }
+
+.line-label {
+	font-size: 2.2rem;
+	align-self: center;
+	line-height: 1.8;
+	font-weight: lighter;
+	text-align: center;
+}
+.line-image {
+	height: 100%;
+	width: 100%;
+	object-fit: scale-down;
+	object-position: 50% 50%;
+}
+
+.yao-6::after { content: "6"; }
+.yao-7::after { content: "7"; }
+.yao-8::after { content: "8"; }
+.yao-9::after { content: "9"; }
+
 @media only screen and (min-width: 478px) and (max-width: 560px) {
 	.stalk {
 		max-width: 8px;
