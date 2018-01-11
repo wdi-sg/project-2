@@ -71,7 +71,7 @@ The below wireframes detail the homepage, summary page, positions page, registra
 
 
 Entity Relationship Diagram
-project-2/images/erd.png
+![alt text](https://github.com/empludo/project-2/blob/master/images/erd.png )
 
 
 ## User Stories
