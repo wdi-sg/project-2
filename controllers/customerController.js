@@ -68,7 +68,7 @@ exports.show = (req, res)=>{
     OrderedItems.find({customer_id : req.params.id})
     .populate('item_id')
     .exec((err, orderedItems)=>{
-      console.log(orderedItems)
+      // console.log(orderedItems)
 
       if(err) return err
 
@@ -99,7 +99,6 @@ exports.show = (req, res)=>{
 exports.delete = (req, res)=>{
   Customer.remove({_id : req.params.id}, (err)=>{
     console.log(err)
-    console.log(req.params.id);
     res.sendStatus(200);
   })
 }
