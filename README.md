@@ -1,65 +1,133 @@
-# Your Project Name
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #2: Tripcollab
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+A site for travel collaboration with your travel buddies!
 
-## Getting Started
+Have you ever collaborated with your friends on a trip and found out there are too many ideas?
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+Tripcollab aims to make travel planning fun with easy itinerary planning.
 
-### Prerequisites
-
-What is needed to install and run the project, how do we install them
-
-```
-Code example
-```
-
-### How to Use
-
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
-
-
-```
-Code example
-```
-
-More steps...
-
-```
-until finished
-```
-
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
+---
 
 ## Live Version
+[https://tripcollab-dk.herokuapp.com/](https://tripcollab-dk.herokuapp.com/)
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+---
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
+* HTML, CSS, Javascript
+* [jQuery](https://jquery.com/)
+* [Bootstrap](https://getbootstrap.com/)
+* [node.js](https://nodejs.org/en/)
+* [mongoDB](https://www.mongodb.com/)
+* [Google Maps APIs](https://developers.google.com/maps/)
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+---
 
 ## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+![](/-ProjectDocumentation/images/erd.jpg)
 
-## Authors
+#### Could do with some design rework
+![](/-ProjectDocumentation/images/screens/home.png)
 
-Did you collaborate with others on this project, list them here
 
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+#### 1. Create user account
+![](/-ProjectDocumentation/images/screens/register.png)
 
-## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+#### 2. Login
+![](/-ProjectDocumentation/images/screens/login.png)
 
+
+#### 3. Add new trip
+![](/-ProjectDocumentation/images/screens/newTrip.png)
+
+![](/-ProjectDocumentation/images/screens/tripCreated.png)
+
+
+#### 4. Add desired locations
+![](/-ProjectDocumentation/images/screens/addLocation.png)
+
+![](/-ProjectDocumentation/images/screens/locationAdded.png)
+
+
+#### 5. Plan itinerary
+![](/-ProjectDocumentation/images/screens/itineraryDate.png)
+
+![](/-ProjectDocumentation/images/screens/itineraryPlace.png)
+
+![](/-ProjectDocumentation/images/screens/itineraryTime.png)
+
+
+#### List of trips
+![](/-ProjectDocumentation/images/screens/trips.png)
+
+![](/-ProjectDocumentation/images/screens/confirmDelete.png)
+
+
+### Current Features
+
+* Create user account
+* Login
+* Create trips, locations & itinerary
+* Delete trips, locations & itinerary
+
+---
+
+## Further Development
+
+* Styling of site
+* Add more collaboration features
+* Trip features (Travel time, routes, etc)
+
+---
+
+## References
+
+* [Bootstrap Documentation](https://v4-alpha.getbootstrap.com/getting-started/introduction/)
+* [Mongoose Documentation](http://mongoosejs.com/docs/guide.html)
+* [Google Maps API Documentation](https://developers.google.com/maps/documentation/)
+
+---
+
+## Interesting Observations
+
+Come on, I think there should be a better way of doing this ? :sweat_smile:
+Any suggestions ?
+
+```javascript
+Trip.findOne(query).exec((err, data) => {
+  if (err) {
+    console.log(err)
+    req.flash('error', 'Trip not found')
+    res.redirect('/home')
+  }
+  else {
+    let dateObj = {
+      'dateFrom': getISODate(data.dateFrom),
+      'dateTo': getISODate(data.dateTo),
+      'dateFromUTC': getUTCDateNoTime(data.dateFrom),
+      'dateToUTC': getUTCDateNoTime(data.dateTo)
+    }
+    let fkTripId = {
+      tripId: data.id
+    }
+    Location.find(fkTripId).exec((err2, data2) => {
+      if (err2) {
+        console.log(err2)
+      }
+      else {
+        Itinerary.find(fkTripId).sort({date: 'asc'}).exec((err3, data3) => {
+          if (err3) {
+            console.log(err3)
+          }
+          else {
+            res.render('trip/tripMain',{"results":data, "results2":data2, "dateObj":dateObj, "results3":data3})
+          }
+        })//End Itinerary.find
+      }
+    })//End Location.find
+  }
+})//End Trip.findOne
+```
