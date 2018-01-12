@@ -91,11 +91,11 @@ The sorting into fours and taking out of remainders after each split is automati
 
 ### Use Cases
 
-<p align="center"><img src="./documentation/readme/chart.svg"/></p>
+<p align="center"><img src="./documentation/readme/use-cases.svg"/></p>
 
 ### Entity Relationship Diagram
 
-<p align="center"><img src="./documentation/readme/erd.svg"/></p>
+<p align="center"><img src="./documentation/readme/entity-relationship-diagram.svg"/></p>
 
 ### Wireframes
 

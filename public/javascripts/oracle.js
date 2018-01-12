@@ -55,7 +55,7 @@ var divination = {
 
 $(document).ready(function() {
 
-	// Sets the where to record the data from splitting the stalks
+	// Sets where the data from splitting the stalks will be recorded
 	var rawData = divination.data.raw;
 
 	class Stalks {
