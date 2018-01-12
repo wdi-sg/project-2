@@ -28,26 +28,31 @@ Tripcollab aims to make travel planning fun with easy itinerary planning.
 
 ![](/-ProjectDocumentation/images/erd.jpg)
 
-Could do with some design rework
+#### Could do with some design rework
 ![](/-ProjectDocumentation/images/screens/home.png)
 
-1. Create user account
+
+#### 1. Create user account
 ![](/-ProjectDocumentation/images/screens/register.png)
 
-2. Login
+
+#### 2. Login
 ![](/-ProjectDocumentation/images/screens/login.png)
 
-3. Add new trip
+
+#### 3. Add new trip
 ![](/-ProjectDocumentation/images/screens/newTrip.png)
 
 ![](/-ProjectDocumentation/images/screens/tripCreated.png)
 
-4. Add desired locations
+
+#### 4. Add desired locations
 ![](/-ProjectDocumentation/images/screens/addLocation.png)
 
 ![](/-ProjectDocumentation/images/screens/locationAdded.png)
 
-5. Plan itinerary
+
+#### 5. Plan itinerary
 ![](/-ProjectDocumentation/images/screens/itineraryDate.png)
 
 ![](/-ProjectDocumentation/images/screens/itineraryPlace.png)
@@ -55,10 +60,11 @@ Could do with some design rework
 ![](/-ProjectDocumentation/images/screens/itineraryTime.png)
 
 
-List of trips
+#### List of trips
 ![](/-ProjectDocumentation/images/screens/trips.png)
 
 ![](/-ProjectDocumentation/images/screens/confirmDelete.png)
+
 
 ### Current Features
 
