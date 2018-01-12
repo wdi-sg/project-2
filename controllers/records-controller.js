@@ -98,6 +98,8 @@ exports.result = (req, res) => {
 	console.log(req.user);
 	console.log('Divination data:')
 	console.log(req.body);
+	console.log('Query');
+	console.log('req.body.query');
 	let queryDate = new Date();
 	let hexagramString = String(req.body['Line-1'] + req.body['Line-2'] + req.body['Line-3'] + req.body['Line-4'] + req.body['Line-5'] +req.body['Line-6']);
 	Divination.create({
