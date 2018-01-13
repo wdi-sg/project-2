@@ -38,8 +38,8 @@ var divination = {
 			}
 		},
 		hexagram: {
-			name: String,
-			number: Number,
+			// name: String,
+			// number: Number,
 			array: [Number, Number, Number, Number, Number, Number],
 			string: String,
 			object: {
@@ -47,9 +47,66 @@ var divination = {
 				line4: Number, line5: Number, line6: Number
 			}
 		}
-	},
-	reference: {
+	}
+}
 
+class Hexagram {
+	constructor(array) {
+		this.array = array;
+		this.line1 = array[0];
+		this.line2 = array[1];
+		this.line3 = array[2];
+		this.line4 = array[3];
+		this.line5 = array[4];
+		this.line6 = array[5];
+	}
+	string() {
+		let string = this.array.join("");
+		return string;
+	}
+	object() {
+		let object = {
+			line1: this.line1,
+			line2: this.line2,
+			line3: this.line3,
+			line4: this.line4,
+			line5: this.line5,
+			line6: this.line6
+		};
+
+		return object;
+	}
+	name() {
+		let name;
+		for (let key in dictionary) {
+			if (this.string() == key) {
+				number = dictionary[key].name;
+			}
+		}
+		return name;
+	}
+	number() {
+		let number;
+		for (let key in dictionary) {
+			if (this.string() == key) {
+				number = dictionary[key].number;
+			}
+		}
+		return number;
+	}
+	binary() {
+		let array = this.array.map(function(line) {
+			switch (line) {
+				case 6:
+				case 8:
+				return 2;
+				case 7:
+				case 9:
+				return 1;
+			}
+		});
+		let string = array.join("");
+		return string;
 	}
 }
 
@@ -360,65 +417,6 @@ $(document).ready(function() {
 		}
 	}
 
-	class Hexagram {
-		constructor(array) {
-			this.array = array;
-			this.line1 = array[0];
-			this.line2 = array[1];
-			this.line3 = array[2];
-			this.line4 = array[3];
-			this.line5 = array[4];
-			this.line6 = array[5];
-		}
-		string() {
-			let string = this.array.join("");
-			return string;
-		}
-		object() {
-			let object = {
-				line1: this.line1,
-				line2: this.line2,
-				line3: this.line3,
-				line4: this.line4,
-				line5: this.line5,
-				line6: this.line6
-			};
-
-			return object;
-		}
-		name() {
-			let name;
-			for (let key in dictionary) {
-				if (this.string() == key) {
-					number = dictionary[key].name;
-				}
-			}
-			return name;
-		}
-		number() {
-			let number;
-			for (let key in dictionary) {
-				if (this.string() == key) {
-					number = dictionary[key].number;
-				}
-			}
-			return number;
-		}
-		binary() {
-			let array = this.array.map(function(line) {
-				switch (line) {
-					case 6:
-					case 8:
-						return 2;
-					case 7:
-					case 9:
-						return 1;
-				}
-			});
-			let string = array.join("");
-			return string;
-		}
-	}
 
 	function startQuery(){
         // If query field is empty, insert `?`
