@@ -1,4 +1,4 @@
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #2
+# ![](./documentation/readme/ga.svg) Project #2
 
 <p align="center"><img src="./public/images/navbar_brand.svg"/></p>
 
@@ -83,7 +83,7 @@ The sorting into fours and taking out of remainders after each split is automati
 <!-- - `async` -->
 
 ### CSS Framework
-- [Bulma v0.6.1](https://bulma.io)
+- [Bulma v0.6.2](https://bulma.io)
 <!-- - [noUiSlider](https://refreshless.com/nouislider/) -->
 
 ## Workflow
