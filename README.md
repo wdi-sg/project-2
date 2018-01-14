@@ -103,35 +103,42 @@ The sorting into fours and taking out of remainders after each split is automati
 
 The navigation bar slides up and hides itself when the page is scrolled up. It will slide down to reveal itself again when the page is scrolled down.
 
-![Landing page](./documentation/wireframes/01_home.png)
+<!-- ![Landing page](./documentation/wireframes/01_home.png) -->
+<p align="center"><img src="./documentation/wireframes/01_home.png"/></p>
 
 #### Sign in modal
 
-![Sign in modal](./documentation/wireframes/02_signin.png)
+<!-- ![Sign in modal](./documentation/wireframes/02_signin.png) -->
+<p align="center"><img src="./documentation/wireframes/02_signin.png"/></p>
 
 #### Sign up modal
 
-![Sign up modal](./documentation/wireframes/03_signup.png)
+<!-- ![Sign up modal](./documentation/wireframes/03_signup.png) -->
+<p align="center"><img src="./documentation/wireframes/03_signup.png"/></p>
 
 #### Consult Oracle page
 
 Desktop and laptop users can hover their mouse cursors over the yarrow stalks and the gap will follow the cursor. The mouse cursor will change from the default arrow to a gloved hand pointer when it is over a gap. Upon reaching the desired spot, simply click on the gap to split the yarrow stalks. Clicking on the stalks will not trigger any split.
 
-![Consult page for bigger viewports](./documentation/wireframes/04_consult.png)
+<!-- ![Consult page for bigger viewports](./documentation/wireframes/04_consult.png) -->
+<p align="center"><img src="./documentation/wireframes/04_consult.png"/></p>
 
 The slider bar below the yarrow stalks is primarily intended for smartphone and tablet users as they will not be able to hover over the stalk and precisely choose where the spilt the stalks. With the slider bar, smartphone and tablet users will be able to split the stalk with the same precision as desktop and laptop users.
 
 The yarrow stalks will resize to fit the width on smaller screens.
 
-![Consult page for smaller viewports](./documentation/wireframes/05_consult_responsive.png)
+<!-- ![Consult page for smaller viewports](./documentation/wireframes/05_consult_responsive.png) -->
+<p align="center"><img src="./documentation/wireframes/05_consult_responsive.png"/></p>
 
 #### Navigation Bar Burger and Menu for Smaller Viewports
 
-![Navigaton bar turns into navigation burger and menu for smaller viewports](./documentation/wireframes/06_menu_responsive.png)
+<!-- ![Navigaton bar turns into navigation burger and menu for smaller viewports](./documentation/wireframes/06_menu_responsive.png) -->
+<p align="center"><img src="./documentation/wireframes/06_menu_responsive.png"/></p>
 
 #### Display of divination result and individual past record
 
-![Display of divination result and individual past record](./documentation/wireframes/07_records.png)
+<!-- ![Display of divination result and individual past record](./documentation/wireframes/07_records.png) -->
+<p align="center"><img src="./documentation/wireframes/07_records.png"/></p>
 
 
 ### User Stories
