@@ -111,15 +111,6 @@ const divinationSchema = new Schema({
 			}
 		}
 	},
-	// reference: {
-	// 	yijing: {
-	// 		text: { type: String, required: true, sparse: true },
-	// 		parallel: {type: String, require: true, sparse: true }
-	// 	}
-	// 	yilin: {
-	// 		text: {}
-	// 	}
-	// }
 });
 
 // divinationSchema.path('data.hexagram.array').validate(
