@@ -4,7 +4,7 @@ const parallel = require('../models/parallel-text');
 const reference = {
 	url: {
 		api: 'https://api.ctext.org/gettext?urn=ctp:',
-		parallel: 'http://ctext.org/directory.pl?if=en&id='
+		parallel: 'http://ctext.org/dictionary.pl?if=en&id='
 	},
 	urn: {
 		yijing: 'book-of-changes',
@@ -74,7 +74,9 @@ const reference = {
 	},
 	indexForYilin: function(originalHexagramNumber, resultantHexagramNumber) {
 		let yilinIndex;
-		if (resultantHexagramNumber > originalHexagramNumber) {
+		if (resultantHexagramNumber == originalHexagramNumber) {
+			yilinIndex = 0;
+		} else if (resultantHexagramNumber > originalHexagramNumber) {
 		  yilinIndex = resultantHexagramNumber - 1;
 		  console.log('Position in Yilin array:');
 		  console.log(yilinIndex);
@@ -100,6 +102,7 @@ exports.result = (req, res) => {
 	console.log('query');
 	console.log(query);
 	console.log('queryValidity');
+	console.log(queryValidity);
 	console.log('queryArray');
 	console.log(queryArray);
 	console.log('originalHexagramBinaryString');
@@ -129,7 +132,7 @@ exports.result = (req, res) => {
 						judgment: api[originalHexagramBinaryString].yijing.judgment,
 						image: api[originalHexagramBinaryString].yijing.image
 					},
-					index: '',
+					index: 0,
 				},
 				yilin: {
 					url: reference.url.api,
