@@ -1,0 +1,25 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" href="/profile/{{user.username}}">My Listings</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/profile/{{user.username}}/offers">My trade requests</a>
+  </li>
+</ul>
+{{#each offers as |offa|}}
+<div class="card" style="width: 20rem;">
+  <img class="card-img-top" src="{{offa.photos}}" alt="Card image cap">
+  <div class="card-body">
+    <h4 class="card-title">{{offa.title}}</h4>
+    <p class="card-text">{{offa.description}}</p>
+    {{#if offa.dealt}}
+    <div class="alert alert-danger" role="alert">
+      Deal is closed!
+    </div>
+    {{else}}
+    <div class="alert alert-success" role="alert">
+      Deal is still on!
+    </div>
+    {{/if}}
+  </div>
+  {{/each}}

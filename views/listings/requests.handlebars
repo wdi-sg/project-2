@@ -1,0 +1,73 @@
+<h1>Offer a trade request!</h1>
+{{#each offers as |offa|}}
+{{#if offa.dealt}}
+<div class="alert alert-warning" role="alert">
+DEAL IS CLOSED
+</div>
+{{/if}}
+{{/each}}
+
+<div class="card" style="width: 50rem;">
+  <img class="card-img-top" src="{{listing.photos}}" alt="Card image cap">
+  <div class="card-body">
+    <h4 class="card-title">{{listing.title}}</h4>
+    <p class="card-text">{{listing.description}}</p>
+  </div>
+</div>
+
+{{#unless listing.dealt}}
+<h2>Post my offer</h2>
+<form action="/listings/requests/{{listing._id}}" method="post">
+  <div class="form-group">
+    <label for="listings">Photo upload</label>
+    <input type="hidden" role="uploadcare-uploader" name="image" />
+  </div>
+
+  <div class="form-group">
+  <label for="title">Title</label>
+  <input type="text" name="title" required>
+</div>
+
+<div class="form-group">
+<label for="exampleFormControlTextarea1">Description</label>
+<textarea class="form-control" name="description" rows="3" required></textarea>
+</div>
+  <button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+<div class="form-group">
+  <form action="/listings/requests/{{listing._id}}/comment" method="post">
+   <label for="exampleFormControlTextarea1"><h2>Comment on this listing</h2></label>
+   <textarea class="form-control" rows="3" name="comment"></textarea>
+   <button type="submit" class="btn btn-info">Submit comment</button>
+ </form>
+ </div>
+
+ <div class="comment-area">
+   <ul class="list-group">
+   {{#each comment as |commento|}}
+  <li class="list-group-item">{{commento.by.slug}}: {{commento.comment}}</li>
+  {{/each}}
+</ul>
+
+
+ </div>
+
+<h2>Offers</h2>
+{{#each offers as |offa|}}
+{{#unless offa.dealt}}
+    <div class="card" style="width: 20rem;">
+  <img class="card-img-top" src="{{offa.photos}}" alt="Card image cap">
+  <div class="card-body">
+    <h4 class="card-title">{{offa.title}}</h4>
+    <p class="card-text">{{offa.description}}</p>
+    <p class="card-text">by:{{offa.author.slug}}</p>
+    <form action="/listings/requests/{{offa.offerId}}/update?_method=PUT" method="post">
+      <button type="submit" class="btn btn-primary btn-lg">Deal!</button>
+    </form>
+  </div>
+</div>
+  </div>
+{{/unless}}
+{{/each}}
+{{/unless}}
