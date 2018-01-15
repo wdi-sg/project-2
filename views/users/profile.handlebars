@@ -1,0 +1,62 @@
+<div class="container">
+  <h3>{{user.name}}'s Profile</h3>
+  <form class="textBox" action="/profile" method="post">
+    <div class="input-field">
+      <textarea name="textBox" id="textarea1" class="materialize-textarea">
+      </textarea>
+      <label for="textarea1">Input Text to be Analyzed</label>
+    </div>
+    <input type="hidden" name="user" value="{{user.id}}">
+    <button class="btn waves-effect waves-light blue" type="submit" name="button">Analyze Text</button>
+  </form>
+
+
+  {{!-- {{#each data as |result|}} --}}
+  {{!-- <p>{{data}}</p> --}}
+
+  {{!-- <ul id="myChart"> --}}
+  {{!-- #id='red' --}}
+  <div class="row">
+    <div class="col s12 m5">
+      <div class="card-panel">
+        <span class="black-text">
+            <li>Openness: {{result.openness}}</li>
+            <li>Conscientiousness: {{result.conscientiousness}}</li>
+            <li>Extraversion: {{result.extraversion}}</li>
+            <li>Agreeableness: {{result.agreeableness}}</li>
+            <li>Emotion Range: {{result.emotionalRange}}</li>
+        </span>
+      </div>
+    </div>
+  </div>
+  {{!-- </ul> --}}
+  <form action="/profile/{{result.id}}?_method=DELETE" method="post">
+    <button class="btn waves-effect waves-light blue" type="submit" name="button">Delete</button>
+  </form>
+
+  <h3>Update</h3>
+
+  <form class="textBox" action="/profile/{{result.id}}?_method=PUT" method="post">
+    <div class="input-field">
+      <textarea name="textBox" id="textarea2" class="materialize-textarea"></textarea>
+      <label for="textarea2">Input text to update profile</label>
+    </div>
+    {{!-- <input type="hidden" name="user" value="{{user.id}}"> --}}
+    <button class="btn waves-effect waves-light blue" type="submit" name="button">Update</button>
+  </form>
+
+  {{!-- <h3>Update</h3>
+<form action="/restaurants/{{ restaurant.id }}?_method=PUT" method="post">
+  <label for="name">Name</label>
+  <input type="text" name="name" value="{{ restaurant.name }}"> --}}
+  {{!-- we put the {{}} inside value cos we want to show the existing name --}}
+
+  {{!-- <label for="cuisine">Cuisine</label>
+  <input type="text" name="cuisine" value="{{ restaurant.cuisine }}">
+
+  <button type="submit" name="button">Submit</button>
+</form> --}}
+
+
+</div>
+{{!-- {{/each}} --}}

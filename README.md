@@ -1,65 +1,24 @@
-# Your Project Name
+### Project 2
+The IBM Watson / or some other Natural Language Processing  API service uses linguistic analysis to extract cognitive and social characteristics from input text such as email, text messages, tweets, forum posts, and more. By deriving cognitive and social preferences, the service helps users to understand, connect to, and communicate with other people on a more personalized level.
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
-
-## Getting Started
-
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
-
-### Prerequisites
-
-What is needed to install and run the project, how do we install them
-
-```
-Code example
-```
+Credit [IBM](https://www.ibm.com/watson/services/personality-insights/)
 
 ### How to Use
+Users will have to register an account with us. After logging in. They can use the text input to find out more about the personality profile of the person they would like to research or enter their own text to analyze. The minimum amount of text required is 100. But the more text add the more accurate the profile will be. The app will then return a percentile for each of the Big 5 Personality trait.
 
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+### ERD
 
+![ERD Diagram](https://github.com/subutai1175/project-2/blob/master/ERD%20Diagram.png)
 
-```
-Code example
-```
+### Flowchart
 
-More steps...
+![Flowchart](https://github.com/subutai1175/project-2/blob/master/Flowchart.png)
 
-```
-until finished
-```
+### Wireframe
 
+![Wireframe1](https://github.com/subutai1175/project-2/blob/master/Wireframe%202.JPG)
+![Wireframe2](https://github.com/subutai1175/project-2/blob/master/Wireframe%201.JPG)
 
-## Tests
+### Link to App
 
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
-
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
-
-## Built With
-
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
-
-## Workflow
-
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
-
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+[Link to App](https://project2102017.herokuapp.com/)

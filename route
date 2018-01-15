@@ -1,0 +1,15 @@
+route Plans
+
+GET /
+
+app.use('register')
+  GET /
+  POST /
+
+app.use('/login')
+  GET /
+  POST /
+
+app.use('/profile')
+  GET /
+  POST /
