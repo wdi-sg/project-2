@@ -1,0 +1,48 @@
+<h3>Book Details</h3>
+
+<body class="bookDetailsContent">
+
+  {{#if book.img}}
+  <img src="{{ book.img }}" alt="">
+  {{else}}
+  <img src="{{ book.thumbnail }}">
+  {{/if}}
+
+  {{#if bookReadChecker}}
+  <button type="button" class="unreadBtn" name="{{ book._id }}">Unread Book</button>
+  {{else}}
+  <button type="button" class="readBtn" name="{{ book._id }}">Read Book</button>
+  {{/if}}
+  <h3>{{ book.title }}</h3>
+  <h4>Author: {{ book.author }}</h4>
+  <h6>Publisher: {{ book.publisher }}</h6>
+  <h6>Published Date: {{ book.publishedDate }}</h6>
+  <p>{{ book.description }}</p>
+
+
+  <div class="commentsSection">
+    {{!-- <input type="text"/> --}}
+
+    <form>
+      <div class="form-group">
+        <label for="">Add Comments</label>
+        <textarea class="form-control textarea" id="" rows="5"></textarea>
+        <button class="addComment" name="{{book._id}}">Add Comments</button>
+      </div>
+    </form>
+
+    <div class="displayComments">
+      <h3>Comments</h3>
+      <div class="displayArea">
+        {{#each comments}}
+          <div>
+            <p>{{this.comment}}</p>
+            <button class="deleteComment" name="{{this._id}}">Delete Comment</button>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+
+  </div>
+
+</body>

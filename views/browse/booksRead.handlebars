@@ -1,0 +1,8 @@
+<h3>Books Read</h3>
+
+{{#each readBooks}}
+<img src={{this.thumbnail}}>
+<button class="moreInfo" name={{this.apiId}}>More info.</button>
+<h4> {{this.title}} </h4>
+<h6> {{this.author}} </h6>
+{{/each}}
