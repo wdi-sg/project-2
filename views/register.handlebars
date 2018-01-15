@@ -1,0 +1,27 @@
+<div class="container">
+<h2>Registration</h2>
+
+<form class="col s12 m6" action="/register" method="post">
+
+  <label for="img">Profile Photo</label><br>
+  <input type="hidden" role="uploadcare-uploader" name="user[imgUrl]" data-public-key="a36c375b98316f02f9a9" data-images-only /><br><br>
+
+  <label for="name">Name</label>
+  <input type="text" name="user[name]" placeholder="e.g. John Doe" class="black-text">
+
+  <label for="email">Email</label>
+  <input type="email" name="user[email]" placeholder="e.g. domain@email.com" class="black-text">
+
+  <label for="password">Password</label>
+  <input type="password" name="user[password]" placeholder="Password here" class="black-text">
+
+  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right"></i>
+  </button>
+
+</form>
+
+<br>
+<br>
+
+</div>

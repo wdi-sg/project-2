@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Fat Pocket</title>
+
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+
+  <body>
+
+{{!-- ---------------------------------------------------------------- --}}
+
+  <div class="navbar-fixed">
+    <nav class="white" role="navigation">
+      <div class="container">
+        <div class="nav-wrapper">
+          <div id="logo-container" class="left hide-on-med-and-down">
+            <ul class="hide-on-med-and-down">
+              {{!-- <li><a href="/" class="brand-logo black-text">Fat Pocket</a></li> --}}
+              <li><a href="/"><img width="50" src="/assets/img/logo.png"></a></li>
+            </ul>
+          </div>
+
+          <div id="menu-container">
+            <ul id='dropdown1' class='dropdown-content'>
+              <li><a class="nav-link black-text" href="/fixed-deposit">Fixed Deposit</a></li>
+              <li><a class="nav-link black-text" href="/savings-account">Savings Account</a></li>
+            </ul>
+
+
+            <ul class="hide-on-med-and-down">
+              <li><a class='dropdown-button black-text' href='#' data-activates='dropdown1'>Bank Account</a></li>
+              <li><a class="nav-link black-text" href="/credit-card">Credit Card</a></li>
+              <li><a class="nav-link black-text" href="#">Investment (Coming Soon!)</a></li>
+            </ul>
+
+            <ul class="right hide-on-med-and-down">
+
+              {{#if user}}
+
+                <li><a class="nav-link black-text" href="/logout">Logout</a></li>
+                <li><a class="nav-link black-text" href="/profile"><strong>{{user.name}}</strong></a></li>
+
+              {{else}}
+
+                <li><a class="nav-link black-text" href="/login">Login</a></li>
+                <li><a class="nav-link black-text" href="/register">Register</a></li>
+
+              {{/if}}
+
+            </ul>
+
+        </div>
+
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+{{!-- ---------------------------------------------------------------- --}}
+
+      {{{ body }}}
+
+{{!-- ---------------------------------------------------------------- --}}
+
+
+    <footer class="page-footer blue lighten-5">
+      <div class="container">
+        <div class="row">
+          <div class="col xl7 l7 s12">
+            <h5>
+              <a href="/"><img width="50" class="icon hide-on-med-and-down" src="/assets/img/logo.png"></a>
+              <a href="/" class="brand-logo black-text">Fat Pocket</a>
+            </h5>
+          </div>
+          <div class="col xl3 l3 offset-l2 s12">
+            <h5 class="black-text">Links</h5>
+            <ul>
+              <li><a class="black-text text-lighten-3" href="/fixed-deposit">Fixed Deposit</a></li>
+              <li><a class="black-text text-lighten-3" href="/savings-account">Savings Account</a></li>
+              <li><a class="black-text text-lighten-3" href="/credit-card">Credit Card</a></li>
+              <li><a class="black-text text-lighten-3" href="/investment">Investment</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          <ul class="left hide-on-med-and-down black-text">
+            © 2017 Fat Cat Lady Pte Ltd. All rights reserved.
+          </ul>
+          <ul class="right hide-on-med-and-down black-text">
+            Use of this site constitutes acceptance of our Terms of Use and Privacy Policy.
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+{{!-- ---------------------------------------------------------------- --}}
+
+    <!--Import jQuery before materialize.js-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="/assets/js/frontend.js"></script>
+    <script charset="utf-8" src="https://ucarecdn.com/libs/widget/3.2.1/uploadcare.full.min.js"></script>
+ </body>
+</html>

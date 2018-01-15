@@ -1,0 +1,63 @@
+<div class="container">
+  <h2>Savings Account</h2>
+
+  <br>
+
+  {{#each savingsAccounts as |SA|}}
+    <div class="row">
+      <div class="row col s12 m6">
+        <b>{{SA.name}}</b>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s3"><img src="{{SA.bank_img}}" height="60"></div>
+      <div class="col s3"><p>Interest: {{SA.interest}}</p></div>
+      <div class="col s3"><p>Returns: {{SA.returns}}</p></div>
+      <div class="col s3"><p><a href="{{SA.link}}" class="brand-logo waves-effect waves-light btn right">Apply Here</a></p></div>
+    </div>
+
+    <div class="row">
+      <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header">More Details</div>
+          <div class="collapsible-body"><span>
+            <p><strong>Initial Deposit: {{SA.minimum_deposit}}</strong></p>
+
+            <strong><h8>Period : Interest Rate</h8></strong>
+            <ul>
+              {{#each SA.interest_rate as |IR|}}
+                <li>{{IR.rate}}% : {{IR.tier}}</li>
+              {{/each}}
+            </ul>
+
+            <br>
+
+            <strong><h8>Highlights</h8></strong>
+            <ul>
+              {{#each SA.highlights as |HL|}}
+                <li>{{HL.highlight}} : {{HL.comment}}</li>
+              {{/each}}
+            </ul>
+
+            <br>
+
+            <strong><h8>Bonus Interest Rate</h8></strong>
+            <ul>
+              {{#each SA.bonus_interest_rates as |IR|}}
+                <li>{{IR.bonus}} : {{IR.rate}}%</li>
+              {{/each}}
+            </ul>
+            </span></div>
+        </li>
+      </ul>
+    </div>
+
+    <br>
+
+  {{/each}}
+
+  <br>
+  <br>
+
+</div>

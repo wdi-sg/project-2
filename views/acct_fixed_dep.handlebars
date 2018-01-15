@@ -1,0 +1,24 @@
+<div class="container">
+
+  <h3>{{ account.fd.name }}</h3>
+  <h3>{{ account.sa.name }}</h3>
+
+  <br>
+
+  <ul>
+    <img src="{{ account.fd.bank_img }}" height="150">
+    <img src="{{ account.sa.bank_img }}" height="150">
+
+    <br>
+
+    <li>Amount Invested: ${{ account.amount }}</li>
+
+    <li>Period: {{ account.period }} month(s)</li>
+
+    <li>Returns: {{ account.returns }}</li>
+  </ul>
+
+<br>
+<br>
+
+</div>

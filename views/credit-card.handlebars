@@ -1,0 +1,81 @@
+<div class="container">
+  <h2>Credit Card</h2>
+
+  <label for="searchInput">Filter by Type: </label>
+  <select type="text" class="form-control" name="creditCard[type]" id="searchInput">
+  <option value="All" selected>Select a type</option>
+  {{#each types as |search|}}
+      <option value="{{search}}">{{search}}</option>
+    {{/each}}
+  </select>
+
+<br/>
+  <div id="searchResults">
+    {{#each creditcards as |cc|}}
+    <div class="row 1">
+      <div class="col s12">
+        <b>{{cc.name}}</b>
+      </div>
+
+
+      <div class="row 2">
+        <div class="col s8"><img src="{{cc.card_img}}" height="200"></div>
+        <div class="col s4"><p><a href="{{cc.link}}" class="brand-logo waves-effect waves-light btn right">Apply Here</a></p></div>
+      </div>
+
+
+      <div class="row 3">
+        <strong><h8>Highlights</h8></strong>
+        <ul>
+          {{#each cc.highlights as |hl|}}
+            <li><i class="material-icons">brightness_5</i> {{hl.highlight}}</li>
+          {{/each}}
+          {{#each cc.extra_highlights as |extra_hl|}}
+            <li><i class="material-icons">chevron_right</i> {{extra_hl.extra_highlight}}</li>
+          {{/each}}
+        </ul>
+      </div>
+
+      <div class="row 4">
+        <ul class="collapsible" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header">More Details</div>
+            <div class="collapsible-body"><span>
+              <strong><h5>Annual Fees and Rates</h5></strong>
+
+              <ul>
+                {{#each cc.annual_fees_and_rates as |FR|}}
+                  <li><strong>{{FR.cat}} :</strong> {{FR.comment}}</li>
+                {{/each}}
+              </ul>
+
+              <br>
+
+              <strong><h5>Eligibility</h5></strong>
+
+              <ul>
+                {{#each cc.eligibility as |eli|}}
+                  <li><strong>{{eli.nat}} :</strong> {{eli.income}}</li>
+                {{/each}}
+              </ul>
+
+              <br>
+
+              <strong><h5>Things to look out for</h5></strong>
+
+              <ul>
+                {{#each cc.look_out_for as |look|}}
+                  <li><i class="material-icons">search</i>{{look.caution}}</li>
+                {{/each}}
+              </ul>
+
+              </span></div>
+          </li>
+        </ul>
+      </div>
+      
+    </div>
+  {{/each}}
+  </div>
+
+</div>

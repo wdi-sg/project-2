@@ -1,65 +1,72 @@
-# Your Project Name
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png)  Fat Pocket
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+<img src="public/assets/img/main-page.png" height="400">
 
-## Getting Started
+Founded in 2017, Fat Pocket aims to help Singaporeans maximize their money by empowering them to make smarter financial decisions by aggregating and consolidating product information to a single platform for comparison that's personalized to their unique consumer profile.
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
-
-### Prerequisites
-
-What is needed to install and run the project, how do we install them
-
-```
-Code example
-```
-
-### How to Use
-
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
-
-
-```
-Code example
-```
-
-More steps...
-
-```
-until finished
-```
-
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
+Apart from the other SG-based finance portals, Fat Pocket allows its users to sync all his/ her savings account(s), fixed deposit(s), credit card(s) and investment account(s) for an overview of his/her assets.
 
 ## Live Version
+* https://fatpocket.herokuapp.com/
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+## Objectives
+Users to be able to
+* Compare and get the best credit card(s)/ bank account(s)/ investment account(s)
+* Sync all of his/ her credit card(s)/ bank account(s)/ investment account(s) to his/her Fat Pocket account for an overview of his/her assets
+
+<img src="public/assets/img/flowchart.png">
+
+### Routes
+* /
+* /credit-card
+* /fixed-deposit
+* /savings-account
+* /investment
+* /news
+* /login
+* /register
+* /profile
+
+## ERD
+<img src="public/assets/img/erd.png" height="150">
+
+## Wireframes
+
+#### RegisterPage:
+<img src="public/assets/img/register.png">
+
+#### Login Page:
+<img src="public/assets/img/login.png">
+
+#### User Profile Page:
+<img src="public/assets/img/user-page1.png">
+<img src="public/assets/img/user-page2.png">
+<img src="public/assets/img/user-page3.png">
+
+#### Fixed Deposit Page:
+<img src="public/assets/img/fixed-deposit.png">
+
+#### Savings Account Page:
+<img src="public/assets/img/savings-account.png">
+
+## To Be Added
+
+* Calculate Sort Credit Cards/ Bank Accounts/ Investment Accounts according to keywords
+* Credit Cards database and comparison
+* Investment Accounts database and comparison
+* Investment News
+* Sync and display the user's Credit Cards/ Bank Accounts/ Investment Accounts on his/her profile page
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
-
-## Workflow
-
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
-
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+* HTML5
+* CSS3
+* Javascript
+* Node
+* Express
+* Materialize - front end framework
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+* Image Credits: Google Images
+* Special thanks to Prima, Shumin, Alex, Ray and Persis

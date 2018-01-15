@@ -1,0 +1,162 @@
+<div class="container">
+  <br>
+  <div class="row">
+      <div class="card blue lighten-3">
+        <div class="card-content black-text center">
+          <img src="{{ user.imgUrl }}" height="200px" class="circle">
+          <span class="card-title"><strong>{{ user.name }}</strong></span>
+          <p>Email: {{ user.email }}</p>
+        </div>
+      </div>
+    </div>
+
+  <br>
+
+  <h8><strong>Fixed Deposit Account(s)</strong></h8>
+  <ul>
+    {{#each accounts as |acct|}}
+
+      <li>
+        <a href='/accounts/{{acct.id}}'>{{ acct.fd.name }}</a>
+      </li>
+
+    {{/each}}
+  </ul>
+
+  <br>
+
+  <h8><strong>Savings Account(s)</strong></h8>
+  <ul>
+    {{#each accounts as |acct|}}
+
+      <li>
+        <a href='/accounts/{{acct.id}}'>{{ acct.sa.name }}</a>
+      </li>
+
+    {{/each}}
+  </ul>
+
+  <br>
+
+  <h5>Add Fixed Deposit Account</h5>
+
+  <form action='/profile' method='post'>
+    <label for="fixedDeposit">Fixed Deposit: </label>
+    <select name="fixedDeposit">
+      <option value="" disabled selected>Please select</option>
+      {{#each fixedDeposits as |FD|}}
+        <option value="{{FD.id}}">{{FD.name}}</option>
+      {{/each}}
+     </select>
+
+    <br>
+
+    <div id="results"></div>
+
+    <br>
+
+    <label for="amount">Amount Deposited (S$): </label>
+    <input type="number" name="amount"><br>
+
+    <br>
+
+    <label for="period">Period</label>
+    <select name="period">
+      <option value="" disabled selected>Please select</option>
+      <option value="1">1 month</option>,
+      <option value="2">2 months</option>,
+      <option value="3">3 months</option>,
+      <option value="4">4 months</option>,
+      <option value="5">5 months</option>,
+      <option value="6">6 months</option>,
+      <option value="7">7 months</option>,
+      <option value="8">8 months</option>,
+      <option value="9">9 months</option>,
+      <option value="10">10 months</option>,
+      <option value="11">11 months</option>,
+      <option value="12">12 months</option>,
+      <option value="13">13 months</option>,
+      <option value="14">14 months</option>,
+      <option value="15">15 months</option>,
+      <option value="18">18 months</option>,
+      <option value="24">24 months</option>,
+      <option value="36">36 months</option>,
+      <option value="48">48 months</option>,
+      <option value="60">60 months</option>
+    </select>
+
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+      <i class="material-icons right"></i>
+    </button>
+
+  </form>
+
+  <br>
+  <br>
+
+  <h5>Add Savings Account</h5>
+
+  <form action='/profile' method='post'>
+    <label for="savingsAccount">Savings Account: </label>
+    <select name="savingsAccount">
+      <option value="" disabled selected>Please select</option>
+      {{#each savingsAccount as |SA|}}
+        <option value="{{SA.id}}">{{SA.name}}</option>
+      {{/each}}
+     </select>
+
+    <br>
+
+    <div id="results"></div>
+
+    <br>
+
+    <label for="amount">Amount Deposited (S$): </label>
+    <input type="number" name="amount"><br>
+
+    <br>
+
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+      <i class="material-icons right"></i>
+    </button>
+
+  </form>
+
+    <br>
+    <br>
+
+  <h5>Update Profile</h5>
+
+  <form action="/profile/{{ user.id }}?_method=PUT" method="post">
+
+    <input type="hidden" name="slug" value="{{ user.name }}">
+
+    <label for="name">Name</label>
+    <input type="text" name="name" value="{{ user.name }}">
+
+    <label for="email">Email</label>
+    <input type="text" name="email" value="{{ user.email }}">
+
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+      <i class="material-icons right"></i>
+    </button>
+
+  </form>
+
+  <br>
+  <br>
+
+  <h5>Delete Profile</h5>
+
+  <form action="/profile/{{ user.id }}?_method=DELETE" method="post">
+
+    <button class="btn waves-effect waves-light" type="submit" name="action">Delete
+      <i class="material-icons right"></i>
+    </button>
+
+  </form>
+
+<br>
+<br>
+
+</div>
