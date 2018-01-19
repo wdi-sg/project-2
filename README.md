@@ -1,4 +1,4 @@
-# ![](./documentation/readme/ga_logo.png) Project #2: Oracle of Changes
+# ![](./documentation/readme/ga_logo.svg) Project #2: Oracle of Changes
 
 <p align="center"><img src="./public/images/navbar_brand.svg"/></p>
 
