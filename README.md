@@ -1,4 +1,4 @@
-# ![](./documentation/readme/ga_logo.svg) Project #2: Oracle of Changes
+# ![](./documentation/ga_logo.svg) Project #2: Oracle of Changes
 
 <p align="center"><img src="./public/images/navbar_brand.svg"/></p>
 
@@ -36,16 +36,16 @@ Add the URL of your database to `config/config.js`.
 1. Sign up for a local account, or sign up with Twitter. You will be signed in after successfully creating an account or authentication with Twitter.
 2. Press Consult on the navigation bar to head to the Yarrow Stalk Oracle.
 
-<p align="center"><img src="./documentation/readme/1.gif"/></p>
+<p align="center"><img src="./documentation/how_to_1.gif"/></p>
 
 3. Type in your query, then press Start.
 4. Follow your instinct and click on the gap between the stalks to split it.
 
-<p align="center"><img src="./documentation/readme/2.gif"/></p>
+<p align="center"><img src="./documentation/how_to_2.gif"/></p>
 
 5. Three splits are needed to obtain a line, and six lines are needed to form a hexagram.
 
-<p align="center"><img src="./documentation/readme/3.gif"/></p>
+<p align="center"><img src="./documentation/how_to_3.gif"/></p>
 
 6. Once completed, press Submit to receive full divination result, complete with the relevant text from the Book of Changes and the Forest of Changes, supplemented with English translation whenever available.
 
@@ -91,11 +91,11 @@ The sorting into fours and taking out of remainders after each split is automati
 
 ### Use Cases
 
-<p align="center"><img src="./documentation/readme/use-cases.svg"/></p>
+<p align="center"><img src="./documentation/use-cases.svg"/></p>
 
 ### Entity Relationship Diagram
 
-<p align="center"><img src="./documentation/readme/entity-relationship-diagram.svg"/></p>
+<p align="center"><img src="./documentation/entity-relationship-diagram.svg"/></p>
 
 ### Wireframes
 
@@ -103,42 +103,42 @@ The sorting into fours and taking out of remainders after each split is automati
 
 The navigation bar slides up and hides itself when the page is scrolled up. It will slide down to reveal itself again when the page is scrolled down.
 
-<!-- ![Landing page](./documentation/wireframes/01_home.png) -->
-<p align="center"><img src="./documentation/wireframes/01_home.png"/></p>
+<!-- ![Landing page](./documentation/wireframe_01_home.png) -->
+<p align="center"><img src="./documentation/wireframe_01_home.png"/></p>
 
 #### Sign in modal
 
-<!-- ![Sign in modal](./documentation/wireframes/02_signin.png) -->
-<p align="center"><img src="./documentation/wireframes/02_signin.png"/></p>
+<!-- ![Sign in modal](./documentation/wireframe_02_signin.png) -->
+<p align="center"><img src="./documentation/wireframe_02_signin.png"/></p>
 
 #### Sign up modal
 
-<!-- ![Sign up modal](./documentation/wireframes/03_signup.png) -->
-<p align="center"><img src="./documentation/wireframes/03_signup.png"/></p>
+<!-- ![Sign up modal](./documentation/wireframe_03_signup.png) -->
+<p align="center"><img src="./documentation/wireframe_03_signup.png"/></p>
 
 #### Consult Oracle page
 
 Desktop and laptop users can hover their mouse cursors over the yarrow stalks and the gap will follow the cursor. The mouse cursor will change from the default arrow to a gloved hand pointer when it is over a gap. Upon reaching the desired spot, simply click on the gap to split the yarrow stalks. Clicking on the stalks will not trigger any split.
 
-<!-- ![Consult page for bigger viewports](./documentation/wireframes/04_consult.png) -->
-<p align="center"><img src="./documentation/wireframes/04_consult.png"/></p>
+<!-- ![Consult page for bigger viewports](./documentation/wireframe_04_consult.png) -->
+<p align="center"><img src="./documentation/wireframe_04_consult.png"/></p>
 
 The slider bar below the yarrow stalks is primarily intended for smartphone and tablet users as they will not be able to hover over the stalk and precisely choose where the spilt the stalks. With the slider bar, smartphone and tablet users will be able to split the stalk with the same precision as desktop and laptop users.
 
 The yarrow stalks will resize to fit the width on smaller screens.
 
-<!-- ![Consult page for smaller viewports](./documentation/wireframes/05_consult_responsive.png) -->
-<p align="center"><img src="./documentation/wireframes/05_consult_responsive.png"/></p>
+<!-- ![Consult page for smaller viewports](./documentation/wireframe_05_consult_responsive.png) -->
+<p align="center"><img src="./documentation/wireframe_05_consult_responsive.png"/></p>
 
 #### Navigation Bar Burger and Menu for Smaller Viewports
 
-<!-- ![Navigaton bar turns into navigation burger and menu for smaller viewports](./documentation/wireframes/06_menu_responsive.png) -->
-<p align="center"><img src="./documentation/wireframes/06_menu_responsive.png"/></p>
+<!-- ![Navigaton bar turns into navigation burger and menu for smaller viewports](./documentation/wireframe_06_menu_responsive.png) -->
+<p align="center"><img src="./documentation/wireframe_06_menu_responsive.png"/></p>
 
 #### Display of divination result and individual past record
 
-<!-- ![Display of divination result and individual past record](./documentation/wireframes/07_records.png) -->
-<p align="center"><img src="./documentation/wireframes/07_records.png"/></p>
+<!-- ![Display of divination result and individual past record](./documentation/wireframe_07_records.png) -->
+<p align="center"><img src="./documentation/wireframe_07_records.png"/></p>
 
 
 ### User Stories
