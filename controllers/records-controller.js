@@ -15,7 +15,7 @@ const reference = {
 		'Error': { 'Invalid request' : 'Check that your query has 6 digits ranging from 6 to 9 only.' }
 	},
 	isQueryValid: function(query) {
-		return query.match(/[6-9][6-9][6-9][6-9][6-9][6-9]/g);
+		return query.match(/[6-9]{6}/g);
 	},
 	convertQueryToArray: function(query) {
 		let queryArray = query.split('');
