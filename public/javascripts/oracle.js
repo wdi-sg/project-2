@@ -438,7 +438,6 @@ $(document).ready(function() {
 
     // Start with the stalks and Split button disabled until user presses Start button
 	$('#stalks-container').off();
-	$('#is-split-button').prop('disabled', true);
 	$('#start-divination').click(startQuery);
     // Initialize progress tracker and stalks
 	var progress = new Progress();
