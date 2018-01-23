@@ -84,7 +84,9 @@ The sorting into fours and taking out of remainders after each split is automati
 
 ### CSS Framework
 - [Bulma v0.6.2](https://bulma.io)
-<!-- - [noUiSlider](https://refreshless.com/nouislider/) -->
+
+### CSS/JS plugin
+- [noUiSlider 11.0.3](https://refreshless.com/nouislider/)
 
 ## Workflow
 <!-- Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here. -->
