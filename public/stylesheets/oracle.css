@@ -23,6 +23,11 @@ body {
 	align-items: center;
 }
 
+#slider-bar {
+	margin: 0 80px;
+	animation-duration: 150ms;
+}
+
 .display-data {
 	width: 100%;
 	text-align: center;
@@ -115,6 +120,9 @@ body {
 	.gap {
 		width: 24px;
 	}
+	#slider-bar {
+		margin: 0 30px;
+	}
 	.has-query-field {
 		min-width: 100%;
 	}
@@ -129,6 +137,9 @@ body {
 	}
 	.gap {
 		width: 22px;
+	}
+	#slider-bar {
+		margin: 0 20px;
 	}
 	.has-query-field {
 		min-width: 100%;
@@ -145,6 +156,9 @@ body {
 	.gap {
 		width: 20px;
 	}
+	#slider-bar {
+		margin: 0 16px;
+	}
 	.has-query-field {
 		min-width: 100%;
 	}
@@ -159,6 +173,9 @@ body {
 	}
 	.gap {
 		width: 18px;
+	}
+	#slider-bar {
+		margin: 0 18px;
 	}
 	.has-query-field {
 		min-width: 100%;
@@ -177,6 +194,9 @@ body {
 	}
 	.gap {
 		width: 16px;
+	}
+	#slider-bar {
+		margin: 0 18px;
 	}
 	.has-query-field {
 		min-width: 100%;
