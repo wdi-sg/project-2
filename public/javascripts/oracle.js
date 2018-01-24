@@ -112,6 +112,26 @@ class Hexagram {
 
 $(document).ready(function() {
 
+	// Event listener to trigger smooth scroll to Step Two after pressing "Start" in Step One
+	$('a').on('click', function(event) {
+		// Make sure this.hash has a value before overriding default behavior
+		if (this.hash !== '') {
+			// Prevent default anchor click behavior
+			event.preventDefault();
+
+			// Store hash
+			let hash = this.hash;
+
+			// Use jQuery's animate() method to add smooth page scroll
+			// 800 specifies the number of milliseconds it takes to scroll to the specified area
+			$('html, body').animate(
+				{ scrollTop: $(hash).offset().top - ($('#navbar').height() * 3) }, 800, function(){
+				// Add hash (#) to URL when done scrolling (default click behavior)
+				// window.location.hash = hash;
+			});
+		}
+	});
+
 	// Sets where the data from splitting the stalks will be recorded
 	var rawData = divination.data.raw;
 
@@ -216,9 +236,9 @@ $(document).ready(function() {
 				'max': maximumValue
 			},
 			step: 1,
-			behaviour: 'tap-snap',
+			behaviour: 'tap',
 			animate: true,
-			animationDuration: 100
+			animationDuration: 150
 		});
 
 		document.getElementById('slider-bar').noUiSlider.on('slide', function() {
@@ -256,6 +276,12 @@ $(document).ready(function() {
 					$('#is-submit-prompt').removeClass('is-invisible');
 					$('#is-split-button').prop('disabled', true);
 					$('#is-submit-button').prop('disabled', false);
+					// Smooth scroll to Step Three
+					$('html, body').animate(
+						{ scrollTop: $('#step-three').offset().top - 24 }, 800, function(){
+						// Add hash (#) to URL when done scrolling (default click behavior)
+						// window.location.hash = '#step-three';
+					});
 				}
 			}
 		}
