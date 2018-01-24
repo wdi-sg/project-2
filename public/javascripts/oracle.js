@@ -236,7 +236,7 @@ $(document).ready(function() {
 				'max': maximumValue
 			},
 			step: 1,
-			behaviour: 'tap',
+			// behaviour: 'tap',
 			animate: true,
 			animationDuration: 150
 		});
