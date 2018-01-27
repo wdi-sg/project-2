@@ -9,7 +9,7 @@ body {
 #stalks-container {
 	display: flex;
 	padding: 1rem;
-	height: 360px;
+	/*height: 360px;*/
 }
 
 .gap {
@@ -21,6 +21,8 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	flex-shrink: 0;
+	flex-grow: 0;
 }
 
 #slider-bar {
