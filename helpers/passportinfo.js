@@ -41,24 +41,4 @@ passport.use(new LocalStrategy({
 ))
 
 
-
-// passport.use(new LocalStrategy((email, password, done) => {
-//  User.getUserByEmail(email, (err, email) => {
-//   if(err) throw err;
-//   if(!email){
-//     return done(null, false, {message: 'Incorrect Username/Email'});
-//   }
-//
-//   User.comparePassword(password, user.password, (err, isMatch)=>{
-//     if(err) return done(err);
-//     if(isMatch){
-//       return done(null, email);
-//     } else {
-//       return done(null, false, {message: 'Invalid Password'});
-//     }
-//   });
-// })
-// }));
-
-
 module.exports = passport;

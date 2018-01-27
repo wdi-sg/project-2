@@ -1,4 +1,4 @@
-# Project 2: DoAP
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 2: DoAP
 
 DoAP is a website designed for the dog-owners / lovers to post photographs of their dog pets.
 
@@ -20,6 +20,7 @@ $ nodemon
 ### User Stories
 
 ![user stories](https://user-images.githubusercontent.com/31798170/34513245-4bd5b3ea-f0a2-11e7-93c5-c61edfb76abe.png)
+<!-- <p align="center"><img src="./public/readme_img/User-Stories.png"></p> -->
 
 ### ERD
 
@@ -61,11 +62,11 @@ $ nodemon
 
 ## Possible Improvement / Scalable Areas
 
-* Able to shop online for pet waste pick-up items.
-* Able to book appointments for the vet clinics and grooming places.
+* Able to shop online for pet waste pick-up items
+* Able to book appointments for the vet clinics and grooming places
 
 ---
 
 ## Acknowledgments
 
-* Image Sources: Burst by Spotify, Pexels, Pixabay, Unsplash, Vecteezy
+* Image Sources: Christopher Harris, Matt Odell
