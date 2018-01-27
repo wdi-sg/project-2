@@ -13,8 +13,24 @@ body {
 }
 
 .gap {
+	display: inline-block;
+	box-sizing: content-box;
+	z-index: -1;
 	width: 28px;
+	border: none;
+	background: none;
+	margin: 0;
+	padding: 0;
 	cursor: pointer;
+}
+
+.stalk-position {
+	display: inline-block;
+	box-sizing: content-box;
+	border: none;
+	background: none;
+	margin: 0;
+	padding: 0;
 }
 
 .stalk-container-is-centered {
