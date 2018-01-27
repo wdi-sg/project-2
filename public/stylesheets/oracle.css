@@ -8,8 +8,7 @@ body {
 
 #stalks-container {
 	display: flex;
-	/*padding: 1rem;*/
-	padding: 0;
+	padding: 1rem;
 	/*height: 360px;*/
 }
 
@@ -27,7 +26,8 @@ body {
 }
 
 #slider-bar {
-	margin: 0 80px;
+	margin: auto;
+	max-width: 75%;
 	animation-duration: 150ms;
 }
 
@@ -113,18 +113,64 @@ body {
 .yao-8::after { content: "8"; }
 .yao-9::after { content: "9"; }
 
-@media only screen and (min-width: 478px) and (max-width: 560px) {
+@media only screen and (min-width: 1024px) and (max-width: 1215px) {
+	.stalk {
+		max-width: 8px;
+	}
+	#slider-bar {
+		margin: auto;
+		max-width: 85%;
+	}
+
+	#stalks-container {
+		height: 290px;
+	}
+}
+
+@media only screen and (min-width: 870px) and (max-width: 1023px) {
+	.stalk {
+		max-width: 7px;
+	}
+
+	#stalks-container {
+		height: 260px;
+		padding: 1rem;
+	}
+	#slider-bar {
+		margin: auto;
+		max-width: 85%;
+	}
+}
+
+@media only screen and (min-width: 769px) and (max-width: 869px) {
+	.stalk {
+		max-width: 6px;
+	}
+
+	#stalks-container {
+		height: 225px;
+		padding: 1rem;
+	}
+	#slider-bar {
+		margin: auto;
+		max-width: 85%;
+	}
+}
+
+@media only screen and (min-width: 478px) and (max-width: 600px) {
 	.stalk {
 		max-width: 8px;
 	}
 	#stalks-container {
 		height: 290px;
+		padding: 0;
 	}
 	.gap {
 		width: 24px;
 	}
 	#slider-bar {
-		margin: 0 30px;
+		margin: auto;
+		max-width: 85%;
 	}
 	.has-query-field {
 		min-width: 100%;
@@ -137,12 +183,14 @@ body {
 	}
 	#stalks-container {
 		height: 260px;
+		padding: 0;
 	}
 	.gap {
 		width: 22px;
 	}
 	#slider-bar {
-		margin: 0 20px;
+		margin: auto;
+		max-width: 85%;
 	}
 	.has-query-field {
 		min-width: 100%;
@@ -155,12 +203,14 @@ body {
 	}
 	#stalks-container {
 		height: 260px;
+		padding: 0;
 	}
 	.gap {
 		width: 20px;
 	}
 	#slider-bar {
-		margin: 0 16px;
+		margin: auto;
+		max-width: 85%;
 	}
 	.has-query-field {
 		min-width: 100%;
@@ -173,13 +223,14 @@ body {
 	}
 	#stalks-container {
 		height: 225px;
-
+		padding: 0;
 	}
 	.gap {
 		width: 18px;
 	}
 	#slider-bar {
-		margin: 0 18px;
+		margin: auto;
+		max-width: 85%;
 	}
 	.has-query-field {
 		min-width: 100%;
@@ -195,12 +246,14 @@ body {
 	}
 	#stalks-container {
 		height: 195px;
+		padding: 0;
 	}
 	.gap {
 		width: 16px;
 	}
 	#slider-bar {
-		margin: 0 18px;
+		margin: auto;
+		max-width: 85%;
 	}
 	.has-query-field {
 		min-width: 100%;
