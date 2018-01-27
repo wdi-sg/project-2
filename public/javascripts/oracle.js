@@ -122,7 +122,7 @@ $(document).ready(function() {
 			// Store hash
 			let hash = this.hash;
 
-			if (document.body.scrollHeight < window.innerHeight) {
+			if (document.body.scrollHeight > window.innerHeight) {
 				// Use jQuery's animate() method to add smooth page scroll
 				// 800 specifies the number of milliseconds it takes to scroll to the specified area
 				$('html, body').animate(
