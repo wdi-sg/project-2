@@ -8,7 +8,8 @@ body {
 
 #stalks-container {
 	display: flex;
-	padding: 1rem;
+	/*padding: 1rem;*/
+	padding: 0;
 	/*height: 360px;*/
 }
 
@@ -172,6 +173,7 @@ body {
 	}
 	#stalks-container {
 		height: 225px;
+
 	}
 	.gap {
 		width: 18px;
