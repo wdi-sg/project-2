@@ -178,19 +178,9 @@ $(document).ready(function() {
 		if (doesGapExist == 1) {
 			// Removes old gap from the prior position.
 			$('.gap').remove();
-			/* To be removed after confirming that noUiSlider 11.0.3 works well
-			// // Inserts a new gap at the new position hovered over.
-			// $('#position-' + newGapPosition).after('<div id="gap-'+ newGapPosition + '" class="gap"></div>');
-			// // Set new slider handle position from new gap.
-			// $('#slider-bar').slider('value', newGapPosition);
-			*/
 		}
 		// Inserts a new gap at the new position hovered over.
 		$('#position-' + newGapPosition).after('<div id="gap-'+ newGapPosition + '" class="gap"></div>');
-		/* To be removed after confirming that noUiSlider 11.0.3 works well
-		// Set new slider handle position from new gap.
-		// $('#slider-bar').slider('value', newGapPosition);
-		*/
 		// Set new slider handle position from new gap.
 		document.getElementById('slider-bar').noUiSlider.set(newGapPosition);
 	}
@@ -209,26 +199,6 @@ $(document).ready(function() {
 		});
 	}
 
-	/* To be removed after confirming that noUiSlider 11.0.3 works well
-	// Initializes and appends the slider below the yarrow stalks
-	// function initializeSlider(maximumValue, handlePositon) {
-	// 	$('#has-slider-bar').append('<div id="slider-bar"></div>');
-	// 	$('#slider-bar').slider({
-	// 		orientation: 'horizontal',
-	// 		step: 1,
-	// 		min: 1,
-	// 		max: maximumValue,
-	// 		value: handlePositon,
-	// 		animate: "fast",
-	// 		// Captures the value from sliding handle as soon as it changes and inserts a gap the yarrow stalks at the same position.
-	// 		slide: function(event, ui) {
-	// 			// Take the value from the sliding handle.
-	// 			let gapFromSlider = ui.value;
-	// 			maintainTheGap(gapFromSlider);
-	// 		}
-	// 	});
-	// }
-	*/
 
 	// Initializes and appends the slider below the yarrow stalks
 	function initializeSlider(maximumValue, handlePositon) {
@@ -298,10 +268,6 @@ $(document).ready(function() {
 		$('#is-split-button').click(function(event) {
 			// Prevents page from default reloading behavior
 			event.preventDefault();
-			/* To be removed after confirming that noUiSlider 11.0.3 works well
-			// Get value from slider handle position
-			// let handlePosition = $('#slider-bar').slider('value');
-			*/
 			// Get value from slider handle position
 			let handlePosition = document.getElementById('slider-bar').noUiSlider.get()
 			// Get and value of the slider handle.
@@ -405,11 +371,7 @@ $(document).ready(function() {
 			round.gapPosition = Math.floor(round.remainingStalks / 2);
 			removeStalks(round.remainingStalks, round.gapPosition);
 		}
-
-		// $('#stalks-container').empty();
-		// initializeStalks(round.remainingStalks);
-		// $('slider-bar').slider('option', 'max', round.stalksToSplit);
-		// $('slider-bar').slider('destroy');
+		
 		document.getElementById('slider-bar').noUiSlider.destroy() ;
 		initializeSlider(round.stalksToSplit, round.gapPosition);
 		detectHover();
