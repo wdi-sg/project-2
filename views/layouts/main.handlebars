@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>| DoAP |</title>
 
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
@@ -29,12 +28,20 @@
 
                     <nav id="breadcrumbs-custom-separator" class="breadcrumbs">
                         <ul class="floatright">
-                            <li><a href="/login">Login</a></li>
-                            <li><a href="/signup">Sign Up</a></li>
-                            <li><a href="/welcome">Welcome</a></li>
-                            <li><a href="/new">Dogs</a></li>
-                            <li><a href="/report">Report</a></li>
-                            <li><a href="/logout">Logout</a></li>
+
+                            {{!-- Reference to Global Variance  --}}
+                            {{#if currentUser}} 
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/new">Create Yours</a></li>
+                                <li><a href="/report">Report</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                             
+                                {{else}}
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="/login">Login</a></li>
+                                    <li><a href="/signup">Sign Up</a></li>
+                                    <li><a href="/report">Report</a></li> 
+                            {{/if}}
 
                             <div class="search">
                             <a href="/search"><i class="fa fa-search"></i></a>
@@ -80,7 +87,6 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="js/script.js"></script>
 <script src="js/kube.js"></script>
 
 </body>

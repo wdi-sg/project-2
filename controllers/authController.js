@@ -1,5 +1,6 @@
 const passport = require('../helpers/passportInfo')
 const User = require('../models/user');
+// const Dog = require('../models/dog');
 
 
 //------ Get Sign Up Page -----
@@ -56,9 +57,24 @@ exports.signup = (req, res) => {
 
         } else {
             passport.authenticate('local', {
-            successRedirect: '/',
+            successRedirect: '/welcome',
             successFlash: 'Account created and logged in'})(req, res);
             }
         })
     }
   }
+
+
+//   exports.dog = (req,res) => {
+//     let currentUser = req.session.passport.user
+//     Dog.find({dogs : currentUser}).exec((err, data) => {
+//       if (err) console.log(err)
+//       if (data != "" || data != null) {
+//         res.render('home/index',{"results":data})
+//       }
+//       else {
+//         res.render('home/index')
+//       }
+//     })
+//   }
+

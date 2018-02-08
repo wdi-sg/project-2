@@ -22,7 +22,7 @@ router.get('/login', function (req, res) {
 
 router.post('/users/login', (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/members',
     failureRedirect: '/login',
     failureFlash: 'Invalid email and/or Password',
     successFlash: 'You are logged in'
@@ -41,9 +41,14 @@ router.get('/logout', function (req, res) {
 router.get('/signup', function (req, res) {
     res.render('users/signup')
   })
-  
-  router.post('/users/signup', authController.signup)
-  
+
+router.post('/users/signup', authController.signup)
+
+
+router.get('/new', function (req, res) {
+    res.render('dogs/new')
+  });
+
 
 // ----- Read Database -----
 
@@ -57,6 +62,20 @@ router.get('/welcome', loginBlock, function (req, res) {
     res.render('users/welcome', { allDogs: dogs })
     console.log(dogs)
   })
+})
+
+
+router.get('/members', loginBlock, function (req, res) {
+
+  Dog.find({}, function (error, dogs) {
+    if (error) {
+    console.log(error)
+    return
+  }
+
+  res.render('users/members', { allDogs: dogs })
+  console.log(dogs)
+})
 })
 
 
@@ -90,7 +109,7 @@ router.put('/editform/:id', function (req, res) {
       if (error) {
         console.log(error)
       } else {
-        res.redirect('/welcome')
+        res.redirect('/members')
       }
     })
 })
@@ -104,13 +123,12 @@ router.delete('/delete/:id', function (req, res) {
   Dog.remove({'_id': req.params.id}, function (error, docs) {
     if (error) return error
     console.log(docs)
-    res.redirect('/welcome')
+    res.redirect('/members')
   })
 })
 
 
 // ------ Create Dog Details ------
-
 
 router.get('/new', loginBlock, function (req, res) {
   res.render('dogs/new')
@@ -121,8 +139,8 @@ router.post('/dogs/new', function (req, res) {
   console.log('begin')
   console.log(req.user.id)
   console.log('end')
-  let entry = new Dog()
 
+  let entry = new Dog()
   entry.name = req.body.name
   entry.breed = req.body.breed
   entry.dob = req.body.dob
@@ -135,7 +153,7 @@ router.post('/dogs/new', function (req, res) {
 
   Dog.create(entry, (err) => {
     if (err) console.log(err)
-    res.redirect('/welcome')
+    res.redirect('/members')
   })
 })
 
@@ -155,7 +173,7 @@ router.post('/search', function (req, res) {
 // ----- Contact Us -----
 
 router.post('/users/contactus', function (req, res) {
-  res.send('We will reply you soon.')
+  res.send('Thank you for your message. We will reply you soon.')
 })
 
 // ----- Newsletter Subscription -----

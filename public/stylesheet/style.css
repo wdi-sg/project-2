@@ -1,3 +1,7 @@
+body, html {
+  height: 100%;
+} 
+
 body {
   margin: 0;
   padding: 0;
@@ -27,12 +31,14 @@ header {
 ul a {
   color: #353232;
   text-decoration: none;
-  /* text-transform: uppercase; */
   font-size: 1.2em;
+  /* &:hover span {
+    border-bottom: 2px solid black;
+  } */
 }
 
 nav ul li {
-  display: inline;
+  display: inline-block;
   padding: 0;
 }
 
@@ -116,7 +122,7 @@ header a:hover {
   min-height: 600px;
   color: #fff;
   text-align: center;
-  height: 660px;
+  height: 700px;
   background-color: #fff;
 }
 
@@ -133,7 +139,7 @@ header a:hover {
 
 .doglook-content {
   text-align: left;
-  padding: 2em;
+  padding: 0.8em;
   background: rgba(255, 255, 255, 0.5);
 }
 
@@ -157,6 +163,109 @@ header a:hover {
 }
 
 
+/* Newsletter ==========================*/
+
+#subscribe {
+  text-align: center;
+  padding: 1em;  
+}
+
+#subscribe h3 {
+  padding-top: 1.3em;
+}
+
+#subscribe div {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 15em;
+  padding-left: 1em;
+}
+
+#subscribe input {
+  display: inline-block;
+  margin: 0;
+  border: none;
+}
+
+#subscribe button {
+  background-color: transparent;
+  color: darkgrey;
+}
+
+/* Contact Us ==========================*/
+
+#content-four {
+  background: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  background-image: url("/img/dog-peeping.png");
+  background-position-y: -6em;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: 45em;
+  /* position: absolute; */
+}
+
+#content-four form {
+  padding: 1em;
+  width: 15em;
+  background: #fff;
+  opacity: 0.8;
+}
+
+#content-four h3 {
+  margin-bottom: 0;
+}
+
+#content-four p {
+  padding-top: 0;
+}
+
+#content-four input {
+  width: 100%;
+}
+
+.contact-info p {
+  font-size: 85%;
+  padding: 0;
+}
+
+.contact-info i {
+  padding: 2px;
+}
+
+
+/* Footer ==========================*/
+
+footer {
+  width: 100%;
+  height: 3em;
+  padding: 0.2em;
+  background-color: #fff;
+  color: black;
+  text-align: center;
+}
+
+footer a:link {
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer span.fa {
+  color: #c59a6d;
+  font-size: 26px;
+}
+
+
 /* Dog Info ==========================  */
 
 #dog-info {
@@ -169,7 +278,7 @@ header a:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   background-size: cover;
   background-image: url("/img/dog-info.png");
-  background-position-x: 12em;
+  background-position-x: 12em
 }
 
 #dog-info h1 {
@@ -387,108 +496,103 @@ select {
 }
 
 
-/* Newsletter ==========================*/
 
-#subscribe {
+/* Members ========================== */
+
+#members h3 {
   text-align: center;
-  padding: 1em;  
 }
 
-#subscribe div {
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  width: 15em;
-  padding-left: 1em;
+#item-content h3 {
+  text-align: center;
 }
 
-#subscribe input {
-  display: inline-block;
+#members {
+  padding: 2em 1em 1em;
+}
+
+#members ul {
+  list-style: none;
   margin: 0;
-  border: none;
-}
-
-#subscribe button {
-  background-color: transparent;
-  color: darkgrey;
-}
-
-/* Contact Us ==========================*/
-
-#content-four {
-  background: #fff;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  background-image: url("/img/dog-peeping.png");
-  background-position-y: -6em;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  height: 45em;
-}
-
-#content-four form {
-  padding: 1em;
-  width: 15em;
-  background: #fff;
-  opacity: 0.8;
-}
-
-#content-four h3 {
-  margin-bottom: 0;
-}
-
-#content-four p {
-  padding-top: 0;
-}
-
-#content-four input {
-  width: 100%;
-}
-
-.contact-info p {
-  font-size: 85%;
   padding: 0;
+  /* width: 100%; */
 }
 
-.contact-info i {
-  padding: 2px;
+#members li {
+  margin-bottom: 0em;
+  background: #AAA;
+  color: #333;
 }
 
+.card-content {
+  padding: 2.5em;
+  height: 20em;
+  width: 22.5em;
+}
 
-/* Footer ==========================*/
+.card p {
+  width: 17em;
+}
 
-footer {
+#contact-btn {
+  background-color: transparent;
+  color:#fff;
+  position: center;
+}
+ 
+img {
+  display: block;
   width: 100%;
-  height: 3em;
-  padding: 0.2em;
-  background-color: #fff;
-  color: black;
-  text-align: center;
+  height: auto;
 }
 
-footer a:link {
-  text-decoration: none;
+
+/* Search ========================== */
+.search-sect {
+ padding: 10em;
 }
 
-footer a:hover {
-  text-decoration: underline;
-}
-
-footer span.fa {
-  color: #c59a6d;
-  font-size: 26px;
-}
 
 
 /* Media Queries ========================== */
 
-@media all and (min-widht: 50em) {
-
-  .icons ul {
-    width: auto;
-  }
+@media (max-width: 600px) {
+.card 
+.grid
+.doglook 
+#content-one {
+  -ms-flex: 100%;
+  flex: 100%;
+  max-width: 100%;
 }
+
+@media (max-width: 800px) {
+  .card 
+  .grid
+  .doglook 
+  #content-one {
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+  }
+
+
+
+
+@media all and (min-width: 700px) {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr repeat(2, minmax(atuo, 25em)) 1fr;
+  }
+
+  #members ul {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  #members li {
+    width: 30%;
+  }
+
+} 
+

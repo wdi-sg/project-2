@@ -14,6 +14,45 @@ const mongoose = require('mongoose') // write to database using schema
 const exphbs = require('express-handlebars')
 const path = require('path') // working with public file and directory path
 
+const multer = require('multer')
+
+
+// // Set Storage Engine ====================================================================
+// const storage = multer.diskStorage ({
+//   destination: './public/uploads/',
+//   filename: function(req, file, cb){
+//     cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+//   }
+// });
+
+// // Init Upload
+// const upload = multer ({
+//   storage: storage,
+//   limits:{fileSize: 1000000},
+//   fileFilter: function(req, file, cb){
+//     checkFileType(file, cb);
+//   }
+// }).single('myImage');
+
+// // Check File Type
+// function checkFileType(file, cb){
+
+// // Allowed extension
+//   const filetypes = /jpeg|jpg|png|gif/;
+
+// // Check extension
+//   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+  
+// // Check mime
+//   const mimetype = filetypes.test(file.mimetype);
+
+//   if(mimetype && extname){
+//     return cb(null,true);
+//   } else {
+//     cb('Error: Images Only!');
+//   }
+// }
+
 
 // Set Port ======================================================================================
 const flash = require('connect-flash')
@@ -49,7 +88,7 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 
-// ----- Express Session -----
+// ----- Express Session To Track Logins -----
 app.use(session({
   name: 'doap',
   secret: 'pp2',
@@ -57,11 +96,11 @@ app.use(session({
   saveUninitialized: true,
   store: new MongoStore ({
     url: dbConfig.url,
-    ttl: 14 * 24 * 60 * 60,
+    ttl: 00 * 00 * 00 * 10,
     autoRemove: 'native'
   }),
   cookie: {
-    maxAge: 14 * 24 * 60 * 60 * 1000
+    maxAge: 00 * 00 * 10 * 10 * 1000
   }
 }));
 
