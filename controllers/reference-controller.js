@@ -80,9 +80,9 @@ const reference = {
 		  yilinIndex = resultantHexagramNumber - 1;
 		  console.log('Position in Yilin array:');
 		  console.log(yilinIndex);
-	  	} else {
+  	} else {
 		  yilinIndex = resultantHexagramNumber;
-	  	}
+  	}
 
 		return yilinIndex;
 	}
