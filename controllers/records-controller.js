@@ -1,7 +1,7 @@
 const Divination = require('../models/divination');
-const directory = require('../models/directory');
-const api = require('../models/yijing-yilin');
-const parallel = require('../models/parallel-text');
+const directory = require('../data/directory');
+const api = require('../data/yijing-yilin');
+const parallel = require('../data/parallel-text');
 const reference = {
 	url: {
 		api: 'https://api.ctext.org/gettext?urn=ctp:',
