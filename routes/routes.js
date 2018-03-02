@@ -29,11 +29,11 @@ router.get('/logout', authController.logout);
 // routes available with login
 router.get('/profile/:id', loginBlock.isLoggedIn, userController.profile);
 router.post('/profile/:id', loginBlock.isLoggedIn, userController.change);
-router.get('/result/:id', loginBlock.isLoggedIn, userController.result);
+router.get('/result', userController.result);
 router.delete('/delete/search/:id', userController.deleteSearch);
 router.delete('/delete/analyzed/:id', userController.deleteAnalyzed);
 router.delete('/delete/saved/:id', userController.deleteSaved);
-router.post('/save/analyzed/:id', userController.saveAnalyzed);
-router.post('/update/analyzed/:id', userController.updateAnalyzed);
+router.post('/save/analyzed/:id', loginBlock.isLoggedIn, userController.saveAnalyzed);
+router.post('/update/analyzed/:id', loginBlock.isLoggedIn, userController.updateAnalyzed);
 
 module.exports = router;

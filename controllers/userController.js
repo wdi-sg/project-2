@@ -4,6 +4,8 @@ const AnalyzedList = require('../models/analyzedList');
 const SavedList = require('../models/savedList');
 const User = require('../models/user');
 
+const asyncP = require('async-promises');
+
 
 // read results from database, searchList and analyzedList
 exports.result = (req, res) => {
@@ -12,12 +14,12 @@ exports.result = (req, res) => {
   // .exec((err, searchResult) => {
   //   if (err) console.log(err);
 
-  AnalyzedList.find({username: req.params.id})
+  AnalyzedList.find({username: res.locals.currentUser._id})
   .populate('username')
   .exec((err, analyzedResult) => {
     if (err) console.log(err);
 
-    SavedList.find({username: req.params.id})
+    SavedList.find({username: res.locals.currentUser._id})
     .populate('username')
     .exec((err, savedResult) => {
       if (err) console.log(err);
@@ -25,6 +27,25 @@ exports.result = (req, res) => {
       res.render('savedResults', {'analyzedList': analyzedResult, 'savedList': savedResult});
     });
   });
+  // });
+
+  // var searchArray = [AnalyzedList, SavedList];
+  // var resultObject = {};
+  // return asyncP.each(searchArray, (entry) => {
+  //   return new Promise((resolve) => {
+  //     entry.find({username: res.locals.currentUser._id})
+  //     .populate('username')
+  //     .exec((err, result) => {
+  //       console.log("1");
+  //       if (err) console.log(err);
+  //       resultObject[entry] = result;
+  //       resolve();
+  //     });
+  //   });
+  // }).then(() => {
+  //   console.log("2");
+  //   console.log(resultObject);
+  //   res.json(resultObject);
   // });
 };
 
@@ -76,7 +97,7 @@ exports.change = (req, res) => {
 };
 
 
-// delete search and analyzed data from database, searchList and analyzedList, through ajax request
+// delete search and analyzed data from database, searchList, analyzedList and savedList, through ajax request
 exports.deleteSearch = (req, res) => {
   let query = {_id: req.params.id};
   // console.log(query);

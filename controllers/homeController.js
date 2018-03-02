@@ -84,13 +84,13 @@ exports.search = (req, res) => {
 
           // save results to database only when logged in
           if (res.locals.currentUser) {
-            saveData.saveResultAll(displayArray, itemArray, displaySortedArray, res.locals.currentUser._id);
+            saveData.saveResultAll(itemArray, displaySortedArray, res.locals.currentUser._id);
           }
         } else if (itemArray.length === 1) {
           res.render('result', {'searchList': displayArray});
-          if (res.locals.currentUser) {
-            saveData.saveResult(displayArray, res.locals.currentUser._id);
-          }
+          // if (res.locals.currentUser) {
+          //   saveData.saveResult(displayArray, res.locals.currentUser._id);
+          // }
         }
       }
     });

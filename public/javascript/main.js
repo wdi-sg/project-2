@@ -8,7 +8,7 @@ $(document).ready(function() {
         addLogic = false;
       }
     }
-    if (addLogic === true && counter < 10) {
+    if (addLogic === true && counter < 5) {
       addInput(counter);
     }
 
