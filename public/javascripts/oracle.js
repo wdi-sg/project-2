@@ -559,10 +559,12 @@ $(document).ready(function() {
 		// Append new stalks nodes `newStalksNodes` needed to replenish stalks to 49.
 		stalksContainer.appendChild(newStalksNodes);
 
-		// Re-enable Split button after stalks are replenished
-		$('#is-split-button').prop('disabled', false);
-		// Re-enable event listeners for both the stalks and slider after stalks are replenished
-		captureSplit();
+		setTimeout(function() {
+			// Re-enable Split button after stalks are replenished
+			$('#is-split-button').prop('disabled', false);
+			// Re-enable event listeners for both the stalks and slider after stalks are replenished
+			captureSplit();
+		}, 400);
 	}
 
 
