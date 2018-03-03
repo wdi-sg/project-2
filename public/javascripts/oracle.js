@@ -431,12 +431,15 @@ $(document).ready(function() {
 	}
 
 
-	function prepareNextRound(result) {
+	function prepareNextRound(result, progress) {
 		let currentGapPosition= Number(document.getElementsByClassName('gap')[0].getAttribute('id').split('-')[1]);
 
 		if (progress.current.round == 4) {
 			round = new Stalks()
-			addStalks(result.stalks.remaining, result.stalks.takenOut);
+			if (!(progress.current.line == 6)) {
+			// Replenish stalks unless it is after round three of line 6
+				addStalks(result.stalks.remaining, result.stalks.takenOut);
+			}
 		} else {
 			round.remainingStalks = result.stalks.remaining;
 			round.stalksToSplit = round.remainingStalks - 2
@@ -467,14 +470,13 @@ $(document).ready(function() {
 
 	function splitAndSort(split) {
 		// console.log(progress);
-		var piles = splitIntoPiles(split, progress,rawData);
+		var piles = splitIntoPiles(split, progress, rawData);
 		var remainders = determineRemainder(piles);
 		var fours = sortIntoFours(piles,remainders);
 		var result = endOfRound(remainders, fours, progress);
 		updateTable(progress, piles, result);
 		progress.nextRound();
-
-		prepareNextRound(result);
+		prepareNextRound(result, progress);
 		progress.nextLine();
 		// console.log('Left and Right Piles');
 		// console.log(piles);
