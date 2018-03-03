@@ -402,6 +402,7 @@ $(document).ready(function() {
 
 
 	function prepareNextRound(result) {
+		let currentGapPosition= Number(document.getElementsByClassName('gap')[0].getAttribute('id').split('-')[1]);
 
 		if (progress.current.round == 4) {
 			round = new Stalks()
@@ -412,9 +413,25 @@ $(document).ready(function() {
 			round.gapPosition = Math.floor(round.remainingStalks / 2);
 			removeStalks(round.remainingStalks, round.gapPosition);
 		}
+
+		if (currentGapPosition < round.stalksToSplit) {
+			// If `currentGapPosition` is within remaining stalks less two, keep the gap at the current position.
+			// console.log('Maintaining current gap position…')
+			// console.log('currentGapPosition: ', currentGapPosition)
+			// console.log('round.stalksToSplit:',round.stalksToSplit)
+			maintainTheGap(currentGapPosition);
+			document.getElementById('slider-bar').noUiSlider.destroy() ;
+			initializeSlider(round.stalksToSplit, currentGapPosition);
+		} else {
+			// If `currentGapPosition` is beyond the remaining stalks less two, recenter gap among the remaining stalks.
+			// console.log('Recentering gap position…')
+			// console.log('currentGapPosition: ', currentGapPosition)
+			// console.log('round.stalksToSplit: ',round.stalksToSplit)
+			maintainTheGap(round.gapPosition);
+			document.getElementById('slider-bar').noUiSlider.destroy() ;
+			initializeSlider(round.stalksToSplit, round.gapPosition);
+		}
 		
-		document.getElementById('slider-bar').noUiSlider.destroy() ;
-		initializeSlider(round.stalksToSplit, round.gapPosition);
 		detectHover();
 	}
 
@@ -447,10 +464,9 @@ $(document).ready(function() {
 
 		// Remove the stalk one by one from the last stalk on the right until only the stalks for the next round are left
 		for (let stalk = lastStalkPosition; stalk > remainingStalks; stalk--) {
-			$('#position-' + stalk).remove()
+			// $('#position-' + stalk).remove();
+			document.getElementById('position-' + stalk).remove();
 		}
-		// Recenter gap among the remaining stalks
-		maintainTheGap(recenteredGap);
 	}
 
 	// ===============================================================
@@ -503,9 +519,6 @@ $(document).ready(function() {
 		}
 		// Append new stalks nodes `newStalksNodes` needed to replenish stalks to 49.
 		stalksContainer.appendChild(newStalksNodes);
-
-		// Recenter gap
-		maintainTheGap(round.gapPosition);
 	}
 
 
