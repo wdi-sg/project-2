@@ -305,8 +305,7 @@ $(document).ready(function() {
 	function captureSplit() {
 		let splitHere;
 
-		// Event listener for click on `Split` button
-		$('#is-split-button').click(function(event) {
+		function getHandlePosition(event) {
 			// Prevents page from default reloading behavior
 			event.preventDefault();
 			// Get value from slider handle position
@@ -314,10 +313,12 @@ $(document).ready(function() {
 			// Get and value of the slider handle.
 			splitHere = handlePosition;
 			splitAndSort(splitHere);
-		});
+		}
 
-		// Event listener for click on gap between left and right pile
-		$('#stalks-container').click(function(event) {
+		// Event listener for click on `Split` button
+		$('#is-split-button').on('click', getHandlePosition)
+
+		function getGapPosition(event) {
 			// Get `id` attribute of what was clicked in the stalks.
 			let clickedElement = event.target.id;
 			// Checks that the user is clicking on the gap.
@@ -329,7 +330,36 @@ $(document).ready(function() {
 				// Otherwise, do nothing and return.
 				return;
 			}
-		});
+		}
+
+		// Event listener for click on gap between left and right pile
+		$('#stalks-container').on('click', getGapPosition);
+
+		// // Event listener for click on `Split` button
+		// $('#is-split-button').click(function(event) {
+		// 	// Prevents page from default reloading behavior
+		// 	event.preventDefault();
+		// 	// Get value from slider handle position
+		// 	let handlePosition = document.getElementById('slider-bar').noUiSlider.get()
+		// 	// Get and value of the slider handle.
+		// 	splitHere = handlePosition;
+		// 	splitAndSort(splitHere);
+		// });
+
+		// // Event listener for click on gap between left and right pile
+		// $('#stalks-container').click(function(event) {
+		// 	// Get `id` attribute of what was clicked in the stalks.
+		// 	let clickedElement = event.target.id;
+		// 	// Checks that the user is clicking on the gap.
+		// 	if (clickedElement.split('-')[0] == 'gap'){
+		// 		// If so, get the number portion of the `id` attribute and convert to `Number`.
+		// 		splitHere = Number(clickedElement.split('-')[1]);
+		// 		splitAndSort(splitHere);
+		// 	} else {
+		// 		// Otherwise, do nothing and return.
+		// 		return;
+		// 	}
+		// });
 	}
 
 	function splitIntoPiles(splitPosition, progress, record) {
@@ -493,6 +523,12 @@ $(document).ready(function() {
 
 
 	function addStalks(stalksRemaining, stalksTakenOut) {
+		// Disable event listeners to capture the split while stalks are replenished
+		$('#stalks-container').off();
+		$('#is-split-button').off();
+		// Disable split button while stalks are replenished
+		$('#is-split-button').prop('disabled', true);
+
 		let stalksContainer = document.getElementById('stalks-container');
 		let lastStalkPosition = stalksRemaining + stalksTakenOut;
 		// let lastStalkPosition = Number($('.stalk-position').last().attr('id').split('-')[1]);
@@ -522,6 +558,11 @@ $(document).ready(function() {
 		}
 		// Append new stalks nodes `newStalksNodes` needed to replenish stalks to 49.
 		stalksContainer.appendChild(newStalksNodes);
+
+		// Re-enable Split button after stalks are replenished
+		$('#is-split-button').prop('disabled', false);
+		// Re-enable event listeners for both the stalks and slider after stalks are replenished
+		captureSplit();
 	}
 
 
@@ -543,7 +584,7 @@ $(document).ready(function() {
 
 
 	function startQuery(){
-        // If query field is empty, insert `?`
+		// If query field is empty, insert `?`
 		if (!$('#query-field').val()) {
 			$('#query-field').val('?');
 		}
@@ -551,12 +592,12 @@ $(document).ready(function() {
 		let query = $('#query-field').val();
 		// Hide input form and Start button
 		$('#contains-query-field').hide();
-        // Render user's query as the title in the hero object
+		// Render user's query as the title in the hero object
 		$('#insert-query-here').append('<div id="contains-query" class="tile is-parent is-vertical"><p class="subtitle is-size-2 has-text-weight-light has-text-centered">' + query + '</p></div>')
 
-        // Enable Split button
+		// Enable Split button
 		$('#is-split-button').prop('disabled', false);
-        // Enable event listeners for both the stalks and slider
+		// Enable event listeners for both the stalks and slider
 		captureSplit();
 	}
 
