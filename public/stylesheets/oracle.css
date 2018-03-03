@@ -8,6 +8,7 @@ body {
 
 #stalks-container {
 	display: flex;
+	padding: 1rem;
 	/*height: 360px;*/
 }
 
@@ -17,7 +18,8 @@ body {
 }
 
 .stalk-position {
-	margin: -0.04rem;
+	/*margin: -0.04rem;*/
+	margin: -0.5px;
 }
 
 .stalk-container-is-centered {
