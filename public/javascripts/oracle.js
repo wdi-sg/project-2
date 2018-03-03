@@ -155,20 +155,61 @@ $(document).ready(function() {
 		}
 	}
 
+	// =======================================================================
+	// START: TO DELELE WHEN REFACTORED `initializeStalks(…)` IS PROVEN ROBUST
+	// =======================================================================
+	// // 1. Load yarrow stalks from the previous round, if any.
+	// // 2. For the first round of each hexagram line, it's simply `Stalks.inUse`, i.e. 49.
+	// function initializeStalks(stalksLastRound) {
+	// 	for (let stalk = 1; stalk <= stalksLastRound; stalk++) {
+	// 		// Generate random number for CSS `padding-top` to be inserted to each `div` containing the yarrow stalk image.
+	// 		let stalkPadding = Math.floor(Math.random() * 20);
+	// 		let stalkDisplay = '<div id="position-' + stalk + '" class="stalk-position" style="padding-top: ' + stalkPadding + 'px;"><img id="stalk-'+ stalk +'" class="stalk" src="/images/yarrow_stalk.svg"></div>';
+	// 		// Append required number of yarrow stalks with randomized CSS `padding-top`.
+	// 		$('#stalks-container').append(stalkDisplay);
+	// 		// Insert a gap at where the slider's default position will be to prevent the stalks on the right of the gap from closing the gap when the user is sliding or hovering over the stalks.
+	// 		if (stalk == round.gapPosition) {
+	// 			$('#stalks-container').append('<div class="gap"></div>');
+	// 		}
+	// 	}
+	// }
+	// =====================================================================
+	// END: TO DELELE WHEN REFACTORED `initializeStalks(…)` IS PROVEN ROBUST
+	// =====================================================================
+
 	// 1. Load yarrow stalks from the previous round, if any.
 	// 2. For the first round of each hexagram line, it's simply `Stalks.inUse`, i.e. 49.
 	function initializeStalks(stalksLastRound) {
+		let stalksContainer = document.getElementById('stalks-container');
+		let newStalksNodes = document.createDocumentFragment();
 		for (let stalk = 1; stalk <= stalksLastRound; stalk++) {
 			// Generate random number for CSS `padding-top` to be inserted to each `div` containing the yarrow stalk image.
 			let stalkPadding = Math.floor(Math.random() * 20);
-			let stalkDisplay = '<div id="position-' + stalk + '" class="stalk-position" style="padding-top: ' + stalkPadding + 'px;"><img id="stalk-'+ stalk +'" class="stalk" src="/images/yarrow_stalk.svg"></div>';
-			// Append required number of yarrow stalks with randomized CSS `padding-top`.
-			$('#stalks-container').append(stalkDisplay);
+			// Individual `div` node containing stalk image and CSS `padding-top`.
+			let divElement = document.createElement('div');
+			divElement.id = 'position-' + stalk;
+			divElement.classList.add('stalk-position');
+			divElement.style.paddingTop = stalkPadding + 'px';
+
+			// Individual `img` node displaying stalk SVG.
+			let imgElement = document.createElement('img');
+			imgElement.id = 'stalk-'+ stalk;
+			imgElement.classList.add('stalk');
+			imgElement.src = "/images/yarrow_stalk.svg";
+
+			// Append `imgElement` into `divElement`
+			divElement.appendChild(imgElement);
+			// Append individual stalk node `stalkDisplay` to document fragment `newStalksNodes`.
+			newStalksNodes.appendChild(divElement);
 			// Insert a gap at where the slider's default position will be to prevent the stalks on the right of the gap from closing the gap when the user is sliding or hovering over the stalks.
 			if (stalk == round.gapPosition) {
-				$('#stalks-container').append('<div class="gap"></div>');
+				let gapDiv = document.createElement('div');
+				gapDiv.classList.add('gap');
+				newStalksNodes.appendChild(gapDiv);
 			}
 		}
+		// Append 49 yarrow stalks with randomized CSS `padding-top`.
+		stalksContainer.appendChild(newStalksNodes);
 	}
 
 	// Ensures a constant number of elements (i.e., row stalks plus one gap) and hence smoother "animation" and better capture of `hover` and `click` events.
@@ -412,20 +453,61 @@ $(document).ready(function() {
 		maintainTheGap(recenteredGap);
 	}
 
+	// ===============================================================
+	// START: TO DELELE WHEN REFACTORED `addStalks()` IS PROVEN ROBUST
+	// ===============================================================
+	// function addStalks() {
+	// 	let lastStalkPosition = Number($('.stalk-position').last().attr('id').split('-')[1]);
+	// 	let nextStalkPosition = lastStalkPosition + 1;
+	// 	let stalksToAdd = Stalks.inUse() - lastStalkPosition;
+	// 	for (let stalk = nextStalkPosition; stalk <= Stalks.inUse(); stalk++) {
+	// 		// Generate random number for CSS `padding-top` to be inserted to each `div` containing the yarrow stalk image.
+	// 		let stalkPadding = Math.floor(Math.random() * 20);
+	// 		let stalkDisplay = '<div id="position-' + stalk + '" class="stalk-position" style="padding-top: ' + stalkPadding + 'px;"><img id="stalk-'+ stalk +'" class="stalk" src="/images/yarrow_stalk.svg"></div>';
+	// 		// Append required number of yarrow stalks with randomized CSS `padding-top`.
+	// 		$('#stalks-container').append(stalkDisplay);
+	// 	}
+	// 	// Recenter gap
+	// 	maintainTheGap(round.gapPosition);
+	// }
+	// =============================================================
+	// END: TO DELELE WHEN REFACTORED `addStalks()` IS PROVEN ROBUST
+	// =============================================================
+
+
 	function addStalks() {
+		let stalksContainer = document.getElementById('stalks-container');
 		let lastStalkPosition = Number($('.stalk-position').last().attr('id').split('-')[1]);
 		let nextStalkPosition = lastStalkPosition + 1;
 		let stalksToAdd = Stalks.inUse() - lastStalkPosition;
+		let newStalksNodes = document.createDocumentFragment();
 		for (let stalk = nextStalkPosition; stalk <= Stalks.inUse(); stalk++) {
 			// Generate random number for CSS `padding-top` to be inserted to each `div` containing the yarrow stalk image.
 			let stalkPadding = Math.floor(Math.random() * 20);
-			let stalkDisplay = '<div id="position-' + stalk + '" class="stalk-position" style="padding-top: ' + stalkPadding + 'px;"><img id="stalk-'+ stalk +'" class="stalk" src="/images/yarrow_stalk.svg"></div>';
-			// Append required number of yarrow stalks with randomized CSS `padding-top`.
-			$('#stalks-container').append(stalkDisplay);
+			// Individual `div` node containing stalk image and CSS `padding-top`.
+			let divElement = document.createElement('div');
+			divElement.id = 'position-' + stalk;
+			divElement.classList.add('stalk-position');
+			divElement.style.paddingTop = stalkPadding + 'px';
+
+			// Individual `img` node displaying stalk SVG.
+			let imgElement = document.createElement('img');
+			imgElement.id = 'stalk-'+ stalk;
+			imgElement.classList.add('stalk');
+			imgElement.src = "/images/yarrow_stalk.svg";
+
+			// Append `imgElement` into `divElement`
+			divElement.appendChild(imgElement);
+			// Append individual stalk node `stalkDisplay` to document fragment `newStalksNodes`.
+			newStalksNodes.appendChild(divElement);
 		}
+		// Append new stalks nodes `newStalksNodes` needed to replenish stalks to 49.
+		stalksContainer.appendChild(newStalksNodes);
+
 		// Recenter gap
 		maintainTheGap(round.gapPosition);
 	}
+
 
 	function updateTable(progress, piles, result) {
 		let line = progress.current.line;
