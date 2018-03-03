@@ -156,7 +156,7 @@ $(document).ready(function() {
 	}
 
 	// =======================================================================
-	// START: TO DELELE WHEN REFACTORED `initializeStalks(…)` IS PROVEN ROBUST
+	// START: TO DELETE WHEN REFACTORED `initializeStalks(…)` IS PROVEN ROBUST
 	// =======================================================================
 	// // 1. Load yarrow stalks from the previous round, if any.
 	// // 2. For the first round of each hexagram line, it's simply `Stalks.inUse`, i.e. 49.
@@ -174,7 +174,7 @@ $(document).ready(function() {
 	// 	}
 	// }
 	// =====================================================================
-	// END: TO DELELE WHEN REFACTORED `initializeStalks(…)` IS PROVEN ROBUST
+	// END: TO DELETE WHEN REFACTORED `initializeStalks(…)` IS PROVEN ROBUST
 	// =====================================================================
 
 	// 1. Load yarrow stalks from the previous round, if any.
@@ -411,7 +411,7 @@ $(document).ready(function() {
 			round.remainingStalks = result.stalks.remaining;
 			round.stalksToSplit = round.remainingStalks - 2
 			round.gapPosition = Math.floor(round.remainingStalks / 2);
-			removeStalks(round.remainingStalks, round.gapPosition);
+			removeStalks(round.remainingStalks, result.stalks.takenOut, round.gapPosition);
 		}
 
 		if (currentGapPosition < round.stalksToSplit) {
@@ -458,9 +458,9 @@ $(document).ready(function() {
 		// console.log(progress);
 	}
 
-	function removeStalks(remainingStalks, recenteredGap) {
-		let lastStalkPosition = Number($('.stalk-position').last().attr('id').split('-')[1]);
-		// let stalksToRemove = result.stalks.takenOut;
+	function removeStalks(remainingStalks, stalksTakenOut, recenteredGap) {
+		let lastStalkPosition = remainingStalks + stalksTakenOut;
+		// let lastStalkPosition = Number($('.stalk-position').last().attr('id').split('-')[1]);
 
 		// Remove the stalk one by one from the last stalk on the right until only the stalks for the next round are left
 		for (let stalk = lastStalkPosition; stalk > remainingStalks; stalk--) {
@@ -470,7 +470,7 @@ $(document).ready(function() {
 	}
 
 	// ===============================================================
-	// START: TO DELELE WHEN REFACTORED `addStalks()` IS PROVEN ROBUST
+	// START: TO DELETE WHEN REFACTORED `addStalks()` IS PROVEN ROBUST
 	// ===============================================================
 	// function addStalks() {
 	// 	let lastStalkPosition = Number($('.stalk-position').last().attr('id').split('-')[1]);
@@ -487,7 +487,7 @@ $(document).ready(function() {
 	// 	maintainTheGap(round.gapPosition);
 	// }
 	// =============================================================
-	// END: TO DELELE WHEN REFACTORED `addStalks()` IS PROVEN ROBUST
+	// END: TO DELETE WHEN REFACTORED `addStalks()` IS PROVEN ROBUST
 	// =============================================================
 
 
