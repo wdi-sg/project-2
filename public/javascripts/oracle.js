@@ -406,7 +406,7 @@ $(document).ready(function() {
 
 		if (progress.current.round == 4) {
 			round = new Stalks()
-			addStalks();
+			addStalks(result.stalks.remaining, result.stalks.takenOut);
 		} else {
 			round.remainingStalks = result.stalks.remaining;
 			round.stalksToSplit = round.remainingStalks - 2
@@ -470,10 +470,11 @@ $(document).ready(function() {
 	}
 
 	// ===============================================================
-	// START: TO DELETE WHEN REFACTORED `addStalks()` IS PROVEN ROBUST
+	// START: TO DELETE WHEN REFACTORED `addStalks(…)` IS PROVEN ROBUST
 	// ===============================================================
-	// function addStalks() {
-	// 	let lastStalkPosition = Number($('.stalk-position').last().attr('id').split('-')[1]);
+	// function addStalks(stalksRemaining, stalksTakenOut) {
+	//	let lastStalkPosition = stalksRemaining + stalksTakenOut;
+	// 	// let lastStalkPosition = Number($('.stalk-position').last().attr('id').split('-')[1]);
 	// 	let nextStalkPosition = lastStalkPosition + 1;
 	// 	let stalksToAdd = Stalks.inUse() - lastStalkPosition;
 	// 	for (let stalk = nextStalkPosition; stalk <= Stalks.inUse(); stalk++) {
@@ -487,16 +488,18 @@ $(document).ready(function() {
 	// 	maintainTheGap(round.gapPosition);
 	// }
 	// =============================================================
-	// END: TO DELETE WHEN REFACTORED `addStalks()` IS PROVEN ROBUST
+	// END: TO DELETE WHEN REFACTORED `addStalks(…)` IS PROVEN ROBUST
 	// =============================================================
 
 
-	function addStalks() {
+	function addStalks(stalksRemaining, stalksTakenOut) {
 		let stalksContainer = document.getElementById('stalks-container');
-		let lastStalkPosition = Number($('.stalk-position').last().attr('id').split('-')[1]);
+		let lastStalkPosition = stalksRemaining + stalksTakenOut;
+		// let lastStalkPosition = Number($('.stalk-position').last().attr('id').split('-')[1]);
 		let nextStalkPosition = lastStalkPosition + 1;
 		let stalksToAdd = Stalks.inUse() - lastStalkPosition;
 		let newStalksNodes = document.createDocumentFragment();
+
 		for (let stalk = nextStalkPosition; stalk <= Stalks.inUse(); stalk++) {
 			// Generate random number for CSS `padding-top` to be inserted to each `div` containing the yarrow stalk image.
 			let stalkPadding = Math.floor(Math.random() * 20);
