@@ -8,18 +8,16 @@ body {
 
 #stalks-container {
 	display: flex;
-	padding: 1rem;
 	/*height: 360px;*/
 }
 
 .gap {
-	overflow:hidden;
 	width: 28px;
 	cursor: pointer;
 }
 
 .stalk-position {
-	overflow: hidden;
+	margin: -0.04rem;
 }
 
 .stalk-container-is-centered {
