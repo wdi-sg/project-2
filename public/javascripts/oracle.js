@@ -155,29 +155,55 @@ $(document).ready(function() {
 		}
 	}
 
-	class Stalk {
-		constructor(stalkNumber) {
-			// Individual `img` node displaying stalk SVG.
-			this.imgElement = document.createElement('img');
-			this.imgElement.id = 'stalk-'+ stalkNumber;
-			this.imgElement.classList.add('stalk');
-			this.imgElement.src = "/images/yarrow_stalk.svg";
+	// =========================================================================
+	// START: TO DELETE WHEN REFACTORED `createOneStalkNode(…)` IS PROVEN FASTER
+	// =========================================================================
+	// class Stalk {
+	// 	constructor(stalkNumber) {
+	// 		// Individual `img` node displaying stalk SVG.
+	// 		this.imgElement = document.createElement('img');
+	// 		this.imgElement.id = 'stalk-'+ stalkNumber;
+	// 		this.imgElement.classList.add('stalk');
+	// 		this.imgElement.src = "/images/yarrow_stalk.svg";
+	//
+	// 		// Individual `div` node containing stalk image and CSS `padding-top`.
+	// 		this.divElement = document.createElement('div');
+	// 		this.divElement.classList.add('stalk-position');
+	// 		this.divElement.id = 'position-' + stalkNumber;
+	// 		// Generate random number for CSS `padding-top` to be inserted to each `div` containing the yarrow stalk image.
+	// 		this.stalkPadding = Math.floor(Math.random() * 20);
+	// 		this.divElement.style.paddingTop = this.stalkPadding + 'px';
+	//
+	// 		// Append `imgElement` into `divElement`
+	// 		this.divElement.appendChild(this.imgElement);
+	// 	}
+	//
+	// 	node() {
+	// 		return this.divElement;
+	// 	}
+	// }
+	// =======================================================================
+	// END: TO DELETE WHEN REFACTORED `createOneStalkNode(…)` IS PROVEN FASTER
+	// =======================================================================
 
-			// Individual `div` node containing stalk image and CSS `padding-top`.
-			this.divElement = document.createElement('div');
-			this.divElement.classList.add('stalk-position');
-			this.divElement.id = 'position-' + stalkNumber;
-			// Generate random number for CSS `padding-top` to be inserted to each `div` containing the yarrow stalk image.
-			this.stalkPadding = Math.floor(Math.random() * 20);
-			this.divElement.style.paddingTop = this.stalkPadding + 'px';
+	function createOneStalkNode(stalkNumber) {
+		// Individual `img` node displaying stalk SVG.
+		let imgElement = document.createElement('img');
+		imgElement.id = 'stalk-'+ stalkNumber;
+		imgElement.classList.add('stalk');
+		imgElement.src = "/images/yarrow_stalk.svg";
 
-			// Append `imgElement` into `divElement`
-			this.divElement.appendChild(this.imgElement);
-		}
+		// Individual `div` node containing stalk image and CSS `padding-top`.
+		let divElement = document.createElement('div');
+		divElement.classList.add('stalk-position');
+		divElement.id = 'position-' + stalkNumber;
+		// Generate random number for CSS `padding-top` to be inserted to each `div` containing the yarrow stalk image.
+		let stalkPadding = Math.floor(Math.random() * 20);
+		divElement.style.paddingTop = stalkPadding + 'px';
 
-		node() {
-			return this.divElement;
-		}
+		// Append `imgElement` into `divElement`
+		divElement.appendChild(imgElement);
+		return divElement;
 	}
 
 	// =======================================================================
@@ -208,9 +234,9 @@ $(document).ready(function() {
 		let stalksContainer = document.getElementById('stalks-container');
 		let newStalksNodes = document.createDocumentFragment();
 		for (let stalk = 1; stalk <= stalksLastRound; stalk++) {
-			let stalkNode = new Stalk(stalk);
+			let stalkNode = createOneStalkNode(stalk);
 			// Append individual stalk node `stalkDisplay` to document fragment `newStalksNodes`.
-			newStalksNodes.appendChild(stalkNode.node());
+			newStalksNodes.appendChild(stalkNode);
 			// Insert a gap at where the slider's default position will be to prevent the stalks on the right of the gap from closing the gap when the user is sliding or hovering over the stalks.
 			if (stalk == round.gapPosition) {
 				let gapDiv = document.createElement('div');
@@ -549,9 +575,9 @@ $(document).ready(function() {
 		let newStalksNodes = document.createDocumentFragment();
 
 		for (let stalk = nextStalkPosition; stalk <= Stalks.inUse(); stalk++) {
-			let stalkNode = new Stalk(stalk);
+			let stalkNode = createOneStalkNode(stalk);
 			// Append individual stalk node `stalkDisplay` to document fragment `newStalksNodes`.
-			newStalksNodes.appendChild(stalkNode.node());
+			newStalksNodes.appendChild(stalkNode);
 		}
 		// Append new stalks nodes `newStalksNodes` needed to replenish stalks to 49.
 		stalksContainer.appendChild(newStalksNodes);
