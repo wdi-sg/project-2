@@ -240,6 +240,7 @@ $(document).ready(function() {
 			// Insert a gap at where the slider's default position will be to prevent the stalks on the right of the gap from closing the gap when the user is sliding or hovering over the stalks.
 			if (stalk == round.gapPosition) {
 				let gapDiv = document.createElement('div');
+				gapDiv.id = 'gap-'+ round.gapPosition;
 				gapDiv.classList.add('gap');
 				newStalksNodes.appendChild(gapDiv);
 			}
