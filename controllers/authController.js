@@ -3,15 +3,15 @@ const User = require('../models/user');
 
 const passport = require('../helpers/passportInfo');
 
-exports.login = (req, res) => {
+module.exports.login = (req, res) => {
   res.render('login');
 };
 
-exports.register = (req, res) => {
+module.exports.register = (req, res) => {
   res.render('register');
 };
 
-exports.signup = (req, res) => {
+module.exports.signup = (req, res) => {
   // express validator to check registration form fields
   req.checkBody('firstName', 'First name cannot be empty.').notEmpty();
   req.checkBody('lastName', 'Last name cannot be empty.').notEmpty();
@@ -47,7 +47,7 @@ exports.signup = (req, res) => {
   }
 };
 
-exports.logout = (req, res) => {
+module.exports.logout = (req, res) => {
   req.logout();
   req.flash('error', 'You are now logged out!');
   res.redirect('/login');

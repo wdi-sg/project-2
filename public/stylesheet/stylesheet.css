@@ -1,19 +1,47 @@
+/* navbar, body, footer */
+.navbar, body{
+  background-color: rgb(238, 226, 220);
+}
+footer{
+  background-color: rgb(238, 226, 220) !important;
+}
+
 /* home page */
 .text{
   padding: 20px;
 }
+.text p{
+  text-align: center;
+  color: rgb(18, 60, 105);
+}
 .title{
   margin-top: 45px;
   margin-bottom: 20px;
+  font-family: "Concert One", sans-serif;
 }
-.search-form{
-  border: 2px solid rgb(255, 215, 0);
+.search-form, .login-form, .register-form{
   padding: 20px;
   margin-top: 10px;
   height: 570px;
 }
 .button{
   margin-top: 20px;
+  font-weight: bold;
+  color: rgb(172, 59, 97);
+  background-color: rgb(237, 199, 183);
+}
+form label{
+  color: rgb(18, 60, 105) !important;
+}
+.icons-placeholder{
+  width: 41px;
+}
+.icons{
+  font-size: 24px;
+  margin: 0 10px;
+}
+.icons:hover{
+  cursor: pointer;
 }
 
 /* result page */
@@ -36,10 +64,10 @@
   align-items: center;
 }
 .grid-container > div:nth-of-type(3n){
-  background-color: rgb(247, 225, 245);
+  background-color: rgba(186, 178, 181, 0.5);
 }
-.grid-container > div:nth-of-type(3n+1){
-  background-color: rgb(232, 241, 240);
+.grid-container > div:nth-of-type(3n+2){
+  background-color: rgba(237, 199, 183, 0.5);
 }
 .searchresult-container, .analyzedresult-container, .search-container{
   display: none;

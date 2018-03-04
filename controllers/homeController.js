@@ -13,13 +13,13 @@ const saveData = require('../helpers/save');
 
 
 // home page
-exports.home = (req, res) => {
+module.exports.home = (req, res) => {
   res.render('home');
 };
 
 
 // search result for individual fields
-exports.search = (req, res) => {
+module.exports.search = (req, res) => {
   var itemArray = [];
   var displayArray = [];
   var location = 'Singapore';

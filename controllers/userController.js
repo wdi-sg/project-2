@@ -8,7 +8,7 @@ const asyncP = require('async-promises');
 
 
 // read results from database, searchList and analyzedList
-exports.result = (req, res) => {
+module.exports.result = (req, res) => {
   // SearchList.find({username: req.params.id})
   // .populate('username')
   // .exec((err, searchResult) => {
@@ -51,7 +51,7 @@ exports.result = (req, res) => {
 
 
 // read user information from database, user
-exports.profile = (req, res) => {
+module.exports.profile = (req, res) => {
   User.findOne({_id: req.params.id}, (err, result) => {
     if (err) console.log(err);
     res.render('profile', result);
@@ -61,7 +61,7 @@ exports.profile = (req, res) => {
 
 // update user information to database, user
 // use mongoose save method instead of update method as mongoose middleware to hash password is only invoked on save method
-exports.change = (req, res) => {
+module.exports.change = (req, res) => {
   // express validator to check profile form fields
   req.checkBody('firstName', 'First name cannot be empty.').notEmpty();
   req.checkBody('lastName', 'Last name cannot be empty.').notEmpty();
@@ -98,7 +98,7 @@ exports.change = (req, res) => {
 
 
 // delete search and analyzed data from database, searchList, analyzedList and savedList, through ajax request
-exports.deleteSearch = (req, res) => {
+module.exports.deleteSearch = (req, res) => {
   let query = {_id: req.params.id};
   // console.log(query);
   SearchList.remove(query, (err) => {
@@ -108,7 +108,7 @@ exports.deleteSearch = (req, res) => {
   });
 };
 
-exports.deleteAnalyzed = (req, res) => {
+module.exports.deleteAnalyzed = (req, res) => {
   let query = {_id: req.params.id};
   // console.log(query);
   AnalyzedList.remove(query, (err) => {
@@ -118,7 +118,7 @@ exports.deleteAnalyzed = (req, res) => {
   });
 };
 
-exports.deleteSaved = (req, res) => {
+module.exports.deleteSaved = (req, res) => {
   let query = {_id: req.params.id};
   // console.log(query);
   SavedList.remove(query, (err) => {
@@ -130,7 +130,7 @@ exports.deleteSaved = (req, res) => {
 
 
 // create, save combinations which user chooses
-exports.saveAnalyzed = (req, res) => {
+module.exports.saveAnalyzed = (req, res) => {
   // console.log(req.params.id);
   // console.log(req.body);
   SavedList.findOne({username: req.params.id, item: req.body.item}, (err, data) => {
@@ -168,7 +168,7 @@ exports.saveAnalyzed = (req, res) => {
 
 
 // update or delete combinations which user chooses
-exports.updateAnalyzed = (req, res) => {
+module.exports.updateAnalyzed = (req, res) => {
   SavedList.findOne({username: req.params.id, item: req.body.item}, (err, data) => {
     // console.log(req.params.id);
     // console.log(req.body.item);

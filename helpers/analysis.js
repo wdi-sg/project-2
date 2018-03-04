@@ -93,7 +93,7 @@ var analyzeResult = function(displayArray) {
 
 
 // arrange results to be displayed through handlebars
-exports.sortResult = function(displayArray) {
+module.exports.sortResult = function(displayArray) {
   var displaySortedArray = [];
   var arrayAnalyzeResults = analyzeResult(displayArray);
   // console.log(arrayAnalyzeResults);
