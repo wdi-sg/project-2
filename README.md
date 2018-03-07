@@ -41,6 +41,18 @@ What I set for myself to do is an app in which I could track the details such as
   - Can add/delete new items to database
     - Includes their name, price/piece, total stock
 ---
+### Wireframe
+<img src="readmestuff/layout.png" width="512px">
+---
+### ERD
+<img src="readmestuff/erd1.png" width="512px">
+---
+### Plans Ahead
+* Updating of customer details
+* Updating of items
+* Stock changes
+* Logins for employees (Differentiating between who's assisting the customer in ordering)
+---
 ### Workarounds
 **Some code workaround**
 ```  
@@ -56,20 +68,6 @@ $( ".itemList" ).append( `<div class='singleItem' id=${id}>
 ```
 At this point, I was not very well versed with ES6, so I learnt from doing it this way.
 If we just do an append with normal jQuery, it cannot be the target of class-specific functions. This ES6 workaround worked.
----
-### Design
-* Wireframe
-<img src="readmestuff/layout.png" width="512px">
-The wireframe design
----
-### ERD
-<img src="readmestuff/erd1.png" width="512px">
----
-### Plans Ahead
-* Updating of customer details
-* Updating of items
-* Stock changes
-* Logins for employees (Differentiating between who's assisting the customer in ordering)
 ---
 ### Acknowledgements
 My classmates and instructors from WDI-13
