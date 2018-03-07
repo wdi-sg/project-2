@@ -39,20 +39,20 @@ exports.new = (req, res)=>{
     })
 
   } else{
-      //Items Information
-      customers.firstName = req.body.firstName
-      customers.lastName = req.body.lastName
-      customers.roomNumber = req.body.roomNumber
-      customers.passcode = req.body.passcode
-      customers.tripStart = req.body.tripStart.toString()
-      customers.tripEnd = req.body.tripEnd.toString()
+    //Items Information
+    customers.firstName = req.body.firstName
+    customers.lastName = req.body.lastName
+    customers.roomNumber = req.body.roomNumber
+    customers.passcode = req.body.passcode
+    customers.tripStart = req.body.tripStart.toString()
+    customers.tripEnd = req.body.tripEnd.toString()
 
-      customers.save((error)=>{
-        if(error) console.log(error)
-        req.flash('success_msg', "Successfully created")
+    customers.save((error)=>{
+      if(error) console.log(error)
+      req.flash('success_msg', "Successfully created")
 
-        res.redirect('/customers')
-      })
+      res.redirect('/customers')
+    })
   }
 }
 

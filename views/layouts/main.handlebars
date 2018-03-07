@@ -5,32 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>POS</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <title>POS System</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="/style/mainStyle.css">
 </head>
 <body>
-
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid mainNavBar">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand navBarTitle" href="/">POS System</a>
+        <a class="navbar-brand" href="/">POS System</a>
       </div>
       <ul class="nav navbar-nav">
         <li><a href="/" class="navBarText">Orders</a></li>
         <li><a href="/customers" class="navBarText">Customers</a></li>
         <li><a href="/items" class="navBarText">Items</a></li>
       </ul>
+    </div>
   </nav>
 
+<div class="container main">
   {{{ body }}}
+</div>
+
 
 </body>
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- <script src="/socket.io/socket.io.js"></script> -->
 <script src="/javascript/main.js"></script>
 
 </html>

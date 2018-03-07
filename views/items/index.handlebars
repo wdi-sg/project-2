@@ -1,53 +1,44 @@
-<div class="container mainCont">
-
-  <div class="leftCont">
-    <div class="leftTitles">
-      Items and Stock
-    </div>
-
-    <div class="leftView">
-      {{#if success_msg}}
-        <div class="alert alert-success"> {{ success_msg }} </div>
-      {{/if}}
-
-      {{#each items}}
-        <div class="itemBox">
-          <img src="/style/img/placeholder.png">
-          <p>Name: {{ name }}</p>
-          <p>Price: {{ price}}</p>
-          <p>Total Stock: {{ total_stock }}</p>
-          <button type="button" class="deleteItemBtn" id="{{ _id }}">Delete</button>
+<div class="row">
+  <div class="col-md-9 leftDiv">
+    <h3 class="text-center">Items & Stock</h3>
+    {{#each items}}
+    <div class="col-sm-3 text-center">
+      <div class="thumbnail">
+        <img src="https://i.imgur.com/hVVqLxG.png">
+        <div class="caption">
+          <h3>{{ name }}</h3>
+          <p>$SGD {{ price }}</p>
+          <p>{{ total_stock }} left in stock</p>
+          <button type="button" class="btn btn-danger deleteItemBtn" id="{{ _id }}">Delete</button>
         </div>
-      {{/each}}
+      </div>
     </div>
+    {{/each}}
   </div>
 
 
-  <div class="rightCont">
-    <div class="rightTitles">
-      Add Item
+  <div class="col-md-3">
+    <h3>Add New Item</h3>
+    {{#if success_msg}}
+    <div class="alert alert-success">
+      {{ success_msg }}
     </div>
-    <div class="rightView">
-      <form action="/items" method="post">
-
-        <div class="addCustFormField" name="name">
-          <label for="name">Name</label><br>
-          <input type="text" name="name" value="" placeholder="Item Name">
-        </div>
-
-        <div class="addCustFormField" name="price">
-          <label for="price">Price per item</label><br>
-          <input type="text" name="price" value="" placeholder="1.99">
-        </div>
-
-        <div class="addCustFormField" name="total_stock">
-          <label for="total_stock">Total Stock</label><br>
-          <input type="text" name="total_stock" value="" placeholder="100">
-        </div>
-
-        <div class="addCustFormField" name="submitBtn">
-          <input type="submit" name="submit"/>
-        </div>
-      </form>
+    {{/if}}
+    <form action="/items" method="post">
+      <div class="form-group">
+        <label for="name">Name</label><br/>
+        <input type="text" name="name" value="" placeholder="Item Name">
+      </div>
+      <div class="form-group">
+        <label for="price">Price(SGD)</label><br/>
+        <input type="text" name="price" value="" placeholder="1.99">
+      </div>
+      <div class="form-group">
+        <label for="total_stock">Total Stock</label><br/>
+        <input type="text" name="total_stock" value="" placeholder="100">
+      </div>
+      <input type="submit" name="submit" class="btn btn-primary" value="Add Item"/>
     </div>
-  </div>
+  </form>
+</div>
+</div>

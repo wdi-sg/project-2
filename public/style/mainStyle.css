@@ -1,172 +1,23 @@
-
-
-body{
-  margin: 0;
-  padding: 0;
-  background-color: #F7F7F7 !important;
+body {
+  background-color: #428bca;
+  padding-top: 70px;
 }
 
-footer {
-    padding: 30px 0;
+.main {
+  background-color: white;
+  min-height: 85vh;
+  border-radius: 25px;
 }
 
-
-.mainNavBar {
-  background-color: #7EBC89;
+.leftDiv {
+  min-height: 100%;
+}
+.itemList {
+  max-height: 500px;
+  min-height: 500px;
+  overflow-y: scroll;
 }
 
-.navbar-inverse{
-  border: 0;
-}
-
-
-.customerBox {
-  /* background-color: #F7F7F7;
-  height: 150px;
-  width: 95%;
-  margin: 10px auto;
-  padding: 5px;
-  color: #76323F;
-  font-size: 14px;
-
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border: 3px solid #C1DBB3;
-  border-radius: 10px; */
-
-  background-color: #F7F7F7;
-  min-width: 175px;
-  text-align: center;
-  margin: 5px;
-  padding: 5px;
-  /* padding-top: 10px; */
-  /* padding-bottom: 10px; */
-  max-height: 40px;
-  justify-content: center;
-}
-
-
-
-
-
-.leftTitles{
-  text-align: left;
-  color: #FFF;
-  font-size: 20px;
-  background-color: #7EBC89;
-  padding: 5px 0 5px 15px;
-  width: 100%;
-  height: 40px;
-}
-
-.rightTitles{
-  text-align: left;
-  color: #FFF;
-  font-size: 20px;
-  background-color: #7EBC89;
-  padding: 5px 0 5px 15px;
-  width: 100%;
-  height: 40px;
-}
-
-
-.mainCont{
-  display: flex;
-  padding: 0 !important;
-  margin: auto !important;
-  justify-content: center;
-}
-
-.rightView{
-  display: flex;
-  background-color: #FFFFFF;
-  min-height: 78vh;
-  width: 300px;
-  padding: 10px;
-  /* flex-wrap: wrap; */
-}
-
-.leftView{
-  display: flex;
-  background-color: #FFFFFF;
-  min-height: 78vh;
-  width: 750px;
-  margin-right: 10px;
-  padding: 10px;
-  /* flex-wrap: wrap; */
-  /* align-items: baseline; */
-  justify-content: space-around;
-  flex-flow: row wrap;
-
-}
-
-
-.brandName{
-  /* This is for the title of the page */
-  color: #FFFFFF;
-}
-
-
-
-.itemBox{
-  background-color: #F7F7F7;
-  min-width: 120px;
-  text-align: center;
-  margin: 5px;
+.orderedItemsTitle {
   padding-top: 10px;
-  padding-bottom: 10px;
-  height: 210px;
-}
-
-.addCustFormField{
-  padding-top: 7px;
-  padding-bottom: 7px;
-}
-
-
-.leftCont{
-  width: 750px;
-  margin-right: 15px;
-}
-
-.rightCont{
-  width: 300px;
-  margin-left: 15px;
-}
-
-.addQuantity{
-  /* This is the width of the number input inside order's singleitem */
-  width: 5em;
-}
-
-.rightViewForm{
-  width: 100%;
-}
-
-.custSelectDropdownDiv{
-  margin-bottom: 5px;
-}
-
-.singleItem{
-  background-color: #F7F7F7;
-  width: 100%;
-  padding: 5px;
-  margin: 5px 5px 5px 0;
-}
-
-/* For nav bar */
-.navBarText{
-  color: #FFF !important;
-}
-
-.navBarTitle{
-  color: #FFF !important;
-}
-
-li:active {
-    background-color: #FAEDCA;
-}
-
-li:hover {
-    background-color: #C1DBB3;
 }
