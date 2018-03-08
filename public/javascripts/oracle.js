@@ -298,7 +298,7 @@ $(document).ready(function() {
 			maintainTheGap(gapFromSlider);
 		});
 	}
-	
+
 
 	// Tracks the progress of divination.
 	class Progress {
@@ -501,7 +501,7 @@ $(document).ready(function() {
 			document.getElementById('slider-bar').noUiSlider.destroy() ;
 			initializeSlider(round.stalksToSplit, round.gapPosition);
 		}
-		
+
 		detectHover();
 	}
 
@@ -588,7 +588,7 @@ $(document).ready(function() {
 			$('#is-split-button').prop('disabled', false);
 			// Re-enable event listeners for both the stalks and slider after stalks are replenished
 			captureSplit();
-		}, 400);
+		}, 600);
 	}
 
 
