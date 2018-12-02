@@ -6,6 +6,11 @@ body {
 	user-select: none;
 }
 
+#left-portion, #right-portion {
+	padding-left: env(safe-area-inset-left);
+	padding-right: env(safe-area-inset-right);
+}
+
 .stalk {
 	width: 10px;
 }
