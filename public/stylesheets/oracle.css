@@ -6,7 +6,7 @@ body {
 	user-select: none;
 }
 
-#left-portion, #right-portion {
+#left-portion, #right-portion, #text-1, #text-2, #text-3, .navbar-brand,  {
 	padding-left: env(safe-area-inset-left);
 	padding-right: env(safe-area-inset-right);
 }
