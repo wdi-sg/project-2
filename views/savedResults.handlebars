@@ -1,0 +1,81 @@
+<div class="tabs">
+  <ul>
+    <li class="is-active saved"><a>Saved Combinations</a></li>
+    <li class="analyze"><a>Locations with Close Proximity</a></li>
+    <!-- <li class="search"><a>Searched Locations</a></li> -->
+  </ul>
+</div>
+
+<!-- saved combinations -->
+<div class="savedresult-container">
+  {{#each savedList}}
+    <div id="{{_id}}">
+      <div class="result-title is-size-3">
+        {{item}}
+        <a class="delete delete-saved" data-id="{{_id}}"></a>
+      </div>
+
+      <div class="grid-container">
+        {{#each result}}
+          <div class="analyzeddelete" data-id="{{../../currentUser._id}}" data-range="{{range}}">
+            {{#each sortedList}}
+              <p>{{name}}</p>
+              <p>{{address1}}</p>
+              <p>{{address2}}</p>
+              <br>
+            {{/each}}
+            <i class="fa fa-trash fa-lg" aria-hidden="true" ></i>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+<!-- analyzed results -->
+<div class="analyzedresult-container">
+  {{#each analyzedList}}
+    <div id="{{_id}}">
+      <div class="result-title is-size-3">
+        {{item}}
+        <a class="delete delete-analyzed" data-id="{{_id}}"></a>
+      </div>
+
+      <div class="grid-container">
+        {{#listItem 0 20 result}}
+          <div>
+            {{#each sortedList}}
+              <p>{{name}}</p>
+              <p>{{address1}}</p>
+              <p>{{address2}}</p>
+              <br>
+            {{/each}}
+            <!-- {{range}} -->
+          </div>
+        {{/listItem}}
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+<!-- search results removed temporarily-->
+<!-- <div class="searchresult-container">
+  {{#each searchList}}
+    <div id="{{_id}}">
+      <div class="result-title is-size-3">
+        {{item}}
+        <a class="delete delete-search" data-id="{{_id}}"></a>
+      </div>
+
+      <div class="grid-container">
+        {{#each result}}
+          <div>
+            <a href={{link}}><p>{{name}}</p></a>
+            <p>{{address1}}</p>
+            <p>{{address2}}</p>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  {{/each}}
+</div> -->
