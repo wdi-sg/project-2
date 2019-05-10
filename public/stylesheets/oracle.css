@@ -1,5 +1,4 @@
 body {
-	/* padding: 12px; */
 	-ms-user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
@@ -11,14 +10,19 @@ body {
 	padding-right: env(safe-area-inset-right);
 }
 
-.stalk {
+svg {
 	width: 10px;
+	height: auto;
 }
+
+/* TODO: Remove when inline SVG solution works nicely */
+/* .stalk {
+	width: 10px;
+} */
 
 #stalks-container {
 	display: flex;
 	padding: 1rem;
-	/*height: 360px;*/
 }
 
 .gap {
@@ -27,8 +31,8 @@ body {
 }
 
 .stalk-position {
-	/*margin: -0.04rem;*/
-	margin: -0.5px;
+	margin: -0.04rem;
+	/* margin: -0.5px; */
 }
 
 .stalk-container-is-centered {
