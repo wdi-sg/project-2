@@ -155,43 +155,17 @@ $(document).ready(function() {
 		}
 	}
 
-	// =========================================================================
-	// START: TO DELETE WHEN REFACTORED `createOneStalkNode(…)` IS PROVEN FASTER
-	// =========================================================================
-	// class Stalk {
-	// 	constructor(stalkNumber) {
-	// 		// Individual `img` node displaying stalk SVG.
-	// 		this.imgElement = document.createElement('img');
-	// 		this.imgElement.id = 'stalk-'+ stalkNumber;
-	// 		this.imgElement.classList.add('stalk');
-	// 		this.imgElement.src = "/images/yarrow_stalk.svg";
-	//
-	// 		// Individual `div` node containing stalk image and CSS `padding-top`.
-	// 		this.divElement = document.createElement('div');
-	// 		this.divElement.classList.add('stalk-position');
-	// 		this.divElement.id = 'position-' + stalkNumber;
-	// 		// Generate random number for CSS `padding-top` to be inserted to each `div` containing the yarrow stalk image.
-	// 		this.stalkPadding = Math.floor(Math.random() * 20);
-	// 		this.divElement.style.paddingTop = this.stalkPadding + 'px';
-	//
-	// 		// Append `imgElement` into `divElement`
-	// 		this.divElement.appendChild(this.imgElement);
-	// 	}
-	//
-	// 	node() {
-	// 		return this.divElement;
-	// 	}
-	// }
-	// =======================================================================
-	// END: TO DELETE WHEN REFACTORED `createOneStalkNode(…)` IS PROVEN FASTER
-	// =======================================================================
 
 	function createOneStalkNode(stalkNumber) {
-		// Individual `img` node displaying stalk SVG.
-		let imgElement = document.createElement('img');
-		imgElement.id = 'stalk-'+ stalkNumber;
-		imgElement.classList.add('stalk');
-		imgElement.src = "/images/yarrow_stalk.svg";
+		let template = document.querySelector('#stalk');
+		let stalkClone = document.importNode(template.content, true);
+
+		// TODO: Remove when inline SVG is working nicely
+		// // Individual `img` node displaying stalk SVG.
+		// let imgElement = document.createElement('img');
+		// imgElement.id = 'stalk-'+ stalkNumber;
+		// imgElement.classList.add('stalk');
+		// imgElement.src = "/images/yarrow_stalk.svg";
 
 		// Individual `div` node containing stalk image and CSS `padding-top`.
 		let divElement = document.createElement('div');
@@ -201,32 +175,15 @@ $(document).ready(function() {
 		let stalkPadding = Math.floor(Math.random() * 20);
 		divElement.style.paddingTop = stalkPadding + 'px';
 
+		// TODO: Remove when inline SVG is working nicely
+		// // Append `imgElement` into `divElement`
+		// divElement.appendChild(imgElement);
+
 		// Append `imgElement` into `divElement`
-		divElement.appendChild(imgElement);
+		divElement.appendChild(stalkClone);
+
 		return divElement;
 	}
-
-	// =======================================================================
-	// START: TO DELETE WHEN REFACTORED `initializeStalks(…)` IS PROVEN ROBUST
-	// =======================================================================
-	// // 1. Load yarrow stalks from the previous round, if any.
-	// // 2. For the first round of each hexagram line, it's simply `Stalks.inUse`, i.e. 49.
-	// function initializeStalks(stalksLastRound) {
-	// 	for (let stalk = 1; stalk <= stalksLastRound; stalk++) {
-	// 		// Generate random number for CSS `padding-top` to be inserted to each `div` containing the yarrow stalk image.
-	// 		let stalkPadding = Math.floor(Math.random() * 20);
-	// 		let stalkDisplay = '<div id="position-' + stalk + '" class="stalk-position" style="padding-top: ' + stalkPadding + 'px;"><img id="stalk-'+ stalk +'" class="stalk" src="/images/yarrow_stalk.svg"></div>';
-	// 		// Append required number of yarrow stalks with randomized CSS `padding-top`.
-	// 		$('#stalks-container').append(stalkDisplay);
-	// 		// Insert a gap at where the slider's default position will be to prevent the stalks on the right of the gap from closing the gap when the user is sliding or hovering over the stalks.
-	// 		if (stalk == round.gapPosition) {
-	// 			$('#stalks-container').append('<div class="gap"></div>');
-	// 		}
-	// 	}
-	// }
-	// =====================================================================
-	// END: TO DELETE WHEN REFACTORED `initializeStalks(…)` IS PROVEN ROBUST
-	// =====================================================================
 
 	// 1. Load yarrow stalks from the previous round, if any.
 	// 2. For the first round of each hexagram line, it's simply `Stalks.inUse`, i.e. 49.
@@ -249,6 +206,7 @@ $(document).ready(function() {
 		stalksContainer.appendChild(newStalksNodes);
 	}
 
+
 	// Ensures a constant number of elements (i.e., row stalks plus one gap) and hence smoother "animation" and better capture of `hover` and `click` events.
 	function maintainTheGap(newGapPosition) {
 		// If gap exists gap among the stalks, remove old gap before inserting new gap.
@@ -263,18 +221,41 @@ $(document).ready(function() {
 		document.getElementById('slider-bar').noUiSlider.set(newGapPosition);
 	}
 
+
 	function detectHover() {
-		$('.stalk-position').hover(function(event) {
-			// Grabs the `id` number of the stalk that is hovered over.
-			let hoveredStalk = event.target.id.split('-')[1];
-			/*
-			1. Prevents a gap from being added to the last and last second stalk on the right side.
-			2. This is because the right pile must have at least 2 stalks as one of it will be set aside, leaving only one to form the right pile.
-			*/
-			if (hoveredStalk != round.remainingStalks && hoveredStalk != round.remainingStalks - 1) {
-				maintainTheGap(hoveredStalk);
-			}
-		});
+		let stalks = document.getElementsByTagName('svg')
+		let stalkPositionDivElements = document.getElementsByClassName('stalk-position')
+
+		for (let stalk of stalks) {
+			stalk.addEventListener(
+				'mouseover',
+				event => {
+					// Grabs the `id` number of the stalk that is hovered over.
+					// let hoveredStalk = event.target.id.split('-')[1];
+					let hoveredStalkPositionDivElement = $(event.srcElement).closest('div', stalkPositionDivElements)[0];
+					let hoveredStalk = hoveredStalkPositionDivElement.id.split('-')[1];
+					/*
+						1. Prevents a gap from being added to the last and last second stalk on the right side.
+						2. This is because the right pile must have at least 2 stalks as one of it will be set aside, leaving only one to form the right pile.
+					*/
+					if (hoveredStalk != round.remainingStalks && hoveredStalk != round.remainingStalks - 1) {
+						maintainTheGap(hoveredStalk);
+					}
+				}
+			)
+		}
+		// TODO: Remove when event listener on inline SVG is robust
+		// $('.stalk-position').hover(function(event) {
+		// 	// Grabs the `id` number of the stalk that is hovered over.
+		// 	let hoveredStalk = event.target.id.split('-')[1];
+		// 	/*
+		// 	1. Prevents a gap from being added to the last and last second stalk on the right side.
+		// 	2. This is because the right pile must have at least 2 stalks as one of it will be set aside, leaving only one to form the right pile.
+		// 	*/
+		// 	if (hoveredStalk != round.remainingStalks && hoveredStalk != round.remainingStalks - 1) {
+		// 		maintainTheGap(hoveredStalk);
+		// 	}
+		// });
 	}
 
 
@@ -339,6 +320,7 @@ $(document).ready(function() {
 		}
 	}
 
+
 	function captureSplit() {
 		let splitHere;
 
@@ -371,33 +353,8 @@ $(document).ready(function() {
 
 		// Event listener for click on gap between left and right pile
 		$('#stalks-container').on('click', getGapPosition);
-
-		// // Event listener for click on `Split` button
-		// $('#is-split-button').click(function(event) {
-		// 	// Prevents page from default reloading behavior
-		// 	event.preventDefault();
-		// 	// Get value from slider handle position
-		// 	let handlePosition = document.getElementById('slider-bar').noUiSlider.get()
-		// 	// Get and value of the slider handle.
-		// 	splitHere = handlePosition;
-		// 	splitAndSort(splitHere);
-		// });
-
-		// // Event listener for click on gap between left and right pile
-		// $('#stalks-container').click(function(event) {
-		// 	// Get `id` attribute of what was clicked in the stalks.
-		// 	let clickedElement = event.target.id;
-		// 	// Checks that the user is clicking on the gap.
-		// 	if (clickedElement.split('-')[0] == 'gap'){
-		// 		// If so, get the number portion of the `id` attribute and convert to `Number`.
-		// 		splitHere = Number(clickedElement.split('-')[1]);
-		// 		splitAndSort(splitHere);
-		// 	} else {
-		// 		// Otherwise, do nothing and return.
-		// 		return;
-		// 	}
-		// });
 	}
+
 
 	function splitIntoPiles(splitPosition, progress, record) {
 		// Left pile, representing Heaven, is stalks on the left of the split.
@@ -417,6 +374,7 @@ $(document).ready(function() {
 		return twoPiles;
 	}
 
+
 	function determineRemainder(twoPiles) {
 		let leftRemainder, rightRemainder;
 
@@ -431,6 +389,7 @@ $(document).ready(function() {
 		return twoRemainders;
 	}
 
+
 	function sortIntoFours(twoPiles, twoRemainders) {
 		let leftSetsOfFours = (twoPiles.left - twoRemainders.left) / 4;
 		let rightSetsOfFours = ((twoPiles.right - 1) - twoRemainders.right) / 4;
@@ -443,6 +402,7 @@ $(document).ready(function() {
 
 		return setsOfFour;
 	}
+
 
 	function endOfRound(twoRemainders, setsOfFour, progress) {
 		let stalksTakenOut = twoRemainders.left + twoRemainders.right + 1;
@@ -479,7 +439,7 @@ $(document).ready(function() {
 			}
 		} else {
 			round.remainingStalks = result.stalks.remaining;
-			round.stalksToSplit = round.remainingStalks - 2
+			round.stalksToSplit = round.remainingStalks - 2;
 			round.gapPosition = Math.floor(round.remainingStalks / 2);
 			removeStalks(round.remainingStalks, result.stalks.takenOut, round.gapPosition);
 		}
@@ -505,8 +465,9 @@ $(document).ready(function() {
 		detectHover();
 	}
 
+
 	function splitAndSort(split) {
-		// console.log(progress);
+		// console.log('Progress', progress);
 		var piles = splitIntoPiles(split, progress, rawData);
 		var remainders = determineRemainder(piles);
 		var fours = sortIntoFours(piles,remainders);
@@ -527,6 +488,7 @@ $(document).ready(function() {
 		// console.log(progress);
 	}
 
+
 	function removeStalks(remainingStalks, stalksTakenOut, recenteredGap) {
 		let lastStalkPosition = remainingStalks + stalksTakenOut;
 		// let lastStalkPosition = Number($('.stalk-position').last().attr('id').split('-')[1]);
@@ -537,28 +499,6 @@ $(document).ready(function() {
 			document.getElementById('position-' + stalk).remove();
 		}
 	}
-
-	// ===============================================================
-	// START: TO DELETE WHEN REFACTORED `addStalks(…)` IS PROVEN ROBUST
-	// ===============================================================
-	// function addStalks(stalksRemaining, stalksTakenOut) {
-	//	let lastStalkPosition = stalksRemaining + stalksTakenOut;
-	// 	// let lastStalkPosition = Number($('.stalk-position').last().attr('id').split('-')[1]);
-	// 	let nextStalkPosition = lastStalkPosition + 1;
-	// 	let stalksToAdd = Stalks.inUse() - lastStalkPosition;
-	// 	for (let stalk = nextStalkPosition; stalk <= Stalks.inUse(); stalk++) {
-	// 		// Generate random number for CSS `padding-top` to be inserted to each `div` containing the yarrow stalk image.
-	// 		let stalkPadding = Math.floor(Math.random() * 20);
-	// 		let stalkDisplay = '<div id="position-' + stalk + '" class="stalk-position" style="padding-top: ' + stalkPadding + 'px;"><img id="stalk-'+ stalk +'" class="stalk" src="/images/yarrow_stalk.svg"></div>';
-	// 		// Append required number of yarrow stalks with randomized CSS `padding-top`.
-	// 		$('#stalks-container').append(stalkDisplay);
-	// 	}
-	// 	// Recenter gap
-	// 	maintainTheGap(round.gapPosition);
-	// }
-	// =============================================================
-	// END: TO DELETE WHEN REFACTORED `addStalks(…)` IS PROVEN ROBUST
-	// =============================================================
 
 
 	function addStalks(stalksRemaining, stalksTakenOut) {
@@ -588,7 +528,7 @@ $(document).ready(function() {
 			$('#is-split-button').prop('disabled', false);
 			// Re-enable event listeners for both the stalks and slider after stalks are replenished
 			captureSplit();
-		}, 600);
+		}, 200);
 	}
 
 
@@ -627,16 +567,19 @@ $(document).ready(function() {
 		captureSplit();
 	}
 
-    // Start with the stalks and Split button disabled until user presses Start button
+	// Start with the stalks and Split button disabled until user presses Start button
 	$('#stalks-container').off();
 	$('#start-divination').click(startQuery);
-    // Initialize progress tracker and stalks
+
+	// Initialize progress tracker and stalks
 	var progress = new Progress();
 	var round = new Stalks();
 	initializeStalks(round.remainingStalks);
-    // Detect hover over the stalks
+
+	// Detect hover over the stalks
 	detectHover();
-    // Initialize slider
+
+	// Initialize slider
 	initializeSlider(round.stalksToSplit, round.gapPosition);
 });
 
