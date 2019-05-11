@@ -10,15 +10,12 @@ body {
 	padding-right: env(safe-area-inset-right);
 }
 
-svg {
-	width: 10px;
+.stalk-position svg {
+	max-width: 10px;
 	height: auto;
+	margin: -0.5px;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-
-/* TODO: Remove when inline SVG solution works nicely */
-/* .stalk {
-	width: 10px;
-} */
 
 #stalks-container {
 	display: flex;
@@ -28,11 +25,6 @@ svg {
 .gap {
 	width: 28px;
 	cursor: pointer;
-}
-
-.stalk-position {
-	margin: -0.04rem;
-	/* margin: -0.5px; */
 }
 
 .stalk-container-is-centered {
@@ -132,13 +124,9 @@ svg {
 .yao-9::after { content: "9"; }
 
 @media only screen and (min-width: 1024px) and (max-width: 1215px) {
-	svg {
-		width: 8px;
-	}
-	/* TODO: Remove when inline SVG solution works nicely */
-	/* .stalk {
+	.stalk-position svg {
 		max-width: 8px;
-	} */
+	}
 	#slider-bar {
 		margin: auto;
 		max-width: 85%;
@@ -150,13 +138,9 @@ svg {
 }
 
 @media only screen and (min-width: 870px) and (max-width: 1023px) {
-	svg {
-		width: 7px;
-	}
-	/* TODO: Remove when inline SVG solution works nicely */
-	/* .stalk {
+	.stalk-position svg {
 		max-width: 7px;
-	} */
+	}
 	#stalks-container {
 		height: 260px;
 		padding: 1rem;
@@ -168,13 +152,9 @@ svg {
 }
 
 @media only screen and (min-width: 769px) and (max-width: 869px) {
-	svg {
-		width: 6px;
-	}
-	/* TODO: Remove when inline SVG solution works nicely */
-	/* .stalk {
+	.stalk-position svg {
 		max-width: 6px;
-	} */
+	}
 	#stalks-container {
 		height: 235px;
 		padding: 1rem;
@@ -186,13 +166,9 @@ svg {
 }
 
 @media only screen and (min-width: 478px) and (max-width: 600px) {
-	svg {
-		width: 8px;
-	}
-	/* TODO: Remove when inline SVG solution works nicely */
-	/* .stalk {
+	.stalk-position svg {
 		max-width: 8px;
-	} */
+	}
 	#stalks-container {
 		height: 290px;
 		padding: 0;
@@ -210,13 +186,9 @@ svg {
 }
 
 @media only screen and (min-width: 415px) and (max-width: 477px) {
-	svg {
-		width: 7px;
-	}
-	/* TODO: Remove when inline SVG solution works nicely */
-	/* .stalk {
+	.stalk-position svg {
 		max-width: 7px;
-	} */
+	}
 	#stalks-container {
 		height: 260px;
 		padding: 0;
@@ -234,13 +206,9 @@ svg {
 }
 
 @media only screen and (min-width: 376px) and (max-width: 414px) {
-	svg {
-		width: 7px;
-	}
-	/* TODO: Remove when inline SVG solution works nicely */
-	/* .stalk {
+	.stalk-position svg {
 		max-width: 7px;
-	} */
+	}
 	#stalks-container {
 		height: 260px;
 		padding: 0;
@@ -258,13 +226,9 @@ svg {
 }
 
 @media only screen and (min-width: 321px) and (max-width: 375px) {
-	svg {
-		width: 6px;
-	}
-	/* TODO: Remove when inline SVG solution works nicely */
-	/* .stalk {
+	.stalk-position svg {
 		max-width: 6px;
-	} */
+	}
 	#stalks-container {
 		height: 225px;
 		padding: 0;
@@ -285,13 +249,9 @@ svg {
 	#brand {
 		max-width: 80%;
 	}
-	svg {
-		width: 5px;
-	}
-	/* TODO: Remove when inline SVG solution works nicely */
-	/* .stalk {
+	.stalk-position svg {
 		max-width: 5px;
-	} */
+	}
 	#stalks-container {
 		height: 195px;
 		padding: 0;
