@@ -1,0 +1,18 @@
+{{!-- Signup Form  --}}
+
+<div id="signup">
+    <div class="signup-left">
+        <h1>Sign Up</h1>
+
+        <form method="post" action="/users/signup">
+            <input type="text" name="firstname" placeholder="First Name">
+            <input type="text" name="lastname" placeholder="Last Name">
+            <input type="email" name="email" placeholder="E-mail">
+            <input type="password" name="password" placeholder="Password">
+            <input type="password" name="passwordRetype" placeholder="Retype Password">
+            <input type="submit" name="signup_submit" value="Submit">
+
+            <p>Already have an account?<br/><a href="/login">Login</a></p>
+        </form>
+    </div>
+</div>

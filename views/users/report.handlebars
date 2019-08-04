@@ -1,0 +1,24 @@
+{{!-- Report Form --}}
+
+<form action="/users/report" method="post">
+
+    <div id="report">
+        <div class="report-left">
+            <div class="reportbox" id="rbox">
+                <h1>Details</h1>
+
+                <input type="text" name="name" placeholder="First Name">
+                <input type="text" name="name" placeholder="Last Name">
+                <input type="email" name="email" placeholder="Email">
+                <input type="tel" name="phone" placeholder="Phone">
+                <textarea type="message" name="message" placeholder="Additonal Information"></textarea><br/>
+
+                        <div class="img-btn">
+                        <input type="file" multiple name="text" placeholder="Upload Image"><br/><br/>
+                        <input type="submit" name="doginfo_submit" value="Submit">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

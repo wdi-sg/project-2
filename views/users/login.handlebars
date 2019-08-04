@@ -1,0 +1,19 @@
+{{!-- Login Form  --}}
+
+<div id="login" class="grid">
+    <div class="login-left">
+        <h1>Login</h1>
+            <form method="post" action="/users/login">
+                <input type="email" name="email" placeholder="E-mail">
+                <input type="password" name="password" placeholder="Password">
+                <input type="checkbox" name="remember">Remember Me<br><br>
+                <input type="submit" name="signup_submit" value="Submit">
+
+            </form>
+
+            <div id="login-space">
+                <a href="/forgot">Forgot Password?</a><br/>
+                <p>Don't have an account?<br/><a href="/signup">Sign Up</a></p>
+             </div>
+    </div>
+</div>

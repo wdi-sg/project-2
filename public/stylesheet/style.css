@@ -1,0 +1,598 @@
+body, html {
+  height: 100%;
+} 
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+}
+
+p {
+  margin: 0;
+  padding: 1em 0;
+}
+
+
+/* Navigation ==========================*/
+
+header {
+  min-height: 70px;
+  padding: 20px 10px;
+}
+
+.logone {
+  font-size: 1.8em;
+  vertical-align: -0.1em;
+  padding: 0.8em 0.6em;
+}
+
+ul a {
+  color: #353232;
+  text-decoration: none;
+  font-size: 1.2em;
+  /* &:hover span {
+    border-bottom: 2px solid black;
+  } */
+}
+
+nav ul li {
+  display: inline-block;
+  padding: 0;
+}
+
+#breadcrumbs-custom-separator li:after {
+  content: '/';
+}
+
+header nav {
+  float: right;
+  margin-top: 8px;
+}
+
+header a:hover {
+  color: #a5a0a0;
+  font-weight: bold;
+}
+
+.floatright {
+  float: right;
+}
+
+
+/* Social Media ==========================*/
+
+.fa {
+  padding: 6px;
+  font-size: 20px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 0.01em;
+  border-radius: 50%;
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+
+#social-icons {
+  display: inline;
+}
+
+#wrapper {
+  display: inline;
+}
+
+
+/* Content-One ==========================*/
+
+#content-one {
+  min-height: 600px;
+  color: #fff;
+  text-align: center;
+  height: 700px;
+  background-color: #fff;
+}
+
+.doglook {
+  background-image: url("/img/dog-look.png");
+  background-position: -10em center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.doglook-content {
+  text-align: left;
+  padding: 0.8em;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+#content-one h2 {
+  width: 10em;
+  height: auto;
+  margin-bottom: 1em;
+}
+
+.btn {
+  display: inline-block;
+  color: #333;
+  text-decoration: none;
+  padding: 0.6em;
+  border: 1px solid #666;
+}
+
+.btn:hover {
+  background: #eaeaea;
+  color: #333;
+}
+
+
+/* Newsletter ==========================*/
+
+#subscribe {
+  text-align: center;
+  padding: 1em;  
+}
+
+#subscribe h3 {
+  padding-top: 1.3em;
+}
+
+#subscribe div {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 15em;
+  padding-left: 1em;
+}
+
+#subscribe input {
+  display: inline-block;
+  margin: 0;
+  border: none;
+}
+
+#subscribe button {
+  background-color: transparent;
+  color: darkgrey;
+}
+
+/* Contact Us ==========================*/
+
+#content-four {
+  background: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  background-image: url("/img/dog-peeping.png");
+  background-position-y: -6em;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: 45em;
+  /* position: absolute; */
+}
+
+#content-four form {
+  padding: 1em;
+  width: 15em;
+  background: #fff;
+  opacity: 0.8;
+}
+
+#content-four h3 {
+  margin-bottom: 0;
+}
+
+#content-four p {
+  padding-top: 0;
+}
+
+#content-four input {
+  width: 100%;
+}
+
+.contact-info p {
+  font-size: 85%;
+  padding: 0;
+}
+
+.contact-info i {
+  padding: 2px;
+}
+
+
+/* Footer ==========================*/
+
+footer {
+  width: 100%;
+  height: 3em;
+  padding: 0.2em;
+  background-color: #fff;
+  color: black;
+  text-align: center;
+}
+
+footer a:link {
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer span.fa {
+  color: #c59a6d;
+  font-size: 26px;
+}
+
+
+/* Dog Info ==========================  */
+
+#dog-info {
+  position: relative;
+  margin: 4% auto;
+  width: 800px;
+  height: 500px;
+  background: #FFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  background-size: cover;
+  background-image: url("/img/dog-info.png");
+  background-position-x: 12em
+}
+
+#dog-info h1 {
+  margin: 0em;
+  padding-bottom: 0.4em;
+  font-weight: 300;
+  font-size: 26px;
+}
+
+.dogs {
+  position: relative;
+  box-sizing: border-box;
+  padding: 1.5em;
+  left: 0;
+  width: 280px;
+  height: 600px;
+  background: #fff;
+  border: 1px solid #fff;
+}
+
+#login-space {
+  line-height: 2em;
+}
+
+
+/* Login ==========================  */
+
+#login {
+  position: relative;
+  margin: 4% auto;
+  width: 800px;
+  background: #FFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  background-size: cover;
+  background-image: url("/img/dog-laptop.png");
+}
+
+#login h1 {
+  margin: 0.em;
+  padding-bottom: 0.4em;
+  font-weight: 300;
+  font-size: 26px;
+}
+
+.login-left {
+  position: relative;
+  box-sizing: border-box;
+  padding: 1.5em;
+  left: 0;
+  width: 280px;
+  background: #fff;
+  border: 1px solid #fff;
+}
+
+#login-space {
+  line-height: 2em;
+}
+
+#login a:link {
+  text-decoration: none;
+}
+
+#login a:hover {
+  text-decoration: underline;
+}
+
+
+/* Forgot Password ==========================  */
+
+#forgot {
+  position: relative;
+  margin: 4% auto;
+  width: 800px;
+  height: 500px;
+  background: #FFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  background-size: cover;
+  background-image: url("/img/dog-laptop.png");
+}
+
+
+#forgot h1 {
+  margin: 0.em;
+  padding-bottom: 0.4em;
+  font-weight: 300;
+  font-size: 26px;
+}
+
+input[type="text"],
+input[type="password"] {
+  display: block;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 4px;
+  width: 220px;
+  height: 32px;
+  border: none;
+  border-bottom: 1px solid #AAA;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+#forgot-space {
+  line-height: 2em;
+}
+
+
+/* Report ==========================  */
+
+#report {
+  position: relative;
+  margin: 4% auto;
+  width: 800px;
+  height: 500px;
+  background: #FFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  background-size: cover;
+  background-image: url("/img/dog-report.png");
+  background-position-x: 12em;
+}
+
+#report h1 {
+  margin: 0em;
+  padding-bottom: 0.4em;
+  font-weight: 300;
+  font-size: 26px;
+}
+
+.report-left {
+  position: relative;
+  box-sizing: border-box;
+  padding: 1.5em;
+  left: 0;
+  width: 280px;
+  height: 500px;
+  background: #fff;
+  /* border: 1px solid #fff; */
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="date"],
+input[type="number"],
+input[type="list"],
+select {
+  display: block;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 4px;
+  width: 220px;
+  height: 32px;
+  border: none;
+  border-bottom: 1px solid #AAA;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+
+/* Signup ==========================  */
+
+#signup {
+  position: relative;
+  margin: 4% auto;
+  width: 800px;
+  height: 500px;
+  background: #FFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  background-size: cover;
+  background-image: url("/img/dog-laptop.png");
+}
+
+#signup h1 {
+  margin: 0;
+  padding-bottom: 0.4em;
+  font-weight: 300;
+  font-size: 26px;
+}
+
+.signup-left {
+  position: relative;
+  box-sizing: border-box;
+  padding: 1.5em;
+  left: 0;
+  width: 280px;
+  height: 500px;
+  background: #fff;
+  border: 1px solid #fff;
+}
+
+.container #signup-footer {
+  width: 100%;
+  height: 3em;
+  text-align: center;
+  position: relative;
+  right: 6em;
+}
+
+#signup-space {
+  line-height: 2em;
+}
+
+#signup a:link {
+  text-decoration: none;
+}
+
+#signup a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* Members ========================== */
+
+#members h3 {
+  text-align: center;
+}
+
+#item-content h3 {
+  text-align: center;
+}
+
+#members {
+  padding: 2em 1em 1em;
+}
+
+#members ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* width: 100%; */
+}
+
+#members li {
+  margin-bottom: 0em;
+  background: #AAA;
+  color: #333;
+}
+
+.card-content {
+  padding: 2.5em;
+  height: 20em;
+  width: 22.5em;
+}
+
+.card p {
+  width: 17em;
+}
+
+#contact-btn {
+  background-color: transparent;
+  color:#fff;
+  position: center;
+}
+ 
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
+/* Search ========================== */
+.search-sect {
+ padding: 10em;
+}
+
+
+
+/* Media Queries ========================== */
+
+@media (max-width: 600px) {
+.card 
+.grid
+.doglook 
+#content-one {
+  -ms-flex: 100%;
+  flex: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 800px) {
+  .card 
+  .grid
+  .doglook 
+  #content-one {
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+  }
+
+
+
+
+@media all and (min-width: 700px) {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr repeat(2, minmax(atuo, 25em)) 1fr;
+  }
+
+  #members ul {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  #members li {
+    width: 30%;
+  }
+
+} 
+
