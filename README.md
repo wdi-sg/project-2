@@ -1,65 +1,180 @@
-# Your Project Name
+# Craft Hub (working title)
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+link: https://tsurucrafthub.herokuapp.com/home
 
-## Getting Started
+Ever stumbled upon a pattern/ template of a craft project that you really want to attempt but unsure how long it will take or need inspiration for the choice of different material.
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+Craft Hub is here to help.
 
-### Prerequisites
+Craft Hub will:
+* 1) Allow user to upload their variation to the pattern/ template that they based on.
+* 2) Allow user to state the amount of time they took and calculate the average amount of time user took for the pattern/ template.
+* 3) Inspire and encourage user to make more craft.
 
-What is needed to install and run the project, how do we install them
+What Craft Hub can not do:
+* Magically make your craft project appear.(User still need to put in effort to make it)
+
+
+----------
+
+# ERD Diagram
+
+# ![](/Readmeassets/ERD_new.jpg)
+
+-----------
+# Wireframes
+
+# ![](/Readmeassets/home.png)
+Home Page will have recommended patterns or projects for user to attempt. If the user has logged in, it should display recommended as what was set in user's preferences instead.(ie. if preferences is woodcraft, it will display projects or pattern under woodcraft category.)
+
+# ![](/Readmeassets/profile.png)
+# ![](/Readmeassets/profilev2.png)
+A simple profile page. As each user are able to have to-challenge-projects, projects (completed) and pattern, the layout of the profile is yet to confirm.
+
+# ![](/Readmeassets/category.png)
+A simple layout of all projects under same category.
+
+# ![](/Readmeassets/pattern_a.png)
+For each pattern, it will first show the variation.
+
+# ![](/Readmeassets/pattern_b.png)
+When user click on the instructions, it will display the material and instructions
+
+# ![](/Readmeassets/variationorproject.png)
+For each variation/ project that the user create, it will have their own individual page to display.
+
+
+----------
+Routes list
 
 ```
-Code example
+('/home')
+Get /
+
+('/login')
+Get /
+Post / redirect to home
+
+('/register')
+Get /
+Post / redirect to profile
+
+('category/')
+Get / (not relevant currently)
+Get/:category (show 10 pattern & 10 project under the category selected)
+
+('/profile/')
+Get /
+Delete /
+Get /edit
+Put /edit
+Get /:slug
+
+('/pattern/')
+Get /new
+Post /new
+Get /:id (pattern id)
+
+Get /:id/edit
+Put /:id/edit
+Delete /:id/edit
+
+Get /:id/variation/new
+Post /:id/variation/new
+
+Post /:id/bookmark // add bookmark to user
+Put /:id/bookmark // removeBookmark
+
+('/projects')
+
+Get /:id (projects id)
+Get /:id/edit
+Put /:id/edit
+Delete /:id/edit
 ```
 
-### How to Use
+------------
 
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+# Flow Chart
 
-
-```
-Code example
-```
-
-More steps...
-
-```
-until finished
-```
+# ![](/Readmeassets/flowchart_new.jpg)
 
 
-## Tests
+------------
 
-Did you write automated tests? If so, how do we run them.
+# Key Features to build
+* User: user register page, login page, profile page
+* pattern: upload pattern, pattern details page, linking to variation.
+* Variation/ project: linking to pattern, project details page, uploading project.
+* search function, home page
+* Features to build only after above is completed: Calculation of average time spent, analysis of user's project (ie. breakdown of how many project done in each category or each level. )
 
-
-```
-Code example
-```
-
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+-----------
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
+* HTML
+* CSS
+* Javascript
+* Node
+* Express
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+-----------
 
-## Workflow
+## Log
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+version 0.1.0 Day 1 (23 Oct):
+* added Erd Diagram, wireframes, flowchart.  
+* install relevant dependencies
+* connect to heroku
+* building 3 models
 
-## Authors
+version 0.3.0 Day 2 (24 Oct):
+* added working login-routes, register-routes, profile-routes.
+* added pattern-routes: able to create new pattern, new variation under the pattern.
+* able to update the pattern id or project id to the user upon creation.
 
-Did you collaborate with others on this project, list them here
+version 0.4.5 Day 3 (25 Oct):
+* fix: able to see the pattern & project details (title) under profile.
+* fix: update the 3 models schema
+* added working category_routes: able to display 10 pattern and 10 project under the category.
+* added home_route, that will show 6 pattern from the categories.
 
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+version 0.5.0 Day 4 (26 Oct):
+* added: update user, delete user.
+
+version 0.7.5 Day 5 (27 Oct) :
+* added: upload image function
+* change the Schema structure of user and pattern model
+* able to remove user & its pattern & projects
+* fix: prevent multiple adding of bookmark for same project for the user
+* add: remove bookmark on profile page and as an option when updating a variation for the pattern.
+
+version 0.8.0 Day 6 (29 Oct):
+* added: CSS
+* routes list to readme
+
+version 0.8.1 (5 Nov) :
+* Fix bugs: Non-user are now able to view pattern and other user profile
+
+
+--------------
+## Improvement
+
+To be added:
+* finalise 3 models
+* search function
+* bonus features: estimated time spend
+* user preference category
+* more category
+
+
+
+To Fix:
+* Deleting Account + pattern + project under it
+* Delete pattern should update all variation project pattern name.  
+
+------------
 
 ## Acknowledgments
-
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+Images list used for the database: check picturessource.txt (to be upload once is insert in database)

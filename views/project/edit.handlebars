@@ -1,0 +1,45 @@
+
+
+<div class="d-flex flex-row justify-content-xl-between">
+
+  <h2 class="text-info ml-1">Edit: {{project.title}} </h2>
+  <form class="" action="/project/{{project.id}}/edit?_method=DELETE" method="post">
+    <button class="btn btn-info"  type="submit" name="button">Delete</button>
+  </form>
+</div>
+
+<form enctype="multipart/form-data" action="/project/{{project.id}}/edit?_method=PUT" method="post">
+  <div class="row ml-1 mb-2">
+    <div class="form-group col-md-6 card border-info card-header card-body text-info" style="max-width: 30rem">
+
+      <div class="">
+        <label class="card-title" for="image">Add Image :</label>
+        <input class="card-title" type="file" name="image">
+      </div>
+    </div>
+    <div class="form-group col-md-5 border-info">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label text-info" for="title">Title: </label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" name="project[title]" placeholder="{{project.title}}">
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="form-group col-md-5">
+      <label class="text-info" for="material">Material:</label>
+      <textarea class="form-control border-info"name="project[material]" rows="10" ></textarea>
+
+    </div>
+    <div class="form-group col-md-7">
+      <label class="text-info" for="reflection">Reflection:</label>
+      <textarea class="form-control border-info" name="project[reflection]" rows="10" ></textarea>
+
+    </div>
+  </div>
+
+
+  <button class="btn btn-info"  type="submit" name="button">Submit</button>
+</form>

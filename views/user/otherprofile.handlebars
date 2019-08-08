@@ -1,0 +1,57 @@
+
+<h2 class="text-info">{{ userDetails.name }}</h2>
+<div class="d-flex">
+  <div class="card border-0 col-sm-3">
+    <img class="img-thumbnail border-0 rounded float-left" src="{{userDetails.imageUrl}}" width=250 alt="{{ userDetails.name }}'s Image">
+
+  </div>
+  <div class="col-sm-3">
+    <div class="">
+      {{!-- <h5>{{ userDetails.email }}</h5> --}}
+      {{!-- <li>{{ user.preferences }}</li>
+      <li>{{ user.level }}</li> --}}
+
+    </div>
+
+
+
+  </div>
+
+</div>
+
+<div class="mb-3">
+  <h3 class="text-info">Pattern</h3>
+  <div class="d-flex flex-wrap">
+    {{#each patterns as |pattern| }}
+    <div class="card m-1" style="width: 11rem;">
+      <a href="/template/{{ pattern.id }}" class="text-info">
+      <img class="card-img-top"  src="{{pattern.imageUrl}}" height=150 alt="{{pattern.title}}'s image">
+        <div class="card-body">
+          <p class="card-text">{{pattern.title}}</p>
+        </div>
+      </a>
+
+    </div>
+
+    {{/each}}
+  </div>
+
+
+
+<div class="mb-2">
+  <h3 class="text-info">Project</h3>
+
+  <div class="d-flex flex-wrap ">
+    {{#each projects as |project| }}
+    <div class="card m-1" style="width: 11rem;">
+      <a href="/project/{{ project.id }}" class="text-info">
+      <img class="card-img-top"  src="{{project.imageUrl}}" height=150 alt="{{project.title}}'s image">
+        <div class="card-body">
+          <p class="card-text">{{project.title}}</p>
+        </div>
+      </a>
+
+    </div>
+    {{/each}}
+  </div>
+</div>
