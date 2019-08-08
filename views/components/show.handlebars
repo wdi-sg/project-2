@@ -1,0 +1,53 @@
+<div class="header">
+  <h4 class="title">Edit component</h4>
+</div>
+
+<div class="content">
+  <div class="row">
+    <div class="col-md-8">
+      <form action="/components/{{ component.id }}?_method=PUT" method="post">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" name="name" value="{{ component.name }}">
+          <label for="description">Description</label>
+          <input type="text" name="description" value="{{ component.description }}">
+        </div>
+        <div class="form-group">
+          <label for="vendor">Vendor</label>
+          <input type="text" name="vendor" value="{{ component.vendor }}">
+          <label for="type">Type</label>
+            <select name="type">
+              <option selected hidden value={{component.type.id}}>{{ component.type.name }}</option>
+              <option value="59f1964b4e4d8932d419fdc5">Software</option>
+              <option value="59f196774e4d8932d419fdda">Hardware</option>
+              <option value="59f196e14e4d8932d419fdfd">Professional Services</option>
+              <option value ="59f197124e4d8932d419fe0f">Third Party Services</option>
+            </select>
+        </div>
+        <div class="form-group">
+          <label for="unit_cost">Unit cost</label>
+          <input type="number" name="unit_cost" value="{{ component.unit_cost }}">
+          <label for="quantity">Quantity</label>
+          <input type="number" name="quantity" value="{{ component.quantity }}">
+        </div>
+      </div>
+        <div class="col-md-5">
+        <button type="submit" class="btn-primary btn-xs btn-fill pull-right">
+          <i class="pe-7s-upload"></i>
+          <b>Update</b>
+        </button>
+        </div>
+      </form>
+  </div>
+</div>
+
+<div class="content">
+<h4>Remove component</h4>
+<form action="/components/{{ component.id }}?_method=DELETE" method="post">
+  <button type="submit" class="btn-danger btn-xs btn-fill" name="button">
+    <i class="pe-7s-trash"></i>
+    Delete
+  </button>
+</form>
+</div>
+</div>

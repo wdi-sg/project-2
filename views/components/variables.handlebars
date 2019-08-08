@@ -1,0 +1,38 @@
+<div class="col-md-3 ">
+
+<div class="header">
+  <h4 class="title">Set variables</h4>
+</div>
+<div class="content table-responsive table-full-width">
+  <table class="table table-hover ">
+    <form action="/components/variables?_method=PUT" method="post">
+      <thead>
+        <tr>
+          <th scope="col">Type</th>
+          <th scope="col">Margin(%)</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#each types as |type|}}
+        <tr>
+          <input type="hidden" name="id" value ="{{type.id}}">
+          <td>
+            {{type.name}}
+          </td>
+          <td>
+            <input type="number" name="margin" value ="{{type.margin}}">
+          </td>
+      {{/each}}
+        </tr>
+        <td></td>
+        <td>
+      <button type="submit" class="btn-primary btn-xs btn-fill pull-right">
+        <i class="pe-7s-note"></i>
+        <b>Update</b>
+    </button>
+      </form>
+        </td>
+      </tbody>
+    </table>
+  </div>
+</div>

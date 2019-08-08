@@ -1,0 +1,88 @@
+<div class="header">
+  <h4 class="title">All Components</h4>
+</div>
+
+<div class="header">
+  <h6 class ="subtitle">
+    <a href="/components/new">
+    <button class="btn-primary btn-xs btn-fill">
+    <i class=pe-7s-plus></i>
+    <b>Add new component</b>
+  </button>
+</a>
+  </h6>
+</div>
+  <div class="content table-responsive table-full-width">
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          {{#if user.isAdmin}}
+          <th scope="col">Owner</th>
+          {{/if}}
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Vendor</th>
+          <th scope="col">Type</th>
+          <th scope="col">Unit cost</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Total Cost</th>
+          {{#if user.isAdmin}}
+            <th scope="col">Total Price</th>
+            <th scope="col">Margin</th>
+          {{/if}}
+          <th scope="col"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          {{#each components as |compo|}}
+          {{#if ../user.isAdmin}}
+            <td>{{ compo.owner.name }}</td>
+          {{!-- {{else}}
+            <td></td> --}}
+          {{/if}}
+
+          <td>{{ compo.name }}</td>
+          <td>{{ compo.description }}</td>
+          <td>{{ compo.vendor }}</td>
+          <td>{{ compo.type.name }}</td>
+          <td>{{ compo.unit_cost }}</td>
+          <td>{{ compo.quantity }}</td>
+          <td>{{ compo.totalCost }}</td>
+          {{#if ../user.isAdmin}}
+            <td>{{ compo.totalPrice }}</td>
+            <td>{{ compo.type.margin }}%</td>
+          {{/if}}
+          <td>
+            <a href="/components/{{ compo.id }}">
+              <i class="pe-7s-note"></i>
+              Edit
+            </a>
+          </td>
+        </tr>
+        {{/each}}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          {{#if user.isAdmin}}
+          <td></td>
+          {{/if}}
+          <td>Total</td>
+          <td>{{sumCost}}</td>
+          {{#unless user.isAdmin}}
+          <td></td>
+          {{/unless}}
+          {{#if user.isAdmin}}
+            <td>{{sumPrice}}</td>
+            <td>{{sumMargin}}%</td>
+            <td></td>
+          {{/if}}
+        </tr>
+    </tbody>
+  </table>
+
+</div>

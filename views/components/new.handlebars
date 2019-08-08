@@ -1,0 +1,40 @@
+<div class="header">
+<h4>Add new component</h4>
+</div>
+
+<div class="content">
+  <div class="row">
+    <div class="col-md-8">
+      <form action="/components" method="post">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" name="name">
+          <label for="description">Description</label>
+          <input type="text" name="description">
+        </div>
+        <div class="form-group">
+          <label for="vendor">Vendor</label>
+          <input type="text" name="vendor">
+          <label for="type">Type</label>
+            <select name="type">
+              {{#each types as |type|}}
+              <option value = "{{type.id}}">{{type.name}}</option>
+              {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+          <label for="unit_cost">Unit cost</label>
+          <input type="number" name="unit_cost">
+          <label for="quantity">Quantity</label>
+          <input type="number" name="quantity">
+        </div>
+      </div>
+      <div class="col-md-5">
+      <button type="submit" class="btn-primary btn-xs btn-fill pull-right">
+        <i class="pe-7s-upload"></i>
+        <b>Add component</b>
+      </button>
+      </div>
+    </form>
+  </div>
+</div>
