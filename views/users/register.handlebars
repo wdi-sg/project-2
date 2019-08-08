@@ -1,0 +1,38 @@
+
+<section class="hero is-info is-fullheight">
+    <div class="hero-body">
+      <div class="container has-text-centered ">
+        <div class="column is-4 is-offset-4">
+          <h3 style="font-weight:normal"class="title is-3 is-black">User Registration</h3>
+          <div class="box">
+            <form action="/register" method="POST">
+              <div class="field">
+                <div class="control">
+                  <input class="input is-medium" type="text" name="user[name]" placeholder="Name*">
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input is-medium" type="text" name="user[email]" placeholder="E-mail*">
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input is-medium" type="password" name="user[password]" placeholder="Password*">
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <label for="subscribe">Receive a quote every morning</label>
+                  <input id="subscribe" type="checkbox" name="user[subscribeQuote]" value="true">
+                </div>
+              </div>
+              <div class="field">
+              </div>
+              <button style="margin: 0 auto" class="button is-block is-info is-medium" type="submit" name="button">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

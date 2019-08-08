@@ -1,0 +1,66 @@
+.hero.is-info {
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ), url('https://unsplash.it/1200/900?random') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+h1, h2 ,h3 {
+  font-family: Helvetica Neue, sans-serif ;
+}
+.homepage-author {
+  padding-top:10px;
+  letter-spacing:2px;
+  font-style:italic;
+}
+
+.homepage-quote {
+  font-style:italic;
+  font-weight: 500;
+  line-height: 60px;
+}
+
+.button {
+  border-radius:10px;
+}
+
+.button-in-line {
+  display:inline-block;
+}
+
+.exploreQuote {
+  font-style:italic;
+  font-size:18px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.exploreAuthor {
+  margin-bottom: 10px;
+}
+
+.myQuote {
+  font-weight: 700;
+  font-style: italic;
+  margin: 5px 0px;
+}
+
+.myCard {
+  height:170px;
+  text-align:center;
+}
+
+.exploreCard {
+  height:220px;
+  text-align:center;
+}
+
+.is-dark.is-inverted.is-small {
+  margin:10px;
+}
+
+/*background-color: #F5F5DC;*/

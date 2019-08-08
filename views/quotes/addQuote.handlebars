@@ -1,0 +1,25 @@
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container has-text-centered ">
+      <div class="column is-4 is-offset-4">
+        <h3 style="font-weight:normal"class="title is-3 is-black">Add Personal Quote</h3>
+        <div class="box">
+          <form method="post" action="/quotes/addQuote">
+            <label class="label" for="Author">Author Name</label>
+            <div class="control">
+              <input class="input"type="text" name="author" placeholder="e.g. Albert Einstein">
+            </div>
+
+              <label class="label" for="Quote">Quote</label>
+              <div class="control">
+                <input class="input"type="text" name="quote" placeholder="e.g. Quote here">
+              </div> <br>
+              <button class="button is-primary" type="submit">Add Quote</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

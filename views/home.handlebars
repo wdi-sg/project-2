@@ -1,0 +1,29 @@
+<section class="hero is-info is-fullheight">
+  <div class="hero-body">
+   <div class="container has-text-centered">
+     <div class="column is-10 is-offset-1">
+
+        <h1 style ="font-size: 50px"class="title is-2 homepage-quote">
+          "{{ quote.quote }}"
+        </h1>
+        <h2 style ="font-size: 30px" class="subtitle is-4 homepage-author">
+          {{ quote.author }}
+        </h2>
+          <form class="button-in-line" action="/addcollection" method="post">
+            <input class="input" type="hidden" name="quoteId" value="{{ quote.id }}">
+            <button class="button is-medium is-light" type="submit" name="button">Add</button>
+          </form>
+        {{!-- show if user logged in & have not subscribed --}}
+        {{#if user}}
+          {{#unless user.subscribeQuote }}
+          <form class="button-in-line" action="/subscribe?_method=PUT" method="post">
+            <input class="input" type="hidden" name="user[subscribeQuote]" value='true'>
+            <button class='button is-medium is-white' type="submit" name="button">Subscribe</button>
+          </form>
+            {{/unless}}
+          {{/if}}
+      <div style="margin-bottom: 80px;"class="container"></div>
+     </div>
+   </div>
+ </div>
+</section>
