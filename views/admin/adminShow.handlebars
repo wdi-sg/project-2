@@ -1,0 +1,46 @@
+<div class="page-header">
+	<div class="page-header-image" data-parallax="true" style="background-image: url('/assets/img/wallpaper3.jpg');"></div>
+<br><br><br><br>
+<div class="container">
+<h3>List of Supplier</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Supplier Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contact No.</th>
+        <th scope="col">Address</th>
+        <th scope="col">Unit</th>
+        <th scope="col">Postal code</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+
+    {{#each suppliers as |supp|}}
+
+    <tbody>
+      <tr>
+        <td>{{ supp.company }}</td>
+        <td>{{ supp.email }}</td>
+        <td>{{ supp.contact }}</td>
+        <td>{{ supp.address }}</td>
+        <td>{{ supp.unit }}</td>
+        <td>{{ supp.postalcode }}</td>
+        <td>
+          <form class="" action="/vegetable/new" method="post">
+            <input type="hidden" name="id" value="{{supp.id}}">
+            <button type="submit" name="button" href="/vegetable/new" class="btn btn-warning">Add Vegetable</button>
+          </form>
+
+            <a href="/vegetable/table/{{supp.id}}"><button type="button" class="btn btn-warning">View Vegetable</button></a>
+        </td>
+      </tr>
+    </tbody>
+
+{{/each}}
+</table>
+
+</div>
+</div>
+</div>

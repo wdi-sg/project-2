@@ -1,65 +1,48 @@
-# Your Project Name
+# Greenie GoGo!
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+# Project #1: Greenie GoGo!
 
-## Getting Started
+<img src="public/assets/img/website.png">
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+https://greeniegogo.herokuapp.com/
 
-### Prerequisites
+## Problem :
+- No idea where to get reasonable wholesale vegetables  
+- Time consuming to look for suppliers
+- Lost of name cards of supplier
 
-What is needed to install and run the project, how do we install them
+## Target Audience :
 
-```
-Code example
-```
+- Restaurant
+- Hawker
+- Coffee Shop
 
-### How to Use
+## Objective :
 
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+Able to find wholesales suppliers within 2 clicks. Users can compare the prices and see their minimum order accepted by suppliers. Save up unnecessary effort to call supplier can straight look for another supplier instead.
 
+## ERD Diagram :
 
-```
-Code example
-```
-
-More steps...
-
-```
-until finished
-```
+<img src="public/assets/img/erd.png">
 
 
-## Tests
+## To Be Implemented :
 
-Did you write automated tests? If so, how do we run them.
+- Able to edit vegetables details use by the admin
+- A search functionally to filter suppliers by name, address
+- Customer able to purchase directly without calling supplier
+- Recommend customer, appropriate supplier according to their business type, as some supplier do not accept small orders
 
 
-```
-Code example
-```
+## Built With :
 
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
-
-## Built With
-
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
-
-## Workflow
-
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
-
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+- HTML5
+- CSS3
+- Javascript
+- Node
+- Express
+- Bootstrap 4
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+- With the help of my senior (Alex)

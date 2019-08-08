@@ -1,0 +1,32 @@
+<br><br><br>
+
+<h3>Update Vegetable</h3>
+<form action="/vegetable/update/{{ supplier.id }}?_method=PUT" method="post">
+
+  <input type="hidden" name="id" value="{{veg.id}}">
+
+  <label for="name">Vegetable Name:</label>
+  <input type="text" name="veg[txtName]" value="{{ vegetable.name }}">
+  <br/>
+
+
+  <label for="lblPrice">Price per KG $:</label>
+  <input type="text" name="veg[txtPrice]" value="{{ vegetable.price }}">
+  <br/>
+
+  <label for="lblEmail">Minimum Quantity in KG :</label>
+  <input type="number" name="veg[txtQuantity]" value="{{ vegetable.quantity }}">
+  <br/>
+
+  <label for="lblBusinessType">Select your photo :</label>
+  <input type="text" name="veg[photo]" value="{{ vegetable.photo }}">
+  <br/>
+
+  <button type="submit" name="button">Submit</button>
+</form>
+
+
+<h3>Delete</h3>
+<form action="/vegetable/{{ supp.id }}?_method=DELETE" method="post">
+  <button type="submit" name="button">Delete</button>
+</form>

@@ -1,0 +1,62 @@
+<div class="page-header">
+	<div class="page-header-image" data-parallax="true" style="background-image: url('/assets/img/wallpaper3.jpg');"></div>
+	<br><br><br><br>
+	<div class="container">
+		<div class="row">
+			<div class="card card-supplier">
+
+			<div class="card-plain">
+				<h3 class="title text-center">Add Supplier</h3>
+
+
+					<form action="/supplier" method="post">
+						<div class="card-body">
+
+						<label for="lblCompanyName">Company Name :</label>
+						<div class="text-center">
+							<input type="text" class="form-control" name="supplier[txtName]" placeholder="Enter Company Name">
+
+						</div>
+						<br>
+
+						<label for="lblEmail">Email :</label>
+						<div class="text-center">
+							<input type="text" class="form-control" name="supplier[txtEmail]" placeholder="Enter Email">
+						</div>
+						<br>
+
+						<label for="lblEmail">Contact No :</label>
+						<div class="text-center">
+							<input type="number" class="form-control" name="supplier[txtContact]" placeholder="Enter Contact">
+						</div>
+						<br>
+
+						<label for="lblBusinessType">Address :</label>
+						<div class="text-center">
+							<input type="text" class="form-control" name="supplier[txtAddress]" placeholder="Enter Address">
+						</div>
+						<br>
+
+						<label for="lblUnit">Unit No :</label>
+						<div class="text-center">
+							<input type="text" class="form-control" name="supplier[txtUnit]" placeholder="Enter Unit No.">
+						</div>
+						<br>
+
+						<label for="lblPostalCode">Postal Code :</label>
+						<div class="text-center">
+							<input type="number" class="form-control" name="supplier[txtPostalCode]" placeholder="Enter Postal">
+
+						</div>
+						<br>
+
+						<div class="text-center">
+							<button type="submit" name="btn" class="btn btn-warning">Submit</button>
+						</div>
+				</div>
+				</form>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
