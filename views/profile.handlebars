@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Your Fridge</h1>
+  <div class="row">
+    {{#each members.fridges as |fridge|}}
+    <div class="col-3">
+      <div class="card">
+        <div class="card-body mw-100">
+          <h1 class="card-title text-center">{{ fridge.name }}</h1>
+          &nbsp;
+          <div class="container profile">
+            <button class="btn btn-primary d-inline w-50 align-middle" type="button" onclick="location.href='/fridge/{{fridge.id}}'">Enter</button>
+            <form
+            class="d-inline"
+            action="/fridge/{{ fridge.id }}?_method=DELETE"
+            method="post">
+            &nbsp;
+              <button class="btn btn-danger w-50" type="submit" name="button">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+  </div>
+
+
+
+  <div class="btn dropup">
+    <button type="button" class="btn btn-primary btn-circle btn-xl" onclick="location.href='/fridge/new'">
+      New Fridge
+    </button>
+  </div>
+</div>

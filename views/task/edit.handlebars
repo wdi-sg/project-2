@@ -1,0 +1,11 @@
+<div class="container">
+  <h3>Edit your Task</h3>
+  <h1>{{tasks.assign}}</h1>
+  <form action="/task/{{tasks.id}}/edit?_method=PUT" method="post">
+    <label for="details">Details</label>
+    <textarea name="details" class="form-control" rows="5" cols="30">
+      {{tasks.details}}
+    </textarea>
+    <button type="submit">Submit</button>
+  </form>
+</div>
