@@ -52,24 +52,4 @@ What I set for myself to do is an app in which I could track the details such as
 * Updating of items
 * Stock changes
 * Logins for employees (Differentiating between who's assisting the customer in ordering)
----
-### Workarounds
-**Some code workaround**
-```  
-$( ".itemList" ).append( `<div class='singleItem' id=${id}>
-  <span> ${name} </span> &nbsp; <button type='button' class='deleteCartItemBtn'>Delete</button>
-  <p>SGD$: ${price} </p>
-  <input class='addQuantity' type='number' value='1' min='0'>
-  &nbsp;
 
-  </div>`);
-});
-
-```
-At this point, I was not very well versed with ES6, so I learnt from doing it this way.
-If we just do an append with normal jQuery, it cannot be the target of class-specific functions. This ES6 workaround worked.
----
-### Acknowledgements
-My classmates and instructors from WDI-13
-:bow:
----
