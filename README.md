@@ -46,10 +46,3 @@ What I set for myself to do is an app in which I could track the details such as
 ---
 ### ERD
 <img src="readmestuff/erd1.png" width="512px">
----
-### Plans Ahead
-* Updating of customer details
-* Updating of items
-* Stock changes
-* Logins for employees (Differentiating between who's assisting the customer in ordering)
-
