@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-md-9">
+    <h3 class="text-center">Items List</h3>
+    {{#each items}}
+    <div class="col-sm-3 text-center itemBox">
+      <div class="thumbnail">
+        <img src="https://i.imgur.com/hVVqLxG.png">
+        <div class="caption">
+          <h3>{{ name }}</h3>
+          <p>$SGD {{ price }}</p>
+          <button type="submit" class="btn btn-primary addOrderBtn" data-name="{{ name }}" data-price="{{ price }}" data-id="{{ _id }}">Add To Cart</button>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+
+
+  </div>
+  <div class="col-md-3">
+    <h3>Add New Order</h3>
+    {{#if success_msg}}
+    <div class="alert alert-success">
+      {{ success_msg }}
+    </div>
+    {{/if}}
+
+    <form action="/order" method="post">
+      <!-- Customer Dropdown -->
+      <div class="form-group">
+        <label for="custSelect">Select Customer</label>
+        <select class="form-control" name="custSelect" id="custSelectDropdown">
+          {{#each customers}}
+          <option value="{{ _id }}">{{ firstName }} {{ lastName }}</option>
+          {{/each}}
+        </select>
+      </div>
+
+      <div class="text-center">
+        <input type="submit" name="Place Order" class="btn btn-primary" id="mainOrderBtn">
+      </div>
+
+      <div class="text-center orderedItemsTitle">
+        <h4>Ordered Items</h4>
+      </div>
+
+      <div class="itemList text-center">
+        <!-- To append items into. Important. -->
+      </div>
+
+    </form>
+  </div>
+</div>

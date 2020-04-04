@@ -1,65 +1,48 @@
-# Your Project Name
+# POS Application
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+[CLICK HERE](https://guarded-thicket-64693.herokuapp.com/)
 
-## Getting Started
+### Overview
+This application was built to allow users to record and store information about what customers have bought and used while on a holiday trip. In this case, the customers will be on-board a ship where they may order items and equipment from the employees. The employees will use this application to input whichever customer and what they have bought/used. At the end of the trip, the employee is able to simply select the customer on the app and their information will be displayed together with their total bill.
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+Their bill will include the names of the items that they have bought/used, the date the order was placed, the quantity that was ordered, as well as the price of each individual item. The client's request was there to not be any transaction done within the app as cash payment was preferred.
+---
+### Ideation
+It was built from a business requirement of
+* Item sales
+* Equipment rental
+* Total/current stock of items
+* Customer details (Length of stay, items bought during their stay)
+* Simplicity (The employee may not speak English)
+---
+### Development Approach
+The client approached me with requirements for a point-of-sales system that did not require focus on the transactions part. It was more of stock-taking and tracking than transaction. As such, I built the app off the idea that no transactions would be taking place within the app itself.
 
-### Prerequisites
-
-What is needed to install and run the project, how do we install them
-
-```
-Code example
-```
-
-### How to Use
-
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
-
-
-```
-Code example
-```
-
-More steps...
-
-```
-until finished
-```
+What I set for myself to do is an app in which I could track the details such as total stock, current stock, price, name, and description of an item as well as the names, trip start/end dates, total items bought, total price of items bought by the customers. The user will input what the customers have bought/used and at the end of the customer's trip it would be easy to total everything up.
+---
+### User Stories
+* Guests
+  - Can place order for items (food, drinks, equipment) with employees
 
 
-## Tests
+* Employees
+  - Can input guest order
+    - order will only go through if there's stock
+    - orders are saved under each customer
 
-Did you write automated tests? If so, how do we run them.
+  - Can change guest order
 
+  - Can add new customer details
+    -Will contain their names, the start and end dates of their trip, room number
 
-```
-Code example
-```
+  - Can come up with a total for customer's order with list of ordered items
+    - Quantity of items * price of items
 
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
-
-## Built With
-
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
-
-## Workflow
-
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
-
-## Authors
-
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+  - Can add/delete new items to database
+    - Includes their name, price/piece, total stock
+---
+### Wireframe
+<img src="readmestuff/layout.png" width="512px">
+---
+### ERD
+<img src="readmestuff/erd1.png" width="512px">

@@ -1,0 +1,23 @@
+body {
+  background-color: #428bca;
+  padding-top: 70px;
+}
+
+.main {
+  background-color: white;
+  min-height: 85vh;
+  border-radius: 25px;
+}
+
+.leftDiv {
+  min-height: 100%;
+}
+.itemList {
+  max-height: 500px;
+  min-height: 500px;
+  overflow-y: scroll;
+}
+
+.orderedItemsTitle {
+  padding-top: 10px;
+}

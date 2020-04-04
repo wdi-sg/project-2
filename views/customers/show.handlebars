@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-sm-5">
+    <div class="text-center">
+      <h3>Details</h3>
+    </div>
+    <img src="https://i.imgur.com/MyZhcFu.png">
+    <p>Unique ID: {{ customer._id }}</p>
+    <p>First Name: {{ customer.firstName }}</p>
+    <p>Last Name: {{ customer.lastName }}</p>
+    <p>Room Number: {{ customer.roomNumber }}</p>
+    <p>4-digit Passcode: {{ customer.passcode }}</p>
+    <p>Trip Start: {{ customer.tripStart }}</p>
+    <p>Trip End: {{ customer.tripEnd }}</p>
+  </div>
+
+  <div class="col-sm-7">
+    <div class="text-center">
+      <h3>Orders</h3>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Date of Purchase</th>
+        </tr>
+        {{#each orderedItems}}
+        <tr>
+          <td>{{item_id.name}}</td>
+          <td>{{item_id.price}}</td>
+          <td>{{quantity}}</td>
+          <td>{{ dateOfPurchase}}</td>
+        </tr>
+        {{/each}}
+        <tr>
+          <td><b>Total Price</b></td>
+          <td>{{ totalPrice }}</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</div>
