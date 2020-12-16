@@ -136,8 +136,10 @@ $(document).ready(function() {
 		}
 	});
 
+
 	// Sets where the data from splitting the stalks will be recorded
 	var rawData = divination.data.raw;
+
 
 	class Stalks {
 		// The Book of Changes states, "The number (of stalks) that represents the totality of development is fifty." Hence, even though only up to 49 stalks is used, the constant is declared below as a nod to tradition.
@@ -156,16 +158,49 @@ $(document).ready(function() {
 	}
 
 
+	// Tracks the progress of divination.
+	class Progress {
+		constructor() {
+			this.current = {
+				// Both starts from 1.
+				round: 1,
+				line: 1
+			}
+		}
+		nextRound() {
+			// Increases `currentRound` by 1 spliting and recording.
+			this.current.round++
+			// Checks if all three rounds to obtain a line are completed.
+		}
+		nextLine() {
+			if (this.current.round == 4) {
+				// Reset `currentRound` to 1
+				this.current.round = 1;
+				// Increase `currentLine` by 1 to continue to the next line
+				this.current.line++;
+				// If `currentLine` is 7, the hexagram is completed.
+				if (this.current.line == 7) {
+					// Reset `currentLine` to 1
+					this.current.line = 1;
+					$('#stalks-container').off();
+					$('#is-submit-prompt').removeClass('is-invisible');
+					$('#is-split-button').prop('disabled', true);
+					$('#is-submit-button').prop('disabled', false);
+					// Smooth scroll to Step Three
+					$('html, body').animate(
+						{ scrollTop: $('#step-three').offset().top - 24 }, 800, function(){
+						// Add hash (#) to URL when done scrolling (default click behavior)
+						// window.location.hash = '#step-three';
+					});
+				}
+			}
+		}
+	}
+
+
 	function createOneStalkNode(stalkNumber) {
 		let template = document.querySelector('#stalk');
 		let stalkClone = document.importNode(template.content, true);
-
-		// TODO: Remove when inline SVG is working nicely
-		// // Individual `img` node displaying stalk SVG.
-		// let imgElement = document.createElement('img');
-		// imgElement.id = 'stalk-'+ stalkNumber;
-		// imgElement.classList.add('stalk');
-		// imgElement.src = "/images/yarrow_stalk.svg";
 
 		// Individual `div` node containing stalk image and CSS `padding-top`.
 		let divElement = document.createElement('div');
@@ -174,10 +209,6 @@ $(document).ready(function() {
 		// Generate random number for CSS `padding-top` to be inserted to each `div` containing the yarrow stalk image.
 		let stalkPadding = Math.floor(Math.random() * 20);
 		divElement.style.paddingTop = stalkPadding + 'px';
-
-		// TODO: Remove when inline SVG is working nicely
-		// // Append `imgElement` into `divElement`
-		// divElement.appendChild(imgElement);
 
 		// Append `imgElement` into `divElement`
 		divElement.appendChild(stalkClone);
@@ -189,21 +220,21 @@ $(document).ready(function() {
 	// 2. For the first round of each hexagram line, it's simply `Stalks.inUse`, i.e. 49.
 	function initializeStalks(stalksLastRound) {
 		let stalksContainer = document.getElementById('stalks-container');
-		let newStalksNodes = document.createDocumentFragment();
+		let newStalkNodes = document.createDocumentFragment();
 		for (let stalk = 1; stalk <= stalksLastRound; stalk++) {
 			let stalkNode = createOneStalkNode(stalk);
-			// Append individual stalk node `stalkDisplay` to document fragment `newStalksNodes`.
-			newStalksNodes.appendChild(stalkNode);
+			// Append individual stalk node `stalkDisplay` to document fragment `newStalkNodes`.
+			newStalkNodes.appendChild(stalkNode);
 			// Insert a gap at where the slider's default position will be to prevent the stalks on the right of the gap from closing the gap when the user is sliding or hovering over the stalks.
 			if (stalk == round.gapPosition) {
 				let gapDiv = document.createElement('div');
 				gapDiv.id = 'gap-'+ round.gapPosition;
 				gapDiv.classList.add('gap');
-				newStalksNodes.appendChild(gapDiv);
+				newStalkNodes.appendChild(gapDiv);
 			}
 		}
 		// Append 49 yarrow stalks with randomized CSS `padding-top`.
-		stalksContainer.appendChild(newStalksNodes);
+		stalksContainer.appendChild(newStalkNodes);
 	}
 
 
@@ -278,46 +309,6 @@ $(document).ready(function() {
 			let gapFromSlider = Number(document.getElementById('slider-bar').noUiSlider.get());
 			maintainTheGap(gapFromSlider);
 		});
-	}
-
-
-	// Tracks the progress of divination.
-	class Progress {
-		constructor() {
-			this.current = {
-				// Both starts from 1.
-				round: 1,
-				line: 1
-			}
-		}
-		nextRound() {
-			// Increases `currentRound` by 1 spliting and recording.
-			this.current.round++
-			// Checks if all three rounds to obtain a line are completed.
-		}
-		nextLine() {
-			if (this.current.round == 4) {
-				// Reset `currentRound` to 1
-				this.current.round = 1;
-				// Increase `currentLine` by 1 to continue to the next line
-				this.current.line++;
-				// If `currentLine` is 7, the hexagram is completed.
-				if (this.current.line == 7) {
-					// Reset `currentLine` to 1
-					this.current.line = 1;
-					$('#stalks-container').off();
-					$('#is-submit-prompt').removeClass('is-invisible');
-					$('#is-split-button').prop('disabled', true);
-					$('#is-submit-button').prop('disabled', false);
-					// Smooth scroll to Step Three
-					$('html, body').animate(
-						{ scrollTop: $('#step-three').offset().top - 24 }, 800, function(){
-						// Add hash (#) to URL when done scrolling (default click behavior)
-						// window.location.hash = '#step-three';
-					});
-				}
-			}
-		}
 	}
 
 
@@ -513,15 +504,15 @@ $(document).ready(function() {
 		// let lastStalkPosition = Number($('.stalk-position').last().attr('id').split('-')[1]);
 		let nextStalkPosition = lastStalkPosition + 1;
 		let stalksToAdd = Stalks.inUse() - lastStalkPosition;
-		let newStalksNodes = document.createDocumentFragment();
+		let newStalkNodes = document.createDocumentFragment();
 
 		for (let stalk = nextStalkPosition; stalk <= Stalks.inUse(); stalk++) {
 			let stalkNode = createOneStalkNode(stalk);
-			// Append individual stalk node `stalkDisplay` to document fragment `newStalksNodes`.
-			newStalksNodes.appendChild(stalkNode);
+			// Append individual stalk node `stalkDisplay` to document fragment `newStalkNodes`.
+			newStalkNodes.appendChild(stalkNode);
 		}
-		// Append new stalks nodes `newStalksNodes` needed to replenish stalks to 49.
-		stalksContainer.appendChild(newStalksNodes);
+		// Append new stalks nodes `newStalkNodes` needed to replenish stalks to 49.
+		stalksContainer.appendChild(newStalkNodes);
 
 		setTimeout(function() {
 			// Re-enable Split button after stalks are replenished
