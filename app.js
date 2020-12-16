@@ -22,10 +22,16 @@ const config = require('./config/config.js');
 // Middlewares
 mongoose.Promise = global.Promise;
 mongoose.connect(
-	config.mongodb.url,
-	{ useMongoClient: true }).then(
-		() => { console.log('>>> Mongoose   Ready <<<'); },
-		(err) => { console.log(err) }
+	config.mongodb.uri,
+	{
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+		useFindAndModify: false,
+		useCreateIndex: true
+	}
+).then(
+	() => { console.log('>>> Mongoose   Ready <<<'); },
+	(err) => { console.log(err) }
 );
 
 app.use(cookieParser()); // Read cookies for auth
@@ -42,7 +48,7 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true,
 	store: new MongoStore({
-		url : config.mongodb.url,
+		url : config.mongodb.uri,
 		ttl: 14 * 24 * 60 * 60,
 		autoRemove: 'native' }),
 	cookie: {
